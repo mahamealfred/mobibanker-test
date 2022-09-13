@@ -1,25 +1,21 @@
-import styled from '@emotion/styled';
-import { Box, Button } from '@mui/material';
-import './App.css';
-import TopNav from './components/topNav/TopNav';
-import SignIn from './pages/signin/SignIn';
+import React,{Component} from "react";
+import { Suspense } from "react";
+import Routes from './routes/index';
+import { BrowserRouter as Router} from "react-router-dom";
+import "./App.css";
 
-function App() {
 
-  // const BlueButton=styled(Button)(({theme})=>({
-  //   backgroundColor:'skyblue',
-  //   color:'#888',
-  //   margin:5,
-  //   "&:hover":{
-  //     backgroundColor:"lightblue"
-  //   }
-  // }))
-  return (
-    <Box>
-      <TopNav/>
-      <SignIn/>
-    </Box>
-  );
-}
+export default class App extends Component {
 
-export default App;
+
+  render() {
+    return (
+      <Suspense fallback={null}>
+       <Router>
+        <Routes/>
+      </Router>
+      </Suspense>
+     
+    )
+  }
+};

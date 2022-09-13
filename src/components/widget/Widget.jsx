@@ -56,26 +56,22 @@ const Widget = () => {
      
     }}
   >
- {/* <Typography variant="h6" fontWeight={100} mt={2}>
-          Latest Conversations
-        </Typography> */}
+ <Typography variant="h6" fontWeight={100} mt={2}>
+ <img src="../../Assets/images/mobibanker.png" alt="logo" height="80" width="300" />
+        </Typography>
         <List sx={{ width: '100%', 
         maxWidth: 360, 
         // bgcolor: 'background.paper'
-        backgroundColor: (t) =>
-            t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+        backgroundColor: 'transparent',
 
          }}>
       <ListItem alignItems="flex-start" 
-     
       >
         <ListItemAvatar
-         sx={{padding:'0 20px'}}
+         sx={{padding:'0 10px'}}
         >
           {/* <Avatar alt="Remy Sharp" src="" /> */}
-          <img src="../../Assets/images/img_144.png" alt="logo" height="80" width="80" margin="50px"/>
+          <img src="../../Assets/images/knowledge.png" alt="logo" height="120" width="80" margin="50px"/>
         </ListItemAvatar>
         <ListItemText
           primary={
@@ -113,11 +109,10 @@ const Widget = () => {
       <Divider variant="inset" component="li" />
       <ListItem alignItems="flex-start">
         <ListItemAvatar
-           sx={{padding:'0 20px'}}
+            sx={{padding:'0 10px'}}
         >
           {/* <Avatar alt="Agent Support" src="" /> */}
-          
-          <img src="../../Assets/images/person.png" alt="logo" height="80" width="80" margin="50px"/>
+          <img src="../../Assets/images/support.png" alt="logo" height="80" width="80" margin="50px"/>
         </ListItemAvatar>
         
         <ListItemText

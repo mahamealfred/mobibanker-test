@@ -123,10 +123,10 @@ function DashboardContent() {
               sx={{ flexGrow: 1 }}
             >
               <Box
-                                sx={{ minWidth: 100, display: { xs: "none", sm: "block" } }}
-                            >
-                                <img src="../../Assets/images/logo.png" alt="logo" height="40" width="150" margin="50px" />
-                            </Box>
+               sx={{ minWidth: 100, display: { xs: "none", sm: "block" } }}
+               >
+               <img src="../../Assets/images/logo.png" alt="logo" height="40" width="150" margin="50px" />
+             </Box>
             </Typography>
             <Box
                 sx={{ minWidth: 100, display: { xs: "none", sm: "block" } }}
@@ -147,10 +147,11 @@ function DashboardContent() {
                                     </NativeSelect>
                                 </FormControl>
                             </Box >
+                            {/* condition */}
                             <Box
                                 sx={{ minWidth: 100, display: { xs: "block", sm: "none" } }}
                             >
-                                <img src="../../Assets/images/logo.png" alt="logo" height="40" width="150" margin="50px" />
+                              <img src="../../Assets/images/img_144.png" alt="logo" height="40" width="40" margin="10px" />  
                             </Box>
             {/* <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
@@ -198,9 +199,9 @@ function DashboardContent() {
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-          <Grid container component="main" sx={{ height: '80vh', backgroundColor:'primary' }}>
+          <Grid container component="main" sx={{ height: 'auto', backgroundColor:'primary' }}>
       
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={0} square
+      <Grid item xs={12} sm={6} md={5} component={Paper} elevation={0} square
       sx={{
         backgroundRepeat: 'no-repeat',
         backgroundColor: 'transparent',
@@ -235,9 +236,11 @@ function DashboardContent() {
       <Widget/>
         </Grid>
       </Grid>
-     <Copyright sx={{ pt: 4 }} />
+
           </Container>
+        
         </Box>
+      
       </Box>
     </ThemeProvider>
   );

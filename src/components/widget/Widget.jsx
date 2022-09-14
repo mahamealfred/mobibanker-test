@@ -53,7 +53,6 @@ const Widget = () => {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-     
     }}
   >
  <Typography variant="h6" fontWeight={100} mt={2}>

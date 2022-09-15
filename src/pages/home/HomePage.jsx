@@ -27,6 +27,7 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Services from '../services/Services';
+import BottomNav from '../../components/bottomNav/BottomNav';
 
 function Copyright(props) {
   return (
@@ -198,7 +199,22 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+          <Box sx={{ width: '100%', maxWidth: 560, bgcolor: 'transparent' }}>
+         <Box sx={{ my: 1, mx: 2 }}>
+        <Grid container alignItems="center">
+          <Grid item xs>
+            <Typography gutterBottom variant="h6" color="gray" component="div">
+              Dear Mahame Alfred,
+            </Typography>
+            <Typography gutterBottom variant="h6" color="gray" component="div">
+             Welcome back to MobiBanker!
+            </Typography>
+          </Grid>
+        </Grid>
+      </Box>
+      <Divider variant="middle" />
+    </Box>
+          <Container maxWidth="lg" sx={{ mt: 1, mb: 4 }}>
           <Grid container component="main" sx={{ height: 'auto', backgroundColor:'primary' }}>
       
       <Grid item xs={12} sm={6} md={5} component={Paper} elevation={0} square
@@ -233,15 +249,17 @@ function DashboardContent() {
           backgroundColor: 'transparent',
         }}
       >
+  
       <Widget/>
         </Grid>
       </Grid>
 
           </Container>
-        
+  
         </Box>
-      
+     
       </Box>
+      <BottomNav/>
     </ThemeProvider>
   );
 }

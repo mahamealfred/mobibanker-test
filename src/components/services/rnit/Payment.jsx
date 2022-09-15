@@ -8,13 +8,28 @@ import Alert from "@mui/material/Alert";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-
-
+import { MenuItem } from "@mui/material";
+const banks=[
+  {
+    label:"Bank of Kigali",
+    value:"BK"
+  },
+  {
+    label:"BPR",
+    value:"BPR"
+  },
+  {
+    label:"Equity",
+    value:"Equity"
+  },
+  {
+    label:"GT BAnk",
+    value:"GT"
+  },
+]
 const Payment=({
-  
   formData,setFormData,phoneNumberError,passwordError,taxPayerName,amountToPay,rraRef, paymenterrorMessage,
   setPaymenterrorMessage,open,setOpen})=> {
-  
     const handleClose = () => {
       setPaymenterrorMessage('')
       setOpen(false);
@@ -46,36 +61,87 @@ const Payment=({
      Payment  method
       </Typography>
       <Grid container spacing={3}>
-      <Grid item xs={12} md={4}>
-                 <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
+      <Grid item xs={12} md={6}>
+                 <Typography variant="body2" mt={1} textAlign="center" sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
                PAYER NAME
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
               Mahame Alfred
               </Typography>
             </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={6}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-                RRA REFERENCE
+              NID
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-             113366777
+             113366777677876
               </Typography>
             </Grid>
-            <Grid item xs={12} md={4}>
-                 <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-                 AMOUNT TO PAY
-              </Typography>
-              <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-                5000  Rwf
-              </Typography>
-            </Grid>
-  
+            <Grid item xs={12} md={6}>
+          <TextField
+            required
+            id="cardName"
+            label="Select Bank"
+            value={formData.phoneNumber}
+            onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
+            helperText={phoneNumberError? phoneNumberError : ""}
+            error={phoneNumberError}
+            fullWidth
+            autoComplete="cc-name"
+            variant="outlined"
+          >
+            {banks.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
+                    ))} 
+            </TextField>
+        </Grid>
+            <Grid item xs={12} md={6}>
+          <TextField
+            required
+            id="cardName"
+            label="Account Number"
+            value={formData.phoneNumber}
+            onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
+            helperText={phoneNumberError? phoneNumberError : ""}
+            error={phoneNumberError}
+            fullWidth
+            autoComplete="cc-name"
+            variant="outlined"
+          />
+        </Grid>
+            <Grid item xs={12} md={6}>
+          <TextField
+            required
+            id="cardName"
+            label="Amount to pay"
+            value={formData.phoneNumber}
+            onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
+            helperText={phoneNumberError? phoneNumberError : ""}
+            error={phoneNumberError}
+            fullWidth
+            autoComplete="cc-name"
+            variant="outlined"
+          />
+        </Grid>
         <Grid item xs={12} md={6}>
           <TextField
             required
             id="cardName"
             label="Payer phone number"
+            value={formData.phoneNumber}
+            onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
+            helperText={phoneNumberError? phoneNumberError : ""}
+            error={phoneNumberError}
+            fullWidth
+            autoComplete="cc-name"
+            variant="outlined"
+          />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <TextField
+            required
+            id="cardName"
+            label="Payer Email"
             value={formData.phoneNumber}
             onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
             helperText={phoneNumberError? phoneNumberError : ""}

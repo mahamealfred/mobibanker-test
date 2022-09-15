@@ -55,8 +55,8 @@ const Widget = () => {
       alignItems: 'center',
     }}
   >
- <Typography variant="h6" fontWeight={100} mt={2}>
- <img src="../../Assets/images/mobibanker.png" alt="logo" height="80" width="300" />
+ <Typography variant="h6" fontWeight={100} mt={1}>
+ <img src="../../Assets/images/mobibanker.png" alt="logo" height="100" width="350" />
         </Typography>
         <List sx={{ width: '100%', 
         maxWidth: 360, 
@@ -70,7 +70,7 @@ const Widget = () => {
          sx={{padding:'0 10px'}}
         >
           {/* <Avatar alt="Remy Sharp" src="" /> */}
-          <img src="../../Assets/images/knowledge.png" alt="logo" height="120" width="80" margin="50px"/>
+          <img src="../../Assets/images/knowledge.png" alt="logo" height="120" width="100" margin="50px"/>
         </ListItemAvatar>
         <ListItemText
           primary={
@@ -111,7 +111,7 @@ const Widget = () => {
             sx={{padding:'0 10px'}}
         >
           {/* <Avatar alt="Agent Support" src="" /> */}
-          <img src="../../Assets/images/support.png" alt="logo" height="80" width="80" margin="50px"/>
+          <img src="../../Assets/images/support.png" alt="logo" height="80" width="100" margin="50px"/>
         </ListItemAvatar>
         
         <ListItemText

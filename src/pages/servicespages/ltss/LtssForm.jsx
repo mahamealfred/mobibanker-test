@@ -10,12 +10,11 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
-
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Document from "../../../components/services/rra/Document";
-import Payment from "../../../components/services/rra/Payment";
-import Review from "../../../components/services/rra/Review";
+import Document from "../../../components/services/ltss/Document";
+import Payment from "../../../components/services/ltss/Payment";
+import Review from "../../../components/services/ltss/Review";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Grid } from "@mui/material";
@@ -36,7 +35,7 @@ theme.typography.h3 = {
 
 const RraForm = () => {
 
-  const steps = [`Reference number`, `Make payment`, `View Payment`];
+  const steps = [`NID`, `Make Diposit`, `View Diposit`];
   const [activeStep, setActiveStep] = React.useState(0);
  
   const [formData, setFormData] = useState({
@@ -122,7 +121,7 @@ const RraForm = () => {
            
            >
            <img
-                  src="../../../Assets/images/rra.png"
+                  src="../../../Assets/images/ejoHeza.png"
                   alt="logo"
                   height={70}
                   width={85}
@@ -143,11 +142,11 @@ const RraForm = () => {
                   Thank you for using Mobicash
                   </Typography>
                   <Typography textAlign="center" variant="subtitle1">
-                  You have successfully paid your RRA tax
+                  You have successfully save your Long term saving scheme
                   </Typography>
                 
                   <Button onClick={handleNewpayment} sx={{ mt: 3, ml: 1 }}>
-                  New Payament
+                  New Saving
                   </Button>
                   
                 </React.Fragment>
@@ -176,7 +175,7 @@ const RraForm = () => {
                         ? "Print Receipt"
                         : activeStep === 0
                         ? `Submit`
-                        : "Make Payment"}
+                        : "Make Diposit"}
                     </Button>
                   </Box>
                 </React.Fragment>

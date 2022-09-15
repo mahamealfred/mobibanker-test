@@ -13,9 +13,9 @@ import Link from "@mui/material/Link";
 
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Document from "../../../components/services/rra/Document";
-import Payment from "../../../components/services/rra/Payment";
-import Review from "../../../components/services/rra/Review";
+import Document from "../../../components/services/rnit/Document";
+import Payment from "../../../components/services/rnit/Payment";
+import Review from "../../../components/services/rnit/Review";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Grid } from "@mui/material";
@@ -34,9 +34,9 @@ theme.typography.h3 = {
 
 
 
-const RraForm = () => {
+const RnitForm = () => {
 
-  const steps = [`Reference number`, `Make payment`, `View Payment`];
+  const steps = [`NID`, `Make payment`, `View Payment`];
   const [activeStep, setActiveStep] = React.useState(0);
  
   const [formData, setFormData] = useState({
@@ -122,7 +122,7 @@ const RraForm = () => {
            
            >
            <img
-                  src="../../../Assets/images/rra.png"
+                  src="../../../Assets/images/rnit.png"
                   alt="logo"
                   height={70}
                   width={85}
@@ -143,7 +143,7 @@ const RraForm = () => {
                   Thank you for using Mobicash
                   </Typography>
                   <Typography textAlign="center" variant="subtitle1">
-                  You have successfully paid your RRA tax
+                  You have successfully paid your RNIT
                   </Typography>
                 
                   <Button onClick={handleNewpayment} sx={{ mt: 3, ml: 1 }}>
@@ -189,4 +189,4 @@ const RraForm = () => {
   );
 };
 
-export default RraForm;
+export default RnitForm;

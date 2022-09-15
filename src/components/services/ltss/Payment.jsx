@@ -46,31 +46,36 @@ const Payment=({
      Payment  method
       </Typography>
       <Grid container spacing={3}>
-      <Grid item xs={12} md={4}>
-                 <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
+      <Grid item xs={12} md={6}>
+                 <Typography variant="body2" mt={1} textAlign="center" sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
                PAYER NAME
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
               Mahame Alfred
               </Typography>
             </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={6}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-                RRA REFERENCE
+              NID
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-             113366777
+             113366777677876
               </Typography>
             </Grid>
-            <Grid item xs={12} md={4}>
-                 <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-                 AMOUNT TO PAY
-              </Typography>
-              <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-                5000  Rwf
-              </Typography>
-            </Grid>
-  
+            <Grid item xs={12} md={6}>
+          <TextField
+            required
+            id="cardName"
+            label="Amount to Save"
+            value={formData.phoneNumber}
+            onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
+            helperText={phoneNumberError? phoneNumberError : ""}
+            error={phoneNumberError}
+            fullWidth
+            autoComplete="cc-name"
+            variant="outlined"
+          />
+        </Grid>
         <Grid item xs={12} md={6}>
           <TextField
             required

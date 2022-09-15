@@ -17,7 +17,8 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import RraForm from '../servicespages/rra/RraForm';
 import CbhiIdentificationForm from '../servicespages/cbhi/CbhiIdentificationForm';
-
+import LtssForm from "../servicespages/ltss/LtssForm";
+import RnitForm from '../servicespages/rnit/RnitForm';
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -62,6 +63,8 @@ const buttons=[
 export default function BasicStack() {
   const [openRSSB, setOpenRSSB] = React.useState(false);
   const [openRRA, setOpenRRA] = React.useState(false);
+  const [openLTSS, setOpenLTSS] = React.useState(false);
+  const [openRNIT, setOpenRNIT] = React.useState(false);
 
 
   const handleClickOpenRRA = () => {
@@ -70,10 +73,18 @@ export default function BasicStack() {
   const handleClickOpenCBHI=()=>{
     setOpenRSSB(true)
   }
+  const handleClickOpenLTSS = () => {
+    setOpenLTSS(true);
+  };
+  const handleClickOpenRNIT = () => {
+    setOpenRNIT(true);
+  };
 
   const handleClose = () => {
     setOpenRSSB(false);
     setOpenRRA(false);
+    setOpenLTSS(false);
+    setOpenRNIT(false);
   };
  
 
@@ -142,6 +153,68 @@ export default function BasicStack() {
           </DialogContentText>
         </DialogContent>
       </Dialog>
+      {/* LTSS */}
+      <Dialog
+        open={openLTSS}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+        
+          <Typography variant="h6" color="gray" >
+          LTSS Service 
+          </Typography>
+          <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+     <LtssForm/>
+          </DialogContentText>
+        </DialogContent>
+      </Dialog>
+      {/* RNIT */}
+      <Dialog
+        open={openRNIT}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+        
+          <Typography variant="h6" color="gray" >
+          RNIT Service 
+          </Typography>
+          <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+      <RnitForm/>
+          </DialogContentText>
+        </DialogContent>
+      </Dialog>
  <Box
     sx={{ fontSize: { xs: 20 }}}
     spacing={18}
@@ -180,7 +253,7 @@ export default function BasicStack() {
           onClick={handleClickOpenRRA}
            >
         <img src="../../Assets/images/rra.png" alt="logo" 
-          height="70" width="85"
+           height="100" width="110"
           />
         <label>RRA</label>
         </Button>
@@ -191,7 +264,7 @@ export default function BasicStack() {
            onClick={handleClickOpenCBHI}
            >
         <img src="../../Assets/images/mutuelli.png" alt="logo" 
-          height="70" width="85"
+          height="100" width="110"
           />
         <label>RSSB</label>
         </Button>
@@ -199,10 +272,10 @@ export default function BasicStack() {
           variant="text" 
           size="small"
           style={{display:"flex",flexDirection:"column"}}
-          // onClick={handleOnClick}
+          onClick={handleClickOpenLTSS}
            >
         <img src="../../Assets/images/ejoHeza.png" alt="logo" 
-          height="70" width="85"
+           height="100" width="110"
           />
         <label>EjoHeza</label>
         </Button>
@@ -210,10 +283,10 @@ export default function BasicStack() {
           variant="text" 
           size="small"
           style={{display:"flex",flexDirection:"column"}}
-          // onClick={handleOnClick}
+          onClick={handleClickOpenRNIT}
            >
         <img src="../../Assets/images/rnit.png" alt="logo" 
-          height="70" width="85"
+           height="100" width="110"
           />
         <label>RNIT</label>
         </Button>
@@ -221,10 +294,10 @@ export default function BasicStack() {
           variant="text" 
           size="small"
           style={{display:"flex",flexDirection:"column"}}
-          // onClick={handleOnClick}
+         
            >
         <img src="../../Assets/images/electricity.png" alt="logo" 
-          height="70" width="85"
+          height="100" width="110"
           />
         <label>ELECTRICITY</label>
         </Button>
@@ -235,7 +308,7 @@ export default function BasicStack() {
           // onClick={handleOnClick}
            >
         <img src="../../Assets/images/bankservices.png" alt="logo" 
-          height="70" width="85"
+          height="100" width="110"
           />
         <label>MOBIBANKER</label>
         </Button>

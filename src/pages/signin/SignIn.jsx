@@ -15,6 +15,7 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import TopNav from '../../components/topNav/TopNav';
 import { useHistory } from 'react-router-dom';
+import BottomNav from '../../components/bottomNav/BottomNav';
 const SignIn = () => {
   const history=useHistory()
     const handleSubmit = (event) => {
@@ -145,7 +146,6 @@ const SignIn = () => {
       <Widget/>
         </Grid>
     </Grid>
-    
   </ThemeProvider>
     </React.Fragment>
    

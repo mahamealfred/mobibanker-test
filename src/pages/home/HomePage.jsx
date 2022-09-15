@@ -214,7 +214,7 @@ function DashboardContent() {
       </Box>
       <Divider variant="middle" />
     </Box>
-          <Container maxWidth="lg" sx={{ mt: 1, mb: 4 }}>
+          <Container maxWidth="auto" sx={{ mt: 1, mb: 2 }}>
           <Grid container component="main" sx={{ height: 'auto', backgroundColor:'primary' }}>
       
       <Grid item xs={12} sm={6} md={5} component={Paper} elevation={0} square
@@ -228,7 +228,7 @@ function DashboardContent() {
             my: 12,
             mx: 10,
             display: 'flex',
-            flexDirection: 'column',
+            flexDirection: 'row',
             alignItems: 'center',
            
           }}

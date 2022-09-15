@@ -1,28 +1,44 @@
+<!-- offline-page.html-->
 <!DOCTYPE html>
-
-<html lang="en" dir="ltr">
-   <head>
-      <meta charset="utf-8">
-      <title>MobiBanker Offline Page</title>
-      <link rel="stylesheet" href="offline.css">
-   </head>
-   <body>
-      <div id="error-page">
-         <div class="content">
-            <h2 class="header" data-text="404">
-             MobiBanker
-            </h2>
-            <h4 data-text="Opps! Page not found">
-               Opps! Some things went wrong
-            </h4>
-            <p>
-               Sorry, go online to access MobiBanker Service. If you think something is broken, report a problem to Mobicash Support.
-            </p>
-            <div class="btns">
-               <a href="https://www.mobicashonline.com/">Mobicash Support</a>
-               <a href="https://www.mobicashonline.com/">Report problem</a>
-            </div>
-         </div>
-      </div>
-   </body>
+<html lang="en">
+  
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" 
+          content="ie=edge" />
+  
+    <title>MobiBanker Offline Page</title>
+    <style>
+         html {
+                height: 100%;
+            }
+            /* body {
+                height: 100%;
+                margin: 0;
+                background: #858586;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+            } */
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+    </style>
+</head>
+  
+<body>
+    <div class="wrapper">
+        <h1>Hello, it looks like you lost connection.</h1>
+        <h2>Please check your network and try again!</h2>
+        <!-- <h3>Sincerely, Mobicash Support!</h3> -->
+    </div>
+</body>
+  
 </html>

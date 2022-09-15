@@ -13,13 +13,10 @@ export default function Review() {
        Transaction Details
       </Typography>
       <List disablePadding>
-    
           <ListItem  sx={{ py: 1, px: 0 }}>
             <ListItemText primary="Payer Name"/>
             <Typography variant="body2">Mahame Alfred</Typography>
           </ListItem>
-        
-
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Amount Paid" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>

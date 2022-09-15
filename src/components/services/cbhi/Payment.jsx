@@ -10,9 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 
 
-const Payment=({
-  
-  formData,setFormData,phoneNumberError,passwordError,taxPayerName,amountToPay,rraRef, paymenterrorMessage,
+const Payment=({formData,setFormData,phoneNumberError,passwordError,taxPayerName,amountToPay,rraRef, paymenterrorMessage,
   setPaymenterrorMessage,open,setOpen})=> {
   
     const handleClose = () => {
@@ -47,29 +45,63 @@ const Payment=({
       </Typography>
       <Grid container spacing={3}>
       <Grid item xs={12} md={4}>
-                 <Typography variant="body2" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-               Payer Name
+              <Typography variant="body2" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
+               PAYER NAME
               </Typography>
               <Typography variant="body2" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-              Mahame Alfred
+              Mahame Alfred 
               </Typography>
             </Grid>
             <Grid item xs={12} md={4}>
                  <Typography variant="body2" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-                RRA reference
+                HOUSEHOLD NID
               </Typography>
               <Typography variant="body2" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-             113366777
+                1199680013525373
               </Typography>
             </Grid>
             <Grid item xs={12} md={4}>
                  <Typography variant="body2" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-                Already  pay
+                TOTAL PREMIUM
               </Typography>
               <Typography variant="body2" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-                5000  Rwf
+                12,OOO Rwf
               </Typography>
             </Grid>
+            <Grid item xs={12} md={6}>
+                 <Typography variant="body2" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
+             HOUSEHOLD CATEGORY
+              </Typography>
+              <Typography variant="body2" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
+               3
+              </Typography>
+            </Grid>
+            <Grid item xs={12} md={4}>
+                 <Typography variant="body2" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
+               TOTAL MEMBERS
+              </Typography>
+              <Typography variant="body2" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
+                4 
+              </Typography>
+            </Grid>
+            <Grid item xs={12} md={14}>
+            <Typography variant="body2" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
+               MEMBERS
+              </Typography>
+          <TextField
+            required
+            id="cardName"
+            select
+            label="Check members"
+            value={formData.phoneNumber}
+            onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
+            helperText={phoneNumberError? phoneNumberError : ""}
+            error={phoneNumberError}
+            fullWidth
+            autoComplete="cc-name"
+      
+          />
+        </Grid>
             <Grid item xs={12} md={6}>
           <TextField
             required

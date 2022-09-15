@@ -152,13 +152,12 @@ export default function BasicStack() {
          <Typography component="h1" variant="h5"
          fontWeight={800}
          color="gray"
-         padding={5}
+         textAlign="center"
+         padding="0 5px 20px 2px"
          sx={{ fontSize: { xs: 20 } }}
          >
        AGENCY SERVICES
-        </Typography> 
-       
-       
+        </Typography>     
   <Grid id="top-row" container spacing={0} elevetor={2}  > 
           {/* {buttons.map((p, index) =>
            <Button 

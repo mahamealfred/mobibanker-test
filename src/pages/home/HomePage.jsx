@@ -226,7 +226,7 @@ function DashboardContent() {
         <Box
           sx={{
             my: 12,
-            mx: 10,
+            mx: 2,
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',

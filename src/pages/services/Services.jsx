@@ -4,7 +4,7 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
-import { Typography,Grid } from '@mui/material';
+import { Typography,Grid, Card, CardActionArea, CardMedia, CardContent } from '@mui/material';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
@@ -57,6 +57,16 @@ const buttons=[
     value:"bankservice",
     imgUrl:"../../Assets/images/bankservices.png",
     title:"Bank service"
+  },
+  {
+    value:"Airtime",
+    imgUrl:"../../Assets/images/airtime.png",
+    title:"AirTime"
+  },
+  {
+    value:"canal",
+    imgUrl:"../../Assets/images/canal.png",
+    title:"Canl +"
   }
 ]
 
@@ -226,23 +236,24 @@ export default function BasicStack() {
          fontWeight={800}
          color="gray"
          textAlign="center"
-         padding="0 5px 20px 2px"
+         padding="0 25px 30px 2px"
          sx={{ fontSize: { xs: 20 } }}
          >
        AGENCY SERVICES
         </Typography>     
-  <Grid id="top-row" container spacing={0} elevetor={2}  > 
-          {/* {buttons.map((p, index) =>
+  <Grid  container spacing={2} elevetor={0}  > 
+{/* {buttons.map((p, index) =>
            <Button 
            key={p.value} 
            value={p.value}
           variant="text" 
           size="small"
           style={{display:"flex",flexDirection:"column"}}
-          onClick={handleOnClick}
+          // onClick={handleOnClick}
            >
         <img src={p.imgUrl} alt="logo" 
-        height="70" width="85"
+             height="120" width="120"
+
         />
         <label>{p.title}</label>
         </Button>)} */}
@@ -253,7 +264,7 @@ export default function BasicStack() {
           onClick={handleClickOpenRRA}
            >
         <img src="../../Assets/images/rra.png" alt="logo" 
-           height="100" width="110"
+            height="120" width="120"
           />
         <label>RRA</label>
         </Button>
@@ -264,7 +275,7 @@ export default function BasicStack() {
            onClick={handleClickOpenCBHI}
            >
         <img src="../../Assets/images/mutuelli.png" alt="logo" 
-          height="100" width="110"
+           height="120" width="120"
           />
         <label>RSSB</label>
         </Button>
@@ -275,7 +286,7 @@ export default function BasicStack() {
           onClick={handleClickOpenLTSS}
            >
         <img src="../../Assets/images/ejoHeza.png" alt="logo" 
-           height="100" width="110"
+          height="120" width="120"
           />
         <label>EjoHeza</label>
         </Button>
@@ -286,7 +297,7 @@ export default function BasicStack() {
           onClick={handleClickOpenRNIT}
            >
         <img src="../../Assets/images/rnit.png" alt="logo" 
-           height="100" width="110"
+            height="120" width="120"
           />
         <label>RNIT</label>
         </Button>
@@ -297,7 +308,7 @@ export default function BasicStack() {
          
            >
         <img src="../../Assets/images/electricity.png" alt="logo" 
-          height="100" width="110"
+           height="120" width="120"
           />
         <label>ELECTRICITY</label>
         </Button>
@@ -308,9 +319,31 @@ export default function BasicStack() {
           // onClick={handleOnClick}
            >
         <img src="../../Assets/images/bankservices.png" alt="logo" 
-          height="100" width="110"
+           height="120" width="120"
           />
         <label>MOBIBANKER</label>
+        </Button>
+        <Button 
+          variant="text" 
+          size="small"
+          style={{display:"flex",flexDirection:"column"}}
+          // onClick={handleOnClick}
+           >
+        <img src="../../Assets/images/airtime.png" alt="logo" 
+           height="120" width="120"
+          />
+        <label>Airtime</label>
+        </Button>
+        <Button 
+          variant="text" 
+          size="small"
+          style={{display:"flex",flexDirection:"column"}}
+          // onClick={handleOnClick}
+           >
+        <img src="../../Assets/images/canal.png" alt="logo" 
+           height="120" width="120"
+          />
+        <label>Canal +</label>
         </Button>
       </Grid>
   </Box>

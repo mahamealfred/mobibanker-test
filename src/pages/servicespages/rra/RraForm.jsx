@@ -9,15 +9,13 @@ import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
-import Link from "@mui/material/Link";
-
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Document from "../../../components/services/rra/Document";
 import Payment from "../../../components/services/rra/Payment";
 import Review from "../../../components/services/rra/Review";
-import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useState } from "react";
+
 import { Grid } from "@mui/material";
 
 const theme = createTheme();
@@ -45,8 +43,7 @@ const RraForm = () => {
     password: "",
   });
   
-  const [open, setOpen] = React.useState(true);
-  const [docDetails, setDocDetails] = useState("");
+
 
 
 
@@ -147,7 +144,7 @@ const RraForm = () => {
                   </Typography>
                 
                   <Button onClick={handleNewpayment} sx={{ mt: 3, ml: 1 }}>
-                  New Payament
+                  New Payment
                   </Button>
                   
                 </React.Fragment>

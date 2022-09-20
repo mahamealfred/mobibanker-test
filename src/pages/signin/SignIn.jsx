@@ -10,12 +10,10 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Widget from '../../components/widget/Widget';
-import NativeSelect from '@mui/material/NativeSelect';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
 import TopNav from '../../components/topNav/TopNav';
 import { useHistory } from 'react-router-dom';
-import BottomNav from '../../components/bottomNav/BottomNav';
+import Footer from '../../components/footer/Footer';
+import Appbar from '../../components/appbar';
 const SignIn = () => {
   const history=useHistory()
     const handleSubmit = (event) => {
@@ -30,7 +28,7 @@ const SignIn = () => {
       const theme = createTheme();
   return (
     <React.Fragment>
-      <TopNav/>
+      <Appbar/>
       <ThemeProvider theme={theme}>
     <Grid container component="main" sx={{ height: '80vh', backgroundColor:'primary' }}>
       
@@ -120,7 +118,7 @@ const SignIn = () => {
         >
           <option value={10}>Kinyarwanda</option>
           <option value={20}>English</option>
-          <option value={30}>French</option>
+          <option value={30}>Francais</option>
         </NativeSelect>
       </FormControl>
         </Box>
@@ -147,6 +145,7 @@ const SignIn = () => {
         </Grid>
     </Grid>
   </ThemeProvider>
+  <Footer/>
     </React.Fragment>
    
   )

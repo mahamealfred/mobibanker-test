@@ -9,38 +9,21 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from './listItem';
 import Widget from '../../components/widget/Widget';
 import NativeSelect from '@mui/material/NativeSelect';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Services from '../services/Services';
 import BottomNav from '../../components/bottomNav/BottomNav';
+import Footer from '../../components/footer/Footer';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://www.mobicashonline.com">
-        Mobicash Ltd
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const drawerWidth = 240;
 
@@ -87,11 +70,10 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     },
   }),
 );
-
 const mdTheme = createTheme();
 
 function DashboardContent() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -126,7 +108,7 @@ function DashboardContent() {
               <Box
                sx={{ minWidth: 100, display: { xs: "none", sm: "block" } }}
                >
-               <img src="../../Assets/images/logo.png" alt="logo" height="40" width="150" margin="50px" />
+               <img src="../../Assets/images/logo.png" alt="logo" height="60" width="160" margin="50px" />
              </Box>
             </Typography>
             <Box
@@ -234,9 +216,7 @@ function DashboardContent() {
           }}
         >
          <Services/>
-         
         </Box>
-        
       </Grid>
       <Grid
         item
@@ -249,17 +229,14 @@ function DashboardContent() {
           backgroundColor: 'transparent',
         }}
       >
-  
       <Widget/>
         </Grid>
       </Grid>
-
           </Container>
-  
         </Box>
-     
       </Box>
       <BottomNav/>
+      <Footer/>
     </ThemeProvider>
   );
 }

@@ -1,13 +1,11 @@
-import { AppBar, Toolbar,styled,Box, Typography,Avatar} from '@mui/material'
+import { AppBar, Toolbar,styled,Box,Typography} from '@mui/material'
 import React from 'react'
-import MenuItem from '@mui/material/MenuItem';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { CloseOutlined } from '@mui/icons-material';
 import NativeSelect from '@mui/material/NativeSelect';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
+import { Colors, DrawerWidth } from "../styles/theme";
 const TopNav = () => {
-  const [language, setLanguage] = React.useState('');
+  const [ setLanguage] = React.useState('');
   const handleChange = (event) => {
     setLanguage(event.target.value);
   };
@@ -24,26 +22,42 @@ const TopNav = () => {
         marginRight:35,
 
     }))
+    const AppbarHeader = styled(Typography)(() => ({
+      padding: "4px",
+      flexGrow: 1,
+      fontSize: "4em",
+      fontFamily: '"Montez", "cursive"',
+      color: Colors.secondary,
+      "&:hover": {
+        animation: ` 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both`,
+      },
+    }));
   return (
     <AppBar position="sticky"  elevation={1} sx={{backgroundColor:'white'}} >
         <StyledToolbar>
             <MobiLogoImg>
             <Box
+        component="img"
+        sx={{
+          height: 80,
+          width: 300,
+          maxHeight: { xs: 60, md: 300 },
+          maxWidth: { xs: 150, md: 300 },
+          display:{xs:"none",sm:"block"}
+        }}
+        alt="mobicash logo"
+        src="../../Assets/images/logo.png"
+      />
+            <Box
           sx={{display:{xs:"block",sm:"none"}}}
         >
         <img src="../../Assets/images/img_144.png" alt="logo" height="40" width="50" margin="50px"/>
-        </Box>
-        <Box
-           sx={{display:{xs:"none",sm:"block"}}}
-        >
-        <img src="../../Assets/images/logo.png" alt="logo" height="40" width="150" margin="50px"/>
         </Box>
             </MobiLogoImg>
         < MobiBankerImg>
         <Box sx={{ minWidth: 100 }}>
       <FormControl fullWidth>
         <InputLabel variant="standard" htmlFor="uncontrolled-native">
-        
         </InputLabel>
         <NativeSelect
           defaultValue={10}
@@ -54,11 +68,10 @@ const TopNav = () => {
         >
           <option value={10}>Kinyarwanda</option>
           <option value={20}>English</option>
-          <option value={30}>French</option>
+          <option value={30}>Francais</option>
         </NativeSelect>
       </FormControl>
         </Box>
-        {/* <img src="../../Assets/images/mobibanker.png" alt="logo" height="50" width="200" /> */}
         </MobiBankerImg>
         
         </StyledToolbar>

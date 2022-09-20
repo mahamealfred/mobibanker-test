@@ -260,7 +260,7 @@ export default function BasicStack() {
          <Button 
           variant="text" 
           size="small"
-          style={{display:"flex",flexDirection:"column"}}
+          style={{display:"flex",flexDirection:"column",padding:20}}
           onClick={handleClickOpenRRA}
            >
         <img src="../../Assets/images/rra.png" alt="logo" 
@@ -271,7 +271,7 @@ export default function BasicStack() {
         <Button 
           variant="text" 
           size="small"
-          style={{display:"flex",flexDirection:"column"}}
+          style={{display:"flex",flexDirection:"column" ,padding:20}}
            onClick={handleClickOpenCBHI}
            >
         <img src="../../Assets/images/mutuelli.png" alt="logo" 
@@ -282,7 +282,7 @@ export default function BasicStack() {
         <Button 
           variant="text" 
           size="small"
-          style={{display:"flex",flexDirection:"column"}}
+          style={{display:"flex",flexDirection:"column",padding:20}}
           onClick={handleClickOpenLTSS}
            >
         <img src="../../Assets/images/ejoHeza.png" alt="logo" 
@@ -293,7 +293,7 @@ export default function BasicStack() {
         <Button 
           variant="text" 
           size="small"
-          style={{display:"flex",flexDirection:"column"}}
+          style={{display:"flex",flexDirection:"column",padding:20}}
           onClick={handleClickOpenRNIT}
            >
         <img src="../../Assets/images/rnit.png" alt="logo" 
@@ -304,7 +304,7 @@ export default function BasicStack() {
         <Button 
           variant="text" 
           size="small"
-          style={{display:"flex",flexDirection:"column"}}
+          style={{display:"flex",flexDirection:"column",padding:20}}
          
            >
         <img src="../../Assets/images/electricity.png" alt="logo" 
@@ -315,7 +315,7 @@ export default function BasicStack() {
         <Button 
           variant="text" 
           size="small"
-          style={{display:"flex",flexDirection:"column"}}
+          style={{display:"flex",flexDirection:"column",padding:20}}
           // onClick={handleOnClick}
            >
         <img src="../../Assets/images/bankservices.png" alt="logo" 
@@ -326,7 +326,8 @@ export default function BasicStack() {
         <Button 
           variant="text" 
           size="small"
-          style={{display:"flex",flexDirection:"column"}}
+          style={{display:"flex",flexDirection:"column",padding:20}}
+          disabled={true}
           // onClick={handleOnClick}
            >
         <img src="../../Assets/images/airtime.png" alt="logo" 
@@ -335,9 +336,11 @@ export default function BasicStack() {
         <label>Airtime</label>
         </Button>
         <Button 
+          id="buttonid"
           variant="text" 
           size="small"
-          style={{display:"flex",flexDirection:"column"}}
+          disabled={true}
+          style={{display:"flex",flexDirection:"column",padding:20}}
           // onClick={handleOnClick}
            >
         <img src="../../Assets/images/canal.png" alt="logo" 

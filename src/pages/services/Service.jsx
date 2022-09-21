@@ -6,16 +6,175 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Grid, CardHeader } from '@mui/material';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import RraForm from '../servicespages/rra/RraForm';
+import CbhiIdentificationForm from '../servicespages/cbhi/CbhiIdentificationForm';
+import LtssForm from "../servicespages/ltss/LtssForm";
+import RnitForm from '../servicespages/rnit/RnitForm';
 
 export default function MediaCard() {
-    // const data=[
-    //     {
-    //         title:"RRA",
+  
 
-    //     }
-    // ]
+    const [openRSSB, setOpenRSSB] = React.useState(false);
+    const [openRRA, setOpenRRA] = React.useState(false);
+    const [openLTSS, setOpenLTSS] = React.useState(false);
+    const [openRNIT, setOpenRNIT] = React.useState(false);
+  
+  
+    const handleClickOpenRRA = () => {
+      setOpenRRA(true);
+    };
+    const handleClickOpenCBHI=()=>{
+      setOpenRSSB(true)
+    }
+    const handleClickOpenLTSS = () => {
+      setOpenLTSS(true);
+    };
+    const handleClickOpenRNIT = () => {
+      setOpenRNIT(true);
+    };
+  
+    const handleClose = () => {
+      setOpenRSSB(false);
+      setOpenRRA(false);
+      setOpenLTSS(false);
+      setOpenRNIT(false);
+    };
+   
+  
     return (
-        <Grid
+        <React.Fragment>
+            <Dialog
+        open={openRRA}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+        
+          <Typography variant="h6" color="gray" >
+          RRA Tax Payment Service
+          </Typography>
+          <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+        <RraForm/>
+          </DialogContentText>
+        </DialogContent>
+      </Dialog>
+      {/* rssb */}
+      <Dialog
+        open={openRSSB}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+        
+          <Typography variant="h6" color="gray" >
+          RSSB Mutuelle Service
+          </Typography>
+          <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+     <CbhiIdentificationForm/>
+          </DialogContentText>
+        </DialogContent>
+      </Dialog>
+      {/* LTSS */}
+      <Dialog
+        open={openLTSS}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+        
+          <Typography variant="h6" color="gray" >
+          LTSS Service 
+          </Typography>
+          <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+     <LtssForm/>
+          </DialogContentText>
+        </DialogContent>
+      </Dialog>
+      {/* RNIT */}
+      <Dialog
+        open={openRNIT}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+        
+          <Typography variant="h6" color="gray" >
+          RNIT Service 
+          </Typography>
+          <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+      <RnitForm/>
+          </DialogContentText>
+        </DialogContent>
+      </Dialog>
+      
+      <Grid
             container
             spacing={0}
             bgColor="transparent"
@@ -24,8 +183,20 @@ export default function MediaCard() {
             alignItems="flex-start"
             sx={{ maxWidth: "auto" }}
         >
+            <Typography component="h1" variant="h5"
+         fontWeight={800}
+         color="gray"
+         textAlign="center"
+         padding="0 25px 30px 2px"
+         marginLeft="120px"
+         sx={{ fontSize: { xs: 20 } }}
+         >
+       AGENCY SERVICES
+        </Typography>
             <Grid >
-            <Button>
+            <Button
+            onClick={handleClickOpenRRA}
+            >
             <Card
                 raised
                 sx={{
@@ -55,7 +226,9 @@ export default function MediaCard() {
           </Typography>
             </Card>  
             </Button>
-            <Button>
+            <Button
+            onClick={handleClickOpenCBHI}
+            >
             <Card
                 raised
                 sx={{
@@ -83,7 +256,9 @@ export default function MediaCard() {
           </Typography>
             </Card>  
             </Button>
-            <Button>
+            <Button
+            onClick={handleClickOpenLTSS}
+            >
             <Card
                 raised
                 sx={{
@@ -111,7 +286,9 @@ export default function MediaCard() {
           </Typography>
             </Card>  
             </Button>
-            <Button>
+            <Button
+         
+            >
             <Card
                 raised
                 sx={{
@@ -135,11 +312,13 @@ export default function MediaCard() {
                 fontSize:14
              }}
            >
-           ELECTRIC
+           ELECTRICITY
           </Typography>
             </Card>  
             </Button>
-            <Button>
+            <Button
+            onClick={handleClickOpenRNIT}
+            >
             <Card
                 raised
                 sx={{
@@ -197,8 +376,8 @@ export default function MediaCard() {
             </Button>
      
       </Grid>
-          
-
-        </Grid>
+      
+      </Grid>
+        </React.Fragment>
     );
 }

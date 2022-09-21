@@ -4,8 +4,9 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
+import moment from 'moment';
 
-export default function Review() {
+export default function Review({taxPayerName,amountToPay,transactionId,transactionStatus,dateTime}) {
   
   return (
     <React.Fragment>
@@ -15,12 +16,14 @@ export default function Review() {
       <List disablePadding>
           <ListItem  sx={{ py: 1, px: 0 }}>
             <ListItemText primary="PAYER NAME"/>
-            <Typography variant="body2">Mahame Alfred</Typography>
+            <Typography variant="body2">{taxPayerName}</Typography>
           </ListItem>
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="PAID AMOUNT" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-          5000 Rwf
+             {/* let nf = new Intl.NumberFormat('en-US');
+                    nf.format(number); // "1,234,567,890" */}
+              {amountToPay.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}  Rwf
           </Typography>
         </ListItem>
       </List>
@@ -42,7 +45,7 @@ export default function Review() {
                   <Typography textAlign="left" gutterBottom>TransactionID </Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography  textAlign="center" gutterBottom>M2998</Typography>
+                  <Typography  textAlign="center" gutterBottom>{transactionId}</Typography>
                 </Grid>
               </React.Fragment>
               <React.Fragment >
@@ -58,7 +61,7 @@ export default function Review() {
                   <Typography textAlign="left" gutterBottom>Date</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography textAlign="center" gutterBottom>11/09/2022</Typography>
+                  <Typography textAlign="center" gutterBottom>{moment(dateTime).format("llll")}</Typography>
                 </Grid>
               </React.Fragment>
               <React.Fragment >
@@ -66,7 +69,7 @@ export default function Review() {
                   <Typography textAlign="left" gutterBottom>Status</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography textAlign="center" gutterBottom>success</Typography>
+                  <Typography textAlign="center" gutterBottom>{transactionStatus}</Typography>
                 </Grid>
               </React.Fragment>
         

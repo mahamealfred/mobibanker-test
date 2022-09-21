@@ -14,10 +14,11 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Document from "../../../components/services/cbhi/Document";
 import Payment from "../../../components/services/cbhi/Payment";
 import Review from "../../../components/services/cbhi/Review";
-import { useState } from "react";
-
+import { useState,useEffect } from "react";
+import { getYearAction } from "../../../redux/actions/getYearAction";
+import { useDispatch,useSelector } from "react-redux";
 import { Grid } from "@mui/material";
-
+import { useHistory } from "react-router-dom";
 const theme = createTheme();
 
 theme.typography.h3 = {
@@ -33,10 +34,13 @@ theme.typography.h3 = {
 
 
 const CbhiIdentificationForm = () => {
-
+  const getYear = useSelector((state) => state.getYear);
+  const dispach = useDispatch();
   const steps = [`Household NID`, `Make payment`, `View Payment`];
   const [activeStep, setActiveStep] = React.useState(0);
- 
+  const [years, setYears] = React.useState([]);
+  const [nIdErrorMessage,setNIdErrorMessage]=useState("");
+  const [paymentYearErrorMessage,setPaymentYearErrorMessage]=useState("")
   const [formData, setFormData] = useState({
     docId: "",
     phoneNumber: "",
@@ -44,25 +48,41 @@ const CbhiIdentificationForm = () => {
   });
   
 
-
-
-
+  const history = useHistory();
+  useEffect(() => {
+    async function fetchData() {
+      await dispach(getYearAction());
+      if (!getYear.loading) {
+        if (getYear.years.return) {
+          setYears(getYear.years.return);
+        }
+      }
+      //  if(!getNidDetails.loading){
+      //   if(getNidDetails.cbhidetails){
+      //     //setHeadIdDetails(getNidDetails.details)
+      //     headIdDetails.push(getNidDetails.cbhidetails)
+      //   }
+      //  }
+  }
+    fetchData();
+  }, [!getYear.years.return]); 
 
   const getStepContent = (step) => {
     switch (step) {
       case 0:
         return (
           <Document
-            formData={formData}
-            setFormData={setFormData}
-           
+          formData={formData}
+          setFormData={setFormData}
+          years={years}
+          setYears={setYears}
           />
         );
       case 1:
         return (
           <Payment
-            formData={formData}
-            setFormData={setFormData}
+          formData={formData}
+          setFormData={setFormData}
          
           />
         );

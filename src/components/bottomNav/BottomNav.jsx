@@ -20,17 +20,17 @@ export default function BottomNav() {
       <BottomNavigationAction
         label="Contact Us"
         value="recents"
-        icon={<ContactsIcon />}
+        icon={<ContactsIcon sx={{color:"orange"}} />}
       />
       <BottomNavigationAction
         label="About us"
         value="favorites"
-        icon={<WebAssetIcon />}
+        icon={<WebAssetIcon sx={{color:"orange"}} />}
       />
       <BottomNavigationAction
         label="Videos"
         value="nearby"
-        icon={<VideoLibraryIcon />}
+        icon={<VideoLibraryIcon sx={{color:"orange"}} />}
       />
       {/* <BottomNavigationAction label="T" value="folder" icon={<FolderIcon />} /> */}
     </BottomNavigation>

@@ -61,26 +61,14 @@ const Document = ({
                    RRA reference
                     </Typography>
             </ThemeProvider>
-            {/* <Typography variant="h6" gutterBottom>
-        Document ID
-      </Typography> */}
             <Grid container
                 spacing={3}>
                 <Grid item
                     xs={12}>
                     <TextField id="address2" name="address2" label="RRA reference"
-                        value={
-                            formData.docId
-                        }
-                        onChange={
-                            (e) => setFormData({
-                                ...formData,
-                                docId: e.target.value
-                            })
-                        }
-                        helperText={
-                            docIdErr ? docIdErr : ""
-                        }
+                        value={ formData.docId}
+                        onChange={(e) => setFormData({...formData,docId: e.target.value})}
+                        helperText={docIdErr ? docIdErr : ""}
                         error={docIdErr}
                         fullWidth
                         autoComplete="shipping address-line2"

@@ -11,7 +11,6 @@ import CloseIcon from "@mui/icons-material/Close";
 
 
 const Payment=({
-  
   formData,setFormData,phoneNumberError,passwordError,taxPayerName,amountToPay,rraRef, paymenterrorMessage,
   setPaymenterrorMessage,open,setOpen})=> {
   
@@ -31,7 +30,6 @@ const Payment=({
                 color="inherit"
                 size="small"
                 onClick={handleClose}
-              
               >
                 <CloseIcon fontSize="inherit" />
               </IconButton>
@@ -51,7 +49,7 @@ const Payment=({
                PAYER NAME
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-              Mahame Alfred
+              {taxPayerName}
               </Typography>
             </Grid>
             <Grid item xs={12} md={4}>
@@ -59,7 +57,7 @@ const Payment=({
                 RRA REFERENCE
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-             113366777
+              {rraRef}
               </Typography>
             </Grid>
             <Grid item xs={12} md={4}>
@@ -67,7 +65,9 @@ const Payment=({
                  AMOUNT TO PAY
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-                5000  Rwf
+                   {/* let nf = new Intl.NumberFormat('en-US');
+                    nf.format(number); // "1,234,567,890" */}
+              {amountToPay.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}  Rwf
               </Typography>
             </Grid>
   
@@ -78,7 +78,7 @@ const Payment=({
             label="Payer phone number"
             value={formData.phoneNumber}
             onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
-            helperText={phoneNumberError? phoneNumberError : ""}
+            helperText={phoneNumberError? phoneNumberError : "Format 078..."}
             error={phoneNumberError}
             fullWidth
             autoComplete="cc-name"

@@ -8,31 +8,41 @@ import PeopleIcon from '@mui/icons-material/People';
 import { Person } from '@mui/icons-material';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import { Redirect, useHistory} from "react-router-dom";
+import Login from "../../pages/login/Login"
+
+
+const handleLogout=()=> {
+
+  localStorage.removeItem("mobicashAuth");
+  sessionStorage.removeItem("mobicash-auth")
+   window.location.reload(true);
+};
 
 export const mainListItems = (
+  
   <React.Fragment>
-
     <ListItemButton>
       <ListItemIcon>
-        <DashboardIcon />
+        <DashboardIcon sx={{color:"orange"}} />
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
-        <Person/>
+        <Person sx={{color:"orange"}} />
       </ListItemIcon>
       <ListItemText primary="My Profile" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
-        <PeopleIcon />
+        <PeopleIcon sx={{color:"orange"}}  />
       </ListItemIcon>
       <ListItemText primary="Previous Transactions" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
-        <BarChartIcon />
+        <BarChartIcon sx={{color:"orange"}} />
       </ListItemIcon>
       <ListItemText primary="Change Password" />
     </ListItemButton>
@@ -46,16 +56,25 @@ export const secondaryListItems = (
     </ListSubheader>
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <AssignmentIcon sx={{color:"orange"}} />
       </ListItemIcon>
       <ListItemText primary="Change Language" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton onClick={handleLogout}>
       <ListItemIcon>
-        <AssignmentIcon />
+        <AssignmentIcon sx={{color:"orange"}} />
       </ListItemIcon>
       <ListItemText primary="Logout" />
     </ListItemButton>
     
   </React.Fragment>
 );
+
+
+const listItem = () => {
+  return (
+    <div>listItem</div>
+  )
+}
+
+export default listItem

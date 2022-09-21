@@ -4,7 +4,7 @@ import Banner from '../components/banner';
 import SignIn from '../pages/signin/SignIn';
 import DashboardRoute from "./Dashboard.routes";
 
-
+const token =sessionStorage.getItem('mobicash-auth');
 export default class index extends Component {
 
 //   constructor(props) {
@@ -16,14 +16,12 @@ export default class index extends Component {
     render() {
         return (
           <Switch>
-          <Route exact path="/" component={Banner}/>
-             <Route path="/dashboard">
-             <DashboardRoute />
-              </Route>
+           <Route exact path="/" component={Banner}/>
+                <Route path="/dashboard">
+                <DashboardRoute />
+                 </Route>
+           
           </Switch>
-          
-       
-          
         )
     }
 }

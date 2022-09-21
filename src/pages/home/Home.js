@@ -27,6 +27,8 @@ import AppDrawer from '../../components/drawer';
 import { DashboardAppbarContainer } from '../../components/styles/appbar';
 import DashboardBanner from "../../components/dashboardbanner";
 import { Colors } from '../../components/styles/theme';
+import {useEffect} from "react";
+import jwt from "jsonwebtoken";
 
 const drawerWidth = 240;
 
@@ -76,10 +78,28 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const mdTheme = createTheme();
 
 function DashboardContent() {
+
+
   const [open, setOpen] = React.useState(true);
+  const [agentName,setAgentName]=React.useState("");
   const toggleDrawer = () => {
     setOpen(!open);
   };
+  console.log("agent name",agentName)
+
+  const decode= (token) => {
+    const JWT_SECRET="tokensecret";
+    const payload = jwt.verify(token, JWT_SECRET);
+     return payload;
+  }
+  useEffect(() => {
+    const token =localStorage.getItem('mobicashAuth');
+    if (token) {
+    const {name}=decode(token);
+    setAgentName(name)
+  }
+ 
+  }, []);
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -203,14 +223,13 @@ function DashboardContent() {
             overflow: 'auto',
           }}
         >
-
           <Toolbar />
-          <Box sx={{ width: '100%', maxWidth: 560, bgcolor: 'transparent' }}>
+          <Box sx={{ width: '100%', maxWidth: 560, bgcolor: 'transparent', marginTop:"20px"}}>
             <Box sx={{ my: 1, mx: 2 }}>
               <Grid container alignItems="center">
                 <Grid item xs>
                   <Typography gutterBottom variant="h6" color="gray" component="div">
-                    Dear Mahame Alfred,
+                    Dear {agentName},
                   </Typography>
                   <Typography gutterBottom variant="h6" color="gray" component="div">
                     Welcome back to MobiBanker!

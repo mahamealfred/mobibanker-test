@@ -14,10 +14,13 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Document from "../../../components/services/rra/Document";
 import Payment from "../../../components/services/rra/Payment";
 import Review from "../../../components/services/rra/Review";
-import { useState } from "react";
-
+import { getDocDetailsAction } from "../../../redux/actions/getDocDetailsAction";
+import { rraPayamentAction } from "../../../redux/actions/rraPaymentAction";
+import { useEffect,useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Grid } from "@mui/material";
-
+import { useHistory } from "react-router-dom";
+import jwt from "jsonwebtoken"
 const theme = createTheme();
 
 theme.typography.h3 = {
@@ -30,13 +33,13 @@ theme.typography.h3 = {
   },
 };
 
-
-
 const RraForm = () => {
 
   const steps = [`Reference number`, `Make payment`, `View Payment`];
   const [activeStep, setActiveStep] = React.useState(0);
- 
+  const dispatch = useDispatch();
+  const getDocDetails = useSelector((state) => state.getDocDetails);
+  const rraPayment = useSelector((state) => state.rraPayment);
   const [formData, setFormData] = useState({
     docId: "",
     phoneNumber: "",
@@ -44,63 +47,249 @@ const RraForm = () => {
   });
   
 
+ //rra get details
+ const [docIdErr, setDocIdErr] = useState("");
+ const [errorMessage, setErrorMessage] = useState("");
+ //rra payments
+ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
+ const [phoneNumberError, setPhoneNumberError] = useState("");
+ const [passwordError, setPasswordError] = useState("");
+ const [username, setUsername] = useState("jeanc2");
+ const [bankName, setBankName] = useState("");
+ const [rraRef, setRraRef] = useState("");
+ const [tin, setTin] = useState("");
+ const [taxPayerName, setTaxPayerName] = useState("");
+ const [taxTypeDesc, setTaxTypeDesc] = useState("");
+ const [taxCenterNo, setTaxCenterNo] = useState("");
+ const [taxTypeNo, setTaxTypeNo] = useState("");
+ const [assessNo, setAssessNo] = useState("");
+ const [rraOrginNo, setRraOrginNo] = useState("");
+ const [amountToPay, setAmountToPay] = useState("");
+ const [descId, setDescId] = useState("");
+ const [payerPhone, setPayerPhone] = useState("");
+ const [brokering, setBrokering] = useState("");
+ const [userGroup, setUserGroup] = useState("");
+
+ const [transactionId,setTransactionId]=useState("");
+ const [transactionStatus,setTransactionStatus]=useState("");
+ const [dateTime,setDateTime]=useState("")
+ //all
+
+ const [open, setOpen] = React.useState(true);
+ const [docDetails, setDocDetails] = useState("");
 
 
+ const history = useHistory();
 
+ const getStepContent = (step) => {
+   switch (step) {
+     case 0:
+       return (
+         <Document
+           formData={formData}
+           setFormData={setFormData}
+           docIdErr={docIdErr}
+           errorMessage={errorMessage}
+           setErrorMessage={setErrorMessage}
+           open={open}
+           setOpen={setOpen}
+         />
+       );
+     case 1:
+       return (
+         <Payment
+           formData={formData}
+           setFormData={setFormData}
+           phoneNumberError={phoneNumberError}
+           passwordError={passwordError}
+           taxPayerName={taxPayerName}
+           rraRef={rraRef}
+           amountToPay={amountToPay}
+           paymenterrorMessage={paymenterrorMessage}
+           setPaymenterrorMessage={setPaymenterrorMessage}
+           open={open}
+           setOpen={setOpen}
+         />
+       );
+     case 2:
+       return <Review 
+       dateTime={dateTime}
+       setDateTime={setDateTime}
+       transactionId={transactionId}
+       setTransactionId={setTransactionId}
+       transactionStatus={transactionStatus}
+       taxPayerName={taxPayerName}
+       setTaxPayerName={setTaxPayerName}
+       amountToPay={amountToPay}
+       />;
+     default:
+       throw new Error("Unknown step");
+   }
+ };
+ const decode= (token) => {
+   const JWT_SECRET="tokensecret";
+   const payload = jwt.verify(token, JWT_SECRET);
+    return payload;
+ }
+ useEffect(() => {
+   const token =localStorage.getItem('mobicashAuth');
+   if (token) {
+   const {username}=decode(token);
+   const {role}=decode(token);
+   const {group}=decode(token);
+   setUsername(username)
+   setBrokering(role)
+   setUserGroup(group)
+   
+ }
 
-  const getStepContent = (step) => {
-    switch (step) {
-      case 0:
-        return (
-          <Document
-            formData={formData}
-            setFormData={setFormData}
-           
-          />
-        );
-      case 1:
-        return (
-          <Payment
-            formData={formData}
-            setFormData={setFormData}
-         
-          />
-        );
-      case 2:
-        return <Review 
-       
-        
-        />;
-      default:
-        throw new Error("Unknown step");
-    }
-  };
+ }, []);
+ useEffect(() => {
+   async function fetchData() {
+     if (!getDocDetails.loading) {
+       if (getDocDetails.details.length !== 0) {
+         //await setDocDetails(getDocDetails.details)
+         if (getDocDetails.details.responseCode === 200) {
+           setBankName(getDocDetails.details.bank_name);
+           setRraRef(getDocDetails.details.RRA_REF);
+           setTin(getDocDetails.details.TIN);
+           setTaxPayerName(getDocDetails.details.TAX_PAYER_NAME);
+           setTaxTypeDesc(getDocDetails.details.TAX_TYPE_DESC);
+           setTaxCenterNo(getDocDetails.details.TAX_CENTRE_NO);
+           setTaxTypeNo(getDocDetails.details.TAX_TYPE_NO);
+           setAssessNo(getDocDetails.details.ASSESS_NO);
+           setRraOrginNo(getDocDetails.details.RRA_ORIGIN_NO);
+           setAmountToPay(getDocDetails.details.AMOUNT_TO_PAY);
+           setDescId(getDocDetails.details.DEC_ID);
+           handleNext();
+         } else {
+           return null;
+         }
+         //  console.log("doc ...doc",getDocDetails.details.responseCode)
+       }
+       if (getDocDetails.error) {
+         setErrorMessage(getDocDetails.error);
+       }
+     }
+   }
   
-  //handle on button submit for each step
-  const handelSubmit = () => {
-    if (activeStep === 0) {
-      handleNext()
-    } else if (activeStep === 1) {
-      handleNext();
-    } else if (activeStep === 2) {
-      handleNext();
-    } else {
-      return null;
-    }
-    
-  };
+   fetchData();
+  
+ }, [getDocDetails.details]);
 
-  const handleNewpayment = () => {
-   setActiveStep(0)
-  };
+ useEffect(()=>{
+async function fetchData(){
+ if (!rraPayment.loading) {
+   if (rraPayment.details.length !== 0) {
+     //await setDocDetails(getDocDetails.details)
+     if (rraPayment.details.responseCode === 200) {
+      setTransactionId(rraPayment.details.mobicashTransctionNo)
+      setDateTime(rraPayment.details.date)
+      setTransactionStatus("success")
+       handleNext();
+     } else {
+       return null;
+     }
+     //  console.log("doc ...doc",getDocDetails.details.responseCode)
+   }
+   if (rraPayment.error) {
+     setPaymenterrorMessage(rraPayment.error);
+   }
+ }
 
-  const handleNext = () => {
-    setActiveStep(activeStep + 1);
-  };
+}
+fetchData();
+ },[rraPayment.details,rraPayment.error])
 
-  const handleBack = () => {
-    setActiveStep(activeStep - 1);
-  };
+ //handle request for rra document id
+ const handleDocmentDetails = async () => {
+   if (formData.docId === "") {
+     setDocIdErr("RRA reference is required");
+   } else if (!Number(formData.docId)) {
+     setDocIdErr("RRA is required must be a number");
+   } else {
+     const docId = formData.docId;
+     await dispatch(getDocDetailsAction({ docId }, history));
+   }
+ };
+
+ //handle rra Payament
+ const handlePayment = async () => {
+   if (formData.phoneNumber === "") {
+     setPhoneNumberError("Phone number is required");
+   } else if (!Number(formData.phoneNumber)) {
+     setPhoneNumberError("Phone number must be a number");
+   } else if (formData.phoneNumber.length!==10) {
+    setPhoneNumberError("Phone number must be 10 digit");
+  }else if (formData.password === "") {
+     setPasswordError("Password is required");
+   } else {
+     const payerPhoneNumber = formData.phoneNumber;
+     const password = formData.password;
+     await dispatch(
+       rraPayamentAction(
+         {
+           bankName,
+           rraRef,
+           tin,
+           taxPayerName,
+           taxTypeDesc,
+           taxCenterNo,
+           taxTypeNo,
+           assessNo,
+           rraOrginNo,
+           amountToPay,
+           descId,
+           payerPhoneNumber,
+           userGroup,
+           brokering,
+         },
+         username,
+         password,
+         history
+       )
+     );
+     
+   }
+ };
+
+ //handle on button submit for each step
+ const handelSubmit = () => {
+   if (activeStep === 0) {
+     handleDocmentDetails();
+   } else if (activeStep === 1) {
+     handlePayment();
+   } else if (activeStep === 2) {
+     handleNext();
+   } else {
+     return null;
+   }
+   if (getDocDetails.error) {
+     setOpen(true);
+   }
+   if (rraPayment.error) {
+     setOpen(true);
+   }
+ };
+
+ const handleNewpayment = () => {
+  formData.docId = "";
+  setActiveStep(0)
+ };
+
+ const handleNext = () => {
+   setActiveStep(activeStep + 1);
+ };
+
+ const handleBack = () => {
+   formData.password = "";
+   setDocIdErr("");
+   setPasswordError("");
+   setPhoneNumberError("");
+   setErrorMessage("");
+   setPaymenterrorMessage("");
+   setActiveStep(activeStep - 1);
+ };
   return (
     <div>
       <ThemeProvider theme={theme}>

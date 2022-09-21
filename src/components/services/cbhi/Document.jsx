@@ -11,13 +11,8 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
 import { MenuItem } from "@mui/material";
-
 const theme = createTheme();
-const years=[
-  {
-    year:"2022"
-  }
-]
+
 theme.typography.h3 = {
     fontSize: '0.9rem',
     '@media (min-width:600px)': {
@@ -28,13 +23,17 @@ theme.typography.h3 = {
     }
 };
 const Document = ({
-    formData,
-    setFormData,
-    docIdErr,
-    errorMessage,
-    setErrorMessage,
-    open,
-    setOpen
+  formData,
+  setFormData,
+  nIdErrorMessage,
+  errorMessage,
+  setErrorMessage,
+  open,
+  setOpen,
+  years,
+  docIdErr,
+  setYears,
+  paymentYearErrorMessage
 }) => {
   
     const handleClose = () => {
@@ -73,18 +72,9 @@ const Document = ({
                 <Grid item
                     xs={12}>
                     <TextField id="address2" name="address2" label="Household NID"
-                        value={
-                            formData.docId
-                        }
-                        onChange={
-                            (e) => setFormData({
-                                ...formData,
-                                docId: e.target.value
-                            })
-                        }
-                        helperText={
-                            docIdErr ? docIdErr : ""
-                        }
+                        value={formData.docId}
+                        onChange={(e) => setFormData({...formData,docId: e.target.value}) }
+                        helperText={docIdErr ? docIdErr : ""}
                         error={docIdErr}
                         fullWidth
                         autoComplete="shipping address-line2"
@@ -104,11 +94,9 @@ const Document = ({
             label="Payment Year"
             select
             value={formData.paymentYear}
-            // onChange={(e) =>
-            //   setFormData({ ...formData, paymentYear: e.target.value })
-            // }
-            // helperText={paymentYearErrorMessage ? paymentYearErrorMessage : ""}
-            // error={paymentYearErrorMessage}
+            onChange={(e) =>setFormData({ ...formData, paymentYear: e.target.value })}
+            helperText={paymentYearErrorMessage ? paymentYearErrorMessage : ""}
+            error={paymentYearErrorMessage}
             fullWidth
             autoComplete="shipping address-line2"
             variant="outlined"

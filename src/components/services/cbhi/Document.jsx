@@ -11,8 +11,8 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
 import { MenuItem } from "@mui/material";
-const theme = createTheme();
 
+const theme = createTheme();
 theme.typography.h3 = {
     fontSize: '0.9rem',
     '@media (min-width:600px)': {

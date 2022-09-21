@@ -1,8 +1,9 @@
 import { combineReducers } from "redux";
    import getYearReducer from "./getYearReducer";
-// import getNidDetailsReducer from "./getNidDetailsRdeucer";
    import loginReducer from "./loginReducer";
 
+   //CBHI
+import getCbhiNidDetailsReducer from "./getCbhiNidDetailsReducer";
 // import changePinReducer from "./changePinReducer";
 // import forgotPasswordReducer from "./forgotPasswordReducer";
 // import getRnitDetailsReducer from "./getRnitDetailsReducer";
@@ -28,8 +29,8 @@ const allReducers = combineReducers({
     // transactions:transactionsReducer,
      getYear:getYearReducer,
 
-    //cbhi
-    // getNidDetails: getNidDetailsReducer,
+     //cbhi
+     getCbhiNidDetails:getCbhiNidDetailsReducer ,
     // cbhiPayment:cbhiPayamentReducer,
 
      //rra

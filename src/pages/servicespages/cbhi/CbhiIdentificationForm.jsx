@@ -16,6 +16,7 @@ import Payment from "../../../components/services/cbhi/Payment";
 import Review from "../../../components/services/cbhi/Review";
 import { useState,useEffect } from "react";
 import { getYearAction } from "../../../redux/actions/getYearAction";
+import { getCbhiNidDetailsAction } from "../../../redux/actions/getCbhiNidDetailsAction";
 import { useDispatch,useSelector } from "react-redux";
 import { Grid } from "@mui/material";
 import { useHistory } from "react-router-dom";
@@ -35,12 +36,15 @@ theme.typography.h3 = {
 
 const CbhiIdentificationForm = () => {
   const getYear = useSelector((state) => state.getYear);
+  const getCbhiNidDetails=useSelector((state)=>state.getCbhiNidDetails)
   const dispach = useDispatch();
   const steps = [`Household NID`, `Make payment`, `View Payment`];
   const [activeStep, setActiveStep] = React.useState(0);
+
   const [years, setYears] = React.useState([]);
   const [nIdErrorMessage,setNIdErrorMessage]=useState("");
   const [paymentYearErrorMessage,setPaymentYearErrorMessage]=useState("")
+  
   const [formData, setFormData] = useState({
     docId: "",
     phoneNumber: "",
@@ -57,12 +61,13 @@ const CbhiIdentificationForm = () => {
           setYears(getYear.years.return);
         }
       }
-      //  if(!getNidDetails.loading){
-      //   if(getNidDetails.cbhidetails){
-      //     //setHeadIdDetails(getNidDetails.details)
-      //     headIdDetails.push(getNidDetails.cbhidetails)
-      //   }
-      //  }
+       if(!getCbhiNidDetails.loading){
+        if(getCbhiNidDetails.details.length!==0){
+          //setHeadIdDetails(getNidDetails.details)
+         // headIdDetails.push(getCbhiNidDetails.details)
+         return null
+        }
+       }
   }
     fetchData();
   }, [!getYear.years.return]); 
@@ -95,11 +100,15 @@ const CbhiIdentificationForm = () => {
         throw new Error("Unknown step");
     }
   };
+  //handel get cbhi nid details
+  const getChiNid= async()=>{
+    handleNext();
+  }
   
   //handle on button submit for each step
   const handelSubmit = () => {
     if (activeStep === 0) {
-      handleNext()
+    getChiNid();
     } else if (activeStep === 1) {
       handleNext();
     } else if (activeStep === 2) {

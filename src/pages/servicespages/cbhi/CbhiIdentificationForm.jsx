@@ -37,25 +37,53 @@ theme.typography.h3 = {
 const CbhiIdentificationForm = () => {
   const getYear = useSelector((state) => state.getYear);
   const getCbhiNidDetails=useSelector((state)=>state.getCbhiNidDetails)
-  const dispach = useDispatch();
+  const dispatch = useDispatch();
   const steps = [`Household NID`, `Make payment`, `View Payment`];
+  const [formData, setFormData] = useState({
+    nId: "",
+    paymentYear:"",
+    amountPaid:"",
+    phoneNumber: "",
+    password: "",
+  });
+  
   const [activeStep, setActiveStep] = React.useState(0);
 
   const [years, setYears] = React.useState([]);
   const [nIdErrorMessage,setNIdErrorMessage]=useState("");
   const [paymentYearErrorMessage,setPaymentYearErrorMessage]=useState("")
-  
-  const [formData, setFormData] = useState({
-    docId: "",
-    phoneNumber: "",
-    password: "",
-  });
-  
-
+  const [errorMessage,setErrorMessage]=useState("");
+  const [open, setOpen] = React.useState(true);
+             //cbhi payment
+  const cbhiPayment = useSelector((state) => state.cbhiPayment);
+  const [members,setMembers]=useState('');
+  const [username,setUsername]=useState('')
+  const [agentCategory,setAgentCategory]=useState('');
+  const [houseHoldNID,setHouseHoldNID]=useState('')
+  const [paymentYear,setPaymentYear]=useState('')
+  const [amountPaid,setAmountPaid]=useState('');
+  const [password,setPassword]=useState('');
+  const [payerPhoneNumber,setPayerPhoneNumber]=useState('')   
+  const [payerName,setPayerName]=useState('');
+  const [houseHoldCategory,seHouseHoldCategory]=useState('');
+  const [householdMemberNumber,setHouseholdMemberNumber]=useState('');
+  const [totalPremium,setTotalPremium]=useState('');  
+  //cbhi payment
+  const [phoneNumberError,setPhoneNumberError]=useState('')
+  const [amountPaidError,setAmountPaidError]=useState('');
+  const [passwordError,setPasswordError]=useState('');
+  const [paymentErrorMessage,setPaymentErrorMessage]=useState('');
+  console.log("result::",
+  payerName,
+  houseHoldCategory,
+  members,
+  householdMemberNumber,
+  totalPremium
+  )
   const history = useHistory();
   useEffect(() => {
     async function fetchData() {
-      await dispach(getYearAction());
+      await dispatch(getYearAction());
       if (!getYear.loading) {
         if (getYear.years.return) {
           setYears(getYear.years.return);
@@ -63,14 +91,27 @@ const CbhiIdentificationForm = () => {
       }
        if(!getCbhiNidDetails.loading){
         if(getCbhiNidDetails.details.length!==0){
-          //setHeadIdDetails(getNidDetails.details)
-         // headIdDetails.push(getCbhiNidDetails.details)
-         return null
+          if (getCbhiNidDetails.details.responsecode === 200) {
+            //await setHeadIdDetails(getCbhiNidDetails.details);
+            await setMembers(getCbhiNidDetails.details.response.members);
+            setHouseHoldNID(getCbhiNidDetails.details.response.headId)
+            //setPaymentYear(year[0])
+            setPayerName(getCbhiNidDetails.details.response.headHouseHoldNames)
+            seHouseHoldCategory(getCbhiNidDetails.details.response.houseHoldCategory)
+            setHouseholdMemberNumber(getCbhiNidDetails.details.response.totalHouseHoldMembers)
+            setTotalPremium(getCbhiNidDetails.details.response.totalAmount)
+            handleNext();
+           } else {
+             return null;
+           }
+        }
+        if(getCbhiNidDetails.error)  {
+          setErrorMessage("Please Check your NID, and try again.");
         }
        }
   }
     fetchData();
-  }, [!getYear.years.return]); 
+  }, [!getYear.years.return,getCbhiNidDetails.details,getCbhiNidDetails.error]); 
 
   const getStepContent = (step) => {
     switch (step) {
@@ -81,6 +122,13 @@ const CbhiIdentificationForm = () => {
           setFormData={setFormData}
           years={years}
           setYears={setYears}
+          nIdErrorMessage={nIdErrorMessage}
+          paymentYearErrorMessage={paymentYearErrorMessage}
+          errorMessage={errorMessage}
+          setErrorMessage={setErrorMessage}
+          open={open}
+          setOpen={setOpen}
+          
           />
         );
       case 1:
@@ -88,7 +136,15 @@ const CbhiIdentificationForm = () => {
           <Payment
           formData={formData}
           setFormData={setFormData}
-         
+          phoneNumberError={phoneNumberError}
+          amountPaidError={amountPaidError}
+          passwordError={passwordError}
+          houseHoldNID={houseHoldNID}
+          payerName={payerName}
+          houseHoldCategory={houseHoldCategory}
+          householdMemberNumber={householdMemberNumber}
+          members={members}
+          totalPremium={totalPremium}
           />
         );
       case 2:
@@ -102,7 +158,63 @@ const CbhiIdentificationForm = () => {
   };
   //handel get cbhi nid details
   const getChiNid= async()=>{
-    handleNext();
+    if(formData.nId=="" && formData.paymentYear==""){
+    setNIdErrorMessage("Household NID is required")
+    setPaymentYearErrorMessage("Please select year")
+    }
+    else if(formData.nId==""){
+      setNIdErrorMessage("Household NID is required")
+    }
+    else if(!Number(formData.nId)){
+      setNIdErrorMessage("Household NID must be a number")
+    }
+    else if(formData.nId.length!==16){
+      setNIdErrorMessage("Household NID must be 16 digit")
+    }
+    else if(formData.paymentYear==""){
+      setPaymentYearErrorMessage("Please select year")
+    }
+    else{
+      setNIdErrorMessage("")
+      setPaymentYearErrorMessage("")
+      const nid=formData.nId
+      const year=formData.paymentYear
+   await dispatch(getCbhiNidDetailsAction({nid,year},history))
+    } 
+  }
+  //handle cbhi payment
+  const handleCbhiPayment=async()=>{
+    if(formData.amountPaid=="" && formData.phoneNumber==""&& formData.password=="" ){
+      setAmountPaidError("Amount to pay is required")
+      setPhoneNumberError("Payer phone number is required")
+      setPasswordError("Agent pin is required")
+    }
+    else if(formData.amountPaid==""){
+      setAmountPaidError("Amount to pay is required")
+    }
+    else if(!Number(formData.amountPaid)){
+      setAmountPaidError("Amount to pay must be a number")
+    }
+    else if(formData.amountPaid > 2000000){
+      setAmountPaidError("Amount to pay can not excide 2,000,000 Rwf")
+    }
+    else if(formData.phoneNumber==""){
+      setPhoneNumberError("Payer phone number is required")
+    }
+    else if(!Number(formData.phoneNumber)){
+      setPhoneNumberError("Payer phone number must be a number")
+    }
+    else if(formData.phoneNumber.length!==10){
+      setPhoneNumberError("Payer phone number must be 10 digit")
+    }
+    else if(formData.password=="" ){
+      setPasswordError("Agent pin is required")
+    }else{
+      setAmountPaidError("")
+      setPhoneNumberError("")
+      setPasswordError("")
+      console.log("success....")
+    }
   }
   
   //handle on button submit for each step
@@ -110,13 +222,15 @@ const CbhiIdentificationForm = () => {
     if (activeStep === 0) {
     getChiNid();
     } else if (activeStep === 1) {
-      handleNext();
+     handleCbhiPayment();
     } else if (activeStep === 2) {
       handleNext();
     } else {
       return null;
     }
-    
+    if(getCbhiNidDetails.error)  {
+   setOpen(true)
+    }
   };
 
   const handleNewpayment = () => {

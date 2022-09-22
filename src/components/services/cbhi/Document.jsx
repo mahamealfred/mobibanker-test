@@ -25,24 +25,25 @@ theme.typography.h3 = {
 const Document = ({
   formData,
   setFormData,
-  nIdErrorMessage,
-  errorMessage,
-  setErrorMessage,
   open,
   setOpen,
   years,
-  docIdErr,
   setYears,
-  paymentYearErrorMessage
+  nIdErrorMessage,
+  paymentYearErrorMessage,
+  errorMessage,
+  setErrorMessage
 }) => {
   
+    console.log("error message",errorMessage)
     const handleClose = () => {
         setErrorMessage('')
         setOpen(false);
     };
   
     return (
-        <React.Fragment> {
+        <React.Fragment>
+             {
             !errorMessage ? null : (
                 <Collapse in={open}>
                     <Alert severity="error"
@@ -61,6 +62,7 @@ const Document = ({
                 </Collapse>
             )
         }
+        
             <ThemeProvider theme={theme}>
                 <Typography variant="h6" color="gray"  align="center">
                    Household NID
@@ -72,10 +74,10 @@ const Document = ({
                 <Grid item
                     xs={12}>
                     <TextField id="address2" name="address2" label="Household NID"
-                        value={formData.docId}
-                        onChange={(e) => setFormData({...formData,docId: e.target.value}) }
-                        helperText={docIdErr ? docIdErr : ""}
-                        error={docIdErr}
+                        value={formData.nId}
+                        onChange={(e) => setFormData({...formData,nId: e.target.value}) }
+                        helperText={nIdErrorMessage ? nIdErrorMessage : ""}
+                        error={nIdErrorMessage}
                         fullWidth
                         autoComplete="shipping address-line2"
                         variant="outlined"/>

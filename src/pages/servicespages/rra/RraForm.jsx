@@ -114,12 +114,12 @@ const RraForm = () => {
      case 2:
        return <Review 
        dateTime={dateTime}
-       setDateTime={setDateTime}
+      // setDateTime={setDateTime}
        transactionId={transactionId}
-       setTransactionId={setTransactionId}
+       //setTransactionId={setTransactionId}
        transactionStatus={transactionStatus}
        taxPayerName={taxPayerName}
-       setTaxPayerName={setTaxPayerName}
+       //setTaxPayerName={setTaxPayerName}
        amountToPay={amountToPay}
        />;
      default:
@@ -226,8 +226,7 @@ fetchData();
    } else {
      const payerPhoneNumber = formData.phoneNumber;
      const password = formData.password;
-     await dispatch(
-       rraPayamentAction(
+     await dispatch(rraPayamentAction(
          {
            bankName,
            rraRef,

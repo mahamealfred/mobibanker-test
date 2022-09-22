@@ -8,14 +8,15 @@ import {
 export const getCbhiNidDetailsAction = (details,history) => async (dispatch) => {
   try {
     dispatch(getCbhiNidDetailsRequest());
-    const  {houseHoldNID}=details
-    const  {paymentYear}=details
+    const  {nid}=details
+    const  {year}=details
     //const encodedBase64Token = Buffer.from(`${username}:${password}`).toString('base64');
    // let basicAuth='Basic ' + btoa(username + ':' + password);
-   const Url='https://agentweb.mobicash.rw/api/agent/goverment-services/cbhi/rest/v.4.14.01/nid-validation';
+  //const Url='https://agentweb.mobicash.rw/api/agent/goverment-services/cbhi/rest/v.4.14.01/nid-validation';
+  const Url='https://agentapi.mobicash.rw/api/agent/goverment-services/cbhi/rest/v.4.14.01/nid-validation';
    const res = await axios.post(Url,{
-    houseHoldNID:houseHoldNID,
-    paymentYear:paymentYear
+    houseHoldNID:nid,
+    paymentYear:year
    }, {
     // withCredentials: true,
     headers:{
@@ -26,14 +27,11 @@ export const getCbhiNidDetailsAction = (details,history) => async (dispatch) => 
    });
     const {data} = await res;
       if(res.data.responsecode===200){
-        dispatch(getCbhiNidDetailsSuccess(data.response));
-        history.push('/dashboard/cbhi-payment',{push:true})
+        dispatch(getCbhiNidDetailsSuccess(data));
       }else if(res.data.responsecode===400){
         let errMsg=res.data.response.message
         dispatch(getCbhiNidDetailsFailure(errMsg));
       }
-    // history.push('/dashboard/cbhi-payment',{push:true})
-      
   } catch (err) {
     if (err.response) {
    let errorMessage = ''

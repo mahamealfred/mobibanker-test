@@ -6,10 +6,26 @@ import Alert from "@mui/material/Alert";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import { MenuItem } from '@mui/material';
 
 
-const Payment=({formData,setFormData,phoneNumberError,passwordError, paymenterrorMessage,
-  setPaymenterrorMessage,open,setOpen})=> {
+const Payment=({
+  formData,
+  setFormData,
+  phoneNumberError,
+   passwordError,
+   paymenterrorMessage,
+   amountPaidError,
+   houseHoldNID,
+   payerName,
+   houseHoldCategory,
+   householdMemberNumber,
+   members,
+   totalPremium,
+  setPaymenterrorMessage,
+  open,
+  setOpen
+})=> {
   
     const handleClose = () => {
       setPaymenterrorMessage('')
@@ -47,7 +63,7 @@ const Payment=({formData,setFormData,phoneNumberError,passwordError, paymenterro
                PAYER NAME
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-              Mahame Alfred 
+             {payerName}
               </Typography>
             </Grid>
             <Grid item xs={12} md={4}>
@@ -55,7 +71,7 @@ const Payment=({formData,setFormData,phoneNumberError,passwordError, paymenterro
                 HOUSEHOLD NID
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-                1199680013525373
+               {houseHoldNID}
               </Typography>
             </Grid>
             <Grid item xs={12} md={4}>
@@ -63,7 +79,7 @@ const Payment=({formData,setFormData,phoneNumberError,passwordError, paymenterro
                 TOTAL PREMIUM
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-                12,OOO Rwf
+                {totalPremium.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf
               </Typography>
             </Grid>
             <Grid item xs={12} md={6}>
@@ -71,7 +87,7 @@ const Payment=({formData,setFormData,phoneNumberError,passwordError, paymenterro
              HOUSEHOLD CATEGORY
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-               3
+                {houseHoldCategory}
               </Typography>
             </Grid>
             <Grid item xs={12} md={4}>
@@ -79,36 +95,40 @@ const Payment=({formData,setFormData,phoneNumberError,passwordError, paymenterro
                TOTAL MEMBERS
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-                4 
+                {householdMemberNumber}
               </Typography>
             </Grid>
             <Grid item xs={12} md={14}>
             <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
                MEMBERS
               </Typography>
-          <TextField
-            required
-            id="cardName"
-            select
-            label="Check members"
-            value={formData.phoneNumber}
-            onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
-            helperText={phoneNumberError? phoneNumberError : ""}
-            error={phoneNumberError}
-            fullWidth
-            autoComplete="cc-name"
-      
-          />
+              {
+                !members?null:
+                <TextField
+                required
+                id="cardName"
+                select
+                label="Check members"
+                fullWidth
+                autoComplete="cc-name"
+          
+              >
+               {members.map((option) => (
+                            <MenuItem disabled key={option.fullNames} value={option.fullNames}>{option.fullNames}</MenuItem>
+                          ))}
+                </TextField>
+              }
+         
         </Grid>
             <Grid item xs={12} md={6}>
           <TextField
             required
             id="cardName"
             label="Amount to pay"
-            value={formData.phoneNumber}
-            onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
-            helperText={phoneNumberError? phoneNumberError : ""}
-            error={phoneNumberError}
+            value={formData.amountPaid}
+            onChange={(e)=>setFormData({...formData,amountPaid:e.target.value})}
+            helperText={amountPaidError? amountPaidError : ""}
+            error={amountPaidError}
             fullWidth
             autoComplete="cc-name"
             variant="outlined"
@@ -121,7 +141,7 @@ const Payment=({formData,setFormData,phoneNumberError,passwordError, paymenterro
             label="Payer phone number"
             value={formData.phoneNumber}
             onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
-            helperText={phoneNumberError? phoneNumberError : ""}
+            helperText={phoneNumberError? phoneNumberError : "Format 078..."}
             error={phoneNumberError}
             fullWidth
             autoComplete="cc-name"

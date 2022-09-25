@@ -21,6 +21,7 @@ import { useState,useEffect} from "react";
 import { Grid } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import CircularProgress from '@mui/material/CircularProgress';
 import jwt from "jsonwebtoken"
 const theme = createTheme();
 
@@ -257,7 +258,6 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
       setOpen(true);
     }
   };
-
   const handleNewpayment = () => {
     formData.nId=""
    setActiveStep(0)
@@ -347,8 +347,14 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
                       {activeStep === steps.length - 1
                         ? "Print Receipt"
                         : activeStep === 0
-                        ? `Submit`
-                        : "Make Payment"}
+                        ? getLtssIndDetails.loading?
+                        <Box sx={{ display: 'flex',justifyContent:"center" }}>
+                        <CircularProgress  sx={{ color: 'orange'}} />
+                         </Box>:"Submit"
+                        : ltssPayment.loading?
+                        <Box sx={{ display: 'flex',justifyContent:"center" }}>
+                        <CircularProgress  sx={{ color: 'orange'}} />
+                         </Box>:"Make Payment"}
                     </Button>
                   </Box>
                 </React.Fragment>

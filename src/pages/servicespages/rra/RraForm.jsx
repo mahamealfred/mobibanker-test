@@ -20,6 +20,7 @@ import { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Grid } from "@mui/material";
 import { useHistory } from "react-router-dom";
+import CircularProgress from '@mui/material/CircularProgress';
 import jwt from "jsonwebtoken"
 const theme = createTheme();
 
@@ -359,8 +360,14 @@ fetchData();
                       {activeStep === steps.length - 1
                         ? "Print Receipt"
                         : activeStep === 0
-                        ? `Submit`
-                        : "Make Payment"}
+                        ? getDocDetails.loading?
+                        <Box sx={{ display: 'flex',justifyContent:"center" }}>
+                        <CircularProgress  sx={{ color: 'orange'}} />
+                         </Box>:"Submit"
+                        : rraPayment.loading?
+                        <Box sx={{ display: 'flex',justifyContent:"center" }}>
+                        <CircularProgress  sx={{ color: 'orange'}} />
+                         </Box>:"Make Payment"}
                     </Button>
                   </Box>
                 </React.Fragment>

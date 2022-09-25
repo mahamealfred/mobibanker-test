@@ -21,6 +21,7 @@ import { cbhiPayamentAction } from "../../../redux/actions/cbhiPaymentAction";
 import { useDispatch,useSelector } from "react-redux";
 import { Grid } from "@mui/material";
 import { useHistory } from "react-router-dom";
+import CircularProgress from '@mui/material/CircularProgress';
 const theme = createTheme();
 
 theme.typography.h3 = {
@@ -96,7 +97,6 @@ const CbhiIdentificationForm = () => {
     setBrokering(role)
     setUserGroup(group)
     setAgentName(name)
-    
   }
  
   }, []);
@@ -354,7 +354,7 @@ const CbhiIdentificationForm = () => {
                   </Typography>
                 
                   <Button onClick={handleNewpayment} sx={{ mt: 3, ml: 1 }}>
-                  New Payament
+                  New Payment
                   </Button>
                   
                 </React.Fragment>
@@ -382,8 +382,14 @@ const CbhiIdentificationForm = () => {
                       {activeStep === steps.length - 1
                         ? "Print Receipt"
                         : activeStep === 0
-                        ? `Submit`
-                        : "Make Payment"}
+                        ? getCbhiNidDetails.loading?
+                        <Box sx={{ display: 'flex',justifyContent:"center" }}>
+                        <CircularProgress  sx={{ color: 'orange'}} />
+                         </Box>:"Submit"
+                        : cbhiPayment.loading?
+                        <Box sx={{ display: 'flex',justifyContent:"center" }}>
+                        <CircularProgress  sx={{ color: 'orange'}} />
+                         </Box>:"Make Payment"}
                     </Button>
                   </Box>
                 </React.Fragment>

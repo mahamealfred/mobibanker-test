@@ -3,7 +3,7 @@ import {
     CBHI_PAYMENT_REQUEST,
     CBHI_PAYMENT_SUCCESS,
     CBHI_PAYMENT_FAILURE,
-  } from "../types/cbhiPaymentTypes";
+  } from "../types/cbhiPaymentType";
   
 export const cbhiPayamentAction = (details,username,password,history) => async (dispatch) => {
   try {
@@ -16,9 +16,9 @@ export const cbhiPayamentAction = (details,username,password,history) => async (
     const {householdMemberNumber}=details
     const {totalPremium}=details
     const {payerPhoneNumber}=details
-    const {agentCategory}=details
+    const {brokering}=details
     const {userGroup}=details
-    
+    console.log("details...:",details)
    // let errorMessage =''
     //const encodedBase64Token = Buffer.from(`${username}:${password}`).toString('base64');
     let basicAuth='Basic ' + btoa(username + ':' + password);
@@ -32,7 +32,7 @@ export const cbhiPayamentAction = (details,username,password,history) => async (
     householdMemberNumber:householdMemberNumber,
     totalPremium:totalPremium,     
     payerPhoneNumber:payerPhoneNumber,   
-    brokering:agentCategory,
+    brokering:brokering,
     userGroup:userGroup
       
   
@@ -51,8 +51,6 @@ export const cbhiPayamentAction = (details,username,password,history) => async (
     const {data} = await res;
       if(res.data.responseCode===200){
        await dispatch(cbhiPaymentSuccess(data));
-    
-        history.push('/dashboard/cbhi-payment-details',{push:true})
       }
       if(res.data.responseCode===400){
         let errorMessage = 'Invalid Credential, Please provide valid Pin'

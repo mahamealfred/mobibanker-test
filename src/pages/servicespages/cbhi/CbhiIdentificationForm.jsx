@@ -7,7 +7,7 @@ import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
-
+import jwt from "jsonwebtoken";
 
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -17,6 +17,7 @@ import Review from "../../../components/services/cbhi/Review";
 import { useState,useEffect } from "react";
 import { getYearAction } from "../../../redux/actions/getYearAction";
 import { getCbhiNidDetailsAction } from "../../../redux/actions/getCbhiNidDetailsAction";
+import { cbhiPayamentAction } from "../../../redux/actions/cbhiPaymentAction";
 import { useDispatch,useSelector } from "react-redux";
 import { Grid } from "@mui/material";
 import { useHistory } from "react-router-dom";
@@ -37,6 +38,7 @@ theme.typography.h3 = {
 const CbhiIdentificationForm = () => {
   const getYear = useSelector((state) => state.getYear);
   const getCbhiNidDetails=useSelector((state)=>state.getCbhiNidDetails)
+
   const dispatch = useDispatch();
   const steps = [`Household NID`, `Make payment`, `View Payment`];
   const [formData, setFormData] = useState({
@@ -54,33 +56,51 @@ const CbhiIdentificationForm = () => {
   const [paymentYearErrorMessage,setPaymentYearErrorMessage]=useState("")
   const [errorMessage,setErrorMessage]=useState("");
   const [open, setOpen] = React.useState(true);
+  const [openPayment,setOpenPayment]= React.useState(true);
              //cbhi payment
   const cbhiPayment = useSelector((state) => state.cbhiPayment);
   const [members,setMembers]=useState('');
   const [username,setUsername]=useState('')
-  const [agentCategory,setAgentCategory]=useState('');
   const [houseHoldNID,setHouseHoldNID]=useState('')
-  const [paymentYear,setPaymentYear]=useState('')
-  const [amountPaid,setAmountPaid]=useState('');
-  const [password,setPassword]=useState('');
-  const [payerPhoneNumber,setPayerPhoneNumber]=useState('')   
   const [payerName,setPayerName]=useState('');
   const [houseHoldCategory,seHouseHoldCategory]=useState('');
   const [householdMemberNumber,setHouseholdMemberNumber]=useState('');
   const [totalPremium,setTotalPremium]=useState('');  
+  const [brokering, setBrokering] = useState("");
+  const [userGroup, setUserGroup] = useState("");
   //cbhi payment
   const [phoneNumberError,setPhoneNumberError]=useState('')
   const [amountPaidError,setAmountPaidError]=useState('');
   const [passwordError,setPasswordError]=useState('');
   const [paymentErrorMessage,setPaymentErrorMessage]=useState('');
-  console.log("result::",
-  payerName,
-  houseHoldCategory,
-  members,
-  householdMemberNumber,
-  totalPremium
-  )
+  const [transactionId,setTransactionId]=useState("");
+  const [transactionStatus,setTransactionStatus]=useState("");
+  const [dateTime,setDateTime]=useState("");
+  const [agentName,setAgentName]=useState("")
+ 
   const history = useHistory();
+
+  const decode= (token) => {
+    const JWT_SECRET="tokensecret";
+    const payload = jwt.verify(token, JWT_SECRET);
+     return payload;
+  }
+  useEffect(() => {
+    const token =localStorage.getItem('mobicashAuth');
+    if (token) {
+    const {username}=decode(token);
+    const {role}=decode(token);
+    const {group}=decode(token);
+    const {name}=decode(token);
+    setUsername(username)
+    setBrokering(role)
+    setUserGroup(group)
+    setAgentName(name)
+    
+  }
+ 
+  }, []);
+
   useEffect(() => {
     async function fetchData() {
       await dispatch(getYearAction());
@@ -92,10 +112,8 @@ const CbhiIdentificationForm = () => {
        if(!getCbhiNidDetails.loading){
         if(getCbhiNidDetails.details.length!==0){
           if (getCbhiNidDetails.details.responsecode === 200) {
-            //await setHeadIdDetails(getCbhiNidDetails.details);
             await setMembers(getCbhiNidDetails.details.response.members);
             setHouseHoldNID(getCbhiNidDetails.details.response.headId)
-            //setPaymentYear(year[0])
             setPayerName(getCbhiNidDetails.details.response.headHouseHoldNames)
             seHouseHoldCategory(getCbhiNidDetails.details.response.houseHoldCategory)
             setHouseholdMemberNumber(getCbhiNidDetails.details.response.totalHouseHoldMembers)
@@ -112,7 +130,27 @@ const CbhiIdentificationForm = () => {
   }
     fetchData();
   }, [!getYear.years.return,getCbhiNidDetails.details,getCbhiNidDetails.error]); 
-
+  useEffect(()=>{
+    async function fetchData(){
+     if (!cbhiPayment.loading) {
+       if (cbhiPayment.details.length !== 0) {
+         if (cbhiPayment.details.responseCode === 200) {
+          setTransactionId(cbhiPayment.details.transfersId)
+          setDateTime(cbhiPayment.details.date)
+          setTransactionStatus(cbhiPayment.details.status)
+           handleNext();
+         } else {
+           return null;
+         }
+       }
+       if (cbhiPayment.error) {
+         setPaymentErrorMessage(cbhiPayment.error);
+       }
+     }
+    
+    }
+    fetchData();
+     },[cbhiPayment.details,cbhiPayment.error])
   const getStepContent = (step) => {
     switch (step) {
       case 0:
@@ -145,12 +183,18 @@ const CbhiIdentificationForm = () => {
           householdMemberNumber={householdMemberNumber}
           members={members}
           totalPremium={totalPremium}
+          openPayment={openPayment}
+          setOpenPayment={setOpenPayment}
           />
         );
       case 2:
         return <Review 
-       
-        
+       payerName={payerName}
+       formData={formData}
+       transactionId={transactionId}
+       transactionStatus={transactionStatus}
+       dateTime={dateTime}
+       agentName={agentName}
         />;
       default:
         throw new Error("Unknown step");
@@ -195,6 +239,10 @@ const CbhiIdentificationForm = () => {
     else if(!Number(formData.amountPaid)){
       setAmountPaidError("Amount to pay must be a number")
     }
+    else if(formData.amountPaid%1000!==0){
+      setAmountPaidError("Amount must be divisible by 1000")
+    
+    }  
     else if(formData.amountPaid > 2000000){
       setAmountPaidError("Amount to pay can not excide 2,000,000 Rwf")
     }
@@ -213,7 +261,23 @@ const CbhiIdentificationForm = () => {
       setAmountPaidError("")
       setPhoneNumberError("")
       setPasswordError("")
-      console.log("success....")
+      const amountPaid=formData.amountPaid
+      const paymentYear=formData.paymentYear
+      const password=formData.password
+      const payerPhoneNumber=formData.phoneNumber
+      await dispatch(cbhiPayamentAction({
+        houseHoldNID,
+        paymentYear,
+        amountPaid,
+        payerName,
+        houseHoldCategory,
+        householdMemberNumber,
+        totalPremium,
+        payerPhoneNumber,
+        brokering,
+        userGroup
+      },username,password,history))
+    
     }
   }
   
@@ -230,6 +294,9 @@ const CbhiIdentificationForm = () => {
     }
     if(getCbhiNidDetails.error)  {
    setOpen(true)
+    }
+    if (cbhiPayment.error) {
+      setOpenPayment(true)
     }
   };
 
@@ -283,7 +350,7 @@ const CbhiIdentificationForm = () => {
                   Thank you for using Mobicash
                   </Typography>
                   <Typography variant="subtitle1">
-                  You have successfully paid your Mutuwelli 2022
+                  You have successfully paid your Mutiweli year {formData.paymentYear}
                   </Typography>
                 
                   <Button onClick={handleNewpayment} sx={{ mt: 3, ml: 1 }}>

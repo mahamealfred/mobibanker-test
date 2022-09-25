@@ -54,7 +54,7 @@ const RraForm = () => {
  const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
  const [phoneNumberError, setPhoneNumberError] = useState("");
  const [passwordError, setPasswordError] = useState("");
- const [username, setUsername] = useState("jeanc2");
+ const [username, setUsername] = useState("");
  const [bankName, setBankName] = useState("");
  const [rraRef, setRraRef] = useState("");
  const [tin, setTin] = useState("");
@@ -69,10 +69,10 @@ const RraForm = () => {
  const [payerPhone, setPayerPhone] = useState("");
  const [brokering, setBrokering] = useState("");
  const [userGroup, setUserGroup] = useState("");
-
  const [transactionId,setTransactionId]=useState("");
  const [transactionStatus,setTransactionStatus]=useState("");
  const [dateTime,setDateTime]=useState("")
+ const [agentName,setAgentName]=useState("")
  //all
 
  const [open, setOpen] = React.useState(true);
@@ -121,6 +121,7 @@ const RraForm = () => {
        taxPayerName={taxPayerName}
        //setTaxPayerName={setTaxPayerName}
        amountToPay={amountToPay}
+       agentName={agentName}
        />;
      default:
        throw new Error("Unknown step");
@@ -137,9 +138,11 @@ const RraForm = () => {
    const {username}=decode(token);
    const {role}=decode(token);
    const {group}=decode(token);
+   const {name}=decode(token);
    setUsername(username)
    setBrokering(role)
    setUserGroup(group)
+   setAgentName(name)
    
  }
 
@@ -148,7 +151,6 @@ const RraForm = () => {
    async function fetchData() {
      if (!getDocDetails.loading) {
        if (getDocDetails.details.length !== 0) {
-         //await setDocDetails(getDocDetails.details)
          if (getDocDetails.details.responseCode === 200) {
            setBankName(getDocDetails.details.bank_name);
            setRraRef(getDocDetails.details.RRA_REF);
@@ -172,7 +174,6 @@ const RraForm = () => {
        }
      }
    }
-  
    fetchData();
   
  }, [getDocDetails.details]);
@@ -181,7 +182,6 @@ const RraForm = () => {
 async function fetchData(){
  if (!rraPayment.loading) {
    if (rraPayment.details.length !== 0) {
-     //await setDocDetails(getDocDetails.details)
      if (rraPayment.details.responseCode === 200) {
       setTransactionId(rraPayment.details.mobicashTransctionNo)
       setDateTime(rraPayment.details.date)
@@ -190,7 +190,6 @@ async function fetchData(){
      } else {
        return null;
      }
-     //  console.log("doc ...doc",getDocDetails.details.responseCode)
    }
    if (rraPayment.error) {
      setPaymenterrorMessage(rraPayment.error);

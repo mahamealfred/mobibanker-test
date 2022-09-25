@@ -1,8 +1,8 @@
 import {
-    CBHI_PAYMENT_REQUEST,
-    CBHI_PAYMENT_SUCCESS,
-    CBHI_PAYMENT_FAILURE,
-  } from "../types/cbhiPaymentType";
+    GET_LTSSID_DETAILS_REQUEST,
+    GET_LTSSID_DETAILS_SUCCESS,
+    GET_LTSSID_DETAILS_FAILURE,
+  } from "../types/getLtssIdentificationDetailsType";
   
   const initialState = {
     loading: false,
@@ -12,18 +12,18 @@ import {
   
   const reducer = (state = initialState, action) => {
     switch (action.type) {
-      case CBHI_PAYMENT_REQUEST:
+      case GET_LTSSID_DETAILS_REQUEST:
         return {
-          ...state, 
+          ...state, //spredding
           loading: true,
         };
-      case CBHI_PAYMENT_SUCCESS:
+      case GET_LTSSID_DETAILS_SUCCESS:
         return {
           loading: false,
           details: action.payload,
           error: "",
         };
-      case CBHI_PAYMENT_FAILURE:
+      case GET_LTSSID_DETAILS_FAILURE:
         return {
           loading: false,
           details: [],

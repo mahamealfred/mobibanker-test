@@ -52,14 +52,14 @@ export default function AppbarDesktop({ matches }) {
       <Box
         component="img"
         sx={{
-          height: 80,
+          height: 100,
           width: 300,
-          maxHeight: { xs: 60, md: 300 },
-          maxWidth: { xs: 150, md: 300 },
+          maxHeight: { xs: 60, md: 300},
+          maxWidth: { xs: 150, md: 300},
           display:{xs:"none",sm:"block"}
         }}
         alt="mobicash logo"
-        src="../../Assets/images/mobibanker.png"
+        src="../../Assets/images/mobibk.png"
       />
           </MyList>
        <Actions matches={matches} />   

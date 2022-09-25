@@ -4,8 +4,15 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
-
-export default function Review() {
+import moment from "moment"
+export default function Review({
+  dateTime,
+  transactionId,
+  transactionStatus,
+  payerName,
+  formData,
+  agentName
+}) {
   
   return (
     <React.Fragment>
@@ -15,12 +22,12 @@ export default function Review() {
       <List disablePadding>
           <ListItem  sx={{ py: 1, px: 0 }}>
             <ListItemText primary="PAYER NAME"/>
-            <Typography variant="body2">Mahame Alfred</Typography>
+            <Typography variant="body2">{payerName}</Typography>
           </ListItem>
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="PAID AMOUNT" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-          5000 Rwf
+          {formData.amountPaid.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}  Rwf
           </Typography>
         </ListItem>
       </List>
@@ -29,7 +36,7 @@ export default function Review() {
           <Typography variant="h6" textAlign="left" gutterBottom sx={{ mt: 2 }}>
         AGENT NAME
           </Typography>
-          <Typography textAlign="left" gutterBottom>NSABIMANA JEAN </Typography>
+          <Typography textAlign="left" gutterBottom>{agentName}</Typography>
           
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
@@ -43,7 +50,7 @@ export default function Review() {
                   <Typography gutterBottom textAlign="left">TransactionID </Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography textAlign="center" gutterBottom>M2998</Typography>
+                  <Typography textAlign="center" gutterBottom>{transactionId}</Typography>
                 </Grid>
               </React.Fragment>
               <React.Fragment >
@@ -59,7 +66,7 @@ export default function Review() {
                   <Typography gutterBottom textAlign="left">Date</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography gutterBottom textAlign="center"> 11/09/2022</Typography>
+                  <Typography gutterBottom textAlign="center">{moment(dateTime).format("llll")}</Typography>
                 </Grid>
               </React.Fragment>
               <React.Fragment >
@@ -67,7 +74,7 @@ export default function Review() {
                   <Typography gutterBottom textAlign="left">Status</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography gutterBottom textAlign="center" >success</Typography>
+                  <Typography gutterBottom textAlign="center" >{transactionStatus}</Typography>
                 </Grid>
               </React.Fragment>
         

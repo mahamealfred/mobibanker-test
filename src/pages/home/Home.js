@@ -150,15 +150,20 @@ function DashboardContent() {
             <Box
               component="img"
               sx={{
-                height: 80,
+                height: 100,
                 width: 300,
                 marginRight: 10,
-                maxHeight: { xs: 60, md: 300 },
-                maxWidth: { xs: 100, md: 200 },
+                maxHeight: { xs: 60, md: 300},
+                maxWidth: { xs: 150, md: 300},
+                // height: 80,
+                // width: 300,
+                // marginRight: 10,
+                // maxHeight: { xs: 60, md: 300 },
+                // maxWidth: { xs: 100, md: 200 },
                 display: { xs: "none", sm: "none", md: "block" }
               }}
               alt="mobicash logo"
-              src="../../Assets/images/mobibanker.png"
+              src="../../Assets/images/mobibk.png"
             />
             <Box
               sx={{ minWidth: 100, display: { xs: "none", sm: "block" } }}
@@ -188,13 +193,14 @@ function DashboardContent() {
 
           </Toolbar>
         </AppBar>
-        <Drawer variant="permanent" open={open}>
-
+        <Drawer variant="permanent" open={open} >
           <Toolbar
             sx={{
+              backgroundColor: '#F9842C',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'flex-end',
+              height:{ xs: "50px", sm: "60px",md:"100px" },
               px: [1],
             }}
           >
@@ -207,7 +213,7 @@ function DashboardContent() {
             </IconButton>
           </Toolbar>
           <Divider />
-          <List component="nav">
+          <List component="nav" >
             {mainListItems}
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}

@@ -6,7 +6,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 import moment from 'moment';
 
-export default function Review({taxPayerName,amountToPay,transactionId,transactionStatus,dateTime}) {
+export default function Review({taxPayerName,amountToPay,transactionId,transactionStatus,dateTime,agentName}) {
   
   return (
     <React.Fragment>
@@ -32,7 +32,7 @@ export default function Review({taxPayerName,amountToPay,transactionId,transacti
           <Typography variant="h6" textAlign="left" gutterBottom sx={{ mt: 2 }}>
          AGENT NAME
           </Typography>
-          <Typography textAlign="left" gutterBottom>Nsabimana Jean </Typography>
+          <Typography textAlign="left" gutterBottom>{agentName} </Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" textAlign="center" gutterBottom sx={{ mt: 2 }}>

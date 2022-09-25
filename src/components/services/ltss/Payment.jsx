@@ -11,9 +11,18 @@ import CloseIcon from "@mui/icons-material/Close";
 
 
 const Payment=({
-  
-  formData,setFormData,phoneNumberError,passwordError,taxPayerName,amountToPay,rraRef, paymenterrorMessage,
-  setPaymenterrorMessage,open,setOpen})=> {
+  formData,
+  setFormData,
+  payerName,
+  identification,
+  amountPaidError,
+  phoneNumberError,
+  passwordError,
+  open,
+  setOpen,
+  paymenterrorMessage,
+  setPaymenterrorMessage
+  })=> {
   
     const handleClose = () => {
       setPaymenterrorMessage('')
@@ -51,7 +60,7 @@ const Payment=({
                PAYER NAME
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-              Mahame Alfred
+              {payerName}
               </Typography>
             </Grid>
             <Grid item xs={12} md={6}>
@@ -59,18 +68,18 @@ const Payment=({
               NID
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-             113366777677876
+             {identification}
               </Typography>
             </Grid>
             <Grid item xs={12} md={6}>
           <TextField
             required
             id="cardName"
-            label="Amount to Save"
-            value={formData.phoneNumber}
-            onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
-            helperText={phoneNumberError? phoneNumberError : ""}
-            error={phoneNumberError}
+            label="Amount to pay"
+            value={formData.amountPaid}
+            onChange={(e)=>setFormData({...formData,amountPaid:e.target.value})}
+            helperText={amountPaidError? amountPaidError : ""}
+            error={amountPaidError}
             fullWidth
             autoComplete="cc-name"
             variant="outlined"

@@ -4,16 +4,19 @@ import { combineReducers } from "redux";
 
    //CBHI
 import getCbhiNidDetailsReducer from "./getCbhiNidDetailsReducer";
+import cbhiPayamentReducer from "./cbhiPaymentReducer";
 // import changePinReducer from "./changePinReducer";
 // import forgotPasswordReducer from "./forgotPasswordReducer";
 // import getRnitDetailsReducer from "./getRnitDetailsReducer";
-// import cbhiPayamentReducer from "./cbhiPaymentReducer";
+
 // import transactionsReducer from "./transactionsReducer";
 // import balanceReducer from "./getBalanceReducer";
              //rra
  import getDocDetailsReducer from "./getDocDetailsReducer";
  import rraPaymentReducer from "./rraPaymentReducer";
-// import getLtssIdentificationDetailsReducer from "./getLtssIdentificationDetailsReducer";
+    //LTSS
+     import getLtssIdentificationDetailsReducer from "./getLtssIdentificationReducer";
+     import ltssPaymentReducer from "./ltssPaymentReducer";
 // import getClientDetailsReducer from "./getClientDetailsReducer";
 // import rnitPaymentReducer from "./rnitPaymentReducer";
 // import chashinReducer from "./cashInReducer";
@@ -31,7 +34,7 @@ const allReducers = combineReducers({
 
      //cbhi
      getCbhiNidDetails:getCbhiNidDetailsReducer ,
-    // cbhiPayment:cbhiPayamentReducer,
+     cbhiPayment:cbhiPayamentReducer,
 
      //rra
      getDocDetails: getDocDetailsReducer,
@@ -42,8 +45,8 @@ const allReducers = combineReducers({
     // rnitPayment:rnitPaymentReducer,
 
     //ltss
-    // getLtssIndDetails: getLtssIdentificationDetailsReducer,
-
+     getLtssIndDetails: getLtssIdentificationDetailsReducer,
+     ltssPayment:ltssPaymentReducer,
     //client
     // getClientDetails:getClientDetailsReducer,
     // cashIn:chashinReducer,

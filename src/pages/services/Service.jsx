@@ -18,6 +18,25 @@ import CbhiIdentificationForm from '../servicespages/cbhi/CbhiIdentificationForm
 import LtssForm from "../servicespages/ltss/LtssForm";
 import RnitForm from '../servicespages/rnit/RnitForm';
 
+//modal
+import Backdrop from '@mui/material/Backdrop';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Fade from '@mui/material/Fade';
+
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  // border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
 export default function MediaCard() {
   
 
@@ -25,8 +44,15 @@ export default function MediaCard() {
     const [openRRA, setOpenRRA] = React.useState(false);
     const [openLTSS, setOpenLTSS] = React.useState(false);
     const [openRNIT, setOpenRNIT] = React.useState(false);
-  
-  
+    const [openMTN, setOpenMTN] = React.useState(false);
+    const [openAIRTEL, setOpenAIRTEL] = React.useState(false);
+    const handleOpenMTN = () => setOpenMTN(true);
+    const handleCloseMTN = () => setOpenMTN(false);
+    const handleOpenAIRTEL = () => setOpenAIRTEL(true);
+    const handleCloseAIRTEL = () => setOpenAIRTEL(false);
+    
+    const handleOpenLTSS= () => setOpenLTSS(true);
+
     const handleClickOpenRRA = () => {
       setOpenRRA(true);
     };
@@ -50,6 +76,114 @@ export default function MediaCard() {
   
     return (
         <React.Fragment>
+
+
+{/* MTN MODAL */}
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={openMTN}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={openMTN}>
+          <Box sx={style}>
+            <Typography id="transition-modal-title" variant="h6" component="h2">
+              Dear customer,
+            </Typography>
+            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
+             Ther service you are looking for will be available soon.
+            </Typography>
+            <IconButton
+          aria-label="close"
+          onClick={handleCloseMTN}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+          </Box>
+        </Fade>
+      </Modal>
+      {/* AIRTEL */}
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={openAIRTEL}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={openAIRTEL}>
+          <Box sx={style}>
+            <Typography id="transition-modal-title" variant="h6" component="h2">
+              Dear customer,
+            </Typography>
+            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
+             Ther service you are looking for will be available soon.
+            </Typography>
+            <IconButton
+          aria-label="close"
+          onClick={handleCloseAIRTEL}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+          </Box>
+        </Fade>
+      </Modal>
+      {/* MODAL RNIT */}
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={openRNIT}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={openRNIT}>
+          <Box sx={style}>
+            <Typography id="transition-modal-title" variant="h6" component="h2">
+              Dear customer,
+            </Typography>
+            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
+             Ther service you are looking for will be available soon.
+            </Typography>
+            <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+          </Box>
+        </Fade>
+      </Modal>
+
             <Dialog
         open={openRRA}
         onClose={handleClose}
@@ -150,7 +284,6 @@ export default function MediaCard() {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-        
           <Typography variant="h6" color="gray" >
           RNIT Service 
           </Typography>
@@ -188,7 +321,7 @@ export default function MediaCard() {
          color="gray"
          textAlign="center"
          padding="0 25px 30px 2px"
-         marginLeft="120px"
+        
          sx={{ fontSize: { xs: 20 } }}
          >
        AGENCY SERVICES
@@ -257,7 +390,7 @@ export default function MediaCard() {
             </Card>  
             </Button>
             <Button
-            onClick={handleClickOpenLTSS}
+            onClick={handleClickOpenRNIT}
             >
             <Card
                 raised
@@ -282,12 +415,11 @@ export default function MediaCard() {
                 fontSize:14
              }}
            >
-           LTSS
+          RNIT
           </Typography>
             </Card>  
             </Button>
             <Button
-         
             >
             <Card
                 raised
@@ -317,7 +449,7 @@ export default function MediaCard() {
             </Card>  
             </Button>
             <Button
-            onClick={handleClickOpenRNIT}
+            onClick={handleClickOpenLTSS}
             >
             <Card
                 raised
@@ -346,7 +478,9 @@ export default function MediaCard() {
           </Typography>
             </Card>  
             </Button>
-            <Button>
+            <Button
+            onClick={handleOpenAIRTEL}
+            >
             <Card
                 raised
                 sx={{
@@ -359,7 +493,7 @@ export default function MediaCard() {
                 <CardMedia
                     component="img"
                     height="60"
-                    image="../../Assets/images/airtime.png"
+                    image="../../Assets/images/airtel.png"
                     alt="alt"
                     title="i"
                     sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
@@ -370,11 +504,40 @@ export default function MediaCard() {
                 fontSize:14
              }}
            >
-            AIRTiMe
+            AIRTEL
           </Typography>
             </Card>  
             </Button>
-     
+            <Button
+            onClick={handleOpenMTN}
+            >
+            <Card
+                raised
+                sx={{
+                    //maxWidth: 100,
+                    width:{xs:60,sm:80,md:100,lg:80},
+                    margin: "0 auto 5px",
+                    padding: "0.9em",
+                }}
+            >
+                <CardMedia
+                    component="img"
+                    height="60"
+                    image="../../Assets/images/mtn1.png"
+                    alt="alt"
+                    title="i"
+                    sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
+                     height:{xs:40,sm:50,md:60} }}
+                />
+           <Typography variant="h6" gutterBottom
+                sx={{ padding: "0em 0em 0 0em",color:"gray",
+                fontSize:14
+             }}
+           >
+            MTN
+          </Typography>
+            </Card>  
+            </Button>
       </Grid>
       
       </Grid>

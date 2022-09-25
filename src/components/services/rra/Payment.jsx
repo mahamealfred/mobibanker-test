@@ -11,17 +11,20 @@ import CloseIcon from "@mui/icons-material/Close";
 
 
 const Payment=({
-  formData,setFormData,phoneNumberError,passwordError,taxPayerName,amountToPay,rraRef, paymenterrorMessage,
-  setPaymenterrorMessage,open,setOpen})=> {
+  formData,setFormData,phoneNumberError,passwordError,taxPayerName,amountToPay,rraRef, paymentErrorMessage,
+  setPaymentErrorMessage,
+  openPayment,
+  setOpenPayment
+})=> {
   
     const handleClose = () => {
-      setPaymenterrorMessage('')
-      setOpen(false);
+      setPaymentErrorMessage('')
+      setOpenPayment(false);
     };
   return (
     <React.Fragment>
-      {!paymenterrorMessage ? null : (
-        <Collapse in={open}>
+      {!paymentErrorMessage ? null : (
+        <Collapse in={openPayment}>
           <Alert
             severity="error"
             action={
@@ -36,7 +39,7 @@ const Payment=({
             }
             sx={{ mb: 0.2 }}
           >
-            {paymenterrorMessage}
+            {paymentErrorMessage}
           </Alert>
         </Collapse>
       )}

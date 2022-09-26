@@ -301,6 +301,7 @@ const CbhiIdentificationForm = () => {
   };
 
   const handleNewpayment = () => {
+    formData.nId=""
    setActiveStep(0)
   };
 

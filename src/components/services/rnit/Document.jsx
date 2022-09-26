@@ -24,7 +24,7 @@ theme.typography.h3 = {
 const Document = ({
     formData,
     setFormData,
-    docIdErr,
+    nIdErrorMessage,
     errorMessage,
     setErrorMessage,
     open,
@@ -49,17 +49,16 @@ const Document = ({
                         <CloseIcon
                         fontSize="inherit"/></IconButton>
                         }
-                        sx={
-                            {mb: 0.2}
-                    }>
+                        sx={{mb: 0.2}}
+                    >
                         {errorMessage} </Alert>
                 </Collapse>
             )
         }
             <ThemeProvider theme={theme}>
                 <Typography variant="h6" color="gray"  align="center">
-                NID
-                    </Typography>
+                  NID
+                </Typography>
             </ThemeProvider>
             {/* <Typography variant="h6" gutterBottom>
         Document ID
@@ -69,19 +68,10 @@ const Document = ({
                 <Grid item
                     xs={12}>
                     <TextField id="address2" name="address2" label="NID"
-                        value={
-                            formData.docId
-                        }
-                        onChange={
-                            (e) => setFormData({
-                                ...formData,
-                                docId: e.target.value
-                            })
-                        }
-                        helperText={
-                            docIdErr ? docIdErr : ""
-                        }
-                        error={docIdErr}
+                        value={formData.nId}
+                        onChange={(e) =>setFormData({...formData,nId: e.target.value})}
+                        helperText={nIdErrorMessage ? nIdErrorMessage : ""}
+                        error={nIdErrorMessage}
                         fullWidth
                         autoComplete="shipping address-line2"
                         variant="outlined"/>

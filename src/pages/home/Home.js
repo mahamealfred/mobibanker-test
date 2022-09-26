@@ -230,7 +230,7 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
-          <Box sx={{ width: '100%', maxWidth: 560, bgcolor: 'transparent', marginTop:"20px"}}>
+          <Box sx={{ width: '100%', maxWidth: 560, bgcolor: 'transparent', marginTop:"35px"}}>
             <Box sx={{ my: 1, mx: 2 }}>
               <Grid container alignItems="center">
                 <Grid item xs>

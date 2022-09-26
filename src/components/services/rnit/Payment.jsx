@@ -11,25 +11,38 @@ import CloseIcon from "@mui/icons-material/Close";
 import { MenuItem } from "@mui/material";
 const banks=[
   {
-    label:"Bank of Kigali",
-    value:"BK"
+      value:"BK",
+      label:"Bank of Kigali"
   },
   {
-    label:"BPR",
-    value:"BPR"
+      value:"GTBank",
+      label:"GT Bank"
   },
   {
-    label:"Equity",
-    value:"Equity"
-  },
-  {
-    label:"GT BAnk",
-    value:"GT"
-  },
+      value:"Equity",
+      label:"Equity"
+  }
+  , {
+      value:"AccessBank",
+      label:"Access Bank"
+  }
 ]
 const Payment=({
-  formData,setFormData,phoneNumberError,passwordError,taxPayerName,amountToPay,rraRef, paymenterrorMessage,
-  setPaymenterrorMessage,open,setOpen})=> {
+  formData,
+  setFormData,
+  payerName,
+  payerNid,
+  bankAccountErrorMessage,
+  bankNameErrorMessage,
+  payerEmailErrorMessage,
+  phoneNumberError,
+  amountToPayErrorMessage,
+  passwordError,
+  open,
+  setOpen,
+  paymenterrorMessage,
+  setPaymenterrorMessage
+})=> {
     const handleClose = () => {
       setPaymenterrorMessage('')
       setOpen(false);
@@ -66,7 +79,7 @@ const Payment=({
                PAYER NAME
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-              Mahame Alfred
+              {payerName}
               </Typography>
             </Grid>
             <Grid item xs={12} md={6}>
@@ -74,7 +87,7 @@ const Payment=({
               NID
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-             113366777677876
+             {payerNid}
               </Typography>
             </Grid>
             <Grid item xs={12} md={6}>
@@ -82,10 +95,11 @@ const Payment=({
             required
             id="cardName"
             label="Select Bank"
-            value={formData.phoneNumber}
-            onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
-            helperText={phoneNumberError? phoneNumberError : ""}
-            error={phoneNumberError}
+            value={formData.bankName}
+            select
+            onChange={(e)=>setFormData({...formData,bankName:e.target.value})}
+            helperText={bankNameErrorMessage? bankNameErrorMessage : ""}
+            error={bankNameErrorMessage}
             fullWidth
             autoComplete="cc-name"
             variant="outlined"
@@ -100,10 +114,10 @@ const Payment=({
             required
             id="cardName"
             label="Account Number"
-            value={formData.phoneNumber}
-            onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
-            helperText={phoneNumberError? phoneNumberError : ""}
-            error={phoneNumberError}
+            value={formData.bankAccount}
+            onChange={(e)=>setFormData({...formData,bankAccount:e.target.value})}
+            helperText={bankAccountErrorMessage? bankAccountErrorMessage : ""}
+            error={bankAccountErrorMessage}
             fullWidth
             autoComplete="cc-name"
             variant="outlined"
@@ -114,10 +128,10 @@ const Payment=({
             required
             id="cardName"
             label="Amount to pay"
-            value={formData.phoneNumber}
-            onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
-            helperText={phoneNumberError? phoneNumberError : ""}
-            error={phoneNumberError}
+            value={formData.amountPaid}
+            onChange={(e)=>setFormData({...formData,amountPaid:e.target.value})}
+            helperText={amountToPayErrorMessage? amountToPayErrorMessage : ""}
+            error={amountToPayErrorMessage}
             fullWidth
             autoComplete="cc-name"
             variant="outlined"
@@ -142,10 +156,10 @@ const Payment=({
             required
             id="cardName"
             label="Payer Email"
-            value={formData.phoneNumber}
-            onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
-            helperText={phoneNumberError? phoneNumberError : ""}
-            error={phoneNumberError}
+            value={formData.payerEmail}
+            onChange={(e)=>setFormData({...formData,payerEmail:e.target.value})}
+            helperText={payerEmailErrorMessage? payerEmailErrorMessage : ""}
+            error={payerEmailErrorMessage}
             fullWidth
             autoComplete="cc-name"
             variant="outlined"

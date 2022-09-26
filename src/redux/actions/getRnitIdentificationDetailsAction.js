@@ -7,7 +7,7 @@ import {
  
 
 
-export const getRnitDetailsAction = (identityNumber,history) => async (dispatch) => {
+export const getRnitDetailsAction = (identityNumber) => async (dispatch) => {
   try {
     dispatch(getRnitDetailsRequest());
   

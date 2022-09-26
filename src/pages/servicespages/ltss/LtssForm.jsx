@@ -52,12 +52,10 @@ const RraForm = () => {
   });
 const [open, setOpen] = React.useState(true);
 const [nIdErrorMessage,setNIdErrorMessage]=useState("");
-const [phoneNumberErrorMessage,setPhoneNumberErrorMessage]=useState("");
-const [passwordErrorMessage,sePasswordErrorMessage]=useState("");
 const [errorMessage,setErrorMessage]=useState("")
-
-const [payerName,setPayerName]=useState("")
 const [identification,setIdentification]=useState("")
+const [payerName,setPayerName]=useState("")
+
 const [agentCategory,setAgentCategory]=useState("")
 
 const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
@@ -251,7 +249,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
     } else {
       return null;
     }
-    if (getLtssIdDetailsAction.error) {
+    if (getLtssIndDetails.error) {
       setOpen(true);
     }
     if (ltssPayment.error) {

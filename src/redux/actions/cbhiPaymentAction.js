@@ -22,7 +22,7 @@ export const cbhiPayamentAction = (details,username,password,history) => async (
    // let errorMessage =''
     //const encodedBase64Token = Buffer.from(`${username}:${password}`).toString('base64');
     let basicAuth='Basic ' + btoa(username + ':' + password);
-    const Url='https://agentweb.mobicash.rw/api/agent/goverment-services/cbhi/rest/v.4.14.01/payment';
+    const Url='https://agentapi.mobicash.rw/api/agent/goverment-services/cbhi/rest/v.4.14.01/payment';
     const res = await axios.post(Url,{
     houseHoldNID:houseHoldNID,
     paymentYear:paymentYear,

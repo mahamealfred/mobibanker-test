@@ -10,8 +10,10 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import { Redirect, useHistory} from "react-router-dom";
 import Login from "../../pages/login/Login"
-
-
+import LogoutIcon from '@mui/icons-material/Logout';
+import LanguageIcon from '@mui/icons-material/Language';
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
+import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 const handleLogout=()=> {
 
   localStorage.removeItem("mobicashAuth");
@@ -24,25 +26,25 @@ export const mainListItems = (
   <React.Fragment>
     <ListItemButton>
       <ListItemIcon>
-        <DashboardIcon sx={{color:"orange"}} />
+        <DashboardIcon sx={{color:"#F9842C"}} />
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
-        <Person sx={{color:"orange"}} />
+        <Person sx={{color:"#F9842C"}} />
       </ListItemIcon>
       <ListItemText primary="My Profile" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
-        <PeopleIcon sx={{color:"orange"}}  />
+        <ReceiptLongIcon  sx={{color:"#F9842C"}}  />
       </ListItemIcon>
       <ListItemText primary="Previous Transactions" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
-        <BarChartIcon sx={{color:"orange"}} />
+        <ChangeCircleIcon sx={{color:"#F9842C"}} />
       </ListItemIcon>
       <ListItemText primary="Change Password" />
     </ListItemButton>
@@ -56,13 +58,13 @@ export const secondaryListItems = (
     </ListSubheader>
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon sx={{color:"orange"}} />
+        <LanguageIcon sx={{color:"#F9842C"}} />
       </ListItemIcon>
       <ListItemText primary="Change Language" />
     </ListItemButton>
-    <ListItemButton onClick={handleLogout}>
+    <ListItemButton sx={{marginTop:18}} onClick={handleLogout}>
       <ListItemIcon>
-        <AssignmentIcon sx={{color:"orange"}} />
+        <LogoutIcon sx={{color:"#F9842C"}} />
       </ListItemIcon>
       <ListItemText primary="Logout" />
     </ListItemButton>

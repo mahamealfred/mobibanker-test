@@ -29,15 +29,37 @@ const Widget = () => {
       value: "Trainings"
     },
     {
-      url: "/hello",
+      url: "/",
       value: "BNR Regulation"
+    }
+  ]
+  const agentSupportArchives = [
+    {
+      url: "https://support.mobicash.rw/",
+      value: "Support tickek"
+    },
+    {
+      url: "/",
+      value: "Live chart"
+    },
+    {
+      url: "/",
+      value: "Message"
+    },
+    {
+      url: "/",
+      value: "Videos"
+    },
+    {
+      url: "/",
+      value: "Address"
     }
   ]
   return (
     <Box
       sx={{
         my: 12,
-        mx: 10,
+        mx: 1,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -83,7 +105,9 @@ const Widget = () => {
                   color="text.primary"
                 >
                   {archives.map((archive) => (
-                    <Link display="block" href={archive.url} key={archive.value}>
+                    <Link display="block" href={archive.url} key={archive.value}
+                 
+                    >
                       -{archive.value}
                     </Link>
                   ))}
@@ -125,6 +149,12 @@ const Widget = () => {
                   variant="body2"
                   color="text.primary"
                 >
+                    {agentSupportArchives.map((archive) => (
+                    <Link display="block" href={archive.url} key={archive.value}
+                    >
+                      -{archive.value}
+                    </Link>
+                  ))}
                 </Typography>
 
               </React.Fragment>

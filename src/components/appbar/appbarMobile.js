@@ -22,15 +22,15 @@ export default function AppbarMobile({ matches }) {
       <Box
         component="img"
         sx={{
-     
-          height: 80,
+       objectFit:"contain",
+          height: 100,
           width: 350,
-          maxHeight: { xs: 60, md: 300 },
-          maxWidth: { xs: 150, md: 350 },
+          maxHeight: { xs: 180, md: 360 },
+          maxWidth: { xs: 200, md: 350 },
           display:{xs:"",sm:"block"}
         }}
         alt="mobicash logo"
-        src="../../Assets/images/mobibanker.png"
+        src="../../Assets/images/mobibk.png"
       />
         
       </AppbarHeader>

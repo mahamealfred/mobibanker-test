@@ -1,9 +1,18 @@
-import { AppBar, Toolbar,styled,Box,Typography} from '@mui/material'
+import { AppBar, Toolbar,styled,Box,Button,Typography} from '@mui/material'
 import React from 'react'
 import NativeSelect from '@mui/material/NativeSelect';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
+import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
+import LanguageIcon from '@mui/icons-material/Language';
 import { Colors, DrawerWidth } from "../styles/theme";
+
+import {
+  flexBetweenCenter,
+  justifyCenter,
+  fullWidthFlex,
+} from '../styles/theme';
 const TopNav = () => {
   const [ setLanguage] = React.useState('');
   const handleChange = (event) => {
@@ -33,14 +42,15 @@ const TopNav = () => {
       },
     }));
   return (
-    <AppBar position="sticky"  elevation={1} sx={{backgroundColor:'white'}} >
+    <AppBar position="sticky"  elevation={0} sx={{backgroundColor:'white'}} >
         <StyledToolbar>
             <MobiLogoImg>
             <Box
         component="img"
         sx={{
           height: 80,
-          width: 300,
+          width: 250,
+          marginLeft:8,
           maxHeight: { xs: 60, md: 300 },
           maxWidth: { xs: 150, md: 300 },
           display:{xs:"none",sm:"block"}
@@ -48,15 +58,28 @@ const TopNav = () => {
         alt="mobicash logo"
         src="../../Assets/images/logo.png"
       />
+      
             <Box
           sx={{display:{xs:"block",sm:"none"}}}
         >
         <img src="../../Assets/images/img_144.png" alt="logo" height="40" width="50" margin="50px"/>
         </Box>
             </MobiLogoImg>
+            <Box
+        component="img"
+        sx={{
+          height: 100,
+          width: 300,
+          maxHeight: { xs: 60, md: 300},
+          maxWidth: { xs: 150, md: 300},
+          display:{xs:"none",sm:"block"}
+        }}
+        alt="mobicash logo"
+        src="../../Assets/images/mobibk.png"
+      />
         < MobiBankerImg>
         <Box sx={{ minWidth: 100 }}>
-      <FormControl fullWidth>
+      {/* <FormControl fullWidth>
         <InputLabel variant="standard" htmlFor="uncontrolled-native">
         </InputLabel>
         <NativeSelect
@@ -70,10 +93,36 @@ const TopNav = () => {
           <option value={20}>English</option>
           <option value={30}>Francais</option>
         </NativeSelect>
-      </FormControl>
+      </FormControl> */}
+      <Box
+      sx={{
+        ...fullWidthFlex,
+        borderTop: '1px solid #ddd',
+      }}
+    >
+        <Stack>
+            <Paper sx={justifyCenter}>
+              <Button sx={{ minWidth: 100 }}>
+                <Box sx={{ ...justifyCenter, mr: 1 }}>
+                  <LanguageIcon size={20} sx={{color:"#F9842C"}} />
+                </Box>
+                <FormControl>
+                  <NativeSelect
+                  defaultValue={10}
+                  >
+              <option value={10}>Kinyarwanda</option>
+              <option value={20}>English</option>
+              <option value={30}>Francais</option>
+                  </NativeSelect>
+                </FormControl>
+              </Button>
+            </Paper>
+          </Stack>
+      </Box>
+    
         </Box>
         </MobiBankerImg>
-        
+       
         </StyledToolbar>
 
        

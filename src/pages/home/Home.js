@@ -29,7 +29,15 @@ import DashboardBanner from "../../components/dashboardbanner";
 import { Colors } from '../../components/styles/theme';
 import {useEffect} from "react";
 import jwt from "jsonwebtoken";
-
+import Stack from '@mui/material/Stack';
+import { Button } from '@mui/material';
+import LanguageIcon from '@mui/icons-material/Language';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import {
+  flexBetweenCenter,
+  justifyCenter,
+  fullWidthFlex,
+} from '../../components/styles/theme';
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -128,11 +136,6 @@ function DashboardContent() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              {/* <Box
-                sx={{ minWidth: 100, display: { xs: "none", sm: "block" } }}
-              >
-                <img src="../../Assets/images/logo.png" alt="logo" height="90" width="160" margin="50px" />
-              </Box> */}
               <Box
                 component="img"
                 sx={{
@@ -155,20 +158,42 @@ function DashboardContent() {
                 marginRight: 10,
                 maxHeight: { xs: 60, md: 300},
                 maxWidth: { xs: 150, md: 300},
-                // height: 80,
-                // width: 300,
-                // marginRight: 10,
-                // maxHeight: { xs: 60, md: 300 },
-                // maxWidth: { xs: 100, md: 200 },
                 display: { xs: "none", sm: "none", md: "block" }
               }}
               alt="mobicash logo"
               src="../../Assets/images/mobibk.png"
             />
+            
             <Box
               sx={{ minWidth: 100, display: { xs: "none", sm: "block" } }}
             >
-              <FormControl fullWidth>
+              
+               <Box
+      sx={{
+        ...fullWidthFlex,
+        borderTop: '1px solid #ddd',
+      }}
+    >
+        <Stack>
+            <Paper sx={justifyCenter}>
+              <Button sx={{ minWidth: 100 }}>
+                <Box sx={{ ...justifyCenter, mr: 1 }}>
+                  <LanguageIcon size={20} sx={{color:"#F9842C"}} />
+                </Box>
+                <FormControl>
+                  <NativeSelect
+                  defaultValue={10}
+                  >
+              <option value={10}>Kinyarwanda</option>
+              <option value={20}>English</option>
+              <option value={30}>Francais</option>
+                  </NativeSelect>
+                </FormControl>
+              </Button>
+            </Paper>
+          </Stack>
+      </Box>
+              {/* <FormControl fullWidth>
                 <InputLabel variant="standard" htmlFor="uncontrolled-native">
                 </InputLabel>
                 <NativeSelect
@@ -182,7 +207,7 @@ function DashboardContent() {
                   <option value={20}>English</option>
                   <option value={30}>French</option>
                 </NativeSelect>
-              </FormControl>
+              </FormControl> */}
             </Box >
             {/* condition */}
             <Box
@@ -256,7 +281,7 @@ function DashboardContent() {
               >
                 <Box
                   sx={{
-                    my: 12,
+                    my: 2,
                     mx: 2,
                     display: 'flex',
                     flexDirection: 'row',

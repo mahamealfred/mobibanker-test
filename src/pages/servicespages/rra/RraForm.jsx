@@ -306,6 +306,9 @@ fetchData();
            justifyContent="center"
            
            >
+            <Typography variant="h6" color="gray" >
+          RRA Tax Payment Service
+          </Typography>
            <img
                   src="../../../Assets/images/rra.png"
                   alt="logo"

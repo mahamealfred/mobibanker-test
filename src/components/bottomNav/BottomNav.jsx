@@ -8,6 +8,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import WebAssetIcon from '@mui/icons-material/WebAsset';
+import Headerbanner from '../../components/headerbanner'
 export default function BottomNav() {
   const [value, setValue] = React.useState('recents');
 
@@ -17,7 +18,7 @@ export default function BottomNav() {
 
   return (
     <BottomNavigation sx={{ width: '100%' }} value={value} onChange={handleChange}>
-      <BottomNavigationAction
+      {/* <BottomNavigationAction
         label="Contact Us"
         value="recents"
         icon={<ContactsIcon sx={{color:"#F9842C"}} />}
@@ -31,7 +32,7 @@ export default function BottomNav() {
         label="Videos"
         value="nearby"
         icon={<VideoLibraryIcon sx={{color:"#F9842C"}} />}
-      />
+      /> */}
       {/* <BottomNavigationAction label="T" value="folder" icon={<FolderIcon />} /> */}
     </BottomNavigation>
   );

@@ -308,6 +308,9 @@ else if(formData.amountPaid==""){
            justifyContent="center"
            
            >
+            <Typography variant="h6" color="gray" >
+          RNIT Service 
+          </Typography>
            <img
                   src="../../../Assets/images/rnit.png"
                   alt="logo"

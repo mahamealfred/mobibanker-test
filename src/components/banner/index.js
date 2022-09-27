@@ -16,6 +16,8 @@ import Login from "../../pages/login/Login"
 import Widget from "../widget/Widget";
 import TopNav from "../topNav/TopNav";
 import Headerbanner from "../headerbanner"
+import BottomNav from "../bottomNav/BottomNav";
+import MobicashSolution from "../mobicashsolutions"
 export default function Banner() {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
@@ -31,7 +33,10 @@ export default function Banner() {
         <Widget/>
       </BannerContent>
     </BannerContainer>
+    <BottomNav/>
+    <MobicashSolution />
     <Headerbanner/>
+    
     <Footer/>
     </React.Fragment>
    

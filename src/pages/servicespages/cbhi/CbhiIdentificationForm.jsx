@@ -329,6 +329,9 @@ const CbhiIdentificationForm = () => {
            justifyContent="center"
            
            >
+             <Typography variant="h6" color="gray" >
+          RSSB Mutuelle Service
+          </Typography>
            <img
                   src="../../../Assets/images/mutuelli.png"
                   alt="logo"

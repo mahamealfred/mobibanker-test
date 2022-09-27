@@ -194,8 +194,24 @@ export default function MediaCard() {
         <DialogTitle id="alert-dialog-title">
         
           <Typography variant="h6" color="gray" >
-          RRA Tax Payment Service
+          MobiCash
           </Typography>
+          <Box
+        component="img"
+        sx={{
+          height: 50,
+          width: 180,
+          marginLeft:8,
+          position: 'absolute',
+            right: 50,
+            top: 8,
+          maxHeight: { xs: 40, md: 50 },
+          maxWidth: { xs: 80, md: 180 },
+       
+        }}
+        alt="mobicash logo"
+        src="../../Assets/images/logo.png"
+      />
           <IconButton
           aria-label="close"
           onClick={handleClose}
@@ -211,6 +227,7 @@ export default function MediaCard() {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
+            
         <RraForm/>
           </DialogContentText>
         </DialogContent>
@@ -224,9 +241,26 @@ export default function MediaCard() {
       >
         <DialogTitle id="alert-dialog-title">
         
+         
           <Typography variant="h6" color="gray" >
-          RSSB Mutuelle Service
+          MobiCash
           </Typography>
+          <Box
+        component="img"
+        sx={{
+          height: 50,
+          width: 180,
+          marginLeft:8,
+          position: 'absolute',
+            right: 50,
+            top: 8,
+          maxHeight: { xs: 40, md: 50 },
+          maxWidth: { xs: 80, md: 180 },
+       
+        }}
+        alt="mobicash logo"
+        src="../../Assets/images/logo.png"
+      />
           <IconButton
           aria-label="close"
           onClick={handleClose}
@@ -256,8 +290,24 @@ export default function MediaCard() {
         <DialogTitle id="alert-dialog-title">
         
           <Typography variant="h6" color="gray" >
-          LTSS Service 
+          MobiCash
           </Typography>
+          <Box
+        component="img"
+        sx={{
+          height: 50,
+          width: 180,
+          marginLeft:8,
+          position: 'absolute',
+            right: 50,
+            top: 8,
+          maxHeight: { xs: 40, md: 50 },
+          maxWidth: { xs: 80, md: 180 },
+       
+        }}
+        alt="mobicash logo"
+        src="../../Assets/images/logo.png"
+      />
           <IconButton
           aria-label="close"
           onClick={handleClose}
@@ -285,9 +335,26 @@ export default function MediaCard() {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
+          
           <Typography variant="h6" color="gray" >
-          RNIT Service 
+          MobiCash
           </Typography>
+          <Box
+        component="img"
+        sx={{
+          height: 50,
+          width: 180,
+          marginLeft:8,
+          position: 'absolute',
+            right: 50,
+            top: 8,
+          maxHeight: { xs: 40, md: 50 },
+          maxWidth: { xs: 80, md: 180 },
+       
+        }}
+        alt="mobicash logo"
+        src="../../Assets/images/logo.png"
+      />
           <IconButton
           aria-label="close"
           onClick={handleClose}

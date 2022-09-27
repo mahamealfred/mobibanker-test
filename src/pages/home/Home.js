@@ -33,11 +33,13 @@ import Stack from '@mui/material/Stack';
 import { Button } from '@mui/material';
 import LanguageIcon from '@mui/icons-material/Language';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import MobicashSolutions from '../../components/mobicashsolutions'
 import {
   flexBetweenCenter,
   justifyCenter,
   fullWidthFlex,
 } from '../../components/styles/theme';
+import Headerbanner from "../../components/headerbanner"
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -303,13 +305,15 @@ function DashboardContent() {
                   backgroundColor: 'transparent',
                 }}
               >
-                <Widget />
+                <Widget/>
               </Grid>
             </Grid>
           </Container>
         </Box>
       </Box>
       <BottomNav />
+      <MobicashSolutions/>
+      <Headerbanner/>
       <Footer />
     </ThemeProvider>
   );

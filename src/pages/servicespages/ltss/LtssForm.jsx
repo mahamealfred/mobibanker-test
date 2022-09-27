@@ -291,6 +291,9 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
            justifyContent="center"
            
            >
+              <Typography variant="h6" color="gray" >
+          LTSS Service 
+          </Typography>
            <img
                   src="../../../Assets/images/ejoHeza.png"
                   alt="logo"

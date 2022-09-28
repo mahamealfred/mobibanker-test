@@ -295,7 +295,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
           LTSS Service 
           </Typography>
            <img
-                  src="../../../Assets/images/ejoHeza.png"
+                  src="../../../Assets/images/ejoheza.png"
                   alt="logo"
                   height={70}
                   width={85}

@@ -52,82 +52,180 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 function FeaturedPost() {
-  
+
   const [spacing, setSpacing] = React.useState(2);
   return (
     <React.Fragment>
 
-          <Box sx={{ flexGrow: 1 }}>
-          <Grid container alignItems="flex-start" padding={{xs: 6, md: 10}}  spacing={{ xs: 2, md: 6 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-            {featuredPosts.map((post) => (
-              <Grid item xs={12} sm={4} md={6} key={post} alignItems="center">
-                 <Grid container justifyContent="center" alignContent="center" >
-                 <CardActionArea component="a" href="#" >
-             <Card sx={{ display: 'flex' }}>
-            <CardContent sx={{ flex: 1 }}>
-            <Box
-        component="img"
-        sx={{
-          width: 180,
-        }}
-        alt={post.imageLabel}
-        src={post.title}
-      />
-            {/* <CardMedia
-              component="img"
-              sx={{ width: 180}}
-              image={post.title}
-              alt={post.imageLabel}
-            /> */}
-              {/* <Typography component="h2" variant="h5">
-                 {post.title}
-               </Typography> */}
-               <Typography variant="subtitle1" color="text.secondary">
-                 {post.date}
-               </Typography>
-               <Box
-        component="img"
-        sx={{ width:"auto", display: { xs: 'none', sm: 'block' } }}
-        alt={post.imageLabel}
-        src={post.image}
-      />
-               {/* <CardMedia
-              component="img"
-              sx={{ width:"auto", display: { xs: 'none', sm: 'block' } }}
-              image={post.image}
-              alt={post.imageLabel}
-            /> */}
-               <Typography variant="subtitle1" paragraph>
-                 {post.description}
-               </Typography>
-               <Box
-        component="img"
-        sx={{ width: 180, display: { xs: 'block', sm: 'none' } }}
-        alt={post.imageLabel}
-        src={post.image}
-      />
-               {/* <CardMedia
-              component="img"
-              sx={{ width: 180, display: { xs: 'block', sm: 'none' } }}
-              image={post.image}
-              alt={post.imageLabel}
-            /> */}
-               <Typography variant="subtitle1" color="gray">
-                 Get strated
-               </Typography>
-             </CardContent>
-            
-          </Card>
-        </CardActionArea>
-                 {/* <Item>{post.description}</Item> */}
-                  </Grid>
-               
-              </Grid>
-            ))}
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid container alignItems="flex-start" padding={{ xs: 6, md: 10 }} spacing={{ xs: 2, md: 6 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+          <Grid item xs={12} sm={4} md={6} alignItems="center">
+            <Grid container justifyContent="center" alignContent="center" >
+              <CardActionArea component="a" href="#" >
+                <Card sx={{ display: 'flex' }}>
+                  <CardContent sx={{ flex: 1 }}>
+                    <Box
+                      component="img"
+                      sx={{ width: 180, }}
+                      alt="image logo"
+                      src="../../Assets/images/mobiswift.png"
+                    />
+                    <Typography variant="subtitle1" color="text.secondary">
+                    PAYMENTS MADE SEAMLESS AND INVISIBLE'
+                    </Typography>
+                    <Box
+                      component="img"
+                      sx={{ width: "auto", display: { xs: 'none', sm: 'block' } }}
+                      alt="image l"
+                      src="../../Assets/images/mobiswiftm.png"
+                    />
+
+                    <Typography variant="subtitle1" paragraph>
+                    Livestream shopping offers the ability to demonstrate and ultimately advertise products to a TV live, 
+                    online audience that can interact and buy in that live experiance.
+                    </Typography>
+                    <Box
+                      component="img"
+                      sx={{ width: 180, display: { xs: 'block', sm: 'none' } }}
+                      alt="image b"
+                      src="../../Assets/images/mobiswiftm.png"
+                    />
+
+                    <Typography variant="subtitle1" color="gray">
+                      Get strated
+                    </Typography>
+                  </CardContent>
+
+                </Card>
+              </CardActionArea>
+            </Grid>
           </Grid>
-        </Box>
+          <Grid item xs={12} sm={4} md={6} alignItems="center">
+            <Grid container justifyContent="center" alignContent="center" >
+              <CardActionArea component="a" href="#" >
+                <Card sx={{ display: 'flex' }}>
+                  <CardContent sx={{ flex: 1 }}>
+                    <Box
+                      component="img"
+                      sx={{ width: 180, }}
+                      alt="image logo"
+                      src="../../Assets/images/mobitv.png"
+                    />
+                    <Typography variant="subtitle1" color="text.secondary">
+                    LIVESTREAMING SHOPPING-THE NEXT BIG THING IN RETAIL COMMERCE
+                    </Typography>
+                    <Box
+                      component="img"
+                      sx={{ width: "auto", display: { xs: 'none', sm: 'block' } }}
+                      alt="image l"
+                      src="../../Assets/images/mobitvm.png"
+                    />
+
+                    <Typography variant="subtitle1" paragraph>
+                    Livestream shopping offers the ability to demonstrate and ultimately advertise products to a TV live, 
+                    online audience that can interact and buy in that live experiance.
+                    </Typography>
+                    <Box
+                      component="img"
+                      sx={{ width: 180, display: { xs: 'block', sm: 'none' } }}
+                      alt="image b"
+                      src="../../Assets/images/mobitvm.png"
+                    />
+
+                    <Typography variant="subtitle1" color="gray">
+                      Get strated
+                    </Typography>
+                  </CardContent>
+
+                </Card>
+              </CardActionArea>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} sm={4} md={6} alignItems="center">
+            <Grid container justifyContent="center" alignContent="center" >
+              <CardActionArea component="a" href="#" >
+                <Card sx={{ display: 'flex' }}>
+                  <CardContent sx={{ flex: 1 }}>
+                    <Box
+                      component="img"
+                      sx={{ width: 180, }}
+                      alt="image logo"
+                      src="../../Assets/images/mobistore.png"
+                    />
+                    <Typography variant="subtitle1" color="text.secondary">
+                    BUILD YOUR BRAND & CONQUER THE WOLRD
+                    </Typography>
+                    <Box
+                      component="img"
+                      sx={{ width: "auto", display: { xs: 'none', sm: 'block' } }}
+                      alt="image l"
+                      src="../../Assets/images/mobistorem.png"
+                    />
+
+                    <Typography variant="subtitle1" paragraph>
+                    Comlete FREE e-commerce module: marketplace, webshop & shopping cart,
+                    promotional price, stock management and Ads alerts.
+                    </Typography>
+                    <Box
+                      component="img"
+                      sx={{ width: 180, display: { xs: 'block', sm: 'none' } }}
+                      alt="image b"
+                      src="../../Assets/images/mobistorem.png"
+                    />
+
+                    <Typography variant="subtitle1" color="gray">
+                      Get strated
+                    </Typography>
+                  </CardContent>
+
+                </Card>
+              </CardActionArea>
+
+            </Grid>
+          </Grid>
+          <Grid item xs={12} sm={4} md={6} alignItems="center">
+            <Grid container justifyContent="center" alignContent="center" >
+              <CardActionArea component="a" href="#" >
+                <Card sx={{ display: 'flex' }}>
+                  <CardContent sx={{ flex: 1 }}>
+                    <Box
+                      component="img"
+                      sx={{ width: 180, }}
+                      alt="image logo"
+                      src="../../Assets/images/mobigov.png"
+                    />
+                    <Typography variant="subtitle1" color="text.secondary">
+                    BRING USER-CENTERED DESIGN TO GOVERNMENT SERVICES.
+                    </Typography>
+                    <Box
+                      component="img"
+                      sx={{ width: "auto", display: { xs: 'none', sm: 'block' } }}
+                      alt="image l"
+                      src="../../Assets/images/mobigovm.png"
+                    />
+
+                    <Typography variant="subtitle1" paragraph>
+                    In this way the focus transforms from traditional administration 
+                    to modern communication between governments and citizens or companies.
+                    </Typography>
+                    <Box
+                      component="img"
+                      sx={{ width: 180, display: { xs: 'block', sm: 'none' } }}
+                      alt="image b"
+                      src="../../Assets/images/mobigovm.png"
+                    />
+                    <Typography variant="subtitle1" color="gray">
+                      Get strated
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </CardActionArea>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Box>
     </React.Fragment>
-   
+
   );
 }
 

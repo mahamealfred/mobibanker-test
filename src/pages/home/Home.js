@@ -250,7 +250,7 @@ function DashboardContent() {
         <Box
           component="main"
           sx={{
-            backgroundColor: Colors.light_gray,
+            backgroundColor: "white",
             flexGrow: 1,
             height: '100vh',
             overflow: 'auto',

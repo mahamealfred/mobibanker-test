@@ -65,33 +65,53 @@ function FeaturedPost() {
                  <CardActionArea component="a" href="#" >
              <Card sx={{ display: 'flex' }}>
             <CardContent sx={{ flex: 1 }}>
-            <CardMedia
+            <Box
+        component="img"
+        sx={{
+          width: 180,
+        }}
+        alt={post.imageLabel}
+        src={post.title}
+      />
+            {/* <CardMedia
               component="img"
               sx={{ width: 180}}
               image={post.title}
               alt={post.imageLabel}
-            />
+            /> */}
               {/* <Typography component="h2" variant="h5">
                  {post.title}
                </Typography> */}
                <Typography variant="subtitle1" color="text.secondary">
                  {post.date}
                </Typography>
-               <CardMedia
+               <Box
+        component="img"
+        sx={{ width:"auto", display: { xs: 'none', sm: 'block' } }}
+        alt={post.imageLabel}
+        src={post.image}
+      />
+               {/* <CardMedia
               component="img"
               sx={{ width:"auto", display: { xs: 'none', sm: 'block' } }}
               image={post.image}
               alt={post.imageLabel}
-            />
+            /> */}
                <Typography variant="subtitle1" paragraph>
                  {post.description}
                </Typography>
-               <CardMedia
+               <Box
+        component="img"
+        sx={{ width: 180, display: { xs: 'block', sm: 'none' } }}
+        alt={post.imageLabel}
+        src={post.image}
+      />
+               {/* <CardMedia
               component="img"
               sx={{ width: 180, display: { xs: 'block', sm: 'none' } }}
               image={post.image}
               alt={post.imageLabel}
-            />
+            /> */}
                <Typography variant="subtitle1" color="gray">
                  Get strated
                </Typography>

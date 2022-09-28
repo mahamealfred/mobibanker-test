@@ -528,10 +528,10 @@ export default function MediaCard() {
                     padding: "0.9em",
                 }}
             >
-                <CardMedia
+               <CardMedia
                     component="img"
                     height="60"
-                    image="../../Assets/images/ejoHeza.png"
+                    image="../../Assets/images/ejoheza.png"
                     alt="alt"
                     title="i"
                     sx={{ padding: "0em 2em 0 0em", objectFit: "contain",

@@ -47,7 +47,7 @@ const Widget = () => {
       value: "Message"
     },
     {
-      url: "/",
+      url: "https://mobiyellow.com/",
       value: "Videos"
     },
     {

@@ -30,11 +30,12 @@ export default function Footer() {
         <Grid item md={6} lg={4}>
           <FooterTitle variant="body1">Address</FooterTitle>
           <Typography variant="caption2">
-          MobiCash Group
-248, Des Voeux road
-Rm 1702, 17/F Tung Hip Comm Building
-Central Hong Kong
+          MobiCash Rwanda
+          KN 3 Road, Gasabo District
+          Remera, Rukiri 1
+          Kigali - Rwanda
           </Typography>
+         
           <Box
             sx={{
               mt: 4,
@@ -76,12 +77,16 @@ Central Hong Kong
           <List>
             <ListItemText>
               <Typography lineHeight={2} variant="caption2">
-                +2780 0000000
+              Email: info@mcash.rw
               </Typography>
+              <Typography lineHeight={2} variant="caption2">
+              Phone: (+250) 787 797 979
+              </Typography>
+             
             </ListItemText>
             <ListItemText>
               <Typography lineHeight={2} variant="caption2">
-                Agent Support
+              Website: www.mcash.rw
               </Typography>
             </ListItemText>
           </List>

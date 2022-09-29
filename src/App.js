@@ -3,19 +3,31 @@ import { Suspense } from "react";
 import Routes from './routes/index';
 import { BrowserRouter as Router} from "react-router-dom";
 import "./App.css";
+import AuthApi from "./context/api";
 
-
-export default class App extends Component {
-
-
-  render() {
-    return (
-      <Suspense fallback={null}>
+// export default class App extends Component {
+//   render() {
+//     return (
+//       <Suspense fallback={null}>
+//        <Router>
+//         <Routes/>
+//       </Router>
+//       </Suspense>
+     
+//     )
+//   }
+// };
+function App(){
+  const [auth,setAuth]=React.useState(false)
+  return(
+    <AuthApi.Provider value={{auth,setAuth}}>
+    <Suspense fallback={null}>
        <Router>
         <Routes/>
       </Router>
       </Suspense>
-     
-    )
-  }
-};
+    </AuthApi.Provider>
+    
+  )
+}
+export default App

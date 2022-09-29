@@ -18,8 +18,11 @@ import TopNav from "../topNav/TopNav";
 import Headerbanner from "../headerbanner"
 import BottomNav from "../bottomNav/BottomNav";
 import MobicashSolution from "../mobicashsolutions"
+import AuthApi from "../../context/api";
+
 export default function Banner() {
   const theme = useTheme();
+  const Auth=React.useContext(AuthApi)
   const matches = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <React.Fragment>
@@ -27,10 +30,10 @@ export default function Banner() {
  <BannerContainer >
  {/* <BannerImage src="../../Assets/images/mobicashmarketing.png" /> */}
       <BannerLoginContainer >
-         <Login/>
+         <Login   Auth={Auth}/>
       </BannerLoginContainer>
       <BannerContent>
-        <Widget/>
+        <Widget />
       </BannerContent>
     </BannerContainer>
     <BottomNav/>

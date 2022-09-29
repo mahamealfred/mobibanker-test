@@ -1,11 +1,12 @@
 import React from "react";
 import { useRouteMatch, Route,Switch } from "react-router-dom";
-import Dashboard from "../views/Dashboard";
-import PrivateRoute from "./PrivateRoutes"
+import Login from "../views/Login";
+import LoginPrivateRoute from "./LoginPrivateRoutes"
 import Home from "../pages/home/Home";
 import {useEffect} from "react";
 import jwt from "jsonwebtoken";
 import { useHistory } from 'react-router-dom';
+import Banner from "../components/banner";
 function App() {
   const {path}=useRouteMatch();
   // const decode=(token) => {
@@ -36,17 +37,15 @@ function App() {
     return (
     
       <Switch >
-      <Dashboard>
+      <Login>
           <Route
             component={({ match }) => (
               <>
-                <PrivateRoute exact path={path} component={Home} />
+                <LoginPrivateRoute exact path={path} component={Banner} />
               </>
             )}
           />
-         
-      
-        </Dashboard>
+        </Login>
       </Switch>
        
      

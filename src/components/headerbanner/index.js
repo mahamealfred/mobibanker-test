@@ -81,8 +81,8 @@ function FeaturedPost() {
                     />
 
                     <Typography variant="subtitle1" paragraph>
-                    Livestream shopping offers the ability to demonstrate and ultimately advertise products to a TV live, 
-                    online audience that can interact and buy in that live experiance.
+                    Payments are becoming invisible. The next great evolution will see 
+                    payment see payments fully disappear into simplified, holistic commerce platforms.
                     </Typography>
                     <Box
                       component="img"

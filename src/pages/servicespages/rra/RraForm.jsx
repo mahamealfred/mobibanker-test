@@ -269,10 +269,15 @@ fetchData();
    if (rraPayment.error) {
      setOpen(true);
    }
+  
  };
 
  const handleNewpayment = () => {
   formData.docId = "";
+  getDocDetails.details=['']
+  getDocDetails.error=""
+  rraPayment.details=['']
+  rraPayment.error=""
   setActiveStep(0)
  };
 
@@ -282,12 +287,15 @@ fetchData();
 
  const handleBack = () => {
    formData.password = "";
+   formData.docId=""
    setDocIdErr("");
    setPasswordError("");
    setPhoneNumberError("");
    setErrorMessage("");
+   getDocDetails.error=""
    setPaymenterrorMessage("");
-   setActiveStep(activeStep - 1);
+   getDocDetails.details=['']
+   setActiveStep(0);
  };
   return (
     <div>

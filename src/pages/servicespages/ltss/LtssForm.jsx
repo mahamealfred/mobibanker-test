@@ -258,6 +258,8 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
   };
   const handleNewpayment = () => {
     formData.nId=""
+    getLtssIndDetails.details=['']
+    ltssPayment.details=['']
    setActiveStep(0)
   };
 
@@ -267,12 +269,14 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
 
   const handleBack = () => {
     formData.password = "";
+    formData.nId=""
     setNIdErrorMessage("");
     setPasswordError("");
     setPhoneNumberError("");
     setErrorMessage("");
     setPaymenterrorMessage("");
-    setActiveStep(activeStep - 1);
+   getLtssIndDetails.details=['']
+    setActiveStep(0);
   };
   return (
     <div>

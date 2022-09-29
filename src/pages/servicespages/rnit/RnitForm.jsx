@@ -281,6 +281,8 @@ else if(formData.amountPaid==""){
 
   const handleNewpayment = () => {
     formData.nId=""
+    getRnitDetails.details=['']
+    rnitPayment.details=['']
    setActiveStep(0)
   };
 
@@ -289,7 +291,15 @@ else if(formData.amountPaid==""){
   };
 
   const handleBack = () => {
-    setActiveStep(activeStep - 1);
+    formData.nId=""
+    setBankNameErrorMessage("")
+    setBankAccountErrorMessage("")
+    setPayerEmailErrorMessage("")
+    setPhoneNumberError("")
+    setPasswordError("")
+    setAmountToPayErrorMessage("")
+    getRnitDetails.details=['']
+    setActiveStep(0);
   };
   return (
     <div>

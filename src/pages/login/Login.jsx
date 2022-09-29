@@ -22,8 +22,11 @@ import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import CircularProgress from '@mui/material/CircularProgress';
+import AuthApi from '../../context/api';
+import jwt from 'jsonwebtoken';
 const SignIn = () => {
     const history=useHistory()
+    
     const dispatch=useDispatch();
     const login=useSelector((state)=>state.login)
     const [username,setUsername]=useState();
@@ -51,12 +54,51 @@ const SignIn = () => {
             setUsernameError("")
             setPasswordError("")
             await dispatch(loginAction({username: data.get('username'),password: data.get('password')},history));
+            // console.log("authenticstion",Auth.auth)
           }
          
           if(login.error){
             setOpen(true);
           }
         };
+        // useEffect(()=>{
+        //   async function fechtData(){
+        //     if(Auth.auth==true){
+        //       console.log("authentication ...::")
+        //       history.push('/dashboard',{push:true})
+        //      // await dispatch(loginAction({username: data.get('username'),password: data.get('password')},history));
+        //     }
+        //   }
+        //  fechtData();
+        // },[Auth.auth])
+        // useEffect(()=>{
+        //   async function fecthData(){
+        //     console.log("status::",auth)
+        //     if(auth==true){
+        //       history.push('/dashboard',{push:true}) 
+        //     }
+        //  if(!login.loading){
+        //   if(login.users.length!==0){
+        //     if(login.users.code==200){
+              
+        //       const userId=login.users.id
+        //       const name=login.users.display
+        //       const role=login.users.brokering
+        //       const group=login.users.group
+             
+        //       const jwt_secret="tokensecret"
+        //       const claims={userId,name,role,username,group,password}
+        //       const token= jwt.sign(claims,jwt_secret, { expiresIn: "7d"});
+        //       history.push('/dashboard',{push:true})
+        //       sessionStorage.setItem('mobicash-auth',token)
+        //       return localStorage.setItem('mobicashAuth',token);
+        //     }
+          
+        //   }
+        //  }
+        //   }
+        //   fecthData();
+        // },[!login.users])
         const handleClose=()=>{
           setOpen(false)
         }
@@ -65,7 +107,6 @@ const SignIn = () => {
       <React.Fragment>
         <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '80vh', backgroundColor:'primary' }}>
-      
           <Box
             sx={{
               my: 12,

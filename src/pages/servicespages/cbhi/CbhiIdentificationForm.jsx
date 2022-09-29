@@ -302,7 +302,10 @@ const CbhiIdentificationForm = () => {
 
   const handleNewpayment = () => {
     formData.nId=""
-   setActiveStep(0)
+    formData.paymentYear=""
+    getCbhiNidDetails.details=['']
+    cbhiPayment.details=['']
+    setActiveStep(0)
   };
 
   const handleNext = () => {
@@ -310,7 +313,13 @@ const CbhiIdentificationForm = () => {
   };
 
   const handleBack = () => {
-    setActiveStep(activeStep - 1);
+    formData.nId=""
+    formData.paymentYear=""
+    setAmountPaidError("")
+      setPhoneNumberError("")
+      setPasswordError("")
+    getCbhiNidDetails.details=['']
+    setActiveStep(0);
   };
   return (
     <div>

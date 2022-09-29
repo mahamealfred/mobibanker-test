@@ -30,16 +30,21 @@ import { Colors } from '../../components/styles/theme';
 import {useEffect} from "react";
 import jwt from "jsonwebtoken";
 import Stack from '@mui/material/Stack';
-import { Button } from '@mui/material';
+import { Button, ButtonGroup } from '@mui/material';
 import LanguageIcon from '@mui/icons-material/Language';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import MobicashSolutions from '../../components/mobicashsolutions'
+import MobicashSolutions from '../../components/mobicashsolutions';
+import Badge from '@mui/material/Badge';
+import MailIcon from '@mui/icons-material/Mail';
 import {
   flexBetweenCenter,
   justifyCenter,
   fullWidthFlex,
 } from '../../components/styles/theme';
-import Headerbanner from "../../components/headerbanner"
+import Headerbanner from "../../components/headerbanner";
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import MoreIcon from '@mui/icons-material/MoreVert';
+import LogoutIcon from '@mui/icons-material/Logout';
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -152,6 +157,8 @@ function DashboardContent() {
                 src="../../Assets/images/logo.png"
               />
             </Typography>
+           
+  
             <Box
               component="img"
               sx={{
@@ -165,13 +172,24 @@ function DashboardContent() {
               alt="mobicash logo"
               src="../../Assets/images/mobibk.png"
             />
-            
-            <Box
-              sx={{ minWidth: 100, display: { xs: "none", sm: "block" } }}
+  <Box sx={{ display: { xs: 'flex', md: 'flex' },padding:2}}>
+            <IconButton size="large" aria-label="show 4 new mails"  sx={{color:"#F9842C"}} >
+              <LogoutIcon  sx={{color:"#F9842C"}} />
+            </IconButton>
+            <IconButton
+              size="large"
+              aria-label="show 17 new notifications"
+              sx={{color:"#F9842C"}} 
             >
-              
-               <Box
-      sx={{
+              <Badge badgeContent={17} color="warning">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+         
+          </Box>
+
+            <Box sx={{ minWidth: 100, display: { xs: "none", sm: "block" } }}>
+               <Box sx={{
         ...fullWidthFlex,
         borderTop: '1px solid #ddd',
       }}
@@ -195,23 +213,8 @@ function DashboardContent() {
             </Paper>
           </Stack>
       </Box>
-              {/* <FormControl fullWidth>
-                <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                </InputLabel>
-                <NativeSelect
-                  defaultValue={10}
-                  inputProps={{
-                    name: 'age',
-                    id: 'uncontrolled-native',
-                  }}
-                >
-                  <option value={10}>Kinyarwanda</option>
-                  <option value={20}>English</option>
-                  <option value={30}>French</option>
-                </NativeSelect>
-              </FormControl> */}
+           
             </Box >
-            {/* condition */}
             <Box
               sx={{ minWidth: 100, display: { xs: "block", sm: "none" } }}
             >

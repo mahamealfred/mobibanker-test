@@ -48,7 +48,7 @@ export const loginAction = (user,history) => async (dispatch) => {
       const claims={userId,name,role,username,group,password}
       const token= jwt.sign(claims,jwt_secret, { expiresIn: "7d"});
       dispatch(loginSuccess(data));
-      history.push('/dashboard',{push:true})
+       history.push('/dashboard',{push:true})
       sessionStorage.setItem('mobicash-auth',token)
       return localStorage.setItem('mobicashAuth',token);
     }

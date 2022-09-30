@@ -9,7 +9,7 @@ import CardMedia from '@mui/material/CardMedia';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-
+import { useTranslation } from 'react-i18next';
 const featuredPosts = [
   {
     title: '../../Assets/images/mobiswift.png',
@@ -52,7 +52,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 function FeaturedPost() {
-
+  const { t } = useTranslation(["home","common","login"]);
   const [spacing, setSpacing] = React.useState(2);
   return (
     <React.Fragment>
@@ -71,7 +71,7 @@ function FeaturedPost() {
                       src="../../Assets/images/mobiswift.png"
                     />
                     <Typography variant="subtitle1" color="text.secondary">
-                    PAYMENTS MADE SEAMLESS AND INVISIBLE'
+                    {t("common:mobiswifttitle")}
                     </Typography>
                     <Box
                       component="img"
@@ -81,8 +81,7 @@ function FeaturedPost() {
                     />
 
                     <Typography variant="subtitle1" paragraph>
-                    Payments are becoming invisible. The next great evolution will see 
-                    payment see payments fully disappear into simplified, holistic commerce platforms.
+                    {t("common:mobiswiftdescription")}
                     </Typography>
                     <Box
                       component="img"
@@ -92,7 +91,7 @@ function FeaturedPost() {
                     />
 
                     <Typography variant="subtitle1" color="gray">
-                      Get strated
+                    {t("common:getstarted")}
                     </Typography>
                   </CardContent>
 
@@ -112,7 +111,7 @@ function FeaturedPost() {
                       src="../../Assets/images/mobitv.png"
                     />
                     <Typography variant="subtitle1" color="text.secondary">
-                    LIVESTREAMING SHOPPING-THE NEXT BIG THING IN RETAIL COMMERCE
+                    {t("common:mobitvtitle")}
                     </Typography>
                     <Box
                       component="img"
@@ -122,8 +121,7 @@ function FeaturedPost() {
                     />
 
                     <Typography variant="subtitle1" paragraph>
-                    Livestream shopping offers the ability to demonstrate and ultimately advertise products to a TV live, 
-                    online audience that can interact and buy in that live experiance.
+                    {t("common:mobitvdescription")}
                     </Typography>
                     <Box
                       component="img"
@@ -133,7 +131,7 @@ function FeaturedPost() {
                     />
 
                     <Typography variant="subtitle1" color="gray">
-                      Get strated
+                    {t("common:getstarted")}
                     </Typography>
                   </CardContent>
 
@@ -153,7 +151,7 @@ function FeaturedPost() {
                       src="../../Assets/images/mobistore.png"
                     />
                     <Typography variant="subtitle1" color="text.secondary">
-                    BUILD YOUR BRAND & CONQUER THE WOLRD
+                    {t("common:mobistoretitle")}
                     </Typography>
                     <Box
                       component="img"
@@ -163,8 +161,7 @@ function FeaturedPost() {
                     />
 
                     <Typography variant="subtitle1" paragraph>
-                    Comlete FREE e-commerce module: marketplace, webshop & shopping cart,
-                    promotional price, stock management and Ads alerts.
+                    {t("common:mobistoredescription")}
                     </Typography>
                     <Box
                       component="img"
@@ -174,7 +171,7 @@ function FeaturedPost() {
                     />
 
                     <Typography variant="subtitle1" color="gray">
-                      Get strated
+                    {t("common:getstarted")}
                     </Typography>
                   </CardContent>
 
@@ -195,7 +192,7 @@ function FeaturedPost() {
                       src="../../Assets/images/mobigov.png"
                     />
                     <Typography variant="subtitle1" color="text.secondary">
-                    BRING USER-CENTERED DESIGN TO GOVERNMENT SERVICES.
+                    {t("common:mobigovtitle")}
                     </Typography>
                     <Box
                       component="img"
@@ -205,8 +202,7 @@ function FeaturedPost() {
                     />
 
                     <Typography variant="subtitle1" paragraph>
-                    In this way the focus transforms from traditional administration 
-                    to modern communication between governments and citizens or companies.
+                    {t("common:mobigovdescription")}
                     </Typography>
                     <Box
                       component="img"
@@ -215,7 +211,7 @@ function FeaturedPost() {
                       src="../../Assets/images/mobigovm.png"
                     />
                     <Typography variant="subtitle1" color="gray">
-                      Get strated
+                    {t("common:getstarted")}
                     </Typography>
                   </CardContent>
                 </Card>

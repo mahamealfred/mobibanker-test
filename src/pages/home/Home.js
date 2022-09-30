@@ -45,6 +45,7 @@ import Headerbanner from "../../components/headerbanner";
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useHistory } from 'react-router-dom';
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -94,13 +95,18 @@ const mdTheme = createTheme();
 
 function DashboardContent() {
 
-
+ const history=useHistory();
   const [open, setOpen] = React.useState(true);
   const [agentName,setAgentName]=React.useState("");
   const toggleDrawer = () => {
     setOpen(!open);
   };
-  console.log("agent name",agentName)
+
+  const handleLogout=()=>{
+    localStorage.removeItem('mobicashAuth');
+    sessionStorage.removeItem('mobicash-auth')
+   return history.push('/display',{push:true})
+  }
 
   const decode= (token) => {
     const JWT_SECRET="tokensecret";
@@ -173,15 +179,15 @@ function DashboardContent() {
               src="../../Assets/images/mobibk.png"
             />
   <Box sx={{ display: { xs: 'flex', md: 'flex' },padding:2}}>
-            <IconButton size="large" aria-label="show 4 new mails"  sx={{color:"#F9842C"}} >
+            <IconButton onClick={handleLogout} size="large" aria-label="show 4 new mails"  sx={{color:"#F9842C"}} >
               <LogoutIcon  sx={{color:"#F9842C"}} />
             </IconButton>
             <IconButton
               size="large"
-              aria-label="show 17 new notifications"
+              aria-label="show 3 new notifications"
               sx={{color:"#F9842C"}} 
             >
-              <Badge badgeContent={17} color="warning">
+              <Badge badgeContent={3} color="warning">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
@@ -260,7 +266,7 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
-          <Box sx={{ width: '100%', maxWidth: 560, bgcolor: 'transparent', marginTop:"35px"}}>
+          <Box sx={{ width: '100%', maxWidth: 560, bgcolor: 'transparent',alignItems:"center", marginTop:"35px"}}>
             <Box sx={{ my: 1, mx: 2 }}>
               <Grid container alignItems="center">
                 <Grid item xs>

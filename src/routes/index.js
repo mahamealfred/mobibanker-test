@@ -5,6 +5,7 @@ import AuthApi from '../context/api';
 import SignIn from '../pages/signin/SignIn';
 import DashboardRoute from "./Dashboard.routes";
 import LoginRoute from "./Login.routes";
+import Logout from '../pages/logout/Logout';
 
 
 const token =sessionStorage.getItem('mobicash-auth');
@@ -36,7 +37,7 @@ const token =sessionStorage.getItem('mobicash-auth');
     <Switch>
         <Route exact path="/"   component={LoginRoute}/>
         <Route  path="/dashboard"  component={DashboardRoute}/>
-    
+        <Route  path="/display"  component={Logout}/>
     </Switch>
   )
 

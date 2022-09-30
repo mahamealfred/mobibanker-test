@@ -2,16 +2,18 @@ import { Slide, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useEffect, useRef, useState } from "react";
 import { MessageText, PromotionsContainer } from "../../components/styles/mobicashsolutions";
+import { useTranslation } from "react-i18next";
 
 
-const messages = [
-  "Solutions that never Miss the Aim",
-  "MobiSwift",
-  "Mobistores",
-  "MobiTV",
-  "MobiGOV",
-];
 export default function Promotions() {
+  const { t } = useTranslation(["home","common","login"]);
+  const messages = [
+    `${t("common:solutionsthatnevermisstheaim")}`,
+    "MobiSwift",
+    "MobiStores",
+    "MobiTV",
+    "MobiGOV",
+  ];
   const containerRef = useRef();
   const [show, setShow] = useState(true);
     const [messageIndex, setMessageIndex] = useState(0);

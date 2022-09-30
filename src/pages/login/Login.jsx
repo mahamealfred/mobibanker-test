@@ -24,9 +24,10 @@ import CloseIcon from '@mui/icons-material/Close';
 import CircularProgress from '@mui/material/CircularProgress';
 import AuthApi from '../../context/api';
 import jwt from 'jsonwebtoken';
+import { useTranslation } from "react-i18next";
 const SignIn = () => {
     const history=useHistory()
-    
+    const { t } = useTranslation(["home","common","login"]);
     const dispatch=useDispatch();
     const login=useSelector((state)=>state.login)
     const [username,setUsername]=useState();
@@ -41,14 +42,14 @@ const SignIn = () => {
           const data = new FormData(event.currentTarget);
          
           if(data.get('username')=="" &&  data.get('password')=="" ){
-            setUsernameError("Username is required")
-            setPasswordError("Password is required")
+            setUsernameError(`${t("login:usernameisrequired")}`)
+            setPasswordError(`${t("login:passwordisrequired")}`)
           }
           else if(data.get('username')=="" ){
-            setUsernameError("Username is required")
+            setUsernameError(`${t("login:usernameisrequired")}`)
           }
           else if(data.get('password')=="" ){
-            setPasswordError("Password is required")
+            setPasswordError(`${t("login:passwordisrequired")}`)
           }
           else{
             setUsernameError("")
@@ -120,7 +121,7 @@ const SignIn = () => {
             <Typography component="h1" variant="h5"
            
             >
-              Sign In
+             {t("login:signin")}
             </Typography>
             {
                   !login.error? null:
@@ -149,7 +150,7 @@ const SignIn = () => {
                 required
                 fullWidth
                 id="username"
-                label="User Name"
+                label= {t("common:username")}
                 name="username"
                 autoComplete="username"
                 autoFocus
@@ -161,7 +162,7 @@ const SignIn = () => {
                 required
                 fullWidth
                 name="password"
-                label="Password"
+                label= {t("common:password")}
                 type="password"
                 id="password"
                 autoComplete="current-password"
@@ -170,7 +171,7 @@ const SignIn = () => {
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
+                label={t("login:rememberme")}
               />
               {/* <Button
                 type="submit"
@@ -195,7 +196,7 @@ const SignIn = () => {
                 color="warning"
                 sx={{ mt: 3, mb: 2 }}
                
-              >Sing In</Button>: 
+              > {t("login:signin")}</Button>: 
               <Box sx={{ display: 'flex',justifyContent:"center" }}>
               <CircularProgress  sx={{ color: 'orange' }} />
                </Box>
@@ -205,12 +206,12 @@ const SignIn = () => {
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
-                    Forgot password?
+                  {t("login:forgotpassword")}?
                   </Link>
                 </Grid>
                 <Grid item>
                   <Link href="#" variant="body2">
-                    {"Terms and conditions"}
+                  {t("common:termsandconditions")}
                   </Link>
                 </Grid>
               </Grid>

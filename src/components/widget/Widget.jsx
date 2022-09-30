@@ -9,50 +9,51 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-
+import { useTranslation } from "react-i18next";
 const Widget = () => {
+  const { t } = useTranslation(["home","common","login"]);
   const archives = [
     {
       url: "/",
-      value: "Agent Business Rules"
+      value:`${t("common:agentbusinessrules")}`
     },
     {
       url: "/",
-      value: "AML/CFT"
+      value: `${t("common:aml/cft")}`
     },
     {
       url: "/",
-      value: "MobiScan Sanction List"
+      value: `${t("common:mobiscansanctionlist")}`
     },
     {
       url: "/",
-      value: "Trainings"
+      value:`${t("common:trainings")}`
     },
     {
       url: "/",
-      value: "BNR Regulation"
+      value: `${t("common:bnr/regulation")}`
     }
   ]
   const agentSupportArchives = [
     {
       url: "https://support.mobicash.rw/",
-      value: "Support tickek"
+      value: `${t("common:supportticket")}`
     },
     {
       url: "/",
-      value: "Live chart"
+      value: `${t("common:livechat")}`
     },
     {
       url: "/",
-      value: "Message"
+      value: `${t("common:message")}`
     },
     {
       url: "https://mobiyellow.com/",
-      value: "Videos"
+      value: `${t("common:videos")}`
     },
     {
       url: "/",
-      value: "Address"
+      value: `${t("common:address")}`
     }
   ]
   return (
@@ -93,7 +94,7 @@ const Widget = () => {
                   mt={2}
                   fontWeight={800}
                 >
-                  Knowledgebase
+                      {t("common:knowledgebase")}
                 </Typography>
               </React.Fragment>
             }
@@ -137,7 +138,7 @@ const Widget = () => {
                   mt={2}
                   fontWeight={800}
                 >
-                  Agent Support
+                  {t("common:agentsupport")}
                 </Typography>
               </React.Fragment>
             }

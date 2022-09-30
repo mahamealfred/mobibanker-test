@@ -1,5 +1,5 @@
 import { AppBar, Toolbar,styled,Box,Button,Typography} from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import NativeSelect from '@mui/material/NativeSelect';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -7,7 +7,8 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import LanguageIcon from '@mui/icons-material/Language';
 import { Colors, DrawerWidth } from "../styles/theme";
-
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 import {
   flexBetweenCenter,
   justifyCenter,
@@ -15,9 +16,17 @@ import {
 } from '../styles/theme';
 const TopNav = () => {
   const [ setLanguage] = React.useState('');
-  const handleChange = (event) => {
-    setLanguage(event.target.value);
-  };
+  const { i18n, t } = useTranslation(["common"]);
+
+	useEffect(() => {
+		if (localStorage.getItem("i18nextLng")?.length > 2) {
+			i18next.changeLanguage("ki");
+		}
+	}, []);
+
+	const handleLanguageChange = (e) => {
+		i18n.changeLanguage(e.target.value);
+	};
     const StyledToolbar=styled(Toolbar)({
         display:"flex",
         justifyContent:"space-between",
@@ -109,11 +118,13 @@ const TopNav = () => {
                 </Box>
                 <FormControl>
                   <NativeSelect
-                  defaultValue={10}
+                  defaultValue="ki"
+                  value={localStorage.getItem("i18nextLng")}
+                  onChange={handleLanguageChange}
                   >
-              <option value={10}>Kinyarwanda</option>
-              <option value={20}>English</option>
-              <option value={30}>Francais</option>
+              <option value="ki">Kinyarwanda</option>
+              <option value="en">English</option>
+              <option value="fr">Français</option>
                   </NativeSelect>
                 </FormControl>
               </Button>

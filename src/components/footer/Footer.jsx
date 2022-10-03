@@ -13,8 +13,9 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import { SubscribeTf, FooterTitle } from "../styles/footer";
 import SendIcon from "@mui/icons-material/Send";
-
+import { useTranslation } from "react-i18next";
 export default function Footer() {
+  const { t } = useTranslation(["home","common","login"]);
   return (
     <Box
       sx={{
@@ -28,7 +29,7 @@ export default function Footer() {
     >
       <Grid container spacing={2} justifyContent="center">
         <Grid item md={6} lg={4}>
-          <FooterTitle variant="body1">Address</FooterTitle>
+          <FooterTitle variant="body1">{t("common:address")}</FooterTitle>
           <Typography variant="caption2">
           MobiCash Rwanda
           KN 3 Road, Gasabo District
@@ -48,16 +49,16 @@ export default function Footer() {
           </Box>
         </Grid>
         <Grid item md={6} lg={2}>
-          <FooterTitle variant="body1">information</FooterTitle>
+          <FooterTitle variant="body1"> {t("common:information")}</FooterTitle>
           <List>
             <ListItemText>
               <Typography lineHeight={2} variant="caption2">
-                About Us
+              {t("common:aboutus")}
               </Typography>
             </ListItemText>
             <ListItemText>
               <Typography lineHeight={2} variant="caption2">
-             Trannings
+              {t("common:trainings")}
               </Typography>
             </ListItemText>
             <ListItemText>
@@ -73,40 +74,41 @@ export default function Footer() {
           </List>
         </Grid>
         <Grid item md={6} lg={2}>
-          <FooterTitle variant="body1">Agent support</FooterTitle>
+          <FooterTitle variant="body1"> {t("common:agentsupport")}</FooterTitle>
           <List>
             <ListItemText>
               <Typography lineHeight={2} variant="caption2">
-              Email: info@mcash.rw
+              {t("common:email")}: info@mcash.rw
               </Typography>
+              <br></br>
               <Typography lineHeight={2} variant="caption2">
-              Phone: (+250) 787 797 979
+              {t("common:phone")}: (+250) 787 797 979
               </Typography>
-             
             </ListItemText>
+            
             <ListItemText>
               <Typography lineHeight={2} variant="caption2">
-              Website: www.mcash.rw
+              {t("common:website")}: www.mcash.rw
               </Typography>
             </ListItemText>
           </List>
         </Grid>
         <Grid item md={6} lg={4}>
-          <FooterTitle variant="body1">Contact us</FooterTitle>
+          <FooterTitle variant="body1">{t("common:contactus")}</FooterTitle>
           <Stack>
           <SubscribeTf
               color="primary"
-              label="Full Name"
+              label={t("common:fullname")}
               variant="standard"
             />
             <SubscribeTf
               color="primary"
-              label="Email address"
+              label={t("common:emailaddress")}
               variant="standard"
             />
              <SubscribeTf
               color="primary"
-              label="Message"
+              label={t("common:message")}
               variant="standard"
             />
             <Button
@@ -114,7 +116,7 @@ export default function Footer() {
               sx={{ mt: 4, mb: 4 }}
               variant="contained"
             >
-              Submit
+            {t("common:submit")}
             </Button>
           </Stack>
         </Grid>

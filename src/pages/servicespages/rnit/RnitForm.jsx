@@ -35,7 +35,7 @@ theme.typography.h3 = {
 
 
 
-const RnitForm = () => {
+const RnitForm = ({openRNIT,setOpenRNIT}) => {
 
   const steps = [`NID`, `Make payment`, `View Payment`];
   const [activeStep, setActiveStep] = React.useState(0);
@@ -282,6 +282,7 @@ else if(formData.amountPaid==""){
   const handleNewpayment = () => {
     formData.nId=""
     getRnitDetails.details=['']
+    getRnitDetails.error=['']
     rnitPayment.details=['']
    setActiveStep(0)
   };
@@ -299,6 +300,8 @@ else if(formData.amountPaid==""){
     setPasswordError("")
     setAmountToPayErrorMessage("")
     getRnitDetails.details=['']
+    getRnitDetails.error=['']
+    setOpenRNIT(false)
     setActiveStep(0);
   };
   return (
@@ -355,7 +358,7 @@ else if(formData.amountPaid==""){
                 <React.Fragment>
                   {getStepContent(activeStep)}
                   <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                    {activeStep !== 0 && activeStep !==2? (
+                    {activeStep == 0 || activeStep !==2? (
                       <Button onClick={handleBack} 
                      //sx={{ mt: 3, ml: 1 }}
                       sx={{ my: 1, mx: 1.5 }}

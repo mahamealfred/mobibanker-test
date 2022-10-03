@@ -37,9 +37,9 @@ theme.typography.h3 = {
 
 
 
-const RraForm = () => {
+const LtssForm = ({openLTSS,setOpenLTSS}) => {
 
-  const steps = [`NID`, `Make Payment`, `View Diposit`];
+  const steps = [`NID`, `Make Payment`, `View payment`];
   const [activeStep, setActiveStep] = React.useState(0);
   const dispatch = useDispatch();
   const getLtssIndDetails = useSelector((state) => state.getLtssIndDetails);
@@ -260,7 +260,9 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
     formData.nId=""
     getLtssIndDetails.details=['']
     ltssPayment.details=['']
+    ltssPayment.error=['']
    setActiveStep(0)
+   
   };
 
   const handleNext = () => {
@@ -276,7 +278,9 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
     setErrorMessage("");
     setPaymenterrorMessage("");
    getLtssIndDetails.details=['']
+   getLtssIndDetails.error=['']
     setActiveStep(0);
+    setOpenLTSS(false)
   };
   return (
     <div>
@@ -332,7 +336,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
                 <React.Fragment>
                   {getStepContent(activeStep)}
                   <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                    {activeStep !== 0 && activeStep !==2? (
+                    {activeStep == 0 || activeStep !==2? (
                       <Button onClick={handleBack} 
                      //sx={{ mt: 3, ml: 1 }}
                       sx={{ my: 1, mx: 1.5 }}
@@ -372,4 +376,4 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
   );
 };
 
-export default RraForm;
+export default LtssForm;

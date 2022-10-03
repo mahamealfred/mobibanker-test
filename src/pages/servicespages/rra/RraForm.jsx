@@ -21,7 +21,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Grid } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
+import { ComponentToPrint } from './ComponentToPrint';
+import ReactToPrint from 'react-to-print';
+import { useRef } from 'react';
+
+
 const theme = createTheme();
 
 theme.typography.h3 = {
@@ -34,7 +39,7 @@ theme.typography.h3 = {
   },
 };
 
-const RraForm = () => {
+const RraForm = ({openRRA,setOpenRRA}) => {
 
   const steps = [`Reference number`, `Make payment`, `View Payment`];
   const [activeStep, setActiveStep] = React.useState(0);
@@ -46,7 +51,7 @@ const RraForm = () => {
     phoneNumber: "",
     password: "",
   });
-  
+  const componentRef = useRef();
 
  //rra get details
  const [docIdErr, setDocIdErr] = useState("");
@@ -115,12 +120,9 @@ const RraForm = () => {
      case 2:
        return <Review 
        dateTime={dateTime}
-      // setDateTime={setDateTime}
        transactionId={transactionId}
-       //setTransactionId={setTransactionId}
        transactionStatus={transactionStatus}
        taxPayerName={taxPayerName}
-       //setTaxPayerName={setTaxPayerName}
        amountToPay={amountToPay}
        agentName={agentName}
        />;
@@ -213,6 +215,9 @@ fetchData();
    }
  };
 
+
+
+
  //handle rra Payament
  const handlePayment = async () => {
    if (formData.phoneNumber === "") {
@@ -251,15 +256,15 @@ fetchData();
      
    }
  };
-
  //handle on button submit for each step
  const handelSubmit = () => {
    if (activeStep === 0) {
      handleDocmentDetails();
    } else if (activeStep === 1) {
-     handlePayment();
+    handlePayment();
    } else if (activeStep === 2) {
-     handleNext();
+
+ handleNext()
    } else {
      return null;
    }
@@ -274,10 +279,12 @@ fetchData();
 
  const handleNewpayment = () => {
   formData.docId = "";
+  formData.password = "";
+  formData.phoneNumber = "";
   getDocDetails.details=['']
-  getDocDetails.error=""
+  getDocDetails.error=['']
   rraPayment.details=['']
-  rraPayment.error=""
+  rraPayment.error=['']
   setActiveStep(0)
  };
 
@@ -292,10 +299,12 @@ fetchData();
    setPasswordError("");
    setPhoneNumberError("");
    setErrorMessage("");
-   getDocDetails.error=""
+   getDocDetails.error=['']
    setPaymenterrorMessage("");
    getDocDetails.details=['']
-   setActiveStep(0);
+  //  setActiveStep(0);
+   setOpenRRA(false)
+  
  };
   return (
     <div>
@@ -351,7 +360,7 @@ fetchData();
                 <React.Fragment>
                   {getStepContent(activeStep)}
                   <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                    {activeStep !== 0 && activeStep !==2? (
+                    {activeStep == 0 || activeStep !==2? (
                       <Button onClick={handleBack} 
                      //sx={{ mt: 3, ml: 1 }}
                       sx={{ my: 1, mx: 1.5 }}
@@ -369,7 +378,23 @@ fetchData();
                       
                       {/* {activeStep === steps.length - 1 ? 'Mke payment' : 'Next'} */}
                       {activeStep === steps.length - 1
-                        ? "Print Receipt"
+                        ? <>
+                        <ReactToPrint
+             trigger={() => <Button>Print receipt</Button>}
+            content={() => componentRef.current}
+               />
+               <Box sx={{display:'none'}}>
+               <ComponentToPrint 
+               ref={componentRef} 
+               dateTime={dateTime}
+               transactionId={transactionId}
+               transactionStatus={transactionStatus}
+               taxPayerName={taxPayerName}
+               amountToPay={amountToPay}
+               agentName={agentName}
+               />
+               </Box>
+                </>
                         : activeStep === 0
                         ? getDocDetails.loading?
                         <Box sx={{ display: 'flex',justifyContent:"center" }}>

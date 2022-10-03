@@ -22,6 +22,9 @@ import { useDispatch,useSelector } from "react-redux";
 import { Grid } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
+import { ComponentToPrint } from './ComponentToPrint';
+import ReactToPrint from 'react-to-print';
+import { useRef } from 'react';
 const theme = createTheme();
 
 theme.typography.h3 = {
@@ -36,10 +39,10 @@ theme.typography.h3 = {
 
 
 
-const CbhiIdentificationForm = () => {
+const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
   const getYear = useSelector((state) => state.getYear);
   const getCbhiNidDetails=useSelector((state)=>state.getCbhiNidDetails)
-
+  const componentRef = useRef();
   const dispatch = useDispatch();
   const steps = [`Household NID`, `Make payment`, `View Payment`];
   const [formData, setFormData] = useState({
@@ -303,9 +306,13 @@ const CbhiIdentificationForm = () => {
   const handleNewpayment = () => {
     formData.nId=""
     formData.paymentYear=""
+    formData.amountPaid=""
+    formData.password=""
+    formData.phoneNumber=""
     getCbhiNidDetails.details=['']
     cbhiPayment.details=['']
     setActiveStep(0)
+   
   };
 
   const handleNext = () => {
@@ -319,7 +326,10 @@ const CbhiIdentificationForm = () => {
       setPhoneNumberError("")
       setPasswordError("")
     getCbhiNidDetails.details=['']
+    getCbhiNidDetails.error=['']
     setActiveStep(0);
+    setOpenRSSB(false)
+
   };
   return (
     <div>
@@ -375,7 +385,7 @@ const CbhiIdentificationForm = () => {
                 <React.Fragment>
                   {getStepContent(activeStep)}
                   <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                    {activeStep !== 0 && activeStep !==2? (
+                    {activeStep == 0 || activeStep !==2? (
                       <Button onClick={handleBack} 
                      //sx={{ mt: 3, ml: 1 }}
                       sx={{ my: 1, mx: 1.5 }}
@@ -393,7 +403,23 @@ const CbhiIdentificationForm = () => {
                       
                       {/* {activeStep === steps.length - 1 ? 'Mke payment' : 'Next'} */}
                       {activeStep === steps.length - 1
-                        ? "Print Receipt"
+                        ? <>
+                        <ReactToPrint
+             trigger={() => <Button>Print receipt</Button>}
+            content={() => componentRef.current}
+               />
+               <Box sx={{display:'none'}}>
+               <ComponentToPrint 
+               ref={componentRef} 
+               payerName={payerName}
+               formData={formData}
+               transactionId={transactionId}
+               transactionStatus={transactionStatus}
+               dateTime={dateTime}
+               agentName={agentName}
+               />
+               </Box>
+                </>
                         : activeStep === 0
                         ? getCbhiNidDetails.loading?
                         <Box sx={{ display: 'flex',justifyContent:"center" }}>

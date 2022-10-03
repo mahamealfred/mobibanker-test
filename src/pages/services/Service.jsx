@@ -196,7 +196,7 @@ export default function MediaCard() {
           <Typography variant="h6" color="gray" >
           MobiCash
           </Typography>
-          <Box
+          {/* <Box
         component="img"
         sx={{
           height: 50,
@@ -211,7 +211,7 @@ export default function MediaCard() {
         }}
         alt="mobicash logo"
         src="../../Assets/images/logo.png"
-      />
+      /> */}
           <IconButton
           aria-label="close"
           onClick={handleClose}
@@ -228,7 +228,7 @@ export default function MediaCard() {
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             
-        <RraForm/>
+        <RraForm openRRA={openRRA} setOpenRRA={setOpenRRA}/>
           </DialogContentText>
         </DialogContent>
       </Dialog>
@@ -245,7 +245,7 @@ export default function MediaCard() {
           <Typography variant="h6" color="gray" >
           MobiCash
           </Typography>
-          <Box
+          {/* <Box
         component="img"
         sx={{
           height: 50,
@@ -260,7 +260,7 @@ export default function MediaCard() {
         }}
         alt="mobicash logo"
         src="../../Assets/images/logo.png"
-      />
+      /> */}
           <IconButton
           aria-label="close"
           onClick={handleClose}
@@ -276,7 +276,7 @@ export default function MediaCard() {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-     <CbhiIdentificationForm/>
+     <CbhiIdentificationForm openRSSB={openRSSB} setOpenRSSB={setOpenRSSB}/>
           </DialogContentText>
         </DialogContent>
       </Dialog>
@@ -292,7 +292,7 @@ export default function MediaCard() {
           <Typography variant="h6" color="gray" >
           MobiCash
           </Typography>
-          <Box
+          {/* <Box
         component="img"
         sx={{
           height: 50,
@@ -307,7 +307,7 @@ export default function MediaCard() {
         }}
         alt="mobicash logo"
         src="../../Assets/images/logo.png"
-      />
+      /> */}
           <IconButton
           aria-label="close"
           onClick={handleClose}
@@ -323,7 +323,7 @@ export default function MediaCard() {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-     <LtssForm/>
+     <LtssForm openLTSS={openLTSS} setOpenLTSS={setOpenLTSS}/>
           </DialogContentText>
         </DialogContent>
       </Dialog>
@@ -339,7 +339,7 @@ export default function MediaCard() {
           <Typography variant="h6" color="gray" >
           MobiCash
           </Typography>
-          <Box
+          {/* <Box
         component="img"
         sx={{
           height: 50,
@@ -354,7 +354,7 @@ export default function MediaCard() {
         }}
         alt="mobicash logo"
         src="../../Assets/images/logo.png"
-      />
+      /> */}
           <IconButton
           aria-label="close"
           onClick={handleClose}
@@ -370,7 +370,7 @@ export default function MediaCard() {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-      <RnitForm/>
+      <RnitForm openRNIT={openRNIT} setOpenRNIT={setOpenRNIT}/>
           </DialogContentText>
         </DialogContent>
       </Dialog>

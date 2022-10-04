@@ -14,6 +14,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import LanguageIcon from '@mui/icons-material/Language';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
+import SettingsIcon from '@mui/icons-material/Settings';
 const handleLogout=()=> {
 
   localStorage.removeItem("mobicashAuth");
@@ -23,12 +24,12 @@ const handleLogout=()=> {
 
 export const mainListItems = (
   
-  <React.Fragment>
-    <ListItemButton>
+  <React.Fragment >
+    <ListItemButton sx={{marginTop:3}} >
       <ListItemIcon>
         <DashboardIcon sx={{color:"#F9842C"}} />
       </ListItemIcon>
-      <ListItemText primary="Dashboard" />
+      <ListItemText primary="My Account" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
@@ -48,20 +49,24 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Change Password" />
     </ListItemButton>
-  </React.Fragment>
-);
-
-export const secondaryListItems = (
-  <React.Fragment>
-    <ListSubheader component="div" inset>
-     Settings
-    </ListSubheader>
     <ListItemButton>
       <ListItemIcon>
         <LanguageIcon sx={{color:"#F9842C"}} />
       </ListItemIcon>
       <ListItemText primary="Change Language" />
     </ListItemButton>
+  </React.Fragment>
+);
+
+export const secondaryListItems = (
+  <React.Fragment>
+    {/* <ListSubheader component="div" inset>
+      <ListItemIcon>
+        <SettingsIcon sx={{color:"#F9842C"}} />
+      </ListItemIcon>
+     Settings
+    </ListSubheader> */}
+   
     <ListItemButton sx={{marginTop:18}} onClick={handleLogout}>
       <ListItemIcon>
         <LogoutIcon sx={{color:"#F9842C"}} />

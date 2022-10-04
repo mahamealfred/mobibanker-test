@@ -15,7 +15,8 @@ import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { mainListItems, secondaryListItems } from './listItem';
+import { mainListItems, secondaryListItems} from './listItem';
+
 import Widget from '../../components/widget/Widget';
 import NativeSelect from '@mui/material/NativeSelect';
 import FormControl from '@mui/material/FormControl';
@@ -46,6 +47,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -65,7 +67,6 @@ const AppBar = styled(MuiAppBar, {
     }),
   }),
 }));
-
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     '& .MuiDrawer-paper': {
@@ -94,14 +95,16 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const mdTheme = createTheme();
 
 function DashboardContent() {
-
+  const { i18n,t } = useTranslation(["home","common","login"]);
  const history=useHistory();
   const [open, setOpen] = React.useState(true);
   const [agentName,setAgentName]=React.useState("");
   const toggleDrawer = () => {
     setOpen(!open);
   };
-
+  const handleLanguageChange = (e) => {
+		i18n.changeLanguage(e.target.value);
+	};
   const handleLogout=()=>{
     localStorage.removeItem('mobicashAuth');
     sessionStorage.removeItem('mobicash-auth')
@@ -207,12 +210,14 @@ function DashboardContent() {
                   <LanguageIcon size={20} sx={{color:"#F9842C"}} />
                 </Box>
                 <FormControl>
-                  <NativeSelect
-                  defaultValue={10}
+                <NativeSelect
+                  defaultValue="ki"
+                  value={localStorage.getItem("i18nextLng")}
+                  onChange={handleLanguageChange}
                   >
-              <option value={10}>Kinyarwanda</option>
-              <option value={20}>English</option>
-              <option value={30}>Francais</option>
+              <option value="ki">Kinyarwanda</option>
+              <option value="en">English</option>
+              <option value="fr">Français</option>
                   </NativeSelect>
                 </FormControl>
               </Button>
@@ -241,7 +246,7 @@ function DashboardContent() {
             }}
           >
             <Typography variant="h6" noWrap component="div"  >
-              Mobibanker Menu
+            {t("common:mobibankermenu")}
             </Typography>
             <IconButton onClick={toggleDrawer}>
 
@@ -251,6 +256,7 @@ function DashboardContent() {
           <Divider />
           <List component="nav" >
             {mainListItems}
+          
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}
           </List>
@@ -271,10 +277,11 @@ function DashboardContent() {
               <Grid container alignItems="center">
                 <Grid item xs>
                   <Typography gutterBottom variant="h6" color="gray" component="div">
-                    Dear {agentName},
+                    
+                  {t("common:welcometomobibanker")}
                   </Typography>
-                  <Typography gutterBottom variant="h6" color="gray" component="div">
-                    Welcome back to MobiBanker!
+                  <Typography gutterBottom variant="body1" color="gray" component="div">
+                  {agentName}
                   </Typography>
                 </Grid>
               </Grid>

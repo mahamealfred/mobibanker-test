@@ -33,5 +33,15 @@
     "email":"Emeri",
     "emailaddress":"Aderesi imeri",
     "submit":"Ohereza",
-    "phone":"Terefone"
+    "phone":"Terefone",
+    "mobibankermenu":"Ibikubiye muri Mobibanker",
+    "welcometomobibanker":"Urakaze neza kuri Mobibanker",
+    "agencyservices":"SERIVISI Z'IKORANABUHANGA",
+    "changepassword":"Hindura ijambo ryibanga",
+    "preioustransaction":"Ibicuruzwa byabanje",
+    "settings":"Igenamiterere",
+    "changelanguage":"Hindura ururimi",
+    "logout":"Gusohoka",
+    "myaccount":"Konti yanjye",
+    "mprofile":"Umwirondoro wanjye"
  }

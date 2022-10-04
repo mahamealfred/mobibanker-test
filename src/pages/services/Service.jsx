@@ -23,7 +23,7 @@ import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
-
+import { useTranslation } from "react-i18next";
 
 const style = {
   position: 'absolute',
@@ -39,7 +39,7 @@ const style = {
 
 export default function MediaCard() {
   
-
+  const { t } = useTranslation(["home","common","login"]);
     const [openRSSB, setOpenRSSB] = React.useState(false);
     const [openRRA, setOpenRRA] = React.useState(false);
     const [openLTSS, setOpenLTSS] = React.useState(false);
@@ -392,7 +392,7 @@ export default function MediaCard() {
         
          sx={{ fontSize: { xs: 20 } }}
          >
-       AGENCY SERVICES
+         {t("common:agencyservices")}
         </Typography>
             <Grid >
             <Button

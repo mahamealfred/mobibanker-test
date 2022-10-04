@@ -66,7 +66,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
                   <Typography textAlign="left" gutterBottom>AMOUNT PAID</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography textAlign="right" gutterBottom> {props.amountPaid.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}  Rwf</Typography>
+                  <Typography textAlign="right" gutterBottom> {props.formData.amountPaid.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}  Rwf</Typography>
                 </Grid>
               </React.Fragment>
               </Grid>

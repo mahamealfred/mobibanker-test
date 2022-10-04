@@ -9,7 +9,7 @@ import jwt from "jsonwebtoken";
 //   import dotenv from "dotenv";
 //   dotenv.config();
 require('dotenv').config();
-const  {BASE_URL} = process.env
+const  {REACT_APP_BASE_URL} = process.env
 
 export const loginAction = (user,history) => async (dispatch) => {
   try {
@@ -22,8 +22,8 @@ export const loginAction = (user,history) => async (dispatch) => {
     //const Url='https://agentweb.mobicash.rw/api/agent/user/rest/v.4.14.01/auth';
     const Url='https://agentapi.mobicash.rw/api/agent/user/rest/v.4.14.01/auth';
     //const Url='https://agentweb.mobicash.rw/api/agent/user/rest/v.4.14.01/auth';
-    // console.log("base url",BASE_URL)
-    // const Url=BASE_URL+'/user/rest/v.4.14.01/auth';
+    // console.log("base url",process.env.REACT_APP_BASE_URL)
+    //const Url=REACT_APP_BASE_URL+'/user/rest/v.4.14.01/auth';
    const res = await axios.post(Url,{}, {
      withCredentials: true,
     headers:{

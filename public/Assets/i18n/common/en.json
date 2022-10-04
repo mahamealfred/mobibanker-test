@@ -33,5 +33,15 @@
     "fullname":"Full Name",
     "emailaddress":"Email address",
     "submit":"Submit",
-    "phone":"Phone"
+    "phone":"Phone",
+    "mobibankermenu":"Mobibanker Menu",
+    "welcometomobibanker":"Welcome back to Mobibanker",
+    "agencyservices":"AGENCY SERVICES",
+    "changepassword":"Change password",
+    "preioustransaction":"Previous transactions",
+    "settings":"Settings",
+    "changelanguage":"Change language",
+    "logout":"Logout",
+    "myaccount":"My account",
+    "myprofile":"My profile"
  }

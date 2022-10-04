@@ -106,7 +106,7 @@ const Payment=({
             label="Agent Pin"
             value={formData.password}
             onChange={(e)=>setFormData({...formData,password:e.target.value})}
-            helperText={passwordError? passwordError : ""}
+            helperText={passwordError? passwordError : "Format 078..."}
             error={passwordError}
             type="password"
             fullWidth

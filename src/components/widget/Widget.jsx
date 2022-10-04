@@ -59,8 +59,9 @@ const Widget = () => {
   return (
     <Box
       sx={{
-        my: 12,
+        my: 1,
         mx: 1,
+        height:"auto",
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

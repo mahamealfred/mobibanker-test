@@ -144,7 +144,7 @@ const Payment=({
             label="Payer phone number"
             value={formData.phoneNumber}
             onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
-            helperText={phoneNumberError? phoneNumberError : ""}
+            helperText={phoneNumberError? phoneNumberError : "Format 078..."}
             error={phoneNumberError}
             fullWidth
             autoComplete="cc-name"

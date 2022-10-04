@@ -47,6 +47,7 @@ export const BannerLoginContainer = styled("Box")(({ src, theme }) => ({
     // backgroundRepeat: "no-repeat",
     // backgroundPosition: "center",
     width: "500px",
+    
     [theme.breakpoints.down("md")]: {
       width: "350px",
     },

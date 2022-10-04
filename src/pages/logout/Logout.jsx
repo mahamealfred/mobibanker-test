@@ -55,13 +55,13 @@ const Logout = () => {
   <AppBar position="relative"  elevation={1} sx={{backgroundColor:'white'}} >
     <Toolbar>
       {/* <CameraIcon sx={{ mr: 2 }} /> */}
-      <Box
+      {/* <Box
           sx={{ mr: 2 }} 
         >
         <img src="../../Assets/images/img_144.png" alt="logo" height="40" width="50" margin="50px"/>
-        </Box>
+        </Box> */}
       <Typography variant="h6" color="gray" noWrap>
-   MobiCash 
+   {/* MobiCash  */}
       </Typography>
     </Toolbar>
   </AppBar>
@@ -82,7 +82,7 @@ const Logout = () => {
           color="text.primary"
           gutterBottom
         >
-        MobiCash Rwanda
+        MobiCash 
         </Typography>
         <Typography variant="h5" align="center" color="text.secondary" paragraph>
           Thank you for using MobiBanker.

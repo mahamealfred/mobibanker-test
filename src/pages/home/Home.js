@@ -127,7 +127,7 @@ function DashboardContent() {
 
   return (
     <ThemeProvider theme={mdTheme}>
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex' ,height:"80vh"}}>
         {/* <CssBaseline /> */}
         <AppBar position="absolute" open={open} elevation={0} sx={{ backgroundColor: 'white', display: 'flex' }} >
           <Toolbar
@@ -166,8 +166,6 @@ function DashboardContent() {
                 src="../../Assets/images/logo.png"
               />
             </Typography>
-           
-  
             <Box
               component="img"
               sx={{
@@ -240,12 +238,12 @@ function DashboardContent() {
               backgroundColor: '#F9842C',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'flex-end',
+              justifyContent: 'center',
               height:{ xs: "50px", sm: "60px",md:"100px" },
               px: [1],
             }}
           >
-            <Typography variant="h6" noWrap component="div"  >
+            <Typography variant="h6" textAlign="center" noWrap component="div"  >
             {t("common:mobibankermenu")}
             </Typography>
             <IconButton onClick={toggleDrawer}>
@@ -266,13 +264,13 @@ function DashboardContent() {
           component="main"
           sx={{
             backgroundColor: "white",
-            flexGrow: 1,
-            height: '100vh',
+            flexGrow: 0,
+            height: 'auto',
             overflow: 'auto',
           }}
         >
           <Toolbar />
-          <Box sx={{ width: '100%', maxWidth: 560, bgcolor: 'transparent',alignItems:"center", marginTop:"35px"}}>
+          <Box sx={{ width: '100%', maxWidth: 560, bgcolor: 'transparent',alignItems:"center", marginTop:"35px", height: 'auto'}}>
             <Box sx={{ my: 1, mx: 2 }}>
               <Grid container alignItems="center">
                 <Grid item xs>
@@ -289,7 +287,7 @@ function DashboardContent() {
             <Divider variant="middle" />
           </Box>
           <Container maxWidth="auto" sx={{ mt: 1, mb: 2 }}>
-            <Grid container component="main" sx={{ height: 'auto', backgroundColor: 'primary' }}>
+            <Grid container component="main" sx={{ height: 'auto', backgroundColor: 'transparent' }}>
 
               <Grid item xs={12} sm={6} md={5} component={Paper} elevation={0} square
                 sx={{

@@ -36,7 +36,7 @@ export default function Banner() {
         <Widget />
       </BannerContent>
     </BannerContainer>
-    <BottomNav/>
+    {/* <BottomNav/> */}
     <MobicashSolution />
     <Headerbanner/>
     

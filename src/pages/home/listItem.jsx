@@ -43,13 +43,13 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Previous Transactions" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton >
       <ListItemIcon>
         <ChangeCircleIcon sx={{color:"#F9842C"}} />
       </ListItemIcon>
       <ListItemText primary="Change Password" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton sx={{display:{xs:"block",sm:"none",md:"none",lg:"none"}}}>
       <ListItemIcon>
         <LanguageIcon sx={{color:"#F9842C"}} />
       </ListItemIcon>
@@ -67,7 +67,7 @@ export const secondaryListItems = (
      Settings
     </ListSubheader> */}
    
-    <ListItemButton sx={{marginTop:18}} onClick={handleLogout}>
+    <ListItemButton sx={{marginTop:10,display:{xs:"block",sm:"none",md:"none"}}} onClick={handleLogout}>
       <ListItemIcon>
         <LogoutIcon sx={{color:"#F9842C"}} />
       </ListItemIcon>

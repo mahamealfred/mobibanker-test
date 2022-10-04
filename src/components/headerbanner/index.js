@@ -61,7 +61,7 @@ function FeaturedPost() {
         <Grid container alignItems="flex-start" padding={{ xs: 6, md: 10 }} spacing={{ xs: 2, md: 6 }} columns={{ xs: 4, sm: 8, md: 12 }}>
           <Grid item xs={12} sm={4} md={6} alignItems="center">
             <Grid container justifyContent="center" alignContent="center" >
-              <CardActionArea component="a" href="#" >
+              <CardActionArea component="a" disabled href="#" >
                 <Card sx={{ display: 'flex' }}>
                   <CardContent sx={{ flex: 1 }}>
                     <Box
@@ -91,7 +91,7 @@ function FeaturedPost() {
                     />
 
                     <Typography variant="subtitle1" color="gray">
-                    {t("common:getstarted")}
+                    {/* {t("common:getstarted")} */}
                     </Typography>
                   </CardContent>
 
@@ -101,7 +101,7 @@ function FeaturedPost() {
           </Grid>
           <Grid item xs={12} sm={4} md={6} alignItems="center">
             <Grid container justifyContent="center" alignContent="center" >
-              <CardActionArea component="a" href="#" >
+              <CardActionArea component="a" disabled  href="#" >
                 <Card sx={{ display: 'flex' }}>
                   <CardContent sx={{ flex: 1 }}>
                     <Box
@@ -131,7 +131,7 @@ function FeaturedPost() {
                     />
 
                     <Typography variant="subtitle1" color="gray">
-                    {t("common:getstarted")}
+                    {/* {t("common:getstarted")} */}
                     </Typography>
                   </CardContent>
 
@@ -141,7 +141,7 @@ function FeaturedPost() {
           </Grid>
           <Grid item xs={12} sm={4} md={6} alignItems="center">
             <Grid container justifyContent="center" alignContent="center" >
-              <CardActionArea component="a" href="#" >
+              <CardActionArea component="a" disabled  href="#" >
                 <Card sx={{ display: 'flex' }}>
                   <CardContent sx={{ flex: 1 }}>
                     <Box
@@ -171,7 +171,7 @@ function FeaturedPost() {
                     />
 
                     <Typography variant="subtitle1" color="gray">
-                    {t("common:getstarted")}
+                    {/* {t("common:getstarted")} */}
                     </Typography>
                   </CardContent>
 
@@ -182,7 +182,7 @@ function FeaturedPost() {
           </Grid>
           <Grid item xs={12} sm={4} md={6} alignItems="center">
             <Grid container justifyContent="center" alignContent="center" >
-              <CardActionArea component="a" href="#" >
+              <CardActionArea component="a" disabled  href="#" >
                 <Card sx={{ display: 'flex' }}>
                   <CardContent sx={{ flex: 1 }}>
                     <Box
@@ -211,7 +211,7 @@ function FeaturedPost() {
                       src="../../Assets/images/mobigovm.png"
                     />
                     <Typography variant="subtitle1" color="gray">
-                    {t("common:getstarted")}
+                    {/* {t("common:getstarted")} */}
                     </Typography>
                   </CardContent>
                 </Card>

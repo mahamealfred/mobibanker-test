@@ -131,7 +131,7 @@ export default function MediaCard() {
               Dear customer,
             </Typography>
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-             Ther service you are looking for will be available soon.
+             The service you are looking for will be available soon.
             </Typography>
             <IconButton
           aria-label="close"
@@ -166,7 +166,7 @@ export default function MediaCard() {
               Dear customer,
             </Typography>
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-             Ther service you are looking for will be available soon .
+             The service you are looking for will be available soon .
             
             </Typography>
             <IconButton

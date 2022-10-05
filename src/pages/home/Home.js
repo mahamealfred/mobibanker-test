@@ -222,7 +222,6 @@ function DashboardContent() {
             </Paper>
           </Stack>
       </Box>
-           
             </Box >
             <Box
               sx={{ minWidth: 100, display: { xs: "block", sm: "none" } }}

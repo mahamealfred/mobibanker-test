@@ -49,7 +49,7 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Change Password" />
     </ListItemButton>
-    <ListItemButton sx={{display:{xs:"block",sm:"none",md:"none",lg:"none"}}}>
+    <ListItemButton sx={{display:{xs:"flex",sm:"none",md:"none",lg:"none"}}}>
       <ListItemIcon>
         <LanguageIcon sx={{color:"#F9842C"}} />
       </ListItemIcon>
@@ -66,8 +66,7 @@ export const secondaryListItems = (
       </ListItemIcon>
      Settings
     </ListSubheader> */}
-   
-    <ListItemButton sx={{marginTop:10,display:{xs:"block",sm:"none",md:"none"}}} onClick={handleLogout}>
+    <ListItemButton sx={{marginTop:10,display:{xs:"flex",sm:"none",md:"none"}}} onClick={handleLogout}>
       <ListItemIcon>
         <LogoutIcon sx={{color:"#F9842C"}} />
       </ListItemIcon>

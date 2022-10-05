@@ -9,7 +9,7 @@ import cbhiPayamentReducer from "./cbhiPaymentReducer";
 // import forgotPasswordReducer from "./forgotPasswordReducer";
 
 
-// import transactionsReducer from "./transactionsReducer";
+   import transactionsReducer from "./transactionsReducer";
 // import balanceReducer from "./getBalanceReducer";
              //rra
  import getDocDetailsReducer from "./getDocDetailsReducer";
@@ -31,7 +31,7 @@ const allReducers = combineReducers({
 
     //all 
     // balance:balanceReducer,
-    // transactions:transactionsReducer,
+     transactions:transactionsReducer,
      getYear:getYearReducer,
 
      //cbhi

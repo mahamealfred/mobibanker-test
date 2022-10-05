@@ -24,6 +24,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import { useTranslation } from "react-i18next";
+import Transactions from '../transactions/Transactions';
 
 const style = {
   position: 'absolute',
@@ -46,6 +47,7 @@ export default function MediaCard() {
     const [openRNIT, setOpenRNIT] = React.useState(false);
     const [openMTN, setOpenMTN] = React.useState(false);
     const [openAIRTEL, setOpenAIRTEL] = React.useState(false);
+    const [openLOGS, setOpenLOGS] = React.useState(false);
     const handleOpenMTN = () => setOpenMTN(true);
     const handleCloseMTN = () => setOpenMTN(false);
     const handleOpenAIRTEL = () => setOpenAIRTEL(true);
@@ -65,12 +67,16 @@ export default function MediaCard() {
     const handleClickOpenRNIT = () => {
       setOpenRNIT(true);
     };
+    const handleClickOpenLOGS=()=>{
+      setOpenLOGS(true)
+    }
   
     const handleClose = () => {
       setOpenRSSB(false);
       setOpenRRA(false);
       setOpenLTSS(false);
       setOpenRNIT(false);
+      setOpenLOGS(false)
     };
    
   
@@ -227,7 +233,6 @@ export default function MediaCard() {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            
         <RraForm openRRA={openRRA} setOpenRRA={setOpenRRA}/>
           </DialogContentText>
         </DialogContent>
@@ -327,6 +332,46 @@ export default function MediaCard() {
           </DialogContentText>
         </DialogContent>
       </Dialog>
+      {/* LOGS */}
+      <Dialog
+        open={openLOGS}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title"
+        sx={{
+          "& .MuiDialog-container": {
+            "& .MuiPaper-root": {
+              width: "100%",
+              maxWidth: "500px", 
+            },
+          },
+        }}
+        >
+          <Typography variant="h6" color="gray" >
+          MobiCash
+          </Typography>
+         
+          <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+       <Transactions/>
+          </DialogContentText>
+        </DialogContent>
+      </Dialog>
       {/* RNIT */}
       <Dialog
         open={openRNIT}
@@ -382,7 +427,7 @@ export default function MediaCard() {
             direction="row"
             justify="flex-start"
             alignItems="flex-start"
-            sx={{ maxWidth: "auto" }}
+             sx={{ maxWidth: "auto" }}
         >
             <Typography component="h1" variant="h5"
          fontWeight={800}
@@ -402,7 +447,9 @@ export default function MediaCard() {
                 raised
                 sx={{
                     // maxWidth: 100,
-                    width:{xs:60,sm:80,md:100,lg:80},
+                    width:{xs:60,sm:70,md:60,lg:80},
+                    height:{xs:60,sm:60,md:60,lg:60},
+                    borderRadius:5,
                     margin: "0 auto 5px",
                     padding: "0.9em",
                 }}
@@ -413,8 +460,10 @@ export default function MediaCard() {
                     image="../../Assets/images/rra.png"
                     alt="alt"
                     title="i"
-                    sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
-                     height:{xs:40,sm:50,md:60}}}
+                    sx={{ 
+                      padding: "0em 2em 0 0em", 
+                      objectFit: "contain",
+                     height:{xs:40,sm:40,md:40,lg:40}}}
                 />
            <Typography  gutterBottom
            
@@ -434,7 +483,9 @@ export default function MediaCard() {
                 raised
                 sx={{
                    // maxWidth: 100,
-                   width:{xs:60,sm:80,md:100,lg:80},
+                   width:{xs:60,sm:70,md:60,lg:80},
+                    height:{xs:60,sm:60,md:60,lg:60},
+                    borderRadius:5,
                     margin: "0 auto 5px",
                     padding: "0.9em",
                 }}
@@ -446,7 +497,7 @@ export default function MediaCard() {
                     alt="alt"
                     title="i"
                     sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
-                     height:{xs:40,sm:50,md:60} }}
+                    height:{xs:40,sm:40,md:40,lg:40}}}
                 />
            <Typography variant="h6" gutterBottom
                 sx={{ padding: "0em 0em 0 0em",color:"gray",
@@ -464,7 +515,9 @@ export default function MediaCard() {
                 raised
                 sx={{
                    // maxWidth: 100,
-                   width:{xs:60,sm:80,md:100,lg:80},
+                   width:{xs:60,sm:70,md:60,lg:80},
+                    height:{xs:60,sm:60,md:60,lg:60},
+                    borderRadius:5,
                     margin: "0 auto 5px",
                     padding: "0.9em",
                 }}
@@ -476,7 +529,7 @@ export default function MediaCard() {
                     alt="alt"
                     title="i"
                     sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
-                     height:{xs:40,sm:50,md:60} }}
+                    height:{xs:40,sm:40,md:40,lg:40}}}
                 />
            <Typography variant="h6" gutterBottom
                 sx={{ padding: "0em 0em 0 0em",color:"gray",
@@ -493,7 +546,9 @@ export default function MediaCard() {
                 raised
                 sx={{
                    // maxWidth: 100,
-                    width:{xs:60,sm:80,md:100,lg:80},
+                   width:{xs:60,sm:70,md:60,lg:80},
+                   height:{xs:60,sm:60,md:60,lg:60},
+                   borderRadius:5,
                     margin: "0 auto 5px",
                     padding: "0.9em",
                 }}
@@ -505,7 +560,7 @@ export default function MediaCard() {
                     alt="alt"
                     title="i"
                     sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
-                     height:{xs:40,sm:50,md:60} }}
+                    height:{xs:40,sm:40,md:40,lg:40}}}
                 />
            <Typography variant="h6" gutterBottom
                 sx={{ padding: "0em 0em 0 0em",color:"gray",
@@ -523,7 +578,9 @@ export default function MediaCard() {
                 raised
                 sx={{
                    // maxWidth: 100,
-                    width:{xs:60,sm:80,md:100,lg:80},
+                   width:{xs:60,sm:70,md:60,lg:80},
+                   height:{xs:60,sm:60,md:60,lg:60},
+                   borderRadius:5,
                     margin: "0 auto 5px",
                     padding: "0.9em",
                 }}
@@ -535,7 +592,7 @@ export default function MediaCard() {
                     alt="alt"
                     title="i"
                     sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
-                     height:{xs:40,sm:50,md:60} }}
+                    height:{xs:40,sm:40,md:40,lg:40}}}
                 />
            <Typography variant="h6" gutterBottom
                 sx={{ padding: "0em 0em 0 0em",color:"gray",
@@ -553,7 +610,9 @@ export default function MediaCard() {
                 raised
                 sx={{
                     //maxWidth: 100,
-                    width:{xs:60,sm:80,md:100,lg:80},
+                    width:{xs:60,sm:70,md:60,lg:80},
+                    height:{xs:60,sm:60,md:60,lg:60},
+                    borderRadius:5,
                     margin: "0 auto 5px",
                     padding: "0.9em",
                 }}
@@ -565,7 +624,7 @@ export default function MediaCard() {
                     alt="alt"
                     title="i"
                     sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
-                     height:{xs:40,sm:50,md:60} }}
+                    height:{xs:40,sm:40,md:40,lg:40}}}
                 />
            <Typography variant="h6" gutterBottom
                 sx={{ padding: "0em 0em 0 0em",color:"gray",
@@ -583,7 +642,9 @@ export default function MediaCard() {
                 raised
                 sx={{
                     //maxWidth: 100,
-                    width:{xs:60,sm:80,md:100,lg:80},
+                    width:{xs:60,sm:70,md:60,lg:80},
+                    height:{xs:60,sm:60,md:60,lg:60},
+                    borderRadius:5,
                     margin: "0 auto 5px",
                     padding: "0.9em",
                 }}
@@ -595,7 +656,7 @@ export default function MediaCard() {
                     alt="alt"
                     title="i"
                     sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
-                     height:{xs:40,sm:50,md:60} }}
+                    height:{xs:40,sm:40,md:40,lg:40}}}
                 />
            <Typography variant="h6" gutterBottom
                 sx={{ padding: "0em 0em 0 0em",color:"gray",
@@ -606,8 +667,39 @@ export default function MediaCard() {
           </Typography>
             </Card>  
             </Button>
+            <Button
+            onClick={handleClickOpenLOGS}
+            >
+            <Card
+                raised
+                sx={{
+                   // maxWidth: 100,
+                   width:{xs:60,sm:70,md:60,lg:80},
+                    height:{xs:60,sm:60,md:60,lg:60},
+                    borderRadius:5,
+                    margin: "0 auto 5px",
+                    padding: "0.9em",
+                }}
+            >
+                <CardMedia
+                    component="img"
+                    height="60"
+                    image="../../Assets/images/logs.png"
+                    alt="alt"
+                    title="i"
+                    sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
+                    height:{xs:40,sm:40,md:40,lg:40}}}
+                />
+           <Typography variant="h6" gutterBottom
+                sx={{ padding: "0em 0em 0 0em",color:"gray",
+                fontSize:14
+             }}
+           >
+          LOGS
+          </Typography>
+            </Card>  
+            </Button>
       </Grid>
-      
       </Grid>
         </React.Fragment>
     );

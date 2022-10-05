@@ -87,31 +87,31 @@ function Transactions() {
       if (compareObjects(haystack[i], needle)) return true;
     return false;
   };
-//   const searchHandle = async (e) => {
-//     setSearch(true);
-//     const searchKey = e.target.value;
-//     // console.log(e.target.value)
-//     try {
-//       var results = [];
-//       const toSearch = trimString(searchKey); // trim it
-//       for (var i = 0; i < agentTransactionsDetails.length; i++) {
-//         for (var key in agentTransactionsDetails[i]) {
-//           if (agentTransactionsDetails[i][key] != null) {
-//             if (
-//               agentTransactionsDetails[i][key].toString().toLowerCase().indexOf(toSearch) !=
-//               -1
-//             ) {
-//               if (!itemExists(results, agentTransactionsDetails[i]))
-//                 results.push(agentTransactionsDetails[i]);
-//             }
-//           }
-//         }
-//       }
-//       setResults(results);
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
+  const searchHandle = async (e) => {
+    setSearch(true);
+    const searchKey = e.target.value;
+    // console.log(e.target.value)
+    try {
+      var results = [];
+      const toSearch = trimString(searchKey); // trim it
+      for (var i = 0; i < agentTransactionsDetails.length; i++) {
+        for (var key in agentTransactionsDetails[i]) {
+          if (agentTransactionsDetails[i][key] != null) {
+            if (
+              agentTransactionsDetails[i][key].toString().toLowerCase().indexOf(toSearch) !=
+              -1
+            ) {
+              if (!itemExists(results, agentTransactionsDetails[i]))
+                results.push(agentTransactionsDetails[i]);
+            }
+          }
+        }
+      }
+      setResults(results);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const decode= (token) => {
     const JWT_SECRET="tokensecret";
     const payload =jwt.verify(token, JWT_SECRET);
@@ -260,21 +260,11 @@ fecthData();
       <div className="home">
 
         <div className="tableDisplay">
-         {
+        {
           numberOfTransaction==0?<>
-        
-            <Typography component="h1" variant="h5"
-         fontWeight={800}
-         color="gray"
-         textAlign="center"
-     
-        
-         sx={{ fontSize: { xs: 20 } }}
-         >
-          <DialogTitle>PREVIOUS TRANSACTONS </DialogTitle>  
-         </Typography>
+            <DialogTitle>PREVIOUS TRANSACTONS MADE</DialogTitle>
           </>:
-          <DialogTitle>PREVIOUS 40 TRANSACTONS MADE</DialogTitle>
+          <DialogTitle>PREVIOUS {numberOfTransaction} TRANSACTONS MADE</DialogTitle>
          } 
           <Box component="div" sx={{ display: "inline" }}>
             <Box>
@@ -299,7 +289,7 @@ fecthData();
                 <Box sx={{ maxWidth: 400, position:"center", display:"flex"}}>
               <TextField
                 fullWidth
-                // onChange={(e) => searchHandle(e)}
+                onChange={(e) => searchHandle(e)}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
@@ -321,9 +311,11 @@ fecthData();
           <TableContainer component={Paper}>
             <Table aria-label="caption table">
               <caption className="textTitle">Agent Transactions</caption>
+             
+              
               <TableHead>
                 <TableRow>
-                  <TableCell align="center">MOBICASH REFERENCE</TableCell>
+                  <TableCell align="center">TRANSACTION REFERENCE</TableCell>
                   <TableCell>OPERATION DATE</TableCell>
                   <TableCell align="center">AMOUNT</TableCell>
                   <TableCell align="center">DESCRIPTION</TableCell>
@@ -337,15 +329,15 @@ fecthData();
                   {results.slice(0, limit).map((details) => (
                   <TableRow
                     hover
-                    // key={details.id}
-                    // selected={selectedExamIds.indexOf(details.id) !== -1}
+                    key={details.id}
+                    selected={selectedExamIds.indexOf(details.id) !== -1}
                   >
-                    <TableCell align="center">233</TableCell>
+                    <TableCell align="center">{details.id}</TableCell>
                     <TableCell component="th" scope="row">
                       {details.operationDate}
                     </TableCell>
-                    <TableCell align="center"> 2344</TableCell>
-                    <TableCell align="center">hello</TableCell>
+                    <TableCell align="center"> {details.amount * -1}</TableCell>
+                    <TableCell align="center">{details.description}</TableCell>
                     <TableCell align="center">
                       {/* <Button>Print</Button> */}
                       <Button
@@ -364,18 +356,18 @@ fecthData();
                   </>
                 ):(
                   <>
-                  {/* {agentTransactionsDetails.slice(0, limit).map((details) => ( */}
+                  {agentTransactionsDetails.slice(0, limit).map((details) => (
                   <TableRow
                     hover
-                    // key={details.id}
-                    // selected={selectedExamIds.indexOf(details.id) !== -1}
+                    key={details.id}
+                    selected={selectedExamIds.indexOf(details.id) !== -1}
                   >
-                    <TableCell align="center">23</TableCell>
+                    <TableCell align="center">{details.id}</TableCell>
                     <TableCell component="th" scope="row">
-                      11/222/
+                      {details.operationDate}
                     </TableCell>
-                    <TableCell align="center"> 3000</TableCell>
-                    <TableCell align="center">hello</TableCell>
+                    <TableCell align="center"> {details.amount * -1}</TableCell>
+                    <TableCell align="center">{details.description}</TableCell>
                     <TableCell align="center">
                       {/* <Button>Print</Button> */}
                     <Button
@@ -390,7 +382,7 @@ fecthData();
                   </Button>
                     </TableCell>
                   </TableRow>
-                {/* ))} */}
+                ))}
                   </>
                 )}
                 

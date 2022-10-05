@@ -169,25 +169,11 @@ const SignIn = () => {
                 error={passwordError?passwordError:""}
                 helperText={passwordError?passwordError:""}
               />
-              <FormControlLabel
+              {/* <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label={t("login:rememberme")}
-              />
-              {/* <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="warning"
-                sx={{ mt: 3, mb: 2 }}
-               
-              >
-            {login.loading? 
-            <Box sx={{ display: 'flex' }}>
-               <CircularProgress sx={{ color: 'gray' }} />
-                </Box>
-                :"Sign In"
-                }
-              </Button> */}
+              /> */}
+             
                 {!login.loading? 
                 <Button
                 type="submit"
@@ -205,7 +191,7 @@ const SignIn = () => {
 
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2">
+                  <Link href="/forgotpassword" variant="body2">
                   {t("login:forgotpassword")}?
                   </Link>
                 </Grid>

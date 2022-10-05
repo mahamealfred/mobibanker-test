@@ -338,6 +338,8 @@ export default function MediaCard() {
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        fullWidth="100%"
+        maxWidth="lg"
       >
         <DialogTitle id="alert-dialog-title"
         sx={{

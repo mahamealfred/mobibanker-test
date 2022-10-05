@@ -25,7 +25,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import AuthApi from '../../context/api';
 import jwt from 'jsonwebtoken';
 import { useTranslation } from "react-i18next";
-const Forgotpassword= () => {
+const Resetpassword= () => {
     const history=useHistory()
     const { t } = useTranslation(["home","common","login"]);
     const dispatch=useDispatch();
@@ -54,9 +54,8 @@ const Forgotpassword= () => {
           else{
             setUsernameError("")
             setPasswordError("")
-            //await dispatch(loginAction({username: data.get('username'),password: data.get('password')},history));
+           // await dispatch(loginAction({username: data.get('username'),password: data.get('password')},history));
             // console.log("authenticstion",Auth.auth)
-            history.push('/resetpassword',{push:true})
           }
          
           if(login.error){
@@ -78,14 +77,12 @@ const Forgotpassword= () => {
   direction="column"
   alignItems="center"
   justifyContent="center"
-  sx={{ height: '50vh', backgroundColor:'primary' }}
+  sx={{ height: '70vh', backgroundColor:'primary' }}
 
 >
   <Grid item xs={3}>
-  <Typography component="h1" textAlign="center" variant="h5"
-           
-           >
-         Forgot password
+  <Typography component="h1" textAlign="center" variant="h5">
+         Reset password
            </Typography>
            {
                  !login.error? null:
@@ -109,12 +106,36 @@ const Forgotpassword= () => {
                 </Collapse>
                }    
            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+              <TextField
+               margin="normal"
+               required
+               fullWidth
+               id="username"
+               label= "Code"
+               name="username"
+               autoComplete="username"
+               autoFocus
+               error={usernameError?usernameError:""}
+               helperText={usernameError?usernameError:""}
+             />
+              <TextField
+               margin="normal"
+               required
+               fullWidth
+               id="username"
+               label= "New password"
+               name="username"
+               autoComplete="username"
+               autoFocus
+               error={usernameError?usernameError:""}
+               helperText={usernameError?usernameError:""}
+             />
              <TextField
                margin="normal"
                required
                fullWidth
                id="username"
-               label= {t("common:username")}
+               label= "Confirmation password"
                name="username"
                autoComplete="username"
                autoFocus
@@ -159,4 +180,4 @@ const Forgotpassword= () => {
     )
   }
   
-  export default Forgotpassword
+  export default Resetpassword

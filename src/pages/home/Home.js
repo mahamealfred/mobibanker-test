@@ -48,6 +48,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
+import ListItems from './ListItems';
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -253,6 +254,7 @@ function DashboardContent() {
           <Divider />
           <List component="nav" >
             {mainListItems}
+            {/* <ListItems/> */}
           
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}

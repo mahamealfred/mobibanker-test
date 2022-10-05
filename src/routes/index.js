@@ -6,6 +6,8 @@ import SignIn from '../pages/signin/SignIn';
 import DashboardRoute from "./Dashboard.routes";
 import LoginRoute from "./Login.routes";
 import Logout from '../pages/logout/Logout';
+import Forgotpassword from '../pages/forgotpassword/Forgotpassword';
+import Resetpassword from '../pages/resetpassword/Resetpassword';
 
 
 const token =sessionStorage.getItem('mobicash-auth');
@@ -38,6 +40,8 @@ const token =sessionStorage.getItem('mobicash-auth');
         <Route exact path="/"   component={LoginRoute}/>
         <Route  path="/dashboard"  component={DashboardRoute}/>
         <Route  path="/display"  component={Logout}/>
+        <Route  path="/forgotpassword"  component={Forgotpassword}/>
+        <Route  path="/resetpassword"  component={Resetpassword}/>
     </Switch>
   )
 

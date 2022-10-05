@@ -15,15 +15,14 @@ import LanguageIcon from '@mui/icons-material/Language';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
-const handleLogout=()=> {
 
+const handleLogout=()=> {
   localStorage.removeItem("mobicashAuth");
   sessionStorage.removeItem("mobicash-auth")
    window.location.reload(true);
 };
 
 export const mainListItems = (
-  
   <React.Fragment >
     <ListItemButton sx={{marginTop:3}} >
       <ListItemIcon>
@@ -37,9 +36,9 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="My Profile" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton >
       <ListItemIcon>
-        <ReceiptLongIcon  sx={{color:"#F9842C"}}  />
+        <ReceiptLongIcon sx={{color:"#F9842C"}}  />
       </ListItemIcon>
       <ListItemText primary="Previous Transactions" />
     </ListItemButton>

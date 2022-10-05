@@ -9,8 +9,8 @@ import cbhiPayamentReducer from "./cbhiPaymentReducer";
 // import forgotPasswordReducer from "./forgotPasswordReducer";
 
 
-   import transactionsReducer from "./transactionsReducer";
-// import balanceReducer from "./getBalanceReducer";
+import transactionsReducer from "./transactionsReducer";
+import balanceReducer from "./getBalanceReducer";
              //rra
  import getDocDetailsReducer from "./getDocDetailsReducer";
  import rraPaymentReducer from "./rraPaymentReducer";
@@ -30,7 +30,7 @@ const allReducers = combineReducers({
     // forgotPassword:forgotPasswordReducer,
 
     //all 
-    // balance:balanceReducer,
+     balance:balanceReducer,
      transactions:transactionsReducer,
      getYear:getYearReducer,
 

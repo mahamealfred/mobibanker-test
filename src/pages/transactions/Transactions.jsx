@@ -262,9 +262,17 @@ fecthData();
         <div className="tableDisplay">
         {
           numberOfTransaction==0?<>
-            <DialogTitle>PREVIOUS TRANSACTONS MADE</DialogTitle>
+            <DialogTitle>
+            <Typography variant="h6" textAlign="center" color="gray" >
+            PREVIOUS TRANSACTONS 
+          </Typography>
+            </DialogTitle>
           </>:
-          <DialogTitle>PREVIOUS {numberOfTransaction} TRANSACTONS MADE</DialogTitle>
+          <DialogTitle>
+           <Typography variant="h6" textAlign="center" color="gray" >
+           PREVIOUS {numberOfTransaction} TRANSACTONS
+          </Typography> 
+          </DialogTitle>
          } 
           <Box component="div" sx={{ display: "inline" }}>
             <Box>

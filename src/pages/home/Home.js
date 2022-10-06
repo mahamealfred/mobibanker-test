@@ -16,7 +16,7 @@ import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { mainListItems, secondaryListItems} from './listItem';
-
+import Tooltip from "@mui/material/Tooltip";
 import Widget from '../../components/widget/Widget';
 import NativeSelect from '@mui/material/NativeSelect';
 import FormControl from '@mui/material/FormControl';
@@ -128,9 +128,9 @@ function DashboardContent() {
 
   return (
     <ThemeProvider theme={mdTheme}>
-      <Box sx={{ display: 'flex' ,height:"80vh"}}>
+      <Box sx={{ display: 'flex' ,height:"auto"}}>
         {/* <CssBaseline /> */}
-        <AppBar position="absolute" open={open} elevation={0} sx={{ backgroundColor: 'white', display: 'flex' }} >
+        <AppBar position="fixed" open={open} elevation={0} sx={{ backgroundColor: 'white', display: 'flex',borderRadius:2 }} >
           <Toolbar
             sx={{
               pr: '24px',
@@ -181,18 +181,23 @@ function DashboardContent() {
               src="../../Assets/images/mobibk.png"
             />
   <Box sx={{ display: { xs: 'flex', md: 'flex' },padding:2}}>
-            <IconButton onClick={handleLogout} size="large" aria-label="show 4 new mails"  sx={{color:"#F9842C"}} >
+         <Tooltip title="Logout" sx={{ mt: 1 }}>
+       <IconButton   onClick={handleLogout} size="large" aria-label="show 4 new mails"  sx={{color:"#F9842C"}} >
               <LogoutIcon  sx={{color:"#F9842C"}} />
             </IconButton>
-            <IconButton
+         </Tooltip>
+         <Tooltip title="Notifications" sx={{ mt: 1 }}>
+         <IconButton
               size="large"
               aria-label="show 3 new notifications"
               sx={{color:"#F9842C"}} 
             >
               <Badge badgeContent={3} color="warning">
-                <NotificationsIcon />
+                <NotificationsIcon title="Notifications" />
               </Badge>
             </IconButton>
+          </Tooltip>
+            
          
           </Box>
 
@@ -253,11 +258,11 @@ function DashboardContent() {
           </Toolbar>
           <Divider />
           <List component="nav" >
-            {mainListItems}
-            {/* <ListItems/> */}
+            {/* {mainListItems} */}
+            <ListItems open={open}/>
           
-            <Divider sx={{ my: 1 }} />
-            {secondaryListItems}
+            {/* <Divider sx={{ my: 1 }} /> */}
+            {/* {secondaryListItems} */}
           </List>
           <AppDrawer />
         </Drawer>
@@ -266,8 +271,8 @@ function DashboardContent() {
           sx={{
             backgroundColor: "white",
             flexGrow: 0,
-            height: 'auto',
-            overflow: 'auto',
+            height: '100%',
+            overflow: 'hidden'
           }}
         >
           <Toolbar />

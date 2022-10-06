@@ -22,7 +22,7 @@ import {
     Typography,
   } from '@mui/material';
   import MuiDrawer from '@mui/material/Drawer';
-  import { useMemo, useState } from 'react';
+  import { useMemo, useState,useEffect } from 'react';
   import { Route, Switch } from 'react-router-dom';
   import LogoutIcon from '@mui/icons-material/Logout';
 import LanguageIcon from '@mui/icons-material/Language';
@@ -30,6 +30,15 @@ import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 import { Person } from '@mui/icons-material';
 import Transactions from '../transactions/Transactions';
+import { useHistory } from 'react-router-dom';
+import jwt from "jsonwebtoken";
+import Changepassword from '../changepassword/Changepassword';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import CloseIcon from '@mui/icons-material/Close';
+import Dialog from '@mui/material/Dialog';
+
 //   import { useValue } from '../../context/ContextProvider';
 //   import Main from './main/Main';
 //   import Messages from './messages/Messages';
@@ -91,9 +100,12 @@ import Transactions from '../transactions/Transactions';
     //   state: { currentUser },
     //   dispatch,
     // } = useValue();
-  
+   const history =useHistory();
     const [selectedLink, setSelectedLink] = useState('');
-  
+    const [openChangepassword,setOpenChangepassword]=useState(false)
+    const handleClose=()=>{
+      setOpenChangepassword(false)
+    }
     const list = useMemo(
       () => [
         {
@@ -107,25 +119,67 @@ import Transactions from '../transactions/Transactions';
           icon: <Person />,
           link: 'users',
           component: <Transactions {...{ setSelectedLink, link: 'users' }} />,
-        },
-        {
-          title: 'Change password',
-          icon: <ChangeCircleIcon  />,
-          link: 'rooms',
-          component: <Transactions {...{ setSelectedLink, link: 'rooms' }} />,
         }
       ],
       []
     );
   
-    // const navigate = useNavigate();
+    const decode= (token) => {
+      const JWT_SECRET="tokensecret";
+      const payload = jwt.verify(token, JWT_SECRET);
+       return payload;
+    }
+    useEffect(() => {
+      const token =localStorage.getItem('mobicashAuth');
+      if (token) {
+      const {name}=decode(token);
+     
+    }
+   
+    }, []);
   
     const handleLogout = () => {
-    //   dispatch({ type: 'UPDATE_USER', payload: null });
-    //   navigate('/');
+      localStorage.removeItem('mobicashAuth');
+      sessionStorage.removeItem('mobicash-auth')
+     return history.push('/display',{push:true})
     };
     return (
       <>
+
+<Dialog
+        open={openChangepassword}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        
+      >
+        <DialogTitle id="alert-dialog-title">
+          <Typography variant="h6" color="gray" >
+         Change password
+          </Typography>
+          <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+      <Changepassword/>
+          </DialogContentText>
+        </DialogContent>
+      </Dialog>
+
+
+
+      {/* ------------------------------------ */}
           <List>
           {list.map((item) => (
             <ListItem key={item.title} disablePadding sx={{ display: 'block' }}>
@@ -135,7 +189,7 @@ import Transactions from '../transactions/Transactions';
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
-                // onClick={() => navigate(item.link)}
+                 onClick={() => history.push(item.link,{push:true})}
                 selected={selectedLink === item.link}
               >
                 <ListItemIcon
@@ -143,7 +197,9 @@ import Transactions from '../transactions/Transactions';
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
+                    color:"#F9842C"
                   }}
+                 
                 >
                   {item.icon}
                 </ListItemIcon>
@@ -154,30 +210,86 @@ import Transactions from '../transactions/Transactions';
               </ListItemButton>
             </ListItem>
           ))}
+         <ListItem  disablePadding sx={{ display: 'block' }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+                 onClick={()=>setOpenChangepassword(true)}
+                // selected={selectedLink === item.link}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                    color:"#F9842C"
+                  }}
+                 
+                >
+                  <ChangeCircleIcon/>
+                </ListItemIcon>
+                <ListItemText
+                  primary="Change password"
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </ListItem>
         </List>
         <Divider />
+        <List>
+        <ListItem  disablePadding sx={{ display:{xs:"flex",sm:"none",md:"none"}}}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+                 onClick={()=>setOpenChangepassword(true)}
+                // selected={selectedLink === item.link}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                    color:"#F9842C"
+                  }}
+                 
+                >
+                  <LanguageIcon />
+                </ListItemIcon>
+                <ListItemText
+                  primary="Change language"
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </ListItem>
+        </List>
         {/* <Box sx={{ mx: 'auto', mt: 3, mb: 1 }}>
-          <Tooltip title={currentUser?.name || ''}>
+          <Tooltip title={"name" || ''}>
             <Avatar
-              src={currentUser?.photoURL}
+              src=""
               {...(open && { sx: { width: 100, height: 100 } })}
             />
           </Tooltip>
-        </Box>
+        </Box> */}
         <Box sx={{ textAlign: 'center' }}>
-          {open && <Typography>{currentUser?.name}</Typography>}
-          <Typography variant="body2">{currentUser?.role || 'role'}</Typography>
+          {/* {open && <Typography>Mahame</Typography>}
+          <Typography variant="body2">Agent</Typography>
           {open && (
-            <Typography variant="body2">{currentUser?.email}</Typography>
-          )}
-          <Tooltip title="Logout" sx={{ mt: 1 }}>
+            <Typography variant="body2">mahame@gmail.com</Typography>
+          )} */}
+          <Tooltip title="Logout"  sx={{ mt: 1 ,color:"#F9842C",display:{xs:"flex",sm:"none",md:"none"}}}>
             <IconButton onClick={handleLogout}>
               <Logout />
             </IconButton>
           </Tooltip>
-        </Box> */}
+        </Box>
       {/* </Drawer> */}
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3}}>
         <DrawerHeader />
         <Switch>
           {list.map((item) => (

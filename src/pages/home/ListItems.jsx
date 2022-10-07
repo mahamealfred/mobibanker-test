@@ -106,23 +106,23 @@ import Dialog from '@mui/material/Dialog';
     const handleClose=()=>{
       setOpenChangepassword(false)
     }
-    const list = useMemo(
-      () => [
-        {
-          title: 'My account',
-          icon: <Dashboard />,
-          link: '',
-          component: <Transactions {...{ setSelectedLink, link: '' }} />,
-        },
-        {
-          title: 'My profile',
-          icon: <Person />,
-          link: 'users',
-          component: <Transactions {...{ setSelectedLink, link: 'users' }} />,
-        }
-      ],
-      []
-    );
+    // const list = useMemo(
+    //   () => [
+    //     {
+    //       title: 'My Account',
+    //       icon: <Dashboard />,
+    //       link: '/',
+    //       component: <Transactions {...{ setSelectedLink, link: '' }} />,
+    //     },
+    //     {
+    //       title: 'My Profile',
+    //       icon: <Person />,
+    //       link: 'users',
+    //       component: <Transactions {...{ setSelectedLink, link: 'users' }} />,
+    //     }
+    //   ],
+    //   []
+    // );
   
     const decode= (token) => {
       const JWT_SECRET="tokensecret";
@@ -155,7 +155,7 @@ import Dialog from '@mui/material/Dialog';
       >
         <DialogTitle id="alert-dialog-title">
           <Typography variant="h6" color="gray" >
-         Change password
+         Change Password
           </Typography>
           <IconButton
           aria-label="close"
@@ -181,7 +181,7 @@ import Dialog from '@mui/material/Dialog';
 
       {/* ------------------------------------ */}
           <List>
-          {list.map((item) => (
+          {/* {list.map((item) => (
             <ListItem key={item.title} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
@@ -209,7 +209,61 @@ import Dialog from '@mui/material/Dialog';
                 />
               </ListItemButton>
             </ListItem>
-          ))}
+          ))} */}
+           <ListItem  disablePadding sx={{ display: 'block' }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+                 onClick={()=>setOpenChangepassword(true)}
+                // selected={selectedLink === item.link}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                    color:"#F9842C"
+                  }}
+                 
+                >
+                  <Dashboard/>
+                </ListItemIcon>
+                <ListItemText
+                  primary="My Account"
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </ListItem>
+            <ListItem  disablePadding sx={{ display: 'block' }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+                 onClick={()=>setOpenChangepassword(true)}
+                // selected={selectedLink === item.link}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                    color:"#F9842C"
+                  }}
+                 
+                >
+                  <Person/>
+                </ListItemIcon>
+                <ListItemText
+                  primary="My Profile"
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </ListItem>
          <ListItem  disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
@@ -232,7 +286,7 @@ import Dialog from '@mui/material/Dialog';
                   <ChangeCircleIcon/>
                 </ListItemIcon>
                 <ListItemText
-                  primary="Change password"
+                  primary="Change Password"
                   sx={{ opacity: open ? 1 : 0 }}
                 />
               </ListItemButton>
@@ -262,7 +316,7 @@ import Dialog from '@mui/material/Dialog';
                   <LanguageIcon />
                 </ListItemIcon>
                 <ListItemText
-                  primary="Change language"
+                  primary="Change Language"
                   sx={{ opacity: open ? 1 : 0 }}
                 />
               </ListItemButton>
@@ -292,9 +346,9 @@ import Dialog from '@mui/material/Dialog';
       <Box component="main" sx={{ flexGrow: 1, p: 3}}>
         <DrawerHeader />
         <Switch>
-          {list.map((item) => (
+          {/* {list.map((item) => (
             <Route key={item.title} path={item.link} element={item.component} />
-          ))}
+          ))} */}
         </Switch>
       </Box>
       </>

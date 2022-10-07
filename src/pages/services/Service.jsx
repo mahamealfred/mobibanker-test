@@ -345,6 +345,7 @@ export default function MediaCard() {
         maxWidth="lg"
       >
         <DialogTitle id="alert-dialog-title"
+               style={{ overflow: "hidden" }}
         sx={{
           "& .MuiDialog-container": {
             "& .MuiPaper-root": {
@@ -367,6 +368,7 @@ export default function MediaCard() {
             top: 8,
             color: (theme) => theme.palette.grey[500],
           }}
+   
         >
           <CloseIcon />
         </IconButton>

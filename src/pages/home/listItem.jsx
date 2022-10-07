@@ -46,7 +46,7 @@ export const mainListItems = (
       <ListItemIcon>
         <ChangeCircleIcon sx={{color:"#F9842C"}} />
       </ListItemIcon>
-      <ListItemText primary="Change Password" />
+      <ListItemText primary="Change PIN" />
     </ListItemButton>
     <ListItemButton sx={{display:{xs:"flex",sm:"none",md:"none",lg:"none"}}}>
       <ListItemIcon>

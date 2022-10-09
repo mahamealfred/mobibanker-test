@@ -217,7 +217,7 @@ import Dialog from '@mui/material/Dialog';
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
-                 onClick={()=>setOpenChangepassword(true)}
+                //  onClick={()=>setOpenChangepassword(true)}
                 // selected={selectedLink === item.link}
               >
                 <ListItemIcon
@@ -244,7 +244,7 @@ import Dialog from '@mui/material/Dialog';
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
-                 onClick={()=>setOpenChangepassword(true)}
+                //  onClick={()=>setOpenChangepassword(true)}
                 // selected={selectedLink === item.link}
               >
                 <ListItemIcon

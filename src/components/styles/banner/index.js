@@ -7,7 +7,7 @@ export const BannerContainer = styled(Box)(({ matches, theme }) => ({
   justifyContent: "center",
   width: "100%",
   height: "100%",
-  padding: "0px 0px",
+  padding: "0px 0px 0px 0px",
   background: "white",
   // background: Colors.light_gray,
   [theme.breakpoints.down("sm")]: {
@@ -23,8 +23,8 @@ export const BannerContent = styled(Box)(() => ({
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
-  maxWidth: 420,
-  padding: "50px 30px",
+  maxWidth: "100%",
+  padding: "60px 30px",
 }));
 
 export const BannerImage = styled("img")(({ src, theme }) => ({

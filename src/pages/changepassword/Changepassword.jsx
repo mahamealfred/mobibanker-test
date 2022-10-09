@@ -11,32 +11,66 @@ import {
   TextField,
 } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
+import Alert from '@mui/material/Alert';
+import Collapse from '@mui/material/Collapse';
+import CloseIcon from '@mui/icons-material/Close';
 // import { login, register } from '../../actions/user';
 // import { useValue } from '../../context/ContextProvider';
 // import GoogleOneTapLogin from './GoogleOneTapLogin';
  import PasswordField from './PasswordField';
+ import { changePasswordAction } from '../../redux/actions/changePasswordAction';
+ import { useDispatch,useSelector } from 'react-redux';
+ import { useHistory } from 'react-router-dom';
 const Changepassword = () => {
     const [title, setTitle] = useState('Login');
+    const history=useHistory()
   const [isRegister, setIsRegister] = useState(false);
+  const [errorMessage,setErrMessage]=useState("");
+  const [open, setOpen] = React.useState(false);
+  const [openError, setOpenError] = React.useState(false);
   const nameRef = useRef();
   const emailRef = useRef();
+  const oldPasswordRef=useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
+  const dispatch=useDispatch();
+  const changePassword=useSelector((state)=>state.changePassword)
 
   const handleClose = () => {
-    //     dispatch({ type: 'CLOSE_LOGIN' });
-    //   };
+    changePassword.error=['']
+setOpen(false)
+setOpenError(false)
   }
-      const handleSubmit = (e) => {
+      const handleSubmit = async(e) => {
         e.preventDefault();
-      
-        const name = nameRef.current.value;
+        const oldPassword = oldPasswordRef.current.value;
         const password = passwordRef.current.value;
         const confirmPassword = confirmPasswordRef.current.value;
         if (password !== confirmPassword){
- console.log("password...:")
+          setErrMessage("Password dont not macth")
+        }else{
+          setErrMessage("")
+         
+          await dispatch(changePasswordAction({oldPassword,password,confirmPassword},history))
         }
+        if(errorMessage){
+        setOpen(true)
+        }
+        if(changePassword.error){
+          setOpenError(true)
+                  }
       };
+//       useEffect(()=>{
+//    function fecthData(){
+// if(changePassword.error==''){
+//   setOpenError(false)
+// }
+// if(errorMessage==''){
+//   setOpen(false)
+// }
+//    }
+//    fecthData()
+//       },[changePassword.error])
     
   return (
    <React.Fragment>
@@ -45,7 +79,48 @@ const Changepassword = () => {
           <DialogContentText>
             Please fill your information in the fields below:
           </DialogContentText>
-    
+          {
+                  !changePassword.error? null:
+                   <Collapse in={openError}>
+                   <Alert
+                   severity="error"
+                     action={
+                       <IconButton
+                         aria-label="close"
+                         color="inherit"
+                         size="small"
+                         onClick={handleClose}
+                       >
+                         <CloseIcon fontSize="inherit" />
+                       </IconButton>
+                     }
+                     sx={{ mb: 0.2 }}
+                   >
+                    {changePassword.error}
+                   </Alert>
+                 </Collapse>
+                }    
+                 {
+                  !errorMessage? null:
+                   <Collapse in={open}>
+                   <Alert
+                   severity="error"
+                     action={
+                       <IconButton
+                         aria-label="close"
+                         color="inherit"
+                         size="small"
+                         onClick={handleClose}
+                       >
+                         <CloseIcon fontSize="inherit" />
+                       </IconButton>
+                     }
+                     sx={{ mb: 0.2 }}
+                   >
+                    {errorMessage}
+                   </Alert>
+                 </Collapse>
+                }    
             <TextField
               autoFocus
               margin="normal"
@@ -54,7 +129,7 @@ const Changepassword = () => {
               label="Old Password"
               type="text"
               fullWidth
-              inputRef={nameRef}
+              inputRef={oldPasswordRef}
               inputProps={{ minLength: 2 }}
               required
             />
@@ -65,6 +140,7 @@ const Changepassword = () => {
               passwordRef={confirmPasswordRef}
               id="confirmPassword"
               label="Confirm Password"
+            
             />
          
         </DialogContent>

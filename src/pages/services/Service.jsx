@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Grid, CardHeader } from '@mui/material';
+import { Grid, CardHeader, Divider } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -203,22 +203,7 @@ export default function MediaCard() {
           <Typography variant="h6" color="gray" >
           MobiCash
           </Typography>
-          {/* <Box
-        component="img"
-        sx={{
-          height: 50,
-          width: 180,
-          marginLeft:8,
-          position: 'absolute',
-            right: 50,
-            top: 8,
-          maxHeight: { xs: 40, md: 50 },
-          maxWidth: { xs: 80, md: 180 },
-       
-        }}
-        alt="mobicash logo"
-        src="../../Assets/images/logo.png"
-      /> */}
+          
           <IconButton
           aria-label="close"
           onClick={handleClose}
@@ -247,27 +232,10 @@ export default function MediaCard() {
        
       >
         <DialogTitle id="alert-dialog-title">
-        
-         
           <Typography variant="h6" color="gray" >
           MobiCash
           </Typography>
-          {/* <Box
-        component="img"
-        sx={{
-          height: 50,
-          width: 180,
-          marginLeft:8,
-          position: 'absolute',
-            right: 50,
-            top: 8,
-          maxHeight: { xs: 40, md: 50 },
-          maxWidth: { xs: 80, md: 180 },
-       
-        }}
-        alt="mobicash logo"
-        src="../../Assets/images/logo.png"
-      /> */}
+        
           <IconButton
           aria-label="close"
           onClick={handleClose}
@@ -300,22 +268,7 @@ export default function MediaCard() {
           <Typography variant="h6" color="gray" >
           MobiCash
           </Typography>
-          {/* <Box
-        component="img"
-        sx={{
-          height: 50,
-          width: 180,
-          marginLeft:8,
-          position: 'absolute',
-            right: 50,
-            top: 8,
-          maxHeight: { xs: 40, md: 50 },
-          maxWidth: { xs: 80, md: 180 },
        
-        }}
-        alt="mobicash logo"
-        src="../../Assets/images/logo.png"
-      /> */}
           <IconButton
           aria-label="close"
           onClick={handleClose}
@@ -392,22 +345,7 @@ export default function MediaCard() {
           <Typography variant="h6" color="gray" >
           MobiCash
           </Typography>
-          {/* <Box
-        component="img"
-        sx={{
-          height: 50,
-          width: 180,
-          marginLeft:8,
-          position: 'absolute',
-            right: 50,
-            top: 8,
-          maxHeight: { xs: 40, md: 50 },
-          maxWidth: { xs: 80, md: 180 },
-       
-        }}
-        alt="mobicash logo"
-        src="../../Assets/images/logo.png"
-      /> */}
+        
           <IconButton
           aria-label="close"
           onClick={handleClose}
@@ -428,6 +366,7 @@ export default function MediaCard() {
         </DialogContent>
       </Dialog>
       
+      
       <Grid
             container
             spacing={0}
@@ -442,12 +381,22 @@ export default function MediaCard() {
          color="gray"
          textAlign="center"
          padding="0 25px 30px 2px"
-        
          sx={{ fontSize: { xs: 20 } }}
          >
          {t("common:agencyservices")}
         </Typography>
+     
+        
+        
             <Grid >
+            <Typography component="h1" variant="h5"
+         fontWeight={800}
+         color="gray"
+         textAlign="center"
+         sx={{ fontSize: { xs: 20 } }}
+         >
+      Government services
+        </Typography>
             <Button
             onClick={handleClickOpenRRA}
             >
@@ -455,7 +404,7 @@ export default function MediaCard() {
                 raised
                 sx={{
                     // maxWidth: 100,
-                    width:{xs:60,sm:70,md:60,lg:80},
+                    width:{xs:60,sm:70,md:60,lg:60},
                     height:{xs:60,sm:60,md:60,lg:60},
                     borderRadius:5,
                     margin: "0 auto 5px",
@@ -491,7 +440,7 @@ export default function MediaCard() {
                 raised
                 sx={{
                    // maxWidth: 100,
-                   width:{xs:60,sm:70,md:60,lg:80},
+                   width:{xs:60,sm:70,md:60,lg:60},
                     height:{xs:60,sm:60,md:60,lg:60},
                     borderRadius:5,
                     margin: "0 auto 5px",
@@ -523,7 +472,7 @@ export default function MediaCard() {
                 raised
                 sx={{
                    // maxWidth: 100,
-                   width:{xs:60,sm:70,md:60,lg:80},
+                   width:{xs:60,sm:70,md:60,lg:60},
                     height:{xs:60,sm:60,md:60,lg:60},
                     borderRadius:5,
                     margin: "0 auto 5px",
@@ -549,44 +498,13 @@ export default function MediaCard() {
             </Card>  
             </Button>
             <Button
-            >
-            <Card
-                raised
-                sx={{
-                   // maxWidth: 100,
-                   width:{xs:60,sm:70,md:60,lg:80},
-                   height:{xs:60,sm:60,md:60,lg:60},
-                   borderRadius:5,
-                    margin: "0 auto 5px",
-                    padding: "0.9em",
-                }}
-            >
-                <CardMedia
-                    component="img"
-                    height="60"
-                    image="../../Assets/images/electricity.png"
-                    alt="alt"
-                    title="i"
-                    sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
-                    height:{xs:40,sm:40,md:40,lg:40}}}
-                />
-           <Typography variant="h6" gutterBottom
-                sx={{ padding: "0em 0em 0 0em",color:"gray",
-                fontSize:14
-             }}
-           >
-           ELECTRICITY
-          </Typography>
-            </Card>  
-            </Button>
-            <Button
             onClick={handleClickOpenLTSS}
             >
             <Card
                 raised
                 sx={{
                    // maxWidth: 100,
-                   width:{xs:60,sm:70,md:60,lg:80},
+                   width:{xs:60,sm:70,md:60,lg:60},
                    height:{xs:60,sm:60,md:60,lg:60},
                    borderRadius:5,
                     margin: "0 auto 5px",
@@ -611,70 +529,9 @@ export default function MediaCard() {
           </Typography>
             </Card>  
             </Button>
-            <Button
-            onClick={handleOpenAIRTEL}
-            >
-            <Card
-                raised
-                sx={{
-                    //maxWidth: 100,
-                    width:{xs:60,sm:70,md:60,lg:80},
-                    height:{xs:60,sm:60,md:60,lg:60},
-                    borderRadius:5,
-                    margin: "0 auto 5px",
-                    padding: "0.9em",
-                }}
-            >
-                <CardMedia
-                    component="img"
-                    height="60"
-                    image="../../Assets/images/airtel.png"
-                    alt="alt"
-                    title="i"
-                    sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
-                    height:{xs:40,sm:40,md:40,lg:40}}}
-                />
-           <Typography variant="h6" gutterBottom
-                sx={{ padding: "0em 0em 0 0em",color:"gray",
-                fontSize:14
-             }}
-           >
-            AIRTEL
-          </Typography>
-            </Card>  
-            </Button>
-            <Button
-            onClick={handleOpenMTN}
-            >
-            <Card
-                raised
-                sx={{
-                    //maxWidth: 100,
-                    width:{xs:60,sm:70,md:60,lg:80},
-                    height:{xs:60,sm:60,md:60,lg:60},
-                    borderRadius:5,
-                    margin: "0 auto 5px",
-                    padding: "0.9em",
-                }}
-            >
-                <CardMedia
-                    component="img"
-                    height="60"
-                    image="../../Assets/images/mtn1.png"
-                    alt="alt"
-                    title="i"
-                    sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
-                    height:{xs:40,sm:40,md:40,lg:40}}}
-                />
-           <Typography variant="h6" gutterBottom
-                sx={{ padding: "0em 0em 0 0em",color:"gray",
-                fontSize:14
-             }}
-           >
-            MTN
-          </Typography>
-            </Card>  
-            </Button>
+          
+           
+{/*            
             <Button
             onClick={handleClickOpenLOGS}
             >
@@ -706,8 +563,147 @@ export default function MediaCard() {
           LOGS
           </Typography>
             </Card>  
+            </Button> */}
+               <Divider variant="middle" />
+            <Typography component="h1" variant="h5"
+         fontWeight={800}
+         color="gray"
+         textAlign="center"
+      
+        
+         sx={{ fontSize: { xs: 20 } }}
+         >
+      Airtime
+        </Typography>
+        <Button
+            onClick={handleOpenAIRTEL}
+            >
+            <Card
+                raised
+                sx={{
+                    //maxWidth: 100,
+                    width:{xs:60,sm:70,md:60,lg:60},
+                    height:{xs:60,sm:60,md:60,lg:60},
+                    borderRadius:5,
+                    margin: "0 auto 5px",
+                    padding: "0.9em",
+                }}
+            >
+                <CardMedia
+                    component="img"
+                    height="60"
+                    image="../../Assets/images/airtel.png"
+                    alt="alt"
+                    title="i"
+                    sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
+                    height:{xs:40,sm:40,md:40,lg:40}}}
+                />
+           <Typography variant="h6" gutterBottom
+                sx={{ padding: "0em 0em 0 0em",color:"gray",
+                fontSize:14
+             }}
+           >
+            AIRTEL
+          </Typography>
+            </Card>  
             </Button>
+            <Button
+            onClick={handleOpenMTN}
+            >
+            <Card
+                raised
+                sx={{
+                    //maxWidth: 100,
+                    width:{xs:60,sm:70,md:60,lg:60},
+                    height:{xs:60,sm:60,md:60,lg:60},
+                    borderRadius:5,
+                    margin: "0 auto 5px",
+                    padding: "0.9em",
+                }}
+            >
+                <CardMedia
+                    component="img"
+                    height="60"
+                    image="../../Assets/images/mtn1.png"
+                    alt="alt"
+                    title="i"
+                    sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
+                    height:{xs:40,sm:40,md:40,lg:40}}}
+                />
+           <Typography variant="h6" gutterBottom
+                sx={{ padding: "0em 0em 0 0em",color:"gray",
+                fontSize:14
+             }}
+           >
+            MTN
+          </Typography>
+            </Card>  
+            </Button>
+        <Typography component="h1" variant="h5"
+         fontWeight={800}
+         color="gray"
+         textAlign="center"
+      
+        
+         sx={{ fontSize: { xs: 20 } }}
+         >
+             <Divider variant="middle" />
+      Utilities
+        </Typography>
+        <Button
+            >
+            <Card
+                raised
+                sx={{
+                   // maxWidth: 100,
+                   width:{xs:60,sm:70,md:60,lg:60},
+                   height:{xs:60,sm:60,md:60,lg:60},
+                   borderRadius:5,
+                    margin: "0 auto 5px",
+                    padding: "0.9em",
+                }}
+            >
+                <CardMedia
+                    component="img"
+                    height="60"
+                    image="../../Assets/images/electricity.png"
+                    alt="alt"
+                    title="i"
+                    sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
+                    height:{xs:40,sm:40,md:40,lg:40}}}
+                />
+           <Typography variant="h6" gutterBottom
+                sx={{ padding: "0em 0em 0 0em",color:"gray",
+                fontSize:12
+             }}
+           >
+           ELECTRICITY
+          </Typography>
+            </Card>  
+            </Button>
+            <Divider variant="middle" />
+        <Typography component="h1" variant="h5"
+         fontWeight={800}
+         color="gray"
+         textAlign="center"
+      
+        
+         sx={{ fontSize: { xs: 20 } }}
+         >
+      Agency banking
+        </Typography>
+        <Typography component="h1" variant="h5"
+         fontWeight={800}
+         color="gray"
+         textAlign="center"
+      
+        
+         sx={{ fontSize: { xs: 20 } }}
+         >
+      {/* School services */}
+        </Typography>
       </Grid>
+
       </Grid>
         </React.Fragment>
     );

@@ -111,7 +111,7 @@ const SignIn = () => {
           <Box
             sx={{
               my: 12,
-              mx: 10,
+              mx: 4,
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',

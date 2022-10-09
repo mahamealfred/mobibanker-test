@@ -276,6 +276,7 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
+          <Box>
           <Box sx={{ width: '100%', maxWidth: 560, bgcolor: 'transparent',alignItems:"center", marginTop:"35px", height: 'auto'}}>
             <Box sx={{ my: 1, mx: 2 }}>
               <Grid container alignItems="center">
@@ -292,28 +293,31 @@ function DashboardContent() {
             </Box>
             <Divider variant="middle" />
           </Box>
-          <Container maxWidth="auto" sx={{ mt: 1, mb: 2 }}>
+        </Box>
+        <Box>
+        <Container maxWidth="fullWidth" sx={{ mt:1, mb: 2,display:"flex" ,backgroundColor: 'white' }}>
             <Grid container component="main" sx={{ height: 'auto', backgroundColor: 'transparent' }}>
-
               <Grid item xs={12} sm={6} md={5} component={Paper} elevation={0} square
                 sx={{
                   backgroundRepeat: 'no-repeat',
-                  backgroundColor: 'transparent',
+                  backgroundColor: 'white',
                 }}
               >
                 <Box
                   sx={{
                     my: 2,
-                    mx: 2,
+                    mx: 0,
                     display: 'flex',
                     flexDirection: 'row',
                     alignItems: 'center',
-
+                    width:"auto"
                   }}
+                
                 >
                   <Service />
                 </Box>
               </Grid>
+             
               <Grid
                 item
                 // xs={false}
@@ -322,7 +326,7 @@ function DashboardContent() {
                 md={7}
                 sx={{
                   backgroundRepeat: 'no-repeat',
-                  backgroundColor: 'transparent',
+                  backgroundColor: 'white',
                 }}
               >
                 <Widget/>
@@ -330,6 +334,8 @@ function DashboardContent() {
             </Grid>
           </Container>
         </Box>
+          </Box>
+         
       </Box>
       <BottomNav />
       <MobicashSolutions/>

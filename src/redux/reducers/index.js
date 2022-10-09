@@ -5,7 +5,7 @@ import { combineReducers } from "redux";
    //CBHI
 import getCbhiNidDetailsReducer from "./getCbhiNidDetailsReducer";
 import cbhiPayamentReducer from "./cbhiPaymentReducer";
-// import changePinReducer from "./changePinReducer";
+import changePasswordReducer from "./changePasswordReducer";
 // import forgotPasswordReducer from "./forgotPasswordReducer";
 
 
@@ -26,7 +26,7 @@ import getRnitDetailsReducer from "./getRnitIdentificationDetailsReducer";
 //import clientEnrollmentReducer from "./clientEnrollmentReducer";
 const allReducers = combineReducers({
      login:loginReducer,
-    // changePin: changePinReducer,
+     changePassword: changePasswordReducer,
     // forgotPassword:forgotPasswordReducer,
 
     //all 

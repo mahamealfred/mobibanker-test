@@ -60,7 +60,7 @@ const Widget = () => {
     <Box
       sx={{
         my: 1,
-        mx: 1,
+        mx: {xs:1,sm:2,md:12},
         height:"auto",
         display: 'flex',
         flexDirection: 'column',
@@ -126,7 +126,7 @@ const Widget = () => {
             sx={{ padding: '0 10px' }}
           >
             {/* <Avatar alt="Agent Support" src="" /> */}
-            <img src="../../Assets/images/support.png" alt="logo" height="90" width="100" margin="50px" />
+            <img src="../../Assets/images/support.png" alt="logo" height="110" width="100" margin="50px" />
           </ListItemAvatar>
 
           <ListItemText

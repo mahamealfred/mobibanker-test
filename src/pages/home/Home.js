@@ -49,6 +49,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 import ListItems from './ListItems';
+import Slider from '../../components/slider/Slider';
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -337,8 +338,9 @@ function DashboardContent() {
           </Box>
          
       </Box>
-      <BottomNav />
-      <MobicashSolutions/>
+      {/* <BottomNav /> */}
+      <Slider/>
+      {/* <MobicashSolutions/> */}
       <Headerbanner/>
       <Footer />
     </ThemeProvider>

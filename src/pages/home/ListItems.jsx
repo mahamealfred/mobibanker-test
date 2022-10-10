@@ -103,8 +103,10 @@ import Dialog from '@mui/material/Dialog';
    const history =useHistory();
     const [selectedLink, setSelectedLink] = useState('');
     const [openChangepassword,setOpenChangepassword]=useState(false)
+    const [openPrivousTransactions,setOpenPrivousTransactions]=useState(false)
     const handleClose=()=>{
       setOpenChangepassword(false)
+      setOpenPrivousTransactions(false)
     }
     // const list = useMemo(
     //   () => [
@@ -176,7 +178,49 @@ import Dialog from '@mui/material/Dialog';
           </DialogContentText>
         </DialogContent>
       </Dialog>
-
+      <Dialog
+        open={openPrivousTransactions}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        fullWidth="100%"
+        maxWidth="lg"
+      >
+        <DialogTitle id="alert-dialog-title"
+               style={{ overflow: "hidden" }}
+        sx={{
+          "& .MuiDialog-container": {
+            "& .MuiPaper-root": {
+              width: "100%",
+              maxWidth: "500px", 
+            },
+          },
+        }}
+        >
+          <Typography variant="h6" color="gray" >
+          MobiCash
+          </Typography>
+         
+          <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+   
+        >
+          <CloseIcon />
+        </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+       <Transactions/>
+          </DialogContentText>
+        </DialogContent>
+      </Dialog>
 
 
       {/* ------------------------------------ */}
@@ -271,6 +315,33 @@ import Dialog from '@mui/material/Dialog';
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
+                onClick={()=>setOpenPrivousTransactions(true)}
+                // selected={selectedLink === item.link}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                    color:"#F9842C"
+                  }}
+                 
+                >
+                  <ChangeCircleIcon/>
+                </ListItemIcon>
+                <ListItemText
+                  primary="Privous Transactions"
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </ListItem>
+            <ListItem  disablePadding sx={{ display: 'block' }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
                  onClick={()=>setOpenChangepassword(true)}
                 // selected={selectedLink === item.link}
               >
@@ -301,7 +372,7 @@ import Dialog from '@mui/material/Dialog';
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
-                 onClick={()=>setOpenChangepassword(true)}
+                // onClick={()=>setOpenPrivousTransactions(true)}
                 // selected={selectedLink === item.link}
               >
                 <ListItemIcon

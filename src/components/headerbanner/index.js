@@ -58,7 +58,13 @@ function FeaturedPost() {
     <React.Fragment>
 
       <Box sx={{ flexGrow: 1 }}>
-        <Grid container alignItems="flex-start" padding={{ xs: 6, md: 10 }} spacing={{ xs: 2, md: 6 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+      <Box display="flex" justifyContent="center" alignItems="center"
+      sx={{padding:"50px"}}
+      >
+      <Typography  variant="h4" fontSize="18" fontWeight="800" >{t("common:solutionsthatnevermisstheaim")}</Typography>
+      </Box>
+        
+        <Grid container alignItems="center" alignContent="center" padding={{ xs: 6, md: 10 }} spacing={{ xs: 2, md: 6 }} columns={{ xs: 4, sm: 8, md: 12 }}>
           <Grid item xs={12} sm={4} md={6} alignItems="center">
             <Grid container justifyContent="center" alignContent="center" >
               <CardActionArea component="a" disabled href="#" >

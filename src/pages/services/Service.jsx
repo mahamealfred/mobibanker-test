@@ -643,8 +643,6 @@ export default function MediaCard() {
          fontWeight={800}
          color="gray"
          textAlign="center"
-      
-        
          sx={{ fontSize: { xs: 20 } }}
          >
              <Divider variant="middle" />
@@ -702,6 +700,39 @@ export default function MediaCard() {
          >
       {/* School services */}
         </Typography>
+        <Button
+            // onClick={handleOpenMTN}
+        
+            >
+            <Card
+                raised
+                sx={{
+                    //maxWidth: 100,
+                    width:{xs:60,sm:70,md:60,lg:60},
+                    height:{xs:60,sm:60,md:60,lg:60},
+                    borderRadius:5,
+                    margin: "0 auto 5px",
+                    padding: "0.9em",
+                }}
+            >
+                <CardMedia
+                    component="img"
+                    height="70"
+                    image="../../Assets/images/topup.png"
+                    alt="alt"
+                    title="i"
+                    sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
+                    height:{xs:40,sm:40,md:40,lg:50}}}
+                />
+           <Typography variant="h6" gutterBottom
+                sx={{ padding: "0em 0em 0 0em",color:"gray",
+                fontSize:8
+             }}
+           >
+            TOpUp Mobile Money
+          </Typography>
+            </Card>  
+            </Button>
       </Grid>
 
       </Grid>

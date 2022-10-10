@@ -19,6 +19,7 @@ import Headerbanner from "../headerbanner"
 import BottomNav from "../bottomNav/BottomNav";
 import MobicashSolution from "../mobicashsolutions"
 import AuthApi from "../../context/api";
+import Slider from "../slider/Slider";
 
 export default function Banner() {
   const theme = useTheme();
@@ -37,7 +38,8 @@ export default function Banner() {
       </BannerContent>
     </BannerContainer>
     {/* <BottomNav/> */}
-    <MobicashSolution />
+    <Slider/>
+    {/* <MobicashSolution /> */}
     <Headerbanner/>
     
     <Footer/>

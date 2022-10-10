@@ -67,12 +67,22 @@ const TopNav = () => {
         alt="mobicash logo"
         src="../../Assets/images/logo.png"
       />
-      
-            <Box
+       <Box
+              component="img"
+              sx={{
+               
+                maxHeight: { xs: 300, md: 300},
+                maxWidth: { xs: 300, md: 300},
+                display: { xs: "block", sm: "none", md: "none" }
+              }}
+              alt="mobicash logo"
+              src="../../Assets/images/mobibk.png"
+            />
+            {/* <Box
           sx={{display:{xs:"block",sm:"none"}}}
         >
         <img src="../../Assets/images/img_144.png" alt="logo" height="40" width="50" margin="50px"/>
-        </Box>
+        </Box> */}
             </MobiLogoImg>
             <Box
         component="img"
@@ -89,25 +99,12 @@ const TopNav = () => {
     
         < MobiBankerImg>
         <Box sx={{ minWidth: 100 }}>
-      {/* <FormControl fullWidth>
-        <InputLabel variant="standard" htmlFor="uncontrolled-native">
-        </InputLabel>
-        <NativeSelect
-          defaultValue={10}
-          inputProps={{
-            name: 'age',
-            id: 'uncontrolled-native',
-          }}
-        >
-          <option value={10}>Kinyarwanda</option>
-          <option value={20}>English</option>
-          <option value={30}>Francais</option>
-        </NativeSelect>
-      </FormControl> */}
+     
       <Box
       sx={{
         ...fullWidthFlex,
         borderTop: '1px solid #ddd',
+        display:{xs:"none",sm:"block"}
       }}
     >
         <Stack>

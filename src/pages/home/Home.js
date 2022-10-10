@@ -162,7 +162,7 @@ function DashboardContent() {
                   marginLeft: 0,
                   maxHeight: { xs: 60, md: 300 },
                   maxWidth: { xs: 150, md: 220 },
-                  display: { xs: "none", sm: "block" }
+                  display: { xs: "none", sm: "none",md:"block"}
                 }}
                 alt="mobicash logo"
                 src="../../Assets/images/logo.png"
@@ -202,7 +202,7 @@ function DashboardContent() {
          
           </Box>
 
-            <Box sx={{ minWidth: 100, display: { xs: "none", sm: "block" } }}>
+            <Box sx={{ minWidth: 100, display: { xs: "none", sm: "none",md:"block" } }}>
                <Box sx={{
         ...fullWidthFlex,
         borderTop: '1px solid #ddd',

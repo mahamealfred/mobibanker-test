@@ -126,7 +126,7 @@ const Widget = () => {
             sx={{ padding: '0 10px' }}
           >
             {/* <Avatar alt="Agent Support" src="" /> */}
-            <img src="../../Assets/images/support.png" alt="logo" height="110" width="100" margin="50px" />
+            <img src="../../Assets/images/support.png" alt="logo" height="120" width="100" margin="50px" />
           </ListItemAvatar>
 
           <ListItemText

@@ -107,7 +107,8 @@ const SignIn = () => {
     return (
       <React.Fragment>
         <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: '80vh', backgroundColor:'primary' }}>
+      <Grid container component="main" sx={{ height: 'auto', backgroundColor:'primary' }}>
+     
           <Box
             sx={{
               my: 12,
@@ -115,9 +116,9 @@ const SignIn = () => {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-             
             }}
           >
+            
             <Typography component="h1" variant="h5"
            
             >

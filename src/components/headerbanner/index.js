@@ -66,17 +66,17 @@ function FeaturedPost() {
         
         <Grid container alignItems="center" alignContent="center" padding={{ xs: 6, md: 10 }} spacing={{ xs: 2, md: 6 }} columns={{ xs: 4, sm: 8, md: 12 }}>
           <Grid item xs={12} sm={4} md={6} alignItems="center">
-            <Grid container justifyContent="center" alignContent="center" >
-              <CardActionArea component="a" disabled href="#" >
+            <Grid container justifyContent="center"  alignItems="center" >
+              <CardActionArea component="a"  disabled href="#" >
                 <Card sx={{ display: 'flex' }}>
                   <CardContent sx={{ flex: 1 }}>
                     <Box
                       component="img"
-                      sx={{ width: 180, }}
+                      sx={{ width: 180,alignContent:"center", alignItems:"center" }}
                       alt="image logo"
                       src="../../Assets/images/mobiswift.png"
                     />
-                    <Typography variant="subtitle1" color="text.secondary">
+                    <Typography variant="subtitle1"  color="text.secondary">
                     {t("common:mobiswifttitle")}
                     </Typography>
                     <Box

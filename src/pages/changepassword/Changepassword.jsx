@@ -21,6 +21,7 @@ import CloseIcon from '@mui/icons-material/Close';
  import { changePasswordAction } from '../../redux/actions/changePasswordAction';
  import { useDispatch,useSelector } from 'react-redux';
  import { useHistory } from 'react-router-dom';
+ import jwt from "jsonwebtoken";
 const Changepassword = () => {
     const [title, setTitle] = useState('Login');
     const history=useHistory()
@@ -28,30 +29,36 @@ const Changepassword = () => {
   const [errorMessage,setErrMessage]=useState("");
   const [open, setOpen] = React.useState(false);
   const [openError, setOpenError] = React.useState(false);
+  const [successFullMessage,setSuccessFullMessage]=useState("")
+  const [openSuccess,setOpenSuccess]=useState(false)
   const nameRef = useRef();
   const emailRef = useRef();
   const oldPasswordRef=useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
+  const [username,setUsername]=useState("")
   const dispatch=useDispatch();
   const changePassword=useSelector((state)=>state.changePassword)
 
   const handleClose = () => {
-    changePassword.error=['']
+    changePassword.error=''
 setOpen(false)
 setOpenError(false)
+setOpenSuccess(false)
+
   }
       const handleSubmit = async(e) => {
         e.preventDefault();
         const oldPassword = oldPasswordRef.current.value;
         const password = passwordRef.current.value;
         const confirmPassword = confirmPasswordRef.current.value;
+        console.log("eror..",oldPassword ,password,confirmPassword)
         if (password !== confirmPassword){
           setErrMessage("Password dont not macth")
+          setOpen(true)
         }else{
           setErrMessage("")
-         
-          await dispatch(changePasswordAction({oldPassword,password,confirmPassword},history))
+          await dispatch(changePasswordAction({oldPassword,password,confirmPassword},username))
         }
         if(errorMessage){
         setOpen(true)
@@ -60,18 +67,44 @@ setOpenError(false)
           setOpenError(true)
                   }
       };
-//       useEffect(()=>{
-//    function fecthData(){
-// if(changePassword.error==''){
-//   setOpenError(false)
-// }
-// if(errorMessage==''){
-//   setOpen(false)
-// }
-//    }
-//    fecthData()
-//       },[changePassword.error])
+      useEffect(()=>{
+   function fecthData(){
+if(changePassword.error){
+  setOpenError(true)
+}
+if(errorMessage==''){
+  setOpen(false)
+}
+   }
+   fecthData()
+      },[!changePassword.error])
+      const decode= (token) => {
+        const JWT_SECRET="tokensecret";
+        const payload = jwt.verify(token, JWT_SECRET);
+         return payload;
+      }
+      useEffect(() => {
+        const token =localStorage.getItem('mobicashAuth');
+        if (token) {
+        const {username}=decode(token);
+        setUsername(username)
+      }
+     
+      },[]);
+      useEffect(()=>{
+        function fecthData(){
+     if(!changePassword.loading){
+      if(changePassword.details.responseCode===200){
+        setSuccessFullMessage("You have successfuly change your password")
+        setOpenSuccess(true)
+      }
+      
+     }
     
+        }
+        fecthData()
+           },[!changePassword.details])
+           
   return (
    <React.Fragment>
      <form onSubmit={handleSubmit}>
@@ -102,7 +135,7 @@ setOpenError(false)
                 }    
                  {
                   !errorMessage? null:
-                   <Collapse in={open}>
+                   <Collapse in={openSuccess}>
                    <Alert
                    severity="error"
                      action={
@@ -121,6 +154,27 @@ setOpenError(false)
                    </Alert>
                  </Collapse>
                 }    
+                  {
+                  !successFullMessage? null:
+                   <Collapse in={open}>
+                   <Alert
+                   severity="success"
+                     action={
+                       <IconButton
+                         aria-label="close"
+                         color="inherit"
+                         size="small"
+                         onClick={handleClose}
+                       >
+                         <CloseIcon fontSize="inherit" />
+                       </IconButton>
+                     }
+                     sx={{ mb: 0.2 }}
+                   >
+                  {successFullMessage}
+                   </Alert>
+                 </Collapse>
+                }   
             <TextField
               autoFocus
               margin="normal"

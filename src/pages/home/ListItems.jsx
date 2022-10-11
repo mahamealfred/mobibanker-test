@@ -38,6 +38,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import CloseIcon from '@mui/icons-material/Close';
 import Dialog from '@mui/material/Dialog';
+import Account from '../myaccount/Account';
 
 //   import { useValue } from '../../context/ContextProvider';
 //   import Main from './main/Main';
@@ -104,9 +105,11 @@ import Dialog from '@mui/material/Dialog';
     const [selectedLink, setSelectedLink] = useState('');
     const [openChangepassword,setOpenChangepassword]=useState(false)
     const [openPrivousTransactions,setOpenPrivousTransactions]=useState(false)
+    const [openMyAccount,setOpenMyAccount]=useState(false)
     const handleClose=()=>{
       setOpenChangepassword(false)
       setOpenPrivousTransactions(false)
+      setOpenMyAccount(false)
     }
     // const list = useMemo(
     //   () => [
@@ -147,7 +150,36 @@ import Dialog from '@mui/material/Dialog';
     };
     return (
       <>
-
+<Dialog
+        open={openMyAccount}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        
+      >
+        <DialogTitle id="alert-dialog-title">
+          <Typography variant="h6" color="gray" >
+         My Account
+          </Typography>
+          <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+      <Account/>
+          </DialogContentText>
+        </DialogContent>
+      </Dialog>
 <Dialog
         open={openChangepassword}
         onClose={handleClose}
@@ -261,7 +293,7 @@ import Dialog from '@mui/material/Dialog';
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
-                //  onClick={()=>setOpenChangepassword(true)}
+               onClick={()=>setOpenMyAccount(true)}
                 // selected={selectedLink === item.link}
               >
                 <ListItemIcon

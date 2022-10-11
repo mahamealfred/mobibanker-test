@@ -67,7 +67,7 @@ const Document = ({
                 spacing={3}>
                 <Grid item
                     xs={12}>
-                    <TextField id="address2" name="address2" label="NID"
+                    <TextField id="address2"   margin="normal" name="address2" label="NID"
                         value={formData.nId}
                         onChange={(e) =>setFormData({...formData,nId: e.target.value})}
                         helperText={nIdErrorMessage ? nIdErrorMessage : ""}

@@ -4,6 +4,8 @@ import Routes from './routes/index';
 import { BrowserRouter as Router} from "react-router-dom";
 import "./App.css";
 import AuthApi from "./context/api";
+import { Box } from "@mui/system";
+import FooterMenu from "./components/footerMenu";
 
 // export default class App extends Component {
 //   render() {
@@ -25,6 +27,9 @@ function App(){
        <Router>
         <Routes/>
       </Router>
+      <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+          <FooterMenu/>
+          </Box>
       </Suspense>
     </AuthApi.Provider>
     

@@ -112,7 +112,7 @@ const itemData = [
 const Slider = (params) => {
   
   return (
-   <Marquee pauseOnHover={true} speed={50} gradientColor={[255,69,0]}>
+   <Marquee pauseOnHover={true} speed={30} gradientColor={[255,69,0]}>
    <Box component="div" sx={{ display: 'inline' }}>
    <Grid
             container

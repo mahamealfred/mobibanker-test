@@ -73,7 +73,10 @@ const Document = ({
                 spacing={3}>
                 <Grid item
                     xs={12}>
-                    <TextField id="address2" name="address2" label="Household NID"
+                    <TextField id="address2"  
+                    name="address2" 
+                    label="Household NID"
+                    margin="normal"
                         value={formData.nId}
                         onChange={(e) => setFormData({...formData,nId: e.target.value}) }
                         helperText={nIdErrorMessage ? nIdErrorMessage : ""}
@@ -94,6 +97,7 @@ const Document = ({
             id="nID"
             name="PaymentYear"
             label="Payment Year"
+            margin="normal"
             select
             value={formData.paymentYear}
             onChange={(e) =>setFormData({ ...formData, paymentYear: e.target.value })}

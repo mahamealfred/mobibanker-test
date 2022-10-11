@@ -78,6 +78,7 @@ const Payment=({
           <TextField
             required
             id="cardName"
+            margin="normal"
             label="Payer phone number"
             value={formData.phoneNumber}
             onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
@@ -92,6 +93,7 @@ const Payment=({
           <TextField
             required
             id="cardNumber"
+            margin="normal"
             label="Agent Pin"
             value={formData.password}
             onChange={(e)=>setFormData({...formData,password:e.target.value})}

@@ -7,13 +7,13 @@ import {
   
   import dotenv from "dotenv";
   dotenv.config();
-export const changePasswordAction = (user,username,history) => async (dispatch) => {
+export const changePasswordAction = (user,username) => async (dispatch) => {
   try {
     dispatch(changePasswordRequest());
     const {oldPassword}=user 
     const {password}=user
     const {confirmPassword}=user
-  //  console.log("o new c ",oldPassword,newPassword,newPasswordConfirmation,username, password);
+  console.log("o new c ",oldPassword,password,confirmPassword,username);
     //const encodedBase64Token = Buffer.from(`${username}:${password}`).toString('base64');
     //let basicAuth='Basic ' + btoa(username + ':' + password);
     const Url='https://agentapi.mobicash.rw/api/agent/user/rest/v.4.14.01/change-password';
@@ -34,12 +34,12 @@ export const changePasswordAction = (user,username,history) => async (dispatch) 
   }
    });
     const {data} = await res;
-      if(res.data.code===200){
+      if(res.data.responseCode===200){
         dispatch(changePasswordSuccess(data));
-          localStorage.removeItem("mobicashAuth");
-           sessionStorage.removeItem("mobicash-auth")
-          history.push('/',{push:true})
-          window.location.reload(true);
+          // localStorage.removeItem("mobicashAuth");
+          //  sessionStorage.removeItem("mobicash-auth")
+          // history.push('/',{push:true})
+          // window.location.reload(true);
 
       }
       

@@ -65,7 +65,7 @@ const Document = ({
                 spacing={3}>
                 <Grid item
                     xs={12}>
-                    <TextField id="address2" name="address2" label="RRA reference"
+                    <TextField id="address2"   margin="normal" name="address2" label="RRA reference"
                         value={ formData.docId}
                         onChange={(e) => setFormData({...formData,docId: e.target.value})}
                         helperText={docIdErr ? docIdErr : ""}

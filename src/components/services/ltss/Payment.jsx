@@ -103,6 +103,7 @@ const Payment=({
           <TextField
             required
             id="cardNumber"
+            margin="normal"
             label="Agent Pin"
             value={formData.password}
             onChange={(e)=>setFormData({...formData,password:e.target.value})}

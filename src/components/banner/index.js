@@ -20,6 +20,8 @@ import BottomNav from "../bottomNav/BottomNav";
 import MobicashSolution from "../mobicashsolutions"
 import AuthApi from "../../context/api";
 import Slider from "../slider/Slider";
+import {Box} from "@mui/material";
+import FooterMenu from "../footerMenu";
 
 export default function Banner() {
   const theme = useTheme();
@@ -43,6 +45,7 @@ export default function Banner() {
     <Headerbanner/>
     
     <Footer/>
+    
     </React.Fragment>
    
   );

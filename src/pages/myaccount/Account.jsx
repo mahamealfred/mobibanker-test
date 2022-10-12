@@ -1,75 +1,209 @@
+import React from 'react';
+import { useState } from 'react';
 import {
-  Avatar,
   Box,
   Button,
   Card,
-  CardActions,
   CardContent,
+  CardHeader,
   Divider,
-  Typography
+  Grid,
+  TextField,
+  Typography,
+  Container,
+  CardActions,
+  Avatar
 } from '@mui/material';
 
+const states = [
+  {
+    value: 'Rubavu',
+    label: 'Rubavu'
+  },
+  {
+    value: 'Gasabo',
+    label: 'Gasabo'
+  },
+  {
+    value: 'Musanze',
+    label: 'Musanze'
+  }
+];
 const user = {
-  avatar: '/static/images/avatars/avatar_6.png',
-  city: 'Los Angeles',
-  country: 'USA',
-  jobTitle: 'Senior Developer',
-  name: 'Katarina Smith',
-  timezone: 'GTM-7'
-};
-export default function MyAccount(props) {
- return(
-  <Card {...props}>
-  <CardContent>
-    <Box
+    avatar: '../../Assets/images/balance1.png',
+    avatar2: '../../Assets/images/commission.png',
+    city: 'Rubavu',
+    country: 'Rwanda',
+    jobTitle: 'Independ',
+    name: 'Bizimana Jean Claude 2',
+    timezone: 'GTM7'
+  };
+
+ const AccountProfileDetails = (props) => {
+  const [values, setValues] = useState({
+    firstName: 'Bizimana',
+    lastName: 'Jean Cloude 2',
+    email: 'jeancloude@gmail.com',
+    phone: '0789595309',
+    state: 'Gasabo',
+    country: 'Rwanda'
+  });
+
+  const handleChange = (event) => {
+    setValues({
+      ...values,
+      [event.target.name]: event.target.value
+    });
+  };
+
+  return (
+    <React.Fragment>
+         <Box
+      component="main"
       sx={{
-        alignItems: 'center',
-        display: 'flex',
-        flexDirection: 'column',
-        width:"100%"
+        flexGrow: 1,
+        py: 8,
+        width: "100vw"
+    
       }}
     >
-      <Avatar
-        src={user.avatar}
+       <Typography
+          sx={{ mb: 2 }}
+          variant="h4"
+        
+        >
+          Account Balance
+        </Typography>
+      <Container maxWidth="lg">
+       
+        <Grid
+          container
+          spacing={2}
+        >
+          <Grid
+            item
+            lg={4}
+            md={6}
+            xs={12}
+          >
+        {/* account */}
+   
+        <Card {...props}>
+    <CardContent>
+      <Box
         sx={{
-          height: 64,
-          mb: 2,
-          width: 64
+          alignItems: 'center',
+          display: 'flex',
+          flexDirection: 'column'
         }}
-      />
-      <Typography
-        color="textPrimary"
-        gutterBottom
-        variant="h5"
       >
-        {user.name}
-      </Typography>
-      <Typography
-        color="textSecondary"
-        variant="body2"
+        <Avatar
+          src={user.avatar}
+          sx={{
+            height: 64,
+            mb: 2,
+            width: 64
+          }}
+        />
+        <Typography
+          color="textPrimary"
+          gutterBottom
+          variant="h5"
+        >
+        Balance
+        </Typography>
+        <Typography
+          color="textSecondary"
+          variant="body2"
+        >
+        400,000 RWF
+        </Typography>
+        <Typography
+          color="textSecondary"
+          variant="body2"
+        >
+          12/13/2022
+        </Typography>
+      </Box>
+    </CardContent>
+    <Divider />
+    <CardActions>
+      <Button
+        color="primary"
+        fullWidth
+        variant="text"
       >
-        {`${user.city} ${user.country}`}
-      </Typography>
-      <Typography
-        color="textSecondary"
-        variant="body2"
+      
+      </Button>
+    </CardActions>
+  </Card>
+          </Grid>
+          <Grid
+            item
+            lg={4}
+            md={6}
+            xs={12}
+          >
+            <Card {...props}>
+    <CardContent>
+      <Box
+        sx={{
+          alignItems: 'center',
+          display: 'flex',
+          flexDirection: 'column'
+        }}
       >
-        {user.timezone}
-      </Typography>
+        <Avatar
+          src={user.avatar2}
+          sx={{
+            height: 64,
+            mb: 2,
+            width: 64
+          }}
+        />
+        <Typography
+          color="textPrimary"
+          gutterBottom
+          variant="h5"
+        >
+        Commission
+        </Typography>
+        <Typography
+          color="textSecondary"
+          variant="body2"
+        >
+        100,000 RWF
+        </Typography>
+        <Typography
+          color="textSecondary"
+          variant="body2"
+        >
+          12/13/2022
+        </Typography>
+      </Box>
+    </CardContent>
+    <Divider />
+    <CardActions>
+      <Button
+        color="primary"
+        fullWidth
+        variant="text"
+      >
+      
+      </Button>
+    </CardActions>
+  </Card>
+            </Grid>
+        
+         
+        </Grid>
+     
+       
+      </Container>
     </Box>
-  </CardContent>
-  <Divider />
-  <CardActions>
-    <Button
-      color="primary"
-      fullWidth
-      variant="text"
-    >
-      Upload picture
-    </Button>
-  </CardActions>
-</Card>
- )
-}
-
-
+    
+    </React.Fragment>
+   
+  );
+};
+export default AccountProfileDetails;

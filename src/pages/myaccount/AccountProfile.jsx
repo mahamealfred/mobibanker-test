@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import {
   Box,
@@ -7,7 +8,11 @@ import {
   CardHeader,
   Divider,
   Grid,
-  TextField
+  TextField,
+  Typography,
+  Container,
+  CardActions,
+  Avatar
 } from '@mui/material';
 
 const states = [
@@ -24,7 +29,14 @@ const states = [
     label: 'Musanze'
   }
 ];
-
+const user = {
+    avatar: '/static/images/avatars/avatar_6.png',
+    city: 'Rubavu',
+    country: 'Rwanda',
+    jobTitle: 'Independ',
+    name: 'Bizimana Jean Claude 2',
+    timezone: 'GTM7'
+  };
  const AccountProfileDetails = (props) => {
   const [values, setValues] = useState({
     firstName: 'Bizimana',
@@ -43,7 +55,89 @@ const states = [
   };
 
   return (
-    <form
+    <React.Fragment>
+         <Box
+      component="main"
+      sx={{
+        flexGrow: 1,
+        py: 8
+      }}
+    >
+      <Container maxWidth="lg">
+        {/* <Typography
+          sx={{ mb: 3 }}
+          variant="h4"
+        >
+          Profile
+        </Typography> */}
+        <Grid
+          container
+          spacing={3}
+        >
+          <Grid
+            item
+            lg={4}
+            md={6}
+            xs={12}
+          >
+        {/* account */}
+        <Card {...props}>
+    <CardContent>
+      <Box
+        sx={{
+          alignItems: 'center',
+          display: 'flex',
+          flexDirection: 'column'
+        }}
+      >
+        <Avatar
+          src={user.avatar}
+          sx={{
+            height: 64,
+            mb: 2,
+            width: 64
+          }}
+        />
+        <Typography
+          color="textPrimary"
+          gutterBottom
+          variant="h5"
+        >
+          {user.name}
+        </Typography>
+        <Typography
+          color="textSecondary"
+          variant="body2"
+        >
+          {`${user.city} ${user.country}`}
+        </Typography>
+        <Typography
+          color="textSecondary"
+          variant="body2"
+        >
+          {user.timezone}
+        </Typography>
+      </Box>
+    </CardContent>
+    <Divider />
+    <CardActions>
+      <Button
+        color="primary"
+        fullWidth
+        variant="text"
+      >
+        Upload picture
+      </Button>
+    </CardActions>
+  </Card>
+          </Grid>
+          <Grid
+            item
+            lg={8}
+            md={6}
+            xs={12}
+          >
+             <form
       autoComplete="off"
       noValidate
       {...props}
@@ -180,6 +274,12 @@ const states = [
         </Box>
       </Card>
     </form>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
+    </React.Fragment>
+   
   );
 };
 export default AccountProfileDetails;

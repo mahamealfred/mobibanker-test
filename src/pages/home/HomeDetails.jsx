@@ -12,12 +12,12 @@ const HomeDetails = () => {
     <React.Fragment>
      <Box sx={{ display: 'flex' ,height:"auto"}}>
 <Box>
-        <Container maxWidth="fullWidth" sx={{ mt:1, mb: 2,display:"flex" ,backgroundColor: 'white' }}>
+        <Container maxWidth="fullWidth" sx={{ mt:1, mb: 2,display:"flex" ,backgroundColor: 'transparent' }}>
             <Grid container component="main" sx={{ height: 'auto', backgroundColor: 'transparent' }}>
               <Grid item xs={12} sm={6} md={5} component={Paper} elevation={0} square
                 sx={{
                   backgroundRepeat: 'no-repeat',
-                  backgroundColor: 'white',
+                  backgroundColor: 'transparent',
                 }}
               >
                 <Box
@@ -43,7 +43,7 @@ const HomeDetails = () => {
                 md={7}
                 sx={{
                   backgroundRepeat: 'no-repeat',
-                  backgroundColor: 'white',
+                  backgroundColor: 'transparent',
                 }}
               >
                 <Widget/>

@@ -272,19 +272,18 @@ function Home({...props}) {
         <Box
           component="main"
           sx={{
-            backgroundColor: "white",
+            backgroundColor: "transparent",
             flexGrow: 0,
             height: '100%',
             overflow: 'hidden'
           }}
         >
-          
           <Toolbar />
 
           <Box
           component="main"
           sx={{
-            backgroundColor: "white",
+            backgroundColor: "transparent",
             flexGrow: 0,
             height: '100%',
             overflow: 'hidden'

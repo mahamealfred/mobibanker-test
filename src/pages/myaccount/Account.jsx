@@ -1,30 +1,75 @@
-import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import SkipNextIcon from '@mui/icons-material/SkipNext'
-export default function MyAccount() {
-  const theme = useTheme();
-  return (
-    <Card sx={{ display: 'flex',width:"100%" }}>
-    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-      <CardContent sx={{ flex: '1 0 auto' }}>
-        <Typography component="div" variant="h5">
-         Balance
-        </Typography>
-        <Typography variant="subtitle1" color="text.secondary" component="div">
-          10,000 Rwf
-        </Typography>
-      </CardContent>
+import {
+  Avatar,
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Divider,
+  Typography
+} from '@mui/material';
+
+const user = {
+  avatar: '/static/images/avatars/avatar_6.png',
+  city: 'Los Angeles',
+  country: 'USA',
+  jobTitle: 'Senior Developer',
+  name: 'Katarina Smith',
+  timezone: 'GTM-7'
+};
+export default function MyAccount(props) {
+ return(
+  <Card {...props}>
+  <CardContent>
+    <Box
+      sx={{
+        alignItems: 'center',
+        display: 'flex',
+        flexDirection: 'column',
+        width:"100%"
+      }}
+    >
+      <Avatar
+        src={user.avatar}
+        sx={{
+          height: 64,
+          mb: 2,
+          width: 64
+        }}
+      />
+      <Typography
+        color="textPrimary"
+        gutterBottom
+        variant="h5"
+      >
+        {user.name}
+      </Typography>
+      <Typography
+        color="textSecondary"
+        variant="body2"
+      >
+        {`${user.city} ${user.country}`}
+      </Typography>
+      <Typography
+        color="textSecondary"
+        variant="body2"
+      >
+        {user.timezone}
+      </Typography>
     </Box>
-    
-  </Card>
-   
-  );
+  </CardContent>
+  <Divider />
+  <CardActions>
+    <Button
+      color="primary"
+      fullWidth
+      variant="text"
+    >
+      Upload picture
+    </Button>
+  </CardActions>
+</Card>
+ )
 }
+
+

@@ -39,6 +39,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import CloseIcon from '@mui/icons-material/Close';
 import Dialog from '@mui/material/Dialog';
 import Account from '../myaccount/Account';
+import WalletIcon from '@mui/icons-material/Wallet';
 
 //   import { useValue } from '../../context/ContextProvider';
 //   import Main from './main/Main';
@@ -142,7 +143,15 @@ import Account from '../myaccount/Account';
     }
    
     }, []);
-  
+  const handleHome=()=>{
+    return history.push('/dashboard',{push:true})
+  }
+  const handleMyaccount=()=>{
+    return history.push('/dashboard/my-account',{push:true})
+  }
+  const handleMyprofile=()=>{
+    return history.push('/dashboard/my-profile',{push:true})
+  }
     const handleLogout = () => {
       localStorage.removeItem('mobicashAuth');
       sessionStorage.removeItem('mobicash-auth')
@@ -286,14 +295,14 @@ import Account from '../myaccount/Account';
               </ListItemButton>
             </ListItem>
           ))} */}
-           <ListItem  disablePadding sx={{ display: 'block' }}>
+          <ListItem  disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
-               onClick={()=>setOpenMyAccount(true)}
+               onClick={handleHome}
                 // selected={selectedLink === item.link}
               >
                 <ListItemIcon
@@ -308,6 +317,33 @@ import Account from '../myaccount/Account';
                   <Dashboard/>
                 </ListItemIcon>
                 <ListItemText
+                  primary="Services"
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </ListItem>
+           <ListItem  disablePadding sx={{ display: 'block' }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+               onClick={handleMyaccount}
+                // selected={selectedLink === item.link}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                    color:"#F9842C"
+                  }}
+                 
+                >
+                  <WalletIcon/>
+                </ListItemIcon>
+                <ListItemText
                   primary="My Account"
                   sx={{ opacity: open ? 1 : 0 }}
                 />
@@ -320,7 +356,7 @@ import Account from '../myaccount/Account';
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
-                //  onClick={()=>setOpenChangepassword(true)}
+              onClick={handleMyprofile}
                 // selected={selectedLink === item.link}
               >
                 <ListItemIcon
@@ -359,7 +395,7 @@ import Account from '../myaccount/Account';
                   }}
                  
                 >
-                  <ChangeCircleIcon/>
+                  <ReceiptLongIcon/>
                 </ListItemIcon>
                 <ListItemText
                   primary="Privous Transactions"

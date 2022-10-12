@@ -96,11 +96,12 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 const mdTheme = createTheme();
 
-function DashboardContent() {
+function Home({...props}) {
   const { i18n,t } = useTranslation(["home","common","login"]);
  const history=useHistory();
   const [open, setOpen] = React.useState(true);
   const [agentName,setAgentName]=React.useState("");
+  const { children } = props;
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -126,7 +127,7 @@ function DashboardContent() {
   }
  
   }, []);
-
+  console.log("all pros",children )
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' ,height:"auto"}}>
@@ -267,6 +268,7 @@ function DashboardContent() {
           </List>
           <AppDrawer />
         </Drawer>
+        
         <Box
           component="main"
           sx={{
@@ -276,9 +278,19 @@ function DashboardContent() {
             overflow: 'hidden'
           }}
         >
+          
           <Toolbar />
-          <Box>
-          <Box sx={{ width: '100%', maxWidth: 560, bgcolor: 'transparent',alignItems:"center", marginTop:"35px", height: 'auto'}}>
+
+          <Box
+          component="main"
+          sx={{
+            backgroundColor: "white",
+            flexGrow: 0,
+            height: '100%',
+            overflow: 'hidden'
+          }}
+        >
+<Box sx={{ width: '100%', maxWidth: 560, bgcolor: 'transparent',alignItems:"center", marginTop:"35px", height: 'auto'}}>
             <Box sx={{ my: 1, mx: 2 }}>
               <Grid container alignItems="center">
                 <Grid item xs>
@@ -295,58 +307,17 @@ function DashboardContent() {
             <Divider variant="middle" />
           </Box>
         </Box>
-        <Box>
-        <Container maxWidth="fullWidth" sx={{ mt:1, mb: 2,display:"flex" ,backgroundColor: 'white' }}>
-            <Grid container component="main" sx={{ height: 'auto', backgroundColor: 'transparent' }}>
-              <Grid item xs={12} sm={6} md={5} component={Paper} elevation={0} square
-                sx={{
-                  backgroundRepeat: 'no-repeat',
-                  backgroundColor: 'white',
-                }}
-              >
-                <Box
-                  sx={{
-                    my: 2,
-                    mx: 0,
-                    display: 'flex',
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    width:"auto"
-                  }}
-                
-                >
-                  <Service />
-                </Box>
-              </Grid>
-             
-              <Grid
-                item
-                // xs={false}
-                xs={12}
-                sm={4}
-                md={7}
-                sx={{
-                  backgroundRepeat: 'no-repeat',
-                  backgroundColor: 'white',
-                }}
-              >
-                <Widget/>
-              </Grid>
-            </Grid>
-          </Container>
-        </Box>
-          </Box>
-         
+         {/* rendser home component */}
+        {children}
+          </Box>  
       </Box>
       {/* <BottomNav /> */}
-      <Slider/>
+      {/* <Slider/> */}
       {/* <MobicashSolutions/> */}
-      <Headerbanner/>
-      <Footer />
+      {/* <Headerbanner/>
+      <Footer /> */}
     </ThemeProvider>
   );
 }
 
-export default function Dashboard() {
-  return <DashboardContent />;
-}
+export default  Home;

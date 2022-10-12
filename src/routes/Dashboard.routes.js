@@ -6,6 +6,10 @@ import Home from "../pages/home/Home";
 import {useEffect} from "react";
 import jwt from "jsonwebtoken";
 import { useHistory } from 'react-router-dom';
+import Service from "../pages/services/Service"
+import HomeDetails from "../pages/home/HomeDetails";
+import Account from "../pages/myaccount/Account"
+import MyProfile from "../pages/myaccount/AccountProfile"
 function App() {
   const {path}=useRouteMatch();
   // const decode=(token) => {
@@ -40,7 +44,10 @@ function App() {
           <Route
             component={({ match }) => (
               <>
-                <PrivateRoute exact path={path} component={Home} />
+                {/* <PrivateRoute exact path={path} component={Home} /> */}
+                <PrivateRoute exact path={path} component={HomeDetails} />
+                <PrivateRoute exact path={`${path}/my-account`} component={Account} />
+                <PrivateRoute exact path={`${path}/my-profile`} component={MyProfile} />
               </>
             )}
           />

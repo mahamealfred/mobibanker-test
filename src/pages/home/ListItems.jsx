@@ -199,7 +199,7 @@ import { useTranslation } from "react-i18next";
       >
         <DialogTitle id="alert-dialog-title">
           <Typography variant="h6" color="gray" >
-         Change Password
+   {t("common:changepassword")}
           </Typography>
           <IconButton
           aria-label="close"
@@ -456,7 +456,7 @@ import { useTranslation } from "react-i18next";
                   <LanguageIcon />
                 </ListItemIcon>
                 <ListItemText
-                  primary="Change Language"
+                  primary={t("common:changepassword")}
                   sx={{ opacity: open ? 1 : 0 }}
                 />
               </ListItemButton>

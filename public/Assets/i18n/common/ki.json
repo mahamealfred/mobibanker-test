@@ -62,5 +62,17 @@
     "lastname":"Izina ryanyuma",
     "messages":"Ubutumwa",
     "logoutmessage":"Wasohotse neza kurubuga, Urakoze gukoresha Mobicash",
-    "clickgotohome":"Kanda ujye aha banza"
+    "clickgotohome":"Kanda ujye aha banza",
+    "mobicashreference":"UMUBARE UTANGWA NA MOBICASH",
+    "date":"ITARIKI",
+    "description":"IBISOBANURO",
+    "amount":"AMAFARANGA",
+    "action":"IGIKORWA",
+    "previous40transaction":"IBICURUZWA BYABANJE",
+    "search":"Shakisha ...",
+    "receipt":"Inyemezabwishyu",
+    "pleasefillyourinformationinthefieldsbelow":"Nyamuneka wuzuze amakuru yawe  ikurikira",
+    "oldpassword":"Ijambobanga rya kera",
+    "newpassword":"Ijambobanga Rishya",
+    "confirmpassword":"Emeza ijambo ryibanga"
  }

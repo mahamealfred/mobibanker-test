@@ -62,5 +62,17 @@
     "lastname":"Nom de famille",
     "messages":"Messages",
     "logoutmessage":"Vous vous êtes déconnecté avec succès, merci d'avoir utilisé Mobicash",
-    "clickgotohome":"Cliquez sur aller à l'accueil"
+    "clickgotohome":"Cliquez sur aller à l'accueil",
+    "mobicashreference":"RÉFÉRENCE MOBICASH",
+    "date":"DATE",
+    "description":"LA DESCRIPTION",
+    "amount":"MONTANT",
+    "action":"ACTION",
+    "previous40transaction":"OPÉRATIONS ANTÉRIEURES",
+    "search":"Chercher ...",
+    "receipt":"Reçu",
+    "pleasefillyourinformationinthefieldsbelow":"Veuillez remplir vos informations dans les champs ci-dessous",
+    "oldpassword":"Ancien mot de passe",
+    "newpassword":"nouveau mot de passe",
+    "confirmpassword":"Confirmez le mot de passe"
  }

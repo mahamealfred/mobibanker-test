@@ -1,7 +1,7 @@
 import React, { useState, useEffect,useRef } from "react";
 // import "./cbhiList.css";
 import Box from "@mui/material/Box";
-import { Button } from "@mui/material";
+import { Button, Tooltip } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -28,6 +28,7 @@ import Typography from "@mui/material/Typography";
 import { transactionsAction } from "../../redux/actions/transactionsAction";
 import { useDispatch } from "react-redux";
 import PrintIcon from '@mui/icons-material/Print';
+import { useTranslation } from "react-i18next";
 export let amountPaid=[]
 const data = [
   {
@@ -54,6 +55,7 @@ const data = [
 ];
 
 function Transactions() {
+  const { i18n,t } = useTranslation(["home","common","login"]);
   const todaydate = new Date().toISOString().slice(0, 10);
   const transactionsDetails = useSelector((state) => state.transactions);
  const dispatch=useDispatch();
@@ -175,85 +177,6 @@ fecthData();
     NormalSpacing:12,
   };
 
-//   const generatePdfs=(id)=>{
-//     console.log("transs id:",id)
-//     var doc = new jsPDF('p', 'pt');
-//     var rightStartCol1=400;
-//     var rightStartCol2=480;
-//     var InitialstartX=40;
-//     var startX=40;
-//     var InitialstartY=50;
-//     var startY=0;
-//     var lineHeights=12;
-//     var rightcol1=340;
-//     var rightcol2=230;
-//     doc.rect(
-//       18,
-//       18,
-//       doc.internal.pageSize.width - 40,
-//       doc.internal.pageSize.height - 42,
-//       "S"
-//     );
-//     doc.setFontSize(fontSizes.SubTitleFontSize);
-//     doc.setFont("Helvertica", "bold");
-//     //doc.setFontType('bold');
-//     //doc.addImage(logo , "PNG", 20, 10, 50, 20);
-//     doc.addImage(logo,'PNG',startX,startY+=50,company_logo.w,company_logo.h);
-//     doc.setFontSize(fontSizes.NormalFontSize);
-//     doc.text("MobiCash Ltd I KN 3 Road, Gasabo District",startX, startY+=15+company_logo.h,'left');
-//     doc.setFontSize(fontSizes.NormalFontSize);
-//     doc.text("ADDRESS",startX, startY+=lineSpacing.NormalSpacing);
-//     doc.setFont("Helvertica", "normal");
-//     doc.text("Remra, Rukiri 1, Kigali Rwanda", 80, startY);
-//     doc.setFontSize(fontSizes.NormalFontSize);
-//     doc.text("EMAIL",startX, startY+=lineSpacing.NormalSpacing);
-//     doc.setFont("Helvertica", "normal");
-//     doc.text("info@mobicashonline.com", 80, startY);
-//     doc.setFontSize(fontSizes.NormalFontSize);
-//     doc.text("Phone: ", startX, startY+=lineSpacing.NormalSpacing);
-//     doc.setFont("Helvertica", "normal");
-//     doc.text("+2507800000", 80, startY);
-//     var tempY=InitialstartY;
-//     doc.setFontSize(fontSizes.NormalFontSize);
-//     agentTransactionsDetails.map((details)=>{
-//       if(details.id===id){
-//         doc.text("Transacttion: ",rightStartCol1,tempY+=lineSpacing.NormalSpacing);
-//         doc.setFont("Helvertica", "normal");
-//         doc.text(`${id}`, rightStartCol2, tempY);
-//         doc.setFontSize(fontSizes.NormalFontSize);
-//         doc.text("Payemnt Date: ",  rightStartCol1, tempY+=lineSpacing.NormalSpacing);
-//         doc.setFont("Helvertica", "normal");
-//         doc.text(`${details.operationDate}`,rightStartCol2, tempY);
-//         doc.setFont('normal');
-//         doc.setLineWidth(1);
-//         doc.line(20, startY+lineSpacing.NormalSpacing, 220, startY+lineSpacing.NormalSpacing);
-//         doc.line(380, startY+lineSpacing.NormalSpacing, 580, startY+lineSpacing.NormalSpacing);
-//         doc.setFontSize(fontSizes.Head2TitleFontSize);
-//         doc.setFontSize(fontSizes.NormalFontSize);
-//         //doc.text("MUTUWEL INVOICE",startX,startY+=lineSpacing.NormalSpacing+2,null,null,'center');
-//         doc.setFontSize(fontSizes.NormalFontSize);
-//         doc.setFont('bold');
-//         doc.setFontSize(fontSizes.NormalFontSize);
-//         doc.text(`AGENT NAME: ${agentName}`,rightcol2, startY+=lineSpacing.NormalSpacing+25);
-//         doc.setFontSize(fontSizes.NormalFontSize);
-//         doc.text("DESCRIPTION",rightcol2, startY+=lineSpacing.NormalSpacing+25);
-//         const split=details.description.split(",")
-//         doc.text(`${split[0].trim()}`,rightcol2, startY+=lineSpacing.NormalSpacing+25);
-//         doc.text(`${split[1].trim()}`,rightcol2, startY+=lineSpacing.NormalSpacing+25);
-//         doc.text(`${split[2].trim()} Rwf`,rightcol2, startY+=lineSpacing.NormalSpacing+25);
-//         doc.setFontSize(fontSizes.NormalFontSize);
-//         doc.text(`PRINTED DATE: ${todaydate}`,rightcol2, startY+=lineSpacing.NormalSpacing+25);
-        
-//       }
-//     })
-    
-//     doc.setFontSize(fontSizes.NormalFontSize);
-//     doc.text('Authorised Signatory: ......................',rightcol2+10 , startY+=lineSpacing.NormalSpacing+55);
-//     const date = Date().split(" ");
-//     const dateStr = date[0] + date[1] + date[2] + date[3] + date[4];
-
-//     doc.save(`Invoice_${dateStr}.pdf`);
-//   }
 
   return (
     <>
@@ -265,13 +188,14 @@ fecthData();
           numberOfTransaction==0?<>
             <DialogTitle>
             <Typography variant="h6" textAlign="center" color="gray" >
-            PREVIOUS TRANSACTONS 
+           {t("common:previous40transaction")}
           </Typography>
             </DialogTitle>
           </>:
           <DialogTitle>
            <Typography variant="h6" textAlign="center" color="gray" >
-           PREVIOUS {numberOfTransaction} TRANSACTONS
+           {/* PREVIOUS {numberOfTransaction} TRANSACTONS */}
+           {t("common:previous40transaction")}
           </Typography> 
           </DialogTitle>
          } 
@@ -308,7 +232,7 @@ fecthData();
                     </InputAdornment>
                   ),
                 }}
-                placeholder="Search ..."
+                placeholder={t("common:search")}
                 variant="outlined"
               />
    
@@ -319,16 +243,16 @@ fecthData();
           
           <TableContainer component={Paper}>
             <Table aria-label="caption table">
-              <caption className="textTitle">Agent Transactions</caption>
+              <caption className="textTitle"> {t("common:previous40transaction")}</caption>
              
               
               <TableHead>
                 <TableRow>
-                  <TableCell align="center">MOBICASH REFERENCE</TableCell>
-                  <TableCell> DATE</TableCell>
-                  <TableCell align="center">AMOUNT (Rwf)</TableCell>
-                  <TableCell align="center">DESCRIPTION</TableCell>
-                  <TableCell align="center">ACTION</TableCell>
+                  <TableCell align="center"> {t("common:mobicashreference")}</TableCell>
+                  <TableCell> {t("common:date")}E</TableCell>
+                  <TableCell align="center"> {t("common:amount")} (Rwf)</TableCell>
+                  <TableCell align="center"> {t("common:description")}</TableCell>
+                  <TableCell align="center"> {t("common:action")}</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -349,6 +273,7 @@ fecthData();
                     <TableCell align="center">{details.description}</TableCell>
                     <TableCell align="center">
                       {/* <Button>Print</Button> */}
+                      <Tooltip title={t("common:receipt")} sx={{ mt: 1 }}>
                       <Button
                   startIcon={(<PrintIcon fontSize="small"   sx={{ color:"#F9842C" }}/>)}
                   sx={{ mr: 1,color:"gray" }}
@@ -356,8 +281,9 @@ fecthData();
                 //     generatePdfs(details.id)
                 //    }}
                   >
-                  Receipt
                   </Button>
+                      </Tooltip>
+                     
                     </TableCell>
                   </TableRow>
                 ))}
@@ -378,15 +304,18 @@ fecthData();
                     <TableCell align="center">{details.description}</TableCell>
                     <TableCell align="center">
                       {/* <Button>Print</Button> */}
-                    <Button
+                      <Tooltip title={t("common:receipt")} sx={{ mt: 1 }}>
+                      <Button
                   startIcon={(<PrintIcon fontSize="small"   sx={{ color:"#F9842C" }}/>)}
                   sx={{ mr: 1,color:"gray" }}
                 //   onClick={async()=>{
                 //     generatePdfs(details.id)
                 //    }}
                   >
-                     Receipt
+                    
                   </Button>
+                      </Tooltip>
+                   
                     </TableCell>
                   </TableRow>
                 ))}

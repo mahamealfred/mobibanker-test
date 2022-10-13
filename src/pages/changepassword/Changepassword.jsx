@@ -21,8 +21,10 @@ import CloseIcon from '@mui/icons-material/Close';
  import { changePasswordAction } from '../../redux/actions/changePasswordAction';
  import { useDispatch,useSelector } from 'react-redux';
  import { useHistory } from 'react-router-dom';
+ import { useTranslation } from "react-i18next";
  import jwt from "jsonwebtoken";
 const Changepassword = () => {
+  const { i18n,t } = useTranslation(["home","common","login"]);
     const [title, setTitle] = useState('Login');
     const history=useHistory()
   const [isRegister, setIsRegister] = useState(false);
@@ -110,7 +112,7 @@ if(errorMessage==''){
      <form onSubmit={handleSubmit}>
         <DialogContent dividers>
           <DialogContentText>
-            Please fill your information in the fields below:
+            {t("common:pleasefillyourinformationinthefieldsbelow")}:
           </DialogContentText>
           {
                   !changePassword.error? null:
@@ -180,7 +182,7 @@ if(errorMessage==''){
               margin="normal"
               variant="standard"
               id="name"
-              label="Old Password"
+              label={t("common:oldpassword")}
               type="text"
               fullWidth
               inputRef={oldPasswordRef}
@@ -188,19 +190,19 @@ if(errorMessage==''){
               required
             />
        
-          <PasswordField {...{ passwordRef }} />
+          <PasswordField {...{ passwordRef}} lb={t("common:newpassword")}  />
          
             <PasswordField
               passwordRef={confirmPasswordRef}
               id="confirmPassword"
-              label="Confirm Password"
+              label={t("common:confirmpassword")}
             
             />
          
         </DialogContent>
         <DialogActions sx={{ px: '19px' }}>
           <Button type="submit" variant="text"  sx={{color:"#F9842C"}}  endIcon={<Send sx={{color:"#F9842C"}}/>}>
-            Submit
+           {t("common:submit")}
           </Button>
         </DialogActions>
       </form>

@@ -62,6 +62,18 @@
     "lastname":"Last Name",
     "messages":"Messages",
     "logoutmessage":"You have successfully logged out, Thank you for using Mobicash",
-    "clickgotohome":"Click go to home"
+    "clickgotohome":"Click go to home",
+    "mobicashreference":"MOBICASH REFERENCE",
+    "date":"DATE",
+    "description":"DESCRIPTION",
+    "amount":"AMOUNT",
+    "action":"ACTION",
+    "previous40transaction":"PREVIOUS TRANSACTIONS",
+    "search":"Search ...",
+    "receipt":"Receipt",
+    "pleasefillyourinformationinthefieldsbelow":"Please fill your information in the fields below",
+    "oldpassword":"Old Password",
+    "newpassword":"New Password",
+    "confirmpassword":"Confirm Password"
 
  }

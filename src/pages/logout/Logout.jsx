@@ -15,7 +15,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import { useTranslation } from "react-i18next";
 import {
     BannerContainer,
     BannerContent,
@@ -31,6 +31,7 @@ import {
   const theme = createTheme();
 
 const Logout = () => {
+  const { i18n,t } = useTranslation(["home","common","login"]);
   const history=useHistory();
   const handleExist=()=>{
    return history.push('/',{push:true})
@@ -85,7 +86,7 @@ const Logout = () => {
         MobiCash 
         </Typography>
         <Typography variant="h5" align="center" color="text.secondary" paragraph>
-          Thank you for using MobiBanker.
+         {t("common:logoutmessage")}
         </Typography>
         <Stack
           sx={{ pt: 4 }}
@@ -94,7 +95,7 @@ const Logout = () => {
           justifyContent="center"
         >
          
-          <Button variant="outlined" onClick={handleExist}>Exit</Button>
+          <Button variant="text"  onClick={handleExist}>{t("common:clickgotohome")}</Button>
         </Stack>
       </Container>
     </Box>

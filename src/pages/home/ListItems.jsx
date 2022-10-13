@@ -40,7 +40,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Dialog from '@mui/material/Dialog';
 import Account from '../myaccount/Account';
 import WalletIcon from '@mui/icons-material/Wallet';
-
+import { useTranslation } from "react-i18next";
 //   import { useValue } from '../../context/ContextProvider';
 //   import Main from './main/Main';
 //   import Messages from './messages/Messages';
@@ -99,6 +99,7 @@ import WalletIcon from '@mui/icons-material/Wallet';
   
   const ListItems= ({ open, setOpen }) => {
     // const {
+      const { i18n,t } = useTranslation(["home","common","login"]);
     //   state: { currentUser },
     //   dispatch,
     // } = useValue();
@@ -317,7 +318,7 @@ import WalletIcon from '@mui/icons-material/Wallet';
                   <Dashboard/>
                 </ListItemIcon>
                 <ListItemText
-                  primary="Services"
+                  primary=  {t("common:services")}
                   sx={{ opacity: open ? 1 : 0 }}
                 />
               </ListItemButton>
@@ -344,7 +345,7 @@ import WalletIcon from '@mui/icons-material/Wallet';
                   <WalletIcon/>
                 </ListItemIcon>
                 <ListItemText
-                  primary="My Account"
+                  primary= {t("common:myaccount")}
                   sx={{ opacity: open ? 1 : 0 }}
                 />
               </ListItemButton>
@@ -371,7 +372,7 @@ import WalletIcon from '@mui/icons-material/Wallet';
                   <Person/>
                 </ListItemIcon>
                 <ListItemText
-                  primary="My Profile"
+                  primary= {t("common:myprofile")}
                   sx={{ opacity: open ? 1 : 0 }}
                 />
               </ListItemButton>
@@ -398,7 +399,7 @@ import WalletIcon from '@mui/icons-material/Wallet';
                   <ReceiptLongIcon/>
                 </ListItemIcon>
                 <ListItemText
-                  primary="Privous Transactions"
+                  primary={t("common:preioustransaction")}
                   sx={{ opacity: open ? 1 : 0 }}
                 />
               </ListItemButton>
@@ -425,7 +426,7 @@ import WalletIcon from '@mui/icons-material/Wallet';
                   <ChangeCircleIcon/>
                 </ListItemIcon>
                 <ListItemText
-                  primary="Change Password"
+                  primary={t("common:changepassword")}
                   sx={{ opacity: open ? 1 : 0 }}
                 />
               </ListItemButton>

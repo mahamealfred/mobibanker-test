@@ -27,6 +27,7 @@ import Typography from "@mui/material/Typography";
 // import logo from "../../Assets/images/logo.png"
 import { transactionsAction } from "../../redux/actions/transactionsAction";
 import { useDispatch } from "react-redux";
+import PrintIcon from '@mui/icons-material/Print';
 export let amountPaid=[]
 const data = [
   {
@@ -323,9 +324,9 @@ fecthData();
               
               <TableHead>
                 <TableRow>
-                  <TableCell align="center">TRANSACTION REFERENCE</TableCell>
-                  <TableCell>OPERATION DATE</TableCell>
-                  <TableCell align="center">AMOUNT</TableCell>
+                  <TableCell align="center">MOBICASH REFERENCE</TableCell>
+                  <TableCell> DATE</TableCell>
+                  <TableCell align="center">AMOUNT (Rwf)</TableCell>
                   <TableCell align="center">DESCRIPTION</TableCell>
                   <TableCell align="center">ACTION</TableCell>
                 </TableRow>
@@ -344,14 +345,13 @@ fecthData();
                     <TableCell component="th" scope="row">
                       {details.operationDate}
                     </TableCell>
-                    <TableCell align="center"> {details.amount * -1}</TableCell>
+                    <TableCell align="center"> {(details.amount * -1).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</TableCell>
                     <TableCell align="center">{details.description}</TableCell>
                     <TableCell align="center">
                       {/* <Button>Print</Button> */}
                       <Button
-                  variant="contained"
-                  sx={{ backgroundColor: "#F9842C" }}
-                  className="buttonGroup"
+                  startIcon={(<PrintIcon fontSize="small"   sx={{ color:"#F9842C" }}/>)}
+                  sx={{ mr: 1,color:"gray" }}
                 //  onClick={async()=>{
                 //     generatePdfs(details.id)
                 //    }}
@@ -374,19 +374,18 @@ fecthData();
                     <TableCell component="th" scope="row">
                       {details.operationDate}
                     </TableCell>
-                    <TableCell align="center"> {details.amount * -1}</TableCell>
+                    <TableCell align="center"> {(details.amount * -1).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</TableCell>
                     <TableCell align="center">{details.description}</TableCell>
                     <TableCell align="center">
                       {/* <Button>Print</Button> */}
                     <Button
-                  variant="contained"
-                  sx={{ backgroundColor: "#F9842C" }}
-                  className="buttonGroup"
+                  startIcon={(<PrintIcon fontSize="small"   sx={{ color:"#F9842C" }}/>)}
+                  sx={{ mr: 1,color:"gray" }}
                 //   onClick={async()=>{
                 //     generatePdfs(details.id)
                 //    }}
                   >
-                  Receipt
+                     Receipt
                   </Button>
                     </TableCell>
                   </TableRow>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import {
   Box,
   Button,
@@ -14,7 +14,13 @@ import {
   CardActions,
   Avatar
 } from '@mui/material';
-
+import { getBalanceAction } from '../../redux/actions/getBalanceAction';
+import { useDispatch, useSelector } from "react-redux";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+import moment from "moment";
+import { useTranslation } from "react-i18next";
+dotenv.config();
 const states = [
   {
     value: 'Rubavu',
@@ -39,7 +45,8 @@ const user = {
     timezone: 'GTM7'
   };
 
- const AccountProfileDetails = (props) => {
+ const Account = (props) => {
+  const { t } = useTranslation(["home","common","login"]);
   const [values, setValues] = useState({
     firstName: 'Bizimana',
     lastName: 'Jean Cloude 2',
@@ -48,8 +55,47 @@ const user = {
     state: 'Gasabo',
     country: 'Rwanda'
   });
-
+  const dispatch=useDispatch();
+  const balance=useSelector(state=>state.balance);
+  const [balanceDetails,setBalanceDetails]=useState([])
+  const token = localStorage.getItem("mobicashAuth");
+  const [agentName, setAgentName] = useState("");
+  let today = new Date();
+  let time = moment(today).format("l, hh:mm:ss");
+  const decode = (token) => {
+    const JWT_SECRET = "tokensecret";
+    const payload = jwt.verify(token, JWT_SECRET);
+    return payload;
+  };
+  useEffect(() => {
+    if (token) {
+      const { name } = decode(token);
+      setAgentName(name);
+    }
+  }, []);
+  useEffect(()=>{
+    async function fetchData() {
+      if (token) {
+        const { username } = decode(token);
+        const {password}= decode(token);
+        await dispatch(getBalanceAction({username,password}))
+      }
+    }
+    fetchData();
+  },[])
+  useEffect(()=>{
+    async function fetchData() {
+     
+      if (!balance.loading) {
+        if (balance.details){
+          setBalanceDetails(balance.details.balance)
+        }
+      }
+    }
+    fetchData();
+  },[!balance.details])
   const handleChange = (event) => {
+
     setValues({
       ...values,
       [event.target.name]: event.target.value
@@ -69,10 +115,10 @@ const user = {
     >
        <Typography
           sx={{ mb: 2 }}
-          variant="h4"
+          variant="h5"
         
         >
-          Account Balance
+       {t("common:accountbalance")}
         </Typography>
       <Container maxWidth="lg">
        
@@ -110,19 +156,22 @@ const user = {
           gutterBottom
           variant="h5"
         >
-        Balance
+      {t("common:balance")}
         </Typography>
+        {balance.loading ? (null ) : balance.details.balance ? (
         <Typography
           color="textSecondary"
           variant="body2"
         >
-        400,000 RWF
+     {balance.details.balance[0].details.balance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} RWF
         </Typography>
+           ):"No data"
+          }
         <Typography
           color="textSecondary"
           variant="body2"
         >
-          12/13/2022
+          {time}
         </Typography>
       </Box>
     </CardContent>
@@ -166,19 +215,22 @@ const user = {
           gutterBottom
           variant="h5"
         >
-        Commission
+      {t("common:commission")}
         </Typography>
+        {balance.loading ? (null ) : balance.details.balance ? (
         <Typography
           color="textSecondary"
           variant="body2"
         >
-        100,000 RWF
+       {balance.details.balance[0].details.availableBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}  RWF
         </Typography>
+        ):"No data"
+      }
         <Typography
           color="textSecondary"
           variant="body2"
         >
-          12/13/2022
+          {time}
         </Typography>
       </Box>
     </CardContent>
@@ -206,4 +258,4 @@ const user = {
    
   );
 };
-export default AccountProfileDetails;
+export default Account;

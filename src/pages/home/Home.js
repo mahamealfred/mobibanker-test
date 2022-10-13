@@ -50,7 +50,8 @@ import { useHistory } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 import ListItems from './ListItems';
 import Slider from '../../components/slider/Slider';
-const drawerWidth = 240;
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+const drawerWidth = 250;
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -183,19 +184,19 @@ function Home({...props}) {
               src="../../Assets/images/mobibk.png"
             />
   <Box sx={{ display: { xs: 'flex', md: 'flex' },padding:2}}>
-         <Tooltip title="Logout" sx={{ mt: 1 }}>
+         <Tooltip title={t("common:logout")} sx={{ mt: 1 }}>
        <IconButton   onClick={handleLogout} size="large" aria-label="show 4 new mails"  sx={{color:"#F9842C"}} >
               <LogoutIcon  sx={{color:"#F9842C"}} />
             </IconButton>
          </Tooltip>
-         <Tooltip title="Notifications" sx={{ mt: 1 }}>
+         <Tooltip title={t("common:messages")} sx={{ mt: 1 }}>
          <IconButton
               size="large"
               aria-label="show 3 new notifications"
               sx={{color:"#F9842C"}} 
             >
               <Badge badgeContent={3} color="warning">
-                <NotificationsIcon title="Notifications" />
+                <MailOutlineIcon title="Notifications" />
               </Badge>
             </IconButton>
           </Tooltip>

@@ -23,12 +23,11 @@ export const getBalanceAction = (user) => async (dispatch) => {
   //'Authorization': + basicAuth,
  },
   auth: {
-    username:"jeanc2",
-    password:"1516"
+    username,
+    password
   }
    });
     const {data} = await res;
-    
       //const token= jwt.sign(claims,jwt_secret, { expiresIn: "7d"});
       if(res.data.code===200){
         dispatch(getBalanceSuccess(data));

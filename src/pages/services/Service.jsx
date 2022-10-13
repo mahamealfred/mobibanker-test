@@ -395,7 +395,7 @@ export default function MediaCard() {
          textAlign="center"
          sx={{ fontSize: { xs: 20 } }}
          >
-      Government services
+      {t("common:governmentservices")}
         </Typography>
             <Button
             onClick={handleClickOpenRRA}
@@ -573,7 +573,7 @@ export default function MediaCard() {
         
          sx={{ fontSize: { xs: 20 } }}
          >
-      Airtime
+     {t("common:airtime")}
         </Typography>
         <Button
             onClick={handleOpenAIRTEL}
@@ -646,7 +646,7 @@ export default function MediaCard() {
          sx={{ fontSize: { xs: 20 } }}
          >
              <Divider variant="middle" />
-      Utilities
+             {t("common:utilities")}
         </Typography>
         <Button
             >
@@ -688,7 +688,7 @@ export default function MediaCard() {
         
          sx={{ fontSize: { xs: 20 } }}
          >
-      Agency banking
+       {t("common:agencybanking")}
         </Typography>
         <Typography component="h1" variant="h5"
          fontWeight={800}

@@ -14,7 +14,7 @@ import {
   CardActions,
   Avatar
 } from '@mui/material';
-
+import { useTranslation } from "react-i18next";
 const states = [
   {
     value: 'Rubavu',
@@ -38,6 +38,7 @@ const user = {
     timezone: 'GTM7'
   };
  const AccountProfileDetails = (props) => {
+  const { t } = useTranslation(["home","common","login"]);
   const [values, setValues] = useState({
     firstName: 'Bizimana',
     lastName: 'Jean Cloude 2',
@@ -48,6 +49,7 @@ const user = {
   });
 
   const handleChange = (event) => {
+    
     setValues({
       ...values,
       [event.target.name]: event.target.value
@@ -121,13 +123,13 @@ const user = {
     </CardContent>
     <Divider />
     <CardActions>
-      <Button
+      {/* <Button
         color="primary"
         fullWidth
         variant="text"
       >
         Upload picture
-      </Button>
+      </Button> */}
     </CardActions>
   </Card>
           </Grid>
@@ -144,8 +146,8 @@ const user = {
     >
       <Card>
         <CardHeader
-          subheader="The information can be edited"
-          title="Profile"
+          subheader= {t("common:theinformationcanbeedited")}
+          title={t("common:profile")}
         />
         <Divider />
         <CardContent>
@@ -161,7 +163,7 @@ const user = {
               <TextField
                 fullWidth
                 helperText="Please specify the first name"
-                label="First name"
+                label={t("common:firstname")}
                 name="firstName"
                 onChange={handleChange}
                 required
@@ -176,7 +178,7 @@ const user = {
             >
               <TextField
                 fullWidth
-                label="Last name"
+                label={t("common:lastname")}
                 name="lastName"
                 onChange={handleChange}
                 required
@@ -191,7 +193,7 @@ const user = {
             >
               <TextField
                 fullWidth
-                label="Email Address"
+                label={t("common:emailaddress")}
                 name="email"
                 onChange={handleChange}
                 required
@@ -206,7 +208,7 @@ const user = {
             >
               <TextField
                 fullWidth
-                label="Phone Number"
+                label={t("common:phone")}
                 name="phone"
                 onChange={handleChange}
                 type="number"
@@ -236,7 +238,7 @@ const user = {
             >
               <TextField
                 fullWidth
-                label="Select State"
+                label={t("common:district")}
                 name="state"
                 onChange={handleChange}
                 required
@@ -269,7 +271,7 @@ const user = {
             color="primary"
             variant="contained"
           >
-            Save details
+          {t("common:savedetails")}
           </Button>
         </Box>
       </Card>

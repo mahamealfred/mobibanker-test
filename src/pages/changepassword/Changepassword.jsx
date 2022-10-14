@@ -137,7 +137,7 @@ if(errorMessage==''){
                 }    
                  {
                   !errorMessage? null:
-                   <Collapse in={openSuccess}>
+                   <Collapse in={open}>
                    <Alert
                    severity="error"
                      action={
@@ -158,7 +158,7 @@ if(errorMessage==''){
                 }    
                   {
                   !successFullMessage? null:
-                   <Collapse in={open}>
+                   <Collapse in={openSuccess}>
                    <Alert
                    severity="success"
                      action={

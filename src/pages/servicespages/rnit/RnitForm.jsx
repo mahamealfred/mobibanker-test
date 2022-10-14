@@ -301,6 +301,7 @@ else if(formData.amountPaid==""){
     setAmountToPayErrorMessage("")
     getRnitDetails.details=['']
     getRnitDetails.error=['']
+    rnitPayment.details=['']
     setOpenRNIT(false)
     setActiveStep(0);
   };

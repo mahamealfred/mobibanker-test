@@ -17,6 +17,7 @@ import RraForm from '../servicespages/rra/RraForm';
 import CbhiIdentificationForm from '../servicespages/cbhi/CbhiIdentificationForm';
 import LtssForm from "../servicespages/ltss/LtssForm";
 import RnitForm from '../servicespages/rnit/RnitForm';
+import ElectricityForm from "../servicespages/electricity/ElectricityForm";
 
 //modal
 import Backdrop from '@mui/material/Backdrop';
@@ -25,7 +26,7 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import { useTranslation } from "react-i18next";
 import Transactions from '../transactions/Transactions';
-
+import { useHistory } from 'react-router-dom';
 const style = {
   position: 'absolute',
   top: '50%',
@@ -41,6 +42,7 @@ const style = {
 export default function MediaCard() {
   
   const { t } = useTranslation(["home","common","login"]);
+    const history=useHistory();
     const [openRSSB, setOpenRSSB] = React.useState(false);
     const [openRRA, setOpenRRA] = React.useState(false);
     const [openLTSS, setOpenLTSS] = React.useState(false);
@@ -48,18 +50,25 @@ export default function MediaCard() {
     const [openMTN, setOpenMTN] = React.useState(false);
     const [openAIRTEL, setOpenAIRTEL] = React.useState(false);
     const [openLOGS, setOpenLOGS] = React.useState(false);
+    const [openELECTRICITY,setOpenELECTRICITY]=React.useState(false);
+
     const handleOpenMTN = () => setOpenMTN(true);
     const handleCloseMTN = () => setOpenMTN(false);
     const handleOpenAIRTEL = () => setOpenAIRTEL(true);
     const handleCloseAIRTEL = () => setOpenAIRTEL(false);
+  
     
     const handleOpenLTSS= () => setOpenLTSS(true);
-
+    
+    const handleClickOpenElecticity = () => {
+      setOpenELECTRICITY(true);
+    };
     const handleClickOpenRRA = () => {
       setOpenRRA(true);
     };
     const handleClickOpenCBHI=()=>{
-      setOpenRSSB(true)
+       setOpenRSSB(true)
+      // history.push('/dashboard/cbhi',{push:true})
     }
     const handleClickOpenLTSS = () => {
       setOpenLTSS(true);
@@ -77,6 +86,7 @@ export default function MediaCard() {
       setOpenLTSS(false);
       setOpenRNIT(false);
       setOpenLOGS(false)
+      setOpenELECTRICITY(false)
     };
    
   
@@ -154,6 +164,8 @@ export default function MediaCard() {
           </Box>
         </Fade>
       </Modal>
+   
+
       {/* MODAL RNIT */}
       <Modal
         aria-labelledby="transition-modal-title"
@@ -190,7 +202,40 @@ export default function MediaCard() {
           </Box>
         </Fade>
       </Modal>
-
+      {/* ELECTRICITY */}
+      <Dialog
+        open={openELECTRICITY}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        
+      >
+        <DialogTitle id="alert-dialog-title">
+        
+          <Typography variant="h6" color="gray" >
+          MobiCash
+          </Typography>
+          
+          <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+        <ElectricityForm openELECTRICITY={openELECTRICITY} setOpenELECTRICITY={setOpenELECTRICITY}/>
+          </DialogContentText>
+        </DialogContent>
+      </Dialog>
+{/* RRA */}
             <Dialog
         open={openRRA}
         onClose={handleClose}
@@ -638,7 +683,9 @@ export default function MediaCard() {
             MTN
           </Typography>
             </Card>  
-            </Button>
+            </Button
+            
+            >
         <Typography component="h1" variant="h5"
          fontWeight={800}
          color="gray"
@@ -649,6 +696,7 @@ export default function MediaCard() {
              {t("common:utilities")}
         </Typography>
         <Button
+         onClick={handleClickOpenElecticity}
             >
             <Card
                 raised

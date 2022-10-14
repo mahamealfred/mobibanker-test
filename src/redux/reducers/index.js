@@ -8,6 +8,9 @@ import cbhiPayamentReducer from "./cbhiPaymentReducer";
 import changePasswordReducer from "./changePasswordReducer";
 // import forgotPasswordReducer from "./forgotPasswordReducer";
 
+             //ELECTRICITY
+import electricityReducer from "./electricityReducer";
+import electricityPaymentReducer from "./electricityPaymentReducer";
 
 import transactionsReducer from "./transactionsReducer";
 import balanceReducer from "./getBalanceReducer";
@@ -33,6 +36,9 @@ const allReducers = combineReducers({
      balance:balanceReducer,
      transactions:transactionsReducer,
      getYear:getYearReducer,
+     //electricity
+     getElectricityDetails:electricityReducer,
+     electricityPayment:electricityPaymentReducer,
 
      //cbhi
      getCbhiNidDetails:getCbhiNidDetailsReducer ,

@@ -34,6 +34,7 @@ export const changePasswordAction = (user,username) => async (dispatch) => {
   }
    });
     const {data} = await res;
+   
       if(res.data.responseCode===200){
         dispatch(changePasswordSuccess(data));
           // localStorage.removeItem("mobicashAuth");

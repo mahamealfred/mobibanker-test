@@ -8,49 +8,23 @@ import Alert from "@mui/material/Alert";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import { MenuItem } from "@mui/material";
-const banks=[
-  {
-      value:"BK",
-      label:"Bank of Kigali"
-  },
-  {
-      value:"GTBank",
-      label:"GT Bank"
-  },
-  {
-      value:"Equity",
-      label:"Equity"
-  }
-  , {
-      value:"AccessBank",
-      label:"Access Bank"
-  }
-]
+
+
 const Payment=({
-  formData,
-  setFormData,
-  payerName,
-  payerNid,
-  bankAccountErrorMessage,
-  bankNameErrorMessage,
-  payerEmailErrorMessage,
-  phoneNumberError,
-  amountToPayErrorMessage,
-  passwordError,
-  open,
-  setOpen,
-  paymenterrorMessage,
-  setPaymenterrorMessage
+  formData,setFormData,phoneNumberError,passwordError,taxPayerName,amountToPay,rraRef, paymentErrorMessage,
+  setPaymentErrorMessage,
+  openPayment,
+  setOpenPayment
 })=> {
+  
     const handleClose = () => {
-      setPaymenterrorMessage('')
-      setOpen(false);
+      setPaymentErrorMessage('')
+      setOpenPayment(false);
     };
   return (
     <React.Fragment>
-      {!paymenterrorMessage ? null : (
-        <Collapse in={open}>
+      {!paymentErrorMessage ? null : (
+        <Collapse in={openPayment}>
           <Alert
             severity="error"
             action={
@@ -59,14 +33,13 @@ const Payment=({
                 color="inherit"
                 size="small"
                 onClick={handleClose}
-              
               >
                 <CloseIcon fontSize="inherit" />
               </IconButton>
             }
             sx={{ mb: 0.2 }}
           >
-            {paymenterrorMessage}
+            {paymentErrorMessage}
           </Alert>
         </Collapse>
       )}
@@ -74,70 +47,37 @@ const Payment=({
      Payment  method
       </Typography> */}
       <Grid container spacing={3}>
-      <Grid item xs={12} md={6}>
-                 <Typography variant="body2" mt={1} textAlign="center" sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
+      <Grid item xs={12} md={4}>
+                 <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
                PAYER NAME
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-              {payerName}
+           Mahame Alfred
               </Typography>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={4}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-              NID
+        Meter number
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-             {payerNid}
+             1234554
               </Typography>
             </Grid>
-            <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="cardName"
-            label="Select Bank"
-            value={formData.bankName}
-            select
-            onChange={(e)=>setFormData({...formData,bankName:e.target.value})}
-            helperText={bankNameErrorMessage? bankNameErrorMessage : ""}
-            error={bankNameErrorMessage}
-            fullWidth
-            autoComplete="cc-name"
-            variant="outlined"
-          >
-            {banks.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
-                    ))} 
-            </TextField>
-        </Grid>
-            <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="cardName"
-            label="Account Number"
-            value={formData.bankAccount}
-            onChange={(e)=>setFormData({...formData,bankAccount:e.target.value})}
-            helperText={bankAccountErrorMessage? bankAccountErrorMessage : ""}
-            error={bankAccountErrorMessage}
-            fullWidth
-            autoComplete="cc-name"
-            variant="outlined"
-          />
-        </Grid>
             <Grid item xs={12} md={6}>
           <TextField
             required
             id="cardName"
             margin="normal"
-            label="Amount to pay"
-            value={formData.amountPaid}
-            onChange={(e)=>setFormData({...formData,amountPaid:e.target.value})}
-            helperText={amountToPayErrorMessage? amountToPayErrorMessage : ""}
-            error={amountToPayErrorMessage}
+            label="Amount to payer"
+            value={formData.phoneNumber}
+            onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
+            helperText={phoneNumberError? phoneNumberError : "Format 078..."}
+            error={phoneNumberError}
             fullWidth
             autoComplete="cc-name"
             variant="outlined"
           />
-        </Grid>
+      </Grid>
         <Grid item xs={12} md={6}>
           <TextField
             required
@@ -156,21 +96,8 @@ const Payment=({
         <Grid item xs={12} md={6}>
           <TextField
             required
-            id="cardName"
-            label="Payer Email"
-            value={formData.payerEmail}
-            onChange={(e)=>setFormData({...formData,payerEmail:e.target.value})}
-            helperText={payerEmailErrorMessage? payerEmailErrorMessage : ""}
-            error={payerEmailErrorMessage}
-            fullWidth
-            autoComplete="cc-name"
-            variant="outlined"
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
             id="cardNumber"
+            margin="normal"
             label="Agent Pin"
             value={formData.password}
             onChange={(e)=>setFormData({...formData,password:e.target.value})}

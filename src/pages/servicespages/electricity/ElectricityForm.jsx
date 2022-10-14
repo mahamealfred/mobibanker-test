@@ -11,11 +11,12 @@ import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Document from "../../../components/services/rra/Document";
-import Payment from "../../../components/services/rra/Payment";
-import Review from "../../../components/services/rra/Review";
+import Document from "../../../components/services/electricity/Document";
+import Payment from "../../../components/services/electricity/Payment";
+import Review from "../../../components/services/electricity/Review";
 import { getDocDetailsAction } from "../../../redux/actions/getDocDetailsAction";
 import { rraPayamentAction } from "../../../redux/actions/rraPaymentAction";
+import { getElectricityDetailsAction } from "../../../redux/actions/electricityAction";
 import { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Grid } from "@mui/material";
@@ -41,20 +42,22 @@ theme.typography.h3 = {
 
 const RraForm = ({openRRA,setOpenRRA}) => {
 
-  const steps = [`Reference number`, `Make payment`, `View Payment`];
+  const steps = [`Meter number`, `Make payment`, `View Payment`];
   const [activeStep, setActiveStep] = React.useState(0);
   const dispatch = useDispatch();
   const getDocDetails = useSelector((state) => state.getDocDetails);
   const rraPayment = useSelector((state) => state.rraPayment);
+  const getElectricityDetails = useSelector((state) => state.getElectricityDetails);
+  const electricityPayment = useSelector((state) => state.electricityPayment);
   const [formData, setFormData] = useState({
-    docId: "",
+    meterNumber: "",
     phoneNumber: "",
     password: "",
   });
   const componentRef = useRef();
 
  //rra get details
- const [docIdErr, setDocIdErr] = useState("");
+ const [meterNumberErr, setMeterNumberErr] = useState("");
  const [errorMessage, setErrorMessage] = useState("");
  //rra payments
  const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
@@ -94,7 +97,7 @@ const RraForm = ({openRRA,setOpenRRA}) => {
          <Document
            formData={formData}
            setFormData={setFormData}
-           docIdErr={docIdErr}
+           meterNumberErr={meterNumberErr}
            errorMessage={errorMessage}
            setErrorMessage={setErrorMessage}
            open={open}
@@ -152,34 +155,34 @@ const RraForm = ({openRRA,setOpenRRA}) => {
  }, []);
  useEffect(() => {
    async function fetchData() {
-     if (!getDocDetails.loading) {
-       if (getDocDetails.details.length !== 0) {
-         if (getDocDetails.details.responseCode === 200) {
-           setBankName(getDocDetails.details.bank_name);
-           setRraRef(getDocDetails.details.RRA_REF);
-           setTin(getDocDetails.details.TIN);
-           setTaxPayerName(getDocDetails.details.TAX_PAYER_NAME);
-           setTaxTypeDesc(getDocDetails.details.TAX_TYPE_DESC);
-           setTaxCenterNo(getDocDetails.details.TAX_CENTRE_NO);
-           setTaxTypeNo(getDocDetails.details.TAX_TYPE_NO);
-           setAssessNo(getDocDetails.details.ASSESS_NO);
-           setRraOrginNo(getDocDetails.details.RRA_ORIGIN_NO);
-           setAmountToPay(getDocDetails.details.AMOUNT_TO_PAY);
-           setDescId(getDocDetails.details.DEC_ID);
+     if (!getElectricityDetails.loading) {
+       if (getElectricityDetails.details.length !== 0) {
+         if (getElectricityDetails.details.responseCode === 200) {
+        //    setBankName(getDocDetails.details.bank_name);
+        //    setRraRef(getDocDetails.details.RRA_REF);
+        //    setTin(getDocDetails.details.TIN);
+        //    setTaxPayerName(getDocDetails.details.TAX_PAYER_NAME);
+        //    setTaxTypeDesc(getDocDetails.details.TAX_TYPE_DESC);
+        //    setTaxCenterNo(getDocDetails.details.TAX_CENTRE_NO);
+        //    setTaxTypeNo(getDocDetails.details.TAX_TYPE_NO);
+        //    setAssessNo(getDocDetails.details.ASSESS_NO);
+        //    setRraOrginNo(getDocDetails.details.RRA_ORIGIN_NO);
+        //    setAmountToPay(getDocDetails.details.AMOUNT_TO_PAY);
+        //    setDescId(getDocDetails.details.DEC_ID);
            handleNext();
          } else {
            return null;
          }
          //  console.log("doc ...doc",getDocDetails.details.responseCode)
        }
-       if (getDocDetails.error) {
-         setErrorMessage(getDocDetails.error);
+       if (getElectricityDetails.error) {
+         setErrorMessage(getElectricityDetails.error);
        }
      }
    }
    fetchData();
   
- }, [getDocDetails.details]);
+ }, [getElectricityDetails.details]);
 
  useEffect(()=>{
 async function fetchData(){
@@ -204,14 +207,15 @@ fetchData();
  },[rraPayment.details,rraPayment.error])
 
  //handle request for rra document id
- const handleDocmentDetails = async () => {
-   if (formData.docId === "") {
-     setDocIdErr("RRA reference is required");
-   } else if (!Number(formData.docId)) {
-     setDocIdErr("RRA  must be a number");
+ const handleMeterDetails = async () => {
+   if (formData.meterNumber === "") {
+     setMeterNumberErr("Meter is required");
+   } else if (!Number(formData.meterNumber)) {
+     setMeterNumberErr("Meter  must be a number");
    } else {
-     const docId = formData.docId;
-     await dispatch(getDocDetailsAction({ docId }, history));
+    setMeterNumberErr("");
+     const meterNumber = formData.meterNumber;
+     await dispatch(getElectricityDetailsAction({ meterNumber}));
    }
  };
 
@@ -259,7 +263,7 @@ fetchData();
  //handle on button submit for each step
  const handelSubmit = () => {
    if (activeStep === 0) {
-     handleDocmentDetails();
+     handleMeterDetails();
    } else if (activeStep === 1) {
     handlePayment();
    } else if (activeStep === 2) {
@@ -278,7 +282,7 @@ fetchData();
  };
 
  const handleNewpayment = () => {
-  formData.docId = "";
+  formData.meterNumber = "";
   formData.password = "";
   formData.phoneNumber = "";
   getDocDetails.details=['']
@@ -294,8 +298,8 @@ fetchData();
 
  const handleBack = () => {
    formData.password = "";
-   formData.docId=""
-   setDocIdErr("");
+   formData.meterNumber=""
+   setMeterNumberErr("");
    setPasswordError("");
    setPhoneNumberError("");
    setErrorMessage("");
@@ -325,10 +329,10 @@ fetchData();
            
            >
             <Typography variant="h6" color="gray" >
-          RRA Tax Payment Service
+          Electricity Payment Service
           </Typography>
            <img
-                  src="../../../Assets/images/rra.png"
+                  src="../../../Assets/images/electricity.png"
                   alt="logo"
                   height={70}
                   width={85}
@@ -397,7 +401,7 @@ fetchData();
                </Box>
                 </>
                         : activeStep === 0
-                        ? getDocDetails.loading?
+                        ? getElectricityDetails.loading?
                         <Box sx={{ display: 'flex',justifyContent:"center" }}>
                         <CircularProgress  sx={{ color: 'orange'}} />
                          </Box>:"Submit"

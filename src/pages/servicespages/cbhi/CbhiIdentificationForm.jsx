@@ -326,6 +326,7 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
       setPhoneNumberError("")
       setPasswordError("")
     getCbhiNidDetails.details=['']
+    cbhiPayment.details=['']
     getCbhiNidDetails.error=['']
     setActiveStep(0);
     setOpenRSSB(false)

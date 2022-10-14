@@ -9,7 +9,9 @@ import { useHistory } from 'react-router-dom';
 import Service from "../pages/services/Service"
 import HomeDetails from "../pages/home/HomeDetails";
 import Account from "../pages/myaccount/Account"
-import MyProfile from "../pages/myaccount/AccountProfile"
+import MyProfile from "../pages/myaccount/AccountProfile";
+import CbhiIdentificationForm from "../pages/servicespages/cbhi/CbhiIdentificationForm";
+import ElectricityForm from "../pages/servicespages/electricity/ElectricityForm"
 function App() {
   const {path}=useRouteMatch();
   // const decode=(token) => {
@@ -48,6 +50,7 @@ function App() {
                 <PrivateRoute exact path={path} component={HomeDetails} />
                 <PrivateRoute exact path={`${path}/my-account`} component={Account} />
                 <PrivateRoute exact path={`${path}/my-profile`} component={MyProfile} />
+                <PrivateRoute exact path={`${path}/cbhi`} component={ElectricityForm} />
               </>
             )}
           />

@@ -6,7 +6,15 @@ import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 import moment from 'moment';
 
-export default function Review({taxPayerName,amountToPay,transactionId,transactionStatus,dateTime,agentName}) {
+export default function Review({
+  dateTime,
+  transactionId,
+  transactionStatus,
+  payerName,
+  amountPaid,
+  agentName,
+  tokenValue
+}) {
   
   return (
     <React.Fragment>
@@ -16,15 +24,15 @@ export default function Review({taxPayerName,amountToPay,transactionId,transacti
       <List disablePadding>
           <ListItem  sx={{ py: 1, px: 0 }}>
             <ListItemText primary="PAYER NAME"/>
-            <Typography variant="body2">Mahame</Typography>
+            <Typography variant="body2">{payerName}</Typography>
           </ListItem>
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="PAID AMOUNT" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
              {/* let nf = new Intl.NumberFormat('en-US');
                     nf.format(number); // "1,234,567,890" */}
-              {/* {amountToPay.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}  Rwf */}
-              400 rwf
+              {amountPaid.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}  Rwf
+          
           </Typography>
         </ListItem>
       </List>
@@ -33,7 +41,7 @@ export default function Review({taxPayerName,amountToPay,transactionId,transacti
           <Typography variant="h6" textAlign="left" gutterBottom sx={{ mt: 2 }}>
          AGENT NAME
           </Typography>
-          <Typography textAlign="left" gutterBottom>Jean c 2</Typography>
+          <Typography textAlign="left" gutterBottom>{agentName}</Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" textAlign="center" gutterBottom sx={{ mt: 2 }}>
@@ -46,7 +54,13 @@ export default function Review({taxPayerName,amountToPay,transactionId,transacti
                   <Typography textAlign="left" gutterBottom>Mobicash reference</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography  textAlign="center" gutterBottom>M2354</Typography>
+                  <Typography  textAlign="center" gutterBottom>{transactionId}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography textAlign="left" gutterBottom>Token</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography  textAlign="center" gutterBottom>{tokenValue}</Typography>
                 </Grid>
               </React.Fragment>
               <React.Fragment >
@@ -54,7 +68,7 @@ export default function Review({taxPayerName,amountToPay,transactionId,transacti
                   <Typography textAlign="left" gutterBottom>Description</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography textAlign="center" gutterBottom>RRA tax</Typography>
+                  <Typography textAlign="center" gutterBottom>Electricity tax</Typography>
                 </Grid>
               </React.Fragment>
               <React.Fragment >
@@ -62,7 +76,7 @@ export default function Review({taxPayerName,amountToPay,transactionId,transacti
                   <Typography textAlign="left" gutterBottom>Date</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography textAlign="center" gutterBottom>1222/233</Typography>
+                  <Typography textAlign="center" gutterBottom>{moment(dateTime).format("llll")}</Typography>
                 </Grid>
               </React.Fragment>
               <React.Fragment >
@@ -70,7 +84,7 @@ export default function Review({taxPayerName,amountToPay,transactionId,transacti
                   <Typography textAlign="left" gutterBottom>Status</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography textAlign="center" gutterBottom>success</Typography>
+                  <Typography textAlign="center" gutterBottom>{transactionStatus}</Typography>
                 </Grid>
               </React.Fragment>
         

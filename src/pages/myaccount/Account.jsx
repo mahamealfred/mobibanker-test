@@ -163,7 +163,7 @@ const user = {
           color="textSecondary"
           variant="body2"
         >
-     {balance.details.balance[0].details.balance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} RWF
+     {balance.details.balance[2].details.availableBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} RWF
         </Typography>
            ):"No data"
           }
@@ -222,7 +222,7 @@ const user = {
           color="textSecondary"
           variant="body2"
         >
-       {balance.details.balance[0].details.availableBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}  RWF
+       {balance.details.balance[3].details.availableBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}  RWF
         </Typography>
         ):"No data"
       }

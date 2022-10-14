@@ -17,6 +17,7 @@ import Review from "../../../components/services/electricity/Review";
 import { getDocDetailsAction } from "../../../redux/actions/getDocDetailsAction";
 import { rraPayamentAction } from "../../../redux/actions/rraPaymentAction";
 import { getElectricityDetailsAction } from "../../../redux/actions/electricityAction";
+import { electricityPayamentAction } from "../../../redux/actions/electricitPaymentAction";
 import { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Grid } from "@mui/material";
@@ -40,7 +41,7 @@ theme.typography.h3 = {
   },
 };
 
-const RraForm = ({openRRA,setOpenRRA}) => {
+const EleCtricityForm = ({openELECTRICITY,setOpenELECTRICITY}) => {
 
   const steps = [`Meter number`, `Make payment`, `View Payment`];
   const [activeStep, setActiveStep] = React.useState(0);
@@ -51,7 +52,9 @@ const RraForm = ({openRRA,setOpenRRA}) => {
   const electricityPayment = useSelector((state) => state.electricityPayment);
   const [formData, setFormData] = useState({
     meterNumber: "",
+    amountToPay:"",
     phoneNumber: "",
+    taxIdentificationNumber:"",
     password: "",
   });
   const componentRef = useRef();
@@ -82,6 +85,16 @@ const RraForm = ({openRRA,setOpenRRA}) => {
  const [transactionStatus,setTransactionStatus]=useState("");
  const [dateTime,setDateTime]=useState("")
  const [agentName,setAgentName]=useState("")
+
+ const [payerName,setPayerName]=useState("");
+ const [meter,setMeter]=useState("");
+ const [amountTopayError,setAmountTopayError]=useState("")
+ const [taxIdentificationNumberError,setTaxIdentificationNumberError]=useState("");
+ const [openPayment,setOpenPayment]=useState(false);
+ const [tokenValue,setTokenValue]=useState("");
+ const [amountPaid,setAmountPaid]=useState("")
+
+
  //all
 
  const [open, setOpen] = React.useState(true);
@@ -111,13 +124,14 @@ const RraForm = ({openRRA,setOpenRRA}) => {
            setFormData={setFormData}
            phoneNumberError={phoneNumberError}
            passwordError={passwordError}
-           taxPayerName={taxPayerName}
-           rraRef={rraRef}
-           amountToPay={amountToPay}
+           payerName={payerName}
            paymenterrorMessage={paymenterrorMessage}
            setPaymenterrorMessage={setPaymenterrorMessage}
-           open={open}
-           setOpen={setOpen}
+           taxIdentificationNumberError={taxIdentificationNumberError}
+           amountTopayError={amountTopayError}
+           meterNumberErr={meterNumberErr}
+           openPayment={openPayment}
+           setOpenPayment={setOpenPayment}
          />
        );
      case 2:
@@ -125,9 +139,10 @@ const RraForm = ({openRRA,setOpenRRA}) => {
        dateTime={dateTime}
        transactionId={transactionId}
        transactionStatus={transactionStatus}
-       taxPayerName={taxPayerName}
-       amountToPay={amountToPay}
+       payerName={payerName}
+       amountPaid={amountPaid}
        agentName={agentName}
+       tokenValue={tokenValue}
        />;
      default:
        throw new Error("Unknown step");
@@ -158,17 +173,7 @@ const RraForm = ({openRRA,setOpenRRA}) => {
      if (!getElectricityDetails.loading) {
        if (getElectricityDetails.details.length !== 0) {
          if (getElectricityDetails.details.responseCode === 200) {
-        //    setBankName(getDocDetails.details.bank_name);
-        //    setRraRef(getDocDetails.details.RRA_REF);
-        //    setTin(getDocDetails.details.TIN);
-        //    setTaxPayerName(getDocDetails.details.TAX_PAYER_NAME);
-        //    setTaxTypeDesc(getDocDetails.details.TAX_TYPE_DESC);
-        //    setTaxCenterNo(getDocDetails.details.TAX_CENTRE_NO);
-        //    setTaxTypeNo(getDocDetails.details.TAX_TYPE_NO);
-        //    setAssessNo(getDocDetails.details.ASSESS_NO);
-        //    setRraOrginNo(getDocDetails.details.RRA_ORIGIN_NO);
-        //    setAmountToPay(getDocDetails.details.AMOUNT_TO_PAY);
-        //    setDescId(getDocDetails.details.DEC_ID);
+          setPayerName(getElectricityDetails.details.consumer.customerName)
            handleNext();
          } else {
            return null;
@@ -186,25 +191,28 @@ const RraForm = ({openRRA,setOpenRRA}) => {
 
  useEffect(()=>{
 async function fetchData(){
- if (!rraPayment.loading) {
-   if (rraPayment.details.length !== 0) {
-     if (rraPayment.details.responseCode === 200) {
-      setTransactionId(rraPayment.details.mobicashTransctionNo)
-      setDateTime(rraPayment.details.date)
+ if (!electricityPayment.loading) {
+   if (electricityPayment.details.length !== 0) {
+     if (electricityPayment.details.responseCode === 200) {
+      setTransactionId(electricityPayment.details.mobicashref)
+      setDateTime(electricityPayment.details.date)
       setTransactionStatus("success")
+      setTokenValue(electricityPayment.details.response.token)
+      setAmountPaid(electricityPayment.details.response.amountPaid)
+      console.log("ouput...",transactionId,dateTime,transactionStatus,tokenValue,amountPaid)
        handleNext();
      } else {
        return null;
      }
    }
-   if (rraPayment.error) {
-     setPaymenterrorMessage(rraPayment.error);
+   if (electricityPayment.error) {
+     setPaymenterrorMessage(electricityPayment.error);
    }
  }
 
 }
 fetchData();
- },[rraPayment.details,rraPayment.error])
+ },[electricityPayment.details,electricityPayment.error])
 
  //handle request for rra document id
  const handleMeterDetails = async () => {
@@ -219,12 +227,24 @@ fetchData();
    }
  };
 
-
-
-
- //handle rra Payament
+ //handle electricity Payament
  const handlePayment = async () => {
-   if (formData.phoneNumber === "") {
+    if(formData.amountToPay==""){
+        setAmountTopayError("Amaount to pay is required")
+    }
+    else if(!Number(formData.amountToPay)){
+        setAmountTopayError("Amount must be a number")
+    }
+    else if(formData.amountToPay < 100 || formData.amountToPay>1000000){
+        setAmountTopayError("The minimum amount is 100 and the maximun is 1000000")  
+    }
+    else if(formData.taxIdentificationNumber==""){
+   setTaxIdentificationNumberError("Customer Identification Number is required")
+    }
+    else if(!Number(formData.taxIdentificationNumber)){
+        setTaxIdentificationNumberError("Identification Number must be a number")
+    }
+   else if (formData.phoneNumber === "") {
      setPhoneNumberError("Phone number is required");
    } else if (!Number(formData.phoneNumber)) {
      setPhoneNumberError("Phone number must be a number");
@@ -233,28 +253,28 @@ fetchData();
   }else if (formData.password === "") {
      setPasswordError("Password is required");
    } else {
+    setAmountTopayError("")
+    setPasswordError("")
+    setPhoneNumberError("")
+    setTaxIdentificationNumberError("")
      const payerPhoneNumber = formData.phoneNumber;
+     const taxIdentificationNumber=formData.taxIdentificationNumber;
+     const meterNumber=formData.meterNumber;
      const password = formData.password;
-     await dispatch(rraPayamentAction(
-         {
-           bankName,
-           rraRef,
-           tin,
-           taxPayerName,
-           taxTypeDesc,
-           taxCenterNo,
-           taxTypeNo,
-           assessNo,
-           rraOrginNo,
-           amountToPay,
-           descId,
+     const amount=formData.amountToPay
+     await dispatch(electricityPayamentAction(
+         { 
+            amount,
+          payerName,
+           taxIdentificationNumber,
            payerPhoneNumber,
+           meterNumber,
            userGroup,
            brokering,
          },
          username,
-         password,
-         history
+         password
+        
        )
      );
      
@@ -265,17 +285,18 @@ fetchData();
    if (activeStep === 0) {
      handleMeterDetails();
    } else if (activeStep === 1) {
-    handlePayment();
+    // handlePayment();
+    handleNext();
    } else if (activeStep === 2) {
 
  handleNext()
    } else {
      return null;
    }
-   if (getDocDetails.error) {
+   if (getElectricityDetails.error) {
      setOpen(true);
    }
-   if (rraPayment.error) {
+   if (electricityPayment.error) {
      setOpen(true);
    }
   
@@ -285,10 +306,10 @@ fetchData();
   formData.meterNumber = "";
   formData.password = "";
   formData.phoneNumber = "";
-  getDocDetails.details=['']
-  getDocDetails.error=['']
-  rraPayment.details=['']
-  rraPayment.error=['']
+  getElectricityDetails.details=['']
+  getElectricityDetails.error=['']
+  electricityPayment.details=['']
+  electricityPayment.error=['']
   setActiveStep(0)
  };
 
@@ -305,10 +326,10 @@ fetchData();
    setErrorMessage("");
    getDocDetails.error=['']
    setPaymenterrorMessage("");
-   getDocDetails.details=['']
-   rraPayment.details=['']
+   getElectricityDetails.details=['']
+   electricityPayment.details=['']
    setActiveStep(0);
-   setOpenRRA(false)
+   setOpenELECTRICITY(false)
   
  };
   return (
@@ -394,8 +415,6 @@ fetchData();
                dateTime={dateTime}
                transactionId={transactionId}
                transactionStatus={transactionStatus}
-               taxPayerName={taxPayerName}
-               amountToPay={amountToPay}
                agentName={agentName}
                />
                </Box>
@@ -405,7 +424,7 @@ fetchData();
                         <Box sx={{ display: 'flex',justifyContent:"center" }}>
                         <CircularProgress  sx={{ color: 'orange'}} />
                          </Box>:"Submit"
-                        : rraPayment.loading?
+                        : electricityPayment.loading?
                         <Box sx={{ display: 'flex',justifyContent:"center" }}>
                         <CircularProgress  sx={{ color: 'orange'}} />
                          </Box>:"Make Payment"}
@@ -421,4 +440,4 @@ fetchData();
   );
 };
 
-export default RraForm;
+export default EleCtricityForm;

@@ -11,19 +11,27 @@ import CloseIcon from "@mui/icons-material/Close";
 
 
 const Payment=({
-  formData,setFormData,phoneNumberError,passwordError,taxPayerName,amountToPay,rraRef, paymentErrorMessage,
-  setPaymentErrorMessage,
+  formData,
+  setFormData,
+  phoneNumberError,
+  passwordError,
+  payerName,
+  paymenterrorMessage,
+  setPaymenterrorMessage,
+  taxIdentificationNumberError,
+  amountTopayError,
+  meterNumberErr,
   openPayment,
   setOpenPayment
 })=> {
   
     const handleClose = () => {
-      setPaymentErrorMessage('')
+      setPaymenterrorMessage('')
       setOpenPayment(false);
     };
   return (
     <React.Fragment>
-      {!paymentErrorMessage ? null : (
+      {!paymenterrorMessage ? null : (
         <Collapse in={openPayment}>
           <Alert
             severity="error"
@@ -39,7 +47,7 @@ const Payment=({
             }
             sx={{ mb: 0.2 }}
           >
-            {paymentErrorMessage}
+            {paymenterrorMessage}
           </Alert>
         </Collapse>
       )}
@@ -52,15 +60,15 @@ const Payment=({
                PAYER NAME
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-           Mahame Alfred
+          {payerName}
               </Typography>
             </Grid>
             <Grid item xs={12} md={4}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-        Meter number
+             METER NUMBER
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-             1234554
+             {formData.meterNumber}
               </Typography>
             </Grid>
             <Grid item xs={12} md={6}>
@@ -68,11 +76,26 @@ const Payment=({
             required
             id="cardName"
             margin="normal"
+            label="Tax Identification number"
+            value={formData.taxIdentificationNumber}
+            onChange={(e)=>setFormData({...formData,taxIdentificationNumber:e.target.value})}
+            helperText={taxIdentificationNumberError? taxIdentificationNumberError : ""}
+            error={taxIdentificationNumberError}
+            fullWidth
+            autoComplete="cc-name"
+            variant="outlined"
+          />
+      </Grid>
+            <Grid item xs={12} md={6}>
+          <TextField
+            required
+            id="cardName"
+            margin="normal"
             label="Amount to payer"
-            value={formData.phoneNumber}
-            onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
-            helperText={phoneNumberError? phoneNumberError : "Format 078..."}
-            error={phoneNumberError}
+            value={formData.amountToPay}
+            onChange={(e)=>setFormData({...formData,amountToPay:e.target.value})}
+            helperText={amountTopayError? amountTopayError : ""}
+            error={amountTopayError}
             fullWidth
             autoComplete="cc-name"
             variant="outlined"

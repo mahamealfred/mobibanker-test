@@ -28,7 +28,7 @@ import AppDrawer from '../../components/drawer';
 import { DashboardAppbarContainer } from '../../components/styles/appbar';
 import DashboardBanner from "../../components/dashboardbanner";
 import { Colors } from '../../components/styles/theme';
-import {useEffect} from "react";
+import {useEffect,useRef} from "react";
 import jwt from "jsonwebtoken";
 import Stack from '@mui/material/Stack';
 import { Button, ButtonGroup } from '@mui/material';
@@ -51,6 +51,24 @@ import { useTranslation } from "react-i18next";
 import ListItems from './ListItems';
 import Slider from '../../components/slider/Slider';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
+//Modal
+import Backdrop from '@mui/material/Backdrop';
+import Modal from '@mui/material/Modal';
+import Fade from '@mui/material/Fade';
+import CloseIcon from '@mui/icons-material/Close';
+import { useIdleTimer } from 'react-idle-timer';
+import ReactModal from 'react-modal';
+const style = {
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '40%',
+  position: 'absolute',
+  bgcolor: 'background.paper',
+  // border: '2px solid #000',
+  //boxShadow: 24,
+  p: 4,
+};
 const drawerWidth = 250;
 
 const AppBar = styled(MuiAppBar, {
@@ -103,6 +121,64 @@ function Home({...props}) {
   const [open, setOpen] = React.useState(true);
   const [agentName,setAgentName]=React.useState("");
   const { children } = props;
+  var startTimer=null
+  // set idle timer
+  const [openModal,setOpenModal]=React.useState(false)
+  const handleClose=()=>{
+    setOpenModal(false)
+        }
+  const idleTimerRef=useRef(null)
+  const onIdle=()=>{
+  setOpenModal(true)
+
+  }
+  const handleStopTime=()=>{
+  clearInterval(startTimer)
+  }
+  useEffect(()=>{
+if(openModal===true){
+  handelClock(0,1,0)
+}
+  },)
+
+  const IdleTimer = useIdleTimer({
+    crossTab: true,
+    ref: idleTimerRef,
+    timeout: 10 * 1000,
+    onIdle: onIdle
+  })
+  const handelClock=(hr, mm, ss)=>{
+    function startInterval(){
+       startTimer=setInterval(function(){
+        if(hr==0 && mm==0 && ss==0){
+          handleStopTime();
+        }
+        else if(ss!=0){
+          ss--;
+        }
+        else if(mm !=0 && ss==0){
+          ss=59;
+          mm--;
+        }
+        else if(hr !=0 && mm ==0){
+          mm =60;
+          hr--;
+        }
+        if (hr.toString().length < 2) hr = "0" + hr;
+        if (mm.toString().length < 2) mm = "0" + mm;
+        if (ss.toString().length < 2) ss = "0" + ss;
+       // setRemainingTime(hr + " : " + mm + " : " + ss);
+       if(mm=="00" && ss=="00"){
+        localStorage.removeItem('mobicashAuth');
+        sessionStorage.removeItem('mobicash-auth')
+        return history.push('/display',{push:true})
+       }
+      }, 1000);
+    }
+    startInterval();
+  }
+
+
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -121,6 +197,7 @@ function Home({...props}) {
      return payload;
   }
   useEffect(() => {
+    
     const token =localStorage.getItem('mobicashAuth');
     if (token) {
     const {name}=decode(token);
@@ -129,8 +206,49 @@ function Home({...props}) {
  
   }, []);
   console.log("all pros",children )
+
   return (
     <ThemeProvider theme={mdTheme}>
+      {/* <IdleTimer ref={idleTimerRef}/> */}
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={openModal}
+        // onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={openModal}>
+          <Box sx={style}>
+            <Typography id="transition-modal-title" variant="h6" component="h2">
+              You have been Idle for a while,
+            </Typography>
+            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
+             You will be looged out soon.
+            </Typography>
+            <ButtonGroup>
+              <Button>Log me Out</Button>
+              <Button>Keep me signed In</Button>
+            </ButtonGroup>
+            <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+          </Box>
+        </Fade>
+      </Modal>
+     
       <Box sx={{ display: 'flex' ,height:"auto"}}>
         {/* <CssBaseline /> */}
         <AppBar position="fixed" open={open} elevation={0} sx={{ backgroundColor: 'white', display: 'flex',borderRadius:2 }} >

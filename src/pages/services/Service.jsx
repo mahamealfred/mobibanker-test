@@ -21,9 +21,9 @@ import ElectricityForm from "../servicespages/electricity/ElectricityForm";
 
 //modal
 import Backdrop from '@mui/material/Backdrop';
-import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
+import Box from '@mui/material/Box';
 import { useTranslation } from "react-i18next";
 import Transactions from '../transactions/Transactions';
 import { useHistory } from 'react-router-dom';

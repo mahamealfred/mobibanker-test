@@ -9,120 +9,190 @@ import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 import moment from 'moment';
 import { Paper } from '@mui/material';
+import "../../../style.css"
 
 export const ComponentToPrint = React.forwardRef((props, ref) => {
            
     return (
       <div ref={ref}>
-         <CssBaseline />
-       
-         <Container component="main" >
-         <Grid 
-            >
-            <Box
-            alignContent="center"
-           xs={{padding:10}}
-           >
-            <Grid item xs={6}>
-            <img
-                  src="../../../Assets/images/logo.png"
-                  alt="logo"
-                  height={100}
-                  width={170}
-                />
-            </Grid>
-            <Grid item xs={8}>
-                  <Typography textAlign="left"  gutterBottom>MOBICASH RWANDA</Typography>
-                  <Typography textAlign="left" gutterBottom>EMAIL: info@mcash.rw</Typography>
-                  <Typography textAlign="left" gutterBottom>PHONE: (+250) 787 797 979</Typography>
-                  <Typography textAlign="left" gutterBottom>WEBSITE: www.mcash.rw </Typography>
-                </Grid>
-           </Box>
-            </Grid>
-          <Paper
-            variant="outlined"
-            sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
-          >
-         <Grid
-           container
-           direction="column"
-           alignItems="center"
-           justifyContent="center"
-           >
-        <Typography variant="h6" textAlign="center" gutterBottom>
-       PAYEMENT DETAILS
-      </Typography>
-      <Grid container>
-              <React.Fragment >
-                <Grid item xs={6}>
-                  <Typography textAlign="left" gutterBottom>PAYER NAME</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography  textAlign="right" gutterBottom>{props.payerName}</Typography>
-                </Grid>
-              </React.Fragment>
-              <React.Fragment >
-                <Grid item xs={6}>
-                  <Typography textAlign="left" gutterBottom>AMOUNT PAID</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography textAlign="right" gutterBottom> {props.formData.amountPaid.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}  Rwf</Typography>
-                </Grid>
-              </React.Fragment>
-              </Grid>
-      
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <Typography  textAlign="left" gutterBottom sx={{ mt: 2 }}>
-         AGENT NAME
-          </Typography>
-          <Typography textAlign="left" gutterBottom>{props.agentName}</Typography>
-        </Grid>
-        <Grid item container direction="column" xs={12} sm={6} >
-          <Typography variant="h6" textAlign="center" gutterBottom sx={{ mt: 2 }}>
-          TRANSACTION DETAILS
-          </Typography>
-          <Grid container>
-              <React.Fragment >
-                <Grid item xs={6}>
-                  <Typography textAlign="left" gutterBottom>TransactionID </Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography  textAlign="right" gutterBottom>{props.transactionId}</Typography>
-                </Grid>
-              </React.Fragment>
-              <React.Fragment >
-                <Grid item xs={6}>
-                  <Typography textAlign="left" gutterBottom>Description</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography textAlign="right" gutterBottom>Mutuwel</Typography>
-                </Grid>
-              </React.Fragment>
-              <React.Fragment >
-                <Grid item xs={6}>
-                  <Typography textAlign="left" gutterBottom>Date</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography textAlign="right" gutterBottom>{moment(props.dateTime).format("llll")}</Typography>
-                </Grid>
-              </React.Fragment>
-              <React.Fragment >
-                <Grid item xs={6}>
-                  <Typography textAlign="left" gutterBottom>Status</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography textAlign="right" gutterBottom>{props.transactionStatus}</Typography>
-                </Grid>
-              </React.Fragment>
-        
-          </Grid>
-        </Grid>
-      </Grid>
-      <Typography textAlign="left" gutterBottom>Signature: ____________________</Typography>
-           </Grid>
-          </Paper>
-        </Container>
+       <div className="wrapper">
+	<div className="invoice_wrapper">
+		<div className="header">
+			<div className="logo_invoice_wrap">
+				<div className="logo_sec">
+					<img src="../../Assets/images/logo.png" className='logo' alt="code logo"/>
+					<div className="title_wrap">
+						{/* <p className="title bold">Coding Boss</p>
+						<p className="sub_title">Privite Limited</p> */}
+					</div>
+				</div>
+				<div className="invoice_sec">
+					<p className="invoice bold">Receipt</p>
+					<p className="invoice_no">
+						<span className="bold">VALIDATION</span>
+						<span>*745*3#</span>
+					</p>
+					<p className="date">
+						<span className="bold">Date</span>
+						<span>08/Jan/2022</span>
+					</p>
+				</div>
+			</div>
+			<div className="bill_total_wrap">
+				<div className="bill_sec">
+        <p className="bold name">MobiCash Ltd</p>
+					<p>TIN No: 101858540</p> 
+					<p>Tel: (+250)787797979</p> 
+			        <span>
+			           Remera, Rukiri 1, Kigali, Rwanda<br/>
+			         KN3 3Road, Gasabo District
+			        </span>
+				</div>
+				<div className="total_wrap">
+					<p>Service</p>
+	          		<p className="bold price">LTSS EjoHeza</p>
+				</div>
+			</div>
+		</div>
+		<div className="body">
+			<div className="main_table">
+				<div className="table_header">
+					<div className="row">
+						<div className="col col_no">NO.</div>
+						<div className="col col_des">DESCRIPTION</div>
+						{/* <div className="col col_price">PRICE</div>
+						<div className="col col_qty">QTY</div> */}
+						<div className="col col_total">DETAILS</div>
+					</div>
+				</div>
+				<div className="table_body">
+					<div className="row">
+						<div className="col col_no">
+							<p>01</p>
+						</div>
+						<div className="col col_des">
+							<p className="bold">Beneficiary Name</p>
+							{/* <p>Lorem ipsum dolor sit.</p> */}
+						</div>
+						{/* <div className="col col_price">
+							<p>$350</p>
+						</div>
+						<div className="col col_qty">
+							<p>2</p>
+						</div> */}
+						<div className="col col_total">
+							<p>INGABIRE Chance </p>
+						</div>
+					</div>
+					<div className="row">
+						<div className="col col_no">
+							<p>02</p>
+						</div>
+						<div className="col col_des">
+							<p className="bold">Beneficiary NID</p>
+							{/* <p>Lorem ipsum dolor sit.</p> */}
+						</div>
+						{/* <div className="col col_price">
+							<p>$350</p>
+						</div>
+						<div className="col col_qty">
+							<p>2</p>
+						</div> */}
+						<div className="col col_total">
+							<p>1196270093420007</p>
+						</div>
+					</div>
+					<div className="row">
+						<div className="col col_no">
+							<p>03</p>
+						</div>
+						<div className="col col_des">
+							<p className="bold">Mobicash referance</p>
+							{/* <p>Lorem ipsum dolor sit.</p> */}
+						</div>
+						{/* <div className="col col_price">
+							<p>$120</p>
+						</div>
+						<div className="col col_qty">
+							<p>1</p>
+						</div> */}
+						<div className="col col_total">
+							<p>M223322</p>
+						</div>
+					</div>
+					<div className="row">
+						<div className="col col_no">
+							<p>04</p>
+						</div>
+						<div className="col col_des">
+							<p className="bold">Charge Fees</p>
+							{/* <p>Lorem ipsum dolor sit.</p> */}
+						</div>
+						{/* <div className="col col_price">
+							<p>$350</p>
+						</div>
+						<div className="col col_qty">
+							<p>2</p>
+						</div> */}
+						<div className="col col_total">
+							<p>25</p>
+						</div>
+					</div>
+					<div className="row">
+						<div className="col col_no">
+							<p>05</p>
+						</div>
+						<div className="col col_des">
+							<p className="bold">Description</p>
+							{/* <p>Lorem ips</p> */}
+						</div>
+						{/* <div className="col col_price">
+							<p>$150</p>
+						</div>
+						<div className="col col_qty">
+							<p>1</p>
+						</div> */}
+						<div className="col col_total">
+							<p>LTSS EjoHeza</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div className="paymethod_grandtotal_wrap">
+				<div className="paymethod_sec">
+					<p className="bold">AGENT NAME</p>
+					<p>NSANZINEZA JEAN CLAUDE</p>
+				</div>
+				<div className="grandtotal_sec">
+			        <p className="bold">
+			            <span>AMOUNT PAID</span>
+			            {/* <span>$7500</span> */}
+			        </p>
+			        {/* <p>
+			            <span>Tax Vat 18%</span>
+			            <span>$200</span>
+			        </p>
+			        <p>
+			            <span>Discount 10%</span>
+			            <span>-$700</span>
+			        </p> */}
+			       	<p className="bold">
+			            <span>Grand Total</span>
+			            <span>7,000.0 Rwf</span>
+			        </p>
+				</div>
+			</div>
+		</div>
+		<div className="footer">
+			<p>Thank you and Best Wishes</p>
+			{/* <div className="terms">
+		        <p className="tc bold">Terms & Coditions</p>
+		        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit non praesentium doloribus. Quaerat vero iure itaque odio numquam, debitis illo quasi consequuntur velit, explicabo esse nesciunt error aliquid quis eius!</p>
+		    </div> */}
+		</div>
+	</div>
+</div>
+
       </div>
     );
   });

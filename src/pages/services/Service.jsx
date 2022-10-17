@@ -208,7 +208,8 @@ export default function MediaCard() {
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
-        
+        fullWidth
+        maxWidth="lg"
       >
         <DialogTitle id="alert-dialog-title">
         
@@ -241,7 +242,8 @@ export default function MediaCard() {
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
-        
+        fullWidth
+        maxWidth="lg"
       >
         <DialogTitle id="alert-dialog-title">
         
@@ -274,6 +276,8 @@ export default function MediaCard() {
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        fullWidth
+        maxWidth="lg"
        
       >
         <DialogTitle id="alert-dialog-title">
@@ -306,7 +310,8 @@ export default function MediaCard() {
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
-       
+        fullWidth
+        maxWidth="lg"
       >
         <DialogTitle id="alert-dialog-title">
         
@@ -383,7 +388,8 @@ export default function MediaCard() {
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
-      
+        fullWidth
+        maxWidth="lg"
       >
         <DialogTitle id="alert-dialog-title">
           

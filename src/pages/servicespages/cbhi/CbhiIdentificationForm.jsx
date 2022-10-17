@@ -69,6 +69,7 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
   const [payerName,setPayerName]=useState('');
   const [houseHoldCategory,seHouseHoldCategory]=useState('');
   const [householdMemberNumber,setHouseholdMemberNumber]=useState('');
+  const [amountPaidBefore,setAmountPaidBefore]=useState("")
   const [totalPremium,setTotalPremium]=useState('');  
   const [brokering, setBrokering] = useState("");
   const [userGroup, setUserGroup] = useState("");
@@ -121,6 +122,7 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
             seHouseHoldCategory(getCbhiNidDetails.details.response.houseHoldCategory)
             setHouseholdMemberNumber(getCbhiNidDetails.details.response.totalHouseHoldMembers)
             setTotalPremium(getCbhiNidDetails.details.response.totalAmount)
+            setAmountPaidBefore(getCbhiNidDetails.details.response.totalPaidAmount)
             handleNext();
            } else {
              return null;
@@ -186,6 +188,7 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
           householdMemberNumber={householdMemberNumber}
           members={members}
           totalPremium={totalPremium}
+          amountPaidBefore={amountPaidBefore}
           openPayment={openPayment}
           setOpenPayment={setOpenPayment}
           />
@@ -196,6 +199,8 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
        formData={formData}
        transactionId={transactionId}
        transactionStatus={transactionStatus}
+       houseHoldCategory={houseHoldCategory}
+       householdMemberNumber={householdMemberNumber}
        dateTime={dateTime}
        agentName={agentName}
         />;
@@ -416,6 +421,8 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
                formData={formData}
                transactionId={transactionId}
                transactionStatus={transactionStatus}
+               houseHoldCategory={houseHoldCategory}
+               householdMemberNumber={householdMemberNumber}
                dateTime={dateTime}
                agentName={agentName}
                />

@@ -10,6 +10,8 @@ export default function Review({
   formData,
   transactionId,
   transactionStatus,
+  houseHoldCategory,
+  householdMemberNumber,
   dateTime,
   agentName,
 }) {
@@ -22,25 +24,40 @@ export default function Review({
       <List disablePadding>
     
           <ListItem  sx={{ py: 1, px: 0 }}>
-            <ListItemText primary="PAYER NAME"/>
-            <Typography variant="body2">{payerName}</Typography>
+            <ListItemText primary="HOUSEHOLDER NAME"/>
+            <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>{payerName}</Typography>
           </ListItem>
-        
-
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="PAID AMOUNT" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
           {formData.amountPaid.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf
           </Typography>
         </ListItem>
+        <ListItem  sx={{ py: 1, px: 0 }}>
+            <ListItemText primary="HOUSEHOLDER NID"/>
+            <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>{formData.nId}</Typography>
+          </ListItem>
+        <ListItem sx={{ py: 1, px: 0 }}>
+          <ListItemText primary="HOUSEHOLDER CATEGORY" />
+          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+           {houseHoldCategory}
+          </Typography>
+        </ListItem>
+        <ListItem sx={{ py: 1, px: 0 }}>
+          <ListItemText primary="NUMBER OF MEMBERS" />
+          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+           { householdMemberNumber}
+          </Typography>
+        </ListItem>
+        <ListItem sx={{ py: 1, px: 0 }}>
+          <ListItemText primary="YEAR OF PAYMENT" />
+          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+           {formData.paymentYear}
+          </Typography>
+        </ListItem>
       </List>
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <Typography variant="h6" textAlign="letf" gutterBottom sx={{ mt: 2 }}>
-       AGENT NAME
-          </Typography>
-          <Typography gutterBottom textAlign="left">{agentName}</Typography>
-        </Grid>
+     
         <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" textAlign="center" gutterBottom sx={{ mt: 2 }}>
         Payment Details
@@ -52,7 +69,7 @@ export default function Review({
                   <Typography gutterBottom textAlign="left">TransactionID </Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography gutterBottom textAlign="center">{transactionId}</Typography>
+                  <Typography gutterBottom textAlign="right">{transactionId}</Typography>
                 </Grid>
               </React.Fragment>
               <React.Fragment >
@@ -60,7 +77,7 @@ export default function Review({
                   <Typography gutterBottom textAlign="left">Description</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography gutterBottom textAlign="center">RSSB Mutuelli</Typography>
+                  <Typography gutterBottom textAlign="right">RSSB Mutuelli</Typography>
                 </Grid>
               </React.Fragment>
               <React.Fragment >
@@ -68,7 +85,7 @@ export default function Review({
                   <Typography gutterBottom textAlign="left">Date</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography gutterBottom textAlign="center">{moment(dateTime).format("llll")}</Typography>
+                  <Typography gutterBottom textAlign="right">{moment(dateTime).format("llll")}</Typography>
                 </Grid>
               </React.Fragment>
               <React.Fragment >
@@ -76,7 +93,7 @@ export default function Review({
                   <Typography gutterBottom textAlign="left">Status</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography gutterBottom textAlign="center">{transactionStatus}</Typography>
+                  <Typography gutterBottom textAlign="right">{transactionStatus}</Typography>
                 </Grid>
               </React.Fragment>
         

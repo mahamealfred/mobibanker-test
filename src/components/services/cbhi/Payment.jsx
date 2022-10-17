@@ -22,6 +22,7 @@ const Payment=({
    householdMemberNumber,
    members,
    totalPremium,
+   amountPaidBefore,
   setPaymenterrorMessage,
   open,
   setOpen
@@ -80,6 +81,22 @@ const Payment=({
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
                 {totalPremium.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf
+              </Typography>
+            </Grid>
+            <Grid item xs={12} md={4}>
+                 <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
+                ALREADY PAID
+              </Typography>
+              <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
+                {amountPaidBefore.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf
+              </Typography>
+            </Grid>
+            <Grid item xs={12} md={6}>
+                 <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
+             YEAR OF PAYMENT
+              </Typography>
+              <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
+                {formData.paymentYear}
               </Typography>
             </Grid>
             <Grid item xs={12} md={6}>

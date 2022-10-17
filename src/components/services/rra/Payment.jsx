@@ -14,7 +14,9 @@ const Payment=({
   formData,setFormData,phoneNumberError,passwordError,taxPayerName,amountToPay,rraRef, paymentErrorMessage,
   setPaymentErrorMessage,
   openPayment,
-  setOpenPayment
+  setOpenPayment,
+  tin,
+  taxTypeDesc
 })=> {
   
     const handleClose = () => {
@@ -65,11 +67,25 @@ const Payment=({
             </Grid>
             <Grid item xs={12} md={4}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
+                TIN
+              </Typography>
+              <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
+              {tin}
+              </Typography>
+            </Grid>
+            <Grid item xs={12} md={4}>
+                 <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
+           TAX TYPE DESCRIPTION
+              </Typography>
+              <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
+              {taxTypeDesc}
+              </Typography>
+            </Grid>
+            <Grid item xs={12} md={4}>
+                 <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
                  AMOUNT TO PAY
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-                   {/* let nf = new Intl.NumberFormat('en-US');
-                    nf.format(number); // "1,234,567,890" */}
               {amountToPay.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}  Rwf
               </Typography>
             </Grid>

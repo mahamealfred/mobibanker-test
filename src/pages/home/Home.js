@@ -144,7 +144,7 @@ if(openModal===true){
   const IdleTimer = useIdleTimer({
     crossTab: true,
     ref: idleTimerRef,
-    timeout: 10 * 1000,
+    timeout:  10 * 60 * 1000,
     onIdle: onIdle
   })
   const handelClock=(hr, mm, ss)=>{
@@ -171,7 +171,7 @@ if(openModal===true){
        if(mm=="00" && ss=="00"){
         localStorage.removeItem('mobicashAuth');
         sessionStorage.removeItem('mobicash-auth')
-        return history.push('/display',{push:true})
+        return history.push('/',{push:true})
        }
       }, 1000);
     }
@@ -205,7 +205,7 @@ if(openModal===true){
   }
  
   }, []);
-  console.log("all pros",children )
+
 
   return (
     <ThemeProvider theme={mdTheme}>

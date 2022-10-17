@@ -136,13 +136,13 @@ const EleCtricityForm = ({openELECTRICITY,setOpenELECTRICITY}) => {
        );
      case 2:
        return <Review 
-       dateTime={dateTime}
-       transactionId={transactionId}
-       transactionStatus={transactionStatus}
-       payerName={payerName}
-       amountPaid={amountPaid}
-       agentName={agentName}
-       tokenValue={tokenValue}
+      //  dateTime={dateTime}
+      //  transactionId={transactionId}
+      //  transactionStatus={transactionStatus}
+      //  payerName={payerName}
+      //  amountPaid={amountPaid}
+      //  agentName={agentName}
+      //  tokenValue={tokenValue}
        />;
      default:
        throw new Error("Unknown step");
@@ -194,12 +194,14 @@ async function fetchData(){
  if (!electricityPayment.loading) {
    if (electricityPayment.details.length !== 0) {
      if (electricityPayment.details.responseCode === 200) {
-      setTransactionId(electricityPayment.details.mobicashref)
-      setDateTime(electricityPayment.details.date)
-      setTransactionStatus("success")
-      setTokenValue(electricityPayment.details.response.token)
-      setAmountPaid(electricityPayment.details.response.amountPaid)
-      console.log("ouput...",transactionId,dateTime,transactionStatus,tokenValue,amountPaid)
+      console.log(":::",electricityPayment.details.mobicashref,electricityPayment.details.date,electricityPayment.details.response.token,
+      electricityPayment.details.response.amountPaid)
+      // setTransactionId(electricityPayment.details.mobicashref)
+      // setDateTime(electricityPayment.details.date)
+      // setTransactionStatus("success")
+      // setTokenValue(electricityPayment.details.response.token)
+      // setAmountPaid(electricityPayment.details.response.amountPaid)
+      // console.log("ouput...",transactionId,dateTime,transactionStatus,tokenValue,amountPaid)
        handleNext();
      } else {
        return null;
@@ -285,8 +287,8 @@ fetchData();
    if (activeStep === 0) {
      handleMeterDetails();
    } else if (activeStep === 1) {
-    // handlePayment();
-    handleNext();
+  handlePayment();
+    // handleNext();
    } else if (activeStep === 2) {
 
  handleNext()
@@ -324,7 +326,7 @@ fetchData();
    setPasswordError("");
    setPhoneNumberError("");
    setErrorMessage("");
-   getDocDetails.error=['']
+   getElectricityDetails.error=['']
    setPaymenterrorMessage("");
    getElectricityDetails.details=['']
    electricityPayment.details=['']
@@ -405,17 +407,18 @@ fetchData();
                       {/* {activeStep === steps.length - 1 ? 'Mke payment' : 'Next'} */}
                       {activeStep === steps.length - 1
                         ? <>
+                      
                         <ReactToPrint
              trigger={() => <Button>Print receipt</Button>}
             content={() => componentRef.current}
                />
                <Box sx={{display:'none'}}>
                <ComponentToPrint 
-               ref={componentRef} 
-               dateTime={dateTime}
-               transactionId={transactionId}
-               transactionStatus={transactionStatus}
-               agentName={agentName}
+                ref={componentRef} 
+              //  dateTime={dateTime}
+              //  transactionId={transactionId}
+              //  transactionStatus={transactionStatus}
+              //  agentName={agentName}
                />
                </Box>
                 </>

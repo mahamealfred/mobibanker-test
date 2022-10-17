@@ -115,6 +115,9 @@ const RraForm = ({openRRA,setOpenRRA}) => {
            setPaymenterrorMessage={setPaymenterrorMessage}
            open={open}
            setOpen={setOpen}
+           tin={tin}
+           taxTypeDesc={taxTypeDesc}
+           
          />
        );
      case 2:

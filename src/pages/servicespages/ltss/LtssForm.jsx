@@ -23,6 +23,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
 import jwt from "jsonwebtoken"
+import ReactToPrint from "react-to-print";
+import { ComponentToPrint } from "./ComponentToPrint";
+import { useRef } from 'react';
 const theme = createTheme();
 
 theme.typography.h3 = {
@@ -38,7 +41,7 @@ theme.typography.h3 = {
 
 
 const LtssForm = ({openLTSS,setOpenLTSS}) => {
-
+  const componentRef = useRef();
   const steps = [`NID`, `Make Payment`, `View payment`];
   const [activeStep, setActiveStep] = React.useState(0);
   const dispatch = useDispatch();
@@ -63,6 +66,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
  const [amountPaidError,setAmountPaidError]=useState('');
  const [passwordError, setPasswordError] = useState("");
  const [username, setUsername] = useState("");
+ const [password,setPassword]=useState("")
 
  const [transactionId,setTransactionId]=useState("");
  const [transactionStatus,setTransactionStatus]=useState("");
@@ -121,10 +125,12 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
     if (token) {
     const {group}=decode(token);
     const {username}=decode(token);
-    const {name}=decode(token)
+    const {name}=decode(token);
+    const {password}=decode(token)
     setUsername(username)
     setAgentCategory(group)
     setAgentName(name)
+    setPassword(password)
 
   }
  
@@ -183,8 +189,11 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
   else if(formData.nId.length!==16){
     setNIdErrorMessage("NID must be 16 digit")
   }
+  
+  
    else{
     setNIdErrorMessage("")
+ 
     const identificationId=formData.nId
    await dispatch(getLtssIdDetailsAction({identificationId}))
    }
@@ -221,7 +230,11 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
     }
     else if(formData.password=="" ){
       setPasswordError("Agent pin is required")
-    }else{
+    }
+    else if (formData.password !== password ) {
+      setPasswordError("Invalid pin,Please provide valid PIN");
+    } 
+    else{
       setAmountPaidError("")
       setPhoneNumberError("")
       setPasswordError("")
@@ -355,7 +368,18 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
                       
                       {/* {activeStep === steps.length - 1 ? 'Mke payment' : 'Next'} */}
                       {activeStep === steps.length - 1
-                        ? "Print Receipt"
+                        ?<>
+                        <ReactToPrint
+             trigger={() => <Button>Print receipt</Button>}
+            content={() => componentRef.current}
+               />
+               <Box sx={{display:'none'}}>
+               <ComponentToPrint 
+               ref={componentRef} 
+            
+               />
+               </Box>
+                </>
                         : activeStep === 0
                         ? getLtssIndDetails.loading?
                         <Box sx={{ display: 'flex',justifyContent:"center" }}>

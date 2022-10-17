@@ -358,7 +358,12 @@ if(openModal===true){
 
           </Toolbar>
         </AppBar>
-        <Drawer variant="permanent" open={open} >
+        <Drawer 
+          variant="permanent"
+         ModalProps={{
+           keepMounted: true,
+         }}
+        open={open} >
           <Toolbar
             sx={{
               backgroundColor: '#F9842C',
@@ -369,9 +374,9 @@ if(openModal===true){
               px: [1],
             }}
           >
-            <Typography variant="h6" textAlign="center" noWrap component="div"  >
+            {/* <Typography variant="h6" textAlign="center" noWrap component="div"  >
             {t("common:mobibankermenu")}
-            </Typography>
+            </Typography> */}
             <IconButton onClick={toggleDrawer}>
 
               <ChevronLeftIcon />

@@ -21,6 +21,9 @@ import { useDispatch,useSelector } from "react-redux";
 import { Grid } from "@mui/material";
 import CircularProgress from '@mui/material/CircularProgress';
 import jwt from "jsonwebtoken";
+import { ComponentToPrint } from './ComponentToPrint';
+import ReactToPrint from 'react-to-print';
+import { useRef } from 'react';
 const theme = createTheme();
 
 theme.typography.h3 = {
@@ -36,7 +39,7 @@ theme.typography.h3 = {
 
 
 const RnitForm = ({openRNIT,setOpenRNIT}) => {
-
+  const componentRef = useRef();
   const steps = [`NID`, `Make payment`, `View Payment`];
   const [activeStep, setActiveStep] = React.useState(0);
   const dispatch = useDispatch();
@@ -74,6 +77,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
  const [transactionStatus,setTransactionStatus]=useState("");
  const [dateTime,setDateTime]=useState("")
  const [agentName,setAgentName]=useState("");
+ const [password,setPassword]=useState("")
   const getStepContent = (step) => {
     switch (step) {
       case 0:
@@ -133,9 +137,11 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
     const {username}=decode(token);
     const {name}=decode(token)
     const {role}=decode(token);
+    const {password}=decode(token);
     setUsername(username)
     setBrokering(role)
     setAgentName(name)
+    setPassword(password)
   }
   }, []);
 
@@ -233,6 +239,10 @@ else if(formData.amountPaid==""){
   else if(!formData.password){
     setPasswordError("Agent pin is required")
   }
+  else if (formData.password !== password ) {
+    setPasswordError("Invalid pin,Please provide valid PIN");
+  } 
+  
   else{
     setBankNameErrorMessage("")
     setBankAccountErrorMessage("")
@@ -377,7 +387,23 @@ else if(formData.amountPaid==""){
                       
                       {/* {activeStep === steps.length - 1 ? 'Mke payment' : 'Next'} */}
                       {activeStep === steps.length - 1
-                        ? "Print Receipt"
+                        ? <>
+                        <ReactToPrint
+             trigger={() => <Button>Print receipt</Button>}
+            content={() => componentRef.current}
+               />
+               <Box sx={{display:'none'}}>
+               <ComponentToPrint 
+               ref={componentRef} 
+               formData={formData}
+               dateTime={dateTime}
+               transactionId={transactionId}
+               transactionStatus={transactionStatus}
+               payerName={payerName}
+               agentName={agentName}
+               />
+               </Box>
+                </>
                         : activeStep === 0
                         ? getRnitDetails.loading?
                         <Box sx={{ display: 'flex',justifyContent:"center" }}>

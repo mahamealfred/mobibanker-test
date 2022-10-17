@@ -6,7 +6,12 @@ import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 import moment from 'moment';
 
-export default function Review({taxPayerName,amountToPay,transactionId,transactionStatus,dateTime,agentName}) {
+export default function Review({taxPayerName,amountToPay,transactionId,transactionStatus,dateTime,agentName,
+  tin,
+  taxTypeDesc,
+  clientCharges
+
+}) {
   
   return (
     <React.Fragment>
@@ -16,24 +21,33 @@ export default function Review({taxPayerName,amountToPay,transactionId,transacti
       <List disablePadding>
           <ListItem  sx={{ py: 1, px: 0 }}>
             <ListItemText primary="PAYER NAME"/>
-            <Typography variant="body2">{taxPayerName}</Typography>
+            <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>{taxPayerName}</Typography>
+          </ListItem>
+          <ListItem  sx={{ py: 1, px: 0 }}>
+            <ListItemText primary="TIN"/>
+            <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>{tin}</Typography>
           </ListItem>
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="PAID AMOUNT" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-             {/* let nf = new Intl.NumberFormat('en-US');
-                    nf.format(number); // "1,234,567,890" */}
               {amountToPay.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}  Rwf
+          </Typography>
+        </ListItem>
+        <ListItem sx={{ py: 1, px: 0 }}>
+          <ListItemText primary="CLIENT CHARGES" />
+          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+              {clientCharges.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}  Rwf
+          </Typography>
+        </ListItem>
+        <ListItem sx={{ py: 1, px: 0 }}>
+          <ListItemText primary="TAX TYPE DESCRIPTION" />
+          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+              { taxTypeDesc}
           </Typography>
         </ListItem>
       </List>
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <Typography variant="h6" textAlign="left" gutterBottom sx={{ mt: 2 }}>
-         AGENT NAME
-          </Typography>
-          <Typography textAlign="left" gutterBottom>{agentName} </Typography>
-        </Grid>
+
         <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" textAlign="center" gutterBottom sx={{ mt: 2 }}>
         Payment Details
@@ -45,7 +59,7 @@ export default function Review({taxPayerName,amountToPay,transactionId,transacti
                   <Typography textAlign="left" gutterBottom>TransactionID </Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography  textAlign="center" gutterBottom>{transactionId}</Typography>
+                  <Typography  textAlign="right" gutterBottom>{transactionId}</Typography>
                 </Grid>
               </React.Fragment>
               <React.Fragment >
@@ -53,7 +67,7 @@ export default function Review({taxPayerName,amountToPay,transactionId,transacti
                   <Typography textAlign="left" gutterBottom>Description</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography textAlign="center" gutterBottom>RRA tax</Typography>
+                  <Typography textAlign="right" gutterBottom>RRA tax</Typography>
                 </Grid>
               </React.Fragment>
               <React.Fragment >
@@ -61,7 +75,7 @@ export default function Review({taxPayerName,amountToPay,transactionId,transacti
                   <Typography textAlign="left" gutterBottom>Date</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography textAlign="center" gutterBottom>{moment(dateTime).format("llll")}</Typography>
+                  <Typography textAlign="right" gutterBottom>{moment(dateTime).format("llll")}</Typography>
                 </Grid>
               </React.Fragment>
               <React.Fragment >
@@ -69,7 +83,7 @@ export default function Review({taxPayerName,amountToPay,transactionId,transacti
                   <Typography textAlign="left" gutterBottom>Status</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography textAlign="center" gutterBottom>{transactionStatus}</Typography>
+                  <Typography textAlign="right" gutterBottom>{transactionStatus}</Typography>
                 </Grid>
               </React.Fragment>
         

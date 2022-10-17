@@ -93,7 +93,7 @@ const EleCtricityForm = ({openELECTRICITY,setOpenELECTRICITY}) => {
  const [openPayment,setOpenPayment]=useState(false);
  const [tokenValue,setTokenValue]=useState("");
  const [amountPaid,setAmountPaid]=useState("")
-
+ const [password,setPassword]=useState("")
 
  //all
 
@@ -136,13 +136,13 @@ const EleCtricityForm = ({openELECTRICITY,setOpenELECTRICITY}) => {
        );
      case 2:
        return <Review 
-      //  dateTime={dateTime}
-      //  transactionId={transactionId}
-      //  transactionStatus={transactionStatus}
-      //  payerName={payerName}
-      //  amountPaid={amountPaid}
-      //  agentName={agentName}
-      //  tokenValue={tokenValue}
+       dateTime={dateTime}
+       transactionId={transactionId}
+       transactionStatus={transactionStatus}
+       payerName={payerName}
+       amountPaid={amountPaid}
+       agentName={agentName}
+       tokenValue={tokenValue}
        />;
      default:
        throw new Error("Unknown step");
@@ -160,10 +160,12 @@ const EleCtricityForm = ({openELECTRICITY,setOpenELECTRICITY}) => {
    const {role}=decode(token);
    const {group}=decode(token);
    const {name}=decode(token);
+   const {password}=decode(token)
    setUsername(username)
    setBrokering(role)
    setUserGroup(group)
    setAgentName(name)
+   setPassword(password)
    
  }
 
@@ -178,7 +180,7 @@ const EleCtricityForm = ({openELECTRICITY,setOpenELECTRICITY}) => {
          } else {
            return null;
          }
-         //  console.log("doc ...doc",getDocDetails.details.responseCode)
+      
        }
        if (getElectricityDetails.error) {
          setErrorMessage(getElectricityDetails.error);
@@ -194,14 +196,14 @@ async function fetchData(){
  if (!electricityPayment.loading) {
    if (electricityPayment.details.length !== 0) {
      if (electricityPayment.details.responseCode === 200) {
-      console.log(":::",electricityPayment.details.mobicashref,electricityPayment.details.date,electricityPayment.details.response.token,
-      electricityPayment.details.response.amountPaid)
-      // setTransactionId(electricityPayment.details.mobicashref)
-      // setDateTime(electricityPayment.details.date)
-      // setTransactionStatus("success")
-      // setTokenValue(electricityPayment.details.response.token)
-      // setAmountPaid(electricityPayment.details.response.amountPaid)
-      // console.log("ouput...",transactionId,dateTime,transactionStatus,tokenValue,amountPaid)
+    
+      setTransactionId(electricityPayment.details.mobicashref)
+      setDateTime(electricityPayment.details.date)
+      setTransactionStatus("success")
+      setTokenValue(electricityPayment.details.response.token)
+      setMeter(electricityPayment.details.response.meterNo)
+      setAmountPaid(electricityPayment.details.response.amountPaid)
+ 
        handleNext();
      } else {
        return null;
@@ -254,7 +256,11 @@ fetchData();
     setPhoneNumberError("Phone number must be 10 digit");
   }else if (formData.password === "") {
      setPasswordError("Password is required");
-   } else {
+   }
+   else if (formData.password !== password ) {
+    setPasswordError("Invalid pin,Please provide valid PIN");
+  } 
+   else {
     setAmountTopayError("")
     setPasswordError("")
     setPhoneNumberError("")
@@ -376,7 +382,7 @@ fetchData();
                   Thank you for using Mobicash
                   </Typography>
                   <Typography textAlign="center" variant="subtitle1">
-                  You have successfully paid your RRA tax
+                  You have successfully paid your ELECTRICITY
                   </Typography>
                 
                   <Button onClick={handleNewpayment} sx={{ mt: 3, ml: 1 }}>
@@ -415,10 +421,15 @@ fetchData();
                <Box sx={{display:'none'}}>
                <ComponentToPrint 
                 ref={componentRef} 
-              //  dateTime={dateTime}
-              //  transactionId={transactionId}
-              //  transactionStatus={transactionStatus}
-              //  agentName={agentName}
+                dateTime={dateTime}
+                
+                transactionId={transactionId}
+                transactionStatus={transactionStatus}
+                payerName={payerName}
+                amountPaid={amountPaid}
+                agentName={agentName}
+                tokenValue={tokenValue}
+                meter={meter}
                />
                </Box>
                 </>

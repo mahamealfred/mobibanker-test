@@ -22,7 +22,8 @@ const Payment=({
   amountTopayError,
   meterNumberErr,
   openPayment,
-  setOpenPayment
+  setOpenPayment,
+  errorMessage
 })=> {
   
     const handleClose = () => {
@@ -51,6 +52,7 @@ const Payment=({
           </Alert>
         </Collapse>
       )}
+       
       {/* <Typography variant="h6" textAlign="center" gutterBottom>
      Payment  method
       </Typography> */}
@@ -71,21 +73,7 @@ const Payment=({
              {formData.meterNumber}
               </Typography>
             </Grid>
-            <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="cardName"
-            margin="normal"
-            label="Tax Identification number"
-            value={formData.taxIdentificationNumber}
-            onChange={(e)=>setFormData({...formData,taxIdentificationNumber:e.target.value})}
-            helperText={taxIdentificationNumberError? taxIdentificationNumberError : ""}
-            error={taxIdentificationNumberError}
-            fullWidth
-            autoComplete="cc-name"
-            variant="outlined"
-          />
-      </Grid>
+       
             <Grid item xs={12} md={6}>
           <TextField
             required
@@ -96,6 +84,22 @@ const Payment=({
             onChange={(e)=>setFormData({...formData,amountToPay:e.target.value})}
             helperText={amountTopayError? amountTopayError : ""}
             error={amountTopayError}
+            fullWidth
+            autoComplete="cc-name"
+            variant="outlined"
+          />
+
+      </Grid>
+      <Grid item xs={12} md={6}>
+          <TextField
+            required
+            id="cardName"
+            margin="normal"
+            label="Tax Identification number"
+            value={formData.taxIdentificationNumber}
+            onChange={(e)=>setFormData({...formData,taxIdentificationNumber:e.target.value})}
+            helperText={taxIdentificationNumberError? taxIdentificationNumberError : ""}
+            error={taxIdentificationNumberError}
             fullWidth
             autoComplete="cc-name"
             variant="outlined"

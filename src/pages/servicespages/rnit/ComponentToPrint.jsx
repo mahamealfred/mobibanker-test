@@ -34,7 +34,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 					</p>
 					<p className="date">
 						<span className="bold">Date</span>
-						<span>08/Jan/2022</span>
+						<span>{moment(props.dateTime).format("llll")}</span>
 					</p>
 				</div>
 			</div>
@@ -50,7 +50,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 				</div>
 				<div className="total_wrap">
 					<p>Service</p>
-	          		<p className="bold price">LTSS EjoHeza</p>
+	          		<p className="bold price">RNIT ITRAMBERE FUND</p>
 				</div>
 			</div>
 		</div>
@@ -71,17 +71,12 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 							<p>01</p>
 						</div>
 						<div className="col col_des">
-							<p className="bold">Beneficiary Name</p>
+							<p className="bold">National ID</p>
 							{/* <p>Lorem ipsum dolor sit.</p> */}
 						</div>
-						{/* <div className="col col_price">
-							<p>$350</p>
-						</div>
-						<div className="col col_qty">
-							<p>2</p>
-						</div> */}
+				
 						<div className="col col_total">
-							<p>INGABIRE Chance </p>
+							<p>{props.formData.nId}</p>
 						</div>
 					</div>
 					<div className="row">
@@ -89,96 +84,67 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 							<p>02</p>
 						</div>
 						<div className="col col_des">
-							<p className="bold">Beneficiary NID</p>
+							<p className="bold">Investor Name</p>
 							{/* <p>Lorem ipsum dolor sit.</p> */}
 						</div>
-						{/* <div className="col col_price">
-							<p>$350</p>
-						</div>
-						<div className="col col_qty">
-							<p>2</p>
-						</div> */}
 						<div className="col col_total">
-							<p>1196270093420007</p>
+							<p>{props.payerName}</p>
 						</div>
 					</div>
-					<div className="row">
+          <div className="row">
 						<div className="col col_no">
 							<p>03</p>
 						</div>
 						<div className="col col_des">
-							<p className="bold">Mobicash referance</p>
+							<p className="bold">Investor Phone</p>
 							{/* <p>Lorem ipsum dolor sit.</p> */}
 						</div>
-						{/* <div className="col col_price">
-							<p>$120</p>
-						</div>
-						<div className="col col_qty">
-							<p>1</p>
-						</div> */}
 						<div className="col col_total">
-							<p>M223322</p>
+							<p>{props.formData.phoneNumber}</p>
 						</div>
 					</div>
+          
 					<div className="row">
 						<div className="col col_no">
 							<p>04</p>
 						</div>
 						<div className="col col_des">
-							<p className="bold">Charge Fees</p>
+							<p className="bold">Mobicash referance</p>
 							{/* <p>Lorem ipsum dolor sit.</p> */}
 						</div>
-						{/* <div className="col col_price">
-							<p>$350</p>
-						</div>
-						<div className="col col_qty">
-							<p>2</p>
-						</div> */}
 						<div className="col col_total">
-							<p>25</p>
+							<p>{props.transactionId}</p>
+                          
 						</div>
 					</div>
-					<div className="row">
-						<div className="col col_no">
-							<p>05</p>
-						</div>
-						<div className="col col_des">
-							<p className="bold">Description</p>
-							{/* <p>Lorem ips</p> */}
-						</div>
-						{/* <div className="col col_price">
-							<p>$150</p>
-						</div>
-						<div className="col col_qty">
-							<p>1</p>
-						</div> */}
-						<div className="col col_total">
-							<p>LTSS EjoHeza</p>
-						</div>
-					</div>
+					
+					
 				</div>
 			</div>
 			<div className="paymethod_grandtotal_wrap">
 				<div className="paymethod_sec">
 					<p className="bold">AGENT NAME</p>
-					<p>NSANZINEZA JEAN CLAUDE</p>
+					<p>Nsabimana jeance</p>
 				</div>
 				<div className="grandtotal_sec">
 			        <p className="bold">
-			            <span>AMOUNT PAID</span>
-			            {/* <span>$7500</span> */}
-			        </p>
-			        {/* <p>
-			            <span>Tax Vat 18%</span>
-			            <span>$200</span>
+			            <span>AMOUNT </span>
+               
+			            <span>{props.formData.amountPaid.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf</span>
+                       
 			        </p>
 			        <p>
+			            <span>Client Charges</span>
+			            {/* <span>{props.clientCharges.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf</span> */}
+                        <span>0 Rwf</span>
+			        </p>
+			        {/* <p>
 			            <span>Discount 10%</span>
 			            <span>-$700</span>
 			        </p> */}
 			       	<p className="bold">
 			            <span>Grand Total</span>
-			            <span>7,000.0 Rwf</span>
+			            <span>{props.formData.amountPaid.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}  Rwf</span>
 			        </p>
 				</div>
 			</div>

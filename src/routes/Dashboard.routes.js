@@ -12,7 +12,7 @@ import Account from "../pages/myaccount/Account"
 import MyProfile from "../pages/myaccount/AccountProfile";
 import CbhiIdentificationForm from "../pages/servicespages/cbhi/CbhiIdentificationForm";
 import ElectricityForm from "../pages/servicespages/electricity/ElectricityForm"
-import { ComponentToPrint } from "../pages/servicespages/rra/ComponentToPrint";
+import { ComponentToPrint } from "../pages/servicespages/rnit/ComponentToPrint";
 function App() {
   const {path}=useRouteMatch();
   // const decode=(token) => {

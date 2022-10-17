@@ -52,7 +52,6 @@ const RraForm = ({openRRA,setOpenRRA}) => {
     password: "",
   });
   const componentRef = useRef();
-
  //rra get details
  const [docIdErr, setDocIdErr] = useState("");
  const [errorMessage, setErrorMessage] = useState("");
@@ -79,12 +78,11 @@ const RraForm = ({openRRA,setOpenRRA}) => {
  const [transactionStatus,setTransactionStatus]=useState("");
  const [dateTime,setDateTime]=useState("")
  const [agentName,setAgentName]=useState("")
+ const [clientCharges,setClientCharges]=useState("")
+ const [password,setPassword]=useState("")
  //all
-
  const [open, setOpen] = React.useState(true);
  const [docDetails, setDocDetails] = useState("");
-
-
  const history = useHistory();
 
  const getStepContent = (step) => {
@@ -117,7 +115,8 @@ const RraForm = ({openRRA,setOpenRRA}) => {
            setOpen={setOpen}
            tin={tin}
            taxTypeDesc={taxTypeDesc}
-           
+           errorMessage={errorMessage}
+
          />
        );
      case 2:
@@ -128,6 +127,9 @@ const RraForm = ({openRRA,setOpenRRA}) => {
        taxPayerName={taxPayerName}
        amountToPay={amountToPay}
        agentName={agentName}
+       tin={tin}
+       taxTypeDesc={taxTypeDesc}
+       clientCharges={clientCharges}
        />;
      default:
        throw new Error("Unknown step");
@@ -145,10 +147,12 @@ const RraForm = ({openRRA,setOpenRRA}) => {
    const {role}=decode(token);
    const {group}=decode(token);
    const {name}=decode(token);
+   const {password}=decode(token)
    setUsername(username)
    setBrokering(role)
    setUserGroup(group)
    setAgentName(name)
+   setPassword(password)
    
  }
 
@@ -192,6 +196,7 @@ async function fetchData(){
       setTransactionId(rraPayment.details.mobicashTransctionNo)
       setDateTime(rraPayment.details.date)
       setTransactionStatus("success")
+      setClientCharges(rraPayment.details.fees)
        handleNext();
      } else {
        return null;
@@ -231,7 +236,14 @@ fetchData();
     setPhoneNumberError("Phone number must be 10 digit");
   }else if (formData.password === "") {
      setPasswordError("Password is required");
-   } else {
+   }
+   else if (formData.password !== password ) {
+    setPasswordError("Invalid pin,Please provide valid PIN");
+  }
+  else {
+    setPhoneNumberError("")
+    setPasswordError("")
+    // setPaymenterrorMessage("")
      const payerPhoneNumber = formData.phoneNumber;
      const password = formData.password;
      await dispatch(rraPayamentAction(
@@ -396,6 +408,10 @@ fetchData();
                taxPayerName={taxPayerName}
                amountToPay={amountToPay}
                agentName={agentName}
+               rraRef={rraRef}
+               tin={tin}
+               taxTypeDesc={taxTypeDesc}
+               clientCharges={clientCharges}
                />
                </Box>
                 </>

@@ -27,9 +27,9 @@ function App(){
        <Router>
         <Routes/>
       </Router>
-      <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+      {/* <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
           <FooterMenu/>
-          </Box>
+          </Box> */}
       </Suspense>
     </AuthApi.Provider>
     

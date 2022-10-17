@@ -390,6 +390,9 @@ export default function MediaCard() {
         aria-describedby="alert-dialog-description"
         fullWidth
         maxWidth="lg"
+        style={{
+          boxShadow: "none"
+        }}
       >
         <DialogTitle id="alert-dialog-title">
           

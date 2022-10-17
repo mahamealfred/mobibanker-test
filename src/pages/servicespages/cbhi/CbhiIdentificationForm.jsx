@@ -82,7 +82,7 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
   const [transactionStatus,setTransactionStatus]=useState("");
   const [dateTime,setDateTime]=useState("");
   const [agentName,setAgentName]=useState("")
- 
+ const [password,setPassword]=useState("")
   const history = useHistory();
 
   const decode= (token) => {
@@ -97,10 +97,12 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
     const {role}=decode(token);
     const {group}=decode(token);
     const {name}=decode(token);
+    const {password}=decode(token)
     setUsername(username)
     setBrokering(role)
     setUserGroup(group)
     setAgentName(name)
+    setPassword(password)
   }
  
   }, []);
@@ -265,7 +267,11 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
     }
     else if(formData.password=="" ){
       setPasswordError("Agent pin is required")
-    }else{
+    }
+    else if (formData.password !== password ) {
+      setPasswordError("Invalid pin,Please provide valid PIN");
+    } 
+    else{
       setAmountPaidError("")
       setPhoneNumberError("")
       setPasswordError("")

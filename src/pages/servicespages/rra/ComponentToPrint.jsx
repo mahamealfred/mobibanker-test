@@ -34,7 +34,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 					</p>
 					<p className="date">
 						<span className="bold">Date</span>
-						<span>08/Jan/2022</span>
+						<span>{moment(props.dateTime).format("llll")}</span>
 					</p>
 				</div>
 			</div>
@@ -74,14 +74,9 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 							<p className="bold">RRA Reference ID</p>
 							{/* <p>Lorem ipsum dolor sit.</p> */}
 						</div>
-						{/* <div className="col col_price">
-							<p>$350</p>
-						</div>
-						<div className="col col_qty">
-							<p>2</p>
-						</div> */}
+				
 						<div className="col col_total">
-							<p>1223455</p>
+							<p>{props. rraRef}</p>
 						</div>
 					</div>
 					<div className="row">
@@ -93,7 +88,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 							{/* <p>Lorem ipsum dolor sit.</p> */}
 						</div>
 						<div className="col col_total">
-							<p>107846464</p>
+							<p>{props.tin}</p>
 						</div>
 					</div>
           <div className="row">
@@ -105,7 +100,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 							{/* <p>Lorem ipsum dolor sit.</p> */}
 						</div>
 						<div className="col col_total">
-							<p>Mahame Alfred</p>
+							<p>{props.taxPayerName}</p>
 						</div>
 					</div>
           <div className="row">
@@ -117,7 +112,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 							{/* <p>Lorem ipsum dolor sit.</p> */}
 						</div>
 						<div className="col col_total">
-							<p>Amahoro</p>
+							<p>{props.taxTypeDesc}</p>
 						</div>
 					</div>
 					<div className="row">
@@ -128,14 +123,8 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 							<p className="bold">Mobicash referance</p>
 							{/* <p>Lorem ipsum dolor sit.</p> */}
 						</div>
-						{/* <div className="col col_price">
-							<p>$120</p>
-						</div>
-						<div className="col col_qty">
-							<p>1</p>
-						</div> */}
 						<div className="col col_total">
-							<p>M223322</p>
+							<p>{props.transactionId}</p>
 						</div>
 					</div>
 					
@@ -145,16 +134,17 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 			<div className="paymethod_grandtotal_wrap">
 				<div className="paymethod_sec">
 					<p className="bold">AGENT NAME</p>
-					<p>NSANZINEZA JEAN CLAUDE</p>
+					<p>{props.agentName}</p>
 				</div>
 				<div className="grandtotal_sec">
 			        <p className="bold">
-			            <span>AMOUNT PAID</span>
-			            <span>7000 Rwf</span>
+			            <span>AMOUNT </span>
+               
+			            <span>{props.amountToPay.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf</span>
 			        </p>
 			        <p>
 			            <span>Client Charges</span>
-			            <span>25 Rwf</span>
+			            <span>{props.clientCharges.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf</span>
 			        </p>
 			        {/* <p>
 			            <span>Discount 10%</span>
@@ -162,7 +152,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 			        </p> */}
 			       	<p className="bold">
 			            <span>Grand Total</span>
-			            <span>7,000.0 Rwf</span>
+			            <span>{props.amountToPay.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf</span>
 			        </p>
 				</div>
 			</div>

@@ -150,7 +150,7 @@ if (localStorage.getItem("i18nextLng")?.length > 2) {
   const IdleTimer = useIdleTimer({
     crossTab: true,
     ref: idleTimerRef,
-     timeout:  10 * 60 * 1000,
+     timeout:  5 * 60 * 1000,
     // timeout:  5 * 1000,
     onIdle: onIdle
   })

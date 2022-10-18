@@ -20,7 +20,7 @@ const TopNav = () => {
 
 	useEffect(() => {
 		if (localStorage.getItem("i18nextLng")?.length > 2) {
-			i18next.changeLanguage("ki");
+			i18next.changeLanguage("en");
 		}
 	}, []);
 
@@ -115,10 +115,11 @@ const TopNav = () => {
                 </Box>
                 <FormControl>
                   <NativeSelect
-                  defaultValue="ki"
+                  defaultValue="en"
                   value={localStorage.getItem("i18nextLng")}
                   onChange={handleLanguageChange}
                   >
+                    
               <option value="ki">Kinyarwanda</option>
               <option value="en">English</option>
               <option value="fr">Français</option>

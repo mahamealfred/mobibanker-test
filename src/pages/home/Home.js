@@ -59,6 +59,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useIdleTimer } from 'react-idle-timer';
 import ReactModal from 'react-modal';
 import WarningIcon from '@mui/icons-material/Warning';
+import i18next from "i18next";
 const style = {
   top: '50%',
   left: '50%',
@@ -140,6 +141,9 @@ function Home({...props}) {
   useEffect(()=>{
 if(openModal===true){
   handelClock(0,1,0)
+}
+if (localStorage.getItem("i18nextLng")?.length > 2) {
+  i18next.changeLanguage("en");
 }
   },)
 
@@ -357,7 +361,7 @@ setOpenModal(false)
                 </Box>
                 <FormControl>
                 <NativeSelect
-                  defaultValue="ki"
+                  defaultValue="en"
                   value={localStorage.getItem("i18nextLng")}
                   onChange={handleLanguageChange}
                   >

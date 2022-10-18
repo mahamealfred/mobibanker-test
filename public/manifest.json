@@ -2,12 +2,7 @@
   "short_name": "MobiBanker",
     "name": "MobiBanker",
     "icons": [
-        {
-            "src": "/Assets/images/img_1024.png",
-            "sizes": "1024x1024",
-            "type": "image/png",
-            "purpose": "maskable any"
-        },
+      
         {
             "src": "/Assets/images/img_192.png",
             "sizes": "196x196",

@@ -53,7 +53,12 @@ export const loginAction = (user,history) => async (dispatch) => {
   } catch (err) {
     if (err.response) {
      const errorMessage = await err.response.data.responseMessage;
-      dispatch(loginFailure(errorMessage));
+     if(errorMessage=="login"){
+      dispatch(loginFailure("Invalid credentials,Please provide a valid Username and Password"));
+     }else{
+      dispatch(loginFailure("You're temporaly blocked"));
+     }
+      
     } else {
       dispatch(loginFailure("Network Error"));
     }

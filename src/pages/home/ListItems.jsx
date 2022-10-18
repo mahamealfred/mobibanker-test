@@ -296,7 +296,8 @@ import { useTranslation } from "react-i18next";
               </ListItemButton>
             </ListItem>
           ))} */}
-          <ListItem  disablePadding sx={{ display: 'block' }}>
+            <Tooltip title={t("common:services")}>
+            <ListItem  disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -323,7 +324,10 @@ import { useTranslation } from "react-i18next";
                 />
               </ListItemButton>
             </ListItem>
-           <ListItem  disablePadding sx={{ display: 'block' }}>
+            </Tooltip>
+          
+            <Tooltip title= {t("common:myaccount")}>
+            <ListItem  disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -350,6 +354,9 @@ import { useTranslation } from "react-i18next";
                 />
               </ListItemButton>
             </ListItem>
+            </Tooltip>
+           
+            <Tooltip title={t("common:myprofile")} >
             <ListItem  disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
@@ -377,7 +384,10 @@ import { useTranslation } from "react-i18next";
                 />
               </ListItemButton>
             </ListItem>
-         <ListItem  disablePadding sx={{ display: 'block' }}>
+            </Tooltip>
+           
+            <Tooltip title={t("common:preioustransaction")} >
+            <ListItem  disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -404,6 +414,8 @@ import { useTranslation } from "react-i18next";
                 />
               </ListItemButton>
             </ListItem>
+            </Tooltip>
+            <Tooltip title={t("common:changepassword")}  >
             <ListItem  disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
@@ -431,9 +443,12 @@ import { useTranslation } from "react-i18next";
                 />
               </ListItemButton>
             </ListItem>
+            </Tooltip>
+            
         </List>
         <Divider />
         <List>
+        <Tooltip title={t("common:changelanguage")}  >
         <ListItem  disablePadding sx={{ display:{xs:"flex",sm:"none",md:"none"}}}>
               <ListItemButton
                 sx={{
@@ -456,11 +471,13 @@ import { useTranslation } from "react-i18next";
                   <LanguageIcon />
                 </ListItemIcon>
                 <ListItemText
-                  primary={t("common:changepassword")}
+                  primary={t("common:changelanguage")}
                   sx={{ opacity: open ? 1 : 0 }}
                 />
               </ListItemButton>
             </ListItem>
+        </Tooltip>
+        
         </List>
         {/* <Box sx={{ mx: 'auto', mt: 3, mb: 1 }}>
           <Tooltip title={"name" || ''}>
@@ -470,14 +487,26 @@ import { useTranslation } from "react-i18next";
             />
           </Tooltip>
         </Box> */}
-        <Box sx={{ textAlign: 'center' }}>
-          {/* {open && <Typography>Mahame</Typography>}
-          <Typography variant="body2">Agent</Typography>
+        <Box sx={{ textAlign: 'center',display:{xs:"block",sm:"none",md:"none"} }}>
+          {
+            open==true?
+            <>
+            <Typography>Name</Typography>
+            <Typography variant="body2">Mobicoretester2</Typography>
+            <Typography variant="body2">mahame@gmail.com</Typography>
+            </>:null
+          }
+          {/* {open && <Typography>Name</Typography>}
+          <Typography variant="body2">Mobicoretester2</Typography>
           {open && (
             <Typography variant="body2">mahame@gmail.com</Typography>
           )} */}
-          <Tooltip title="Logout"  sx={{ mt: 1 ,color:"#F9842C",display:{xs:"flex",sm:"none",md:"none"}}}>
-            <IconButton onClick={handleLogout}>
+          <Tooltip title="Logout"  >
+            <IconButton
+            sx={{
+              color:"#F9842C"
+            }}
+             onClick={handleLogout}>
               <Logout />
             </IconButton>
           </Tooltip>

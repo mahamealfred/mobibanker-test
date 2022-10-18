@@ -58,6 +58,7 @@ import Fade from '@mui/material/Fade';
 import CloseIcon from '@mui/icons-material/Close';
 import { useIdleTimer } from 'react-idle-timer';
 import ReactModal from 'react-modal';
+import WarningIcon from '@mui/icons-material/Warning';
 const style = {
   top: '50%',
   left: '50%',
@@ -65,6 +66,7 @@ const style = {
   width: '40%',
   position: 'absolute',
   bgcolor: 'background.paper',
+  justifyContent:"center",
   // border: '2px solid #000',
   //boxShadow: 24,
   p: 4,
@@ -144,7 +146,8 @@ if(openModal===true){
   const IdleTimer = useIdleTimer({
     crossTab: true,
     ref: idleTimerRef,
-    timeout:  10 * 60 * 1000,
+     timeout:  10 * 60 * 1000,
+    // timeout:  5 * 1000,
     onIdle: onIdle
   })
   const handelClock=(hr, mm, ss)=>{
@@ -177,7 +180,10 @@ if(openModal===true){
     }
     startInterval();
   }
-
+const handleContinue=()=>{
+handleStopTime()
+setOpenModal(false)
+}
 
   const toggleDrawer = () => {
     setOpen(!open);
@@ -216,6 +222,7 @@ if(openModal===true){
         open={openModal}
         // onClose={handleClose}
         closeAfterTransition
+       
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
@@ -223,28 +230,43 @@ if(openModal===true){
       >
         <Fade in={openModal}>
           <Box sx={style}>
-            <Typography id="transition-modal-title" variant="h6" component="h2">
-              You have been Idle for a while,
+          
+            <Typography id="transition-modal-title" textAlign="center" variant="h6" component="h2">
+             You'are about to be signed out,
             </Typography>
-            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-             You will be looged out soon.
+            <Typography id="transition-modal-description" textAlign="center" sx={{ mt: 2 }}>
+         For security reasons, your connection times out after you have been
+         inactive for a while. Click Continue to stay signed in.
             </Typography>
-            <ButtonGroup>
-              <Button>Log me Out</Button>
-              <Button>Keep me signed In</Button>
-            </ButtonGroup>
-            <IconButton
-          aria-label="close"
-          onClick={handleClose}
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
+            <Box
+           sx={{
+           display: 'flex',
+           justifyContent:"center",
+           padding:"10px 0px 5px",
+        '& > *': {
+          m: 1,
+        },
+      }}
+    >
+              <Button 
+               sx={{
+                width:"100%",
+                height:"40px",
+
+                borderRadius: 50
+              }}
+              onClick={handleLogout}
+              >Signed me Out</Button>
+              <Button variant='text'
+              sx={{
+                width:"100%",
+                height:"40px",
+               
+                borderRadius: 50
+              }}
+            onClick={handleContinue}
+              >Continue</Button>
+       </Box>
           </Box>
         </Fade>
       </Modal>
@@ -301,8 +323,8 @@ if(openModal===true){
               alt="mobicash logo"
               src="../../Assets/images/mobibk.png"
             />
-  <Box sx={{ display: { xs: 'flex', md: 'flex' },padding:2}}>
-         <Tooltip title={t("common:logout")} sx={{ mt: 1 }}>
+  <Box sx={{ display: { xs: 'flex', md: 'flex' }, padding:2}}>
+         <Tooltip title={t("common:logout")} sx={{ mt: 1,display: { xs: 'none', md: 'none' } }}>
        <IconButton   onClick={handleLogout} size="large" aria-label="show 4 new mails"  sx={{color:"#F9842C"}} >
               <LogoutIcon  sx={{color:"#F9842C"}} />
             </IconButton>
@@ -319,7 +341,6 @@ if(openModal===true){
             </IconButton>
           </Tooltip>
             
-         
           </Box>
 
             <Box sx={{ minWidth: 100, display: { xs: "none", sm: "none",md:"block" } }}>

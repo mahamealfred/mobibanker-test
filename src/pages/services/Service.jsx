@@ -99,7 +99,7 @@ export default function MediaCard() {
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         open={openMTN}
-        onClose={handleClose}
+        onClose={handleCloseMTN}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
@@ -108,7 +108,9 @@ export default function MediaCard() {
       >
         <Fade in={openMTN}>
           <Box sx={style}>
-            <Typography id="transition-modal-title" variant="h6" component="h2">
+            <Typography id="transition-modal-title" 
+            variant="h6" component="h2"
+            >
               Dear customer,
             </Typography>
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
@@ -134,7 +136,7 @@ export default function MediaCard() {
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         open={openAIRTEL}
-        onClose={handleClose}
+        onClose={handleCloseAIRTEL}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
@@ -422,19 +424,19 @@ export default function MediaCard() {
       
       
       <Grid
-            container
-            spacing={0}
-            bgColor="transparent"
-            direction="row"
-            justify="flex-start"
-            alignItems="flex-start"
-             sx={{ maxWidth: "auto" }}
+            // container
+            // spacing={0}
+            // bgColor="transparent"
+            // direction="row"
+            // justify="flex-start"
+            // alignItems="flex-start"
+            //  sx={{ maxWidth: "auto" }}
         >
             <Typography component="h1" variant="h5"
          fontWeight={800}
-         color="gray"
+         color="text.primary"
          textAlign="center"
-         padding="0 25px 30px 2px"
+         padding="0 0px 30px 0px"
          sx={{ fontSize: { xs: 20 } }}
          >
          {t("common:agencyservices")}
@@ -443,11 +445,12 @@ export default function MediaCard() {
         
         
             <Grid >
-            <Typography component="h1" variant="h5"
+            <Typography 
+            component="h1" variant="h5"
          fontWeight={800}
-         color="gray"
+         color="text.primary"
          textAlign="center"
-         sx={{ fontSize: { xs: 20 } }}
+         sx={{ fontSize: { xs: 16 } }}
          >
       {t("common:governmentservices")}
         </Typography>
@@ -619,87 +622,11 @@ export default function MediaCard() {
             </Card>  
             </Button> */}
                <Divider variant="middle" />
-            <Typography component="h1" variant="h5"
+               <Typography component="h1" variant="h5"
          fontWeight={800}
-         color="gray"
+         color="text.primary"
          textAlign="center"
-      
-        
-         sx={{ fontSize: { xs: 20 } }}
-         >
-     {t("common:airtime")}
-        </Typography>
-        <Button
-            onClick={handleOpenAIRTEL}
-            >
-            <Card
-                raised
-                sx={{
-                    //maxWidth: 100,
-                    width:{xs:60,sm:70,md:60,lg:60},
-                    height:{xs:60,sm:60,md:60,lg:60},
-                    borderRadius:5,
-                    margin: "0 auto 5px",
-                    padding: "0.9em",
-                }}
-            >
-                <CardMedia
-                    component="img"
-                    height="60"
-                    image="../../Assets/images/airtel.png"
-                    alt="alt"
-                    title="i"
-                    sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
-                    height:{xs:40,sm:40,md:40,lg:40}}}
-                />
-           <Typography variant="h6" gutterBottom
-                sx={{ padding: "0em 0em 0 0em",color:"gray",
-                fontSize:14
-             }}
-           >
-            AIRTEL
-          </Typography>
-            </Card>  
-            </Button>
-            <Button
-            onClick={handleOpenMTN}
-            >
-            <Card
-                raised
-                sx={{
-                    //maxWidth: 100,
-                    width:{xs:60,sm:70,md:60,lg:60},
-                    height:{xs:60,sm:60,md:60,lg:60},
-                    borderRadius:5,
-                    margin: "0 auto 5px",
-                    padding: "0.9em",
-                }}
-            >
-                <CardMedia
-                    component="img"
-                    height="60"
-                    image="../../Assets/images/mtn1.png"
-                    alt="alt"
-                    title="i"
-                    sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
-                    height:{xs:40,sm:40,md:40,lg:40}}}
-                />
-           <Typography variant="h6" gutterBottom
-                sx={{ padding: "0em 0em 0 0em",color:"gray",
-                fontSize:14
-             }}
-           >
-            MTN
-          </Typography>
-            </Card>  
-            </Button
-            
-            >
-        <Typography component="h1" variant="h5"
-         fontWeight={800}
-         color="gray"
-         textAlign="center"
-         sx={{ fontSize: { xs: 20 } }}
+         sx={{ fontSize: { xs: 16 } }}
          >
              <Divider variant="middle" />
              {t("common:utilities")}
@@ -737,13 +664,92 @@ export default function MediaCard() {
             </Card>  
             </Button>
             <Divider variant="middle" />
-        <Typography component="h1" variant="h5"
+            <Typography component="h1" variant="h5"
          fontWeight={800}
-         color="gray"
+         color="text.primary"
          textAlign="center"
       
         
-         sx={{ fontSize: { xs: 20 } }}
+         sx={{ fontSize: { xs: 16 } }}
+         >
+     {t("common:airtime")}
+        </Typography>
+        <Button
+            onClick={handleOpenAIRTEL}
+            disabled
+            >
+            <Card
+                raised
+                sx={{
+                    //maxWidth: 100,
+                    width:{xs:60,sm:70,md:60,lg:60},
+                    height:{xs:60,sm:60,md:60,lg:60},
+                    borderRadius:5,
+                    margin: "0 auto 5px",
+                    padding: "0.9em",
+                }}
+            >
+                <CardMedia
+                    component="img"
+                    height="60"
+                    image="../../Assets/images/airtel.png"
+                    alt="alt"
+                    title="i"
+                    sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
+                    height:{xs:40,sm:40,md:40,lg:40}}}
+                />
+           <Typography variant="h6" gutterBottom
+                sx={{ padding: "0em 0em 0 0em",color:"gray",
+                fontSize:14
+             }}
+           >
+            AIRTEL
+          </Typography>
+            </Card>  
+            </Button>
+            {/* <Button
+            disabled
+            onClick={handleOpenMTN}
+            >
+            <Card
+                raised
+                sx={{
+                    //maxWidth: 100,
+                    width:{xs:60,sm:70,md:60,lg:60},
+                    height:{xs:60,sm:60,md:60,lg:60},
+                    borderRadius:5,
+                    margin: "0 auto 5px",
+                    padding: "0.9em",
+                }}
+            >
+                <CardMedia
+                    component="img"
+                    height="60"
+                    image="../../Assets/images/mtn1.png"
+                    alt="alt"
+                    title="i"
+                    sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
+                    height:{xs:40,sm:40,md:40,lg:40}}}
+                />
+           <Typography variant="h6" gutterBottom
+                sx={{ padding: "0em 0em 0 0em",color:"gray",
+                fontSize:14
+             }}
+           >
+            MTN
+          </Typography>
+            </Card>  
+            </Button>
+             */}
+       
+       <Divider variant="middle" />
+        <Typography component="h1" variant="h5"
+         fontWeight={800}
+         color="text.primary"
+         textAlign="center"
+      
+        
+         sx={{ fontSize: { xs: 16 } }}
          >
        {t("common:agencybanking")}
         </Typography>
@@ -758,6 +764,7 @@ export default function MediaCard() {
       {/* School services */}
         </Typography>
         <Button
+               disabled
             // onClick={handleOpenMTN}
         
             >

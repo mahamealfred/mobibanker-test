@@ -18,9 +18,9 @@ export const changePasswordAction = (user,username) => async (dispatch) => {
     //let basicAuth='Basic ' + btoa(username + ':' + password);
     const Url='https://agentapi.mobicash.rw/api/agent/user/rest/v.4.14.01/change-password';
    const res = await axios.post(Url,{
-    oldPassword:oldPassword,
-    newPassword:password,
-    newPasswordConfirmation:confirmPassword
+    oldPassword:oldPassword.toString(),
+    newPassword:password.toString(),
+    newPasswordConfirmation:confirmPassword.toString()
    },{
     withCredentials: true,
     headers:{
@@ -34,20 +34,12 @@ export const changePasswordAction = (user,username) => async (dispatch) => {
   }
    });
     const {data} = await res;
-   
       if(res.data.responseCode===200){
         dispatch(changePasswordSuccess(data));
-          // localStorage.removeItem("mobicashAuth");
-          //  sessionStorage.removeItem("mobicash-auth")
-          // history.push('/',{push:true})
-          // window.location.reload(true);
-
       }
       
-   
   } catch (err) {
     if (err.response) {
-      
       const errorMessage = 'Please provide valid Pin'
        // errorMessage=await err.response.data.message
         dispatch(changePasswordFailure(errorMessage));

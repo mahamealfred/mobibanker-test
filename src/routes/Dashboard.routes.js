@@ -8,6 +8,7 @@ import jwt from "jsonwebtoken";
 import { useHistory } from 'react-router-dom';
 import Service from "../pages/services/Service"
 import HomeDetails from "../pages/home/HomeDetails";
+import HomePage from "../pages/home/HomePage";
 import Account from "../pages/myaccount/Account"
 import MyProfile from "../pages/myaccount/AccountProfile";
 import CbhiIdentificationForm from "../pages/servicespages/cbhi/CbhiIdentificationForm";
@@ -48,7 +49,7 @@ function App() {
             component={({ match }) => (
               <>
                 {/* <PrivateRoute exact path={path} component={Home} /> */}
-                <PrivateRoute exact path={path} component={HomeDetails} />
+                <PrivateRoute exact path={path} component={HomePage} />
                 <PrivateRoute exact path={`${path}/my-account`} component={Account} />
                 <PrivateRoute exact path={`${path}/my-profile`} component={MyProfile} />
                 <PrivateRoute exact path={`${path}/cbhi`} component={ComponentToPrint} />

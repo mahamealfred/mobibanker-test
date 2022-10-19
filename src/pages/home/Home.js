@@ -121,7 +121,7 @@ const mdTheme = createTheme();
 function Home({...props}) {
   const { i18n,t } = useTranslation(["home","common","login"]);
  const history=useHistory();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const [agentName,setAgentName]=React.useState("");
   const { children } = props;
   var startTimer=null

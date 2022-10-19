@@ -39,8 +39,10 @@ const Changepassword = () => {
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
   const [username,setUsername]=useState("")
+  var startTimer=null
   const dispatch=useDispatch();
   const changePassword=useSelector((state)=>state.changePassword)
+  const [oldpass,setOldpass]=useState("")
 
   const handleClose = () => {
     changePassword.error=''
@@ -54,11 +56,17 @@ setOpenSuccess(false)
         const oldPassword = oldPasswordRef.current.value;
         const password = passwordRef.current.value;
         const confirmPassword = confirmPasswordRef.current.value;
-        console.log("eror..",oldPassword ,password,confirmPassword)
+
+
         if (password !== confirmPassword){
           setErrMessage("Password dont not macth")
           setOpen(true)
-        }else{
+        }
+        if(oldpass !== oldPassword){
+          setErrMessage("Invalid Old Password")
+          setOpen(true)
+        } 
+        else{
           setErrMessage("")
           await dispatch(changePasswordAction({oldPassword,password,confirmPassword},username))
         }
@@ -89,7 +97,9 @@ if(errorMessage==''){
         const token =localStorage.getItem('mobicashAuth');
         if (token) {
         const {username}=decode(token);
+        const {password}=decode(token);
         setUsername(username)
+        setOldpass(password)
       }
      
       },[]);
@@ -99,13 +109,50 @@ if(errorMessage==''){
       if(changePassword.details.responseCode===200){
         setSuccessFullMessage("You have successfuly change your password")
         setOpenSuccess(true)
+        handelClock(0,0,8)
       }
       
      }
     
         }
         fecthData()
-           },[!changePassword.details])
+           },[changePassword.details])
+
+
+           //hhandle timer
+           const handleStopTime=()=>{
+            clearInterval(startTimer)
+            }
+           const handelClock=(hr, mm, ss)=>{
+            function startInterval(){
+               startTimer=setInterval(function(){
+                if(hr==0 && mm==0 && ss==0){
+                  handleStopTime();
+                }
+                else if(ss!=0){
+                  ss--;
+                }
+                else if(mm !=0 && ss==0){
+                  ss=59;
+                  mm--;
+                }
+                else if(hr !=0 && mm ==0){
+                  mm =60;
+                  hr--;
+                }
+                if (hr.toString().length < 2) hr = "0" + hr;
+                if (mm.toString().length < 2) mm = "0" + mm;
+                if (ss.toString().length < 2) ss = "0" + ss;
+               // setRemainingTime(hr + " : " + mm + " : " + ss);
+               if(mm=="00" && ss=="00"){
+                localStorage.removeItem('mobicashAuth');
+                sessionStorage.removeItem('mobicash-auth')
+                return history.push('/',{push:true})
+               }
+              }, 1000);
+            }
+            startInterval();
+          }
            
   return (
    <React.Fragment>
@@ -161,16 +208,16 @@ if(errorMessage==''){
                    <Collapse in={openSuccess}>
                    <Alert
                    severity="success"
-                     action={
-                       <IconButton
-                         aria-label="close"
-                         color="inherit"
-                         size="small"
-                         onClick={handleClose}
-                       >
-                         <CloseIcon fontSize="inherit" />
-                       </IconButton>
-                     }
+                    //  action={
+                    //    <IconButton
+                    //      aria-label="close"
+                    //      color="inherit"
+                    //      size="small"
+                    //      onClick={handleClose}
+                    //    >
+                    //      <CloseIcon fontSize="inherit" />
+                    //    </IconButton>
+                    //  }
                      sx={{ mb: 0.2 }}
                    >
                   {successFullMessage}
@@ -201,9 +248,13 @@ if(errorMessage==''){
          
         </DialogContent>
         <DialogActions sx={{ px: '19px' }}>
-          <Button type="submit" variant="text"  sx={{color:"#F9842C"}}  endIcon={<Send sx={{color:"#F9842C"}}/>}>
+          {
+            changePassword.loading?"Loading":
+            <Button type="submit" variant="text"  sx={{color:"#F9842C"}}  endIcon={<Send sx={{color:"#F9842C"}}/>}>
            {t("common:submit")}
           </Button>
+          }
+          
         </DialogActions>
       </form>
    </React.Fragment>

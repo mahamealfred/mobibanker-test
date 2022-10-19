@@ -57,7 +57,9 @@ const Document = ({
             )
         }
             <ThemeProvider theme={theme}>
-                <Typography variant="h6" color="gray"  align="center">
+                <Typography variant="h6" color="text.primary"  align="center"
+                  sx={{ fontSize:{xs:14,md:16,lg:18} }}
+                >
                 NID
                     </Typography>
             </ThemeProvider>
@@ -65,7 +67,7 @@ const Document = ({
                 spacing={3}>
                 <Grid item
                     xs={12}>
-                    <TextField id="address2"   margin="normal" name="address2" label="NID"
+                    <TextField id="address2"  size="small"  margin="normal" name="address2" label="NID"
                         value={formData.nId}
                         onChange={(e) => setFormData({...formData, nId: e.target.value})}
                         helperText={nIdErrorMessage ? nIdErrorMessage : ""}

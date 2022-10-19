@@ -350,7 +350,7 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
         <Container component="main" maxWidth="sm" sx={{display:{xs:"flex",sm:"flex",md:"block",lg:"block"}, mb: 4 }}>
           <Paper
             variant="outlined"
-            sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
+            sx={{ my: { xs: 1, md: 2 }, p: { xs: 4, md: 6 } }}
           >
              <ThemeProvider theme={theme}>
            <Grid
@@ -360,7 +360,9 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
            justifyContent="center"
            
            >
-             <Typography variant="h6" color="gray" >
+             <Typography variant="h6" color="text.primary" 
+                 sx={{ fontSize:{xs:14,md:16,lg:20} }}
+             >
           RSSB Mutuelle Service
           </Typography>
            <img

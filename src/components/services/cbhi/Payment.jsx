@@ -128,6 +128,7 @@ const Payment=({
                 label="Check members"
                 fullWidth
                 autoComplete="cc-name"
+                size="small"
           
               >
                {members.map((option) => (
@@ -143,6 +144,7 @@ const Payment=({
             id="cardName"
             margin="normal"
             label="Amount to pay"
+            size="small"
             value={formData.amountPaid}
             onChange={(e)=>setFormData({...formData,amountPaid:e.target.value})}
             helperText={amountPaidError? amountPaidError : ""}
@@ -158,6 +160,7 @@ const Payment=({
             id="cardName"
             margin="normal"
             label="Payer phone number"
+            size="small"
             value={formData.phoneNumber}
             onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
             helperText={phoneNumberError? phoneNumberError : "Format 078..."}
@@ -173,6 +176,7 @@ const Payment=({
             id="cardNumber"
             margin="normal"
             label="Agent Pin"
+            size="small"
             value={formData.password}
             onChange={(e)=>setFormData({...formData,password:e.target.value})}
             helperText={passwordError? passwordError : ""}

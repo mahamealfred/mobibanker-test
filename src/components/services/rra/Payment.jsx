@@ -95,6 +95,7 @@ const Payment=({
             required
             id="cardName"
             margin="normal"
+            size="small" 
             label="Payer phone number"
             value={formData.phoneNumber}
             onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
@@ -110,6 +111,7 @@ const Payment=({
             required
             id="cardNumber"
             margin="normal"
+            size="small" 
             label="Agent Pin"
             value={formData.password}
             onChange={(e)=>setFormData({...formData,password:e.target.value})}

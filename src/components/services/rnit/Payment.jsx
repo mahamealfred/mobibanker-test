@@ -96,6 +96,7 @@ const Payment=({
             id="cardName"
             label="Select Bank"
             value={formData.bankName}
+            size="small"
             select
             onChange={(e)=>setFormData({...formData,bankName:e.target.value})}
             helperText={bankNameErrorMessage? bankNameErrorMessage : ""}
@@ -114,6 +115,7 @@ const Payment=({
             required
             id="cardName"
             label="Account Number"
+            size="small"
             value={formData.bankAccount}
             onChange={(e)=>setFormData({...formData,bankAccount:e.target.value})}
             helperText={bankAccountErrorMessage? bankAccountErrorMessage : ""}
@@ -129,6 +131,7 @@ const Payment=({
             id="cardName"
             margin="normal"
             label="Amount to pay"
+            size="small"
             value={formData.amountPaid}
             onChange={(e)=>setFormData({...formData,amountPaid:e.target.value})}
             helperText={amountToPayErrorMessage? amountToPayErrorMessage : ""}
@@ -144,6 +147,7 @@ const Payment=({
             id="cardName"
             margin="normal"
             label="Payer phone number"
+            size="small"
             value={formData.phoneNumber}
             onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
             helperText={phoneNumberError? phoneNumberError : "Format 078..."}
@@ -158,6 +162,7 @@ const Payment=({
             required
             id="cardName"
             label="Payer Email"
+            size="small"
             value={formData.payerEmail}
             onChange={(e)=>setFormData({...formData,payerEmail:e.target.value})}
             helperText={payerEmailErrorMessage? payerEmailErrorMessage : ""}
@@ -172,6 +177,7 @@ const Payment=({
             required
             id="cardNumber"
             label="Agent Pin"
+            size="small"
             value={formData.password}
             onChange={(e)=>setFormData({...formData,password:e.target.value})}
             helperText={passwordError? passwordError : ""}

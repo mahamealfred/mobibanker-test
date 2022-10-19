@@ -64,7 +64,9 @@ const Document = ({
         }
         
             <ThemeProvider theme={theme}>
-                <Typography variant="h6" color="gray"  align="center">
+                <Typography variant="h6" color="text.primary"  align="center"
+                  sx={{ fontSize:{xs:14,md:16,lg:18} }}
+                >
                    Household NID
                     </Typography>
             </ThemeProvider>
@@ -76,6 +78,7 @@ const Document = ({
                     <TextField id="address2"  
                     name="address2" 
                     label="Household NID"
+                    size="small"
                     margin="normal"
                         value={formData.nId}
                         onChange={(e) => setFormData({...formData,nId: e.target.value}) }
@@ -87,7 +90,9 @@ const Document = ({
                 </Grid>
             </Grid>
             <ThemeProvider theme={theme}>
-                <Typography variant="h6" color="gray"  align="center">
+                <Typography variant="h6" color="text.primary"  align="center"
+                  sx={{ fontSize:{xs:14,md:16,lg:18} }}
+                >
                 Year
                 </Typography>
             </ThemeProvider>
@@ -98,6 +103,7 @@ const Document = ({
             name="PaymentYear"
             label="Payment Year"
             margin="normal"
+            size="small"
             select
             value={formData.paymentYear}
             onChange={(e) =>setFormData({ ...formData, paymentYear: e.target.value })}

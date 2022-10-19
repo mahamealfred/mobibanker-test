@@ -347,7 +347,7 @@ fetchData();
         <Container component="main" maxWidth="sm" sx={{display:{xs:"flex",sm:"flex",md:"block",lg:"block"}, mb: 4 }}>
           <Paper
             variant="outlined"
-            sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
+            sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 4 } }}
           >
              <ThemeProvider theme={theme}>
            <Grid
@@ -357,7 +357,9 @@ fetchData();
            justifyContent="center"
            
            >
-            <Typography variant="h6" color="gray" >
+            <Typography variant="h6" color="text.primary"
+             sx={{ fontSize:{xs:14,md:16,lg:20} }}
+             >
           Electricity Payment Service
           </Typography>
            <img

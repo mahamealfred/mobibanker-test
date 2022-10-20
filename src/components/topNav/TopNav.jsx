@@ -91,7 +91,7 @@ const TopNav = () => {
           width: 300,
           maxHeight: { xs: 60, md: 300},
           maxWidth: { xs: 150, md: 300},
-          display:{xs:"none",sm:"block"}
+          display:{xs:"none",sm:"none",md:"block"}
         }}
         alt="mobicash logo"
         src="../../Assets/images/mobibk.png"

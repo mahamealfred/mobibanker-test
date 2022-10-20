@@ -449,7 +449,7 @@ import { useTranslation } from "react-i18next";
         <Divider />
         <List>
         <Tooltip title={t("common:changelanguage")}  >
-        <ListItem  disablePadding sx={{ display:{xs:"flex",sm:"none",md:"none"}}}>
+        <ListItem  disablePadding sx={{ display:{xs:"none",sm:"none",md:"none"}}}>
               <ListItemButton
                 sx={{
                   minHeight: 48,

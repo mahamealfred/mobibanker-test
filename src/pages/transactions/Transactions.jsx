@@ -29,6 +29,7 @@ import { transactionsAction } from "../../redux/actions/transactionsAction";
 import { useDispatch } from "react-redux";
 import PrintIcon from '@mui/icons-material/Print';
 import { useTranslation } from "react-i18next";
+import  {ComponentToPrint}  from "./ComponentToPrint";
 export let amountPaid=[]
 const data = [
   {
@@ -72,6 +73,7 @@ function Transactions() {
  const [basicAuth,setBasicAuth]=useState('')
  const [username,setUsername]=useState('')
  const [password,setPassword]=useState('')
+ const [id,setId]=useState("")
   const trimString = (s) => {
     var l = 0,
       r = s.length - 1;
@@ -177,6 +179,12 @@ fecthData();
     NormalSpacing:12,
   };
 
+  const getReceipt=(id)=>{
+   
+
+
+  }
+
 
   return (
     <>
@@ -187,13 +195,14 @@ fecthData();
         {
           numberOfTransaction==0?<>
             <DialogTitle>
-            <Typography variant="h6" textAlign="center" color="gray" >
+            <Typography variant="h6" textAlign="center" color="text.primary" >
            {t("common:previous40transaction")}
           </Typography>
             </DialogTitle>
           </>:
           <DialogTitle>
-           <Typography variant="h6" textAlign="center" color="gray" >
+           <Typography variant="h6" textAlign="center" color="text.primary" 
+           >
            {/* PREVIOUS {numberOfTransaction} TRANSACTONS */}
            {t("common:previous40transaction")}
           </Typography> 
@@ -222,6 +231,7 @@ fecthData();
                 <Box sx={{ maxWidth: 400, position:"center", display:"flex"}}>
               <TextField
                 fullWidth
+                size="small"
                 onChange={(e) => searchHandle(e)}
                 InputProps={{
                   startAdornment: (
@@ -244,12 +254,10 @@ fecthData();
           <TableContainer component={Paper}>
             <Table aria-label="caption table">
               <caption className="textTitle"> {t("common:previous40transaction")}</caption>
-             
-              
               <TableHead>
                 <TableRow>
                   <TableCell align="center"> {t("common:mobicashreference")}</TableCell>
-                  <TableCell> {t("common:date")}E</TableCell>
+                  <TableCell> {t("common:date")}</TableCell>
                   <TableCell align="center"> {t("common:amount")} (Rwf)</TableCell>
                   <TableCell align="center"> {t("common:description")}</TableCell>
                   <TableCell align="center"> {t("common:action")}</TableCell>
@@ -305,17 +313,37 @@ fecthData();
                     <TableCell align="center">
                       {/* <Button>Print</Button> */}
                       <Tooltip title={t("common:receipt")} sx={{ mt: 1 }}>
-                      <Button
+                   
+                      <>
+                  <Button
                   startIcon={(<PrintIcon fontSize="small"   sx={{ color:"#F9842C" }}/>)}
                   sx={{ mr: 1,color:"gray" }}
-                //   onClick={async()=>{
-                //     generatePdfs(details.id)
-                //    }}
+                  onClick={()=>{
+                 
+                   getReceipt(details.id)
+                  }}
                   >
-                    
-                  </Button>
+               </Button>
+            
+                        {/* <ReactToPrint
+                 trigger={() => <Button
+                 startIcon={(<PrintIcon fontSize="small"   sx={{ color:"#F9842C" }}/>)}
+                 sx={{ mr: 1,color:"gray" }}
+                 onClick={setId(details.id)}
+                 >
+              </Button>}
+            content={() => componentRef.current}
+               /> */}
+               {/* <Box sx={{display:'none'}}>
+               <ComponentToPrint 
+               ref={componentRef}
+               id={id}
+               details={details}
+               />
+               </Box> */}
+                </>
+             
                       </Tooltip>
-                   
                     </TableCell>
                   </TableRow>
                 ))}

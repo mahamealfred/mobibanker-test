@@ -74,6 +74,11 @@
     "pleasefillyourinformationinthefieldsbelow":"Please fill your information in the fields below",
     "oldpassword":"Old Password",
     "newpassword":"New Password",
-    "confirmpassword":"Confirm Password"
+    "confirmpassword":"Confirm Password",
+    "makepayment":"Make payment",
+    "viewdetails":"View details",
+    "cancel":"Cancel",
+    "amounttopay":"Amount to pay",
+    "amountpaid":"Amount paid"
 
  }

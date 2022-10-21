@@ -344,7 +344,7 @@ fetchData();
     <div>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Container component="main" maxWidth="sm" sx={{display:{xs:"flex",sm:"flex",md:"block",lg:"block"}, mb: 4 }}>
+        <Container component="main" maxWidth="sm" sx={{display:{xs:"block",sm:"block",md:"block",lg:"block"}, mb: 4 }}>
           <Paper
             variant="outlined"
             sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 4 } }}
@@ -370,7 +370,7 @@ fetchData();
                 />
            </Grid>
            </ThemeProvider>
-            <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
+            <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5,display:{xs:"inline",sm:"flex"}  }}>
               {steps.map((label) => (
                 <Step key={label}>
                   <StepLabel>{label}</StepLabel>

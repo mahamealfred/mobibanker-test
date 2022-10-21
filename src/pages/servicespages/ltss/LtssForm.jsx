@@ -72,6 +72,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
  const [transactionStatus,setTransactionStatus]=useState("");
  const [dateTime,setDateTime]=useState("")
  const [agentName,setAgentName]=useState("")
+ const [brokering,setBrokering]=useState("")
   const getStepContent = (step) => {
     switch (step) {
       case 0:
@@ -124,6 +125,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
     const token =localStorage.getItem('mobicashAuth');
     if (token) {
     const {group}=decode(token);
+    const {role}=decode(token);
     const {username}=decode(token);
     const {name}=decode(token);
     const {password}=decode(token)
@@ -131,6 +133,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
     setAgentCategory(group)
     setAgentName(name)
     setPassword(password)
+    setBrokering(role)
 
   }
  
@@ -247,6 +250,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
         payerPhoneNumber,
         payerName,
         agentCategory,
+        brokering
       },username,password))
     
     }
@@ -300,7 +304,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
     <div>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Container component="main" maxWidth="sm" sx={{display:{xs:"flex",sm:"flex",md:"block",lg:"block"}, mb: 4 }}>
+        <Container component="main" maxWidth="sm" sx={{display:{xs:"block",sm:"block",md:"block",lg:"block"}, mb: 4 }}>
           <Paper
             variant="outlined"
             sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 4 } }}
@@ -326,7 +330,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
                 />
            </Grid>
            </ThemeProvider>
-            <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
+            <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5,display:{xs:"inline",sm:"flex"}  }}>
               {steps.map((label) => (
                 <Step key={label}>
                   <StepLabel>{label}</StepLabel>

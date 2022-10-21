@@ -26,9 +26,8 @@ export const electricityPayamentAction = (details,username,password) => async (d
             payerPhone:payerPhoneNumber,        
             taxIdentificationNumber:taxIdentificationNumber,
             meterNumber:meterNumber,
-            agentCategory:userGroup
-        // userGroup:"retail_agents",
-        // brokering:"Broker"
+            userGroup:userGroup,
+            brokering:brokering
    },{
     withCredentials: true,
     headers:{

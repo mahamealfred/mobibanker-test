@@ -74,5 +74,10 @@
     "pleasefillyourinformationinthefieldsbelow":"Veuillez remplir vos informations dans les champs ci-dessous",
     "oldpassword":"Ancien mot de passe",
     "newpassword":"nouveau mot de passe",
-    "confirmpassword":"Confirmez le mot de passe"
+    "confirmpassword":"Confirmez le mot de passe",
+    "makepayment":"Effectuer le paiement",
+    "viewdetails":"Voir les détails",
+    "cancel":"Annuler",
+    "amounttopay":"Amount to pay",
+    "amountpaid":"Amount paid"
  }

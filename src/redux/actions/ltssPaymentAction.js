@@ -15,6 +15,8 @@ export const ltssPaymentAction = (details,username,password) => async (dispatch)
     const {payerPhoneNumber}=details
     const {payerName}=details
     const {agentCategory}=details
+    const {brokering}=details
+    
   console.log("ltss details:",details,username,password)
     //const encodedBase64Token = Buffer.from(`${username}:${password}`).toString('base64');
     let basicAuth='Basic ' + btoa(username + ':' + password);
@@ -25,7 +27,8 @@ export const ltssPaymentAction = (details,username,password) => async (dispatch)
             amount:amountPaid,
             payerPhone:payerPhoneNumber,
             payerName:payerName,
-            agentCategory:agentCategory
+            brokering:brokering,
+            userGroup:agentCategory
             
    },{
     withCredentials: true,

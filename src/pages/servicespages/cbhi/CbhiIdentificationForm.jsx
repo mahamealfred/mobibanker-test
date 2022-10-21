@@ -347,7 +347,7 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
     <div>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Container component="main" maxWidth="sm" sx={{display:{xs:"flex",sm:"flex",md:"block",lg:"block"}, mb: 4 }}>
+        <Container component="main" maxWidth="sm" sx={{display:{xs:"block",sm:"block",md:"block",lg:"block"}, mb: 4 }}>
           <Paper
             variant="outlined"
             sx={{ my: { xs: 1, md: 2 }, p: { xs: 4, md: 6 } }}
@@ -373,7 +373,7 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
                 />
            </Grid>
            </ThemeProvider>
-            <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
+            <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 ,display:{xs:"inline",sm:"flex"} }}>
               {steps.map((label) => (
                 <Step key={label}>
                   <StepLabel>{label}</StepLabel>

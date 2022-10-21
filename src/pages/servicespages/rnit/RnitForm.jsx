@@ -78,6 +78,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
  const [dateTime,setDateTime]=useState("")
  const [agentName,setAgentName]=useState("");
  const [password,setPassword]=useState("")
+ const [userGroup,setUserGroup]=useState("")
   const getStepContent = (step) => {
     switch (step) {
       case 0:
@@ -138,10 +139,12 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
     const {name}=decode(token)
     const {role}=decode(token);
     const {password}=decode(token);
+    const {group}=decode(token)
     setUsername(username)
     setBrokering(role)
     setAgentName(name)
     setPassword(password)
+    setUserGroup(group)
   }
   }, []);
 
@@ -264,7 +267,8 @@ else if(formData.amountPaid==""){
       payerName,
       payerPhoneNumber,
       payerEmail,
-      brokering
+      brokering,
+      userGroup
     },username,password));
   }
   }
@@ -319,7 +323,7 @@ else if(formData.amountPaid==""){
     <div>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Container component="main" maxWidth="sm" sx={{display:{xs:"flex",sm:"flex",md:"block",lg:"block"}, mb: 4 }}>
+        <Container component="main" maxWidth="sm" sx={{display:{xs:"block",sm:"block",md:"block",lg:"block"}, mb: 4 }}>
           <Paper
             variant="outlined"
             sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 4 } }}
@@ -345,7 +349,7 @@ else if(formData.amountPaid==""){
                 />
            </Grid>
            </ThemeProvider>
-            <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
+            <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5,display:{xs:"inline",sm:"flex"}  }}>
               {steps.map((label) => (
                 <Step key={label}>
                   <StepLabel>{label}</StepLabel>

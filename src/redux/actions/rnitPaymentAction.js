@@ -10,7 +10,7 @@ import {
 export const rnitPaymentAction = (details,username,password,history) => async (dispatch) => {
   try {
     dispatch(rnitPaymentRequest());
- const {}=details
+ const {userGroup}=details
  const {bankName}=details
  const {bankAccount}=details
  const {payerNid}=details
@@ -19,8 +19,7 @@ export const rnitPaymentAction = (details,username,password,history) => async (d
  const {payerPhoneNumber}=details
  const {payerEmail}=details
  const {brokering}=details
-  
-  console.log(" rnit details payment:",details,username,password)
+
     //const encodedBase64Token = Buffer.from(`${username}:${password}`).toString('base64');
     let basicAuth='Basic ' + btoa(username + ':' + password);
     const Url='https://agentapi.mobicash.rw/api/agent/goverment-services/rnit/rest/v.4.14.01/payment';
@@ -32,7 +31,8 @@ export const rnitPaymentAction = (details,username,password,history) => async (d
         bankName:bankName,
         payerPhone:payerPhoneNumber,
         payerEmail:payerEmail,
-        brokering:brokering
+        brokering:brokering,
+        userGroup:userGroup
    },{
     withCredentials: true,
     headers:{

@@ -1,7 +1,7 @@
 {
-    "rrataxtpaymentsercice":"Serivisi ishinzwe kwishyura imisoro ya RRA",
-    "referencenumber":"Inomero",
-    "amounttopay":"Amount to pay",
-    "amountpaid":"Amount Paid",
-    "referencenumberisrequired":"RRA reference is required"
+    "rrataxpaymentservice":"Service de paiement des impôts RRA",
+    "referencenumber":"Numéro de réference",
+    "referencenumberisrequired":"Une référence RRA est requise",
+    "referencenumbermutbeanumber":"La référence RRA doit être un chiffre",
+    "taxtypedescription":"Description du type de taxe"
 }

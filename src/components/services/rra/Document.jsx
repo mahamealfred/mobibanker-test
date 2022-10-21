@@ -10,7 +10,7 @@ import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
-
+import { useTranslation } from "react-i18next";
 const theme = createTheme();
 theme.typography.h3 = {
     fontSize: '0.9rem',
@@ -30,7 +30,7 @@ const Document = ({
     open,
     setOpen
 }) => {
-  
+    const { i18n,t } = useTranslation(["home","common","rra"]);
     const handleClose = () => {
         setErrorMessage('')
         setOpen(false);
@@ -61,14 +61,14 @@ const Document = ({
                 
                 sx={{ fontSize:{xs:14,md:16,lg:18} }}
                 >
-                   RRA reference
+                  {t("rra:referencenumber")}
                     </Typography>
             </ThemeProvider>
             <Grid container
                 spacing={3}>
                 <Grid item
                     xs={12}>
-                    <TextField id="address2" size="small"   margin="normal" name="address2" label="RRA reference"
+                    <TextField id="address2" size="small"   margin="normal" name="address2" label={t("rra:referencenumber")}
                         value={ formData.docId}
                         onChange={(e) => setFormData({...formData,docId: e.target.value})}
                         helperText={docIdErr ? docIdErr : ""}

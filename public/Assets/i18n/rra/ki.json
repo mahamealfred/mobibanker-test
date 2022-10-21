@@ -1,5 +1,7 @@
 {
-    "rrataxtpaymentsercice":"Serivisi ishinzwe kwishyura imisoro ya RRA",
-    "referencenumber":"Inomero",
-    "referencenumberisrequired":"RRA reference is required"
+    "rrataxpaymentservice":"Serivisi ishinzwe kwishyura imisoro ya RRA",
+    "referencenumber":"Inomero ya RRA",
+    "referencenumberisrequired":"Inomero wishuriraho umusoro irakenewe",
+    "referencenumbermutbeanumber":"Inomero yerekanwe igomba kuba mubare",
+    "taxtypedescription":"Ibisobanuro by'ubwoko bw'imisoro"
 }

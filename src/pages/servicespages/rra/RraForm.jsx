@@ -25,7 +25,7 @@ import jwt from "jsonwebtoken";
 import { ComponentToPrint } from './ComponentToPrint';
 import ReactToPrint from 'react-to-print';
 import { useRef } from 'react';
-
+import { useTranslation } from "react-i18next";
 
 const theme = createTheme();
 
@@ -40,8 +40,9 @@ theme.typography.h3 = {
 };
 
 const RraForm = ({openRRA,setOpenRRA}) => {
+  const { i18n,t } = useTranslation(["home","common","login","rra"]);
 
-  const steps = [`Reference number`, `Make payment`, `View Payment`];
+  const steps = [`${t("rra:referencenumber")}`, `${t("common:makepayment")}`, `${t("common:viewdetails")}`];
   const [activeStep, setActiveStep] = React.useState(0);
   const dispatch = useDispatch();
   const getDocDetails = useSelector((state) => state.getDocDetails);
@@ -214,9 +215,9 @@ fetchData();
  //handle request for rra document id
  const handleDocmentDetails = async () => {
    if (formData.docId === "") {
-     setDocIdErr("RRA reference is required");
+     setDocIdErr(`${t("rra:referencenumberisrequired")}`);
    } else if (!Number(formData.docId)) {
-     setDocIdErr("RRA  must be a number");
+     setDocIdErr(`${t("rra:referencenumbermutbeanumber")}`);
    } else {
      const docId = formData.docId;
      await dispatch(getDocDetailsAction({ docId }, history));
@@ -229,16 +230,14 @@ fetchData();
  //handle rra Payament
  const handlePayment = async () => {
    if (formData.phoneNumber === "") {
-     setPhoneNumberError("Phone number is required");
+     setPhoneNumberError(`${t("common:phoneisrequired")}`);
    } else if (!Number(formData.phoneNumber)) {
-     setPhoneNumberError("Phone number must be a number");
-   } else if (formData.phoneNumber.length!==10) {
-    setPhoneNumberError("Phone number must be 10 digit");
-  }else if (formData.password === "") {
-     setPasswordError("Password is required");
+     setPhoneNumberError(`${t("common:phonemustbeanumeric")}`);
+   }else if (formData.password === "") {
+     setPasswordError(`${t("common:passwordisrequired")}`);
    }
    else if (formData.password !== password ) {
-    setPasswordError("Invalid pin,Please provide valid PIN");
+    setPasswordError(`${t("common:invalidpin")}`);
   }
   else {
     setPhoneNumberError("")
@@ -342,7 +341,7 @@ fetchData();
             <Typography variant="h6" color="text.primary" 
               sx={{ fontSize:{xs:14,md:16,lg:20} }}
             >
-          RRA Tax Payment Service
+        {t("rra:rrataxpaymentservice")}
           </Typography>
            <img
                   src="../../../Assets/images/rra.png"
@@ -363,14 +362,14 @@ fetchData();
               {activeStep === steps.length ? (
                 <React.Fragment>
                   <Typography variant="h5" textAlign="center" gutterBottom>
-                  Thank you for using Mobicash
+                  {t("common:thankyouforusingmobicash")}
                   </Typography>
                   <Typography textAlign="center" variant="subtitle1">
-                  You have successfully paid your RRA tax
+                  {t("common:youhavesuccessfullypaid")} RRA 
                   </Typography>
                 
                   <Button onClick={handleNewpayment} sx={{ mt: 3, ml: 1 }}>
-                  New Payment
+                  {t("common:newpayment")}
                   </Button>
                   
                 </React.Fragment>
@@ -383,7 +382,7 @@ fetchData();
                      //sx={{ mt: 3, ml: 1 }}
                       sx={{ my: 1, mx: 1.5 }}
                       >
-                      Cancel
+                 {t("common:cancel")}
                       </Button>
                     ):null}
 
@@ -398,7 +397,7 @@ fetchData();
                       {activeStep === steps.length - 1
                         ? <>
                         <ReactToPrint
-             trigger={() => <Button>Print receipt</Button>}
+             trigger={() => <Button> {t("common:receipt")}</Button>}
             content={() => componentRef.current}
                />
                <Box sx={{display:'none'}}>
@@ -421,11 +420,11 @@ fetchData();
                         ? getDocDetails.loading?
                         <Box sx={{ display: 'flex',justifyContent:"center" }}>
                         <CircularProgress  sx={{ color: 'orange'}} />
-                         </Box>:"Submit"
+                         </Box>:`${t("common:submit")}`
                         : rraPayment.loading?
                         <Box sx={{ display: 'flex',justifyContent:"center" }}>
                         <CircularProgress  sx={{ color: 'orange'}} />
-                         </Box>:"Make Payment"}
+                         </Box>:`${t("common:makepayment")}`}
                     </Button>
                   </Box>
                 </React.Fragment>

@@ -79,5 +79,20 @@
     "viewdetails":"Reba ibisobanuro birambuye",
     "cancel":"Hagarika",
     "amounttopay":"Amafaranga yo kwishyura",
-    "amountpaid":"Amafaranga yishyuwe"
+    "amountpaid":"Amafaranga yishyuwe",
+    "thankyouforusingmobicash":"Urakoze gukoresha Mobicash",
+    "youhavesuccessfullypaid":"Wishyuye neza",
+    "newpayment":"Ubwishyu bushya",
+    "payername":"Izina ry'uwishyura",
+    "payerphone":"Terefone yu w'ishura",
+    "agentpin":"PIN yumu agenti",
+    "paymentdetails":"Ibisobanuro byo Kwishura",
+    "transactiondetails":"Ibisobanuro by' igikorwa",
+    "clientcharges":"Amafaranga atangwa numu kiriya",
+    "status":"Imiterere",
+    "phoneisrequired":"Terefone irakenewe",
+    "passwordisrequired":"PIN irakenewe",
+    "phonemustbeanumeric":"Terefone igomba kuba mubare",
+    "invalidpin":"PIN itemewe, Nyamuneka tanga PIN yemewe"
+    
  }

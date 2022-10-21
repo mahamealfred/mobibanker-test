@@ -1,5 +1,7 @@
 {
-    "rrataxtpaymentsercice":"RRA Tax Payment Service",
+    "rrataxpaymentservice":"RRA Tax Payment Service",
     "referencenumber":"Reference Number",
-    "referencenumberisrequired":"RRA reference is required"
+    "referencenumberisrequired":"RRA reference is required",
+    "referencenumbermutbeanumber":"RRA reference must be a numeric",
+    "taxtypedescription":"Tax type description"
 }

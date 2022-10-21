@@ -79,6 +79,20 @@
     "viewdetails":"View details",
     "cancel":"Cancel",
     "amounttopay":"Amount to pay",
-    "amountpaid":"Amount paid"
+    "amountpaid":"Amount paid",
+    "thankyouforusingmobicash":"Thank you for using Mobicash",
+    "youhavesuccessfullypaid":"You have successfully paid",
+    "newpayment":"New Payment",
+    "payername":"Payer name",
+    "payerphone":"Payer phone",
+    "agentpin":"Agent PIN",
+    "paymentdetails":"Payment Details",
+    "transactiondetails":"TRANSACTION DETAILS",
+    "clientcharges":"Client charges",
+    "status":"Status",
+    "phoneisrequired":"Phone is required",
+    "passwordisrequired":"PIN is required",
+    "phonemustbeanumeric":"Phone must be a numeric",
+    "invalidpin":"Invalid PIN, Please provid a valid PIN"
 
  }

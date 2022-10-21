@@ -8,7 +8,7 @@ import Alert from "@mui/material/Alert";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-
+import { useTranslation } from "react-i18next";
 
 const Payment=({
   formData,setFormData,phoneNumberError,passwordError,taxPayerName,amountToPay,rraRef, paymentErrorMessage,
@@ -18,7 +18,7 @@ const Payment=({
   tin,
   taxTypeDesc
 })=> {
-  
+  const { i18n,t } = useTranslation(["home","common","rra"]);
     const handleClose = () => {
       setPaymentErrorMessage('')
       setOpenPayment(false);
@@ -51,7 +51,7 @@ const Payment=({
       <Grid container spacing={3}>
       <Grid item xs={12} md={4}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-               PAYER NAME
+             {t("common:payername")}
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
               {taxPayerName}
@@ -59,7 +59,7 @@ const Payment=({
             </Grid>
             <Grid item xs={12} md={4}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-                RRA REFERENCE
+                 {t("rra:referencenumber")}
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
               {rraRef}
@@ -75,7 +75,7 @@ const Payment=({
             </Grid>
             <Grid item xs={12} md={4}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-           TAX TYPE DESCRIPTION
+                 {t("rra:taxtypedescription")}
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
               {taxTypeDesc}
@@ -83,7 +83,7 @@ const Payment=({
             </Grid>
             <Grid item xs={12} md={4}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-                 AMOUNT TO PAY
+                 {t("common:amounttopay")}
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
               {amountToPay.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}  Rwf
@@ -96,10 +96,10 @@ const Payment=({
             id="cardName"
             margin="normal"
             size="small" 
-            label="Payer phone number"
+            label={t("common:payerphone")}
             value={formData.phoneNumber}
             onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
-            helperText={phoneNumberError? phoneNumberError : "Format 078..."}
+            helperText={phoneNumberError? phoneNumberError : ""}
             error={phoneNumberError}
             fullWidth
             autoComplete="cc-name"
@@ -112,7 +112,7 @@ const Payment=({
             id="cardNumber"
             margin="normal"
             size="small" 
-            label="Agent Pin"
+            label={t("common:agentpin")}
             value={formData.password}
             onChange={(e)=>setFormData({...formData,password:e.target.value})}
             helperText={passwordError? passwordError : ""}

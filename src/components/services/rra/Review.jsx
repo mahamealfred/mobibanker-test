@@ -5,42 +5,42 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 import moment from 'moment';
-
+import { useTranslation } from "react-i18next";
 export default function Review({taxPayerName,amountToPay,transactionId,transactionStatus,dateTime,agentName,
   tin,
   taxTypeDesc,
   clientCharges
 
 }) {
-  
+  const { i18n,t } = useTranslation(["home","common","rra"]);
   return (
     <React.Fragment>
       <Typography variant="h6" textAlign="center" gutterBottom>
-       TRANSACTION DETAILS
+      {t("common:transactiondetails")} 
       </Typography>
       <List disablePadding>
           <ListItem  sx={{ py: 1, px: 0 }}>
-            <ListItemText primary="PAYER NAME"/>
+            <ListItemText primary={t("common:payername")}/>
             <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>{taxPayerName}</Typography>
           </ListItem>
           <ListItem  sx={{ py: 1, px: 0 }}>
-            <ListItemText primary="TIN"/>
+            <ListItemText primary="Tin"/>
             <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>{tin}</Typography>
           </ListItem>
         <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary="PAID AMOUNT" />
+          <ListItemText primary={t("common:amountpaid")} />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
               {amountToPay.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}  Rwf
           </Typography>
         </ListItem>
         <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary="CLIENT CHARGES" />
+          <ListItemText primary={t("common:clientcharges")} />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
               {clientCharges.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}  Rwf
           </Typography>
         </ListItem>
         <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary="TAX TYPE DESCRIPTION" />
+          <ListItemText primary={t("rra:taxtypedescription")} />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
               { taxTypeDesc}
           </Typography>
@@ -50,13 +50,13 @@ export default function Review({taxPayerName,amountToPay,transactionId,transacti
 
         <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" textAlign="center" gutterBottom sx={{ mt: 2 }}>
-        Payment Details
+          {t("common:paymentdetails")} 
           </Typography>
           <Grid container>
            
               <React.Fragment >
                 <Grid item xs={6}>
-                  <Typography textAlign="left" gutterBottom>TransactionID </Typography>
+                  <Typography textAlign="left" gutterBottom>{t("common:mobicashreference")}</Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography  textAlign="right" gutterBottom>{transactionId}</Typography>
@@ -64,15 +64,15 @@ export default function Review({taxPayerName,amountToPay,transactionId,transacti
               </React.Fragment>
               <React.Fragment >
                 <Grid item xs={6}>
-                  <Typography textAlign="left" gutterBottom>Description</Typography>
+                  <Typography textAlign="left" gutterBottom>{t("common:description")}</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography textAlign="right" gutterBottom>RRA tax</Typography>
+                  <Typography textAlign="right" gutterBottom>RRA</Typography>
                 </Grid>
               </React.Fragment>
               <React.Fragment >
                 <Grid item xs={6}>
-                  <Typography textAlign="left" gutterBottom>Date</Typography>
+                  <Typography textAlign="left" gutterBottom>{t("common:date")}</Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography textAlign="right" gutterBottom>{moment(dateTime).format("llll")}</Typography>
@@ -80,7 +80,7 @@ export default function Review({taxPayerName,amountToPay,transactionId,transacti
               </React.Fragment>
               <React.Fragment >
                 <Grid item xs={6}>
-                  <Typography textAlign="left" gutterBottom>Status</Typography>
+                  <Typography textAlign="left" gutterBottom>{t("common:status")}</Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography textAlign="right" gutterBottom>{transactionStatus}</Typography>

@@ -93,6 +93,8 @@
     "phoneisrequired":"Le téléphone est requis",
     "passwordisrequired":"Le code PIN est requis",
     "phonemustbeanumeric":"Le téléphone doit être un chiffre",
-    "invalidpin":"Code PIN invalide, veuillez fournir un code PIN valide"
+    "invalidpin":"Code PIN invalide, veuillez fournir un code PIN valide",
+    "nid":"Identité nationaled",
+    "year":"An"
     
  }

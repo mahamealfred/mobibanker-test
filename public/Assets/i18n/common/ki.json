@@ -93,6 +93,8 @@
     "phoneisrequired":"Terefone irakenewe",
     "passwordisrequired":"PIN irakenewe",
     "phonemustbeanumeric":"Terefone igomba kuba mubare",
-    "invalidpin":"PIN itemewe, Nyamuneka tanga PIN yemewe"
+    "invalidpin":"PIN itemewe, Nyamuneka tanga PIN yemewe",
+    "nid":"Indangamuntu",
+    "year":"Umwaka"
     
  }

@@ -1,42 +1,56 @@
-const CACHE_NAME = "version-1";
-const urlsToCache = [ 'index.html', 'offline.html' ];
+const PRECACHE = 'Mobibanker-v1';
+const RUNTIME = 'runtime';
 
-const self = this;
+// A list of local resources we always want to be cached.
+const PRECACHE_URLS = [
+  'index.html',
+  './', // Alias for index.html
+  'offline.html'
+];
 
-// Install SW
-self.addEventListener('install', (event) => {
-    event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then((cache) => {
-                console.log('Cache opened');
-                return cache.addAll(urlsToCache);
-            })
-    )
+// The install handler takes care of precaching the resources we always need.
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(PRECACHE)
+      .then(cache => cache.addAll(PRECACHE_URLS))
+      .then(self.skipWaiting())
+  );
 });
 
-// Listen for requests
-self.addEventListener('fetch', (event) => {
+// The activate handler takes care of cleaning up old caches.
+self.addEventListener('activate', event => {
+  const currentCaches = [PRECACHE, RUNTIME];
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return cacheNames.filter(cacheName => !currentCaches.includes(cacheName));
+    }).then(cachesToDelete => {
+      return Promise.all(cachesToDelete.map(cacheToDelete => {
+        return caches.delete(cacheToDelete);
+      }));
+    }).then(() => self.clients.claim())
+  );
+});
+// The fetch handler serves responses for same-origin resources from a cache.
+// If no response is found, it populates the runtime cache with the response
+// from the network before returning it to the page.
+self.addEventListener('fetch', event => {
+  // Skip cross-origin requests, like those for Google Analytics.
+  if (event.request.url.startsWith(self.location.origin)) {
     event.respondWith(
-        caches.match(event.request)
-            .then(() => {
-                return fetch(event.request) 
-                    .catch(() => caches.match('offline.html'))
-            })
-    )
-});
+      caches.match(event.request).then(cachedResponse => {
+        if (cachedResponse) {
+          return cachedResponse;
+        }
 
-// Activate the SW
-self.addEventListener('activate', (event) => {
-    const cacheWhitelist = [];
-    cacheWhitelist.push(CACHE_NAME);
-    event.waitUntil(
-        caches.keys().then((cacheNames) => Promise.all(
-            cacheNames.map((cacheName) => {
-                if(!cacheWhitelist.includes(cacheName)) {
-                    return caches.delete(cacheName);
-                }
-            })
-        ))
-            
-    )
+        return caches.open(RUNTIME).then(cache => {
+          return fetch(event.request).then(response => {
+            // Put a copy of the response in the runtime cache.
+            return cache.put(event.request, response.clone()).then(() => {
+              return response;
+            });
+          });
+        });
+      })
+    );
+  }
 });

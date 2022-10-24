@@ -59,7 +59,7 @@ const Widget = () => {
   return (
     <Box
       sx={{
-        my: 1,
+        my: 8,
         mx: {xs:1,sm:2,md:12},
         height:"auto",
         display: 'flex',

@@ -25,6 +25,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { ComponentToPrint } from './ComponentToPrint';
 import ReactToPrint from 'react-to-print';
 import { useRef } from 'react';
+import { useTranslation } from "react-i18next";
 const theme = createTheme();
 
 theme.typography.h3 = {
@@ -40,11 +41,12 @@ theme.typography.h3 = {
 
 
 const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
+  const { i18n,t } = useTranslation(["home","common","login","cbhi"]);
   const getYear = useSelector((state) => state.getYear);
   const getCbhiNidDetails=useSelector((state)=>state.getCbhiNidDetails)
   const componentRef = useRef();
   const dispatch = useDispatch();
-  const steps = [`Household NID`, `Make payment`, `View Payment`];
+  const steps = [`${t("common:nid")}`, `${t("common:makepayment")}`, `${t("common:viewdetails")}`];
   const [formData, setFormData] = useState({
     nId: "",
     paymentYear:"",
@@ -363,7 +365,7 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
              <Typography variant="h6" color="text.primary" 
                  sx={{ fontSize:{xs:14,md:16,lg:20} }}
              >
-          RSSB Mutuelle Service
+          {t("cbhi:rssbmutuellepaymentservice")}
           </Typography>
            <img
                   src="../../../Assets/images/mutuelli.png"
@@ -384,14 +386,14 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
               {activeStep === steps.length ? (
                 <React.Fragment>
                   <Typography variant="h5" gutterBottom>
-                  Thank you for using Mobicash
+                  {t("common:thankyouforusingmobicash")}
                   </Typography>
                   <Typography variant="subtitle1">
-                  You have successfully paid your Mutiweli year {formData.paymentYear}
+                  {t("common:youhavesuccessfullypaid")} Mutuelle {t("common:year")} {formData.paymentYear}
                   </Typography>
                 
                   <Button onClick={handleNewpayment} sx={{ mt: 3, ml: 1 }}>
-                  New Payment
+                 {t("common:newpayment")}
                   </Button>
                   
                 </React.Fragment>
@@ -404,7 +406,7 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
                      //sx={{ mt: 3, ml: 1 }}
                       sx={{ my: 1, mx: 1.5 }}
                       >
-                      Cancel
+                      {t("common:cancel")}
                       </Button>
                     ):null}
 
@@ -419,7 +421,7 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
                       {activeStep === steps.length - 1
                         ? <>
                         <ReactToPrint
-             trigger={() => <Button>Print receipt</Button>}
+             trigger={() => <Button>{t("common:receipt")}</Button>}
             content={() => componentRef.current}
                />
                <Box sx={{display:'none'}}>
@@ -440,11 +442,11 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
                         ? getCbhiNidDetails.loading?
                         <Box sx={{ display: 'flex',justifyContent:"center" }}>
                         <CircularProgress  sx={{ color: 'orange'}} />
-                         </Box>:"Submit"
+                         </Box>:`${t("common:submit")}`
                         : cbhiPayment.loading?
                         <Box sx={{ display: 'flex',justifyContent:"center" }}>
                         <CircularProgress  sx={{ color: 'orange'}} />
-                         </Box>:"Make Payment"}
+                         </Box>:`${t("common:makepayment")}`}
                     </Button>
                   </Box>
                 </React.Fragment>

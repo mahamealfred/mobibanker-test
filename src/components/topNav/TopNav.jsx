@@ -51,7 +51,7 @@ const TopNav = () => {
       },
     }));
   return (
-    <AppBar position="sticky"  elevation={0} sx={{backgroundColor:'white'}} >
+    <AppBar position="sticky"  elevation={0} sx={{backgroundColor:'white',width:"100%"}} >
         <StyledToolbar>
             <MobiLogoImg>
             <Box

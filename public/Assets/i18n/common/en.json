@@ -93,6 +93,9 @@
     "phoneisrequired":"Phone is required",
     "passwordisrequired":"PIN is required",
     "phonemustbeanumeric":"Phone must be a numeric",
-    "invalidpin":"Invalid PIN, Please provid a valid PIN"
+    "invalidpin":"Invalid PIN, Please provid a valid PIN",
+    "nid":"Nid",
+    "year":"Year"
+    
 
  }

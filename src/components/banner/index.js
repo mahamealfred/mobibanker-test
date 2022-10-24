@@ -1,52 +1,133 @@
-import React from "react"
-import { Button, Typography, useMediaQuery } from "@mui/material";
+import React ,{useEffect} from "react"
+import { Button, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/system";
-import {
-  BannerContainer,
-  BannerContent,
-  BannerDescription,
-  BannerImage,
-  BannerLoginContainer,
-  BannerShopButton,
-  BannerTitle,
-} from "../styles/banner";
-import Appbar from "../appbar";
 import Footer from "../footer/Footer";
 import Login from "../../pages/login/Login"
 import Widget from "../widget/Widget";
 import TopNav from "../topNav/TopNav";
 import Headerbanner from "../headerbanner"
-import BottomNav from "../bottomNav/BottomNav";
-import MobicashSolution from "../mobicashsolutions"
 import AuthApi from "../../context/api";
 import Slider from "../slider/Slider";
 import {Box} from "@mui/material";
-import FooterMenu from "../footerMenu";
 
+import Stack from '@mui/material/Stack';
+import {
+  justifyCenter,
+ 
+} from '../styles/theme';
+import {
+  CardContent,
+  Grid,
+  Container,
+
+} from '@mui/material';
+import LanguageIcon from '@mui/icons-material/Language';
+import NativeSelect from '@mui/material/NativeSelect';
+import FormControl from '@mui/material/FormControl';
+import Paper from '@mui/material/Paper';
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 export default function Banner() {
   const theme = useTheme();
-  const Auth=React.useContext(AuthApi)
-  const matches = useMediaQuery(theme.breakpoints.down("md"));
+  const { i18n, t } = useTranslation(["common"]);
+
+	useEffect(() => {
+		if (localStorage.getItem("i18nextLng")?.length > 2) {
+			i18next.changeLanguage("en");
+		}
+	}, []);
+
+	const handleLanguageChange = (e) => {
+		i18n.changeLanguage(e.target.value);
+	};
   return (
     <React.Fragment>
         <TopNav/>
- <BannerContainer >
- {/* <BannerImage src="../../Assets/images/mobicashmarketing.png" /> */}
-      <BannerLoginContainer >
-         <Login   Auth={Auth}/>
-      </BannerLoginContainer>
-      <BannerContent>
-        <Widget />
-      </BannerContent>
-    </BannerContainer>
-    {/* <BottomNav/> */}
+        <Box
+      component="main"
+      sx={{
+        flexGrow: 1,
+        py: 2,
+        width: "100%",
+        height:"auto"
+      }}
+    >
+      
+      <Container maxWidth="lg">
+        <Grid
+          container
+          spacing={2}
+     
+        >
+          
+          <Grid
+            item
+            lg={6}
+            md={6}
+            xs={12}
+          >
+    <CardContent>
+      <Box
+        sx={{
+          alignItems: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+         justifyCenter:"center",
+        
+        }}
+      >
+       <Box sx={{
+         display: { xs: 'flex',sm:"none", md: 'none' }, 
+      
+          }}>
+         <Stack>
+            <Paper sx={justifyCenter}>
+                <Box sx={{ ...justifyCenter, mr: 1 }}>
+                  <LanguageIcon size={20} sx={{color:"#F9842C"}} />
+                </Box>
+                <FormControl>
+                  <NativeSelect
+                  defaultValue="en"
+                  value={localStorage.getItem("i18nextLng")}
+                  onChange={handleLanguageChange}
+                  >
+              <option value="ki">Kinyarwanda</option>
+              <option value="en">English</option>
+              <option value="fr">Français</option>
+                  </NativeSelect>
+                </FormControl>
+            </Paper>
+          </Stack>
+          </Box>
+        <Login/>
+      </Box>
+    </CardContent>
+          </Grid>
+          <Grid
+            item
+            lg={6}
+            md={6}
+            xs={12}
+          >
+    <CardContent>
+      <Box
+        sx={{
+          alignItems: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyCenter:"center",
+        }}
+      >
+      <Widget/>
+      </Box>
+    </CardContent>
+            </Grid>
+        </Grid>
+      </Container>
+    </Box>
     <Slider/>
-    {/* <MobicashSolution /> */}
     <Headerbanner/>
-    
     <Footer/>
-    
     </React.Fragment>
-   
   );
 }

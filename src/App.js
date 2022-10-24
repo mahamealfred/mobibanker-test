@@ -27,19 +27,6 @@ function App(){
        <Router>
         <Routes/>
       </Router>
-      <Box sx={{
-         display: { xs: 'flex',sm:"none", md: 'none' }, 
-         width: '100%',
-         background: "white",
-         alignItems: 'center',
-         zIndex: 99,  
-         borderTop: `2px solid #F9842C`,
-         position:"fixed",
-         bottom: 0,
-         left: 0,
-          }}>
-          <FooterMenu/>
-          </Box>
       </Suspense>
     </AuthApi.Provider>
     

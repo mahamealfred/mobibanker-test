@@ -34,15 +34,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 					</p>
 					<p className="date">
 						<span className="bold">Date</span>
-                        {
-                            console.log("kkk",props.id)
-                        }
-                        {
-                            
-                            props.id?
-                            <span>{props.details.id}</span>:"nothing"
-                        }
-					
+					{props.date}
 					</p>
 				</div>
 			</div>
@@ -57,8 +49,8 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 			        </span>
 				</div>
 				<div className="total_wrap">
-					<p>Service</p>
-	          		<p className="bold price">RRA Tax Payment</p>
+					{/* <p>Service</p>
+	          		<p className="bold price">RRA Tax Payment</p> */}
 				</div>
 			</div>
 		</div>
@@ -74,17 +66,19 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 					</div>
 				</div>
 				<div className="table_body">
-					<div className="row">
+					
+					
+         
+          <div className="row">
 						<div className="col col_no">
 							<p>01</p>
 						</div>
 						<div className="col col_des">
-							<p className="bold">RRA Reference ID</p>
+							<p className="bold">Mobicash referance</p>
 							{/* <p>Lorem ipsum dolor sit.</p> */}
 						</div>
-				
 						<div className="col col_total">
-							<p>3333</p>
+						<p>{props.id}</p>
 						</div>
 					</div>
 					<div className="row">
@@ -92,47 +86,11 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 							<p>02</p>
 						</div>
 						<div className="col col_des">
-							<p className="bold">TIN</p>
+							<p className="bold">Description</p>
 							{/* <p>Lorem ipsum dolor sit.</p> */}
 						</div>
 						<div className="col col_total">
-							<p>23333</p>
-						</div>
-					</div>
-          <div className="row">
-						<div className="col col_no">
-							<p>03</p>
-						</div>
-						<div className="col col_des">
-							<p className="bold">Tax Payer Name</p>
-							{/* <p>Lorem ipsum dolor sit.</p> */}
-						</div>
-						<div className="col col_total">
-							<p>Mahame </p>
-						</div>
-					</div>
-          <div className="row">
-						<div className="col col_no">
-							<p>04</p>
-						</div>
-						<div className="col col_des">
-							<p className="bold">Tax Type Description</p>
-							{/* <p>Lorem ipsum dolor sit.</p> */}
-						</div>
-						<div className="col col_total">
-							<p>hammama</p>
-						</div>
-					</div>
-					<div className="row">
-						<div className="col col_no">
-							<p>05</p>
-						</div>
-						<div className="col col_des">
-							<p className="bold">Mobicash referance</p>
-							{/* <p>Lorem ipsum dolor sit.</p> */}
-						</div>
-						<div className="col col_total">
-							<p>M4444</p>
+							<p>{props.description}</p>
 						</div>
 					</div>
 					
@@ -142,31 +100,28 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 			<div className="paymethod_grandtotal_wrap">
 				<div className="paymethod_sec">
 					<p className="bold">AGENT NAME</p>
-					<p>AMkak</p>
+					<p>{props.agentName}</p>
 				</div>
 				<div className="grandtotal_sec">
 			        <p className="bold">
 			            <span>AMOUNT </span>
-               
-			            <span>4000 Rwf</span>
 			        </p>
-			        <p>
-			            <span>Client Charges</span>
-			            <span>40 Rwf</span>
-			        </p>
+			     
 			        {/* <p>
 			            <span>Discount 10%</span>
 			            <span>-$700</span>
 			        </p> */}
 			       	<p className="bold">
 			            <span>Grand Total</span>
-			            <span>450 Rwf</span>
+			            <span>{props.amount} Rwf</span>
+						
+					
 			        </p>
 				</div>
 			</div>
 		</div>
 		<div className="footer">
-			<p>Thank you and Best Wishes</p>
+			<p>Thank you and Best Wishes </p>
 			{/* <div className="terms">
 		        <p className="tc bold">Terms & Coditions</p>
 		        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit non praesentium doloribus. Quaerat vero iure itaque odio numquam, debitis illo quasi consequuntur velit, explicabo esse nesciunt error aliquid quis eius!</p>

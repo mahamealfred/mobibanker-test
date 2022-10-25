@@ -21,7 +21,7 @@ import { ButtonGroup, Stack } from "@mui/material";
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
-import ReactToPrint from "react-to-print";
+import ReactToPrint, { useReactToPrint } from "react-to-print";
 import jwt from "jsonwebtoken";
 import Typography from "@mui/material/Typography";
 // import logo from "../../Assets/images/logo.png"
@@ -30,6 +30,7 @@ import { useDispatch } from "react-redux";
 import PrintIcon from '@mui/icons-material/Print';
 import { useTranslation } from "react-i18next";
 import  {ComponentToPrint}  from "./ComponentToPrint";
+import './style.css'
 export let amountPaid=[]
 const data = [
   {
@@ -69,11 +70,17 @@ function Transactions() {
   const [numberOfTransaction,setNumberOfTransaction]=useState(0)
   const [transactionId,setTransactionId]=useState('');
   const [agentName,setAgentName]=useState('')
-  const componentRef = useRef();
+  const componentRef = useRef(null);
  const [basicAuth,setBasicAuth]=useState('')
  const [username,setUsername]=useState('')
  const [password,setPassword]=useState('')
- const [id,setId]=useState("")
+ 
+ const [dataToprint,setDataToprint]=useState("")
+ const [id,setId]=useState("") 
+ const [amount,setAmount]=useState('') 
+ const [date,setDate]=useState('')
+ const [description,setDescription]=useState('')
+
   const trimString = (s) => {
     var l = 0,
       r = s.length - 1;
@@ -184,7 +191,10 @@ fecthData();
 
 
   }
-
+  
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
   return (
     <>
@@ -253,7 +263,7 @@ fecthData();
           
           <TableContainer component={Paper}>
             <Table aria-label="caption table">
-              <caption className="textTitle"> {t("common:previous40transaction")}</caption>
+              <caption className="textTitle">{t("common:previous40transaction")}</caption>
               <TableHead>
                 <TableRow>
                   <TableCell align="center"> {t("common:mobicashreference")}</TableCell>
@@ -280,18 +290,40 @@ fecthData();
                     <TableCell align="center"> {(details.amount * -1).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</TableCell>
                     <TableCell align="center">{details.description}</TableCell>
                     <TableCell align="center">
-                      {/* <Button>Print</Button> */}
-                      <Tooltip title={t("common:receipt")} sx={{ mt: 1 }}>
-                      <Button
+                    <ReactToPrint
+                trigger={()=>{
+                  return  <Tooltip title={t("common:receipt")} sx={{ mt: 1 }}><Button
                   startIcon={(<PrintIcon fontSize="small"   sx={{ color:"#F9842C" }}/>)}
-                  sx={{ mr: 1,color:"gray" }}
-                //  onClick={async()=>{
-                //     generatePdfs(details.id)
-                //    }}
+                  sx={{ mr: 1,color:"gray"}}
+                  onClick={async()=>{ 
+                    await setId(details.id);
+                    await setAmount(details.amount)
+                    await setDate(details.operationDate)
+                    await setDescription(details.description)
+                  await handlePrint()
+                  }
+                  }
                   >
-                  </Button>
-                      </Tooltip>
-                     
+               </Button>
+               </Tooltip>
+                }}
+              //  content={()=> componentRef.current}
+                />
+              
+             {
+              id==details.id?
+              <Box style={{ display: "none" }}>
+             <ComponentToPrint
+                ref={componentRef}
+               id={id}
+               amount={amount}
+               date={date}
+               description={description}
+               agentName={agentName}
+               />
+                </Box>
+               :null
+             }  
                     </TableCell>
                   </TableRow>
                 ))}
@@ -311,39 +343,41 @@ fecthData();
                     <TableCell align="center"> {(details.amount * -1).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</TableCell>
                     <TableCell align="center">{details.description}</TableCell>
                     <TableCell align="center">
-                      {/* <Button>Print</Button> */}
-                      <Tooltip title={t("common:receipt")} sx={{ mt: 1 }}>
-                   
-                      <>
-                  <Button
+                <ReactToPrint
+                trigger={()=>{
+                  return  <Tooltip title={t("common:receipt")} sx={{ mt: 1 }}><Button
                   startIcon={(<PrintIcon fontSize="small"   sx={{ color:"#F9842C" }}/>)}
-                  sx={{ mr: 1,color:"gray" }}
-                  onClick={()=>{
-                 
-                   getReceipt(details.id)
-                  }}
+                  sx={{ mr: 1,color:"gray"}}
+                  onClick={async()=>{ 
+                    await setId(details.id);
+                    await setAmount(details.amount)
+                    await setDate(details.operationDate)
+                    await setDescription(details.description)
+                  await handlePrint()
+                  }
+                  }
                   >
                </Button>
-            
-                        {/* <ReactToPrint
-                 trigger={() => <Button
-                 startIcon={(<PrintIcon fontSize="small"   sx={{ color:"#F9842C" }}/>)}
-                 sx={{ mr: 1,color:"gray" }}
-                 onClick={setId(details.id)}
-                 >
-              </Button>}
-            content={() => componentRef.current}
-               /> */}
-               {/* <Box sx={{display:'none'}}>
-               <ComponentToPrint 
-               ref={componentRef}
+               </Tooltip>
+                }}
+              //  content={()=> componentRef.current}
+                />
+              
+             {
+              id==details.id?
+              <Box style={{ display: "none" }}>
+             <ComponentToPrint
+                ref={componentRef}
                id={id}
-               details={details}
+               amount={amount}
+               date={date}
+               description={description}
+               agentName={agentName}
                />
-               </Box> */}
-                </>
-             
-                      </Tooltip>
+                </Box>
+               :null
+             }
+              
                     </TableCell>
                   </TableRow>
                 ))}

@@ -8,7 +8,7 @@ import LoginRoute from "./Login.routes";
 import Logout from '../pages/logout/Logout';
 import Forgotpassword from '../pages/forgotpassword/Forgotpassword';
 import Resetpassword from '../pages/resetpassword/Resetpassword';
-
+import FaqPage from '../pages/faqpage'
 
 const token =sessionStorage.getItem('mobicash-auth');
 // export default class index extends Component {
@@ -42,6 +42,7 @@ const token =sessionStorage.getItem('mobicash-auth');
         <Route  path="/display"  component={Logout}/>
         <Route  path="/forgotpassword"  component={Forgotpassword}/>
         <Route  path="/resetpassword"  component={Resetpassword}/>
+        <Route  path="/faq"  component={FaqPage}/>
     </Switch>
   )
 

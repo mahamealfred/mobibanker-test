@@ -252,10 +252,15 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
     else if(!Number(formData.amountPaid)){
       setAmountPaidError("Amount to pay must be a number")
     }
+    else if(formData.amountPaid<1000){
+      setAmountPaidError("The minimum amount to pay is 1000 Rfw")
+    
+    } 
     else if(formData.amountPaid%1000!==0){
       setAmountPaidError("Amount must be divisible by 1000")
     
     }  
+   
     else if(formData.amountPaid > 2000000){
       setAmountPaidError("Amount to pay can not excide 2,000,000 Rwf")
     }

@@ -32,6 +32,10 @@ const Widget = () => {
     {
       url: "/",
       value: `${t("common:bnr/regulation")}`
+    },
+    {
+      url: "/faq",
+      value: `FAQ`
     }
   ]
   const agentSupportArchives = [

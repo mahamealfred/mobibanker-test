@@ -37,7 +37,7 @@ const FAQ = () => {
   // style={{ minHeight: '100vh' }}
 >
 {/* defaultExpanded */}
-<Header title="FAQ"  subtitle="Frequently Asked Questions Page" />
+<Header title="FAQ"  subtitle="Agent FAQs" />
      <Accordion  >
     <AccordionSummary  expandIcon={<ExpandMoreIcon />}>
       <Typography color="gray" variant="h5" >
@@ -173,6 +173,159 @@ To start doing Mobicash services, the Mobicash agent must transfer/ pay enough f
     <AccordionDetails>
       <Typography>
       Through commissions, Commission fee is a fee paid to agents/brokers for the services they provided to the public through the MobiCash platform.
+      </Typography>
+    </AccordionDetails>
+  </Accordion>
+  <Accordion  >
+    <AccordionSummary  expandIcon={<ExpandMoreIcon />}>
+      <Typography color="gray" variant="h5" >
+      ⦁	How are commissions paid?
+      </Typography>
+    </AccordionSummary>
+    <AccordionDetails>
+      <Typography>
+Commissions are paid every month on the float account of the agent. In the agent system there are two accounts: 
+float account and commission account, when the commissions are paid the amount moves from commission account and are added to float account.
+      </Typography>
+    </AccordionDetails>
+  </Accordion>
+  <Accordion  >
+    <AccordionSummary  expandIcon={<ExpandMoreIcon />}>
+      <Typography color="gray" variant="h5" >
+      ⦁	What is fraud? and some examples of fraud
+      </Typography>
+    </AccordionSummary>
+    <AccordionDetails>
+      <Typography>
+“Fraud” is a deliberate act (or failure to act) with the intention of obtaining an unauthorized benefit, either for oneself or for the institution, by using deception or false suggestions or suppression of truth or other unethical means, which are believed and relied upon by others.<br></br> 
+Some categories comprise fraud types that impact agents are:<br></br> 
+⦁	Common frauds affecting agents mainly involve float loss in the agent’s account arising from unauthorized use and compromising of PINs.<br></br> 
+⦁	Agents who defraud customers primarily through OTC transactions, e.g overcharging for transactions, such as direct deposits or charging for normal deposits, which are typically free<br></br> 
+⦁	Fake receipts provided by agents while giving services to customers.
+      </Typography>
+    </AccordionDetails>
+  </Accordion>
+  <Accordion  >
+    <AccordionSummary  expandIcon={<ExpandMoreIcon />}>
+      <Typography color="gray" variant="h5" >
+      ⦁	Does MobiCash Agent Application compatible in every device?
+      </Typography>
+    </AccordionSummary>
+    <AccordionDetails>
+      <Typography>
+      “It’s compatible with both devices (smartphone and computers)”.
+      </Typography>
+    </AccordionDetails>
+  </Accordion>
+  <Accordion  >
+    <AccordionSummary  expandIcon={<ExpandMoreIcon />}>
+      <Typography color="gray" variant="h5" >
+      ⦁	What is OS Ticket and how is it important to Mobicash agent?
+      </Typography>
+    </AccordionSummary>
+    <AccordionDetails>
+      <Typography>
+      OS Ticket is a system implemented by MobiCash in order to provide better and quick services to its agents. It is a system in which an agent can get support, guidance and more information about MobiCash services in Rwanda.
+     The OS Ticket link is <Link href="https://support.mobicash.rw/">support.mobicash.rw</Link> 
+      </Typography>
+    </AccordionDetails>
+  </Accordion>
+  <Accordion  >
+    <AccordionSummary  expandIcon={<ExpandMoreIcon />}>
+      <Typography color="gray" variant="h5" >
+      ⦁	What should I do when I pay RRA/MUSA and those payments didn’t reach the RRA/RSSB system?
+      </Typography>
+    </AccordionSummary>
+    <AccordionDetails>
+      <Typography>
+      It’s true this may happen and what you should do is to send us your issue on any type of MobiCash support line <Link href="https://support.mobicash.rw/">(support.mobicash.rw)</Link> Phone:/+250787797979. So that your issue may be followed up and be solved as soon as possible.
+      </Typography>
+    </AccordionDetails>
+  </Accordion>
+  <Accordion  >
+    <AccordionSummary  expandIcon={<ExpandMoreIcon />}>
+      <Typography color="gray" variant="h5" >
+      ⦁	What can I do if I have forgotten my pin?
+      </Typography>
+    </AccordionSummary>
+    <AccordionDetails>
+      <Typography>
+      If you forget your PIN, click on the forget PIN button and follow the instructions to change it.
+      </Typography>
+    </AccordionDetails>
+  </Accordion>
+  <Accordion  >
+    <AccordionSummary  expandIcon={<ExpandMoreIcon />}>
+      <Typography color="gray" variant="h5" >
+      ⦁	What is the minimum float for new agents?
+      </Typography>
+    </AccordionSummary>
+    <AccordionDetails>
+      <Typography>
+The minimum float for new agent is 100,000 Rwf.
+      </Typography>
+    </AccordionDetails>
+  </Accordion>
+  <Accordion  >
+    <AccordionSummary  expandIcon={<ExpandMoreIcon />}>
+      <Typography color="gray" variant="h5" >
+      ⦁	What can I do if I want to change my profile?
+      </Typography>
+    </AccordionSummary>
+    <AccordionDetails>
+      <Typography>
+      If you want to change something on your profile, click on the change profile button and follow the instructions and you will be able to change where you want.
+      </Typography>
+    </AccordionDetails>
+  </Accordion>
+  <Accordion  >
+    <AccordionSummary  expandIcon={<ExpandMoreIcon />}>
+      <Typography color="gray" variant="h5" >
+      ⦁	What is the minimum amount to pay on Mutuelle de santé (MUSA)?
+      </Typography>
+    </AccordionSummary>
+    <AccordionDetails>
+      <Typography>
+The minimum amount to pay MUSA is 1000Rwf 
+      </Typography>
+    </AccordionDetails>
+  </Accordion>
+  <Accordion  >
+    <AccordionSummary  expandIcon={<ExpandMoreIcon />}>
+      <Typography color="gray" variant="h5" >
+      ⦁	What are the requirements when you want to close your account?
+      </Typography>
+    </AccordionSummary>
+    <AccordionDetails>
+      <Typography>
+      When you want to close your account, write a letter requesting it, and have a float on the account indicating where it will be transferred if the account is closed.
+      </Typography>
+    </AccordionDetails>
+  </Accordion>
+  <Accordion  >
+    <AccordionSummary  expandIcon={<ExpandMoreIcon />}>
+      <Typography color="gray" variant="h5" >
+⦁	How do I access my account from a new device?
+      </Typography>
+    </AccordionSummary>
+    <AccordionDetails>
+      <Typography>
+    
+The agent application must be installed in that new device, and then you will use the same credentials you used in old device.
+
+      </Typography>
+    </AccordionDetails>
+  </Accordion>
+  <Accordion  >
+    <AccordionSummary  expandIcon={<ExpandMoreIcon />}>
+      <Typography color="gray" variant="h5" >
+      ⦁	What to do if I made a transaction and amount is deducted two times on my account?
+
+      </Typography>
+    </AccordionSummary>
+    <AccordionDetails>
+      <Typography>
+      What you do is call the support number +250787797979 or submit your issue on the OS ticket <Link href="https://support.mobicash.rw/">(support.mobicash.rw)</Link>, and provide the necessary information to resolve the issue.
       </Typography>
     </AccordionDetails>
   </Accordion>

@@ -9,6 +9,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 import moment from 'moment';
 import { Paper } from '@mui/material';
+import QRCode from "react-qr-code";
 import "../../style.css"
 
 export const ComponentToPrint = React.forwardRef((props, ref) => {
@@ -113,13 +114,21 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 			        </p> */}
 			       	<p className="bold">
 			            <span>Grand Total</span>
-			            <span>{props.amount} Rwf</span>
+			            <span> {(props.amount * -1).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf</span>
 						
 					
 			        </p>
 				</div>
 			</div>
 		</div>
+		<div style={{ height: "auto", margin: "0 auto", maxWidth: 64, width: "100%" }}>
+    <QRCode
+    size={256}
+    style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+    value={props.id}
+    viewBox={`0 0 256 256`}
+    />
+</div>
 		<div className="footer">
 			<p>Thank you and Best Wishes </p>
 			{/* <div className="terms">

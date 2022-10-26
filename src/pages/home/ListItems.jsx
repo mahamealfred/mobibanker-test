@@ -40,13 +40,9 @@ import CloseIcon from '@mui/icons-material/Close';
 import Dialog from '@mui/material/Dialog';
 import Account from '../myaccount/Account';
 import WalletIcon from '@mui/icons-material/Wallet';
+import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import { useTranslation } from "react-i18next";
-//   import { useValue } from '../../context/ContextProvider';
-//   import Main from './main/Main';
-//   import Messages from './messages/Messages';
-//   import Requests from './requests/Requests';
-//   import Rooms from './rooms/Rooms';
-//   import Users from './users/Users';
+
   
   const drawerWidth = 240;
   
@@ -144,6 +140,9 @@ import { useTranslation } from "react-i18next";
     }
    
     }, []);
+    const handleFaq=()=>{
+      return history.push('/dashboard/faq',{push:true})
+    }
   const handleHome=()=>{
     return history.push('/dashboard',{push:true})
   }
@@ -410,6 +409,35 @@ import { useTranslation } from "react-i18next";
                 </ListItemIcon>
                 <ListItemText
                   primary={t("common:preioustransaction")}
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </ListItem>
+            </Tooltip>
+            <Tooltip title="FAQ Page">
+            <ListItem  disablePadding sx={{ display: 'block' }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+                onClick={handleFaq}
+                // selected={selectedLink === item.link}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                    color:"#F9842C"
+                  }}
+                 
+                >
+                  <LiveHelpIcon/>
+                </ListItemIcon>
+                <ListItemText
+                  primary="FAQ Page"
                   sx={{ opacity: open ? 1 : 0 }}
                 />
               </ListItemButton>

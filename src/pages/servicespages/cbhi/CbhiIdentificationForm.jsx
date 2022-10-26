@@ -26,6 +26,7 @@ import { ComponentToPrint } from './ComponentToPrint';
 import ReactToPrint from 'react-to-print';
 import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
+
 const theme = createTheme();
 
 theme.typography.h3 = {

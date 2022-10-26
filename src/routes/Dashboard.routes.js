@@ -14,6 +14,7 @@ import MyProfile from "../pages/myaccount/AccountProfile";
 import CbhiIdentificationForm from "../pages/servicespages/cbhi/CbhiIdentificationForm";
 import ElectricityForm from "../pages/servicespages/electricity/ElectricityForm"
 import { ComponentToPrint } from "../pages/servicespages/rnit/ComponentToPrint";
+import FaqPage from "../pages/faqpage";
 function App() {
   const {path}=useRouteMatch();
   // const decode=(token) => {
@@ -53,6 +54,7 @@ function App() {
                 <PrivateRoute exact path={`${path}/my-account`} component={Account} />
                 <PrivateRoute exact path={`${path}/my-profile`} component={MyProfile} />
                 <PrivateRoute exact path={`${path}/cbhi`} component={ComponentToPrint} />
+                <PrivateRoute exact path={`${path}/faq`} component={FaqPage} />
               </>
             )}
           />

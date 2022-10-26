@@ -35,7 +35,7 @@ const Widget = () => {
     },
     {
       url: "/faq",
-      value: `FAQ`
+      value: `FAQs`
     }
   ]
   const agentSupportArchives = [

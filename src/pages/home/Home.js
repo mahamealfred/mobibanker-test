@@ -9,56 +9,37 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { mainListItems, secondaryListItems} from './listItem';
 import Tooltip from "@mui/material/Tooltip";
-import Widget from '../../components/widget/Widget';
 import NativeSelect from '@mui/material/NativeSelect';
 import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import Service from '../services/Service';
-import BottomNav from '../../components/bottomNav/BottomNav';
-import Footer from '../../components/footer/Footer';
+
 import AppDrawer from '../../components/drawer';
-import { DashboardAppbarContainer } from '../../components/styles/appbar';
-import DashboardBanner from "../../components/dashboardbanner";
-import { Colors } from '../../components/styles/theme';
 import {useEffect,useRef} from "react";
 import jwt from "jsonwebtoken";
 import Stack from '@mui/material/Stack';
-import { Button, ButtonGroup } from '@mui/material';
+import { Button } from '@mui/material';
 import LanguageIcon from '@mui/icons-material/Language';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import MobicashSolutions from '../../components/mobicashsolutions';
 import Badge from '@mui/material/Badge';
-import MailIcon from '@mui/icons-material/Mail';
 import {
-  flexBetweenCenter,
+
   justifyCenter,
   fullWidthFlex,
 } from '../../components/styles/theme';
-import Headerbanner from "../../components/headerbanner";
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import MoreIcon from '@mui/icons-material/MoreVert';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 import ListItems from './ListItems';
-import Slider from '../../components/slider/Slider';
+
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 //Modal
 import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
-import CloseIcon from '@mui/icons-material/Close';
 import { useIdleTimer } from 'react-idle-timer';
-import ReactModal from 'react-modal';
-import WarningIcon from '@mui/icons-material/Warning';
 import i18next from "i18next";
 const style = {
   top: '50%',
@@ -303,18 +284,22 @@ setOpenModal(false)
               <Box
                 component="img"
                 sx={{
-                  height: 80,
-                  width: 250,
+                  // height: 80,
+                  // width: 250,
+                  height: 100,
+                  width: 300,
                   marginLeft: 0,
-                  maxHeight: { xs: 60, md: 300 },
-                  maxWidth: { xs: 150, md: 220 },
+                  // maxHeight: { xs: 60, md: 300 },
+                  // maxWidth: { xs: 150, md: 220 },
+                  maxHeight: { xs: 60, md: 300},
+                  maxWidth: { xs: 150, md: 300},
                   display: { xs: "none", sm: "none",md:"block"}
                 }}
                 alt="mobicash logo"
-                src="../../Assets/images/logo.png"
+                src="../../Assets/images/mobibk.png"
               />
             </Typography>
-            <Box
+            {/* <Box
               component="img"
               sx={{
                 height: 100,
@@ -326,7 +311,7 @@ setOpenModal(false)
               }}
               alt="mobicash logo"
               src="../../Assets/images/mobibk.png"
-            />
+            /> */}
   <Box sx={{ display: { xs: 'flex', md: 'flex' }, padding:2}}>
          <Tooltip title={t("common:logout")} sx={{ mt: 1,display: { xs: 'none', md: 'none' } }}>
        <IconButton   onClick={handleLogout} size="large" aria-label="show 4 new mails"  sx={{color:"#F9842C"}} >

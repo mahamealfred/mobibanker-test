@@ -36,7 +36,7 @@ export const getLtssIdDetailsAction = (details,history) => async (dispatch) => {
   
   } catch (err) {
     if (err.response) {
-      const errorMessage = await err.response.data.identification;
+    //  const errorMessage = await err.response.data.identification;
       dispatch(getLtssIdDetailsFailure("Please contact mobicash support"));
     }
   }

@@ -16,88 +16,72 @@ export default function Review({
   dateTime,
   agentName,
 }) {
-  
+  const { t } = useTranslation(["home","common","cbhi"]);
   return (
     <React.Fragment>
-      <Typography variant="h6" textAlign="center" gutterBottom>
-      TRANSACTION DETAILS
+        <Typography variant="h6" textAlign="center" gutterBottom>
+           Transaction Details
       </Typography>
       <List disablePadding>
-    
-          <ListItem  sx={{ py: 1, px: 0 }}>
-            <ListItemText primary="HOUSEHOLDER NAME"/>
-            <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>{payerName}</Typography>
+          <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
+            <ListItemText primary="HOUSEHOLDER NAME" secondary={payerName} />
+          </ListItem>
+          <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
+            <ListItemText primary="HOUSEHOLDER NID" secondary={formData.nId} />
+          </ListItem>
+          <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
+            <ListItemText primary="HOUSEHOLDER CATEGORY" secondary= {houseHoldCategory} />
+          </ListItem>
+          <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
+            <ListItemText primary="NUMBER OF MEMBERS" secondary={householdMemberNumber}/>
           </ListItem>
         <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary="PAID AMOUNT" />
+          <ListItemText primary= "PAID AMOUNT"  />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
           {formData.amountPaid.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf
           </Typography>
         </ListItem>
-        <ListItem  sx={{ py: 1, px: 0 }}>
-            <ListItemText primary="HOUSEHOLDER NID"/>
-            <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>{formData.nId}</Typography>
-          </ListItem>
         <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary="HOUSEHOLDER CATEGORY" />
+          <ListItemText primary= "YEAR OF PAYMENT" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-           {houseHoldCategory}
-          </Typography>
-        </ListItem>
-        <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary="NUMBER OF MEMBERS" />
-          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-           { householdMemberNumber}
-          </Typography>
-        </ListItem>
-        <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary="YEAR OF PAYMENT" />
-          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-           {formData.paymentYear}
+          {formData.paymentYear}
           </Typography>
         </ListItem>
       </List>
       <Grid container spacing={2}>
-     
         <Grid item container direction="column" xs={12} sm={6}>
-          <Typography variant="h6" textAlign="center" gutterBottom sx={{ mt: 2 }}>
-        Payment Details
+          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+            Payment details
           </Typography>
           <Grid container>
-           
+       
               <React.Fragment >
                 <Grid item xs={6}>
-                  <Typography gutterBottom textAlign="left">TransactionID </Typography>
+                  <Typography gutterBottom>Description</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography gutterBottom textAlign="right">{transactionId}</Typography>
+                  <Typography gutterBottom>RSSB Mutuelli</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{t("common:mobicashreference")}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{transactionId}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{t("common:date")}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{moment(dateTime).format("llll")}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{t("common:status")}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{transactionStatus}</Typography>
                 </Grid>
               </React.Fragment>
-              <React.Fragment >
-                <Grid item xs={6}>
-                  <Typography gutterBottom textAlign="left">Description</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography gutterBottom textAlign="right">RSSB Mutuelli</Typography>
-                </Grid>
-              </React.Fragment>
-              <React.Fragment >
-                <Grid item xs={6}>
-                  <Typography gutterBottom textAlign="left">Date</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography gutterBottom textAlign="right">{moment(dateTime).format("llll")}</Typography>
-                </Grid>
-              </React.Fragment>
-              <React.Fragment >
-                <Grid item xs={6}>
-                  <Typography gutterBottom textAlign="left">Status</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography gutterBottom textAlign="right">{transactionStatus}</Typography>
-                </Grid>
-              </React.Fragment>
-        
+         
           </Grid>
         </Grid>
       </Grid>

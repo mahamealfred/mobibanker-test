@@ -65,9 +65,7 @@ const user = {
     
       }}
     >
-       
       <Container maxWidth="lg">
-       
         <Grid
           container
           spacing={2}
@@ -78,8 +76,6 @@ const user = {
             md={6}
             xs={12}
           >
- 
-   
         <Card {...props}>
     <CardContent>
       <Box
@@ -90,11 +86,7 @@ const user = {
          justifyCenter:"center"
         }}
       >
-        
-   
         <Service/>
-       
-          
       </Box>
     </CardContent>
     <Divider />
@@ -104,7 +96,6 @@ const user = {
         fullWidth
         variant="text"
       >
-      
       </Button>
     </CardActions>
   </Card>
@@ -134,19 +125,13 @@ const user = {
         fullWidth
         variant="text"
       >
-      
       </Button>
     </CardActions>
-  </Card>
-            </Grid>
-        
-         
+     </Card>
+          </Grid>
         </Grid>
-     
-       
       </Container>
     </Box>
-    
     </React.Fragment>
    
   );

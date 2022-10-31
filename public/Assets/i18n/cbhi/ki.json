@@ -1,5 +1,11 @@
 {
-    "rssbmutuellepaymentservice":"Serivisi yo Kwishura Mutuelle",
-    "householdernid":"IDN de chef de famille"
+    "rssbmutuellepaymentservice":"Serivisi yo Kwishura Mitiweli",
+    "householdernid":"Indangamuntu y'uhagarariye umuryango",
+    "householdernidisrequired":"Indangamuntu irakenewe",
+    "householdernidmustbeanumber":"Indangamuntu igomba kuba umubare",
+    "householdernidmustbe16digit":"Indangamuntu igomba kuba imibare 16",
+    "pleaseselectyear":"Hitamo umwaka",
+    "theminimumamounttopayis1000":"Amafaranga ntarengwa yo kwishyura ni 1000 Rwf",
+    "amountmustbedivisibleby1000":"Umubare ugomba kugabanywa na 1000"
    
 }

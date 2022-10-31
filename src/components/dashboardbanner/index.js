@@ -1,18 +1,10 @@
 import React from "react"
-import { Button, Typography, useMediaQuery,Box,Grid,Divider } from "@mui/material";
+import {  Typography, useMediaQuery,Box,Grid,Divider } from "@mui/material";
 import { useTheme } from "@mui/system";
 import {
   BannerContainer,
   BannerContent,
-  BannerDescription,
-  BannerImage,
-  BannerLoginContainer,
-  BannerShopButton,
-  BannerTitle,
 } from "../styles/banner";
-import Appbar from "../appbar";
-import Footer from "../footer/Footer";
-import Login from "../../pages/login/Login"
 import Widget from "../widget/Widget";
 import Service from "../../pages/services/Service"
 export default function Banner() {

@@ -95,6 +95,12 @@
     "phonemustbeanumeric":"Phone must be a numeric",
     "invalidpin":"Invalid PIN, Please provid a valid PIN",
     "nid":"NID",
-    "year":"Year"
+    "year":"Year",
+    "amounttopayisrequired":"Amount to pay is required",
+    "agenytpinisrequired":"Agent PIN is required",
+    "amounttopaymustbeanumber":"Amount to pay must be a number",
+    "amounttopaycannotexcide2,000,000Rwf":"Amount to pay can not excide 2,000,000 Rwf"
+
+    
 
  }

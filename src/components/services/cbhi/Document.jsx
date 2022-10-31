@@ -11,7 +11,7 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
 import { MenuItem } from "@mui/material";
-
+import { useTranslation } from "react-i18next";
 const theme = createTheme();
 theme.typography.h3 = {
     fontSize: '0.9rem',
@@ -34,7 +34,7 @@ const Document = ({
   errorMessage,
   setErrorMessage
 }) => {
-  
+    const { i18n,t } = useTranslation(["home","common","login","cbhi"]);
     console.log("error message",errorMessage)
     const handleClose = () => {
         setErrorMessage('')
@@ -67,7 +67,7 @@ const Document = ({
                 <Typography variant="h6" color="text.primary"  align="center"
                   sx={{ fontSize:{xs:14,md:16,lg:18} }}
                 >
-                   Household NID
+         
                     </Typography>
             </ThemeProvider>
           
@@ -77,7 +77,7 @@ const Document = ({
                     xs={12}>
                     <TextField id="address2"  
                     name="address2" 
-                    label="Household NID"
+                    label={t("cbhi:householdernid")}
                     size="small"
                     margin="normal"
                         value={formData.nId}
@@ -93,7 +93,7 @@ const Document = ({
                 <Typography variant="h6" color="text.primary"  align="center"
                   sx={{ fontSize:{xs:14,md:16,lg:18} }}
                 >
-                Year
+                {/* Year */}
                 </Typography>
             </ThemeProvider>
       <Grid container spacing={3}>
@@ -101,7 +101,7 @@ const Document = ({
           <TextField
             id="nID"
             name="PaymentYear"
-            label="Payment Year"
+            label={t("common:year")}
             margin="normal"
             size="small"
             select

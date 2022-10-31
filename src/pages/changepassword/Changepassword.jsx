@@ -1,12 +1,10 @@
 import React from 'react'
-import { Close, Send } from '@mui/icons-material';
+import { Send } from '@mui/icons-material';
 import {
   Button,
-  Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
-  DialogTitle,
   IconButton,
   TextField,
 } from '@mui/material';
@@ -25,16 +23,14 @@ import CloseIcon from '@mui/icons-material/Close';
  import jwt from "jsonwebtoken";
 const Changepassword = () => {
   const { i18n,t } = useTranslation(["home","common","login"]);
-    const [title, setTitle] = useState('Login');
+  
     const history=useHistory()
-  const [isRegister, setIsRegister] = useState(false);
+
   const [errorMessage,setErrMessage]=useState("");
   const [open, setOpen] = React.useState(false);
   const [openError, setOpenError] = React.useState(false);
   const [successFullMessage,setSuccessFullMessage]=useState("")
   const [openSuccess,setOpenSuccess]=useState(false)
-  const nameRef = useRef();
-  const emailRef = useRef();
   const oldPasswordRef=useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();

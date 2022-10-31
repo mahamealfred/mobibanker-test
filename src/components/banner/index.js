@@ -1,12 +1,10 @@
 import React ,{useEffect} from "react"
-import { Button, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/system";
 import Footer from "../footer/Footer";
 import Login from "../../pages/login/Login"
 import Widget from "../widget/Widget";
 import TopNav from "../topNav/TopNav";
 import Headerbanner from "../headerbanner"
-import AuthApi from "../../context/api";
 import Slider from "../slider/Slider";
 import {Box} from "@mui/material";
 
@@ -28,7 +26,6 @@ import Paper from '@mui/material/Paper';
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 export default function Banner() {
-  const theme = useTheme();
   const { i18n, t } = useTranslation(["common"]);
 
 	useEffect(() => {

@@ -25,7 +25,6 @@ export const rraPayamentAction = (details,username,password,history) => async (d
     const {brokering}=details
     const {userGroup}=details
 
-  console.log(" rra details:",details,username,password)
     //const encodedBase64Token = Buffer.from(`${username}:${password}`).toString('base64');
     let basicAuth='Basic ' + btoa(username + ':' + password);
    // const Url='https://agentweb.mobicash.rw/api/agent/goverment-services/rra/rest/v.4.14.01/payment';

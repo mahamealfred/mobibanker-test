@@ -1,19 +1,12 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
-import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import Widget from '../../components/widget/Widget';
-import TopNav from '../../components/topNav/TopNav';
 import { useHistory } from 'react-router-dom';
-import Footer from '../../components/footer/Footer';
-import Appbar from '../../components/appbar';
 import { loginAction } from '../../redux/actions/loginAction';
 import { useDispatch,useSelector } from 'react-redux';
 import {useState,useEffect} from "react";
@@ -22,21 +15,33 @@ import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import CircularProgress from '@mui/material/CircularProgress';
-import AuthApi from '../../context/api';
-import jwt from 'jsonwebtoken';
 import { useTranslation } from "react-i18next";
+import { useInterval } from "./customHooks";
+const TIMEOUT_SECONDS = 15;
 const SignIn = () => {
     const history=useHistory()
     const { t } = useTranslation(["home","common","login"]);
     const dispatch=useDispatch();
     const login=useSelector((state)=>state.login)
-    const [username,setUsername]=useState();
-    const [password,setPassword]=useState();
     const [usernameError,setUsernameError]=useState();
     const [passwordError,setPasswordError]=useState();
-    const [errMessage,setErrMessage]=useState('')
     const [open, setOpen] = React.useState(true);
+    const [remainingSeconds, setRemainingSeconds] = useState(TIMEOUT_SECONDS);
+    const [pending, setPending] = useState(false);
+    const [error, setError] = useState(null);
 
+    useInterval(
+      () => {
+        if (remainingSeconds === 0) {
+          setError("Request has timed out");
+          login.loading=false
+        } else {
+          setError(null);
+          setRemainingSeconds(remainingSeconds - 1);
+        }
+      },
+    login.loading ? 1000 : null // VERY IMPORTANT, must be 1000 or NULL
+    );
       const handleSubmit = async(event) => {
           event.preventDefault();
           const data = new FormData(event.currentTarget);
@@ -54,6 +59,9 @@ const SignIn = () => {
           else{
             setUsernameError("")
             setPasswordError("")
+           login.loading=true
+            setError(null);
+            setRemainingSeconds(TIMEOUT_SECONDS);
             await dispatch(loginAction({username: data.get('username'),password: data.get('password')},history));
             // console.log("authenticstion",Auth.auth)
           }
@@ -61,45 +69,11 @@ const SignIn = () => {
           if(login.error){
             setOpen(true);
           }
+          if(error){
+            setOpen(true);
+          }
         };
-        // useEffect(()=>{
-        //   async function fechtData(){
-        //     if(Auth.auth==true){
-        //       console.log("authentication ...::")
-        //       history.push('/dashboard',{push:true})
-        //      // await dispatch(loginAction({username: data.get('username'),password: data.get('password')},history));
-        //     }
-        //   }
-        //  fechtData();
-        // },[Auth.auth])
-        // useEffect(()=>{
-        //   async function fecthData(){
-        //     console.log("status::",auth)
-        //     if(auth==true){
-        //       history.push('/dashboard',{push:true}) 
-        //     }
-        //  if(!login.loading){
-        //   if(login.users.length!==0){
-        //     if(login.users.code==200){
-              
-        //       const userId=login.users.id
-        //       const name=login.users.display
-        //       const role=login.users.brokering
-        //       const group=login.users.group
-             
-        //       const jwt_secret="tokensecret"
-        //       const claims={userId,name,role,username,group,password}
-        //       const token= jwt.sign(claims,jwt_secret, { expiresIn: "7d"});
-        //       history.push('/dashboard',{push:true})
-        //       sessionStorage.setItem('mobicash-auth',token)
-        //       return localStorage.setItem('mobicashAuth',token);
-        //     }
-          
-        //   }
-        //  }
-        //   }
-        //   fecthData();
-        // },[!login.users])
+       
         const handleClose=()=>{
           setOpen(false)
         }
@@ -145,6 +119,28 @@ const SignIn = () => {
                    </Alert>
                  </Collapse>
                 }    
+                  {
+                  !error? null:
+                   <Collapse in={open}>
+                   <Alert
+                   severity="warning"
+                     action={
+                       <IconButton
+                         aria-label="close"
+                         color="inherit"
+                         size="small"
+                         onClick={handleClose}
+                       >
+                         <CloseIcon fontSize="inherit" />
+                       </IconButton>
+                     }
+                     sx={{ mb: 0.2 }}
+                   >
+                    {error}
+                   </Alert>
+                 </Collapse>
+                }    
+                
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
                 margin="normal"

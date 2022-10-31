@@ -484,7 +484,7 @@ export default function MediaCard() {
 
              }}
            >
-            RRA
+            RRA 
           </Typography>
             </Card>  
             </Button>
@@ -662,7 +662,7 @@ export default function MediaCard() {
             </Card>  
             </Button>
             <Divider variant="middle" />
-            <Typography component="h1" variant="h5"
+            {/* <Typography component="h1" variant="h5"
          fontWeight={800}
          color="text.primary"
          textAlign="center"
@@ -704,7 +704,7 @@ export default function MediaCard() {
             AIRTEL
           </Typography>
             </Card>  
-            </Button>
+            </Button> */}
             {/* <Button
             disabled
             onClick={handleOpenMTN}
@@ -745,8 +745,6 @@ export default function MediaCard() {
          fontWeight={800}
          color="text.primary"
          textAlign="center"
-      
-        
          sx={{ fontSize: { xs: 16 } }}
          >
        {t("common:agencybanking")}

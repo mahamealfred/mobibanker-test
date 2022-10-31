@@ -1,7 +1,6 @@
 import React from 'react'
-import { Box, Container, Divider, Grid, Typography } from '@mui/material'
+import { Box, Container, Grid, Typography } from '@mui/material'
 import { useTranslation } from "react-i18next";
-import jwt from "jsonwebtoken";
 import Paper from '@mui/material/Paper';
 import Widget from '../../components/widget/Widget';
 import Service from '../services/Service';

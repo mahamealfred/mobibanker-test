@@ -4,12 +4,12 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
   } from "../types/loginType";
-  import * as process from "process";
+
 import jwt from "jsonwebtoken";
 //   import dotenv from "dotenv";
 //   dotenv.config();
 require('dotenv').config();
-const  {REACT_APP_BASE_URL} = process.env
+// const  {REACT_APP_BASE_URL} = process.env
 
 export const loginAction = (user,history) => async (dispatch) => {
   try {
@@ -53,7 +53,7 @@ export const loginAction = (user,history) => async (dispatch) => {
   } catch (err) {
     if (err.response) {
      const errorMessage = await err.response.data.responseMessage;
-     if(errorMessage=="login"){
+     if(errorMessage==="login"){
       dispatch(loginFailure("Invalid credentials,Please provide a valid Username and Password"));
      }else{
       dispatch(loginFailure("You're temporaly blocked"));

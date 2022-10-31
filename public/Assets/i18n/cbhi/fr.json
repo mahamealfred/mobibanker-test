@@ -1,4 +1,10 @@
 {
     "rssbmutuellepaymentservice": "Service de paiement Mutuel",
-    "householdernid":"Identité de chef de famille"
+    "householdernid":"Identité de chef de famille",
+    "householdernidisrequired":"L' Identité du chef de ménage est requis",
+    "householdernidmustbeanumber":"Identité doit être un nombre",
+    "householdernidmustbe16digit":"Identité  doit être composé de 16 chiffres",
+    "pleaseselectyear":"Veuillez sélectionner l'année",
+    "theminimumamounttopayis1000":"Le montant minimum à payer est de 1000 Rwf",
+    "amountmustbedivisibleby1000":"Le montant doit être divisible par 1000"
 }

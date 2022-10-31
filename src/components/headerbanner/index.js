@@ -5,45 +5,11 @@ import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { useTranslation } from 'react-i18next';
-const featuredPosts = [
-  {
-    title: '../../Assets/images/mobiswift.png',
-    date: 'PAYMENTS MADE SEAMLESS AND INVISIBLE',
-    description:
-      'Payments are becoming invisible. The next great evolution will see payment see payments fully disappear into simplified, holistic commerce platforms.',
-    image: '../../Assets/images/mobiswiftm.png',
-    imageLabel: 'Image Text',
-  },
-  {
-    title: '../../Assets/images/mobigov.png',
-    date: 'BRING USER-CENTERED DESIGN TO GOVERNMENT SERVICES.',
-    description:
-      'In this way the focus transforms from traditional administration to modern communication between governments and citizens or companies.',
-    image: '../../Assets/images/mobigovm.png',
-    imageLabel: 'Image Text',
-  },
-  {
-    title: '../../Assets/images/mobistore.png',
-    date: 'BUILD YOUR BRAND & CONQUER THE WOLRD',
-    description:
-      'Comlete FREE e-commerce module: marketplace, webshop & shopping cart, promotional price, stock management and Ads alerts.',
-    image: '../../Assets/images/mobistorem.png',
-    imageLabel: 'Image Text',
-  },
-  {
-    title: '../../Assets/images/mobitv.png',
-    date: 'LIVESTREAMING SHOPPING-THE NEXT BIG THING IN RETAIL COMMERCE',
-    description:
-      'Livestream shopping offers the ability to demonstrate and ultimately advertise products to a TV live, online audience that can interact and buy in that live experiance.',
-    image: '../../Assets/images/mobitvm.png',
-    imageLabel: 'Image Text',
-  },
-];
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -53,7 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 function FeaturedPost() {
   const { t } = useTranslation(["home","common","login"]);
-  const [spacing, setSpacing] = React.useState(2);
+  
   return (
     <React.Fragment>
 

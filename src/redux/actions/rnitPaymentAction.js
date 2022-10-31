@@ -49,7 +49,7 @@ export const rnitPaymentAction = (details,username,password,history) => async (d
       if(res.data.responseCode===200){
        await dispatch(rnitPaymentSuccess(data));
       }
-      if(res.data.responseCode==400){
+      if(res.data.responseCode===400){
         let errorMessage = 'Invalid Credential, Please provide valid Pin'
           dispatch(rnitPaymentFailure(errorMessage)); 
       }

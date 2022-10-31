@@ -1,8 +1,5 @@
-import React, { Component,useContext } from 'react'
+import React from 'react'
 import {  Route, Switch } from "react-router-dom";
-import Banner from '../components/banner';
-import AuthApi from '../context/api';
-import SignIn from '../pages/signin/SignIn';
 import DashboardRoute from "./Dashboard.routes";
 import LoginRoute from "./Login.routes";
 import Logout from '../pages/logout/Logout';
@@ -10,7 +7,7 @@ import Forgotpassword from '../pages/forgotpassword/Forgotpassword';
 import Resetpassword from '../pages/resetpassword/Resetpassword';
 import FaqPage from '../pages/faqpage'
 
-const token =sessionStorage.getItem('mobicash-auth');
+// const token =sessionStorage.getItem('mobicash-auth');
 // export default class index extends Component {
 
 // //   constructor(props) {
@@ -34,7 +31,7 @@ const token =sessionStorage.getItem('mobicash-auth');
 
  const Index=()=>{
   //const Auth=useContext(AuthApi) 
-  const Auth=sessionStorage.getItem("mobicash-auth")
+  // const Auth=sessionStorage.getItem("mobicash-auth")
   return(
     <Switch>
         <Route exact path="/"   component={LoginRoute}/>

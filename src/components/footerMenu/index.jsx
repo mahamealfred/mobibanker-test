@@ -2,19 +2,14 @@ import React, {useEffect} from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import { FaSearch, FaRegHeart, FaRegUserCircle } from 'react-icons/fa';
 import LanguageIcon from '@mui/icons-material/Language';
 import NativeSelect from '@mui/material/NativeSelect';
 import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
 import Paper from '@mui/material/Paper';
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import {
-  flexBetweenCenter,
   justifyCenter,
-  fullWidthFlex,
 } from '../styles/theme';
 const footerMenu = [
   { id: 1, text: 'Change Language', icon: <LanguageIcon size={18} sx={{color:"#F9842C"}}/> },

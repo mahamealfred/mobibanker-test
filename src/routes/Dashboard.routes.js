@@ -2,17 +2,9 @@ import React from "react";
 import { useRouteMatch, Route,Switch } from "react-router-dom";
 import Dashboard from "../views/Dashboard";
 import PrivateRoute from "./PrivateRoutes"
-import Home from "../pages/home/Home";
-import {useEffect} from "react";
-import jwt from "jsonwebtoken";
-import { useHistory } from 'react-router-dom';
-import Service from "../pages/services/Service"
-import HomeDetails from "../pages/home/HomeDetails";
 import HomePage from "../pages/home/HomePage";
 import Account from "../pages/myaccount/Account"
 import MyProfile from "../pages/myaccount/AccountProfile";
-import CbhiIdentificationForm from "../pages/servicespages/cbhi/CbhiIdentificationForm";
-import ElectricityForm from "../pages/servicespages/electricity/ElectricityForm"
 import { ComponentToPrint } from "../pages/servicespages/rnit/ComponentToPrint";
 import FaqPage from "../pages/faqpage";
 function App() {

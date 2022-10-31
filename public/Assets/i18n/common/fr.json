@@ -95,6 +95,9 @@
     "phonemustbeanumeric":"Le téléphone doit être un chiffre",
     "invalidpin":"Code PIN invalide, veuillez fournir un code PIN valide",
     "nid":"Identité nationaled",
-    "year":"An"
+    "year":"An",
+    "amounttopayisrequired":"Le montant à payer est requi",
+    "agenytpinisrequired":"Le code PIN de l'agent est requis",
+    "amounttopaymustbeanumber":"Le montant à payer doit être un nombre"
     
  }

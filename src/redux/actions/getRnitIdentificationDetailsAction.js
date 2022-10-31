@@ -25,10 +25,10 @@ export const getRnitDetailsAction = (identityNumber) => async (dispatch) => {
  }
    });
     const {data} = await res;
-      if(res.data.responseCode==200){
+      if(res.data.responseCode===200){
         dispatch(getRnitDetailsSuccess(data));
       }  
-      if(res.data.responseCode==400){
+      if(res.data.responseCode===400){
         let errorMessage = ''
         errorMessage="Invalid Identification number"
        // errorMessage=await err.response.data.message

@@ -7,7 +7,7 @@ import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { MenuItem } from '@mui/material';
-
+import { useTranslation } from "react-i18next";
 
 const Payment=({
   formData,
@@ -27,7 +27,7 @@ const Payment=({
   open,
   setOpen
 })=> {
-  
+  const { i18n,t } = useTranslation(["home","common","login","cbhi"]);
     const handleClose = () => {
       setPaymenterrorMessage('')
       setOpen(false);
@@ -61,7 +61,7 @@ const Payment=({
       <Grid container spacing={3}>
       <Grid item xs={12} md={4}>
               <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-               PAYER NAME
+               {t("common:payername")}
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
              {payerName}
@@ -69,7 +69,7 @@ const Payment=({
             </Grid>
             <Grid item xs={12} md={4}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-                HOUSEHOLD NID
+                 {t("cbhi:houseldernid")}
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
                {houseHoldNID}
@@ -93,7 +93,7 @@ const Payment=({
             </Grid>
             <Grid item xs={12} md={6}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-             YEAR OF PAYMENT
+                 {t("cbhi:year")}
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
                 {formData.paymentYear}
@@ -143,7 +143,7 @@ const Payment=({
             required
             id="cardName"
             margin="normal"
-            label="Amount to pay"
+            label={t("common:amounttopay")}
             size="small"
             value={formData.amountPaid}
             onChange={(e)=>setFormData({...formData,amountPaid:e.target.value})}
@@ -159,11 +159,11 @@ const Payment=({
             required
             id="cardName"
             margin="normal"
-            label="Payer phone number"
+            label={t("common:payerphone")}
             size="small"
             value={formData.phoneNumber}
             onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
-            helperText={phoneNumberError? phoneNumberError : "Format 078..."}
+            helperText={phoneNumberError? phoneNumberError : ""}
             error={phoneNumberError}
             fullWidth
             autoComplete="cc-name"
@@ -175,7 +175,7 @@ const Payment=({
             required
             id="cardNumber"
             margin="normal"
-            label="Agent Pin"
+            label={t("common:agentpin")}
             size="small"
             value={formData.password}
             onChange={(e)=>setFormData({...formData,password:e.target.value})}

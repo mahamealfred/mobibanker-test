@@ -1,5 +1,11 @@
 {
     "rssbmutuellepaymentservice":"Mutuelle Payment Service",
-    "householdernid":"Indangamuntu y'uhagarariye umuryango"
-   
+    "householdernid":"Householder NID",
+    "householdernidisrequired":"Householder NID is required",
+    "householdernidmustbeanumber":"NID must be a number",
+    "householdernidmustbe16digit":"NID must be 16 digit",
+    "pleaseselectyear":"Please select year",
+    "theminimumamounttopayis1000":"The minimum amount to pay is 1000 Rwf",
+    "amountmustbedivisibleby1000":"Amount must be divisible by 1000"
+
 }

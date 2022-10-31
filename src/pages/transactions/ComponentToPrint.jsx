@@ -1,14 +1,4 @@
-import React, { useRef } from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import Grid from '@mui/material/Grid';
-import moment from 'moment';
-import { Paper } from '@mui/material';
+import React from 'react';
 import QRCode from "react-qr-code";
 import "../../style.css"
 

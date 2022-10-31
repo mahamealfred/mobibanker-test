@@ -216,20 +216,20 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
   //handel get cbhi nid details
   const getChiNid= async()=>{
     if(formData.nId=="" && formData.paymentYear==""){
-    setNIdErrorMessage("Household NID is required")
-    setPaymentYearErrorMessage("Please select year")
+    setNIdErrorMessage(`${t("cbhi:householdernidisrequired")}`)
+    setPaymentYearErrorMessage(`${t("cbhi:pleaseselectyear")}`)
     }
     else if(formData.nId==""){
-      setNIdErrorMessage("Household NID is required")
+      setNIdErrorMessage(`${t("cbhi:householdernidisrequired")}`)
     }
     else if(!Number(formData.nId)){
-      setNIdErrorMessage("Household NID must be a number")
+      setNIdErrorMessage(`${t("cbhi:householdernidmustbeanumber")}`)
     }
     else if(formData.nId.length!==16){
-      setNIdErrorMessage("Household NID must be 16 digit")
+      setNIdErrorMessage(`${t("cbhi:householdernidmustbe16digit")}`)
     }
     else if(formData.paymentYear==""){
-      setPaymentYearErrorMessage("Please select year")
+      setPaymentYearErrorMessage(`${t("common:pleaseselectyear")}`)
     }
     else{
       setNIdErrorMessage("")
@@ -242,22 +242,22 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
   //handle cbhi payment
   const handleCbhiPayment=async()=>{
     if(formData.amountPaid=="" && formData.phoneNumber==""&& formData.password=="" ){
-      setAmountPaidError("Amount to pay is required")
-      setPhoneNumberError("Payer phone number is required")
-      setPasswordError("Agent pin is required")
+      setAmountPaidError(`${t("common:amounttopayisrequired")}`)
+      setPhoneNumberError(`${t("common:phoneisrequired")}`)
+      setPasswordError(`${t("common:agenytpinisrequired")}`)
     }
     else if(formData.amountPaid==""){
-      setAmountPaidError("Amount to pay is required")
+      setAmountPaidError(`${t("common:amounttopayisrequired")}`)
     }
     else if(!Number(formData.amountPaid)){
-      setAmountPaidError("Amount to pay must be a number")
+      setAmountPaidError(`${t("common:amounttopaymustbeanumber")}`)
     }
     else if(formData.amountPaid<1000){
-      setAmountPaidError("The minimum amount to pay is 1000 Rfw")
+      setAmountPaidError(`${t("cbhi:theminimumamounttopayis1000")}`)
     
     } 
     else if(formData.amountPaid%1000!==0){
-      setAmountPaidError("Amount must be divisible by 1000")
+      setAmountPaidError(`${t("cbhi:amountmustbedivisibleby1000")}`)
     
     }  
    
@@ -417,7 +417,7 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
                     ):null}
 
                     <Button
-                      variant="outlined"
+                   
                       onClick={handelSubmit}
                       // sx={{ mt: 3, ml: 1 }}
                       sx={{ my: 1, mx: 1.5 }}

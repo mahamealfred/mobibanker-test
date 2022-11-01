@@ -6,6 +6,13 @@
     "householdernidmustbe16digit":"NID must be 16 digit",
     "pleaseselectyear":"Please select year",
     "theminimumamounttopayis1000":"The minimum amount to pay is 1000 Rwf",
-    "amountmustbedivisibleby1000":"Amount must be divisible by 1000"
+    "amountmustbedivisibleby1000":"Amount must be divisible by 1000",
+    "totalpremium":"Total Premium",
+    "alreadypay":"Already pay",
+    "householdcategory":"Household Category",
+    "numberofmembers":"Number of Members",
+    "members":"Members",
+    "checkmembers":"Check members",
+    "householdername":"Householder Name"
 
 }

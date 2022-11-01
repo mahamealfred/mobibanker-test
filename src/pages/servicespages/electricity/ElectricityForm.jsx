@@ -27,7 +27,7 @@ import jwt from "jsonwebtoken";
 import { ComponentToPrint } from './ComponentToPrint';
 import ReactToPrint from 'react-to-print';
 import { useRef } from 'react';
-
+import { useTranslation } from "react-i18next";
 
 const theme = createTheme();
 
@@ -42,8 +42,8 @@ theme.typography.h3 = {
 };
 
 const EleCtricityForm = ({openELECTRICITY,setOpenELECTRICITY}) => {
-
-  const steps = [`Meter number`, `Make payment`, `View Payment`];
+  const { i18n,t } = useTranslation(["home","common","login","rra"]);
+  const steps = [`${t("electricity:meternumber")}`, `${t("common:makepayment")}`, `${t("common:viewdetails")}`];
   const [activeStep, setActiveStep] = React.useState(0);
   const dispatch = useDispatch();
   const getDocDetails = useSelector((state) => state.getDocDetails);
@@ -137,6 +137,7 @@ const EleCtricityForm = ({openELECTRICITY,setOpenELECTRICITY}) => {
      case 2:
        return <Review 
        dateTime={dateTime}
+       formData={formData}
        transactionId={transactionId}
        transactionStatus={transactionStatus}
        payerName={payerName}
@@ -221,9 +222,9 @@ fetchData();
  //handle request for rra document id
  const handleMeterDetails = async () => {
    if (formData.meterNumber === "") {
-     setMeterNumberErr("Meter is required");
+     setMeterNumberErr(`${t("electricity:meternumberisrequired")}`);
    } else if (!Number(formData.meterNumber)) {
-     setMeterNumberErr("Meter  must be a number");
+     setMeterNumberErr(`${t("electricity:meternumbermustbeanumeric")}`);
    } else {
     setMeterNumberErr("");
      const meterNumber = formData.meterNumber;
@@ -234,31 +235,31 @@ fetchData();
  //handle electricity Payament
  const handlePayment = async () => {
     if(formData.amountToPay==""){
-        setAmountTopayError("Amaount to pay is required")
+        setAmountTopayError(`${t("common:amounttopay")}`)
     }
     else if(!Number(formData.amountToPay)){
-        setAmountTopayError("Amount must be a number")
+        setAmountTopayError(`${t("common:amounttopayisrequired")}`)
     }
     else if(formData.amountToPay < 100 || formData.amountToPay>1000000){
-        setAmountTopayError("The minimum amount is 100 and the maximun is 1000000")  
+        setAmountTopayError(`${t("electricity:theminimumamountis100andthemaximunis1,000,000")}`)  
     }
-    else if(formData.taxIdentificationNumber==""){
-   setTaxIdentificationNumberError("Customer Identification Number is required")
-    }
-    else if(!Number(formData.taxIdentificationNumber)){
-        setTaxIdentificationNumberError("Identification Number must be a number")
-    }
+  //   else if(formData.taxIdentificationNumber==""){
+  // // setTaxIdentificationNumberError(`${t("electricity:customeridentificationnumberisrequired")}`)
+  //   }
+  //   else if(!Number(formData.taxIdentificationNumber)){
+  //       setTaxIdentificationNumberError(`${t("electricity:identificationnumbermustbeanumber")}`)
+  //   }
    else if (formData.phoneNumber === "") {
-     setPhoneNumberError("Phone number is required");
+     setPhoneNumberError(`${t("common:phoneisrequired")}`);
    } else if (!Number(formData.phoneNumber)) {
-     setPhoneNumberError("Phone number must be a number");
+     setPhoneNumberError(`${t("common:phonemustbeanumeric")}`);
    } else if (formData.phoneNumber.length!==10) {
-    setPhoneNumberError("Phone number must be 10 digit");
+    setPhoneNumberError(`${t("common:phonenumbermustbe10digit")}`);
   }else if (formData.password === "") {
-     setPasswordError("Password is required");
+     setPasswordError(`${t("common:passwordisrequired")}`);
    }
    else if (formData.password !== password ) {
-    setPasswordError("Invalid pin,Please provide valid PIN");
+    setPasswordError(`${t("common:invalidpin")}`);
   } 
    else {
     setAmountTopayError("")
@@ -266,10 +267,15 @@ fetchData();
     setPhoneNumberError("")
     setTaxIdentificationNumberError("")
      const payerPhoneNumber = formData.phoneNumber;
-     const taxIdentificationNumber=formData.taxIdentificationNumber;
      const meterNumber=formData.meterNumber;
      const password = formData.password;
      const amount=formData.amountToPay
+     let taxIdentificationNumber=0
+     if(formData.taxIdentificationNumber===""){
+      taxIdentificationNumber="0000"
+     }else{
+      taxIdentificationNumber=formData.taxIdentificationNumber
+     }
      await dispatch(electricityPayamentAction(
          { 
             amount,
@@ -360,7 +366,7 @@ fetchData();
             <Typography variant="h6" color="text.primary"
              sx={{ fontSize:{xs:14,md:16,lg:20} }}
              >
-          Electricity Payment Service
+         {t("electricity:electricitypaymentservice")}
           </Typography>
            <img
                   src="../../../Assets/images/electricity.png"
@@ -381,14 +387,14 @@ fetchData();
               {activeStep === steps.length ? (
                 <React.Fragment>
                   <Typography variant="h5" textAlign="center" gutterBottom>
-                  Thank you for using Mobicash
+                  {t("common:thankyouforusingmobicash")}
                   </Typography>
                   <Typography textAlign="center" variant="subtitle1">
-                  You have successfully paid your ELECTRICITY
+                  {t("common:youhavesuccessfullypaid")} ELECTRICITY
                   </Typography>
                 
                   <Button onClick={handleNewpayment} sx={{ mt: 3, ml: 1 }}>
-                  New Payment
+                  {t("common:newpayment")}
                   </Button>
                   
                 </React.Fragment>
@@ -401,7 +407,7 @@ fetchData();
                      //sx={{ mt: 3, ml: 1 }}
                       sx={{ my: 1, mx: 1.5 }}
                       >
-                      Cancel
+                {t("common:cancel")}
                       </Button>
                     ):null}
 
@@ -417,7 +423,7 @@ fetchData();
                         ? <>
                       
                         <ReactToPrint
-             trigger={() => <Button>Print receipt</Button>}
+             trigger={() => <Button>{t("common:receipt")}</Button>}
             content={() => componentRef.current}
                />
                <Box sx={{display:'none'}}>
@@ -439,11 +445,11 @@ fetchData();
                         ? getElectricityDetails.loading?
                         <Box sx={{ display: 'flex',justifyContent:"center" }}>
                         <CircularProgress  sx={{ color: 'orange'}} />
-                         </Box>:"Submit"
+                         </Box>:`${t("common:submit")}`
                         : electricityPayment.loading?
                         <Box sx={{ display: 'flex',justifyContent:"center" }}>
                         <CircularProgress  sx={{ color: 'orange'}} />
-                         </Box>:"Make Payment"}
+                         </Box>:`${t("common:makepayment")}`}
                     </Button>
                   </Box>
                 </React.Fragment>

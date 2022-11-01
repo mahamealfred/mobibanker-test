@@ -6,7 +6,7 @@ import Alert from "@mui/material/Alert";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-
+import { useTranslation } from "react-i18next";
 
 const Payment=({
   formData,
@@ -22,7 +22,7 @@ const Payment=({
   setOpenPayment,
 
 })=> {
-  
+  const { t } = useTranslation(["home","common","electricity"]);
     const handleClose = () => {
       setPaymenterrorMessage('')
       setOpenPayment(false);
@@ -56,7 +56,7 @@ const Payment=({
       <Grid container spacing={3}>
       <Grid item xs={12} md={4}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-               PAYER NAME
+                 {t("common:payername")}
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
           {payerName}
@@ -64,7 +64,7 @@ const Payment=({
             </Grid>
             <Grid item xs={12} md={4}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-             METER NUMBER
+                 {t("electricity:meternumber")}
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
              {formData.meterNumber}
@@ -77,7 +77,7 @@ const Payment=({
             id="cardName"
             margin="normal"
             size="small"
-            label="Amount to payer"
+            label={t("common:amounttopay")}
             value={formData.amountToPay}
             onChange={(e)=>setFormData({...formData,amountToPay:e.target.value})}
             helperText={amountTopayError? amountTopayError : ""}
@@ -94,11 +94,12 @@ const Payment=({
             id="cardName"
             margin="normal"
             size="small"
-            label="Tax Identification number"
+            label={t("common:tin")}
             value={formData.taxIdentificationNumber}
             onChange={(e)=>setFormData({...formData,taxIdentificationNumber:e.target.value})}
-            helperText={taxIdentificationNumberError? taxIdentificationNumberError : ""}
-            error={taxIdentificationNumberError}
+            // helperText={taxIdentificationNumberError? taxIdentificationNumberError : ""}
+             helperText={t("common:optional")}
+            // error={taxIdentificationNumberError}
             fullWidth
             autoComplete="cc-name"
             variant="outlined"
@@ -110,10 +111,10 @@ const Payment=({
             id="cardName"
             margin="normal"
             size="small"
-            label="Payer phone number"
+            label={t("common:payerphone")}
             value={formData.phoneNumber}
             onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
-            helperText={phoneNumberError? phoneNumberError : "Format 078..."}
+            helperText={phoneNumberError? phoneNumberError : ""}
             error={phoneNumberError}
             fullWidth
             autoComplete="cc-name"
@@ -125,7 +126,7 @@ const Payment=({
             required
             id="cardNumber"
             margin="normal"
-            label="Agent Pin"
+            label={t("common:agentpin")}
             size="small"
             value={formData.password}
             onChange={(e)=>setFormData({...formData,password:e.target.value})}

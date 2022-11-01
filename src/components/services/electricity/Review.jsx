@@ -8,6 +8,7 @@ import moment from 'moment';
 import {useTranslation} from "react-i18next"
 export default function Review({
   dateTime,
+       formData,
        transactionId,
        transactionStatus,
        payerName,
@@ -15,7 +16,7 @@ export default function Review({
        agentName,
        tokenValue
 }) {
-  const { t } = useTranslation(["home","common","rra"]);
+  const { t } = useTranslation(["home","common","electricity"]);
   return (
     <React.Fragment>
        <Typography variant="h6" textAlign="center" gutterBottom>
@@ -23,13 +24,20 @@ export default function Review({
       </Typography>
       <List disablePadding>
           <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
-            <ListItemText primary="PAYER NAME" secondary={payerName} />
+            <ListItemText primary=  {t("common:payername")}  secondary={payerName} />
           </ListItem>
           <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
-            <ListItemText primary="Meter Number" secondary="" />
+            <ListItemText primary={t("electricity:meternumber")}  secondary={formData.meterNumber} />
           </ListItem>
+          {
+            formData.taxIdentificationNumber?
+            <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
+            <ListItemText primary={t("common:tin")}  secondary={formData.taxIdentificationNumber} />
+          </ListItem>:null
+          }
+          
         <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary= "PAID AMOUNT" />
+          <ListItemText primary={t("common:amountpaid")}  />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
           {amountPaid.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}  Rwf
           </Typography>

@@ -55,9 +55,7 @@ const Payment=({
           </Alert>
         </Collapse>
       )}
-      <Typography variant="h6" textAlign="center" gutterBottom>
-     Payment  method
-      </Typography>
+   
       <Grid container spacing={3}>
       <Grid item xs={12} md={4}>
               <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
@@ -69,7 +67,7 @@ const Payment=({
             </Grid>
             <Grid item xs={12} md={4}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-                 {t("cbhi:houseldernid")}
+                 {t("cbhi:householdernid")}
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
                {houseHoldNID}
@@ -77,7 +75,7 @@ const Payment=({
             </Grid>
             <Grid item xs={12} md={4}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-                TOTAL PREMIUM
+                 {t("cbhi:totalpremium")}
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
                 {totalPremium.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf
@@ -85,7 +83,7 @@ const Payment=({
             </Grid>
             <Grid item xs={12} md={4}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-                ALREADY PAID
+                 {t("cbhi:alreadypay")}
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
                 {amountPaidBefore.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf
@@ -93,7 +91,7 @@ const Payment=({
             </Grid>
             <Grid item xs={12} md={6}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-                 {t("cbhi:year")}
+                 {t("common:year")}
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
                 {formData.paymentYear}
@@ -101,7 +99,7 @@ const Payment=({
             </Grid>
             <Grid item xs={12} md={6}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-             HOUSEHOLD CATEGORY
+                 {t("cbhi:householdcategory")}
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
                 {houseHoldCategory}
@@ -109,7 +107,7 @@ const Payment=({
             </Grid>
             <Grid item xs={12} md={4}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-               TOTAL MEMBERS
+                 {t("cbhi:numberofmembers")}
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
                 {householdMemberNumber}
@@ -117,7 +115,7 @@ const Payment=({
             </Grid>
             <Grid item xs={12} md={14}>
             <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-               MEMBERS
+            {t("cbhi:members")}
               </Typography>
               {
                 !members?null:
@@ -125,7 +123,7 @@ const Payment=({
                 required
                 id="cardName"
                 select
-                label="Check members"
+                label= {t("cbhi:checkmembers")}
                 fullWidth
                 autoComplete="cc-name"
                 size="small"

@@ -1,0 +1,10 @@
+
+{
+    "meternumber":"Numéro de compteur",
+    "electricitypaymentservice":"Service de paiement de l'électricité",
+    "meternumberisrequired":"Le numéro de compteur est requis",
+    "meternumbermustbeanumeric":"Le numéro de compteur doit être un nombre",
+    "theminimumamountis100andthemaximunis1,000,000":"Le montant minimum est de 100 et le maximum est de 1,000,000",
+    "customeridentificationnumberisrequired":"Le numéro d'identification du client est requis",
+    "identificationnumbermustbeanumber":"Le numéro d'identification doit être un chiffre"
+}

@@ -219,7 +219,7 @@ export default function MediaCard() {
           MobiCash
           </Typography>
           
-          <IconButton
+          {/* <IconButton
           aria-label="close"
           onClick={handleClose}
           sx={{
@@ -230,7 +230,7 @@ export default function MediaCard() {
           }}
         >
           <CloseIcon />
-        </IconButton>
+        </IconButton> */}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -252,8 +252,7 @@ export default function MediaCard() {
           <Typography variant="h6" color="gray" >
           MobiCash
           </Typography>
-          
-          <IconButton
+          {/* <IconButton
           aria-label="close"
           onClick={handleClose}
           sx={{
@@ -264,7 +263,7 @@ export default function MediaCard() {
           }}
         >
           <CloseIcon />
-        </IconButton>
+        </IconButton> */}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -287,7 +286,7 @@ export default function MediaCard() {
           MobiCash
           </Typography>
         
-          <IconButton
+          {/* <IconButton
           aria-label="close"
           onClick={handleClose}
           sx={{
@@ -298,7 +297,7 @@ export default function MediaCard() {
           }}
         >
           <CloseIcon />
-        </IconButton>
+        </IconButton> */}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -321,7 +320,7 @@ export default function MediaCard() {
           MobiCash
           </Typography>
        
-          <IconButton
+          {/* <IconButton
           aria-label="close"
           onClick={handleClose}
           sx={{
@@ -332,7 +331,7 @@ export default function MediaCard() {
           }}
         >
           <CloseIcon />
-        </IconButton>
+        </IconButton> */}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -364,7 +363,7 @@ export default function MediaCard() {
           MobiCash
           </Typography>
          
-          <IconButton
+          {/* <IconButton
           aria-label="close"
           onClick={handleClose}
           sx={{
@@ -376,7 +375,7 @@ export default function MediaCard() {
    
         >
           <CloseIcon />
-        </IconButton>
+        </IconButton> */}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -402,7 +401,7 @@ export default function MediaCard() {
           MobiCash
           </Typography>
         
-          <IconButton
+          {/* <IconButton
           aria-label="close"
           onClick={handleClose}
           sx={{
@@ -413,7 +412,7 @@ export default function MediaCard() {
           }}
         >
           <CloseIcon />
-        </IconButton>
+        </IconButton> */}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -441,7 +440,6 @@ export default function MediaCard() {
          >
          {t("common:agencyservices")}
         </Typography>
-
             <Grid >
             <Typography 
             component="h1" variant="h5"
@@ -453,7 +451,8 @@ export default function MediaCard() {
       {t("common:governmentservices")}
         </Typography>
             <Button
-            onClick={handleClickOpenRRA}
+            // onClick={handleClickOpenRRA}
+            onClick={()=> setOpenRRA(true)}
             >
             <Card
                 raised

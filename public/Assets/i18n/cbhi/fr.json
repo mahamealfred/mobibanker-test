@@ -6,5 +6,12 @@
     "householdernidmustbe16digit":"Identité  doit être composé de 16 chiffres",
     "pleaseselectyear":"Veuillez sélectionner l'année",
     "theminimumamounttopayis1000":"Le montant minimum à payer est de 1000 Rwf",
-    "amountmustbedivisibleby1000":"Le montant doit être divisible par 1000"
+    "amountmustbedivisibleby1000":"Le montant doit être divisible par 1000",
+    "totalpremium":"Prime totale",
+    "alreadypay":"Payez déj",
+    "householdcategory":"Catégorie de ménage",
+    "numberofmembers":"Nombre de membres",
+    "members":"Membres",
+    "checkmembers":"Vérifier les membres",
+    "householdername":"Nom du chef de famille"
 }

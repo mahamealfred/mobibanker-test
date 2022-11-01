@@ -99,7 +99,10 @@
     "amounttopayisrequired":"Amount to pay is required",
     "agenytpinisrequired":"Agent PIN is required",
     "amounttopaymustbeanumber":"Amount to pay must be a number",
-    "amounttopaycannotexcide2,000,000Rwf":"Amount to pay can not excide 2,000,000 Rwf"
+    "amounttopaycannotexcide2,000,000Rwf":"Amount to pay can not excide 2,000,000 Rwf",
+    "phonenumbermustbe10digit":"Phone number must be 10 digit",
+    "tin":"Tax Identification Number",
+    "optional":"Optional"
 
     
 

@@ -5,6 +5,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 import moment from 'moment';
+import { useTranslation } from "react-i18next";
 export default function Review({
   dateTime,
   transactionId,
@@ -13,71 +14,57 @@ export default function Review({
   formData,
   agentName
 }) {
-  
+  const { t } = useTranslation(["home","common","rra"]);
   return (
     <React.Fragment>
       <Typography variant="h6" textAlign="center" gutterBottom>
-      TRANSACTION DETAILS
+            {t("common:transactiondetails")} 
       </Typography>
       <List disablePadding>
-          <ListItem  sx={{ py: 1, px: 0 }}>
-            <ListItemText primary="PAYER NAME"/>
-            <Typography variant="body2">{payerName}</Typography>
+          <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
+            <ListItemText primary={t("common:payername")} secondary={payerName} />
           </ListItem>
         <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary="PAID AMOUNT" />
+          <ListItemText primary= {t("common:amountpaid")}  />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
           {formData.amountPaid.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}  Rwf
           </Typography>
         </ListItem>
       </List>
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <Typography variant="h6" textAlign="left" gutterBottom sx={{ mt: 2 }}>
-        AGENT NAME
-          </Typography>
-          <Typography textAlign="left" gutterBottom>{agentName} </Typography>
-          
-        </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
-          <Typography textAlign="center" variant="h6" gutterBottom sx={{ mt: 2 }}>
-        Payment Details
+          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+            Payment details
           </Typography>
           <Grid container>
-           
+       
               <React.Fragment >
                 <Grid item xs={6}>
-                  <Typography gutterBottom textAlign="left">TransactionID </Typography>
+                  <Typography gutterBottom>Description</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography textAlign="center" gutterBottom>{transactionId}</Typography>
+                  <Typography gutterBottom>RNIT Service</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{t("common:mobicashreference")}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{transactionId}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{t("common:date")}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{moment(dateTime).format("llll")}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{t("common:status")}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{transactionStatus}</Typography>
                 </Grid>
               </React.Fragment>
-              <React.Fragment >
-                <Grid item xs={6}>
-                  <Typography textAlign="left" gutterBottom>Description</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography textAlign="center" gutterBottom>RNIT Service</Typography>
-                </Grid>
-              </React.Fragment>
-              <React.Fragment >
-                <Grid item xs={6}>
-                  <Typography gutterBottom textAlign="left">Date</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography gutterBottom textAlign="center">{moment(dateTime).format("llll")}</Typography>
-                </Grid>
-              </React.Fragment>
-              <React.Fragment >
-                <Grid item xs={6}>
-                  <Typography gutterBottom textAlign="left">Status</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography gutterBottom textAlign="center" >{transactionStatus}</Typography>
-                </Grid>
-              </React.Fragment>
-        
+         
           </Grid>
         </Grid>
       </Grid>

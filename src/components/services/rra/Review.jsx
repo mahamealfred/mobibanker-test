@@ -6,37 +6,6 @@ import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 import moment from 'moment';
 import { useTranslation } from "react-i18next";
-const products = [
-  {
-    name: 'Product 1',
-    desc: 'A nice thing',
-    price: 'MAHAME ALFRED DAVID',
-  },
-  {
-    name: 'Product 2',
-    desc: 'Another thing',
-    price: '$3.45',
-  },
-  {
-    name: 'Product 3',
-    desc: 'Something else',
-    price: '$6.51',
-  },
-  {
-    name: 'Product 4',
-    desc: 'Best thing of all',
-    price: '$14.11',
-  },
-  { name: 'Shipping', desc: '', price: 'Free' },
-];
-
-const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
-const payments = [
-  { name: 'Card type', detail: 'Visa' },
-  { name: 'Card holder', detail: 'Mr John Smith' },
-  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-  { name: 'Expiry date', detail: '04/2024' },
-];
 
 export default function Review({taxPayerName,amountToPay,transactionId,transactionStatus,dateTime,agentName,
   tin,
@@ -72,9 +41,9 @@ export default function Review({taxPayerName,amountToPay,transactionId,transacti
       </List>
       <Grid container spacing={2}>
         <Grid item container direction="column" xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+          {/* <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
             Payment details
-          </Typography>
+          </Typography> */}
           <Grid container>
        
               <React.Fragment >

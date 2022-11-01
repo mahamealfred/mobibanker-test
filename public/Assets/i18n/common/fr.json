@@ -98,6 +98,9 @@
     "year":"An",
     "amounttopayisrequired":"Le montant à payer est requi",
     "agenytpinisrequired":"Le code PIN de l'agent est requis",
-    "amounttopaymustbeanumber":"Le montant à payer doit être un nombre"
+    "amounttopaymustbeanumber":"Le montant à payer doit être un nombre",
+    "phonenumbermustbe10digit":"Le numéro de téléphone doit être composé de 10 chiffres",
+    "tin":"Numéro d'identification fiscale",
+    "optional":"Optionnel"
     
  }

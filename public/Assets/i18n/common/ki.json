@@ -98,6 +98,9 @@
     "year":"Umwaka",
     "amounttopayisrequired":"Amafaranga yo kwishyura arasabwa",
     "agenytpinisrequired":"Ijambo banga ry'umu ejenti rirakenewe",
-    "amounttopaymustbeanumber":"Amafaranga yo kwishyura agomba kuba umubare"
+    "amounttopaymustbeanumber":"Amafaranga yo kwishyura agomba kuba umubare",
+    "phonenumbermustbe10digit":"Numero ya terefone igomba kuba imibare 10",
+    "tin":"Inomero iranga imisoro",
+    "optional":"Bihitamo"
     
  }

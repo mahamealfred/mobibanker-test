@@ -20,29 +20,29 @@ export default function Review({
   return (
     <React.Fragment>
         <Typography variant="h6" textAlign="center" gutterBottom>
-           Transaction Details
+        {t("common:transactiondetails")}
       </Typography>
       <List disablePadding>
           <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
-            <ListItemText primary="HOUSEHOLDER NAME" secondary={payerName} />
+            <ListItemText primary={t("cbhi:householdername")} secondary={payerName} />
           </ListItem>
           <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
-            <ListItemText primary="HOUSEHOLDER NID" secondary={formData.nId} />
+            <ListItemText primary={t("cbhi:householdernid")} secondary={formData.nId} />
           </ListItem>
           <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
-            <ListItemText primary="HOUSEHOLDER CATEGORY" secondary= {houseHoldCategory} />
+            <ListItemText primary={t("cbhi:householdcategory")} secondary= {houseHoldCategory} />
           </ListItem>
           <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
-            <ListItemText primary="NUMBER OF MEMBERS" secondary={householdMemberNumber}/>
+            <ListItemText primary={t("cbhi:numberofmembers")} secondary={householdMemberNumber}/>
           </ListItem>
         <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary= "PAID AMOUNT"  />
+          <ListItemText primary={t("common:amountpaid")}  />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
           {formData.amountPaid.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf
           </Typography>
         </ListItem>
         <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary= "YEAR OF PAYMENT" />
+          <ListItemText primary={t("common:year")} />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
           {formData.paymentYear}
           </Typography>
@@ -50,17 +50,17 @@ export default function Review({
       </List>
       <Grid container spacing={2}>
         <Grid item container direction="column" xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-            Payment details
-          </Typography>
+          {/* <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+          {t("common:paymentdetails")} 
+          </Typography> */}
           <Grid container>
        
               <React.Fragment >
                 <Grid item xs={6}>
-                  <Typography gutterBottom>Description</Typography>
+                  <Typography gutterBottom>{t("common:description")} </Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography gutterBottom>RSSB Mutuelli</Typography>
+                  <Typography gutterBottom>RSSB Mutuell</Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography gutterBottom>{t("common:mobicashreference")}</Typography>

@@ -265,19 +265,19 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
       setAmountPaidError("Amount to pay can not excide 2,000,000 Rwf")
     }
     else if(formData.phoneNumber==""){
-      setPhoneNumberError("Payer phone number is required")
+      setPhoneNumberError(`${t("common:phoneisrequired")}`)
     }
     else if(!Number(formData.phoneNumber)){
-      setPhoneNumberError("Payer phone number must be a number")
+      setPhoneNumberError(`${t("common:phonemustbeanumeric")}`)
     }
     else if(formData.phoneNumber.length!==10){
-      setPhoneNumberError("Payer phone number must be 10 digit")
+      setPhoneNumberError(`${t("common:phonenumbermustbe10digit")}`)
     }
     else if(formData.password=="" ){
-      setPasswordError("Agent pin is required")
+      setPasswordError(`${t("common:agenytpinisrequire")}`)
     }
     else if (formData.password !== password ) {
-      setPasswordError("Invalid pin,Please provide valid PIN");
+      setPasswordError(`${t("common:invalidpin")}`);
     } 
     else{
       setAmountPaidError("")

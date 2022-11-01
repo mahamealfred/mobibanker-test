@@ -40,7 +40,7 @@ theme.typography.h3 = {
 };
 
 const RraForm = ({openRRA,setOpenRRA}) => {
-  const { i18n,t } = useTranslation(["home","common","login","rra"]);
+  const { t } = useTranslation(["home","common","login","rra"]);
 
   const steps = [`${t("rra:referencenumber")}`, `${t("common:makepayment")}`, `${t("common:viewdetails")}`];
   const [activeStep, setActiveStep] = React.useState(0);

@@ -166,48 +166,10 @@ export default function MediaCard() {
           </Box>
         </Fade>
       </Modal>
-   
-
-      {/* MODAL RNIT */}
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={openRNIT}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={openRNIT}>
-          <Box sx={style}>
-            <Typography id="transition-modal-title" variant="h6" component="h2">
-              Dear customer,
-            </Typography>
-            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-             The service you are looking for will be available soon .
-            
-            </Typography>
-            <IconButton
-          aria-label="close"
-          onClick={handleClose}
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
-          </Box>
-        </Fade>
-      </Modal>
       {/* ELECTRICITY */}
       <Dialog
         open={openELECTRICITY}
-        onClose={handleClose}
+        // onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         fullWidth
@@ -241,7 +203,7 @@ export default function MediaCard() {
 {/* RRA */}
             <Dialog
         open={openRRA}
-        onClose={handleClose}
+        // onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         fullWidth
@@ -274,7 +236,7 @@ export default function MediaCard() {
       {/* rssb */}
       <Dialog
         open={openRSSB}
-        onClose={handleClose}
+        // onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         fullWidth
@@ -308,7 +270,7 @@ export default function MediaCard() {
       {/* LTSS */}
       <Dialog
         open={openLTSS}
-        onClose={handleClose}
+        // onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         fullWidth
@@ -342,7 +304,7 @@ export default function MediaCard() {
       {/* LOGS */}
       <Dialog
         open={openLOGS}
-        onClose={handleClose}
+        // onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         fullWidth="100%"
@@ -386,7 +348,7 @@ export default function MediaCard() {
       {/* RNIT */}
       <Dialog
         open={openRNIT}
-        onClose={handleClose}
+        // onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         fullWidth

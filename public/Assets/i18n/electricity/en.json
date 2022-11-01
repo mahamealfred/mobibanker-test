@@ -5,6 +5,7 @@
     "meternumbermustbeanumeric":"Meter number  must be a number",
     "theminimumamountis100andthemaximunis1,000,000":"The minimum amount is 100 and the maximun is 1,000,000",
     "customeridentificationnumberisrequired":"Customer Identification Number is required",
-    "identificationnumbermustbeanumber":"Identification Number must be a numeric"
+    "identificationnumbermustbeanumber":"Identification Number must be a numeric",
+    "electricity":"Electricity"
     
 }

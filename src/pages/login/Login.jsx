@@ -188,7 +188,7 @@ const SignIn = () => {
 
               <Grid container>
                 <Grid item xs>
-                  <Link href="/forgotpassword" variant="body2">
+                  <Link href="#" variant="body2">
                   {t("login:forgotpassword")}?
                   </Link>
                 </Grid>

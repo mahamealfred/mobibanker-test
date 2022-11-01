@@ -122,8 +122,16 @@ export default function Banner() {
         </Grid>
       </Container>
     </Box>
-    <Slider/>
-    <Headerbanner/>
+    <Box
+    sx={{
+
+      display: {xs:"none",md:"block"}
+     
+    }}
+    >
+ <Slider/>
+ <Headerbanner/>
+    </Box>
     <Footer/>
     </React.Fragment>
   );

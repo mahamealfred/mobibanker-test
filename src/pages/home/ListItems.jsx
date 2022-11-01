@@ -515,7 +515,7 @@ import { useTranslation } from "react-i18next";
             />
           </Tooltip>
         </Box> */}
-        <Box sx={{ textAlign: 'center',display:{xs:"block",sm:"none",md:"none"} }}>
+        {/* <Box sx={{ textAlign: 'center',display:{xs:"block",sm:"none",md:"none"} }}>
           {
             open==true?
             <>
@@ -524,11 +524,7 @@ import { useTranslation } from "react-i18next";
             <Typography variant="body2">mahame@gmail.com</Typography>
             </>:null
           }
-          {/* {open && <Typography>Name</Typography>}
-          <Typography variant="body2">Mobicoretester2</Typography>
-          {open && (
-            <Typography variant="body2">mahame@gmail.com</Typography>
-          )} */}
+          
           <Tooltip title="Logout"  >
             <IconButton
             sx={{
@@ -538,14 +534,12 @@ import { useTranslation } from "react-i18next";
               <Logout />
             </IconButton>
           </Tooltip>
-        </Box>
-      {/* </Drawer> */}
+        </Box> */}
+   
       <Box component="main" sx={{ flexGrow: 1, p: 3}}>
         <DrawerHeader />
         <Switch>
-          {/* {list.map((item) => (
-            <Route key={item.title} path={item.link} element={item.component} />
-          ))} */}
+         
         </Switch>
       </Box>
       </>

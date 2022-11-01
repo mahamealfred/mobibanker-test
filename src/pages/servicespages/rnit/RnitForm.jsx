@@ -24,8 +24,8 @@ import jwt from "jsonwebtoken";
 import { ComponentToPrint } from './ComponentToPrint';
 import ReactToPrint from 'react-to-print';
 import { useRef } from 'react';
+import { useTranslation } from "react-i18next";
 const theme = createTheme();
-
 theme.typography.h3 = {
   fontSize: '1.2rem',
   '@media (min-width:600px)': {
@@ -39,8 +39,9 @@ theme.typography.h3 = {
 
 
 const RnitForm = ({openRNIT,setOpenRNIT}) => {
+  const { t } = useTranslation(["home","common","login","ltss"]);
   const componentRef = useRef();
-  const steps = [`NID`, `Make payment`, `View Payment`];
+  const steps = [`${t("common:nid")}`,  `${t("common:makepayment")}`, `${t("common:viewdetails")}`];
   const [activeStep, setActiveStep] = React.useState(0);
   const dispatch = useDispatch();
   const getRnitDetails= useSelector((state) => state.getRnitDetails);
@@ -339,7 +340,7 @@ else if(formData.amountPaid==""){
             <Typography variant="h6" color="text.primary" 
                 sx={{ fontSize:{xs:14,md:16,lg:20} }}
             >
-          RNIT Service 
+          RNIT Payment Service 
           </Typography>
            <img
                   src="../../../Assets/images/rnit.png"
@@ -360,14 +361,14 @@ else if(formData.amountPaid==""){
               {activeStep === steps.length ? (
                 <React.Fragment>
                   <Typography variant="h5" textAlign="center" gutterBottom>
-                  Thank you for using Mobicash
+                  {t("common:thankyouforusingmobicash")}
                   </Typography>
                   <Typography textAlign="center" variant="subtitle1">
-                  You have successfully paid your RNIT
+                  {t("common:youhavesuccessfullypaid")} RNIT
                   </Typography>
                 
                   <Button onClick={handleNewpayment} sx={{ mt: 3, ml: 1 }}>
-                  New Payment
+                  {t("common:newpayment")}
                   </Button>
                   
                 </React.Fragment>
@@ -380,7 +381,7 @@ else if(formData.amountPaid==""){
                      //sx={{ mt: 3, ml: 1 }}
                       sx={{ my: 1, mx: 1.5 }}
                       >
-                      Cancel
+                    {t("common:cancel")}
                       </Button>
                     ):null}
 
@@ -395,7 +396,7 @@ else if(formData.amountPaid==""){
                       {activeStep === steps.length - 1
                         ? <>
                         <ReactToPrint
-             trigger={() => <Button>Print receipt</Button>}
+             trigger={() => <Button>{t("common:receipt")}</Button>}
             content={() => componentRef.current}
                />
                <Box sx={{display:'none'}}>
@@ -414,11 +415,11 @@ else if(formData.amountPaid==""){
                         ? getRnitDetails.loading?
                         <Box sx={{ display: 'flex',justifyContent:"center" }}>
                         <CircularProgress  sx={{ color: 'orange'}} />
-                         </Box>:"Submit"
+                         </Box>:`${t("common:submit")}`
                         : rnitPayment.loading?
                         <Box sx={{ display: 'flex',justifyContent:"center" }}>
                         <CircularProgress  sx={{ color: 'orange'}} />
-                         </Box>:"Make Payment"}
+                         </Box>:`${t("common:makepayment")}`}
                     </Button>
                   </Box>
                 </React.Fragment>

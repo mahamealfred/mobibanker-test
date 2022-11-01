@@ -101,6 +101,9 @@
     "amounttopaymustbeanumber":"Le montant à payer doit être un nombre",
     "phonenumbermustbe10digit":"Le numéro de téléphone doit être composé de 10 chiffres",
     "tin":"Numéro d'identification fiscale",
-    "optional":"Optionnel"
+    "optional":"Optionnel",
+    "nidisrequired":"Identité est requis",
+    "nidmustbenumeric":"Identité doit être numérique",
+    "nidmust16digit":"Identité doit être de 16 chiffres"
     
  }

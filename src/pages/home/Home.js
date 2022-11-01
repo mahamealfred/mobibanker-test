@@ -220,8 +220,8 @@ setOpenModal(false)
              You'are about to be signed out,
             </Typography>
             <Typography id="transition-modal-description" textAlign="center" sx={{ mt: 2 }}>
-         For security reasons, your connection times out after you have been
-         inactive for a while. Click Continue to stay signed in.
+              For security reasons, your connection times out after you have been
+               inactive for a while. Click Continue to stay signed in.
             </Typography>
             <Box
            sx={{
@@ -318,7 +318,7 @@ setOpenModal(false)
               <LogoutIcon  sx={{color:"#F9842C"}} />
             </IconButton>
          </Tooltip>
-         <Tooltip title={t("common:messages")} sx={{ mt: 1 }}>
+         {/* <Tooltip title={t("common:messages")} sx={{ mt: 1 }}>
          <IconButton
               size="large"
               aria-label="show 3 new notifications"
@@ -328,7 +328,7 @@ setOpenModal(false)
                 <MailOutlineIcon title="Notifications" />
               </Badge>
             </IconButton>
-          </Tooltip>
+          </Tooltip> */}
             
           </Box>
 

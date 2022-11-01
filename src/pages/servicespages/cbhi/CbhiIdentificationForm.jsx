@@ -262,7 +262,7 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
     }  
    
     else if(formData.amountPaid > 2000000){
-      setAmountPaidError("Amount to pay can not excide 2,000,000 Rwf")
+      setAmountPaidError(`${t("cbhi:amounttopaycannotexcide2,000,000Rwf")}`)
     }
     else if(formData.phoneNumber==""){
       setPhoneNumberError(`${t("common:phoneisrequired")}`)

@@ -102,7 +102,10 @@
     "amounttopaycannotexcide2,000,000Rwf":"Amount to pay can not excide 2,000,000 Rwf",
     "phonenumbermustbe10digit":"Phone number must be 10 digit",
     "tin":"Tax Identification Number",
-    "optional":"Optional"
+    "optional":"Optional",
+    "nidisrequired":"NID is required",
+    "nidmustbenumeric":"NID must be numeric",
+    "nidmust16digit":"NID must be 16 digits"
 
     
 

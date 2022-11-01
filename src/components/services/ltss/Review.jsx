@@ -33,16 +33,16 @@ export default function Review({
       </List>
       <Grid container spacing={2}>
         <Grid item container direction="column" xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+          {/* <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
             Payment details
-          </Typography>
+          </Typography> */}
           <Grid container>
               <React.Fragment >
                 <Grid item xs={6}>
-                  <Typography gutterBottom>Description</Typography>
+                  <Typography gutterBottom>{t("common:description")}</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography gutterBottom>LTSS Service</Typography>
+                  <Typography gutterBottom>LTSS EjoHeza</Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography gutterBottom>{t("common:mobicashreference")}</Typography>

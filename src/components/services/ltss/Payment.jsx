@@ -6,7 +6,7 @@ import Alert from "@mui/material/Alert";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-
+import { useTranslation } from "react-i18next";
 
 const Payment=({
   formData,
@@ -21,7 +21,7 @@ const Payment=({
   paymenterrorMessage,
   setPaymenterrorMessage
   })=> {
-  
+    const { t } = useTranslation(["home","common","login","cbhi"]);
     const handleClose = () => {
       setPaymenterrorMessage('')
       setOpen(false);
@@ -55,7 +55,7 @@ const Payment=({
       <Grid container spacing={3}>
       <Grid item xs={12} md={6}>
                  <Typography variant="body2" mt={1} textAlign="center" sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-               PAYER NAME
+                 {t("common:payername")}
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
               {payerName}
@@ -63,7 +63,7 @@ const Payment=({
             </Grid>
             <Grid item xs={12} md={6}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-              NID
+                 {t("common:nid")}
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
              {identification}
@@ -73,7 +73,7 @@ const Payment=({
           <TextField
             required
             id="cardName"
-            label="Amount to pay"
+            label={t("common:amounttopay")}
             size="small"
             value={formData.amountPaid}
             onChange={(e)=>setFormData({...formData,amountPaid:e.target.value})}
@@ -88,7 +88,7 @@ const Payment=({
           <TextField
             required
             id="cardName"
-            label="Payer phone number"
+            label={t("common:payerphone")}
             size="small"
             value={formData.phoneNumber}
             onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
@@ -104,11 +104,11 @@ const Payment=({
             required
             id="cardNumber"
             margin="normal"
-            label="Agent Pin"
+            label={t("common:agentpin")}
             size="small"
             value={formData.password}
             onChange={(e)=>setFormData({...formData,password:e.target.value})}
-            helperText={passwordError? passwordError : "Format 078..."}
+            helperText={passwordError? passwordError : ""}
             error={passwordError}
             type="password"
             fullWidth

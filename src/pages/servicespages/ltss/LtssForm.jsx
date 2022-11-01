@@ -26,6 +26,7 @@ import jwt from "jsonwebtoken"
 import ReactToPrint from "react-to-print";
 import { ComponentToPrint } from "./ComponentToPrint";
 import { useRef } from 'react';
+import { useTranslation } from "react-i18next";
 const theme = createTheme();
 
 theme.typography.h3 = {
@@ -41,8 +42,9 @@ theme.typography.h3 = {
 
 
 const LtssForm = ({openLTSS,setOpenLTSS}) => {
+  const { t } = useTranslation(["home","common","login","ltss"]);
   const componentRef = useRef();
-  const steps = [`NID`, `Make Payment`, `View payment`];
+  const steps = [`${t("common:nid")}`,  `${t("common:makepayment")}`, `${t("common:viewdetails")}`];
   const [activeStep, setActiveStep] = React.useState(0);
   const dispatch = useDispatch();
   const getLtssIndDetails = useSelector((state) => state.getLtssIndDetails);
@@ -184,13 +186,13 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
   //get ltss details
   const handleGetLtssNidDetails=async()=>{
    if(formData.nId==""){
-    setNIdErrorMessage("NID is required")
+    setNIdErrorMessage(`${t("common:nidisrequired")}`)
    }
   else if(!Number(formData.nId)){
-    setNIdErrorMessage("NID must be a number")
+    setNIdErrorMessage(`${t("common:nidmustbenumeric")}`)
   }
   else if(formData.nId.length!==16){
-    setNIdErrorMessage("NID must be 16 digit")
+    setNIdErrorMessage(`${t("common:nidmust16digit")}`)
   }
   
   
@@ -205,37 +207,33 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
   //handle cbhi payment
   const handleLtssPayment=async()=>{
     if(formData.amountPaid=="" && formData.phoneNumber==""&& formData.password=="" ){
-      setAmountPaidError("Amount to pay is required")
-      setPhoneNumberError("Payer phone number is required")
-      setPasswordError("Agent pin is required")
+      setAmountPaidError(`${t("common:amounttopayisrequired")}`)
+      setPhoneNumberError(`${t("common:phoneisrequired")}`)
+      setPasswordError(`${t("common:agenytpinisrequired")}`)
     }
     else if(formData.amountPaid==""){
-      setAmountPaidError("Amount to pay is required")
+      setAmountPaidError(`${t("common:amounttopayisrequired")}`)
     }
     else if(!Number(formData.amountPaid)){
-      setAmountPaidError("Amount to pay must be a number")
+      setAmountPaidError(`${t("common:amounttopaymustbeanumber")}`)
     }
-    else if(formData.amountPaid%1000!==0){
-      setAmountPaidError("Amount must be divisible by 1000")
-    
-    }  
     else if(formData.amountPaid > 2000000){
-      setAmountPaidError("Amount to pay can not excide 2,000,000 Rwf")
+      setAmountPaidError(`${t("common:amounttopaycannotexcide2,000,000Rwf")}`)
     }
     else if(formData.phoneNumber==""){
-      setPhoneNumberError("Payer phone number is required")
+      setPhoneNumberError(`${t("common:phoneisrequired")}`)
     }
     else if(!Number(formData.phoneNumber)){
-      setPhoneNumberError("Payer phone number must be a number")
+      setPhoneNumberError(`${t("common:phonemustbeanumeric")}`)
     }
     else if(formData.phoneNumber.length!==10){
-      setPhoneNumberError("Payer phone number must be 10 digit")
+      setPhoneNumberError(`${t("common:phonenumbermustbe10digit")}`)
     }
     else if(formData.password=="" ){
-      setPasswordError("Agent pin is required")
+      setPasswordError(`${t("common:agenytpinisrequire")}`)
     }
     else if (formData.password !== password ) {
-      setPasswordError("Invalid pin,Please provide valid PIN");
+      setPasswordError(`${t("common:invalidpin")}`);
     } 
     else{
       setAmountPaidError("")
@@ -320,7 +318,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
               <Typography variant="h6" color="text.primary" 
                sx={{ fontSize:{xs:14,md:16,lg:20} }}
               >
-          LTSS Service 
+            {t("ltss:ltsspaymentservice")}
           </Typography>
            <img
                   src="../../../Assets/images/ejoheza.png"
@@ -341,14 +339,14 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
               {activeStep === steps.length ? (
                 <React.Fragment>
                   <Typography variant="h5" textAlign="center" gutterBottom>
-                  Thank you for using Mobicash
+                  {t("common:thankyouforusingmobicash")}
                   </Typography>
                   <Typography textAlign="center" variant="subtitle1">
-                  You have successfully save your Long term saving scheme
+                  {t("common:youhavesuccessfullypaid")} LTSS
                   </Typography>
                 
                   <Button onClick={handleNewpayment} sx={{ mt: 3, ml: 1 }}>
-                  New payment
+                  {t("common:newpayment")}
                   </Button>
                   
                 </React.Fragment>
@@ -361,7 +359,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
                      //sx={{ mt: 3, ml: 1 }}
                       sx={{ my: 1, mx: 1.5 }}
                       >
-                      Cancel
+                {t("common:cancel")}
                       </Button>
                     ):null}
 
@@ -376,7 +374,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
                       {activeStep === steps.length - 1
                         ?<>
                         <ReactToPrint
-             trigger={() => <Button>Print receipt</Button>}
+             trigger={() => <Button>{t("common:receipt")}</Button>}
             content={() => componentRef.current}
                />
                <Box sx={{display:'none'}}>
@@ -390,11 +388,11 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
                         ? getLtssIndDetails.loading?
                         <Box sx={{ display: 'flex',justifyContent:"center" }}>
                         <CircularProgress  sx={{ color: 'orange'}} />
-                         </Box>:"Submit"
+                         </Box>:`${t("common:submit")}`
                         : ltssPayment.loading?
                         <Box sx={{ display: 'flex',justifyContent:"center" }}>
                         <CircularProgress  sx={{ color: 'orange'}} />
-                         </Box>:"Make Payment"}
+                         </Box>:`${t("common:makepayment")}`}
                     </Button>
                   </Box>
                 </React.Fragment>

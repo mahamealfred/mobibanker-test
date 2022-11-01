@@ -7,7 +7,7 @@ import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
-
+import { useTranslation } from "react-i18next";
 const theme = createTheme();
 theme.typography.h3 = {
     fontSize: '0.9rem',
@@ -27,7 +27,7 @@ const Document = ({
     open,
     setOpen
 }) => {
-  
+    const { t } = useTranslation(["home","common","login","cbhi"]);
     const handleClose = () => {
         setErrorMessage('')
         setOpen(false);
@@ -54,17 +54,17 @@ const Document = ({
             )
         }
             <ThemeProvider theme={theme}>
-                <Typography variant="h6" color="text.primary"  align="center"
+                {/* <Typography variant="h6" color="text.primary"  align="center"
                   sx={{ fontSize:{xs:14,md:16,lg:18} }}
                 >
                 NID
-                    </Typography>
+                    </Typography> */}
             </ThemeProvider>
             <Grid container
                 spacing={3}>
                 <Grid item
                     xs={12}>
-                    <TextField id="address2"  size="small"  margin="normal" name="address2" label="NID"
+                    <TextField id="address2"  size="small"  margin="normal" name="address2" label={t("common:nid")}
                         value={formData.nId}
                         onChange={(e) => setFormData({...formData, nId: e.target.value})}
                         helperText={nIdErrorMessage ? nIdErrorMessage : ""}

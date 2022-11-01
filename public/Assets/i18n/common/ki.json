@@ -101,6 +101,9 @@
     "amounttopaymustbeanumber":"Amafaranga yo kwishyura agomba kuba umubare",
     "phonenumbermustbe10digit":"Numero ya terefone igomba kuba imibare 10",
     "tin":"Inomero iranga imisoro",
-    "optional":"Bihitamo"
+    "optional":"Bihitamo",
+    "nidisrequired":"Indangamuntu irakenewe",
+    "nidmustbenumeric":"Indangamuntu kuba mubare",
+    "nidmust16digit":"Indangamuntu igomba kuba imibare 16"
     
  }

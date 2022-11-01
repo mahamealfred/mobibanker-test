@@ -24,7 +24,7 @@ export default function Review({
       </Typography>
       <List disablePadding>
           <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
-            <ListItemText primary=  {t("common:payername")}  secondary={payerName} />
+            <ListItemText primary={t("common:payername")}  secondary={payerName} />
           </ListItem>
           <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
             <ListItemText primary={t("electricity:meternumber")}  secondary={formData.meterNumber} />
@@ -39,7 +39,7 @@ export default function Review({
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary={t("common:amountpaid")}  />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-          {amountPaid.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}  Rwf
+          {amountPaid.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf
           </Typography>
         </ListItem>
         <ListItem sx={{ py: 1, px: 0 }}>
@@ -52,17 +52,17 @@ export default function Review({
       </List>
       <Grid container spacing={2}>
         <Grid item container direction="column" xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+          {/* <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
             Payment details
-          </Typography>
+          </Typography> */}
           <Grid container>
        
               <React.Fragment >
                 <Grid item xs={6}>
-                  <Typography gutterBottom>Description </Typography>
+                  <Typography gutterBottom>{t("common:description")} </Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography gutterBottom>Electricity</Typography>
+                  <Typography gutterBottom>{t("electricity:electricity")} </Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography gutterBottom>{t("common:mobicashreference")}</Typography>

@@ -390,7 +390,7 @@ fetchData();
                   {t("common:thankyouforusingmobicash")}
                   </Typography>
                   <Typography textAlign="center" variant="subtitle1">
-                  {t("common:youhavesuccessfullypaid")} ELECTRICITY
+                  {t("common:youhavesuccessfullypaid")} {t("electricity:electricity")}
                   </Typography>
                 
                   <Button onClick={handleNewpayment} sx={{ mt: 3, ml: 1 }}>

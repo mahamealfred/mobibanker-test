@@ -194,7 +194,7 @@ const SignIn = () => {
                 </Grid>
                 <Grid item>
                   <Link href="#" variant="body2">
-                  {t("common:termsandconditions")}
+                  {t("common:termsandconditions")} M
                   </Link>
                 </Grid>
               </Grid>

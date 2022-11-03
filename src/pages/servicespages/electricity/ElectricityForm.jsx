@@ -342,6 +342,8 @@ fetchData();
    setPaymenterrorMessage("");
    getElectricityDetails.details=['']
    electricityPayment.details=['']
+   getElectricityDetails.loading=false
+   electricityPayment.loading=false
    setActiveStep(0);
    setOpenELECTRICITY(false)
   

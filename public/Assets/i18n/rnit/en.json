@@ -1,0 +1,11 @@
+{
+    "rnitpaymentservice":"RNIT Payment Service",
+    "banknameisrequired":"Bank name is required",
+    "bankaccountisrequired":"Bank account is required",
+    "payeremailisrequired":"Payer email is required",
+    "invalidemail":"Invalid email",
+    "payeremail":"Payer email",
+    "selectbank":"Select Bank",
+    "bankaccount":"Bank account"
+
+}

@@ -104,6 +104,10 @@
     "optional":"Optionnel",
     "nidisrequired":"Identité est requis",
     "nidmustbenumeric":"Identité doit être numérique",
-    "nidmust16digit":"Identité doit être de 16 chiffres"
+    "nidmust16digit":"Identité doit être de 16 chiffres",
+    "youareabouttobesignedout":"Vous êtes sur le point d'être déconnecté",
+    "forsecurityreasons":"Pour des raisons de sécurité, votre connexion expire après un certain temps d'inactivité. Cliquez sur Continuer pour rester connecté.",
+    "signedmeout":"Se déconnecter",
+    "continue":"Continuer"
     
  }

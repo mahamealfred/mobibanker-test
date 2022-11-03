@@ -347,6 +347,8 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
     getCbhiNidDetails.details=['']
     cbhiPayment.details=['']
     getCbhiNidDetails.error=['']
+    getCbhiNidDetails.loading=false
+    cbhiPayment.loading=false
     setActiveStep(0);
     setOpenRSSB(false)
 

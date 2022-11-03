@@ -115,7 +115,7 @@ const SignIn = () => {
                      }
                      sx={{ mb: 0.2 }}
                    >
-                    {login.error}
+                    {login.error==="login"?`${t("login:invalidusernameandpassword")}`:`${t("login:blockedmessage")}`}
                    </Alert>
                  </Collapse>
                 }    
@@ -184,8 +184,6 @@ const SignIn = () => {
               <CircularProgress  sx={{ color: 'orange' }} />
                </Box>
               }
-              
-
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
@@ -194,7 +192,7 @@ const SignIn = () => {
                 </Grid>
                 <Grid item>
                   <Link href="#" variant="body2">
-                  {t("common:termsandconditions")} M
+                  {t("common:termsandconditions")} 
                   </Link>
                 </Grid>
               </Grid>

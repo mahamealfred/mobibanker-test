@@ -3,6 +3,8 @@
     "rememberme":"Unyibuke!",
     "forgotpassword":"Wibagiwe ijambo ryibanga",
     "usernameisrequired":"Izina ryukoresha rirakenewe",
-    "passwordisrequired":"Ijambobanga rirakenewe"
+    "passwordisrequired":"Ijambobanga rirakenewe",
+    "invalidusernameandpassword":"Amakuru atemewe, Nyamuneka tanga izina ryukoresha nijambo ryibanga nyayo",
+    "blockedmessage":"Wahagaritswe by'agateganyo, kubera kunanirwa kwinjira"
     
 }

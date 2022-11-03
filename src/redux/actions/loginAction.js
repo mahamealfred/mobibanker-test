@@ -12,6 +12,7 @@ require('dotenv').config();
 // const  {REACT_APP_BASE_URL} = process.env
 
 export const loginAction = (user,history) => async (dispatch) => {
+ 
   try {
     dispatch(loginRequest());
     const {username}=user
@@ -53,11 +54,12 @@ export const loginAction = (user,history) => async (dispatch) => {
   } catch (err) {
     if (err.response) {
      const errorMessage = await err.response.data.responseMessage;
-     if(errorMessage==="login"){
-      dispatch(loginFailure("Invalid credentials,Please provide a valid Username and Password"));
-     }else{
-      dispatch(loginFailure("You're temporaly blocked"));
-     }
+      dispatch(loginFailure(errorMessage));
+    //  if(errorMessage==="login"){
+    //   await dispatch(loginFailure("Invalid credentials,Please provide a valid Username and Password"));
+    //  }else{
+    //   dispatch(loginFailure("You're temporaly blocked"));
+    //  }
       
     } else {
       dispatch(loginFailure("Network Error"));

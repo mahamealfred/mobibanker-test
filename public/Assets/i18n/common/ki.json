@@ -104,6 +104,10 @@
     "optional":"Bihitamo",
     "nidisrequired":"Indangamuntu irakenewe",
     "nidmustbenumeric":"Indangamuntu kuba mubare",
-    "nidmust16digit":"Indangamuntu igomba kuba imibare 16"
+    "nidmust16digit":"Indangamuntu igomba kuba imibare 16",
+    "youareabouttobesignedout":"Ugiye gusohoka",
+    "forsecurityreasons":"Kubwimpamvu z'umutekano,ugiye gusohoka nyuma yuko udakora mugihe gito.Kanda Komeza kugirango ugume winjiye.",
+    "signedmeout":"Sohoka",
+    "continue":"Komeza"
     
  }

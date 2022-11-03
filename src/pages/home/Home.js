@@ -217,11 +217,10 @@ setOpenModal(false)
           <Box sx={style}>
           
             <Typography id="transition-modal-title" textAlign="center" variant="h6" component="h2">
-             You'are about to be signed out,
+         {t("common:youareabouttobesignedout")}
             </Typography>
             <Typography id="transition-modal-description" textAlign="center" sx={{ mt: 2 }}>
-              For security reasons, your connection times out after you have been
-               inactive for a while. Click Continue to stay signed in.
+            {t("common:forsecurityreasons")}
             </Typography>
             <Box
            sx={{
@@ -241,7 +240,7 @@ setOpenModal(false)
                 borderRadius: 50
               }}
               onClick={handleLogout}
-              >Signed me Out</Button>
+              >{t("common:signedmeout")}</Button>
               <Button variant='text'
               sx={{
                 width:"100%",
@@ -250,7 +249,7 @@ setOpenModal(false)
                 borderRadius: 50
               }}
             onClick={handleContinue}
-              >Continue</Button>
+              >{t("common:continue")}</Button>
        </Box>
           </Box>
         </Fade>

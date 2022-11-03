@@ -105,7 +105,11 @@
     "optional":"Optional",
     "nidisrequired":"NID is required",
     "nidmustbenumeric":"NID must be numeric",
-    "nidmust16digit":"NID must be 16 digits"
+    "nidmust16digit":"NID must be 16 digits",
+    "youareabouttobesignedout":"You'are about to be signed out",
+    "forsecurityreasons":"For security reasons, your connection times out after you have been inactive for a while. Click Continue to stay signed in.",
+    "signedmeout":"Signed out",
+    "continue":"Continue"
 
     
 

@@ -317,6 +317,8 @@ fetchData();
    setPaymenterrorMessage("");
    getDocDetails.details=['']
    rraPayment.details=['']
+   getDocDetails.loading=false
+   rraPayment.loading=false
    setActiveStep(0);
    setOpenRRA(false)
   

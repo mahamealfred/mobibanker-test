@@ -35,19 +35,21 @@ export default function Review({
             <ListItemText primary={t("common:tin")}  secondary={formData.taxIdentificationNumber} />
           </ListItem>:null
           }
-          
+           <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
+            <ListItemText primary="Token" secondary={tokenValue} />
+          </ListItem>
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary={t("common:amountpaid")}  />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
           {amountPaid.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf
           </Typography>
         </ListItem>
-        <ListItem sx={{ py: 1, px: 0 }}>
+        {/* <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary= "Token" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
         {tokenValue}
           </Typography>
-        </ListItem>
+        </ListItem> */}
      
       </List>
       <Grid container spacing={2}>
@@ -58,12 +60,12 @@ export default function Review({
           <Grid container>
        
               <React.Fragment >
-                <Grid item xs={6}>
+                {/* <Grid item xs={6}>
                   <Typography gutterBottom>{t("common:description")} </Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography gutterBottom>{t("electricity:electricity")} </Typography>
-                </Grid>
+                </Grid> */}
                 <Grid item xs={6}>
                   <Typography gutterBottom>{t("common:mobicashreference")}</Typography>
                 </Grid>

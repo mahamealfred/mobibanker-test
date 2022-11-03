@@ -56,12 +56,12 @@ export default function Review({
           <Grid container>
        
               <React.Fragment >
-                <Grid item xs={6}>
+                {/* <Grid item xs={6}>
                   <Typography gutterBottom>{t("common:description")} </Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography gutterBottom>RSSB Mutuell</Typography>
-                </Grid>
+                </Grid> */}
                 <Grid item xs={6}>
                   <Typography gutterBottom>{t("common:mobicashreference")}</Typography>
                 </Grid>

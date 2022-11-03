@@ -39,7 +39,7 @@ theme.typography.h3 = {
 
 
 const RnitForm = ({openRNIT,setOpenRNIT}) => {
-  const { t } = useTranslation(["home","common","login","ltss"]);
+  const { t } = useTranslation(["home","common","login","rnit"]);
   const componentRef = useRef();
   const steps = [`${t("common:nid")}`,  `${t("common:makepayment")}`, `${t("common:viewdetails")}`];
   const [activeStep, setActiveStep] = React.useState(0);
@@ -194,13 +194,13 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
   //get rnit details
   const handleGetDetails=async()=>{
     if(formData.nId==""){
-      setNIdErrorMessage("NID is required")
+      setNIdErrorMessage(`${t("common:nidisrequired")}`)
      }
     else if(!Number(formData.nId)){
-      setNIdErrorMessage("NID must be a number")
+      setNIdErrorMessage(`${t("common:nidmustbenumeric")}`)
     }
     else if(formData.nId.length!==16){
-      setNIdErrorMessage("NID must be 16 digit")
+      setNIdErrorMessage(`${t("common:nidmust16digit")}`)
     }
      else{
       setNIdErrorMessage("")
@@ -210,41 +210,51 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
   }
   //rnit payment
   const handleRnitPayment=async()=>{
+    let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if(formData.bankName=="" && formData.bankAccount=="" && formData.amountPaid=="" && formData.payerEmail=="" && formData.phoneNumber=="" && formData.password=="" ){
-      setBankNameErrorMessage("Bank name is required")
-      setBankAccountErrorMessage("Bank account is required")
-      setPayerEmailErrorMessage("Payer email is required")
-      setPhoneNumberError("Payer phone number is required")
-      setPasswordError("Agent pin is required")
-      setAmountToPayErrorMessage("Amount to pay is required")
+      setBankNameErrorMessage(`${t("rnit:banknameisrequired")}`)
+      setBankAccountErrorMessage(`${t("rnit:bankaccountisrequired")}`)
+      setPayerEmailErrorMessage(`${t("rnit:payeremailisrequired")}`)
+      setPhoneNumberError(`${t("common:phoneisrequired")}`)
+      setPasswordError(`${t("common:agenytpinisrequired")}`)
+      setAmountToPayErrorMessage(`${t("common:amounttopayisrequired")}`)
     }
    else if(formData.bankName==""){
-    setBankNameErrorMessage("Bank name is required")
+    setBankNameErrorMessage(`${t("rnit:banknameisrequired")}`)
        }
   else if(formData.bankAccount==""){
-    setBankAccountErrorMessage("Bank account is required")
+    setBankAccountErrorMessage(`${t("rnit:bankaccountisrequired")}`)
       }
 else if(formData.amountPaid==""){
- setAmountToPayErrorMessage("Amount to pay is required")
+ setAmountToPayErrorMessage(`${t("common:amounttopayisrequired")}`)
  }
+ else if(!Number(formData.amountPaid)){
+  setAmountToPayErrorMessage(`${t("common:amounttopaymustbeanumber")}`)
+}
+else if(formData.amountPaid > 2000000){
+  setAmountToPayErrorMessage(`${t("common:amounttopaycannotexcide2,000,000Rwf")}`)
+}
  else if(formData.payerEmail==""){
-  setPayerEmailErrorMessage("Payer email is required")
+  setPayerEmailErrorMessage(`${t("rnit:payeremailisrequired")}`)
     }
+    else if(!formData.payerEmail.match(validRegex)){
+      setPayerEmailErrorMessage(`${t("rnit:invalidemail")}`)
+        }
    
   else if(formData.phoneNumber==""){
-    setPhoneNumberError("Payer phone number is required")
+    setPhoneNumberError(`${t("common:phoneisrequired")}`)
   }
   else if(!Number(formData.phoneNumber)){
-    setPhoneNumberError("Payer phone number be a number")
+    setPhoneNumberError(`${t("common:phonemustbeanumeric")}`)
   }
   else if(formData.phoneNumber.length !== 10){
-    setPhoneNumberError("Payer phone number must be 10 digit")
+    setPhoneNumberError(`${t("common:phonenumbermustbe10digit")}`)
   }
   else if(!formData.password){
-    setPasswordError("Agent pin is required")
+    setPasswordError(`${t("common:agenytpinisrequire")}`)
   }
   else if (formData.password !== password ) {
-    setPasswordError("Invalid pin,Please provide valid PIN");
+    setPasswordError(`${t("common:invalidpin")}`);
   } 
   
   else{
@@ -317,6 +327,8 @@ else if(formData.amountPaid==""){
     getRnitDetails.details=['']
     getRnitDetails.error=['']
     rnitPayment.details=['']
+    getRnitDetails.loading=false
+    rnitPayment.loading=false
     setOpenRNIT(false)
     setActiveStep(0);
   };
@@ -340,7 +352,7 @@ else if(formData.amountPaid==""){
             <Typography variant="h6" color="text.primary" 
                 sx={{ fontSize:{xs:14,md:16,lg:20} }}
             >
-          RNIT Payment Service 
+       {t("rnit:rnitpaymentservice")}
           </Typography>
            <img
                   src="../../../Assets/images/rnit.png"

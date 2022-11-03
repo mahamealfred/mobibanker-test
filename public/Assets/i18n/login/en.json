@@ -3,6 +3,8 @@
     "rememberme":"Remember Me!",
     "forgotpassword":"Forgot password",
     "usernameisrequired":"Username is required",
-    "passwordisrequired":"Password is required"
+    "passwordisrequired":"Password is required",
+    "invalidusernameandpas sword":"Invalid credentials,Please provide a valid Username and Password",
+    "blockedmessage":"You have been temporally blocked,due to the failed to logged"
     
 }

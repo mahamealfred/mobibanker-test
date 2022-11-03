@@ -14,7 +14,7 @@ export default function Review({
   formData,
   agentName
 }) {
-  const { t } = useTranslation(["home","common","rra"]);
+  const { t } = useTranslation(["home","common","rnit"]);
   return (
     <React.Fragment>
       <Typography variant="h6" textAlign="center" gutterBottom>
@@ -39,12 +39,12 @@ export default function Review({
           <Grid container>
        
               <React.Fragment >
-                <Grid item xs={6}>
+                {/* <Grid item xs={6}>
                   <Typography gutterBottom>{t("common:description")}</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography gutterBottom>RNIT Service</Typography>
-                </Grid>
+                  <Typography gutterBottom>RNIT </Typography>
+                </Grid> */}
                 <Grid item xs={6}>
                   <Typography gutterBottom>{t("common:mobicashreference")}</Typography>
                 </Grid>

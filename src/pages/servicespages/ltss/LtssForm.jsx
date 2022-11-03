@@ -295,6 +295,8 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
    getLtssIndDetails.details=['']
    ltssPayment.details=['']
    getLtssIndDetails.error=['']
+   getLtssIndDetails.loading=false
+   ltssPayment.loading=false
     setActiveStep(0);
     setOpenLTSS(false)
   };

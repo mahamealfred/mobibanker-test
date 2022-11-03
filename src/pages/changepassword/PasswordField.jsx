@@ -7,7 +7,7 @@ const PasswordField = ({
   
   passwordRef,
   id = 'password',
-  label ='New Password'
+  label ='New Pin'
 }) => {
   const { i18n,t } = useTranslation(["home","common","login"]);
   const [showPassword, setShowPassword] = useState(false);

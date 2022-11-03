@@ -1,9 +1,9 @@
 {
     "signin":"Sign In",
     "rememberme":"Remember Me!",
-    "forgotpassword":"Forgot password",
+    "forgotpassword":"Forgot pin",
     "usernameisrequired":"Username is required",
-    "passwordisrequired":"Password is required",
+    "passwordisrequired":"PIN is required",
     "invalidusernameandpas sword":"Invalid credentials,Please provide a valid Username and Password",
     "blockedmessage":"You have been temporally blocked,due to the failed to logged"
     

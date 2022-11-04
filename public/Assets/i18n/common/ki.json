@@ -36,7 +36,7 @@
     "phone":"Terefone",
     "mobibankermenu":"Ibikubiyemo",
     "welcometomobibanker":"Urakaze neza kuri Mobibanker",
-    "agencyservices":"SERIVISI ZA EJENTI",
+    "agencyservices":"SERIVISI",
     "changepassword":"Hindura ijambo Ryibanga",
     "preioustransaction":"Ibicuruzwa Byabanje",
     "settings":"Igenamiterere",
@@ -61,8 +61,8 @@
     "firstname":"Izina",
     "lastname":"Izina ryanyuma",
     "messages":"Ubutumwa",
-    "logoutmessage":"Wasohotse neza kurubuga, Urakoze gukoresha Mobicash",
-    "clickgotohome":"Kanda ujye aha banza",
+    "logoutmessage":"Wasohotse neza kurubuga, Urakoze gukoresha MobiBanker",
+    "clickgotohome":"Kanda kugirango ujye kurupapuro rwinjira",
     "mobicashreference":"INUMERO YA MOBICASH",
     "date":"ITARIKI",
     "description":"IBISOBANURO",
@@ -108,6 +108,7 @@
     "youareabouttobesignedout":"Ugiye gusohoka",
     "forsecurityreasons":"Kubwimpamvu z'umutekano,ugiye gusohoka nyuma yuko udakora mugihe gito.Kanda Komeza kugirango ugume winjiye.",
     "signedmeout":"Sohoka",
-    "continue":"Komeza"
+    "continue":"Komeza",
+    "otherservices":"Izindi serivisi"
     
  }

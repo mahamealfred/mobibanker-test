@@ -393,9 +393,9 @@ export default function MediaCard() {
             // alignItems="flex-start"
             //  sx={{ maxWidth: "auto" }}
         >
-            <Typography component="h1" variant="h5"
+            <Typography component="h1" variant="body1"
          fontWeight={800}
-         color="text.primary"
+         color="gray"
          textAlign="center"
          padding="0 0px 30px 0px"
          sx={{ fontSize: { xs: 20 } }}
@@ -404,9 +404,9 @@ export default function MediaCard() {
         </Typography>
             <Grid >
             <Typography 
-            component="h1" variant="h5"
+            component="h1" variant="body1"
          fontWeight={800}
-         color="text.primary"
+         color="gray"
          textAlign="center"
          sx={{ fontSize: { xs: 16 } }}
          >
@@ -583,12 +583,12 @@ export default function MediaCard() {
                <Divider variant="middle" />
                <Typography component="h1" variant="h5"
          fontWeight={800}
-         color="text.primary"
+         color="gray"
          textAlign="center"
          sx={{ fontSize: { xs: 16 } }}
          >
              <Divider variant="middle" />
-             {t("common:utilities")}
+              {t("common:otherservices")}
         </Typography>
         <Button
          onClick={handleClickOpenElecticity}
@@ -619,6 +619,38 @@ export default function MediaCard() {
              }}
            >
            ELECTRICITY
+          </Typography>
+            </Card>  
+            </Button>
+            <Button
+               disabled
+            >
+            <Card
+                raised
+                sx={{
+                    //maxWidth: 100,
+                    width:{xs:60,sm:70,md:60,lg:60},
+                    height:{xs:60,sm:60,md:60,lg:60},
+                    borderRadius:5,
+                    margin: "0 auto 5px",
+                    padding: "0.9em",
+                }}
+            >
+                <CardMedia
+                    component="img"
+                    height="70"
+                    image="../../Assets/images/topup.png"
+                    alt="alt"
+                    title="i"
+                    sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
+                    height:{xs:40,sm:40,md:40,lg:50}}}
+                />
+           <Typography variant="h6" gutterBottom
+                sx={{ padding: "0em 0em 0 0em",color:"gray",
+                fontSize:8
+             }}
+           >
+            TOpUp Mobile Money
           </Typography>
             </Card>  
             </Button>
@@ -708,7 +740,7 @@ export default function MediaCard() {
          textAlign="center"
          sx={{ fontSize: { xs: 16 } }}
          >
-       {t("common:agencybanking")}
+       {/* {t("common:agencybanking")} */}
         </Typography>
         <Typography component="h1" variant="h5"
          fontWeight={800}
@@ -720,40 +752,7 @@ export default function MediaCard() {
          >
       {/* School services */}
         </Typography>
-        <Button
-               disabled
-            // onClick={handleOpenMTN}
         
-            >
-            <Card
-                raised
-                sx={{
-                    //maxWidth: 100,
-                    width:{xs:60,sm:70,md:60,lg:60},
-                    height:{xs:60,sm:60,md:60,lg:60},
-                    borderRadius:5,
-                    margin: "0 auto 5px",
-                    padding: "0.9em",
-                }}
-            >
-                <CardMedia
-                    component="img"
-                    height="70"
-                    image="../../Assets/images/topup.png"
-                    alt="alt"
-                    title="i"
-                    sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
-                    height:{xs:40,sm:40,md:40,lg:50}}}
-                />
-           <Typography variant="h6" gutterBottom
-                sx={{ padding: "0em 0em 0 0em",color:"gray",
-                fontSize:8
-             }}
-           >
-            TOpUp Mobile Money
-          </Typography>
-            </Card>  
-            </Button>
       </Grid>
 
       </Grid>

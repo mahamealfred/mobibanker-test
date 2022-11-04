@@ -36,7 +36,7 @@
     "phone":"Téléphoner",
     "mobibankermenu":"Menu",
     "welcometomobibanker":"Bienvenue sur Mobibanker",
-    "agencyservices":"SERVICES D'AGENCE",
+    "agencyservices":"SERVICES",
     "changepassword":"Changer le mot de passe",
     "preioustransaction":"Opérations précédentes",
     "settings":"Réglages",
@@ -61,8 +61,8 @@
     "firstname":"Prénom",
     "lastname":"Nom de famille",
     "messages":"Messages",
-    "logoutmessage":"Vous vous êtes déconnecté avec succès, merci d'avoir utilisé Mobicash",
-    "clickgotohome":"Cliquez sur aller à l'accueil",
+    "logoutmessage":"Vous vous êtes déconnecté avec succès, merci d'avoir utilisé MobiBanker",
+    "clickgotohome":"Cliquez pour accéder à la page de connexion",
     "mobicashreference":"RÉFÉRENCE MOBICASH",
     "date":"DATE",
     "description":"LA DESCRIPTION",
@@ -108,6 +108,7 @@
     "youareabouttobesignedout":"Vous êtes sur le point d'être déconnecté",
     "forsecurityreasons":"Pour des raisons de sécurité, votre connexion expire après un certain temps d'inactivité. Cliquez sur Continuer pour rester connecté.",
     "signedmeout":"Se déconnecter",
-    "continue":"Continuer"
+    "continue":"Continuer",
+    "otherservices":"Autres services"
     
  }

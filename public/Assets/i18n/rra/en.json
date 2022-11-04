@@ -3,5 +3,6 @@
     "referencenumber":"Reference Number",
     "referencenumberisrequired":"RRA reference is required",
     "referencenumbermutbeanumber":"RRA reference must be a numeric",
-    "taxtypedescription":"Tax type description"
+    "taxtypedescription":"Tax type description",
+    "docidmustbeatleat8character":"The RRA reference must be at least 8 characters"
 }

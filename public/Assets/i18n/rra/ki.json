@@ -3,5 +3,6 @@
     "referencenumber":"Inomero ya RRA",
     "referencenumberisrequired":"Inomero wishuriraho umusoro irakenewe",
     "referencenumbermutbeanumber":"Inomero yerekanwe igomba kuba mubare",
-    "taxtypedescription":"Ibisobanuro by'ubwoko bw'imisoro"
+    "taxtypedescription":"Ibisobanuro by'ubwoko bw'imisoro",
+    "docidmustbeatleat8character":"Inimero ya RRA yerekanwe igomba kuba byibuze inyuguti 8"
 }

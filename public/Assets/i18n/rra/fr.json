@@ -3,5 +3,6 @@
     "referencenumber":"Numéro de réference",
     "referencenumberisrequired":"Une référence RRA est requise",
     "referencenumbermutbeanumber":"La référence RRA doit être un chiffre",
-    "taxtypedescription":"Description du type de taxe"
+    "taxtypedescription":"Description du type de taxe",
+    "docidmustbeatleat8character":"La référence RRA doit comporter au moins 8 caractères"
 }

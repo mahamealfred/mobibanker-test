@@ -355,7 +355,7 @@ import { useTranslation } from "react-i18next";
             </ListItem>
             </Tooltip>
            
-            <Tooltip title={t("common:myprofile")} >
+            {/* <Tooltip title={t("common:myprofile")} >
             <ListItem  disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
@@ -383,7 +383,7 @@ import { useTranslation } from "react-i18next";
                 />
               </ListItemButton>
             </ListItem>
-            </Tooltip>
+            </Tooltip> */}
            
             <Tooltip title={t("common:preioustransaction")} >
             <ListItem  disablePadding sx={{ display: 'block' }}>
@@ -414,7 +414,7 @@ import { useTranslation } from "react-i18next";
               </ListItemButton>
             </ListItem>
             </Tooltip>
-            <Tooltip title="FAQ Page">
+            <Tooltip title="FAQ">
             <ListItem  disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
@@ -437,7 +437,7 @@ import { useTranslation } from "react-i18next";
                   <LiveHelpIcon/>
                 </ListItemIcon>
                 <ListItemText
-                  primary="FAQ Page"
+                  primary="FAQ"
                   sx={{ opacity: open ? 1 : 0 }}
                 />
               </ListItemButton>
@@ -461,7 +461,6 @@ import { useTranslation } from "react-i18next";
                     justifyContent: 'center',
                     color:"#F9842C"
                   }}
-                 
                 >
                   <ChangeCircleIcon/>
                 </ListItemIcon>
@@ -472,7 +471,6 @@ import { useTranslation } from "react-i18next";
               </ListItemButton>
             </ListItem>
             </Tooltip>
-            
         </List>
         <Divider />
         <List>
@@ -505,7 +503,6 @@ import { useTranslation } from "react-i18next";
               </ListItemButton>
             </ListItem>
         </Tooltip>
-        
         </List>
         {/* <Box sx={{ mx: 'auto', mt: 3, mb: 1 }}>
           <Tooltip title={"name" || ''}>

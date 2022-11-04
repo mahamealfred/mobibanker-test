@@ -218,7 +218,11 @@ fetchData();
      setDocIdErr(`${t("rra:referencenumberisrequired")}`);
    } else if (!Number(formData.docId)) {
      setDocIdErr(`${t("rra:referencenumbermutbeanumber")}`);
-   } else {
+   }
+  else if (formData.docId.length < 8) {
+    setDocIdErr(`${t("rra:docidmustbeatleat8character")}`);
+  }
+   else {
      const docId = formData.docId;
      await dispatch(getDocDetailsAction({ docId }, history));
    }

@@ -33,10 +33,7 @@ const Widget = () => {
       url: "/",
       value: `${t("common:bnr/regulation")}`
     },
-    {
-      url: "/faq",
-      value: `FAQs`
-    }
+   
   ]
   const agentSupportArchives = [
     {
@@ -95,7 +92,7 @@ const Widget = () => {
                 <Typography
                   component="span"
                   variant="body3"
-                  color="text.primary"
+                  color="gray"
                   mt={2}
                   fontWeight={800}
                 >
@@ -108,7 +105,7 @@ const Widget = () => {
                 <Typography
                   component="span"
                   variant="body2"
-                  color="text.primary"
+                  color="gray"
                 >
                   {archives.map((archive) => (
                     <Link display="block" href={archive.url} key={archive.value}
@@ -139,7 +136,7 @@ const Widget = () => {
                 <Typography
                   component="span"
                   variant="body3"
-                  color="text.primary"
+                  color="gray"
                   mt={2}
                   fontWeight={800}
                 >

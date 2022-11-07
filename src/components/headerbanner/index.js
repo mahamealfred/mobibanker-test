@@ -40,7 +40,7 @@ function FeaturedPost() {
                       component="img"
                       sx={{ width: 180,alignContent:"center", alignItems:"center" }}
                       alt="image logo"
-                      src="../../Assets/images/mobiswift.png"
+                      src="../../images/mobiswift.png"
                     />
                     <Typography variant="subtitle1"  color="text.secondary">
                     {t("common:mobiswifttitle")}
@@ -49,7 +49,7 @@ function FeaturedPost() {
                       component="img"
                       sx={{ width: "auto", display: { xs: 'none', sm: 'block' } }}
                       alt="image l"
-                      src="../../Assets/images/mobiswiftm.png"
+                      src="../../images/mobiswiftm.png"
                     />
 
                     <Typography variant="subtitle1" paragraph>
@@ -59,7 +59,7 @@ function FeaturedPost() {
                       component="img"
                       sx={{ width: 180, display: { xs: 'block', sm: 'none' } }}
                       alt="image b"
-                      src="../../Assets/images/mobiswiftm.png"
+                      src="../../images/mobiswiftm.png"
                     />
 
                     <Typography variant="subtitle1" color="gray">
@@ -80,7 +80,7 @@ function FeaturedPost() {
                       component="img"
                       sx={{ width: 180, }}
                       alt="image logo"
-                      src="../../Assets/images/mobitv.png"
+                      src="../../images/mobitv.png"
                     />
                     <Typography variant="subtitle1" color="text.secondary">
                     {t("common:mobitvtitle")}
@@ -89,7 +89,7 @@ function FeaturedPost() {
                       component="img"
                       sx={{ width: "auto", display: { xs: 'none', sm: 'block' } }}
                       alt="image l"
-                      src="../../Assets/images/mobitvm.png"
+                      src="../../images/mobitvm.png"
                     />
 
                     <Typography variant="subtitle1" paragraph>
@@ -99,7 +99,7 @@ function FeaturedPost() {
                       component="img"
                       sx={{ width: 180, display: { xs: 'block', sm: 'none' } }}
                       alt="image b"
-                      src="../../Assets/images/mobitvm.png"
+                      src="../../images/mobitvm.png"
                     />
 
                     <Typography variant="subtitle1" color="gray">
@@ -120,7 +120,7 @@ function FeaturedPost() {
                       component="img"
                       sx={{ width: 180, }}
                       alt="image logo"
-                      src="../../Assets/images/mobistore.png"
+                      src="../../images/mobistore.png"
                     />
                     <Typography variant="subtitle1" color="text.secondary">
                     {t("common:mobistoretitle")}
@@ -129,7 +129,7 @@ function FeaturedPost() {
                       component="img"
                       sx={{ width: "auto", display: { xs: 'none', sm: 'block' } }}
                       alt="image l"
-                      src="../../Assets/images/mobistorem.png"
+                      src="../../images/mobistorem.png"
                     />
 
                     <Typography variant="subtitle1" paragraph>
@@ -139,7 +139,7 @@ function FeaturedPost() {
                       component="img"
                       sx={{ width: 180, display: { xs: 'block', sm: 'none' } }}
                       alt="image b"
-                      src="../../Assets/images/mobistorem.png"
+                      src="../../images/mobistorem.png"
                     />
 
                     <Typography variant="subtitle1" color="gray">
@@ -161,7 +161,7 @@ function FeaturedPost() {
                       component="img"
                       sx={{ width: 180, }}
                       alt="image logo"
-                      src="../../Assets/images/mobigov.png"
+                      src="../../images/mobigov.png"
                     />
                     <Typography variant="subtitle1" color="text.secondary">
                     {t("common:mobigovtitle")}
@@ -170,7 +170,7 @@ function FeaturedPost() {
                       component="img"
                       sx={{ width: "auto", display: { xs: 'none', sm: 'block' } }}
                       alt="image l"
-                      src="../../Assets/images/mobigovm.png"
+                      src="../../images/mobigovm.png"
                     />
 
                     <Typography variant="subtitle1" paragraph>
@@ -180,7 +180,7 @@ function FeaturedPost() {
                       component="img"
                       sx={{ width: 180, display: { xs: 'block', sm: 'none' } }}
                       alt="image b"
-                      src="../../Assets/images/mobigovm.png"
+                      src="../../images/mobigovm.png"
                     />
                     <Typography variant="subtitle1" color="gray">
                     {/* {t("common:getstarted")} */}

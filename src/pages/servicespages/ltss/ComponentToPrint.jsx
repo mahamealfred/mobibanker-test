@@ -20,7 +20,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 		<div className="header">
 			<div className="logo_invoice_wrap">
 				<div className="logo_sec">
-					<img src="../../Assets/images/logo.png" className='logo' alt="code logo"/>
+					<img src="../../images/logo.png" className='logo' alt="code logo"/>
 					<div className="title_wrap">
 						{/* <p className="title bold">Coding Boss</p>
 						<p className="sub_title">Privite Limited</p> */}

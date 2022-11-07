@@ -4,18 +4,18 @@
     "icons": [
       
         {
-            "src": "/Assets/images/img_192.png",
+            "src": "/images/img_192.png",
             "sizes": "196x196",
             "type": "image/png",
             "purpose": "maskable any"
         }, {
-            "src": "/Assets/images/img_512.png",
+            "src": "/images/img_512.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "maskable any"
         },
         {
-          "src": "/Assets/images/img_144.png",
+          "src": "/images/img_144.png",
           "sizes": "144x144",
           "type": "image/png",
           "purpose": "maskable any"

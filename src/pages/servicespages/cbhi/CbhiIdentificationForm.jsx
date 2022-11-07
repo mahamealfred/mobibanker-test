@@ -376,7 +376,7 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
           {t("cbhi:rssbmutuellepaymentservice")}
           </Typography>
            <img
-                  src="../../../Assets/images/mutuelli.png"
+                  src="../../../images/mutuelli.png"
                   alt="logo"
                   height={70}
                   width={85}

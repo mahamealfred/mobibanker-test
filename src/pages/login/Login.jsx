@@ -85,7 +85,7 @@ const SignIn = () => {
      
           <Box
             sx={{
-              my: 12,
+              my: 8,
               mx: 4,
               display: 'flex',
               flexDirection: 'column',

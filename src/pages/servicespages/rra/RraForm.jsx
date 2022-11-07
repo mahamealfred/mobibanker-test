@@ -350,7 +350,7 @@ fetchData();
         {t("rra:rrataxpaymentservice")}
           </Typography>
            <img
-                  src="../../../Assets/images/rra.png"
+                  src="../../../images/rra.png"
                   alt="logo"
                   height={70}
                   width={85}

@@ -60,7 +60,7 @@ const Widget = () => {
   return (
     <Box
       sx={{
-        my: 8,
+        my: 4,
         mx: {xs:1,sm:2,md:12},
         height:"auto",
         display: 'flex',
@@ -69,7 +69,7 @@ const Widget = () => {
       }}
     >
       <Typography variant="h6" fontWeight={100} mt={1}>
-        {/* <img src="../../Assets/images/mobibanker.png" alt="logo" height="100" width="350" /> */}
+        {/* <img src="../../images/mobibanker.png" alt="logo" height="100" width="350" /> */}
       </Typography>
       <List sx={{
         width: '100%',
@@ -84,7 +84,7 @@ const Widget = () => {
             sx={{ padding: '0 10px' }}
           >
             {/* <Avatar alt="Remy Sharp" src="" /> */}
-            <img src="../../Assets/images/knowledge.png" alt="logo" height="120" width="100" margin="50px" />
+            <img src="../../images/knowledge.png" alt="logo" height="120" width="100" margin="50px" />
           </ListItemAvatar>
           <ListItemText
             primary={
@@ -127,7 +127,7 @@ const Widget = () => {
             sx={{ padding: '0 10px' }}
           >
             {/* <Avatar alt="Agent Support" src="" /> */}
-            <img src="../../Assets/images/support.png" alt="logo" height="120" width="100" margin="50px" />
+            <img src="../../images/support.png" alt="logo" height="120" width="100" margin="50px" />
           </ListItemAvatar>
 
           <ListItemText

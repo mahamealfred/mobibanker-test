@@ -323,7 +323,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
             {t("ltss:ltsspaymentservice")}
           </Typography>
            <img
-                  src="../../../Assets/images/ejoheza.png"
+                  src="../../../images/ejoheza.png"
                   alt="logo"
                   height={70}
                   width={85}

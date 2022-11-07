@@ -6,27 +6,27 @@ import { Box,Card,CardMedia,Container,Grid, IconButton, ImageListItemBar, Typogr
 import {makeStyles} from '@mui/material';
 const itemData = [
     {
-      img: '../../Assets/images/cardless.png',
+      img: '../../images/cardless.png',
       title: 'Breakfast',
     },
     {
-        img: '../../Assets/images/disrupt.png',
+        img: '../../images/disrupt.png',
         title: 'Breakfast',
       },
       {
-        img: '../../Assets/images/helpdesk.png',
+        img: '../../images/helpdesk.png',
         title: 'Breakfast',
       },
       {
-        img: '../../Assets/images/landpage.png',
+        img: '../../images/landpage.png',
         title: 'Breakfast',
       },
       {
-        img: '../../Assets/images/nobank.png',
+        img: '../../images/nobank.png',
         title: 'Breakfast',
       },
       {
-        img: '../../Assets/images/pagebanner.png',
+        img: '../../images/pagebanner.png',
         title: 'Breakfast',
       },
     ]

@@ -355,7 +355,7 @@ else if(formData.amountPaid > 2000000){
        {t("rnit:rnitpaymentservice")}
           </Typography>
            <img
-                  src="../../../Assets/images/rnit.png"
+                  src="../../../images/rnit.png"
                   alt="logo"
                   height={70}
                   width={85}

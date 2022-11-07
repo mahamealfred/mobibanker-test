@@ -294,7 +294,7 @@ setOpenModal(false)
                   display: { xs: "none", sm: "none",md:"block"}
                 }}
                 alt="mobicash logo"
-                src="../../Assets/images/mobibk.png"
+                src="../../images/mobibk.png"
               />
             </Typography>
             {/* <Box
@@ -361,7 +361,7 @@ setOpenModal(false)
             <Box
               sx={{ minWidth: 100, display: { xs: "block", sm: "none" } }}
             >
-              <img src="../../Assets/images/img_144.png" alt="logo" height="40" width="40" margin="10px" />
+              <img src="../../images/img_144.png" alt="logo" height="40" width="40" margin="10px" />
             </Box>
 
           </Toolbar>

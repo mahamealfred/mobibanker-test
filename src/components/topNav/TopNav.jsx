@@ -65,7 +65,7 @@ const TopNav = () => {
           display:{xs:"none",sm:"block"}
         }}
         alt="mobicash logo"
-        src="../../Assets/images/logo.png"
+        src="../../images/logo.png"
       />
        <Box
               component="img"
@@ -76,12 +76,12 @@ const TopNav = () => {
                 display: { xs: "block", sm: "none", md: "none" }
               }}
               alt="mobicash logo"
-              src="../../Assets/images/mobibk.png"
+              src="../../images/mobibk.png"
             />
             {/* <Box
           sx={{display:{xs:"block",sm:"none"}}}
         >
-        <img src="../../Assets/images/img_144.png" alt="logo" height="40" width="50" margin="50px"/>
+        <img src="../../images/img_144.png" alt="logo" height="40" width="50" margin="50px"/>
         </Box> */}
             </MobiLogoImg>
             <Box
@@ -94,7 +94,7 @@ const TopNav = () => {
           display:{xs:"none",sm:"none",md:"block"}
         }}
         alt="mobicash logo"
-        src="../../Assets/images/mobibk.png"
+        src="../../images/mobibk.png"
       />
     
         < MobiBankerImg>

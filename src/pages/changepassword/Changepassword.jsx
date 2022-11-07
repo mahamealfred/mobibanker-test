@@ -246,7 +246,7 @@ if(errorMessage==''){
         <DialogActions sx={{ px: '19px' }}>
           {
             changePassword.loading?"Loading":
-            <Button type="submit" variant="text"  sx={{color:"#F9842C"}}  endIcon={<Send sx={{color:"#F9842C"}}/>}>
+            <Button type="submit" variant="text"  sx={{color:"#F9842C"}}  >
            {t("common:submit")}
           </Button>
           }

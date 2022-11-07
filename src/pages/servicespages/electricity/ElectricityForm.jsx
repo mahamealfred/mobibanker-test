@@ -371,7 +371,7 @@ fetchData();
          {t("electricity:electricitypaymentservice")}
           </Typography>
            <img
-                  src="../../../Assets/images/electricity.png"
+                  src="../../../images/electricity.png"
                   alt="logo"
                   height={70}
                   width={85}

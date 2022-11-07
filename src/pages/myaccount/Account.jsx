@@ -36,8 +36,8 @@ const states = [
   }
 ];
 const user = {
-    avatar: '../../Assets/images/balance1.png',
-    avatar2: '../../Assets/images/commission.png',
+    avatar: '../../images/balance1.png',
+    avatar2: '../../images/commission.png',
     city: 'Rubavu',
     country: 'Rwanda',
     jobTitle: 'Independ',

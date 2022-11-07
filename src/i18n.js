@@ -9,7 +9,7 @@ i18n.use(Backend)
 	.init({
 		backend: {
 			// translation file path
-			loadPath: "/Assets/i18n/{{ns}}/{{lng}}.json",
+			loadPath: "/i18n/{{ns}}/{{lng}}.json",
 		},
 		fallbackLng: "en",
 		// disabled in production

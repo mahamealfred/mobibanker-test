@@ -430,7 +430,7 @@ export default function MediaCard() {
                 <CardMedia
                     component="img"
                     height="60"
-                    image="../../Assets/images/rra.png"
+                    image="../../images/rra.png"
                     alt="alt"
                     title="i"
                     sx={{ 
@@ -466,7 +466,7 @@ export default function MediaCard() {
                 <CardMedia
                     component="img"
                     height="60"
-                    image="../../Assets/images/mutuelli.png"
+                    image="../../images/mutuelli.png"
                     alt="alt"
                     title="i"
                     sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
@@ -498,7 +498,7 @@ export default function MediaCard() {
                 <CardMedia
                     component="img"
                     height="60"
-                    image="../../Assets/images/rnit.png"
+                    image="../../images/rnit.png"
                     alt="alt"
                     title="i"
                     sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
@@ -530,7 +530,7 @@ export default function MediaCard() {
                <CardMedia
                     component="img"
                     height="60"
-                    image="../../Assets/images/ejoheza.png"
+                    image="../../images/ejoheza.png"
                     alt="alt"
                     title="i"
                     sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
@@ -565,7 +565,7 @@ export default function MediaCard() {
                 <CardMedia
                     component="img"
                     height="60"
-                    image="../../Assets/images/logs.png"
+                    image="../../images/logs.png"
                     alt="alt"
                     title="i"
                     sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
@@ -607,7 +607,7 @@ export default function MediaCard() {
                 <CardMedia
                     component="img"
                     height="60"
-                    image="../../Assets/images/electricity.png"
+                    image="../../images/electricity.png"
                     alt="alt"
                     title="i"
                     sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
@@ -639,7 +639,7 @@ export default function MediaCard() {
                 <CardMedia
                     component="img"
                     height="70"
-                    image="../../Assets/images/topup.png"
+                    image="../../images/topup.png"
                     alt="alt"
                     title="i"
                     sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
@@ -683,7 +683,7 @@ export default function MediaCard() {
                 <CardMedia
                     component="img"
                     height="60"
-                    image="../../Assets/images/airtel.png"
+                    image="../../images/airtel.png"
                     alt="alt"
                     title="i"
                     sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
@@ -716,7 +716,7 @@ export default function MediaCard() {
                 <CardMedia
                     component="img"
                     height="60"
-                    image="../../Assets/images/mtn1.png"
+                    image="../../images/mtn1.png"
                     alt="alt"
                     title="i"
                     sx={{ padding: "0em 2em 0 0em", objectFit: "contain",

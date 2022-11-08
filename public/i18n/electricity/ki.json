@@ -4,9 +4,10 @@
     "meternumber":"Umubare wa metero",
     "electricitypaymentservice":"Serivisi yo kwishyura amashanyarazi",
     "meternumberisrequired":"Umubare wa metero urakenewe",
-    "meternumbermustbeanumeric":"Umubare wa metero ugomba kuba mubare",
+    "meternumbermustbeanumeric":"Umubare wa metero igomba kuba mubare",
     "theminimumamountis100andthemaximunis1,000,000":"Amafaranga ntarengwa ni 100 naho ntarengwa ni 1.000.000",
     "customeridentificationnumberisrequired":"Inomero iranga abakiriya irakenewe",
     "identificationnumbermustbeanumber":"Inomero iranga igomba kuba umubare",
-    "electricity":"Amashanyarazi"
+    "electricity":"Amashanyarazi",
+    "invalidmeternumber":"Inomero itemewe"
 }

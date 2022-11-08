@@ -13,7 +13,7 @@ export const getYearAction = (history) => async (dispatch) => {
    const res = await axios.get(Url);
     const {data} = await res;
     dispatch(getYearSuccess(data));
-   // console.log(data);
+   
   } catch (err) {
     if (err.response) {
       const errorMessage = await err.response.data.message;

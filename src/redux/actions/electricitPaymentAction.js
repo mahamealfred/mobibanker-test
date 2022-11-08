@@ -15,8 +15,6 @@ export const electricityPayamentAction = (details,username,password) => async (d
    const {meterNumber}=details;
    const {brokering}=details
    const {userGroup}=details
-
-  console.log(" electricity details:",details,username,password)
     //const encodedBase64Token = Buffer.from(`${username}:${password}`).toString('base64');
     let basicAuth='Basic ' + btoa(username + ':' + password);
     const Url='https://agentapi.mobicash.rw/api/agent/vas/electricity/rest/v.4.14.01/payment';
@@ -50,9 +48,6 @@ export const electricityPayamentAction = (details,username,password) => async (d
     if (err.response) {
        // const errorMessage = await err.response;
        let errorMessage = 'Invalid Crendentials'
-      //   errorMessage="Please provide valid Pin"
-     // const errorMessage = 'Error'
-      // errorMessage=await err.response.data.message
         dispatch(electricityPaymentFailure(errorMessage)); 
     } else {
       dispatch(electricityPaymentFailure("Network Error"));

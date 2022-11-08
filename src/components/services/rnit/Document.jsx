@@ -48,7 +48,7 @@ const Document = ({
                         }
                         sx={{mb: 0.2}}
                     >
-                        {errorMessage} </Alert>
+                        {errorMessage==="Invalid Identification number"?`${t("common:invalidIdentificationnumber")}`:errorMessage} </Alert>
                 </Collapse>
             )
         }

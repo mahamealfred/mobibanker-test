@@ -134,7 +134,7 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
            }
         }
         if(getCbhiNidDetails.error)  {
-          setErrorMessage("Please Check your NID, and try again.");
+          setErrorMessage(getCbhiNidDetails.error);
         }
        }
   }

@@ -11,7 +11,7 @@ export const getElectricityDetailsAction = (details) => async (dispatch) => {
   try {
     dispatch(getElectricityDetailsRequest());
     const meter=details.meterNumber
-   console.log("request",meter)
+  
    // const Url ='https://agentweb.mobicash.rw/api/agent/goverment-services/rra/rest/v.4.14.01/doc-id-validation'
     const Url='https://agentapi.mobicash.rw/api/agent/vas/electricity/rest/v.4.14.01/meter-number-validation';
 // const res = await axios.post(Url,{
@@ -34,7 +34,7 @@ export const getElectricityDetailsAction = (details) => async (dispatch) => {
   
   } catch (err) {
     if (err.response) {
-      const errorMessage = "Invalid Meter number, Please provide a valid Meter number";
+      const errorMessage = "Invalid Meter number";
       dispatch(getElectricityDetailsFailure(errorMessage));
     } else {
       dispatch(getElectricityDetailsFailure("Network  Error"));

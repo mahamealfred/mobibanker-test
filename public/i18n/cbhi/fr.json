@@ -13,5 +13,6 @@
     "numberofmembers":"Nombre de membres",
     "members":"Membres",
     "checkmembers":"Vérifier les membres",
-    "householdername":"Nom du chef de famille"
+    "householdername":"Nom du chef de famille",
+    "providedNIDisnotregisteredtotheheadofthehousehold":"À condition que le NID ne soit pas enregistré auprès du chef de ménage"
 }

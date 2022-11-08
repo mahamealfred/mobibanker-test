@@ -11,7 +11,6 @@ export const getDocDetailsAction = (details,history) => async (dispatch) => {
   try {
     dispatch(getDocDetailsRequest());
     const docId=details.docId
-   console.log("request",docId)
    // const Url ='https://agentweb.mobicash.rw/api/agent/goverment-services/rra/rest/v.4.14.01/doc-id-validation'
     const Url='https://agentapi.mobicash.rw/api/agent/goverment-services/rra/rest/v.4.14.01/doc-id-validation';
 // const res = await axios.post(Url,{
@@ -27,14 +26,9 @@ export const getDocDetailsAction = (details,history) => async (dispatch) => {
   },
    });
     const data = await res.data;
-    console.log("response",data)
     if(data.responseCode===200){
-      
      await dispatch(getDocDetailsSuccess(data));
-      
-      //history.push('/dashboard/rra-payment',{push:true})
     }
-  
   } catch (err) {
     if (err.response) {
       const errorMessage = await err.response.data.responseDescription;

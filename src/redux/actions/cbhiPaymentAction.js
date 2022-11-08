@@ -18,7 +18,7 @@ export const cbhiPayamentAction = (details,username,password,history) => async (
     const {payerPhoneNumber}=details
     const {brokering}=details
     const {userGroup}=details
-    console.log("details...:",details)
+ 
    // let errorMessage =''
     //const encodedBase64Token = Buffer.from(`${username}:${password}`).toString('base64');
     let basicAuth='Basic ' + btoa(username + ':' + password);

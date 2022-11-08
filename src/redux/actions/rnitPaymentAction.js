@@ -57,11 +57,7 @@ export const rnitPaymentAction = (details,username,password,history) => async (d
       
   } catch (err) {
     if (err.response) {
-       // const errorMessage = await err.response;
        let errorMessage = 'Invalid Crendentials'
-      //   errorMessage="Please provide valid Pin"
-     // const errorMessage = 'Error'
-      // errorMessage=await err.response.data.message
         dispatch(rnitPaymentFailure(errorMessage)); 
     } else {
       dispatch(rnitPaymentFailure("Network Error"));

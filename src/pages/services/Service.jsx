@@ -18,7 +18,7 @@ import CbhiIdentificationForm from '../servicespages/cbhi/CbhiIdentificationForm
 import LtssForm from "../servicespages/ltss/LtssForm";
 import RnitForm from '../servicespages/rnit/RnitForm';
 import ElectricityForm from "../servicespages/electricity/ElectricityForm";
-
+import TopupMobile from "../servicespages/topupmobilemoney"
 //modal
 import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
@@ -50,6 +50,7 @@ export default function MediaCard() {
     const [openMTN, setOpenMTN] = React.useState(false);
     const [openAIRTEL, setOpenAIRTEL] = React.useState(false);
     const [openLOGS, setOpenLOGS] = React.useState(false);
+    const [openTopUp, setOpenTopUp] = React.useState(false);
     const [openELECTRICITY,setOpenELECTRICITY]=React.useState(false);
 
     const handleOpenMTN = () => setOpenMTN(true);
@@ -87,6 +88,7 @@ export default function MediaCard() {
       setOpenRNIT(false);
       setOpenLOGS(false)
       setOpenELECTRICITY(false)
+      setOpenTopUp(false)
     };
    
   
@@ -298,6 +300,40 @@ export default function MediaCard() {
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
      <LtssForm openLTSS={openLTSS} setOpenLTSS={setOpenLTSS}/>
+          </DialogContentText>
+        </DialogContent>
+      </Dialog>
+      {/* Top Up Mobile Money */}
+      <Dialog
+        open={openTopUp}
+        onClose={()=>setOpenTopUp(false)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        fullWidth
+        maxWidth="lg"
+       
+      >
+        <DialogTitle id="alert-dialog-title">
+          <Typography variant="h6" color="gray" >
+          MobiCash
+          </Typography>
+        
+          {/* <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton> */}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+  <TopupMobile/>
           </DialogContentText>
         </DialogContent>
       </Dialog>
@@ -623,7 +659,8 @@ export default function MediaCard() {
             </Card>  
             </Button>
             <Button
-               disabled
+             onClick={()=>setOpenTopUp(true)}
+             disabled
             >
             <Card
                 raised

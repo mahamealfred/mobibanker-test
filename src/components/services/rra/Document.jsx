@@ -49,7 +49,9 @@ const Document = ({
                         sx={
                             {mb: 0.2}
                     }>
-                        {errorMessage} </Alert>
+                        {errorMessage==="No longer valid"?`${t("rra:referencernumberisnolongervalid")}`:errorMessage} 
+                        
+                        </Alert>
                 </Collapse>
             )
         }

@@ -109,6 +109,7 @@
     "forsecurityreasons":"Pour des raisons de sécurité, votre connexion expire après un certain temps d'inactivité. Cliquez sur Continuer pour rester connecté.",
     "signedmeout":"Se déconnecter",
     "continue":"Continuer",
-    "otherservices":"Autres services"
+    "otherservices":"Autres services",
+    "invalidIdentificationnumber":"Numéro d'identification invalide"
     
  }

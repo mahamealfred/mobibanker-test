@@ -44,8 +44,7 @@ export const rraPayamentAction = (details,username,password,history) => async (d
         payerPhone:payerPhoneNumber,
         userGroup:userGroup,
         brokering:brokering
-        // userGroup:"retail_agents",
-        // brokering:"Broker"
+        
    },{
     withCredentials: true,
     headers:{
@@ -62,21 +61,10 @@ export const rraPayamentAction = (details,username,password,history) => async (d
       if(res.data.responseCode===200){
        await dispatch(rraPaymentSuccess(data));
       }
-    //   if(res.data.responseCode==400){
-    //     let errorMessage = 'Invalid Credential, Please provide valid Pin'
-    //       dispatch(rraPaymentFailure(errorMessage)); 
-    //   }
-      // else{
-      //   history.push('/dashboard/cbhi',{push:true})
-      // }
       
   } catch (err) {
     if (err.response) {
-       // const errorMessage = await err.response;
        let errorMessage = 'Invalid Crendentials'
-      //   errorMessage="Please provide valid Pin"
-     // const errorMessage = 'Error'
-      // errorMessage=await err.response.data.message
         dispatch(rraPaymentFailure(errorMessage)); 
     } else {
       dispatch(rraPaymentFailure("Network Error"));

@@ -21,9 +21,7 @@ export const loginAction = (user,history) => async (dispatch) => {
     //let basicAuth='Basic ' + Btoa(username + ':' + password);
     //const Url='https://agentweb.mobicash.rw/api/agent/user/rest/v.4.14.01/auth';
     const Url='https://agentapi.mobicash.rw/api/agent/user/rest/v.4.14.01/auth';
-    //const Url='https://agentweb.mobicash.rw/api/agent/user/rest/v.4.14.01/auth';
-    // console.log("base url",process.env.REACT_APP_BASE_URL)
-    //const Url=REACT_APP_BASE_URL+'/user/rest/v.4.14.01/auth';
+    
    const res = await axios.post(Url,{}, {
       withCredentials: true,
     Headers:{
@@ -55,12 +53,7 @@ export const loginAction = (user,history) => async (dispatch) => {
     if (err.response) {
      const errorMessage = await err.response.data.responseMessage;
       dispatch(loginFailure(errorMessage));
-    //  if(errorMessage==="login"){
-    //   await dispatch(loginFailure("Invalid credentials,Please provide a valid Username and Password"));
-    //  }else{
-    //   dispatch(loginFailure("You're temporaly blocked"));
-    //  }
-      
+   
     } else {
       dispatch(loginFailure("Network Error"));
     }

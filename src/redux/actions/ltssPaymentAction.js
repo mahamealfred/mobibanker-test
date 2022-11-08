@@ -16,8 +16,6 @@ export const ltssPaymentAction = (details,username,password) => async (dispatch)
     const {payerName}=details
     const {agentCategory}=details
     const {brokering}=details
-    
-  console.log("ltss details:",details,username,password)
     //const encodedBase64Token = Buffer.from(`${username}:${password}`).toString('base64');
     let basicAuth='Basic ' + btoa(username + ':' + password);
     const Url='https://agentapi.mobicash.rw/api/agent/goverment-services/ltss/rest/v.4.14.01/payment';
@@ -46,21 +44,10 @@ export const ltssPaymentAction = (details,username,password) => async (dispatch)
       if(res.data.responseCode===200){
        await dispatch(ltssPaymentSuccess(data));
       }
-    //   if(res.data.responseCode==400){
-    //     let errorMessage = 'Invalid Credential, Please provide valid Pin'
-    //       dispatch(rraPaymentFailure(errorMessage)); 
-    //   }
-      // else{
-      //   history.push('/dashboard/cbhi',{push:true})
-      // }
       
   } catch (err) {
     if (err.response) {
-       // const errorMessage = await err.response;
        let errorMessage = 'Invalid Crendentials'
-      //   errorMessage="Please provide valid Pin"
-     // const errorMessage = 'Error'
-      // errorMessage=await err.response.data.message
         dispatch(ltssPaymentFailure(errorMessage)); 
     } else {
       dispatch(ltssPaymentFailure("Network Error"));

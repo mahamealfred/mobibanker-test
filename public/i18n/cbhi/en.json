@@ -13,6 +13,7 @@
     "numberofmembers":"Number of Members",
     "members":"Members",
     "checkmembers":"Check members",
-    "householdername":"Householder Name"
+    "householdername":"Householder Name",
+    "providedNIDisnotregisteredtotheheadofthehousehold":"Provided NID is not registered to the head of the household"
 
 }

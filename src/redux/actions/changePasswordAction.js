@@ -13,7 +13,6 @@ export const changePasswordAction = (user,username) => async (dispatch) => {
     const {oldPassword}=user 
     const {password}=user
     const {confirmPassword}=user
-  console.log("o new c ",oldPassword,password,confirmPassword,username);
     //const encodedBase64Token = Buffer.from(`${username}:${password}`).toString('base64');
     //let basicAuth='Basic ' + btoa(username + ':' + password);
     const Url='https://agentapi.mobicash.rw/api/agent/user/rest/v.4.14.01/change-password';

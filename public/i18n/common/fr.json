@@ -105,10 +105,10 @@
     "nidisrequired":"Identité est requis",
     "nidmustbenumeric":"Identité doit être numérique",
     "nidmust16digit":"Identité doit être de 16 chiffres",
-    "youareabouttobesignedout":"Vous êtes sur le point d'être déconnecté",
-    "forsecurityreasons":"Pour des raisons de sécurité, votre connexion expire après un certain temps d'inactivité. Cliquez sur Continuer pour rester connecté.",
+    "youareabouttobesignedout":"Expiration de la session",
+    "forsecurityreasons":"Votre délai d'attente est dépassé en raison de votre inactivité. Veuillez choisir de rester connecté ou de vous déconnecter. Sinon, vous serez automatiquement déconnecté.",
     "signedmeout":"Se déconnecter",
-    "continue":"Continuer",
+    "continue":"Rester connecté",
     "otherservices":"Autres services",
     "invalidIdentificationnumber":"Numéro d'identification invalide"
     

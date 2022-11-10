@@ -263,7 +263,7 @@ fecthData();
                       {details.operationDate}
                     </TableCell>
                     <TableCell align="center"> {(details.amount * -1).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</TableCell>
-                    <TableCell align="center">{details.description}</TableCell>
+                    <TableCell align="center">{details.responseDescription}</TableCell>
                     <TableCell align="center">
                     <ReactToPrint
                 trigger={()=>{
@@ -316,7 +316,7 @@ fecthData();
                       {details.operationDate}
                     </TableCell>
                     <TableCell align="center"> {(details.amount * -1).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</TableCell>
-                    <TableCell align="center">{details.description}</TableCell>
+                    <TableCell align="center">{details.responseDescription}</TableCell>
                     <TableCell align="center">
                 <ReactToPrint
                 trigger={()=>{

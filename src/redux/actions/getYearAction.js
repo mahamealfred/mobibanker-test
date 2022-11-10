@@ -9,10 +9,12 @@ import {
 export const getYearAction = (history) => async (dispatch) => {
   try {
     dispatch(getYearRequest());
-    const Url ='https://agentweb.mobicash.rw/api/agent/utilities/cbhi/rest/v.4.14.01/year-of-collection'
+    const Url ='https://agentapi.mobicash.rw/api/agent/utilities/cbhi/rest/v.4.14.01/year-of-collection'
    const res = await axios.get(Url);
-    const {data} = await res;
-    dispatch(getYearSuccess(data));
+ if(res.data.responseCode===100){
+  dispatch(getYearSuccess(res.data.data));
+ }
+
    
   } catch (err) {
     if (err.response) {

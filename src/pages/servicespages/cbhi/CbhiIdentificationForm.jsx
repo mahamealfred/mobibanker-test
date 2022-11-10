@@ -109,25 +109,31 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
   }
  
   }, []);
-
+useEffect(()=>{
+  async function fetchData() {
+    await dispatch(getYearAction());
+  }
+  fetchData()
+},[])
   useEffect(() => {
     async function fetchData() {
-      await dispatch(getYearAction());
+   
       if (!getYear.loading) {
-        if (getYear.years.return) {
-          setYears(getYear.years.return);
+         if (getYear.years.length>0) {
+        
+          setYears(getYear.years);
         }
       }
        if(!getCbhiNidDetails.loading){
         if(getCbhiNidDetails.details.length!==0){
-          if (getCbhiNidDetails.details.responsecode === 200) {
-            await setMembers(getCbhiNidDetails.details.response.members);
-            setHouseHoldNID(getCbhiNidDetails.details.response.headId)
-            setPayerName(getCbhiNidDetails.details.response.headHouseHoldNames)
-            seHouseHoldCategory(getCbhiNidDetails.details.response.houseHoldCategory)
-            setHouseholdMemberNumber(getCbhiNidDetails.details.response.totalHouseHoldMembers)
-            setTotalPremium(getCbhiNidDetails.details.response.totalAmount)
-            setAmountPaidBefore(getCbhiNidDetails.details.response.totalPaidAmount)
+          if (getCbhiNidDetails.details.responsecode === 100) {
+            await setMembers(getCbhiNidDetails.details.data.members);
+            setHouseHoldNID(getCbhiNidDetails.details.data.headId)
+            setPayerName(getCbhiNidDetails.details.data.headHouseHoldNames)
+            seHouseHoldCategory(getCbhiNidDetails.details.data.houseHoldCategory)
+            setHouseholdMemberNumber(getCbhiNidDetails.details.data.totalHouseHoldMembers)
+            setTotalPremium(getCbhiNidDetails.details.data.totalAmount)
+            setAmountPaidBefore(getCbhiNidDetails.details.data.totalPaidAmount)
             handleNext();
            } else {
              return null;
@@ -139,7 +145,7 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
        }
   }
     fetchData();
-  }, [!getYear.years.return,getCbhiNidDetails.details,getCbhiNidDetails.error]); 
+  }, [getYear.years,getCbhiNidDetails.details,getCbhiNidDetails.error]); 
   useEffect(()=>{
     async function fetchData(){
      if (!cbhiPayment.loading) {

@@ -24,8 +24,9 @@ export const transactionsAction = (username,password) => async (dispatch) => {
   }
    });
     const {data} = await res;
+    console.log("transaction data...",data)
       if(res.data.responseCode===200){
-        dispatch(transactionsSuccess(data.transactions));
+        dispatch(transactionsSuccess(data.responseDescription));
       }   
   } catch (err) {
     if (err.response) {

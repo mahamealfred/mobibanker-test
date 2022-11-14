@@ -16,8 +16,8 @@ export const getDocDetailsAction = (details,history) => async (dispatch) => {
 // const res = await axios.post(Url,{
 // details
 // });
-   const res = await axios.post(Url,{
-    rra_doc_id_ref:docId,
+   const res = await axios.get(Url,{
+   params:{ rra_doc_id_ref:docId },
    }, {
     withCredentials: true,
     headers:{
@@ -25,13 +25,16 @@ export const getDocDetailsAction = (details,history) => async (dispatch) => {
     "Content-Type": "application/json",
   },
    });
-    const data = await res.data;
-    if(data.responseCode===200){
-     await dispatch(getDocDetailsSuccess(data));
+    
+    if(res.data.responseCode===100){
+     await dispatch(getDocDetailsSuccess(res.data));
     }
+    if(res.data.responseCode===105){
+      await dispatch(getDocDetailsFailure(res.data.codeDescription));
+     }
   } catch (err) {
     if (err.response) {
-      const errorMessage = await err.response.data.responseDescription;
+      const errorMessage = "Something went wrong, Please try again later."
       dispatch(getDocDetailsFailure(errorMessage));
     } else {
       dispatch(getDocDetailsFailure("Network  Error"));

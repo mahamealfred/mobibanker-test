@@ -13,8 +13,11 @@ export const getLtssIdDetailsAction = (details,history) => async (dispatch) => {
     const identificationId=details.identificationId
     const Url ='https://agentapi.mobicash.rw/api/agent/goverment-services/ltss/rest/v.4.14.01/identification-validation'
 
-   const res = await axios.post(Url,{
-    identification:identificationId
+   const res = await axios.get(Url,{
+    params:{
+      identification:identificationId
+    }
+ 
     
    }, {
     withCredentials: true,
@@ -23,14 +26,14 @@ export const getLtssIdDetailsAction = (details,history) => async (dispatch) => {
     "Content-Type": "application/json",
   },
    });
-    const data = await res.data;
-    if(data.responseCode===200){
-      dispatch(getLtssIdDetailsSuccess(data));
+ 
+    if(res.data.responseCode===100){
+      dispatch(getLtssIdDetailsSuccess(res.data));
     }
-    if(data.responseCode===400){
-        dispatch(getLtssIdDetailsFailure(data.identification));
+    if(res.data.responseCode===400){
+        dispatch(getLtssIdDetailsFailure(res.data.identification));
       }
-      if(data.responseCode===500){
+      if(res.data.responseCode===500){
         dispatch(getLtssIdDetailsFailure("Service is not Available"));
       }
   

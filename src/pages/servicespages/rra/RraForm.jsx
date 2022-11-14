@@ -162,18 +162,18 @@ const RraForm = ({openRRA,setOpenRRA}) => {
    async function fetchData() {
      if (!getDocDetails.loading) {
        if (getDocDetails.details.length !== 0) {
-         if (getDocDetails.details.responseCode === 200) {
-           setBankName(getDocDetails.details.bank_name);
-           setRraRef(getDocDetails.details.RRA_REF);
-           setTin(getDocDetails.details.TIN);
-           setTaxPayerName(getDocDetails.details.TAX_PAYER_NAME);
-           setTaxTypeDesc(getDocDetails.details.TAX_TYPE_DESC);
-           setTaxCenterNo(getDocDetails.details.TAX_CENTRE_NO);
-           setTaxTypeNo(getDocDetails.details.TAX_TYPE_NO);
-           setAssessNo(getDocDetails.details.ASSESS_NO);
-           setRraOrginNo(getDocDetails.details.RRA_ORIGIN_NO);
-           setAmountToPay(getDocDetails.details.AMOUNT_TO_PAY);
-           setDescId(getDocDetails.details.DEC_ID);
+         if (getDocDetails.details.responseCode === 100) {
+           setBankName(getDocDetails.details.data.bank_name);
+           setRraRef(getDocDetails.details.data.RRA_REF);
+           setTin(getDocDetails.details.data.TIN);
+           setTaxPayerName(getDocDetails.details.data.TAX_PAYER_NAME);
+           setTaxTypeDesc(getDocDetails.details.data.TAX_TYPE_DESC);
+           setTaxCenterNo(getDocDetails.details.data.TAX_CENTRE_NO);
+           setTaxTypeNo(getDocDetails.details.data.TAX_TYPE_NO);
+           setAssessNo(getDocDetails.details.data.ASSESS_NO);
+           setRraOrginNo(getDocDetails.details.data.RRA_ORIGIN_NO);
+           setAmountToPay(getDocDetails.details.data.AMOUNT_TO_PAY);
+           setDescId(getDocDetails.details.data.DEC_ID);
            handleNext();
          } else {
            return null;
@@ -193,11 +193,11 @@ const RraForm = ({openRRA,setOpenRRA}) => {
 async function fetchData(){
  if (!rraPayment.loading) {
    if (rraPayment.details.length !== 0) {
-     if (rraPayment.details.responseCode === 200) {
-      setTransactionId(rraPayment.details.mobicashTransctionNo)
-      setDateTime(rraPayment.details.date)
-      setTransactionStatus("success")
-      setClientCharges(rraPayment.details.fees)
+     if (rraPayment.details.responseCode === 100) {
+       setTransactionId(rraPayment.details.data.mobicashTransctionNo)
+       setDateTime(rraPayment.details.data.date)
+       setTransactionStatus(rraPayment.details.communicationStatus)
+     // setClientCharges(rraPayment.details.data.transaction fees)
        handleNext();
      } else {
        return null;

@@ -35,23 +35,26 @@ export const loginAction = (user,history) => async (dispatch) => {
     password
   }
    });
-    const {data} = await res;
+
     const jwt_secret="tokensecret"
-    if(res.data.code===200){
-      const userId=res.data.id
-      const name=res.data.display
-      const role=res.data.brokering
-      const group=res.data.group
+    if(res.data.responseCode===100){
+      const userId=res.data.data.id
+      const name=res.data.data.names
+      const role=res.data.data.brokering
+      const group=res.data.data.group
       const claims={userId,name,role,username,group,password,basicAuth}
       const token= jwt.sign(claims,jwt_secret, { expiresIn: "7d"});
-      dispatch(loginSuccess(data));
+      dispatch(loginSuccess(res.data));
        history.push('/dashboard',{push:true})
       sessionStorage.setItem('mobicash-auth',token)
       return localStorage.setItem('mobicashAuth',token);
     }
+    if(res.data.responseCode===103 || res.data.responseCode===102){
+      dispatch(loginFailure(res.data.codeDescription));
+    }
   } catch (err) {
     if (err.response) {
-     const errorMessage = await err.response.data.responseMessage;
+     const errorMessage = "Something went wrong,Please try again later.";
       dispatch(loginFailure(errorMessage));
    
     } else {

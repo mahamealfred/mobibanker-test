@@ -126,7 +126,7 @@ useEffect(()=>{
       }
        if(!getCbhiNidDetails.loading){
         if(getCbhiNidDetails.details.length!==0){
-          if (getCbhiNidDetails.details.responsecode === 100) {
+          if (getCbhiNidDetails.details.responseCode === 100) {
             await setMembers(getCbhiNidDetails.details.data.members);
             setHouseHoldNID(getCbhiNidDetails.details.data.headId)
             setPayerName(getCbhiNidDetails.details.data.headHouseHoldNames)
@@ -150,10 +150,11 @@ useEffect(()=>{
     async function fetchData(){
      if (!cbhiPayment.loading) {
        if (cbhiPayment.details.length !== 0) {
-         if (cbhiPayment.details.responseCode === 200) {
-          setTransactionId(cbhiPayment.details.transfersId)
-          setDateTime(cbhiPayment.details.date)
-          setTransactionStatus(cbhiPayment.details.status)
+         if (cbhiPayment.details.responseCode === 100) {
+          setTransactionId(cbhiPayment.details.data.transactionNumber)
+          setDateTime(cbhiPayment.details.data.date)
+          //amount
+          setTransactionStatus(cbhiPayment.details.communicationStatus)
            handleNext();
          } else {
            return null;

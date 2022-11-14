@@ -18,7 +18,7 @@ export const getYearAction = (history) => async (dispatch) => {
    
   } catch (err) {
     if (err.response) {
-      const errorMessage = await err.response.data.message;
+      const errorMessage = "Something went worng, Please try again later"
       dispatch(getYearFailure(errorMessage));
     } else {
       dispatch(getYearFailure("Network  Error"));

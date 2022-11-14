@@ -188,7 +188,6 @@ setOpenModal(false)
      return payload;
   }
   useEffect(() => {
-    
     const token =localStorage.getItem('mobicashAuth');
     if (token) {
     const {name}=decode(token);

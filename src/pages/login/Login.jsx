@@ -115,7 +115,7 @@ const SignIn = () => {
                      }
                      sx={{ mb: 0.2 }}
                    >
-                    {login.error==="login"?`${t("login:invalidusernameandpassword")}`:`${t("login:blockedmessage")}`}
+                    {login.error==="Password is temporarily blocked"?`${t("login:blockedmessage")}`:`${t("login:invalidusernameandpassword")}`}
                    </Alert>
                  </Collapse>
                 }    

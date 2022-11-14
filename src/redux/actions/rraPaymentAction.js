@@ -57,14 +57,17 @@ export const rraPayamentAction = (details,username,password,history) => async (d
     password
   }
    });
-    const {data} = await res;
-      if(res.data.responseCode===200){
-       await dispatch(rraPaymentSuccess(data));
+   
+      if(res.data.responseCode===100){
+       await dispatch(rraPaymentSuccess(res.data));
       }
-      
+      if(res.data.responseCode===105 || res.data.responseCode===107){
+        await dispatch(rraPaymentFailure(res.data.codeDescription));
+       }
+   
   } catch (err) {
     if (err.response) {
-       let errorMessage = 'Invalid Crendentials'
+       let errorMessage = 'Something went wrong, Please try again.'
         dispatch(rraPaymentFailure(errorMessage)); 
     } else {
       dispatch(rraPaymentFailure("Network Error"));

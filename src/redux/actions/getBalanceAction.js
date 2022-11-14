@@ -27,24 +27,19 @@ export const getBalanceAction = (user) => async (dispatch) => {
     password
   }
    });
-    const {data} = await res;
       //const token= jwt.sign(claims,jwt_secret, { expiresIn: "7d"});
-      if(res.data.code===200){
-        dispatch(getBalanceSuccess(data));
-       // console.log("results .. balance:",data)
-        // history.push('/dashboard',{push:true})
+      if(res.data.responseCode===100){
+        dispatch(getBalanceSuccess(res.data));
       }
   } catch (err) {
     if (err.response) {
-      const errorMessage = await err.response.data.responseMessage;
-     // const errorMessage = 'Invalid Username or Pin'
+      const errorMessage = "Something went wrong, Please try again later";
       dispatch(getBalanceFailure(errorMessage));
     } else {
       dispatch(getBalanceFailure("Network Error"));
     }
   }
 };
-
 export const getBalanceRequest = () => {
   return {
     type: GET_BALANCE_REQUEST,

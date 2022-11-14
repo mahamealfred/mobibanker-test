@@ -48,18 +48,15 @@ export const cbhiPayamentAction = (details,username,password,history) => async (
     password
   }
    });
-    const {data} = await res;
-      if(res.data.responseCode===200){
-       await dispatch(cbhiPaymentSuccess(data));
+
+      if(res.data.responseCode===100){
+       await dispatch(cbhiPaymentSuccess(res.data));
       }
-      if(res.data.responseCode===400){
-        let errorMessage = 'Invalid Credential, Please provide valid Pin'
-          dispatch(cbhiPaymentFailure(errorMessage)); 
-      }
+    
       
   } catch (err) {
     if (err.response) {
-       let errorMessage = 'Invalid Crendentials'
+       let errorMessage = 'Some ting went wrong, Please try again later'
         dispatch(cbhiPaymentFailure(errorMessage)); 
     } else {
       dispatch(cbhiPaymentFailure("Network Error"));

@@ -262,7 +262,8 @@ fecthData();
                     <TableCell component="th" scope="row">
                       {details.operationDate}
                     </TableCell>
-                    <TableCell align="center"> {(details.amount * -1).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</TableCell>
+                    {/* <TableCell align="center"> {(details.amount * -1).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</TableCell> */}
+                    <TableCell align="center"> {(details.amount * -1)}</TableCell>
                     <TableCell align="center">{details.responseDescription}</TableCell>
                     <TableCell align="center">
                     <ReactToPrint
@@ -315,7 +316,8 @@ fecthData();
                     <TableCell component="th" scope="row">
                       {details.operationDate}
                     </TableCell>
-                    <TableCell align="center"> {(details.amount * -1).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</TableCell>
+                    {/* <TableCell align="center"> {(details.amount * -1).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</TableCell> */}
+                    <TableCell align="center"> {(details.amount * -1)}</TableCell>
                     <TableCell align="center">{details.responseDescription}</TableCell>
                     <TableCell align="center">
                 <ReactToPrint

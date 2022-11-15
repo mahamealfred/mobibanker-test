@@ -40,14 +40,14 @@ export const ltssPaymentAction = (details,username,password) => async (dispatch)
     password
   }
    });
-    const {data} = await res;
-      if(res.data.responseCode===200){
-       await dispatch(ltssPaymentSuccess(data));
+
+      if(res.data.responseCode===100){
+       await dispatch(ltssPaymentSuccess(res.data));
       }
       
   } catch (err) {
     if (err.response) {
-       let errorMessage = 'Invalid Crendentials'
+       let errorMessage = 'Something went wrong, Please try again later'
         dispatch(ltssPaymentFailure(errorMessage)); 
     } else {
       dispatch(ltssPaymentFailure("Network Error"));

@@ -197,7 +197,7 @@ async function fetchData(){
        setTransactionId(rraPayment.details.data.mobicashTransctionNo)
        setDateTime(rraPayment.details.data.date)
        setTransactionStatus(rraPayment.details.communicationStatus)
-     // setClientCharges(rraPayment.details.data.transaction fees)
+       setClientCharges(rraPayment.details.data.transaction_fees)
        handleNext();
      } else {
        return null;

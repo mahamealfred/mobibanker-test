@@ -14,8 +14,8 @@ export const getRnitDetailsAction = (identityNumber) => async (dispatch) => {
     //const encodedBase64Token = Buffer.from(`${username}:${password}`).toString('base64');
    // let basicAuth='Basic ' + btoa(username + ':' + password);
     const Url='https://agentapi.mobicash.rw/api/agent/goverment-services/rnit/rest/v.4.14.01/identification-validation';
-   const res = await axios.post(Url,{
-    identification:identityNumber
+   const res = await axios.get(Url,{
+   params:{identification:identityNumber}
    }, {
     // withCredentials: true,
     headers:{
@@ -24,23 +24,19 @@ export const getRnitDetailsAction = (identityNumber) => async (dispatch) => {
   //'Authorization': + basicAuth,
  }
    });
-    const {data} = await res;
-      if(res.data.responseCode===200){
-        dispatch(getRnitDetailsSuccess(data));
+  
+      if(res.data.responseCode===100){
+        dispatch(getRnitDetailsSuccess(res.data));
       }  
-      if(res.data.responseCode===400){
-        let errorMessage = ''
-        errorMessage="Invalid Identification number"
-       // errorMessage=await err.response.data.message
+      if(res.data.responseCode===105){
+        let errorMessage = res.data.codeDescription
         dispatch(getRnitDetailsFailure(errorMessage));
       }  
    
   } catch (err) {
     if (err.response) {
-      //const errorMessage = await err.response.data.responseMessage;
       let errorMessage = ''
         errorMessage="Something went wrong, Please try again later."
-       // errorMessage=await err.response.data.message
         dispatch(getRnitDetailsFailure(errorMessage));
       
     } else {

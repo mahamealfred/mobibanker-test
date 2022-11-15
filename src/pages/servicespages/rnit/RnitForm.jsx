@@ -153,9 +153,9 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
     async function fetchData() {
       if (!getRnitDetails.loading) {
         if (getRnitDetails.details.length !== 0) {
-          if (getRnitDetails.details.responseCode === 200) {
-            setPayerName(getRnitDetails.details.Response.fullName)
-            setPayerNid(getRnitDetails.details.Response.nid)
+          if (getRnitDetails.details.responseCode === 100) {
+            setPayerName(getRnitDetails.details.data.fullName)
+            setPayerNid(getRnitDetails.details.data.nid)
             handleNext();
           } else {
             return null;
@@ -173,10 +173,10 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
     async function fetchData(){
      if (!rnitPayment.loading) {
        if (rnitPayment.details.length !== 0) {
-         if (rnitPayment.details.responseCode === 200) {
-          setTransactionId(rnitPayment.details.mobicashTransctionNo)
-          setDateTime(rnitPayment.details.date)
-          setTransactionStatus(rnitPayment.details.status)
+         if (rnitPayment.details.responseCode === 100) {
+          setTransactionId(rnitPayment.details.data.mobicashTransctionNo)
+          setDateTime(rnitPayment.details.data.date)
+          setTransactionStatus(rnitPayment.details.communicationStatus)
           handleNext();
          } else {
            return null;

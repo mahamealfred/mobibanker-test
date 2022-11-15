@@ -6,10 +6,7 @@ import {
   } from "../types/loginType";
 
 import jwt from "jsonwebtoken";
-//   import dotenv from "dotenv";
-//   dotenv.config();
-require('dotenv').config();
-// const  {REACT_APP_BASE_URL} = process.env
+
 
 export const loginAction = (user,history) => async (dispatch) => {
  

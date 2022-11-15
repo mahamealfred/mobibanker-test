@@ -1,8 +1,8 @@
-import React from "react";
+import React ,{lazy} from "react";
 import { useRouteMatch, Route,Switch } from "react-router-dom";
 import Login from "../views/Login";
 import LoginPrivateRoute from "./LoginPrivateRoutes"
-import Banner from "../components/banner";
+const Banner=lazy(()=>import("../components/banner"))
 function App() {
   const {path}=useRouteMatch();
     return (

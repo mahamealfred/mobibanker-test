@@ -327,7 +327,7 @@ fecthData();
                     await setId(details.id);
                     await setAmount(details.amount)
                     await setDate(details.operationDate)
-                    await setDescription(details.description)
+                    await setDescription(details.responseDescription)
                   await handlePrint()
                   }
                   }

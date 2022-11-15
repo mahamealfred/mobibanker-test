@@ -127,8 +127,8 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 				<div className="grandtotal_sec">
 			        <p className="bold">
 			            <span>AMOUNT </span>
-               
-			            <span>{props.formData.amountPaid.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf</span>
+			            {/* <span>{props.formData.amountPaid.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf</span> */}
+						<span>{props.formData.amountPaid} Rwf</span>
                        
 			        </p>
 			        <p>

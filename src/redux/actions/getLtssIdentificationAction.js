@@ -30,13 +30,9 @@ export const getLtssIdDetailsAction = (details,history) => async (dispatch) => {
     if(res.data.responseCode===100){
       dispatch(getLtssIdDetailsSuccess(res.data));
     }
-    if(res.data.responseCode===400){
-        dispatch(getLtssIdDetailsFailure(res.data.identification));
+    if(res.data.responseCode===104){
+        dispatch(getLtssIdDetailsFailure(res.data.codeDescription));
       }
-      if(res.data.responseCode===500){
-        dispatch(getLtssIdDetailsFailure("Service is not Available"));
-      }
-  
   } catch (err) {
     if (err.response) {
       let errorMessage="Something went wrong, Please try again later."

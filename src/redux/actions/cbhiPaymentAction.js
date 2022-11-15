@@ -52,11 +52,9 @@ export const cbhiPayamentAction = (details,username,password,history) => async (
       if(res.data.responseCode===100){
        await dispatch(cbhiPaymentSuccess(res.data));
       }
-    
-      
   } catch (err) {
     if (err.response) {
-       let errorMessage = 'Some ting went wrong, Please try again later'
+       let errorMessage = 'Something went wrong, Please try again later'
         dispatch(cbhiPaymentFailure(errorMessage)); 
     } else {
       dispatch(cbhiPaymentFailure("Network Error"));

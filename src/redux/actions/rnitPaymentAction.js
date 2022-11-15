@@ -24,7 +24,8 @@ export const rnitPaymentAction = (details,username,password,history) => async (d
     let basicAuth='Basic ' + btoa(username + ':' + password);
     const Url='https://agentapi.mobicash.rw/api/agent/goverment-services/rnit/rest/v.4.14.01/payment';
     const res = await axios.post(Url,{
-        nid:payerNid.replaceAll(/\s/g, ''),
+        // nid:payerNid.replaceAll(/\s/g, ''),
+        nid:payerNid.join(""),
         amount:amountToPay,
         bankAccount:bankAccount,
         payerName:payerName,
@@ -45,19 +46,19 @@ export const rnitPaymentAction = (details,username,password,history) => async (d
     password
   }
    });
-    const {data} = await res;
-      if(res.data.responseCode===200){
-       await dispatch(rnitPaymentSuccess(data));
+   
+      if(res.data.responseCode===100){
+       await dispatch(rnitPaymentSuccess(res.data));
       }
-      if(res.data.responseCode===400){
-        let errorMessage = 'Invalid Credential, Please provide valid Pin'
+      if(res.data.responseCode===105){
+        let errorMessage = res.data.codeDescription
           dispatch(rnitPaymentFailure(errorMessage)); 
       }
       
       
   } catch (err) {
     if (err.response) {
-       let errorMessage = 'Invalid Crendentials'
+       let errorMessage = 'Something went wrong, Please try again later.'
         dispatch(rnitPaymentFailure(errorMessage)); 
     } else {
       dispatch(rnitPaymentFailure("Network Error"));

@@ -88,7 +88,7 @@ const user = {
      
       if (!balance.loading) {
         if (balance.details){
-          setBalanceDetails(balance.details.balance)
+          setBalanceDetails(balance.details.data)
         }
       }
     }
@@ -158,12 +158,12 @@ const user = {
         >
       {t("common:balance")}
         </Typography>
-        {balance.loading ? (null ) : balance.details.balance ? (
+        {balance.loading ? (null ) : balance.details.data ? (
         <Typography
           color="textSecondary"
           variant="body2"
         >
-     {balance.details.balance[2].details.availableBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} RWF
+     {balance.details.data[2].details.availableBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} RWF
         </Typography>
            ):"No data"
           }
@@ -217,12 +217,12 @@ const user = {
         >
       {t("common:commission")}
         </Typography>
-        {balance.loading ? (null ) : balance.details.balance ? (
+        {balance.loading ? (null ) : balance.details.data ? (
         <Typography
           color="textSecondary"
           variant="body2"
         >
-       {balance.details.balance[3].details.availableBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}  RWF
+       {balance.details.data[3].details.availableBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}  RWF
         </Typography>
         ):"No data"
       }
@@ -246,11 +246,7 @@ const user = {
     </CardActions>
   </Card>
             </Grid>
-        
-         
         </Grid>
-     
-       
       </Container>
     </Box>
     

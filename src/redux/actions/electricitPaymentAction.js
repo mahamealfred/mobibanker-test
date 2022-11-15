@@ -38,16 +38,12 @@ export const electricityPayamentAction = (details,username,password) => async (d
     password
   }
    });
-    const {data} = await res;
-      if(res.data.responseCode===200){
-       await dispatch(electricityPaymentSuccess(data));
-      }
-  
-      
+      if(res.data.responseCode===100){
+       await dispatch(electricityPaymentSuccess(res.data));
+      }   
   } catch (err) {
     if (err.response) {
-       // const errorMessage = await err.response;
-       let errorMessage = 'Invalid Crendentials'
+       let errorMessage = 'Something went wrong,Please try again later'
         dispatch(electricityPaymentFailure(errorMessage)); 
     } else {
       dispatch(electricityPaymentFailure("Network Error"));

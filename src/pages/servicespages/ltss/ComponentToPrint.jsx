@@ -10,7 +10,7 @@ import Grid from '@mui/material/Grid';
 import moment from 'moment';
 import { Paper } from '@mui/material';
 import "../../../style.css"
-
+import QRCode from "react-qr-code";
 export const ComponentToPrint = React.forwardRef((props, ref) => {
            
     return (
@@ -34,7 +34,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 					</p>
 					<p className="date">
 						<span className="bold">Date</span>
-						<span>08/Jan/2022</span>
+						<span>{moment(props.dateTime).format("llll")}</span>
 					</p>
 				</div>
 			</div>
@@ -59,7 +59,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 				<div className="table_header">
 					<div className="row">
 						<div className="col col_no">NO.</div>
-						<div className="col col_des">DESCRIPTION</div>
+						<div className="col col_des"></div>
 						{/* <div className="col col_price">PRICE</div>
 						<div className="col col_qty">QTY</div> */}
 						<div className="col col_total">DETAILS</div>
@@ -81,7 +81,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 							<p>2</p>
 						</div> */}
 						<div className="col col_total">
-							<p>INGABIRE Chance </p>
+							<p>{props.payerName}</p>
 						</div>
 					</div>
 					<div className="row">
@@ -99,7 +99,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 							<p>2</p>
 						</div> */}
 						<div className="col col_total">
-							<p>1196270093420007</p>
+							<p>{props.formData.nId}</p>
 						</div>
 					</div>
 					<div className="row">
@@ -117,30 +117,13 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 							<p>1</p>
 						</div> */}
 						<div className="col col_total">
-							<p>M223322</p>
+							<p>{props.transactionId}</p>
 						</div>
 					</div>
+					
 					<div className="row">
 						<div className="col col_no">
 							<p>04</p>
-						</div>
-						<div className="col col_des">
-							<p className="bold">Charge Fees</p>
-							{/* <p>Lorem ipsum dolor sit.</p> */}
-						</div>
-						{/* <div className="col col_price">
-							<p>$350</p>
-						</div>
-						<div className="col col_qty">
-							<p>2</p>
-						</div> */}
-						<div className="col col_total">
-							<p>25</p>
-						</div>
-					</div>
-					<div className="row">
-						<div className="col col_no">
-							<p>05</p>
 						</div>
 						<div className="col col_des">
 							<p className="bold">Description</p>
@@ -178,11 +161,20 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 			        </p> */}
 			       	<p className="bold">
 			            <span>Grand Total</span>
-			            <span>7,000.0 Rwf</span>
+			            {/* <span>{props.amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf</span> */}
+						<span>{props.amount} Rwf</span>
 			        </p>
 				</div>
 			</div>
 		</div>
+		<div style={{ height: "auto", margin: "0 auto", maxWidth: 64, width: "100%" }}>
+    <QRCode
+    size={256}
+    style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+    value={props.transactionId}
+    viewBox={`0 0 256 256`}
+    />
+   </div>
 		<div className="footer">
 			<p>Thank you and Best Wishes</p>
 			{/* <div className="terms">

@@ -39,7 +39,7 @@ export const getCbhiNidDetailsAction = (details,history) => async (dispatch) => 
     if (err.response) {
   
    let errorMessage = ''
-       errorMessage="Some thing went wrong,Please try again later."
+       errorMessage="Something went wrong,Please try again later."
        // errorMessage=await err.response.data.message
         dispatch(getCbhiNidDetailsFailure(errorMessage));
       

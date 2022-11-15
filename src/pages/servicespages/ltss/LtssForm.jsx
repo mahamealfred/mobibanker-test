@@ -75,6 +75,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
  const [dateTime,setDateTime]=useState("")
  const [agentName,setAgentName]=useState("")
  const [brokering,setBrokering]=useState("")
+ const [amount,setAmount]=useState("");
   const getStepContent = (step) => {
     switch (step) {
       case 0:
@@ -144,9 +145,9 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
     async function fetchData() {
       if (!getLtssIndDetails.loading) {
         if (getLtssIndDetails.details.length !== 0) {
-          if (getLtssIndDetails.details.responseCode === 200) {
-           setIdentification(getLtssIndDetails.details.identification)
-           setPayerName(getLtssIndDetails.details.name)
+          if (getLtssIndDetails.details.responseCode === 100) {
+           setIdentification(getLtssIndDetails.details.data.identification)
+           setPayerName(getLtssIndDetails.details.data.names)
             handleNext();
           } else {
             return null;
@@ -166,10 +167,11 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
     async function fetchData(){
      if (!ltssPayment.loading) {
        if (ltssPayment.details.length !== 0) {
-         if (ltssPayment.details.responseCode === 200) {
-          setTransactionId(ltssPayment.details.mobicashTransctionNo)
-          setDateTime(ltssPayment.details.date)
-          setTransactionStatus(ltssPayment.details.status)
+         if (ltssPayment.details.responseCode === 100) {
+          setTransactionId(ltssPayment.details.data.mobicashTransctionNo)
+          setDateTime(ltssPayment.details.responseDate)
+          setTransactionStatus(ltssPayment.details.communicationStatus)
+          setAmount(ltssPayment.details.data.amountPaid)
            handleNext();
          } else {
            return null;
@@ -382,7 +384,13 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
                <Box sx={{display:'none'}}>
                <ComponentToPrint 
                ref={componentRef} 
-            
+               formData={formData}
+               dateTime={dateTime}
+               transactionId={transactionId}
+               transactionStatus={transactionStatus}
+               payerName={payerName}
+               agentName={agentName}
+               amount={amount}
                />
                </Box>
                 </>

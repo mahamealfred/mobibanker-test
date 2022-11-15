@@ -17,8 +17,8 @@ export const getElectricityDetailsAction = (details) => async (dispatch) => {
 // const res = await axios.post(Url,{
 // details
 // });
-   const res = await axios.post(Url,{
-    meterNumber:meter,
+   const res = await axios.get(Url,{
+   params:{ meterNumber:meter},
    }, {
     withCredentials: true,
     headers:{
@@ -26,15 +26,16 @@ export const getElectricityDetailsAction = (details) => async (dispatch) => {
     "Content-Type": "application/json",
   },
    });
-    const {data} = await res;
-    if(data.responseCode===200){
-     await dispatch(getElectricityDetailsSuccess(data));
-      
-    }
   
+    if(res.data.responseCode===100){
+     await dispatch(getElectricityDetailsSuccess(res.data)); 
+    }
+    if(res.data.responseCode===104){
+      await dispatch(getElectricityDetailsSuccess(res.data.codeDescription)); 
+     }
   } catch (err) {
     if (err.response) {
-      const errorMessage = "Invalid Meter number";
+      const errorMessage = "Something went wrong, Please try again later.";
       dispatch(getElectricityDetailsFailure(errorMessage));
     } else {
       dispatch(getElectricityDetailsFailure("Network  Error"));

@@ -175,8 +175,8 @@ const EleCtricityForm = ({openELECTRICITY,setOpenELECTRICITY}) => {
    async function fetchData() {
      if (!getElectricityDetails.loading) {
        if (getElectricityDetails.details.length !== 0) {
-         if (getElectricityDetails.details.responseCode === 200) {
-          setPayerName(getElectricityDetails.details.consumer.customerName)
+         if (getElectricityDetails.details.responseCode === 100) {
+          setPayerName(getElectricityDetails.details.data.customerName)
            handleNext();
          } else {
            return null;
@@ -196,15 +196,13 @@ const EleCtricityForm = ({openELECTRICITY,setOpenELECTRICITY}) => {
 async function fetchData(){
  if (!electricityPayment.loading) {
    if (electricityPayment.details.length !== 0) {
-     if (electricityPayment.details.responseCode === 200) {
-    
-      setTransactionId(electricityPayment.details.mobicashref)
-      setDateTime(electricityPayment.details.date)
-      setTransactionStatus("success")
-      setTokenValue(electricityPayment.details.response.token)
-      setMeter(electricityPayment.details.response.meterNo)
-      setAmountPaid(electricityPayment.details.response.amountPaid)
- 
+     if (electricityPayment.details.responseCode === 100) {
+      setTransactionId(electricityPayment.details.data.mobicashTransctionNo)
+      setDateTime(electricityPayment.details.data.date)
+      setTransactionStatus(electricityPayment.details.communicationStatus)
+      setTokenValue(electricityPayment.details.data.token)
+      setMeter(electricityPayment.details.data.meterNo)
+      setAmountPaid(electricityPayment.details.data.amountPaid)
        handleNext();
      } else {
        return null;
@@ -240,15 +238,9 @@ fetchData();
     else if(!Number(formData.amountToPay)){
         setAmountTopayError(`${t("common:amounttopayisrequired")}`)
     }
-    else if(formData.amountToPay < 100 || formData.amountToPay>1000000){
+    else if(formData.amountToPay < 100 || formData.amountToPay>10000000){
         setAmountTopayError(`${t("electricity:theminimumamountis100andthemaximunis1,000,000")}`)  
     }
-  //   else if(formData.taxIdentificationNumber==""){
-  // // setTaxIdentificationNumberError(`${t("electricity:customeridentificationnumberisrequired")}`)
-  //   }
-  //   else if(!Number(formData.taxIdentificationNumber)){
-  //       setTaxIdentificationNumberError(`${t("electricity:identificationnumbermustbeanumber")}`)
-  //   }
    else if (formData.phoneNumber === "") {
      setPhoneNumberError(`${t("common:phoneisrequired")}`);
    } else if (!Number(formData.phoneNumber)) {

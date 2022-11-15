@@ -38,8 +38,8 @@ export default function Review({
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary={t("common:amountpaid")}  />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-          {/* {formData.amountPaid.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf */}
-          {formData.amountPaid} Rwf
+          {formData.amountPaid.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf
+     
           </Typography>
         </ListItem>
         <ListItem sx={{ py: 1, px: 0 }}>
@@ -51,18 +51,11 @@ export default function Review({
       </List>
       <Grid container spacing={2}>
         <Grid item container direction="column" xs={12} sm={6}>
-          {/* <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-          {t("common:paymentdetails")} 
-          </Typography> */}
+       
           <Grid container>
        
               <React.Fragment >
-                {/* <Grid item xs={6}>
-                  <Typography gutterBottom>{t("common:description")} </Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>RSSB Mutuell</Typography>
-                </Grid> */}
+            
                 <Grid item xs={6}>
                   <Typography gutterBottom>{t("common:mobicashreference")}</Typography>
                 </Grid>

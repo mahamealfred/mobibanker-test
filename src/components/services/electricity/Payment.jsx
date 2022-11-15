@@ -50,9 +50,6 @@ const Payment=({
         </Collapse>
       )}
        
-      {/* <Typography variant="h6" textAlign="center" gutterBottom>
-     Payment  method
-      </Typography> */}
       <Grid container spacing={3}>
       <Grid item xs={12} md={4}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>

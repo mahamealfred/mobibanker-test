@@ -29,23 +29,19 @@ export default function Review({taxPayerName,amountToPay,transactionId,transacti
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary= {t("common:amountpaid")}  />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-          {/* {amountToPay.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf */}
-          {amountToPay} Rwf
+          {amountToPay.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf
           </Typography>
         </ListItem>
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary= {t("common:clientcharges")} />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-          {/* {clientCharges.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf */}
-          {clientCharges} Rwf
+          {clientCharges.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf
           </Typography>
         </ListItem>
       </List>
       <Grid container spacing={2}>
         <Grid item container direction="column" xs={12} sm={6}>
-          {/* <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-            Payment details
-          </Typography> */}
+       
           <Grid container>
        
               <React.Fragment >

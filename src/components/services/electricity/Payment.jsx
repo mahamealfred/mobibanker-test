@@ -51,23 +51,23 @@ const Payment=({
       )}
        
       <Grid container spacing={3}>
-      <Grid item xs={12} md={4}>
-                 <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
+      <Grid item xs={12} md={6}>
+                 <Typography variant="body2" mt={1} textAlign="center" sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
                  {t("common:payername")}
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-          {payerName}
+              {payerName}
               </Typography>
             </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={6}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
                  {t("electricity:meternumber")}
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-             {formData.meterNumber}
+              {formData.meterNumber}
               </Typography>
             </Grid>
-       
+
             <Grid item xs={12} md={6}>
           <TextField
             required

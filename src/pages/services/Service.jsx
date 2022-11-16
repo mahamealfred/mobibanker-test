@@ -421,13 +421,13 @@ export default function MediaCard() {
       
       
       <Grid
-            // container
-            // spacing={0}
-            // bgColor="transparent"
+           // container
+           // spacing={0}
+           //bgColor="transparent"
             // direction="row"
-            // justify="flex-start"
-            // alignItems="flex-start"
-            //  sx={{ maxWidth: "auto" }}
+            // justify="flex-end"
+            // alignItems="flex-end"
+           //  sx={{ maxWidth: "auto" }}
         >
             <Typography component="h1" variant="body1"
          fontWeight={800}

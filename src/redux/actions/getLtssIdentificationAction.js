@@ -17,8 +17,6 @@ export const getLtssIdDetailsAction = (details,history) => async (dispatch) => {
     params:{
       identification:identificationId
     }
- 
-    
    }, {
     withCredentials: true,
     headers:{
@@ -30,7 +28,7 @@ export const getLtssIdDetailsAction = (details,history) => async (dispatch) => {
     if(res.data.responseCode===100){
       dispatch(getLtssIdDetailsSuccess(res.data));
     }
-    if(res.data.responseCode===104){
+    if(res.data.responseCode===104 || res.data.responseCode===105){
         dispatch(getLtssIdDetailsFailure(res.data.codeDescription));
       }
   } catch (err) {

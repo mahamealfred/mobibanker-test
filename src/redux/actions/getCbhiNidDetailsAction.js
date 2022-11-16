@@ -31,7 +31,7 @@ export const getCbhiNidDetailsAction = (details,history) => async (dispatch) => 
       if(res.data.responseCode===100){
         dispatch(getCbhiNidDetailsSuccess(res.data));
       }  
-      else if(res.data.responseCode===104){
+      else if(res.data.responseCode===104 || res.data.responseCode===105){
         let errMsg=res.data.codeDescription
         dispatch(getCbhiNidDetailsFailure(errMsg));
       }

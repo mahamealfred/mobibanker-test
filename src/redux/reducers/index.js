@@ -1,12 +1,14 @@
 import { combineReducers } from "redux";
    import getYearReducer from "./getYearReducer";
    import loginReducer from "./loginReducer";
+   import forgotPasswordReducer from "./forgotPasswordReducer";
+   import resetPasswordReducer from "./resetPasswordReducer";
 
    //CBHI
 import getCbhiNidDetailsReducer from "./getCbhiNidDetailsReducer";
 import cbhiPayamentReducer from "./cbhiPaymentReducer";
 import changePasswordReducer from "./changePasswordReducer";
-// import forgotPasswordReducer from "./forgotPasswordReducer";
+
 
              //ELECTRICITY
 import electricityReducer from "./electricityReducer";
@@ -30,7 +32,8 @@ import getRnitDetailsReducer from "./getRnitIdentificationDetailsReducer";
 const allReducers = combineReducers({
      login:loginReducer,
      changePassword: changePasswordReducer,
-    // forgotPassword:forgotPasswordReducer,
+     forgotPassword:forgotPasswordReducer,
+     resetPassword:resetPasswordReducer,
 
     //all 
      balance:balanceReducer,

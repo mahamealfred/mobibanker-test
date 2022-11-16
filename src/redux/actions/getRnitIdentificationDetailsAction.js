@@ -28,7 +28,7 @@ export const getRnitDetailsAction = (identityNumber) => async (dispatch) => {
       if(res.data.responseCode===100){
         dispatch(getRnitDetailsSuccess(res.data));
       }  
-      if(res.data.responseCode===105){
+      if(res.data.responseCode===104||res.data.responseCode===105){
         let errorMessage = res.data.codeDescription
         dispatch(getRnitDetailsFailure(errorMessage));
       }  

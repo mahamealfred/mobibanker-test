@@ -32,15 +32,16 @@ export const changePasswordAction = (user,username) => async (dispatch) => {
     password:oldPassword
   }
    });
-    const {data} = await res;
-      if(res.data.responseCode===200){
-        dispatch(changePasswordSuccess(data));
+      if(res.data.responseCode===100){
+        dispatch(changePasswordSuccess(res.data));
+      }
+      if(res.data.responseCode===103 || res.data.responseCode===107 ){
+        dispatch(changePasswordFailure(res.data.codeDescription));
       }
       
   } catch (err) {
     if (err.response) {
-      const errorMessage = 'Please provide valid Pin'
-       // errorMessage=await err.response.data.message
+      const errorMessage = 'Something went wrong, Please try again later'
         dispatch(changePasswordFailure(errorMessage));
       
     } else {

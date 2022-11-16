@@ -44,6 +44,9 @@ export const ltssPaymentAction = (details,username,password) => async (dispatch)
       if(res.data.responseCode===100){
        await dispatch(ltssPaymentSuccess(res.data));
       }
+      if(res.data.responseCode===101 || res.data.responseCode===102 || res.data.responseCode===103 ||res.data.responseCode===105 || res.data.responseCode===106 || res.data.responseCode===107 ){
+        await dispatch(ltssPaymentFailure(res.data.codeDescription));
+       }
       
   } catch (err) {
     if (err.response) {

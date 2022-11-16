@@ -102,7 +102,7 @@ if(errorMessage==''){
       useEffect(()=>{
         function fecthData(){
      if(!changePassword.loading){
-      if(changePassword.details.responseCode===200){
+      if(changePassword.details.responseCode===100){
         setSuccessFullMessage("You have successfuly change your password")
         setOpenSuccess(true)
         handelClock(0,0,8)

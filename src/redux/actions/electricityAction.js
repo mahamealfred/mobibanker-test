@@ -30,8 +30,8 @@ export const getElectricityDetailsAction = (details) => async (dispatch) => {
     if(res.data.responseCode===100){
      await dispatch(getElectricityDetailsSuccess(res.data)); 
     }
-    if(res.data.responseCode===104){
-      await dispatch(getElectricityDetailsSuccess(res.data.codeDescription)); 
+    if(res.data.responseCode===104 || res.data.responseCode===105){
+      await dispatch(getElectricityDetailsFailure(res.data.codeDescription)); 
      }
   } catch (err) {
     if (err.response) {

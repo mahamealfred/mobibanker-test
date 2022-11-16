@@ -24,8 +24,8 @@ export const rnitPaymentAction = (details,username,password,history) => async (d
     let basicAuth='Basic ' + btoa(username + ':' + password);
     const Url='https://agentapi.mobicash.rw/api/agent/goverment-services/rnit/rest/v.4.14.01/payment';
     const res = await axios.post(Url,{
-        // nid:payerNid.replaceAll(/\s/g, ''),
-        nid:payerNid.join(""),
+         nid:payerNid.replaceAll(/\s/g, ''),
+       // nid:payerNid.join(""),
         amount:amountToPay,
         bankAccount:bankAccount,
         payerName:payerName,
@@ -50,7 +50,7 @@ export const rnitPaymentAction = (details,username,password,history) => async (d
       if(res.data.responseCode===100){
        await dispatch(rnitPaymentSuccess(res.data));
       }
-      if(res.data.responseCode===105){
+      if(res.data.responseCode===102 || res.data.responseCode===103 || res.data.responseCode===105 || res.data.responseCode===106 ||res.data.responseCode===107){
         let errorMessage = res.data.codeDescription
           dispatch(rnitPaymentFailure(errorMessage)); 
       }

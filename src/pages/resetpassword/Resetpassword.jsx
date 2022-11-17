@@ -99,6 +99,7 @@ const Resetpassword= () => {
        if(!resetPassword.loading){
         if(resetPassword.details.responseCode===100){
           setSuccessMessage("Awesome, You've successfully updated your Pin")
+          setOpenMessage(false)
           setOpensuccessMessage(true)
           handelClock(0,0,8)
         }
@@ -262,7 +263,7 @@ const Resetpassword= () => {
                required
                fullWidth
                id="username"
-               label= "New password"
+               label= "New pin"
                name="password"
                autoComplete="password"
                type="password"
@@ -275,7 +276,7 @@ const Resetpassword= () => {
                required
                fullWidth
                id="username"
-               label= "Confirmation password"
+               label= "Confirmation pin"
                type="password"
                name="confirmPassword"
                autoComplete="confirmPassword"

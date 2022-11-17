@@ -5,5 +5,5 @@
     "referencenumbermutbeanumber":"RRA reference must be a numeric",
     "taxtypedescription":"Tax type description",
     "docidmustbeatleat8character":"The RRA reference must be at least 8 characters",
-    "referencernumberisnolongervalid":"Reference number is no longer valid"
+    "referencernumberisnolongervalid":"Invalid reference number"
 }

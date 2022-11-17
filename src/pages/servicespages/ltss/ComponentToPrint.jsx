@@ -1,12 +1,4 @@
 import React, { useRef } from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import Grid from '@mui/material/Grid';
 import moment from 'moment';
 import { Paper } from '@mui/material';
 import "../../../style.css"
@@ -60,8 +52,6 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 					<div className="row">
 						<div className="col col_no">NO.</div>
 						<div className="col col_des"></div>
-						{/* <div className="col col_price">PRICE</div>
-						<div className="col col_qty">QTY</div> */}
 						<div className="col col_total">DETAILS</div>
 					</div>
 				</div>
@@ -107,7 +97,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 							<p>03</p>
 						</div>
 						<div className="col col_des">
-							<p className="bold">Mobicash referance</p>
+							<p className="bold">Mobicash reference</p>
 							{/* <p>Lorem ipsum dolor sit.</p> */}
 						</div>
 						{/* <div className="col col_price">

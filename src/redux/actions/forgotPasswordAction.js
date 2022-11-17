@@ -4,13 +4,15 @@ import {
     FORGOTPASSWORD_SUCCESS,
     FORGOTPASSWORD_FAILURE,
   } from "../types/forgotPasswordType";
-  
+  import jwt from "jsonwebtoken";
   import dotenv from "dotenv";
   dotenv.config();
-export const forgotPasswordAction = (user) => async (dispatch) => {
+ 
+export const forgotPasswordAction = (user,history) => async (dispatch) => {
   try {
     dispatch(forgotPasswordRequest());
     const {username}=user 
+    
    
     //const encodedBase64Token = Buffer.from(`${username}:${password}`).toString('base64');
     //let basicAuth='Basic ' + btoa(username + ':' + password);
@@ -25,10 +27,18 @@ export const forgotPasswordAction = (user) => async (dispatch) => {
     // 'Authorization': + basicAuth,
  }
    });
+   const jwt_secret="forgotpasswordtokensecret"
       if(res.data.responseCode===100){
+        const claims={username}
+        const token= jwt.sign(claims,jwt_secret, { expiresIn: "1d"});
+        sessionStorage.setItem('FUPR/MOBICORE/AUTH',token)
         dispatch(forgotPasswordSuccess(res.data));
+        history.push('/reset-pin',{push:true})
       }
       if(res.data.responseCode===103 || res.data.responseCode===107 ){
+        dispatch(forgotPasswordFailure(res.data.codeDescription));
+      }
+      if(res.data.responseCode===105){
         dispatch(forgotPasswordFailure(res.data.codeDescription));
       }
       
@@ -36,7 +46,6 @@ export const forgotPasswordAction = (user) => async (dispatch) => {
     if (err.response) {
       const errorMessage = 'Something went wrong, Please try again later'
         dispatch(forgotPasswordFailure(errorMessage));
-      
     } else {
       dispatch(forgotPasswordFailure("Network Error"));
     }

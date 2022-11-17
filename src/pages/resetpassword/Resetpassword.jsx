@@ -4,17 +4,14 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
-import Paper from '@mui/material/Paper';
+
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import   CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import Widget from '../../components/widget/Widget';
 import TopNav from '../../components/topNav/TopNav';
 import { useHistory } from 'react-router-dom';
-import Footer from '../../components/footer/Footer';
-import Appbar from '../../components/appbar';
-import { loginAction } from '../../redux/actions/loginAction';
 import { useDispatch,useSelector } from 'react-redux';
 import {useState,useEffect} from "react";
 import Alert from '@mui/material/Alert';
@@ -25,54 +22,146 @@ import CircularProgress from '@mui/material/CircularProgress';
 import AuthApi from '../../context/api';
 import jwt from 'jsonwebtoken';
 import { useTranslation } from "react-i18next";
+import { resetPasswordAction } from '../../redux/actions/resetPasswordAction';
 const Resetpassword= () => {
     const history=useHistory()
     const { t } = useTranslation(["home","common","login"]);
     const dispatch=useDispatch();
     const login=useSelector((state)=>state.login)
+    const resetPassword=useSelector((state)=>state.resetPassword);
+    const forgotPassword=useSelector((state)=>state.forgotPassword)
     const [username,setUsername]=useState();
     const [password,setPassword]=useState();
     const [usernameError,setUsernameError]=useState();
     const [passwordError,setPasswordError]=useState();
     const [errMessage,setErrMessage]=useState('')
+    const [successMessage,setSuccessMessage]=useState('')
+    const [opensuccessMessage,setOpensuccessMessage]=useState(false)
     const [open, setOpen] = React.useState(true);
+    const [openMessage, setOpenMessage] = React.useState(true);
+    const [codeError,setCodeError]=useState('');
+    const [cpasswordError,setCpasswordError]=useState('');
+    var startTimer=null
+    const decode= (token) => {
+      const JWT_SECRET="forgotpasswordtokensecret";
+      const payload = jwt.verify(token, JWT_SECRET);
+       return payload;
+    }
+    useEffect(() => {
+      const token =sessionStorage.getItem('FUPR/MOBICORE/AUTH');
+      if (token) {
+      const {username}=decode(token);
+      setUsername(username)
+    }
+    }, []);
 
       const handleSubmit = async(event) => {
           event.preventDefault();
           const data = new FormData(event.currentTarget);
-         
-          if(data.get('username')=="" &&  data.get('password')=="" ){
-            setUsernameError(`${t("login:usernameisrequired")}`)
-            setPasswordError(`${t("login:passwordisrequired")}`)
+          if(data.get('code')==="" &&  data.get('password')==="" && data.get('confirmPassword')==="" ){
+            setCodeError("Code is required")
+            setPasswordError("Pin is required")
+            setCpasswordError("Confirmation pin is required")
           }
-          else if(data.get('username')=="" ){
-            setUsernameError(`${t("login:usernameisrequired")}`)
+          else if(data.get('code')=="" ){
+            setCodeError("Code is required")
           }
           else if(data.get('password')=="" ){
-            setPasswordError(`${t("login:passwordisrequired")}`)
+            setPasswordError("Pin is required")
+          }
+          else if(data.get('confirmPassword')=="" ){
+            setCpasswordError("Confirmation pin is required")
+          }
+          else if(data.get('confirmPassword')!==data.get('password') ){
+            setCpasswordError("Pin do not macth")
           }
           else{
-            setUsernameError("")
+            setCodeError("")
             setPasswordError("")
-           // await dispatch(loginAction({username: data.get('username'),password: data.get('password')},history));
+            setCpasswordError("")
+           await dispatch(resetPasswordAction({code: data.get('code'),password: data.get('password'),cpassword:data.get('confirmPassword'),username},history));
             // console.log("authenticstion",Auth.auth)
           }
          
-          if(login.error){
+          if(resetPassword.error){
             setOpen(true);
           }
         };
      
         const handleClose=()=>{
           setOpen(false)
+          setOpenMessage(false)
+          setOpensuccessMessage(false)
         }
         const theme = createTheme();
+        useEffect(()=>{
+          function fecthData(){
+       if(!resetPassword.loading){
+        if(resetPassword.details.responseCode===100){
+          setSuccessMessage("Awesome, You've successfully updated your Pin")
+          setOpensuccessMessage(true)
+          handelClock(0,0,8)
+        }
+        
+       }
+      
+          }
+          fecthData()
+             },[resetPassword.details])
+               //hhandle timer
+         const handleStopTime=()=>{
+          clearInterval(startTimer)
+          }
+         const handelClock=(hr, mm, ss)=>{
+          function startInterval(){
+             startTimer=setInterval(function(){
+              if(hr==0 && mm==0 && ss==0){
+                handleStopTime();
+              }
+              else if(ss!=0){
+                ss--;
+              }
+              else if(mm !=0 && ss==0){
+                ss=59;
+                mm--;
+              }
+              else if(hr !=0 && mm ==0){
+                mm =60;
+                hr--;
+              }
+              if (hr.toString().length < 2) hr = "0" + hr;
+              if (mm.toString().length < 2) mm = "0" + mm;
+              if (ss.toString().length < 2) ss = "0" + ss;
+             // setRemainingTime(hr + " : " + mm + " : " + ss);
+             if(mm=="00" && ss=="00"){
+              sessionStorage.removeItem('FUPR/MOBICORE/AUTH')
+              return history.push('/',{push:true})
+             }
+            }, 1000);
+          }
+          startInterval();
+        }
     return (
       <React.Fragment>
         <TopNav/>
         <ThemeProvider theme={theme}>
-      {/* <Grid container  sx={{ height: '100vh', backgroundColor:'primary' }}> */}
-      <Grid
+        <Grid
+            item
+            lg={6}
+            md={6}
+            xs={12}
+          >
+    <CardContent>
+      <Box
+        sx={{
+          alignItems: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyCenter:"center",
+        }}
+      >
+{/* here */}
+<Grid
   container
   direction="column"
   alignItems="center"
@@ -81,11 +170,14 @@ const Resetpassword= () => {
 
 >
   <Grid item xs={3}>
-  <Typography component="h1" textAlign="center" variant="h5">
-         Reset password
-           </Typography>
+    {
+      successMessage?null:
+      <Typography component="h1" textAlign="center" variant="h5" color="gray">
+      Reset PIN
+        </Typography>
+    }
            {
-                 !login.error? null:
+                 !resetPassword.error? null:
                   <Collapse in={open}>
                   <Alert
                   severity="error"
@@ -101,22 +193,69 @@ const Resetpassword= () => {
                     }
                     sx={{ mb: 0.2 }}
                   >
-                   {login.error}
+                   {resetPassword.error}
                   </Alert>
                 </Collapse>
+               }  
+                {
+                forgotPassword.details?
+                  <Collapse in={openMessage}>
+                  <Alert
+                  severity="success"
+                    action={
+                      <IconButton
+                        aria-label="close"
+                        color="inherit"
+                        size="small"
+                        onClick={handleClose}
+                      >
+                        <CloseIcon fontSize="inherit" />
+                      </IconButton>
+                    }
+                    sx={{ mb: 0.2 }}
+                  >
+                 We want to make sure it's really you. In order to verify your
+                 identity, enter the verification code that was sent to {forgotPassword.details.data.sentTo[0]} 
+                  </Alert>
+                </Collapse>:null
+               } 
+                {
+                successMessage?
+                  <Collapse in={opensuccessMessage}>
+                  <Alert
+                  severity="success"
+                    action={
+                      <IconButton
+                        aria-label="close"
+                        color="inherit"
+                        size="small"
+                        onClick={handleClose}
+                      >
+                        <CloseIcon fontSize="inherit" />
+                      </IconButton>
+                    }
+                    sx={{ mb: 0.2 }}
+                  >
+              {successMessage}
+                  </Alert>
+                </Collapse>:null
                }    
+                    
            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-              <TextField
+           {
+                successMessage?null:
+                <>
+                <TextField
                margin="normal"
                required
                fullWidth
                id="username"
                label= "Code"
-               name="username"
-               autoComplete="username"
+               name="code"
+               autoComplete="code"
                autoFocus
-               error={usernameError?usernameError:""}
-               helperText={usernameError?usernameError:""}
+               error={codeError?codeError:""}
+               helperText={codeError?codeError:""}
              />
               <TextField
                margin="normal"
@@ -124,11 +263,12 @@ const Resetpassword= () => {
                fullWidth
                id="username"
                label= "New password"
-               name="username"
-               autoComplete="username"
+               name="password"
+               autoComplete="password"
+               type="password"
                autoFocus
-               error={usernameError?usernameError:""}
-               helperText={usernameError?usernameError:""}
+               error={passwordError?passwordError:""}
+               helperText={passwordError?passwordError:""}
              />
              <TextField
                margin="normal"
@@ -136,14 +276,15 @@ const Resetpassword= () => {
                fullWidth
                id="username"
                label= "Confirmation password"
-               name="username"
-               autoComplete="username"
+               type="password"
+               name="confirmPassword"
+               autoComplete="confirmPassword"
                autoFocus
-               error={usernameError?usernameError:""}
-               helperText={usernameError?usernameError:""}
+               error={cpasswordError?cpasswordError:""}
+               helperText={cpasswordError?cpasswordError:""}
              />
 
-               {!login.loading? 
+               {!resetPassword.loading? 
                <Button
                type="submit"
                fullWidth
@@ -156,24 +297,24 @@ const Resetpassword= () => {
              <CircularProgress  sx={{ color: 'orange' }} />
               </Box>
              }
+                </>
+               } 
+              
              <Grid container>
                <Grid item xs>
-                 <Link href="#" variant="body2">
-              
+                 <Link href="/" variant="body2">
+             Go to Login page
                  </Link>
                </Grid>
-               <Grid item>
-                 <Link href="#" variant="body2">
-                
-                 </Link>
-               </Grid>
+               
              </Grid>
            </Box>
-  </Grid>   
-   
-</Grid> 
-        {/* </Grid> */}
-      {/* </Grid> */}
+      </Grid>     
+</Grid>   
+        </Box>
+        </CardContent>
+        </Grid>
+
     </ThemeProvider>
       </React.Fragment>
      

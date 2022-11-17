@@ -62,7 +62,7 @@ function Transactions() {
   const transactionsDetails = useSelector((state) => state.transactions);
  const dispatch=useDispatch();
   const [agentTransactionsDetails, setAgentTransactionDetails] = useState([]);
-  const [limit, setLimit] = useState(5);
+  const [limit, setLimit] = useState(40);
   const [selectedExamIds, setSelectedExamIds] = useState([]);
   const [results, setResults] = useState({});
   const [search, setSearch] = useState(false);

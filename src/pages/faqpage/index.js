@@ -26,7 +26,7 @@ const FAQ = () => {
   // style={{ minHeight: '100vh' }}
 >
 {/* defaultExpanded */}
-<Header title="FAQ" subtitle="Agent FAQs" />
+<Header title="" subtitle="FAQ" />
      <Accordion  >
     <AccordionSummary  expandIcon={<ExpandMoreIcon />}>
       <Typography color="gray" variant="body1" >

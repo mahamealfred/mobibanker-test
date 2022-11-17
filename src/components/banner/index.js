@@ -7,7 +7,6 @@ import TopNav from "../topNav/TopNav";
 import Headerbanner from "../headerbanner"
 import Slider from "../slider/Slider";
 import {Box} from "@mui/material";
-
 import Stack from '@mui/material/Stack';
 import {
   justifyCenter,

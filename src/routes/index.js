@@ -37,8 +37,8 @@ import FaqPage from '../pages/faqpage'
         <Route exact path="/"   component={LoginRoute}/>
         <Route  path="/dashboard"  component={DashboardRoute}/>
         <Route  path="/display"  component={Logout}/>
-        <Route  path="/forgotpassword"  component={Forgotpassword}/>
-        <Route  path="/resetpassword"  component={Resetpassword}/>
+        <Route  path="/forgot-pin"  component={Forgotpassword}/>
+        <Route  path="/reset-pin"  component={Resetpassword}/>
         <Route  path="/faq"  component={FaqPage}/>
     </Switch>
   )

@@ -15,6 +15,7 @@ import { useHistory } from 'react-router-dom';
 import Footer from '../../components/footer/Footer';
 import Appbar from '../../components/appbar';
 import { loginAction } from '../../redux/actions/loginAction';
+import { forgotPasswordAction } from '../../redux/actions/forgotPasswordAction';
 import { useDispatch,useSelector } from 'react-redux';
 import {useState,useEffect} from "react";
 import Alert from '@mui/material/Alert';
@@ -30,6 +31,7 @@ const Forgotpassword= () => {
     const { t } = useTranslation(["home","common","login"]);
     const dispatch=useDispatch();
     const login=useSelector((state)=>state.login)
+    const forgotPassword=useSelector((state)=>state.forgotPassword)
     const [username,setUsername]=useState();
     const [password,setPassword]=useState();
     const [usernameError,setUsernameError]=useState();
@@ -40,26 +42,19 @@ const Forgotpassword= () => {
       const handleSubmit = async(event) => {
           event.preventDefault();
           const data = new FormData(event.currentTarget);
+          if(data.get('username')=="" ){
+            setUsernameError(`${t("login:usernameisrequired")}`)
+            
+          }
          
-          if(data.get('username')=="" &&  data.get('password')=="" ){
-            setUsernameError(`${t("login:usernameisrequired")}`)
-            setPasswordError(`${t("login:passwordisrequired")}`)
-          }
-          else if(data.get('username')=="" ){
-            setUsernameError(`${t("login:usernameisrequired")}`)
-          }
-          else if(data.get('password')=="" ){
-            setPasswordError(`${t("login:passwordisrequired")}`)
-          }
           else{
             setUsernameError("")
-            setPasswordError("")
-            //await dispatch(loginAction({username: data.get('username'),password: data.get('password')},history));
+            await dispatch(forgotPasswordAction({username: data.get('username')},history));
             // console.log("authenticstion",Auth.auth)
-            history.push('/resetpassword',{push:true})
+           
           }
          
-          if(login.error){
+          if(forgotPassword.error){
             setOpen(true);
           }
         };
@@ -68,6 +63,7 @@ const Forgotpassword= () => {
           setOpen(false)
         }
         const theme = createTheme();
+       
     return (
       <React.Fragment>
         <TopNav/>
@@ -82,13 +78,13 @@ const Forgotpassword= () => {
 
 >
   <Grid item xs={3}>
-  <Typography component="h1" textAlign="center" variant="h5"
+  <Typography component="h1" textAlign="center" variant="h5" color="gray"
            
            >
-         Forgot password
+         Forgot PIN
            </Typography>
            {
-                 !login.error? null:
+                 !forgotPassword.error? null:
                   <Collapse in={open}>
                   <Alert
                   severity="error"
@@ -104,7 +100,7 @@ const Forgotpassword= () => {
                     }
                     sx={{ mb: 0.2 }}
                   >
-                   {login.error}
+                   {forgotPassword.error==="FAILURE"?"You'are temporarily blocked":forgotPassword.error}
                   </Alert>
                 </Collapse>
                }    
@@ -122,7 +118,7 @@ const Forgotpassword= () => {
                helperText={usernameError?usernameError:""}
              />
 
-               {!login.loading? 
+               {!forgotPassword.loading? 
                <Button
                type="submit"
                fullWidth

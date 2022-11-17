@@ -55,11 +55,11 @@ setOpenSuccess(false)
 
 
         if (password !== confirmPassword){
-          setErrMessage("Password dont not macth")
+          setErrMessage("Pin dont not macth")
           setOpen(true)
         }
         if(oldpass !== oldPassword){
-          setErrMessage("Invalid Old Password")
+          setErrMessage("Invalid Old Pin")
           setOpen(true)
         } 
         else{
@@ -105,7 +105,7 @@ if(errorMessage==''){
       if(changePassword.details.responseCode===100){
         setSuccessFullMessage("You have successfuly change your password")
         setOpenSuccess(true)
-        handelClock(0,0,8)
+        handelClock(0,0,4)
       }
       
      }
@@ -141,6 +141,7 @@ if(errorMessage==''){
                 if (ss.toString().length < 2) ss = "0" + ss;
                // setRemainingTime(hr + " : " + mm + " : " + ss);
                if(mm=="00" && ss=="00"){
+                changePassword.details=['']
                 localStorage.removeItem('mobicashAuth');
                 sessionStorage.removeItem('mobicash-auth')
                 return history.push('/',{push:true})
@@ -154,9 +155,13 @@ if(errorMessage==''){
    <React.Fragment>
      <form onSubmit={handleSubmit}>
         <DialogContent dividers>
-          <DialogContentText>
+          {
+            successFullMessage?null:
+            <DialogContentText>
             {t("common:pleasefillyourinformationinthefieldsbelow")}:
           </DialogContentText>
+          }
+         
           {
                   !changePassword.error? null:
                    <Collapse in={openError}>
@@ -174,7 +179,7 @@ if(errorMessage==''){
                      }
                      sx={{ mb: 0.2 }}
                    >
-                    {changePassword.error}
+                    {changePassword.error==="FAILURE"?"The given pin was already used":changePassword.error}
                    </Alert>
                  </Collapse>
                 }    
@@ -220,7 +225,9 @@ if(errorMessage==''){
                    </Alert>
                  </Collapse>
                 }   
-            <TextField
+                {
+                  successFullMessage?null:<>
+                   <TextField
               autoFocus
               margin="normal"
               variant="standard"
@@ -241,9 +248,14 @@ if(errorMessage==''){
               label={t("common:confirmpassword")}
             
             />
+                  </>
+                }
+           
          
         </DialogContent>
-        <DialogActions sx={{ px: '19px' }}>
+        {
+          successFullMessage?null:
+          <DialogActions sx={{ px: '19px' }}>
           {
             changePassword.loading?"Loading":
             <Button type="submit" variant="text"  sx={{color:"#F9842C"}}  >
@@ -252,6 +264,8 @@ if(errorMessage==''){
           }
           
         </DialogActions>
+        }
+        
       </form>
    </React.Fragment>
   )

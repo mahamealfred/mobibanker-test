@@ -38,6 +38,12 @@ export default function Review({taxPayerName,amountToPay,transactionId,transacti
           {clientCharges.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf
           </Typography>
         </ListItem>
+        <ListItem sx={{ py: 1, px: 0 }}>
+          <ListItemText primary= {t("common:mobicashreference")}/>
+          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+          {transactionId}
+          </Typography>
+        </ListItem>
       </List>
       <Grid container spacing={2}>
         <Grid item container direction="column" xs={12} sm={6}>
@@ -51,12 +57,7 @@ export default function Review({taxPayerName,amountToPay,transactionId,transacti
                 <Grid item xs={6}>
                   <Typography gutterBottom>{taxTypeDesc}</Typography>
                 </Grid>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{t("common:mobicashreference")}</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{transactionId}</Typography>
-                </Grid>
+                
                 <Grid item xs={6}>
                   <Typography gutterBottom>{t("common:date")}</Typography>
                 </Grid>

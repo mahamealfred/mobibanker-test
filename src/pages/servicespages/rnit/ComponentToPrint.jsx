@@ -41,7 +41,6 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 			<div className="bill_total_wrap">
 				<div className="bill_sec">
         <p className="bold name">MobiCash Ltd</p>
-					<p>TIN No: 101858540</p> 
 					<p>Tel: (+250)787797979</p> 
 			        <span>
 			           Remera, Rukiri 1, Kigali, Rwanda<br/>
@@ -58,17 +57,14 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 			<div className="main_table">
 				<div className="table_header">
 					<div className="row">
-						<div className="col col_no">NO.</div>
-					
-						{/* <div className="col col_price">PRICE</div>
-						<div className="col col_qty">QTY</div> */}
-						<div className="col col_total">DETAILS</div>
+						
+							<div className="col col_des">DETAILS</div>
 					</div>
 				</div>
 				<div className="table_body">
 					<div className="row">
 						<div className="col col_no">
-							<p>01</p>
+						
 						</div>
 						<div className="col col_des">
 							<p className="bold">National ID</p>
@@ -81,7 +77,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 					</div>
 					<div className="row">
 						<div className="col col_no">
-							<p>02</p>
+						
 						</div>
 						<div className="col col_des">
 							<p className="bold">Investor Name</p>
@@ -93,7 +89,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 					</div>
           <div className="row">
 						<div className="col col_no">
-							<p>03</p>
+						
 						</div>
 						<div className="col col_des">
 							<p className="bold">Investor Phone</p>
@@ -106,7 +102,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
           
 					<div className="row">
 						<div className="col col_no">
-							<p>04</p>
+							
 						</div>
 						<div className="col col_des">
 							<p className="bold">Mobicash reference</p>

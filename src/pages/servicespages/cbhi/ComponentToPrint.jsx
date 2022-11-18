@@ -59,16 +59,16 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 			<div className="main_table">
 				<div className="table_header">
 					<div className="row">
-						<div className="col col_no">NO.</div>
-						{/* <div className="col col_price">PRICE</div>
-						<div className="col col_qty">QTY</div> */}
-						<div className="col col_total">DETAILS</div>
+						{/* <div className="col col_no">NO.</div> */}
+						{/* <div className="col col_total">DETAILS</div> */}
+						
+						<div className="col col_des">DETAILS</div>
 					</div>
 				</div>
 				<div className="table_body">
 					<div className="row">
 						<div className="col col_no">
-							<p>01</p>
+							
 						</div>
 						<div className="col col_des">
 							<p className="bold">Householder Name</p>
@@ -81,7 +81,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 					</div>
 					<div className="row">
 						<div className="col col_no">
-							<p>02</p>
+							
 						</div>
 						<div className="col col_des">
 							<p className="bold">Householder NID</p>
@@ -94,7 +94,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 					</div>
           <div className="row">
 						<div className="col col_no">
-							<p>03</p>
+							
 						</div>
 						<div className="col col_des">
 							<p className="bold">Householder category</p>
@@ -107,7 +107,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 					</div>
           <div className="row">
 						<div className="col col_no">
-							<p>04</p>
+						
 						</div>
 						<div className="col col_des">
 							<p className="bold">Number of memebrs</p>
@@ -120,7 +120,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 					</div>
           <div className="row">
 						<div className="col col_no">
-							<p>05</p>
+						
 						</div>
 						<div className="col col_des">
 							<p className="bold">Year of payment</p>
@@ -133,7 +133,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 					</div>
 					<div className="row">
 						<div className="col col_no">
-							<p>06</p>
+						
 						</div>
 						<div className="col col_des">
 							<p className="bold">Mobicash reference</p>
@@ -147,7 +147,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 					
 					<div className="row">
 						<div className="col col_no">
-							<p>07</p>
+							
 						</div>
 						<div className="col col_des">
 							<p className="bold">Description</p>

@@ -50,8 +50,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 					<div className="row">
 						<div className="col col_no">NO.</div>
 						<div className="col col_des"></div>
-						{/* <div className="col col_price">PRICE</div>
-						<div className="col col_qty">QTY</div> */}
+						
 						<div className="col col_total">DETAILS</div>
 					</div>
 				</div>
@@ -100,7 +99,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 			        </p> */}
 			       	<p className="bold">
 			            <span>Grand Total</span>
-			            <span> {(props.amount * -1).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf</span>
+			            <span> {(props.amount * -1).toLocaleString()} Rwf</span>
 					
 			        </p>
 				</div>

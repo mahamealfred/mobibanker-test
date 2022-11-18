@@ -127,14 +127,10 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 				<div className="grandtotal_sec">
 			        <p className="bold">
 			            <span>AMOUNT </span>
-			            <span>{props.formData.amountPaid.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf</span>
-						
-                       
+			            <span>{props.formData.amountPaid.toLocaleString()} Rwf</span>
 			        </p>
 			        <p>
-			            <span>Client Charges</span>
-			            {/* <span>{props.clientCharges.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf</span> */}
-                        <span>0 Rwf</span>
+			          
 			        </p>
 			        {/* <p>
 			            <span>Discount 10%</span>
@@ -143,7 +139,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 			       	<p className="bold">
 			            <span>Grand Total</span>
 			            {/* <span>{props.formData.amountPaid.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}  Rwf</span> */}
-						<span>{props.formData.amountPaid}  Rwf</span>
+						<span>{props.formData.amountPaid.toLocaleString()}  Rwf</span>
 			        </p>
 				</div>
 			</div>

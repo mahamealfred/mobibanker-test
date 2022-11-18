@@ -210,7 +210,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
   }
   //rnit payment
   const handleRnitPayment=async()=>{
-    let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  
     if(formData.bankName=="" && formData.bankAccount=="" && formData.amountPaid=="" && formData.payerEmail=="" && formData.phoneNumber=="" && formData.password=="" ){
       setBankNameErrorMessage(`${t("rnit:banknameisrequired")}`)
       setBankAccountErrorMessage(`${t("rnit:bankaccountisrequired")}`)
@@ -237,9 +237,6 @@ else if(formData.amountPaid > 2000000){
  else if(formData.payerEmail==""){
   setPayerEmailErrorMessage(`${t("rnit:payeremailisrequired")}`)
     }
-    else if(!formData.payerEmail.match(validRegex)){
-      setPayerEmailErrorMessage(`${t("rnit:invalidemail")}`)
-        }
    
   else if(formData.phoneNumber==""){
     setPhoneNumberError(`${t("common:phoneisrequired")}`)

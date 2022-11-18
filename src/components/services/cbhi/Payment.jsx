@@ -78,7 +78,7 @@ const Payment=({
                  {t("cbhi:totalpremium")}
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-                {totalPremium.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf
+                {totalPremium.toLocaleString()} Rwf
        
               </Typography>
             </Grid>
@@ -103,7 +103,7 @@ const Payment=({
                  {t("cbhi:alreadypay")}
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-                {amountPaidBefore.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} Rwf
+                {amountPaidBefore.toLocaleString()} Rwf
               </Typography>
             </Grid>
             <Grid item xs={12} md={6}>

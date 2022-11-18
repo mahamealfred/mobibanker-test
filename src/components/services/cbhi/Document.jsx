@@ -35,7 +35,6 @@ const Document = ({
   setErrorMessage
 }) => {
     const { i18n,t } = useTranslation(["home","common","login","cbhi"]);
-    console.log("error message",errorMessage)
     const handleClose = () => {
         setErrorMessage('')
         setOpen(false);

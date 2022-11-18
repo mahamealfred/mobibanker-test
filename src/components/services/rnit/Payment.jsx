@@ -87,7 +87,7 @@ const Payment=({
                  {t("common:nid")}
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-             {payerNid.replaceAll(/\s/g, '')}
+             {payerNid}
               </Typography>
             </Grid>
             <Grid item xs={12} md={6}>

@@ -262,7 +262,7 @@ fecthData();
                     <TableCell component="th" scope="row">
                       {details.operationDate}
                     </TableCell>
-                    <TableCell align="center"> {(details.amount * -1).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</TableCell>
+                    <TableCell align="center"> {(details.amount * -1).toLocaleString()}</TableCell>
                     
                     <TableCell align="center">{details.responseDescription}</TableCell>
                     <TableCell align="center">
@@ -316,7 +316,7 @@ fecthData();
                     <TableCell component="th" scope="row">
                       {details.operationDate}
                     </TableCell>
-                    <TableCell align="center"> {(details.amount * -1).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</TableCell>
+                    <TableCell align="center"> {(details.amount * -1).toLocaleString()}</TableCell>
                     <TableCell align="center">{details.responseDescription}</TableCell>
                     <TableCell align="center">
                 <ReactToPrint

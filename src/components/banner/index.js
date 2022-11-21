@@ -44,7 +44,7 @@ export default function Banner() {
         flexGrow: 1,
         py: 2,
         width: "100%",
-        height:"100vh"
+        height:{xs:"auto",sm:"auto",md:"100vh"}
       }}
     >
       

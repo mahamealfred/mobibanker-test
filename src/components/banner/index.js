@@ -4,8 +4,7 @@ import Footer from "../footer/Footer";
 import Login from "../../pages/login/Login"
 import Widget from "../widget/Widget";
 import TopNav from "../topNav/TopNav";
-import Headerbanner from "../headerbanner"
-import Slider from "../slider/Slider";
+
 import {Box} from "@mui/material";
 import Stack from '@mui/material/Stack';
 import {
@@ -45,7 +44,7 @@ export default function Banner() {
         flexGrow: 1,
         py: 2,
         width: "100%",
-        height:"auto"
+        height:"100vh"
       }}
     >
       
@@ -128,8 +127,6 @@ export default function Banner() {
      
     }}
     >
- <Slider/>
- <Headerbanner/>
     </Box>
     <Footer/>
     </React.Fragment>

@@ -477,7 +477,7 @@ export default function MediaCard() {
            <Typography  gutterBottom
            
                 sx={{ padding: "0em 0em 0 0em",color:"gray",
-                fontSize:14
+                fontSize:10
 
              }}
            >
@@ -510,7 +510,7 @@ export default function MediaCard() {
                 />
            <Typography variant="h6" gutterBottom
                 sx={{ padding: "0em 0em 0 0em",color:"gray",
-                fontSize:14
+                fontSize:10
              }}
            >
             MUTUELL
@@ -542,7 +542,7 @@ export default function MediaCard() {
                 />
            <Typography variant="h6" gutterBottom
                 sx={{ padding: "0em 0em 0 0em",color:"gray",
-                fontSize:14
+                fontSize:10
              }}
            >
           RNIT
@@ -574,7 +574,7 @@ export default function MediaCard() {
                 />
            <Typography variant="h6" gutterBottom
                 sx={{ padding: "0em 0em 0 0em",color:"gray",
-                fontSize:14
+                fontSize:10
              }}
            >
             EJOHEZA
@@ -651,7 +651,7 @@ export default function MediaCard() {
                 />
            <Typography variant="h6" gutterBottom
                 sx={{ padding: "0em 0em 0 0em",color:"gray",
-                fontSize:12
+                fontSize:10
              }}
            >
            ELECTRICITY
@@ -680,14 +680,14 @@ export default function MediaCard() {
                     alt="alt"
                     title="i"
                     sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
-                    height:{xs:40,sm:40,md:40,lg:50}}}
+                    height:{xs:40,sm:40,md:40,lg:40}}}
                 />
            <Typography variant="h6" gutterBottom
                 sx={{ padding: "0em 0em 0 0em",color:"gray",
-                fontSize:8
+                fontSize:10
              }}
            >
-            TOpUp Mobile Money
+            TOpUp M Money 
           </Typography>
             </Card>  
             </Button>

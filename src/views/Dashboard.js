@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import BottomNav from "../components/bottomNav/BottomNav";
+
 
 import Home from "../pages/home/Home";
 
@@ -11,7 +11,7 @@ export default class Dashboard extends Component {
         <Home >
         {this.props.children}
         </Home>  
-        <BottomNav/>
+      
         {/* <Footer/> */}
       </div>
     );

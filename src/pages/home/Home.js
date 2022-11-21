@@ -41,6 +41,20 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import { useIdleTimer } from 'react-idle-timer';
 import i18next from "i18next";
+import Link from '@mui/material/Link';
+function Copyright() {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://www.mobicashonline.com/">
+      www.mobicashonline.com
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
+
 const style = {
   top: '50%',
   left: '50%',
@@ -446,6 +460,20 @@ setOpenModal(false)
       {/* <MobicashSolutions/> */}
       {/* <Headerbanner/>
       <Footer /> */}
+       <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
+        <Typography variant="h6" align="center" gutterBottom>
+          MobiBanker
+        </Typography>
+        <Typography
+          variant="subtitle1"
+          align="center"
+          color="text.secondary"
+          component="p"
+        >
+           {t("common:solutionsthatnevermisstheaim")}
+        </Typography>
+        <Copyright />
+      </Box>
     </ThemeProvider>
   );
 }

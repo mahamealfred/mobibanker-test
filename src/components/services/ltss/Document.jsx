@@ -49,7 +49,9 @@ const Document = ({
                         sx={
                             {mb: 0.2}
                     }>
-                    {errorMessage==="Invalid National ID number."?`${t("common:invalidIdentificationnumber")}`:errorMessage} </Alert>
+                    {/* {errorMessage==="Invalid National ID number."?`${t("common:invalidIdentificationnumber")}`:errorMessage}  */}
+                    {errorMessage} 
+                    </Alert>
                 </Collapse>
             )
         }

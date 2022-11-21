@@ -35,7 +35,7 @@ export const changePasswordAction = (user,username) => async (dispatch) => {
       if(res.data.responseCode===100){
         dispatch(changePasswordSuccess(res.data));
       }
-      if(res.data.responseCode===103 || res.data.responseCode===107 ){
+      if(res.data.responseCode===103 || res.data.responseCode===104 || res.data.responseCode===103 || res.data.responseCode===105 || res.data.responseCode===107 ){
         dispatch(changePasswordFailure(res.data.codeDescription));
       }
       

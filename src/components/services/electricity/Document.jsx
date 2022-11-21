@@ -52,7 +52,9 @@ const Document = ({
                         sx={
                             {mb: 0.2}
                     }>
-                        {errorMessage==="System unit not active. (6013) - 8/2214"?`${t("electricity:invalidmeternumber")}`:errorMessage} </Alert>
+                        {/* {errorMessage==="System unit not active. (6013) - 8/2214"?`${t("electricity:invalidmeternumber")}`:errorMessage}  */}
+                        {errorMessage} 
+                        </Alert>
                 </Collapse>
             )
         }

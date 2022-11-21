@@ -199,9 +199,9 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
     else if(!Number(formData.nId)){
       setNIdErrorMessage(`${t("common:nidmustbenumeric")}`)
     }
-    else if(formData.nId.length!==16){
-      setNIdErrorMessage(`${t("common:nidmust16digit")}`)
-    }
+    // else if(formData.nId.length!==16){
+    //   setNIdErrorMessage(`${t("common:nidmust16digit")}`)
+    // }
      else{
       setNIdErrorMessage("")
       const identification=formData.nId

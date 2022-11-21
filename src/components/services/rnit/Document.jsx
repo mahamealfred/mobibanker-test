@@ -48,7 +48,9 @@ const Document = ({
                         }
                         sx={{mb: 0.2}}
                     >
-                        {errorMessage==="NID Not found"?`${t("common:invalidIdentificationnumber")}`:errorMessage} </Alert>
+                        {/* {errorMessage==="NID Not found"?`${t("common:invalidIdentificationnumber")}`:errorMessage} */}
+                        {errorMessage}
+                         </Alert>
                 </Collapse>
             )
         }

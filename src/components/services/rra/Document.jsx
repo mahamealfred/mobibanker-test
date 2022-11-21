@@ -49,7 +49,8 @@ const Document = ({
                         sx={
                             {mb: 0.2}
                     }>
-                        {errorMessage==="Deralation is no longer valid"?`${t("rra:referencernumberisnolongervalid")}`:errorMessage} 
+                        {/* {errorMessage==="Deralation is no longer valid"?`${t("rra:referencernumberisnolongervalid")}`:errorMessage}  */}
+                        {errorMessage} 
                         
                         </Alert>
                 </Collapse>

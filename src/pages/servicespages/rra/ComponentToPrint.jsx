@@ -158,16 +158,16 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 				</div>
 			</div>
 		</div>
-		<div style={{ height: "auto", margin: "0 auto", maxWidth: 64, width: "100%" }}>
+		{/* <div style={{ height: "auto", margin: "0 auto", maxWidth: 64, width: "100%" }}>
     <QRCode
     size={256}
     style={{ height: "auto", maxWidth: "100%", width: "100%" }}
     value={props.transactionId}
     viewBox={`0 0 256 256`}
     />
-</div>
+</div> */}
 		<div className="footer">
-			<p>Thank you and Best Wishes</p>
+		<p>Thank you for using MobiCash</p>
 			{/* <div className="terms">
 		        <p className="tc bold">Terms & Coditions</p>
 		        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit non praesentium doloribus. Quaerat vero iure itaque odio numquam, debitis illo quasi consequuntur velit, explicabo esse nesciunt error aliquid quis eius!</p>

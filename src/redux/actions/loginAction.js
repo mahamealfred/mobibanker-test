@@ -46,7 +46,7 @@ export const loginAction = (user,history) => async (dispatch) => {
       sessionStorage.setItem('mobicash-auth',token)
       return localStorage.setItem('mobicashAuth',token);
     }
-    if(res.data.responseCode===103 || res.data.responseCode===102){
+    if(res.data.responseCode===103 || res.data.responseCode===102 || res.data.responseCode===105 || res.data.responseCode===106 || res.data.responseCode===107){
       dispatch(loginFailure(res.data.codeDescription));
     }
   } catch (err) {

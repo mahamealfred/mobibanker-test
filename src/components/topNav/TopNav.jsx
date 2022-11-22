@@ -120,9 +120,9 @@ const TopNav = () => {
                   onChange={handleLanguageChange}
                   >
                     
-              <option value="ki">Kinyarwanda</option>
+              {/* <option value="ki">Kinyarwanda</option> */}
               <option value="en">English</option>
-              <option value="fr">Français</option>
+              {/* <option value="fr">Français</option> */}
                   </NativeSelect>
                 </FormControl>
               </Button>

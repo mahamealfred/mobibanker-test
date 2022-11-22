@@ -14,6 +14,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import { SubscribeTf, FooterTitle } from "../styles/footer";
 import SendIcon from "@mui/icons-material/Send";
 import { useTranslation } from "react-i18next";
+import Link from "@mui/material/Link"
 export default function Footer() {
   const { t } = useTranslation(["home","common","login"]);
   return (
@@ -63,7 +64,8 @@ export default function Footer() {
             </ListItemText>
             <ListItemText>
               <Typography lineHeight={2} variant="caption2">
-                Privacy &amp; Policy
+              
+                <Link href="#">Privacy &amp; Policy</Link>
               </Typography>
             </ListItemText>
             <ListItemText>

@@ -96,7 +96,7 @@ const SignIn = () => {
             <Typography component="h1" variant="h5"
            
             >
-             {t("login:signin")} A
+             {t("login:signin")} 
             </Typography>
             {
                   !login.error? null:

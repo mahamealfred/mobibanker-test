@@ -1,4 +1,4 @@
-import * as React from 'react';
+import  React,{lazy} from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -10,7 +10,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Widget from '../../components/widget/Widget';
-import TopNav from '../../components/topNav/TopNav';
+//import TopNav from '../../components/topNav/TopNav';
 import { useHistory } from 'react-router-dom';
 import Footer from '../../components/footer/Footer';
 import Appbar from '../../components/appbar';
@@ -26,6 +26,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import AuthApi from '../../context/api';
 import jwt from 'jsonwebtoken';
 import { useTranslation } from "react-i18next";
+const TopNav =lazy(()=>import("../../components/topNav/TopNav"));
 const Forgotpassword= () => {
     const history=useHistory()
     const { t } = useTranslation(["home","common","login"]);

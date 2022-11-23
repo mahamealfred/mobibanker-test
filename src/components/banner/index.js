@@ -1,10 +1,8 @@
-import React ,{useEffect} from "react"
+import React ,{useEffect,lazy} from "react"
 import { useTheme } from "@mui/system";
 import Footer from "../footer/Footer";
 import Login from "../../pages/login/Login"
 import Widget from "../widget/Widget";
-import TopNav from "../topNav/TopNav";
-
 import {Box} from "@mui/material";
 import Stack from '@mui/material/Stack';
 import {
@@ -23,6 +21,7 @@ import FormControl from '@mui/material/FormControl';
 import Paper from '@mui/material/Paper';
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
+const TopNav =lazy(()=>import("../topNav/TopNav"));
 export default function Banner() {
   const { i18n, t } = useTranslation(["common"]);
 

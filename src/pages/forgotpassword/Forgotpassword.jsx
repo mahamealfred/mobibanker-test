@@ -26,7 +26,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 import AuthApi from '../../context/api';
 import jwt from 'jsonwebtoken';
 import { useTranslation } from "react-i18next";
-const TopNav =lazy(()=>import("../../components/topNav/TopNav"));
+import TopNav from "../../components/topNav/TopNav";
+// const TopNav =lazy(()=>import("../../components/topNav/TopNav"));
 const Forgotpassword= () => {
     const history=useHistory()
     const { t } = useTranslation(["home","common","login"]);

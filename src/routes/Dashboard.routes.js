@@ -2,10 +2,15 @@ import React ,{lazy} from "react";
 import { useRouteMatch, Route,Switch } from "react-router-dom";
 import Dashboard from "../views/Dashboard";
 import PrivateRoute from "./PrivateRoutes"
-const HomePage=lazy(()=>import("../pages/home/HomePage"));
-const Account=lazy(()=>import("../pages/myaccount/Account"));
-const MyProfile=lazy(()=>import("../pages/myaccount/AccountProfile"));
-const FaqPage=lazy(()=>import("../pages/faqpage"));
+import HomePage from "../pages/home/HomePage";
+import Account from "../pages/myaccount/Account";
+import  MyProfile from "../pages/myaccount/AccountProfile";
+import  FaqPage from "../pages/faqpage";
+// const HomePage=lazy(()=>import("../pages/home/HomePage"));
+// const Account=lazy(()=>import("../pages/myaccount/Account"));
+// const MyProfile=lazy(()=>import("../pages/myaccount/AccountProfile"));
+// const FaqPage=lazy(()=>import("../pages/faqpage"));
+
 function App() {
   const {path}=useRouteMatch();
     return (

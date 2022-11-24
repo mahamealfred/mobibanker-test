@@ -23,7 +23,8 @@ import AuthApi from '../../context/api';
 import jwt from 'jsonwebtoken';
 import { useTranslation } from "react-i18next";
 import { resetPasswordAction } from '../../redux/actions/resetPasswordAction';
-const TopNav =lazy(()=>import("../../components/topNav/TopNav"));
+import TopNav from "../../components/topNav/TopNav";
+// const TopNav =lazy(()=>import("../../components/topNav/TopNav"));
 const Resetpassword= () => {
     const history=useHistory()
     const { t } = useTranslation(["home","common","login"]);

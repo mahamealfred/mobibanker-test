@@ -17,8 +17,8 @@ export const loginAction = (user,history) => async (dispatch) => {
     const basicAuth = Buffer.from(`${username}:${password}`).toString('base64');
     //let basicAuth='Basic ' + Btoa(username + ':' + password);
     //const Url='https://agentweb.mobicash.rw/api/agent/user/rest/v.4.14.01/auth';
-    const Url='https://agentapi.mobicash.rw/api/agent/user/rest/v.4.14.01/auth';
-    
+   const Url='https://agentapi.mobicash.rw/api/agent/user/rest/v.4.14.01/auth';
+  // const Url=process.env.REACT_APP_BASE_URL+'/user/rest/v.4.14.01/auth' 
    const res = await axios.post(Url,{}, {
       withCredentials: true,
     Headers:{

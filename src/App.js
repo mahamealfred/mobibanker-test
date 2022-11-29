@@ -24,6 +24,7 @@ function App(){
   return(
     <AuthApi.Provider value={{auth,setAuth}}>
     <Suspense fallback={null}>
+  
        <Router>
         <Routes/>
       </Router>

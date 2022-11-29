@@ -65,7 +65,8 @@ export default function MediaCard() {
       setOpenELECTRICITY(true);
     };
     const handleClickOpenRRA = () => {
-      setOpenRRA(true);
+      history.push("/dashboard/rra-service",{push:true})
+      // setOpenRRA(true);
     };
     const handleClickOpenCBHI=()=>{
        setOpenRSSB(true)
@@ -90,6 +91,9 @@ export default function MediaCard() {
       setOpenELECTRICITY(false)
       setOpenTopUp(false)
     };
+    const openGtClient=()=>{
+      history.push("/dashboard/gt-bank-service",{push:true})
+    }
    
   
     return (
@@ -449,8 +453,8 @@ export default function MediaCard() {
       {t("common:governmentservices")}
         </Typography>
             <Button
-            // onClick={handleClickOpenRRA}
-            onClick={()=> setOpenRRA(true)}
+            onClick={handleClickOpenRRA}
+           // onClick={()=> setOpenRRA(true)}
             >
             <Card
                 raised
@@ -623,7 +627,7 @@ export default function MediaCard() {
          textAlign="center"
          sx={{ fontSize: { xs: 16 } }}
          >
-             <Divider variant="middle" />
+             
               {t("common:otherservices")}
         </Typography>
         <Button
@@ -692,6 +696,49 @@ export default function MediaCard() {
             </Card>  
             </Button>
             <Divider variant="middle" />
+            <Divider variant="middle" />
+               <Typography component="h1" variant="h5"
+         fontWeight={800}
+         color="gray"
+         textAlign="center"
+         sx={{ fontSize: { xs: 16 } }}
+         >
+             
+              {t("common:agencybanking")}
+        </Typography>
+        <Button
+         onClick={openGtClient}
+            >
+            <Card
+                raised
+                sx={{
+                   // maxWidth: 100,
+                   width:{xs:60,sm:70,md:60,lg:60},
+                   height:{xs:60,sm:60,md:60,lg:60},
+                   borderRadius:5,
+                    margin: "0 auto 5px",
+                    padding: "0.9em",
+                }}
+            >
+                <CardMedia
+                    component="img"
+                    height="60"
+                    image="../../images/gtbank.png"
+                    alt="alt"
+                    title="i"
+                    sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
+                    height:{xs:40,sm:40,md:40,lg:40}}}
+                />
+           <Typography variant="h6" gutterBottom
+                sx={{ padding: "0em 0em 0 0em",color:"gray",
+                fontSize:10
+             }}
+           >
+           GT Client
+          </Typography>
+            </Card>  
+            </Button>
+           
             {/* <Typography component="h1" variant="h5"
          fontWeight={800}
          color="text.primary"

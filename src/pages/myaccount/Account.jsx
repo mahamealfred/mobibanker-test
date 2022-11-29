@@ -108,15 +108,21 @@ const user = {
       component="main"
       sx={{
         flexGrow: 1,
-        py: 8,
+        py: 6,
         width: "100vw"
-    
+        
+       
       }}
     >
        <Typography
-          sx={{ mb: 2 }}
-          variant="h5"
-        
+          
+          component="h1" variant="body1"
+          fontWeight={800}
+          color="gray"
+          textAlign="center"
+          padding="0 0px 30px 0px"
+          sx={{ fontSize: { xs: 20 },mb:2 }}
+       
         >
        {t("common:accountbalance")}
         </Typography>
@@ -125,7 +131,9 @@ const user = {
         <Grid
           container
           spacing={2}
+          style={{display:'flex',justifyContent:'center',alignItems:'center'}}
         >
+          
           <Grid
             item
             lg={4}

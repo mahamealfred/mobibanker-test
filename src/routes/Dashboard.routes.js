@@ -6,6 +6,8 @@ import HomePage from "../pages/home/HomePage";
 import Account from "../pages/myaccount/Account";
 import  MyProfile from "../pages/myaccount/AccountProfile";
 import  FaqPage from "../pages/faqpage";
+import SubservicePage from "../pages/subservicespage";
+import RRAService from "../pages/servicespages/rra/RraForm"
 // const HomePage=lazy(()=>import("../pages/home/HomePage"));
 // const Account=lazy(()=>import("../pages/myaccount/Account"));
 // const MyProfile=lazy(()=>import("../pages/myaccount/AccountProfile"));
@@ -24,6 +26,8 @@ function App() {
                 <PrivateRoute exact path={`${path}/my-account`} component={Account} />
                 <PrivateRoute exact path={`${path}/my-profile`} component={MyProfile} />
                 <PrivateRoute exact path={`${path}/faq`} component={FaqPage} />
+                <PrivateRoute exact path={`${path}/gt-bank-service`} component={SubservicePage} />
+                <PrivateRoute exact path={`${path}/rra-service`} component={RRAService} />
               </>
             )}
           />

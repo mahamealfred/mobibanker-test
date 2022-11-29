@@ -25,6 +25,7 @@ import { ComponentToPrint } from './ComponentToPrint';
 import ReactToPrint from 'react-to-print';
 import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 const theme = createTheme();
 theme.typography.h3 = {
   fontSize: '1.2rem',
@@ -80,6 +81,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
  const [agentName,setAgentName]=useState("");
  const [password,setPassword]=useState("")
  const [userGroup,setUserGroup]=useState("")
+ const history = useHistory();
   const getStepContent = (step) => {
     switch (step) {
       case 0:
@@ -326,13 +328,25 @@ else if(formData.amountPaid > 2000000){
     rnitPayment.details=['']
     getRnitDetails.loading=false
     rnitPayment.loading=false
-    setOpenRNIT(false)
     setActiveStep(0);
+   
+    history.push("/dashboard",{push:true})
+    // setOpenRNIT(false)
   };
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <CssBaseline />
+        {/* <CssBaseline /> */}
+        <Box
+      component="main"
+      sx={{
+        flexGrow: 1,
+        py: 1,
+        width: "100vw"
+      }}
+    >
+ 
+    </Box>
         <Container component="main" maxWidth="sm" sx={{display:{xs:"block",sm:"block",md:"block",lg:"block"}, mb: 4 }}>
           <Paper
             variant="outlined"

@@ -357,13 +357,24 @@ useEffect(()=>{
     getCbhiNidDetails.loading=false
     cbhiPayment.loading=false
     setActiveStep(0);
-    setOpenRSSB(false)
+    history.push("/dashboard",{push:true})
+    //setOpenRSSB(false)
 
   };
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <CssBaseline />
+        {/* <CssBaseline /> */}
+        <Box
+      component="main"
+      sx={{
+        flexGrow: 1,
+        py: 1,
+        width: "100vw"
+      }}
+    >
+ 
+    </Box>
         <Container component="main" maxWidth="sm" sx={{display:{xs:"block",sm:"block",md:"block",lg:"block"}, mb: 4 }}>
           <Paper
             variant="outlined"

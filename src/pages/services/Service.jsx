@@ -62,21 +62,24 @@ export default function MediaCard() {
     const handleOpenLTSS= () => setOpenLTSS(true);
     
     const handleClickOpenElecticity = () => {
-      setOpenELECTRICITY(true);
+      history.push("/dashboard/electricity-service",{push:true})
+      // setOpenELECTRICITY(true);
     };
     const handleClickOpenRRA = () => {
       history.push("/dashboard/rra-service",{push:true})
       // setOpenRRA(true);
     };
     const handleClickOpenCBHI=()=>{
-       setOpenRSSB(true)
-      // history.push('/dashboard/cbhi',{push:true})
+       //setOpenRSSB(true)
+       history.push('/dashboard/cbhi-service',{push:true})
     }
     const handleClickOpenLTSS = () => {
-      setOpenLTSS(true);
+      //setOpenLTSS(true);
+      history.push('/dashboard/ltss-service',{push:true})
     };
     const handleClickOpenRNIT = () => {
-      setOpenRNIT(true);
+      //setOpenRNIT(true);
+      history.push('/dashboard/rnit-service',{push:true})
     };
     const handleClickOpenLOGS=()=>{
       setOpenLOGS(true)

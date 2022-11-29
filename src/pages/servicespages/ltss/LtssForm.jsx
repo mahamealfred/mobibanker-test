@@ -27,6 +27,7 @@ import ReactToPrint from "react-to-print";
 import { ComponentToPrint } from "./ComponentToPrint";
 import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
+
 const theme = createTheme();
 
 theme.typography.h3 = {
@@ -76,6 +77,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
  const [agentName,setAgentName]=useState("")
  const [brokering,setBrokering]=useState("")
  const [amount,setAmount]=useState("");
+ const history = useHistory();
   const getStepContent = (step) => {
     switch (step) {
       case 0:
@@ -300,12 +302,23 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
    getLtssIndDetails.loading=false
    ltssPayment.loading=false
     setActiveStep(0);
-    setOpenLTSS(false)
+    history.push("/dashboard",{push:true})
+   // setOpenLTSS(false)
   };
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <CssBaseline />
+        {/* <CssBaseline /> */}
+        <Box
+      component="main"
+      sx={{
+        flexGrow: 1,
+        py: 1,
+        width: "100vw"
+      }}
+    >
+ 
+    </Box>
         <Container component="main" maxWidth="sm" sx={{display:{xs:"block",sm:"block",md:"block",lg:"block"}, mb: 4 }}>
           <Paper
             variant="outlined"

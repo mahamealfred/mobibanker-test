@@ -116,8 +116,8 @@ const user = {
     >
        <Typography
           
-          component="h1" variant="body1"
-          fontWeight={800}
+          component="h1" variant="h6"
+          
           color="gray"
           textAlign="center"
           padding="0 0px 30px 0px"

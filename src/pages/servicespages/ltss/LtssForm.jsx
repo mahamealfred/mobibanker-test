@@ -24,11 +24,9 @@ import { useHistory } from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
 import jwt from "jsonwebtoken"
 import ReactToPrint from "react-to-print";
-//import { ComponentToPrint } from "./ComponentToPrint";
-
+import { ComponentToPrint } from "./ComponentToPrint";
 import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
-const ComponentToPrint =lazy(()=>import("./ComponentToPrint"));
 const theme = createTheme();
 
 theme.typography.h3 = {

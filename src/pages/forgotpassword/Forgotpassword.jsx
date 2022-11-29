@@ -102,7 +102,7 @@ const Forgotpassword= () => {
                     }
                     sx={{ mb: 0.2 }}
                   >
-                   {forgotPassword.error==="FAILURE"?"You'are temporarily blocked":forgotPassword.error}
+                   {forgotPassword.error}
                   </Alert>
                 </Collapse>
                }    

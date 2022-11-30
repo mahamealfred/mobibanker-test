@@ -13,6 +13,7 @@ import {
     CardActions,
     Avatar
   } from '@mui/material';
+  import Service from "./gt/service/Index";
 const index = (props) => {
   return (
    <React.Fragment>
@@ -48,7 +49,8 @@ const index = (props) => {
          justifyCenter:"center"
         }}
       >
-        {/* <Service/> */}
+
+        <Service/>
       </Box>
     </CardContent>
     {/* <Divider /> */}

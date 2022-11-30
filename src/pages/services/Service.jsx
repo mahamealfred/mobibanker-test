@@ -455,7 +455,14 @@ export default function MediaCard() {
          >
       {t("common:governmentservices")}
         </Typography>
-            <Button
+        <Grid
+  container
+  spacing={0}
+  alignItems="center"
+  justifyContent="center"
+ 
+>
+<Button
             onClick={handleClickOpenRRA}
            // onClick={()=> setOpenRRA(true)}
             >
@@ -588,6 +595,8 @@ export default function MediaCard() {
           </Typography>
             </Card>  
             </Button>
+        </Grid>
+           
           
            
 {/*            
@@ -633,7 +642,14 @@ export default function MediaCard() {
              
               {t("common:otherservices")}
         </Typography>
-        <Button
+        <Grid
+  container
+  spacing={0}
+  alignItems="center"
+  justifyContent="center"
+ 
+>
+<Button
          onClick={handleClickOpenElecticity}
             >
             <Card
@@ -698,6 +714,8 @@ export default function MediaCard() {
           </Typography>
             </Card>  
             </Button>
+</Grid>
+        
             <Divider variant="middle" />
             <Divider variant="middle" />
                <Typography component="h1" variant="h5"
@@ -709,7 +727,14 @@ export default function MediaCard() {
              
               {t("common:agencybanking")}
         </Typography>
-        <Button
+        <Grid
+  container
+  spacing={0}
+  alignItems="center"
+  justifyContent="center"
+ 
+>
+<Button
          onClick={openGtClient}
             >
             <Card
@@ -741,6 +766,8 @@ export default function MediaCard() {
           </Typography>
             </Card>  
             </Button>
+</Grid>
+       
            
             {/* <Typography component="h1" variant="h5"
          fontWeight={800}

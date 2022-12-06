@@ -270,7 +270,7 @@ The minimum float for new agent is 100,000 Rwf.
   <Accordion  >
     <AccordionSummary  expandIcon={<ExpandMoreIcon />}>
       <Typography color="gray" variant="body1" >
-      +	What is the minimum amount to pay on Mutuelle de santé (MUSA)?
+      +	What is the minimum amount to pay on Mutuelle de santé?
       </Typography>
     </AccordionSummary>
     <AccordionDetails>

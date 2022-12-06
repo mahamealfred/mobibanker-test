@@ -12,7 +12,7 @@ import CBHIService  from "../pages/servicespages/cbhi/CbhiIdentificationForm";
 import LTSSService from "../pages/servicespages/ltss/LtssForm";
 import EleCtricityForm from "../pages/servicespages/electricity/ElectricityForm";
 import RnitForm from "../pages/servicespages/rnit/RnitForm";
-
+import Createaccount from "../pages/subservicespage/gt/pages/Createaccount"
 // const HomePage=lazy(()=>import("../pages/home/HomePage"));
 // const Account=lazy(()=>import("../pages/myaccount/Account"));
 // const MyProfile=lazy(()=>import("../pages/myaccount/AccountProfile"));
@@ -37,6 +37,8 @@ function App() {
                 <PrivateRoute exact path={`${path}/ltss-service`} component={LTSSService} />
                 <PrivateRoute exact path={`${path}/rnit-service`} component={RnitForm} />
                 <PrivateRoute exact path={`${path}/electricity-service`} component={EleCtricityForm} />
+                {/* GT bank */}
+                <PrivateRoute exact path={`${path}/gtbank-open-account`} component={Createaccount} />
               </>
             )}
           />

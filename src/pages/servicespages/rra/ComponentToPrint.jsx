@@ -16,6 +16,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
            
     return (
       <div ref={ref}>
+		< CssBaseline/>
        <div className="wrapper">
 	<div className="invoice_wrapper">
 		<div className="header">

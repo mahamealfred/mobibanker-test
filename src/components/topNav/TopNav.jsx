@@ -8,6 +8,7 @@ import Stack from '@mui/material/Stack';
 import LanguageIcon from '@mui/icons-material/Language';
 import { Colors, DrawerWidth } from "../styles/theme";
 import { useTranslation } from "react-i18next";
+import CssBaseline from '@mui/material/CssBaseline';
 import i18next from "i18next";
 import {
   flexBetweenCenter,
@@ -52,6 +53,8 @@ const TopNav = () => {
     }));
   return (
     <AppBar position="sticky"  elevation={0} sx={{backgroundColor:'white',width:"100%"}} >
+      
+        <CssBaseline/>
         <StyledToolbar>
             <MobiLogoImg>
             <Box

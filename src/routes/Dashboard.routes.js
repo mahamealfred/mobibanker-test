@@ -12,7 +12,10 @@ import CBHIService  from "../pages/servicespages/cbhi/CbhiIdentificationForm";
 import LTSSService from "../pages/servicespages/ltss/LtssForm";
 import EleCtricityForm from "../pages/servicespages/electricity/ElectricityForm";
 import RnitForm from "../pages/servicespages/rnit/RnitForm";
-import Createaccount from "../pages/subservicespage/gt/pages/Createaccount"
+import Createaccount from "../pages/subservicespage/gt/pages/Createaccount";
+import Deposit from "../pages/subservicespage/gt/pages/Deposit";
+import MoneyTransfer from "../pages/subservicespage/gt/pages/Transfer";
+import Withdraw from "../pages/subservicespage/gt/pages/Withdraw";
 // const HomePage=lazy(()=>import("../pages/home/HomePage"));
 // const Account=lazy(()=>import("../pages/myaccount/Account"));
 // const MyProfile=lazy(()=>import("../pages/myaccount/AccountProfile"));
@@ -38,7 +41,10 @@ function App() {
                 <PrivateRoute exact path={`${path}/rnit-service`} component={RnitForm} />
                 <PrivateRoute exact path={`${path}/electricity-service`} component={EleCtricityForm} />
                 {/* GT bank */}
-                <PrivateRoute exact path={`${path}/gtbank-open-account`} component={Createaccount} />
+                <PrivateRoute exact path={`${path}/gt-bank-service/open-account`} component={Createaccount} />
+                <PrivateRoute exact path={`${path}/gt-bank-service/deposit`} component={Deposit} />
+                <PrivateRoute exact path={`${path}/gt-bank-service/transfer`} component={MoneyTransfer} />
+                <PrivateRoute exact path={`${path}/gt-bank-service/withdraw`} component={Withdraw} />
               </>
             )}
           />

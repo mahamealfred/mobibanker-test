@@ -365,7 +365,7 @@ fetchData();
            justifyContent="center"
            
            >
-            <Typography variant="h6" color="text.primary"
+            <Typography variant="h6" color="gray" 
              sx={{ fontSize:{xs:14,md:16,lg:20} }}
              >
          {t("electricity:electricitypaymentservice")}

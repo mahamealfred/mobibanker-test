@@ -11,17 +11,15 @@ import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Document from "../components/createaccount/Document";
-import Account from "../components/createaccount/Account";
-import Review from "../components/createaccount/Review";
-
+import Document from "../components/transfer/Document";
+import Account from "../components/transfer/Account";
+import Review from "../components/transfer/Review";
 import { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Grid } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
 import jwt from "jsonwebtoken";
-
 import ReactToPrint from 'react-to-print';
 import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
@@ -38,10 +36,10 @@ theme.typography.h3 = {
   },
 };
 
-const RraForm = ({}) => {
+const Transfer = ({}) => {
   const { t } = useTranslation(["home","common","login","rra"]);
 
-  const steps = ['NID', 'Enter Information', 'View Details'];
+  const steps = ['Account Number', 'Amount', 'View Details'];
   const [activeStep, setActiveStep] = React.useState(0);
   const dispatch = useDispatch();
 const history=useHistory();
@@ -137,7 +135,7 @@ const history=useHistory();
             <Typography variant="h6" color="gray" 
               sx={{ fontSize:{xs:14,md:16,lg:20} }}
             >
-    OPEN ACCOUNT
+      MONEY TRANSFER
           </Typography>
            <img
                   src="../../../images/gtbank.png"
@@ -161,11 +159,11 @@ const history=useHistory();
                   {t("common:thankyouforusingmobicash")}
                   </Typography>
                   <Typography textAlign="center" variant="subtitle1">
-                  You have successfully open a GT Bank Account
+                  You have successfully deposit 
                   </Typography>
                 
                   <Button onClick={handleNewpayment} sx={{ mt: 3, ml: 1 }}>
-                Done
+                New Deposit
                   </Button>
                 </React.Fragment>
               ) : (
@@ -191,7 +189,7 @@ const history=useHistory();
                         ? 'Receipt'
                         : activeStep === 0
                         ? `${t("common:submit")}`
-                        :`Open Account`
+                        :`Make Deposit`
                         }
                     </Button>
                   </Box>
@@ -205,4 +203,4 @@ const history=useHistory();
   );
 };
 
-export default RraForm;
+export default Transfer;

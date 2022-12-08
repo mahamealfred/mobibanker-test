@@ -52,7 +52,7 @@ const Logout = () => {
   //   </BannerContent>
   // </BannerContainer>
   <ThemeProvider theme={theme}>
-  <CssBaseline />
+  {/* <CssBaseline /> */}
   <AppBar position="relative"  elevation={1} sx={{backgroundColor:'white'}} >
     <Toolbar>
       {/* <CameraIcon sx={{ mr: 2 }} /> */}

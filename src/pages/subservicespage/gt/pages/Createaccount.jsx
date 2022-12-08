@@ -25,7 +25,7 @@ import jwt from "jsonwebtoken";
 import ReactToPrint from 'react-to-print';
 import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
-
+import CardMedia from "@mui/material/CardMedia";
 const theme = createTheme();
 
 theme.typography.h3 = {
@@ -50,9 +50,6 @@ const history=useHistory();
     phoneNumber: "",
     password: "",
   });
-
-
-
 
  const getStepContent = (step) => {
    switch (step) {
@@ -139,12 +136,16 @@ const history=useHistory();
             >
     OPEN ACCOUNT
           </Typography>
-           <img
-                  src="../../../images/gtbank.png"
-                  alt="logo"
-                  height={70}
-                  width={75}
+          <CardMedia
+                    component="img"
+                    height="60"
+                    image="../../images/gtbank.png"
+                    alt="alt"
+                    title="i"
+                    sx={{  objectFit: "contain",
+                    height:{xs:40,sm:40,md:60,lg:60}}}
                 />
+         
            </Grid>
            </ThemeProvider>
             <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5,display:{xs:"inline",sm:"flex"} }}>

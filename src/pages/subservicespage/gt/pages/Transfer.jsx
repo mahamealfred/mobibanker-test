@@ -23,7 +23,8 @@ import jwt from "jsonwebtoken";
 import ReactToPrint from 'react-to-print';
 import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
-
+import CardMedia from "@mui/material/CardMedia";
+import ToAccount from "../components/transfer/ToAccount";
 const theme = createTheme();
 
 theme.typography.h3 = {
@@ -39,7 +40,7 @@ theme.typography.h3 = {
 const Transfer = ({}) => {
   const { t } = useTranslation(["home","common","login","rra"]);
 
-  const steps = ['Account Number', 'Amount', 'View Details'];
+  const steps = ['Account Number','Account to Transfer', 'Amount', 'View Details'];
   const [activeStep, setActiveStep] = React.useState(0);
   const dispatch = useDispatch();
 const history=useHistory();
@@ -60,16 +61,24 @@ const history=useHistory();
          
          />
        );
+
      case 1:
        return (
-         <Account
+         <ToAccount
           
 
          />
        );
      case 2:
-       return <Review 
+       return <Account
        />;
+       case 3:
+        return (
+          <Review 
+           
+ 
+          />
+        );
      default:
        throw new Error("Unknown step");
    }
@@ -85,7 +94,10 @@ const history=useHistory();
    } else if (activeStep === 2) {
 
  handleNext()
-   } else {
+   } else if (activeStep === 3) {
+
+    handleNext()
+      }else {
      return null;
    }
    
@@ -116,10 +128,11 @@ const history=useHistory();
         flexGrow: 1,
         py: 1,
         width: "100vw"
+       
       }}
     >
     </Box>
-        <Container component="main" maxWidth="sm" sx={{display:{xs:"block",sm:"block",md:"block",lg:"block"}, mb: 4 }}>
+        <Container component="main" maxWidth="md" sx={{display:{xs:"block",sm:"block",md:"block",lg:"block"}, mb: 4 }}>
           <Paper
             variant="outlined"
             sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 2 } }}
@@ -137,11 +150,14 @@ const history=useHistory();
             >
       MONEY TRANSFER
           </Typography>
-           <img
-                  src="../../../images/gtbank.png"
-                  alt="logo"
-                  height={70}
-                  width={75}
+          <CardMedia
+                    component="img"
+                    height="60"
+                    image="../../images/gtbank.png"
+                    alt="alt"
+                    title="i"
+                    sx={{  objectFit: "contain",
+                    height:{xs:40,sm:40,md:60,lg:60}}}
                 />
            </Grid>
            </ThemeProvider>
@@ -159,18 +175,18 @@ const history=useHistory();
                   {t("common:thankyouforusingmobicash")}
                   </Typography>
                   <Typography textAlign="center" variant="subtitle1">
-                  You have successfully deposit 
+                  You have successfully Transfer Money to #####
                   </Typography>
                 
                   <Button onClick={handleNewpayment} sx={{ mt: 3, ml: 1 }}>
-                New Deposit
+                New Transfer
                   </Button>
                 </React.Fragment>
               ) : (
                 <React.Fragment>
                   {getStepContent(activeStep)}
                   <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                    {activeStep == 0 || activeStep !==2? (
+                    {activeStep == 0 || activeStep !==3? (
                       <Button onClick={handleBack} 
                      //sx={{ mt: 3, ml: 1 }}
                       sx={{ my: 1, mx: 1.5 }}
@@ -187,9 +203,9 @@ const history=useHistory();
                       {/* {activeStep === steps.length - 1 ? 'Mke payment' : 'Next'} */}
                       {activeStep === steps.length - 1
                         ? 'Receipt'
-                        : activeStep === 0
+                        : activeStep <=1
                         ? `${t("common:submit")}`
-                        :`Make Deposit`
+                        :`Transfer`
                         }
                     </Button>
                   </Box>

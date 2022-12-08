@@ -52,7 +52,7 @@ const TopNav = () => {
       },
     }));
   return (
-    <AppBar position="sticky"  elevation={1} sx={{backgroundColor:'white',width:"100%"}} >
+    <AppBar position="sticky"   elevation={1} sx={{backgroundColor:'white',width:"100%"}} >
       
         {/* <CssBaseline/> */}
         <StyledToolbar>

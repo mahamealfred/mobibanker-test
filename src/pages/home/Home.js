@@ -269,7 +269,7 @@ setOpenModal(false)
      
       <Box sx={{ display: 'flex' ,height:"auto"}}>
         {/* <CssBaseline /> */}
-        <AppBar position="fixed" open={open} elevation={0} sx={{ backgroundColor: 'white', display: 'flex',borderRadius:2 }} >
+        <AppBar position="fixed" open={open} elevation={2} sx={{ backgroundColor: 'white', display: 'flex',borderRadius:2 }} >
           <Toolbar
             sx={{
               pr: '24px',

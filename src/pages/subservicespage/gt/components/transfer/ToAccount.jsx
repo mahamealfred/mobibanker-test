@@ -19,7 +19,7 @@ theme.typography.h3 = {
         fontSize: '1rem'
     }
 };
-const Document = ({
+const ToAccount = ({
     
 }) => {
     const { i18n,t } = useTranslation(["home","common","rra"]);
@@ -45,12 +45,12 @@ const Document = ({
                  
                     xs={12}>
                       
- <TextField id="address2" size="small"   margin="normal" name="address2" label="Account Number"
+ <TextField id="address2" size="small"   margin="normal" name="address2" label="To Account Number"
                         // value={ formData.docId}
                         // onChange={(e) => setFormData({...formData,docId: e.target.value})}
                         // helperText={docIdErr ? docIdErr : ""}
                         // error={docIdErr}
-                        placeholder="Account Number"
+                        placeholder="To Account Number"
                         style={{width:"240px"}}
     
                         autoComplete="shipping address-line2"
@@ -63,4 +63,4 @@ const Document = ({
     );
 };
 
-export default Document;
+export default ToAccount;

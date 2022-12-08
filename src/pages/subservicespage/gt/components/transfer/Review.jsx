@@ -23,12 +23,12 @@ export default function Review() {
             <ListItemText primary="Account Number" secondary="122334444" />
           </ListItem>
           <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
-            <ListItemText primary="Depositor" secondary="Uwere Ange" />
+            <ListItemText primary="To" secondary="Uwere Ange" />
           </ListItem>
         <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary= "Amount deposited" />
+          <ListItemText primary= "Amount transfered" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-        10000 Rwf
+        10,000 Rwf
           </Typography>
         </ListItem>
         <ListItem sx={{ py: 1, px: 0 }}>

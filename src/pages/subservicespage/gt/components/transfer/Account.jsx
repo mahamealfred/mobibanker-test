@@ -38,22 +38,7 @@ const Account=({
            12627721991
               </Typography>
             </Grid>
-            <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="cardName"
-            margin="normal"
-            size="small" 
-            label="Account to transfer"
-            // value={formData.phoneNumber}
-            // onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
-            // helperText={phoneNumberError? phoneNumberError : ""}
-            // error={phoneNumberError}
-            fullWidth
-            autoComplete="cc-name"
-            variant="outlined"
-          />
-        </Grid>
+         
         <Grid item xs={12} md={6}>
           <TextField
             required

@@ -18,7 +18,7 @@ const inde = () => {
   return (
     <Paper elevation={4} sx={{marginTop: 'calc(10% + 60px)',
     width: '100%',
-    position: 'fixed',
+    position: {xs:"relative",sm:"fixed"},
     bottom: 0,
     width: '100%',
     backgroundColor:"white"

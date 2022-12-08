@@ -76,7 +76,7 @@ export default function Banner() {
       
           }}>
          <Stack>
-            <Paper sx={justifyCenter}>
+            <Paper elevation={0} sx={justifyCenter}>
                 <Box sx={{ ...justifyCenter, mr: 1 }}>
                   <LanguageIcon size={20} sx={{color:"#F9842C"}} />
                 </Box>

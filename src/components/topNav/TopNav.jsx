@@ -52,7 +52,7 @@ const TopNav = () => {
       },
     }));
   return (
-    <AppBar position="sticky"  elevation={0} sx={{backgroundColor:'white',width:"100%"}} >
+    <AppBar position="sticky"  elevation={1} sx={{backgroundColor:'white',width:"100%"}} >
       
         {/* <CssBaseline/> */}
         <StyledToolbar>
@@ -60,15 +60,17 @@ const TopNav = () => {
             <Box
         component="img"
         sx={{
-          height: 80,
-          width: 250,
+          // height: 80,
+          // width: 250,
           marginLeft:8,
-          maxHeight: { xs: 60, md: 300 },
-          maxWidth: { xs: 150, md: 300 },
+          // maxHeight: { xs: 60, md: 300 },
+          // maxWidth: { xs: 150, md: 300 },
+          maxHeight: { xs: 300, md: 300},
+          maxWidth: { xs: 300, md: 300},
           display:{xs:"none",sm:"block"}
         }}
         alt="mobicash logo"
-        src="../../images/logo.png"
+        src="../../images/mobibk.png"
       />
        <Box
               component="img"
@@ -81,13 +83,9 @@ const TopNav = () => {
               alt="mobicash logo"
               src="../../images/mobibk.png"
             />
-            {/* <Box
-          sx={{display:{xs:"block",sm:"none"}}}
-        >
-        <img src="../../images/img_144.png" alt="logo" height="40" width="50" margin="50px"/>
-        </Box> */}
+        
             </MobiLogoImg>
-            <Box
+            {/* <Box
         component="img"
         sx={{
           height: 100,
@@ -98,7 +96,7 @@ const TopNav = () => {
         }}
         alt="mobicash logo"
         src="../../images/mobibk.png"
-      />
+      /> */}
     
         < MobiBankerImg>
         <Box sx={{ minWidth: 100 }}>
@@ -106,12 +104,12 @@ const TopNav = () => {
       <Box
       sx={{
         ...fullWidthFlex,
-        borderTop: '1px solid #ddd',
+       
         display:{xs:"none",sm:"block"}
       }}
     >
         <Stack>
-            <Paper sx={justifyCenter}>
+            <Paper elevation={0} sx={justifyCenter}>
               <Button sx={{ minWidth: 100 }}>
                 <Box sx={{ ...justifyCenter, mr: 1 }}>
                   <LanguageIcon size={20} sx={{color:"#F9842C"}} />

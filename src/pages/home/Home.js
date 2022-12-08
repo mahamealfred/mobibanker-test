@@ -346,11 +346,11 @@ setOpenModal(false)
             <Box sx={{ minWidth: 100, display: { xs: "none", sm: "none",md:"block" } }}>
                <Box sx={{
         ...fullWidthFlex,
-        borderTop: '1px solid #ddd',
+        // borderTop: '1px solid #ddd',
       }}
     >
         <Stack>
-            <Paper sx={justifyCenter}>
+            <Paper elevation={0} sx={justifyCenter}>
               <Button sx={{ minWidth: 100 }}>
                 <Box sx={{ ...justifyCenter, mr: 1 }}>
                   <LanguageIcon size={20} sx={{color:"#F9842C"}} />

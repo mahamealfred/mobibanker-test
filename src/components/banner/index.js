@@ -21,6 +21,7 @@ import FormControl from '@mui/material/FormControl';
 import Paper from '@mui/material/Paper';
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
+import Footerr from "../footerr/"
 const TopNav =lazy(()=>import("../topNav/TopNav"));
 export default function Banner() {
   const { i18n, t } = useTranslation(["common"]);
@@ -127,7 +128,7 @@ export default function Banner() {
     }}
     >
     </Box>
-    <Footer/>
+    <Footerr/>
     </React.Fragment>
   );
 }

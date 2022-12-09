@@ -24,6 +24,10 @@ import ReactToPrint from 'react-to-print';
 import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
 import CardMedia from "@mui/material/CardMedia";
+
+import {accountValidationAction } from "../../../../redux/actions/accountValidationAction";
+import { valiateNidDetailsDetailsAction } from "../../../../redux/actions/validateNidAction";
+import { depositAction } from "../../../../redux/actions/depositAction";
 const theme = createTheme();
 
 theme.typography.h3 = {
@@ -43,45 +47,190 @@ const Deposit = ({}) => {
   const [activeStep, setActiveStep] = React.useState(0);
   const dispatch = useDispatch();
 const history=useHistory();
+const accountValidation=useSelector((state)=>state.accountValidation)
+const deposit=useSelector((state)=>state.deposit)
+const [open, setOpen] = React.useState(true);
+const [accountNumberErr, setAccountNumberErr] = useState("");
+const [errorMessage, setErrorMessage] = useState("");
+const [destinationErr,setDestinationErr]=useState("");
+const [amountErr,setAmountErr]=useState("");
+const [depositerrorMessage,setDepositerrorMessage]=useState("");
+
+const [username,setUsername]=useState("");
+const [brokering, setBrokering] = useState("");
+const [userGroup, setUserGroup] = useState("");
+const [transactionId,setTransactionId]=useState("");
+const [transactionStatus,setTransactionStatus]=useState("");
+const [dateTime,setDateTime]=useState("")
+const [agentName,setAgentName]=useState("")
+const [clientCharges,setClientCharges]=useState("")
+const [password,setPassword]=useState("")
+const [accountName,setAccountName]=useState("");
+const [debit,setDebit]=useState("");
+const [credit,setCredit]=useState("");
+
+const [amountDeposited,setAmountDeposited]=useState("");
+//all
   const [formData, setFormData] = useState({
-    docId: "",
-    phoneNumber: "",
+    accountNumber: "",
+    amount: "",
+    destination:"",
     password: "",
   });
-
-
-
 
  const getStepContent = (step) => {
    switch (step) {
      case 0:
        return (
          <Document
-         
+         formData={formData}
+         setFormData={setFormData}
+         accountNumberErr={accountNumberErr}
+         errorMessage={errorMessage}
+         setErrorMessage={setErrorMessage}
+         open={open}
+         setOpen={setOpen}
          />
        );
      case 1:
        return (
          <Account
-          
-
+         formData={formData}
+         setFormData={setFormData}
+         amountErr={amountErr}
+         accountName={accountName}
+         destinationErr={destinationErr}
+         depositerrorMessage={depositerrorMessage}
+         setDepositerrorMessage={setDepositerrorMessage}
+         open={open}
+         setOpen={setOpen}
          />
        );
      case 2:
        return <Review 
+       formData={formData}
+       setFormData={setFormData}
+       accountName={accountName}
+       dateTime={dateTime}
+       amountDeposited={amountDeposited}
+       transactionId={transactionId}
        />;
      default:
        throw new Error("Unknown step");
    }
  };
- 
+ //render account details
+ useEffect(() => {
+  async function fetchData() {
+    if (!accountValidation.loading) {
+      if (accountValidation.details.length !== 0) {
+        if (accountValidation.details.responseCode === 100) {
+          setDebit(accountValidation.details.data.fullAccount)
+          setAccountName(accountValidation.details.data.names)
+          setCredit(formData.accountNumber)
+          handleNext();
+        } else {
+          return null;
+        }
+      
+      }
+      if (accountValidation.error) {
+        setErrorMessage(accountValidation.error);
+      }
+    }
+  }
+  fetchData();
+}, [accountValidation.details]);
+ //handle validate account 
+const handleValidateAccount=async()=>{
+   if(formData.accountNumber===""){
+    setAccountNumberErr("Account is required")
+   }
+   else if(!Number(formData.accountNumber)){
+    setAccountNumberErr("Account must be a number")
+   }
+   else{
+    setAccountNumberErr("")
+    setErrorMessage("")
+    const accountNumber= formData.accountNumber;
+    await dispatch(accountValidationAction({accountNumber}))
+   // handleNext()
+   }
+  // handleNext()
+}
 
+//fecth deposit information
+
+useEffect(()=>{
+  async function fetchData(){
+   if (!deposit.loading) {
+     if (deposit.details.length !== 0) {
+       if (deposit.details.responseCode === 100) {
+        setAmountDeposited(deposit.details.data.amount)
+        setTransactionId(deposit.details.data.reference)
+        setDateTime(deposit.details.responseDate)
+         handleNext();
+       } else {
+         return null;
+       }
+     }
+     if (deposit.error) {
+       setDepositerrorMessage(deposit.error);
+     }
+   }
+  
+  }
+  fetchData();
+   },[deposit.details,deposit.error])
+  
+// handle deposit
+const handleDeposit=async()=>{
+  if(formData.amount==='' ){
+    setAmountErr("Amount is required")
+  }
+  else if(!Number(formData.amount)){
+setAmountErr("Amount must be a numeric")
+  }
+  else if(formData.destination===""){
+    setDestinationErr("Please select the destination")
+}
+else{
+  setAmountErr("")
+  setDestinationErr("")
+  setDepositerrorMessage("")
+  const amount=formData.amount
+  const destination=formData.destination
+
+await dispatch(depositAction({amount,destination,debit,credit},username,password))
+}
+}
+//agent infromation
+const decode= (token) => {
+  const JWT_SECRET="tokensecret";
+  const payload = jwt.verify(token, JWT_SECRET);
+   return payload;
+}
+useEffect(() => {
+  const token =localStorage.getItem('mobicashAuth');
+  if (token) {
+  const {username}=decode(token);
+  const {role}=decode(token);
+  const {group}=decode(token);
+  const {name}=decode(token);
+  const {password}=decode(token)
+  setUsername(username)
+  setBrokering(role)
+  setUserGroup(group)
+  setAgentName(name)
+  setPassword(password)
+}
+}, []);
  //handle on button submit for each step
  const handelSubmit = () => {
    if (activeStep === 0) {
-    handleNext()
+    handleValidateAccount();
    } else if (activeStep === 1) {
-    handleNext()
+   handleDeposit()
    } else if (activeStep === 2) {
 
  handleNext()
@@ -89,10 +238,22 @@ const history=useHistory();
      return null;
    }
    
+   if (accountValidation.error) {
+    setOpen(true);
+  }
+  if (deposit.error) {
+    setOpen(true);
+  }
   
  };
 
  const handleNewpayment = () => {
+  formData.accountNumber = "";
+  formData.amount = "";
+  accountValidation.details=['']
+  accountValidation.error=['']
+  deposit.details=['']
+  deposit.error=['']
   setActiveStep(0)
  };
 
@@ -101,7 +262,20 @@ const history=useHistory();
  };
 
  const handleBack = () => {
-   setActiveStep(0);
+  formData.password = "";
+  formData.amount=""
+  formData.accountNumber=""
+  setAmountErr("");
+  //setPasswordError("");
+  setAccountNumberErr("");
+  setErrorMessage("");
+  accountValidation.error=['']
+  setDepositerrorMessage("");
+  accountValidation.details=['']
+  deposit.details=['']
+  accountValidation.loading=false
+  deposit.loading=false
+  setActiveStep(0);
   history.push("/dashboard",{push:true})
    //setOpenRRA(false)
   
@@ -191,8 +365,14 @@ const history=useHistory();
                       {activeStep === steps.length - 1
                         ? 'Receipt'
                         : activeStep === 0
-                        ? `${t("common:submit")}`
-                        :`Make Deposit`
+                        ? accountValidation.loading?
+                        <Box sx={{ display: 'flex',justifyContent:"center" }}>
+                        <CircularProgress  sx={{ color: 'orange'}} />
+                         </Box>:`${t("common:submit")}`
+                        :deposit.loading?
+                        <Box sx={{ display: 'flex',justifyContent:"center" }}>
+                        <CircularProgress  sx={{ color: 'orange'}} />
+                         </Box>:`Make Deposit`
                         }
                     </Button>
                   </Box>

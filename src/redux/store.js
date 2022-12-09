@@ -7,6 +7,6 @@ import allReducers from "./reducers";
 
 const middleware=applyMiddleware(thunk, promise);
 
-//const store=createStore(allReducers, {}, composeWithDevTools(middleware));
-const store=createStore(allReducers, {}, middleware);
+const store=createStore(allReducers, {}, composeWithDevTools(middleware));
+//const store=createStore(allReducers, {}, middleware);
 export default store;

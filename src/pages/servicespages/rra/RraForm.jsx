@@ -223,6 +223,8 @@ fetchData();
     setDocIdErr(`${t("rra:docidmustbeatleat8character")}`);
   }
    else {
+    setDocIdErr("");
+    setErrorMessage("")
      const docId = formData.docId;
      await dispatch(getDocDetailsAction({ docId }, history));
    }

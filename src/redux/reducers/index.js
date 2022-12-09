@@ -3,7 +3,10 @@ import { combineReducers } from "redux";
    import loginReducer from "./loginReducer";
    import forgotPasswordReducer from "./forgotPasswordReducer";
    import resetPasswordReducer from "./resetPasswordReducer";
-
+   //GT BANK
+   import validateNidReducer from "./validateNidReducer";
+   import depositReducer from "./depositReducer";
+   import accountValidationReducer from "./accountValidationReducer";
    //CBHI
 import getCbhiNidDetailsReducer from "./getCbhiNidDetailsReducer";
 import cbhiPayamentReducer from "./cbhiPaymentReducer";
@@ -58,6 +61,10 @@ const allReducers = combineReducers({
     //ltss
      getLtssIndDetails: getLtssIdentificationDetailsReducer,
      ltssPayment:ltssPaymentReducer,
+     //gt bank 
+     validateNid:validateNidReducer,
+     deposit:depositReducer,
+     accountValidation:accountValidationReducer,
     //client
     // getClientDetails:getClientDetailsReducer,
     // cashIn:chashinReducer,

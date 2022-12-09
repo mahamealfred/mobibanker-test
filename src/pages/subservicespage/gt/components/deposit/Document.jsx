@@ -19,18 +19,44 @@ theme.typography.h3 = {
     }
 };
 const Document = ({
-    
+   formData,
+    setFormData,
+    accountNumberErr,
+    errorMessage,
+    setErrorMessage,
+    open,
+    setOpen
 }) => {
     const { i18n,t } = useTranslation(["home","common","rra"]);
     const handleClose = () => {
-      
+        setErrorMessage('')
+        setOpen(false);
     };
   
     return (
         <React.Fragment> 
+           {   !errorMessage ? null : (
+                <Collapse in={open}>
+                    <Alert severity="error"
+                        action={
+                            <IconButton
+                        aria-label="close"
+                        color="inherit"
+                        size="small"onClick={handleClose}>
+                        <CloseIcon
+                        fontSize="inherit"/></IconButton>
+                        }
+                        sx={
+                            {mb: 0.2}
+                    }>
+                        {/* {errorMessage==="Deralation is no longer valid"?`${t("rra:referencernumberisnolongervalid")}`:errorMessage}  */}
+                        {errorMessage}  
+                        </Alert>
+                </Collapse>
+            )
+        }
             <ThemeProvider theme={theme}>
                 <Typography variant="h6" color="text.primary"  align="center"
-                
                 sx={{ fontSize:{xs:14,md:16,lg:18} }}
                 >
                   {/* {t("rra:referencenumber")} */}
@@ -41,10 +67,10 @@ const Document = ({
                 <Grid item
                     xs={12}>
                     <TextField id="address2" size="small"   margin="normal" name="address2" label="Account Number"
-                        // value={ formData.docId}
-                        // onChange={(e) => setFormData({...formData,docId: e.target.value})}
-                        // helperText={docIdErr ? docIdErr : ""}
-                        // error={docIdErr}
+                        value={ formData.accountNumber}
+                        onChange={(e) => setFormData({...formData,accountNumber: e.target.value})}
+                        helperText={accountNumberErr ? accountNumberErr: ""}
+                        error={accountNumberErr}
                         fullWidth
                         autoComplete="shipping address-line2"
                         variant="outlined"/>

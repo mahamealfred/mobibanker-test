@@ -26,7 +26,6 @@ import { useTranslation } from "react-i18next";
 import CardMedia from "@mui/material/CardMedia";
 import ToAccount from "../components/transfer/ToAccount";
 const theme = createTheme();
-
 theme.typography.h3 = {
   fontSize: '1.2rem',
   '@media (min-width:600px)': {

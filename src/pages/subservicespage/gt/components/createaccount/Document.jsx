@@ -19,15 +19,42 @@ theme.typography.h3 = {
     }
 };
 const Document = ({
-    
+    formData,
+    setFormData,
+    errorMessage,
+    setErrorMessage,
+    niderrorMessage,
+    open,
+    setOpen
 }) => {
     const { i18n,t } = useTranslation(["home","common","rra"]);
     const handleClose = () => {
-      
+        setErrorMessage('')
+        setOpen(false);
     };
   
     return (
         <React.Fragment> 
+              {   !errorMessage ? null : (
+                <Collapse in={open}>
+                    <Alert severity="error"
+                        action={
+                            <IconButton
+                        aria-label="close"
+                        color="inherit"
+                        size="small"onClick={handleClose}>
+                        <CloseIcon
+                        fontSize="inherit"/></IconButton>
+                        }
+                        sx={
+                            {mb: 0.2}
+                    }>
+
+                        {errorMessage}  
+                        </Alert>
+                </Collapse>
+            )
+        }
             <ThemeProvider theme={theme}>
                 <Typography variant="h6" color="text.primary"  align="center"
                 
@@ -41,10 +68,10 @@ const Document = ({
                 <Grid item
                     xs={12}>
                     <TextField id="address2" size="small"   margin="normal" name="address2" label="NID"
-                        // value={ formData.docId}
-                        // onChange={(e) => setFormData({...formData,docId: e.target.value})}
-                        // helperText={docIdErr ? docIdErr : ""}
-                        // error={docIdErr}
+                        value={ formData.nid}
+                        onChange={(e) => setFormData({...formData,nid: e.target.value})}
+                        helperText={niderrorMessage? niderrorMessage : ""}
+                        error={niderrorMessage}
                         fullWidth
                         autoComplete="shipping address-line2"
                         variant="outlined"/>

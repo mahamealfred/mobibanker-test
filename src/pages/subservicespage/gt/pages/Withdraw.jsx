@@ -1,209 +1,312 @@
-import * as React from "react";
-import CssBaseline from "@mui/material/CssBaseline";
-
+import React, { useState, useEffect,useRef } from "react";
+// import "./cbhiList.css";
 import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-
+import { Button, Tooltip } from "@mui/material";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Document from "../components/withdraw/Document";
-import Account from "../components/withdraw/Account";
-import Review from "../components/withdraw/Review";
-import { useEffect,useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Grid } from "@mui/material";
-import { useHistory } from "react-router-dom";
-import CircularProgress from '@mui/material/CircularProgress';
+import DialogTitle from "@mui/material/DialogTitle";
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+
+import "jspdf-autotable";
+import { CSVLink } from "react-csv";
+import { useSelector } from "react-redux";
+
+import { ButtonGroup, Stack } from "@mui/material";
+
+import SearchIcon from '@mui/icons-material/Search';
+
+import ReactToPrint, { useReactToPrint } from "react-to-print";
 import jwt from "jsonwebtoken";
-import ReactToPrint from 'react-to-print';
-import { useRef } from 'react';
+import Typography from "@mui/material/Typography";
+// import logo from "../../Assets/images/logo.png"
+import { transactionsAction } from "../../../../redux/actions/transactionsAction";
+import { useDispatch } from "react-redux";
+import PrintIcon from '@mui/icons-material/Print';
 import { useTranslation } from "react-i18next";
-import CardMedia from "@mui/material/CardMedia";
-const theme = createTheme();
+// import  {ComponentToPrint}  from "./ComponentToPrint";
+// import './style.css'
+// export let amountPaid=[]
 
-theme.typography.h3 = {
-  fontSize: '1.2rem',
-  '@media (min-width:600px)': {
-    fontSize: '1.4rem',
+const data = [
+  {
+    collectionDate: "12/12/2021",
+    amount: 12000,
+    service: "CBI",
+    bank_reference: 125353663763,
+    mobicash_reference: 1224255252,
   },
-  [theme.breakpoints.up('md')]: {
-    fontSize: '1.6rem',
+  {
+    collectionDate: "04/06/2021",
+    amount: 2000,
+    service: "CBI",
+    bank_reference: 115353663763,
+    mobicash_reference: 13424255252,
   },
-};
+  {
+    collectionDate: "03/06/2021",
+    amount: 30000,
+    service: "RRA",
+    bank_reference: 132353663763,
+    mobicash_reference: 15624255252,
+  },
+];
 
-const Withdraw = ({}) => {
-  const { t } = useTranslation(["home","common","login","rra"]);
+function Transactions() {
+  const { t } = useTranslation(["home","common","login"]);
+ // const todaydate = new Date().toISOString().slice(0, 10);
+  const transactionsDetails = useSelector((state) => state.transactions);
+ const dispatch=useDispatch();
+  const [agentTransactionsDetails, setAgentTransactionDetails] = useState([]);
+  const [limit, setLimit] = useState(40);
+  const [selectedExamIds, setSelectedExamIds] = useState([]);
+  const [results, setResults] = useState({});
+  const [search, setSearch] = useState(false);
+  const [numberOfTransaction,setNumberOfTransaction]=useState(0)
+  const [agentName,setAgentName]=useState('')
+  const componentRef = useRef(null);
+ const [basicAuth,setBasicAuth]=useState('')
+ const [username,setUsername]=useState('')
+ const [password,setPassword]=useState('')
+ 
+ const [id,setId]=useState("") 
+ const [amount,setAmount]=useState('') 
+ const [date,setDate]=useState('')
+ const [description,setDescription]=useState('')
 
-  const steps = ['OTP code', 'Confirmation', 'View Details'];
-  const [activeStep, setActiveStep] = React.useState(0);
-  const dispatch = useDispatch();
-const history=useHistory();
-  const [formData, setFormData] = useState({
-    docId: "",
-    phoneNumber: "",
-    password: "",
+  const trimString = (s) => {
+    var l = 0,
+      r = s.length - 1;
+    while (l < s.length && s[l] === " ") l++;
+    while (r > l && s[r] === " ") r -= 1;
+    return s.substring(l, r + 1);
+  };
+  const compareObjects = (o1, o2) => {
+    var k = "";
+    for (k in o1) if (o1[k] !== o2[k]) return false;
+    for (k in o2) if (o1[k] !== o2[k]) return false;
+    return true;
+  };
+  const itemExists = (haystack, needle) => {
+    for (var i = 0; i < haystack.length; i++)
+      if (compareObjects(haystack[i], needle)) return true;
+    return false;
+  };
+  const searchHandle = async (e) => {
+    setSearch(true);
+    const searchKey = e.target.value;
+    // console.log(e.target.value)
+    try {
+      var results = [];
+      const toSearch = trimString(searchKey); // trim it
+      for (var i = 0; i < agentTransactionsDetails.length; i++) {
+        for (var key in agentTransactionsDetails[i]) {
+          if (agentTransactionsDetails[i][key] !== null) {
+            if (
+              agentTransactionsDetails[i][key].toString().toLowerCase().indexOf(toSearch) !==
+              -1
+            ) {
+              if (!itemExists(results, agentTransactionsDetails[i]))
+                results.push(agentTransactionsDetails[i]);
+            }
+          }
+        }
+      }
+      setResults(results);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const decode= (token) => {
+    const JWT_SECRET="tokensecret";
+    const payload =jwt.verify(token, JWT_SECRET);
+     return payload;
+  }
+  useEffect(() => {
+  async function fecthData(){
+    const token =localStorage.getItem('mobicashAuth');
+    if (token) {
+    const {name}=decode(token);
+    const {basicAuth}=decode(token)
+    const {username}=decode(token)
+    const {password}=decode(token)
+    await dispatch(transactionsAction(username,password))
+    setAgentName(name)
+    setPassword(password)
+    setUsername(username)
+    setBasicAuth(basicAuth)
+  }
+  }
+fecthData();
+
+  }, []);
+
+
+  useEffect(() => {
+    async function fetchData() {
+      if (!transactionsDetails.loading) {
+        if (transactionsDetails.details) {
+          setAgentTransactionDetails(transactionsDetails.details);
+          setNumberOfTransaction(transactionsDetails.details.length)
+        }
+      }
+    }
+    fetchData();
+  }, [transactionsDetails.details]);
+  const headers = [
+    { label: "Collection Date", key: "collectionDate" },
+    { label: "Service", key: "service" },
+    { label: "Amount", key: "amount" },
+    { label: "Bank reference", key: "bank_reference" },
+    { label: "Mobicash reference", key: "mobicash_reference" },
+  ];
+
+ 
+  
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
   });
 
-
-
-
- const getStepContent = (step) => {
-   switch (step) {
-     case 0:
-       return (
-         <Document
-         
-         />
-       );
-     case 1:
-       return (
-         <Account
-          
-
-         />
-       );
-     case 2:
-       return <Review 
-       />;
-     default:
-       throw new Error("Unknown step");
-   }
- };
- 
-
- //handle on button submit for each step
- const handelSubmit = () => {
-   if (activeStep === 0) {
-    handleNext()
-   } else if (activeStep === 1) {
-    handleNext()
-   } else if (activeStep === 2) {
-
- handleNext()
-   } else {
-     return null;
-   }
-   
-  
- };
-
- const handleNewpayment = () => {
-  setActiveStep(0)
- };
-
- const handleNext = () => {
-   setActiveStep(activeStep + 1);
- };
-
- const handleBack = () => {
-   setActiveStep(0);
-  history.push("/dashboard",{push:true})
-   //setOpenRRA(false)
-  
- };
   return (
-    <div>
-      <ThemeProvider theme={theme}>
-        {/* <CssBaseline /> */}
-        <Box
-      component="main"
-      sx={{
-        flexGrow: 1,
-        py: 1,
-        width: "100vw"
-      }}
-    >
-    </Box>
-        <Container component="main" maxWidth="sm" sx={{display:{xs:"block",sm:"block",md:"block",lg:"block"}, mb: 4 }}>
-          <Paper
-            variant="outlined"
-            sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 2 } }}
-          >
-             <ThemeProvider theme={theme}>
-           <Grid
-           container
-           direction="column"
-           alignItems="center"
-           justifyContent="center"
-           
-           >
-            <Typography variant="h6" color="gray" 
-              sx={{ fontSize:{xs:14,md:16,lg:20} }}
-            >
-   WITHDRAW 
+    <>
+      <div className="home">
+
+        <div className="tableDisplay">
+        {
+          numberOfTransaction===0?<>
+            <DialogTitle>
+            <Typography variant="h6" textAlign="center" color="text.primary" >
+            Cash Withdrew
           </Typography>
-          <CardMedia
-                    component="img"
-                    height="60"
-                    image="../../images/gtbank.png"
-                    alt="alt"
-                    title="i"
-                    sx={{  objectFit: "contain",
-                    height:{xs:40,sm:40,md:60,lg:60}}}
-                />
-           </Grid>
-           </ThemeProvider>
-            <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5,display:{xs:"inline",sm:"flex"} }}>
-              {steps.map((label) => (
-                <Step key={label}>
-                  <StepLabel>{label}</StepLabel>
-                </Step>
-              ))}
-            </Stepper>
-            <React.Fragment>
-              {activeStep === steps.length ? (
-                <React.Fragment>
-                  <Typography variant="h5" textAlign="center" gutterBottom>
-                  {t("common:thankyouforusingmobicash")}
-                  </Typography>
-                  <Typography textAlign="center" variant="subtitle1">
-                  You have successfully withdraw
-                  </Typography>
-                
-                  <Button onClick={handleNewpayment} sx={{ mt: 3, ml: 1 }}>
-               Done
-                  </Button>
-                </React.Fragment>
-              ) : (
-                <React.Fragment>
-                  {getStepContent(activeStep)}
-                  <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                    {activeStep == 0 || activeStep !==2? (
-                      <Button onClick={handleBack} 
-                     //sx={{ mt: 3, ml: 1 }}
-                      sx={{ my: 1, mx: 1.5 }}
-                      >
-                 {t("common:cancel")}
-                      </Button>
-                    ):null}
-
-                    <Button
-                      onClick={handelSubmit}
-                      // sx={{ mt: 3, ml: 1 }}
-                      sx={{ my: 1, mx: 1.5 }}
-                    >
-                      {/* {activeStep === steps.length - 1 ? 'Mke payment' : 'Next'} */}
-                      {activeStep === steps.length - 1
-                        ? 'Receipt'
-                        : activeStep === 0
-                        ? `${t("common:submit")}`
-                        :`Confirm`
-                        }
+            </DialogTitle>
+          </>:
+          <DialogTitle>
+           <Typography variant="h6" textAlign="center" color="text.primary" 
+           >
+           {/* PREVIOUS {numberOfTransaction} TRANSACTONS */}
+           Cash Withdrew
+          </Typography> 
+          </DialogTitle>
+         } 
+          <Box component="div" sx={{ display: "inline" }}>
+            <Box>
+              <div className="datecontent">
+                <Stack component="form" noValidate spacing={3}>
+                  <ButtonGroup variant="text" aria-label="text button group">
+                    {/* <Button onClick={generatePdf}>Generate PDF</Button> */}
+                    <Button>
+                      {data?.length && (
+                        <CSVLink
+                          headers={headers}
+                          data={data}
+                          filename="results.csv"
+                          target="_blank"
+                        >
+                          {/* Generate Csv */}
+                        </CSVLink>
+                      )}
                     </Button>
-                  </Box>
-                </React.Fragment>
-              )}
-            </React.Fragment>
-          </Paper>
-        </Container>
-      </ThemeProvider>
-    </div>
+                  </ButtonGroup>
+                </Stack>
+                <Box sx={{ maxWidth: 400, position:"center", display:"flex"}}>
+              <TextField
+                fullWidth
+                size="small"
+                onChange={(e) => searchHandle(e)}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon fontSize="small" color="action">
+                        <SearchIcon />
+                      </SearchIcon>
+                    </InputAdornment>
+                  ),
+                }}
+                placeholder={t("common:search")}
+                variant="outlined"
+              />
+   
+        </Box>
+              </div>
+            </Box>
+          </Box>
+          
+          <TableContainer component={Paper}>
+            <Table aria-label="caption table">
+              <caption className="textTitle">Cash Withdrew</caption>
+              <TableHead>
+                <TableRow>
+                  <TableCell align="center"> {t("common:mobicashreference")}</TableCell>
+                  <TableCell> {t("common:date")}</TableCell>
+                  <TableCell align="center"> {t("common:amount")} (Rwf)</TableCell>
+                  <TableCell align="center"> {t("common:description")}</TableCell>
+                  {/* <TableCell align="center"> {t("common:action")}</TableCell> */}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+              {
+                search?(
+                  <>
+                  {results.slice(0, limit).map((details) => (
+                    
+                  <TableRow
+                    hover
+                    key={details.id}
+                    selected={selectedExamIds.indexOf(details.id) !== -1}
+                  >
+                    {
+                      details.responseDescription==="Withdrawal"?<>
+                       <TableCell align="center">{details.id}</TableCell>
+                    <TableCell component="th" scope="row">
+                      {details.operationDate}
+                    </TableCell>
+                    <TableCell align="center"> {(details.amount * -1).toLocaleString()}</TableCell>
+                    
+                    <TableCell align="center">{details.responseDescription}</TableCell>
+                    
+                      </>:null
+                    }
+                   
+                  </TableRow>
+                ))}
+                  </>
+                ):(
+                  <>
+                  {agentTransactionsDetails.slice(0, limit).map((details) => (
+                  <TableRow
+                    hover
+                    key={details.id}
+                    selected={selectedExamIds.indexOf(details.id) !== -1}
+                  >{
+                    details.responseDescription==="Withdrawal"?
+                    <>
+                    <TableCell align="center">{details.id}</TableCell>
+                    <TableCell component="th" scope="row">
+                      {details.operationDate}
+                    </TableCell>
+                    <TableCell align="center"> {(details.amount * -1).toLocaleString()}</TableCell>
+                    <TableCell align="center">{details.responseDescription}</TableCell>
+                   
+                    </>:null
+                  }
+                    
+                  </TableRow>
+                ))}
+                  </>
+                )}
+                
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
+      </div>
+    </>
   );
-};
+}
 
-export default Withdraw;
+export default Transactions;

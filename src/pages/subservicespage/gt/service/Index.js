@@ -247,7 +247,7 @@ export default function MediaCard() {
             </Card>  
             </Button>
            </Grid>
-           <Typography 
+           {/* <Typography 
             component="h1" variant="body1"
          fontWeight={800}
          color="gray"
@@ -300,7 +300,7 @@ export default function MediaCard() {
           </Typography>
             </Card>  
             </Button>     
-          </Grid>
+          </Grid> */}
        
       </Grid>
       <Grid container>

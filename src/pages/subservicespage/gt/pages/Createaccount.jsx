@@ -26,6 +26,7 @@ import ReactToPrint from 'react-to-print';
 import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
 import CardMedia from "@mui/material/CardMedia";
+import { valiateNidDetailsDetailsAction } from "../../../../redux/actions/validateNidAction";
 const theme = createTheme();
 
 theme.typography.h3 = {
@@ -45,18 +46,27 @@ const RraForm = ({}) => {
   const [activeStep, setActiveStep] = React.useState(0);
   const dispatch = useDispatch();
 const history=useHistory();
+const validateNid=useSelector((state)=>state.validateNid);
+const [niderrorMessage,setNiderrorMessage]=useState("");
   const [formData, setFormData] = useState({
-    docId: "",
+    nid: "",
     phoneNumber: "",
     password: "",
   });
-
+const [errorMessage,setErrorMessage]=useState("");
+const [open,setOpen]=useState(false);
  const getStepContent = (step) => {
    switch (step) {
      case 0:
        return (
          <Document
-         
+         formData={formData}
+         setFormData={setFormData}
+         errorMessage={errorMessage}
+         setErrorMessage={setErrorMessage}
+         niderrorMessage={niderrorMessage}
+         open={open}
+         setOpen={setOpen}
          />
        );
      case 1:
@@ -74,11 +84,16 @@ const history=useHistory();
    }
  };
  
+ //handle validate NID
+ const handleValidateNid=async()=>{
+  const nid=formData.nid
+  await dispatch(valiateNidDetailsDetailsAction({nid}))
+ }
 
  //handle on button submit for each step
  const handelSubmit = () => {
    if (activeStep === 0) {
-    handleNext()
+   handleValidateNid();
    } else if (activeStep === 1) {
     handleNext()
    } else if (activeStep === 2) {

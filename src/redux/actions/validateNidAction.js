@@ -9,7 +9,7 @@ export const valiateNidDetailsDetailsAction = (details) => async (dispatch) => {
   try {
     dispatch(valiateNidDetailsRequest());
     const  {nid}=details
- const Url='https://agentapi.mobicash.rw/api/agent/goverment-services/cbhi/rest/v.4.14.01/nid-validation';
+ const Url='http://agencyapi.mobicash.rw/api/agent/utilities/user/rest/v.4.14.01/gt-bank-nid-validation';
    const res = await axios.get(Url,{
     params:{
         nid:nid

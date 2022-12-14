@@ -22,7 +22,9 @@ const Account=({
   formData,
   setFormData,
   amountErr,
-  destinationErr,
+  debit,
+  phone,
+  // destinationErr,
   depositerrorMessage,
   accountName,
   setDepositerrorMessage,
@@ -70,6 +72,22 @@ const Account=({
           {accountName}
               </Typography>
             </Grid>
+            <Grid item xs={12} md={8}>
+                 <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
+         Account Number
+              </Typography>
+              <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
+          {debit}
+              </Typography>
+            </Grid>
+            <Grid item xs={12} md={8}>
+                 <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
+        Phone Number
+              </Typography>
+              <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
+          {phone}
+              </Typography>
+            </Grid>
             {/* <Grid item xs={12} md={8}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
           Account Number
@@ -98,7 +116,7 @@ const Account=({
             
          
         </Grid>
-        <Grid item xs={12} md={6}>
+        {/* <Grid item xs={12} md={6}>
           <TextField
             required
             id="cardName"
@@ -118,7 +136,7 @@ const Account=({
                       <MenuItem key={option.id} value={option.id}>{option.name}</MenuItem>
                     ))} 
             </TextField>
-        </Grid>
+        </Grid> */}
         {/* <Grid item xs={12} md={6}>
           <TextField
             required

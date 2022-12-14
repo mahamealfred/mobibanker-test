@@ -1,7 +1,7 @@
 import React, { useState, useEffect,useRef } from "react";
 // import "./cbhiList.css";
 import Box from "@mui/material/Box";
-import { Button, Tooltip } from "@mui/material";
+import { Button, Grid, Tooltip } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -173,15 +173,22 @@ fecthData();
   });
 
   return (
-    <>
+    <Grid
+  container
+  spacing={0}
+  direction="column"
+  alignContent="center"
+  alignItems="center"
+  justifyContent="center"
+  
+>
       <div className="home">
-
         <div className="tableDisplay">
         {
           numberOfTransaction===0?<>
             <DialogTitle>
             <Typography variant="h6" textAlign="center" color="text.primary" >
-            Cash Withdrew
+            Cash Withdrawal
           </Typography>
             </DialogTitle>
           </>:
@@ -189,7 +196,7 @@ fecthData();
            <Typography variant="h6" textAlign="center" color="text.primary" 
            >
            {/* PREVIOUS {numberOfTransaction} TRANSACTONS */}
-           Cash Withdrew
+           Cash Withdrawal
           </Typography> 
           </DialogTitle>
          } 
@@ -238,7 +245,7 @@ fecthData();
           
           <TableContainer component={Paper}>
             <Table aria-label="caption table">
-              <caption className="textTitle">Cash Withdrew</caption>
+              <caption className="textTitle">Cash Withdrawal</caption>
               <TableHead>
                 <TableRow>
                   <TableCell align="center"> {t("common:mobicashreference")}</TableCell>
@@ -260,12 +267,12 @@ fecthData();
                     selected={selectedExamIds.indexOf(details.id) !== -1}
                   >
                     {
-                      details.responseDescription==="Withdrawal"?<>
+                      details.responseDescription==="GT Bank Client Account Withdrawal(TX4)"?<>
                        <TableCell align="center">{details.id}</TableCell>
                     <TableCell component="th" scope="row">
                       {details.operationDate}
                     </TableCell>
-                    <TableCell align="center"> {(details.amount * -1).toLocaleString()}</TableCell>
+                    <TableCell align="center"> {(details.amount ).toLocaleString()}</TableCell>
                     
                     <TableCell align="center">{details.responseDescription}</TableCell>
                     
@@ -283,13 +290,13 @@ fecthData();
                     key={details.id}
                     selected={selectedExamIds.indexOf(details.id) !== -1}
                   >{
-                    details.responseDescription==="Withdrawal"?
+                    details.responseDescription==="GT Bank Client Account Withdrawal(TX4)"?
                     <>
                     <TableCell align="center">{details.id}</TableCell>
                     <TableCell component="th" scope="row">
                       {details.operationDate}
                     </TableCell>
-                    <TableCell align="center"> {(details.amount * -1).toLocaleString()}</TableCell>
+                    <TableCell align="center"> {(details.amount ).toLocaleString()}</TableCell>
                     <TableCell align="center">{details.responseDescription}</TableCell>
                    
                     </>:null
@@ -305,7 +312,7 @@ fecthData();
           </TableContainer>
         </div>
       </div>
-    </>
+      </Grid>
   );
 }
 

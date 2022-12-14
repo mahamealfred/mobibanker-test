@@ -3,18 +3,18 @@
     "name": "MobiBanker App",
     "icons": [
 {
-      "src": "/images/img_144.png",
+      "src": "/images/mobibankerIcon.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/png"
     },
       
         {
-            "src": "/images/img_192.png",
+            "src": "/images/mobibankerIcon.png",
             "sizes": "196x196",
             "type": "image/png",
             "purpose": "maskable any"
         }, {
-            "src": "/images/img_512.png",
+            "src": "/images/mobibankerIcon.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "maskable any"

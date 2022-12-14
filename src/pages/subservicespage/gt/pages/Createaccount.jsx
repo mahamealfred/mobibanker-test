@@ -94,6 +94,7 @@ const [open,setOpen]=useState(false);
  const handelSubmit = () => {
    if (activeStep === 0) {
    handleValidateNid();
+  //handleNext()
    } else if (activeStep === 1) {
     handleNext()
    } else if (activeStep === 2) {

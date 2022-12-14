@@ -28,6 +28,7 @@ import CardMedia from "@mui/material/CardMedia";
 import {accountValidationAction } from "../../../../redux/actions/accountValidationAction";
 import { valiateNidDetailsDetailsAction } from "../../../../redux/actions/validateNidAction";
 import { depositAction } from "../../../../redux/actions/depositAction";
+import { SettingsPhone } from "@mui/icons-material";
 const theme = createTheme();
 
 theme.typography.h3 = {
@@ -68,7 +69,7 @@ const [password,setPassword]=useState("")
 const [accountName,setAccountName]=useState("");
 const [debit,setDebit]=useState("");
 const [credit,setCredit]=useState("");
-
+const [phone,setPhone]=useState("");
 const [amountDeposited,setAmountDeposited]=useState("");
 //all
   const [formData, setFormData] = useState({
@@ -99,7 +100,9 @@ const [amountDeposited,setAmountDeposited]=useState("");
          setFormData={setFormData}
          amountErr={amountErr}
          accountName={accountName}
-         destinationErr={destinationErr}
+         debit={debit}
+         phone={phone}
+        //  destinationErr={destinationErr}
          depositerrorMessage={depositerrorMessage}
          setDepositerrorMessage={setDepositerrorMessage}
          open={open}
@@ -127,6 +130,7 @@ const [amountDeposited,setAmountDeposited]=useState("");
         if (accountValidation.details.responseCode === 100) {
           setDebit(accountValidation.details.data.fullAccount)
           setAccountName(accountValidation.details.data.names)
+          setPhone(accountValidation.details.data.mobileNumber)
           setCredit(formData.accountNumber)
           handleNext();
         } else {
@@ -191,17 +195,17 @@ const handleDeposit=async()=>{
   else if(!Number(formData.amount)){
 setAmountErr("Amount must be a numeric")
   }
-  else if(formData.destination===""){
-    setDestinationErr("Please select the destination")
-}
+//   else if(formData.destination===""){
+//     setDestinationErr("Please select the destination")
+// }
 else{
   setAmountErr("")
   setDestinationErr("")
   setDepositerrorMessage("")
   const amount=formData.amount
-  const destination=formData.destination
+  // const destination=formData.destination
 
-await dispatch(depositAction({amount,destination,debit,credit},username,password))
+await dispatch(depositAction({amount,debit,credit,accountName,phone,brokering,userGroup},username,password))
 }
 }
 //agent infromation
@@ -217,7 +221,7 @@ useEffect(() => {
   const {role}=decode(token);
   const {group}=decode(token);
   const {name}=decode(token);
-  const {password}=decode(token)
+  const {password}=decode(token);
   setUsername(username)
   setBrokering(role)
   setUserGroup(group)
@@ -228,11 +232,12 @@ useEffect(() => {
  //handle on button submit for each step
  const handelSubmit = () => {
    if (activeStep === 0) {
-    handleValidateAccount();
+   // handleNext()
+     handleValidateAccount();
    } else if (activeStep === 1) {
+   // handleNext()
    handleDeposit()
    } else if (activeStep === 2) {
-
  handleNext()
    } else {
      return null;

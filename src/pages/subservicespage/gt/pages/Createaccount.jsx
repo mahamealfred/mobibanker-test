@@ -72,8 +72,7 @@ const [open,setOpen]=useState(false);
      case 1:
        return (
          <Account
-          
-
+        
          />
        );
      case 2:
@@ -83,6 +82,27 @@ const [open,setOpen]=useState(false);
        throw new Error("Unknown step");
    }
  };
+//render Nid details
+useEffect(() => {
+  async function fetchData() {
+    if (!validateNid.loading) {
+      if (validateNid.details.length !== 0) {
+        if (validateNid.details.responseCode === 100) {
+         
+          handleNext();
+        } else {
+          return null;
+        }
+      
+      }
+      if (validateNid.error) {
+        setErrorMessage(validateNid.error);
+      }
+    }
+  }
+  fetchData();
+}, [validateNid.details]);
+
  
  //handle validate NID
  const handleValidateNid=async()=>{
@@ -103,7 +123,9 @@ const [open,setOpen]=useState(false);
    } else {
      return null;
    }
-   
+   if (validateNid.error) {
+    setOpen(true);
+  }
   
  };
 
@@ -207,7 +229,10 @@ const [open,setOpen]=useState(false);
                       {activeStep === steps.length - 1
                         ? 'Receipt'
                         : activeStep === 0
-                        ? `${t("common:submit")}`
+                        ? validateNid.loading?
+                        <Box sx={{ display: 'flex',justifyContent:"center" }}>
+                        <CircularProgress  sx={{ color: 'orange'}} />
+                         </Box>:`${t("common:submit")}`
                         :`Open Account`
                         }
                     </Button>

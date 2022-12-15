@@ -7,7 +7,7 @@ import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { useTranslation } from "react-i18next";
-import { MenuItem } from '@mui/material';
+import { Box, MenuItem } from '@mui/material';
 const Destinations=[
   {
     id:"INT",
@@ -24,6 +24,7 @@ const Account=({
   amountErr,
   debit,
   phone,
+  passwordError,
   // destinationErr,
   depositerrorMessage,
   accountName,
@@ -64,6 +65,7 @@ const Account=({
           alignItems="center"
           justifyContent="center"
       >
+       
       <Grid item xs={12} md={8}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
          Account Name
@@ -137,23 +139,23 @@ const Account=({
                     ))} 
             </TextField>
         </Grid> */}
-        {/* <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={6}>
           <TextField
             required
             id="cardNumber"
             margin="normal"
             size="small" 
             label={t("common:agentpin")}
-            // value={formData.password}
-            // onChange={(e)=>setFormData({...formData,password:e.target.value})}
-            // helperText={passwordError? passwordError : ""}
-            // error={passwordError}
+            value={formData.password}
+            onChange={(e)=>setFormData({...formData,password:e.target.value})}
+            helperText={passwordError? passwordError : ""}
+            error={passwordError}
             type="password"
             fullWidth
             autoComplete="cc-number"
             variant="outlined"
           />
-        </Grid> */}
+        </Grid>
         
        
       </Grid>

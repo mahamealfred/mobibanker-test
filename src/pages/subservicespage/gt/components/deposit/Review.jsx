@@ -38,7 +38,7 @@ export default function Review({
         </ListItem>
        
         <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary= "Mobicash reference"/>
+          <ListItemText primary= "GT Bank reference"/>
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
        {transactionId}
           </Typography>

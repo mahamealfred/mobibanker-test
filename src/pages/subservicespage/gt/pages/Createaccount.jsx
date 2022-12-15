@@ -59,7 +59,7 @@ const [lastName,setLastName]=useState("");
 const [placeOfIssue,setPlaceOfIsue]=useState("");
 const [gender,setGender]=useState("");
 const [dateOfBirth,setDateOfBirth]=useState("")
-
+const [photo,setPhoto]=useState("")
  const getStepContent = (step) => {
    switch (step) {
      case 0:
@@ -70,6 +70,7 @@ const [dateOfBirth,setDateOfBirth]=useState("")
          errorMessage={errorMessage}
          setErrorMessage={setErrorMessage}
          niderrorMessage={niderrorMessage}
+         photo={photo}
          open={open}
          setOpen={setOpen}
          />
@@ -81,6 +82,7 @@ const [dateOfBirth,setDateOfBirth]=useState("")
          placeOfIssue={placeOfIssue}
          firstName={firstName}
          lastName={lastName}
+         photo={photo}
          dateOfBirth={dateOfBirth}
          gender={gender}
         
@@ -103,6 +105,7 @@ useEffect(() => {
          setLastName(validateNid.details.data.surnames)
          setDateOfBirth(validateNid.details.data.dateOfBirth)
          setPlaceOfIsue(validateNid.details.data.placeOfIssue)
+         setPhoto(validateNid.details.data.photo)
          setGender(validateNid.details.data.sex)
           handleNext();
         } else {
@@ -121,6 +124,9 @@ useEffect(() => {
  const handleValidateNid=async()=>{
   if(formData.nid === ""){
     setNiderrorMessage("NID is required")
+  }
+  else if(!Number(formData.nid)){
+    setNiderrorMessage("NID must be a numeric")
   }
   else{
     setNiderrorMessage("")

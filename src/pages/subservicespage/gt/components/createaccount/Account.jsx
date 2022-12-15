@@ -7,12 +7,14 @@ import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { useTranslation } from "react-i18next";
+import { Box } from '@mui/material';
 
 const Account=({
   formData,
   placeOfIssue,
   firstName,
   lastName,
+  photo,
   dateOfBirth,
   gender
  
@@ -23,11 +25,20 @@ const Account=({
     };
   return (
     <React.Fragment>
-    
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+     
+    >
+        <img style={{width:120,height:100,objectFit:"contain"}} src={`data:image/png;base64,${photo}`}/>
+        </Box>
       <Grid container spacing={3}
         alignItems="center"
         justifyContent="center"
+      
       >
+         
       <Grid item xs={12} md={4}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
              Names

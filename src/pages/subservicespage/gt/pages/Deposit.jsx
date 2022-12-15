@@ -71,6 +71,7 @@ const [debit,setDebit]=useState("");
 const [credit,setCredit]=useState("");
 const [phone,setPhone]=useState("");
 const [amountDeposited,setAmountDeposited]=useState("");
+const [passwordError,setPasswordError]=useState("")
 //all
   const [formData, setFormData] = useState({
     accountNumber: "",
@@ -102,6 +103,7 @@ const [amountDeposited,setAmountDeposited]=useState("");
          accountName={accountName}
          debit={debit}
          phone={phone}
+         passwordError={passwordError}
         //  destinationErr={destinationErr}
          depositerrorMessage={depositerrorMessage}
          setDepositerrorMessage={setDepositerrorMessage}
@@ -195,13 +197,18 @@ const handleDeposit=async()=>{
   else if(!Number(formData.amount)){
 setAmountErr("Amount must be a numeric")
   }
-//   else if(formData.destination===""){
-//     setDestinationErr("Please select the destination")
-// }
+  else if(formData.password===""){
+    setPasswordError("Agent PIN is required ")
+      }
+      else if(formData.password!== password){
+        setPasswordError("Invalid PIN, Please provide valid PIN")
+          }
+
 else{
   setAmountErr("")
   setDestinationErr("")
   setDepositerrorMessage("")
+  setPasswordError("")
   const amount=formData.amount
   // const destination=formData.destination
 

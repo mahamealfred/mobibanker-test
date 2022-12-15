@@ -27,7 +27,7 @@ export const accountValidationAction = (details) => async (dispatch) => {
         dispatch(accountValidationSuccess(res.data));
       }  
       else{
-        let errMsg=res.data.codeDescription
+        let errMsg=res.data.data.reason
         dispatch(accountValidationFailure(errMsg));
       }
   } catch (err) {

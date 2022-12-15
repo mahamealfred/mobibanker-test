@@ -38,6 +38,7 @@ const Account=({
            1199680013525073
               </Typography>
             </Grid>
+           
             {/* <Grid item xs={12} md={4}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
                  {t("rra:referencenumber")}
@@ -72,7 +73,7 @@ const Account=({
             variant="outlined"
           />
         </Grid>
-        <Grid item xs={12} md={6}>
+        {/* <Grid item xs={12} md={6}>
           <TextField
             required
             id="cardName"
@@ -87,14 +88,14 @@ const Account=({
             autoComplete="cc-name"
             variant="outlined"
           />
-        </Grid>
-        <Grid item xs={12} md={6}>
+        </Grid> */}
+        {/* <Grid item xs={12} md={6}>
           <TextField
             required
             id="cardName"
             margin="normal"
             size="small" 
-            label="Deposit amount"
+            label="Book amount"
             // value={formData.phoneNumber}
             // onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
             // helperText={phoneNumberError? phoneNumberError : ""}
@@ -103,7 +104,7 @@ const Account=({
             autoComplete="cc-name"
             variant="outlined"
           />
-        </Grid>
+        </Grid> */}
         <Grid item xs={12} md={6}>
           <TextField
             required

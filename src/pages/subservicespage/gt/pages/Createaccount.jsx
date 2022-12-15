@@ -41,7 +41,6 @@ theme.typography.h3 = {
 
 const RraForm = ({}) => {
   const { t } = useTranslation(["home","common","login","rra"]);
-
   const steps = ['NID', 'Enter Information', 'View Details'];
   const [activeStep, setActiveStep] = React.useState(0);
   const dispatch = useDispatch();
@@ -54,7 +53,7 @@ const [niderrorMessage,setNiderrorMessage]=useState("");
     password: "",
   });
 const [errorMessage,setErrorMessage]=useState("");
-const [open,setOpen]=useState(false);
+const [open,setOpen]=React.useState(true);
  const getStepContent = (step) => {
    switch (step) {
      case 0:
@@ -93,7 +92,6 @@ useEffect(() => {
         } else {
           return null;
         }
-      
       }
       if (validateNid.error) {
         setErrorMessage(validateNid.error);
@@ -103,7 +101,6 @@ useEffect(() => {
   fetchData();
 }, [validateNid.details]);
 
- 
  //handle validate NID
  const handleValidateNid=async()=>{
   const nid=formData.nid
@@ -112,6 +109,9 @@ useEffect(() => {
 
  //handle on button submit for each step
  const handelSubmit = () => {
+  if (validateNid.error) {
+    setOpen(true);
+  }
    if (activeStep === 0) {
    handleValidateNid();
   //handleNext()
@@ -123,13 +123,17 @@ useEffect(() => {
    } else {
      return null;
    }
-   if (validateNid.error) {
-    setOpen(true);
-  }
+
   
  };
 
  const handleNewpayment = () => {
+  formData.nid = "";
+ 
+  validateNid.error=['']
+  setNiderrorMessage("");
+  validateNid.details=['']
+  validateNid.loading=false
   setActiveStep(0)
  };
 
@@ -138,6 +142,18 @@ useEffect(() => {
  };
 
  const handleBack = () => {
+
+  formData.nid = "";
+  // formData.amount=""
+  // formData.accountNumber=""
+  // setAmountErr("");
+  //setPasswordError("");
+  // setAccountNumberErr("");
+  setErrorMessage("");
+  validateNid.error=['']
+  setNiderrorMessage("");
+  validateNid.details=['']
+  validateNid.loading=false
    setActiveStep(0);
   history.push("/dashboard",{push:true})
    //setOpenRRA(false)
@@ -183,7 +199,6 @@ useEffect(() => {
                     sx={{  objectFit: "contain",
                     height:{xs:40,sm:40,md:60,lg:60}}}
                 />
-         
            </Grid>
            </ThemeProvider>
             <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5,display:{xs:"inline",sm:"flex"} }}>

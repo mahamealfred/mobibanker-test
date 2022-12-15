@@ -25,7 +25,7 @@ export const valiateNidDetailsDetailsAction = (details) => async (dispatch) => {
         dispatch(valiateNidDetailsSuccess(res.data));
       }  
       else{
-        let errMsg=res.data.codeDescription
+        let errMsg=res.data.data.reason
         dispatch(valiateNidDetailsFailure(errMsg));
       }
   } catch (err) {

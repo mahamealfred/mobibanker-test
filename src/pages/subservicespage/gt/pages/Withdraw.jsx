@@ -176,8 +176,8 @@ fecthData();
     <Grid
   container
   spacing={0}
-  direction="column"
-  alignContent="center"
+  item
+  direction="row"
   alignItems="center"
   justifyContent="center"
   

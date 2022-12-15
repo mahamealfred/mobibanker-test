@@ -49,7 +49,6 @@ const Document = ({
                         sx={
                             {mb: 0.2}
                     }>
-
                         {errorMessage}  
                         </Alert>
                 </Collapse>
@@ -57,7 +56,6 @@ const Document = ({
         }
             <ThemeProvider theme={theme}>
                 <Typography variant="h6" color="text.primary"  align="center"
-                
                 sx={{ fontSize:{xs:14,md:16,lg:18} }}
                 >
                   {/* {t("rra:referencenumber")} */}

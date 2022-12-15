@@ -21,12 +21,15 @@ export default function Review() {
           <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
             <ListItemText primary="Account Name" secondary="Mahame alfred" />
           </ListItem>
-        <ListItem sx={{ py: 1, px: 0 }}>
+          <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
+            <ListItemText primary="Account Number" secondary="12928928282828" />
+          </ListItem>
+        {/* <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary= "Balance" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
         10000 Rwf
           </Typography>
-        </ListItem>
+        </ListItem> */}
        
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary= "Mobicash reference"/>
@@ -41,12 +44,12 @@ export default function Review() {
           <Grid container>
        
               <React.Fragment >
-                <Grid item xs={6}>
+                {/* <Grid item xs={6}>
                   <Typography gutterBottom>{t("rra:taxtypedescription")}</Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography gutterBottom>Open an Account</Typography>
-                </Grid>
+                </Grid> */}
                 
                 <Grid item xs={6}>
                   <Typography gutterBottom>{t("common:date")}</Typography>

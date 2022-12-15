@@ -20,7 +20,7 @@ export const depositAction = (details,username,password) => async (dispatch) => 
     // const {brokering}=details
     // const {userGroup}=details
   //  let basicAuth='Basic ' + btoa(username + ':' + password);
-    const Url='http://agencyapi.mobicash.rw/api/banking/finance/rest/v.4.14.01/gt-bank-deposit';
+    const Url='https://agencyapi.mobicash.rw/api/banking/finance/rest/v.4.14.01/gt-bank-deposit';
     const res = await axios.post(Url,{
         debit: debit,
         credit: credit,

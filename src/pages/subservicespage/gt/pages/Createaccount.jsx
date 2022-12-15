@@ -54,6 +54,12 @@ const [niderrorMessage,setNiderrorMessage]=useState("");
   });
 const [errorMessage,setErrorMessage]=useState("");
 const [open,setOpen]=React.useState(true);
+const [firstName,setFirstName]=useState("")
+const [lastName,setLastName]=useState("");
+const [placeOfIssue,setPlaceOfIsue]=useState("");
+const [gender,setGender]=useState("");
+const [dateOfBirth,setDateOfBirth]=useState("")
+
  const getStepContent = (step) => {
    switch (step) {
      case 0:
@@ -71,6 +77,12 @@ const [open,setOpen]=React.useState(true);
      case 1:
        return (
          <Account
+         formData={formData}
+         placeOfIssue={placeOfIssue}
+         firstName={firstName}
+         lastName={lastName}
+         dateOfBirth={dateOfBirth}
+         gender={gender}
         
          />
        );
@@ -87,7 +99,11 @@ useEffect(() => {
     if (!validateNid.loading) {
       if (validateNid.details.length !== 0) {
         if (validateNid.details.responseCode === 100) {
-         
+         setFirstName(validateNid.details.data.foreName)
+         setLastName(validateNid.details.data.surnames)
+         setDateOfBirth(validateNid.details.data.dateOfBirth)
+         setPlaceOfIsue(validateNid.details.data.placeOfIssue)
+         setGender(validateNid.details.data.sex)
           handleNext();
         } else {
           return null;
@@ -103,8 +119,14 @@ useEffect(() => {
 
  //handle validate NID
  const handleValidateNid=async()=>{
-  const nid=formData.nid
-  await dispatch(valiateNidDetailsDetailsAction({nid}))
+  if(formData.nid === ""){
+    setNiderrorMessage("NID is required")
+  }
+  else{
+    setNiderrorMessage("")
+    const nid=formData.nid
+    await dispatch(valiateNidDetailsDetailsAction({nid}))
+  }
  }
 
  //handle on button submit for each step

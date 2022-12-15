@@ -173,15 +173,15 @@ fecthData();
   });
 
   return (
-    <Grid
-  container
-  spacing={0}
-  item
-  direction="row"
-  alignItems="center"
-  justifyContent="center"
-  
->
+    <Box
+    component="main"
+    sx={{
+      flexGrow: 0,
+      py: 4,
+      width: "100vw"
+      
+    }}
+  >
       <div className="home">
         <div className="tableDisplay">
         {
@@ -220,7 +220,7 @@ fecthData();
                     </Button>
                   </ButtonGroup>
                 </Stack>
-                <Box sx={{ maxWidth: 400, position:"center", display:"flex"}}>
+                <Box sx={{ maxWidth: 300, position:"center", display:"flex"}}>
               <TextField
                 fullWidth
                 size="small"
@@ -312,7 +312,7 @@ fecthData();
           </TableContainer>
         </div>
       </div>
-      </Grid>
+      </Box>
   );
 }
 

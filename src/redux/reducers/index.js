@@ -7,6 +7,7 @@ import { combineReducers } from "redux";
    import validateNidReducer from "./validateNidReducer";
    import depositReducer from "./depositReducer";
    import accountValidationReducer from "./accountValidationReducer";
+   import openAccountReducer from "./openAccountReducer";
    //CBHI
 import getCbhiNidDetailsReducer from "./getCbhiNidDetailsReducer";
 import cbhiPayamentReducer from "./cbhiPaymentReducer";
@@ -25,6 +26,7 @@ import balanceReducer from "./getBalanceReducer";
     //LTSS
      import getLtssIdentificationDetailsReducer from "./getLtssIdentificationReducer";
      import ltssPaymentReducer from "./ltssPaymentReducer";
+     
 // import getClientDetailsReducer from "./getClientDetailsReducer";
               //rnit
 import getRnitDetailsReducer from "./getRnitIdentificationDetailsReducer";
@@ -65,6 +67,7 @@ const allReducers = combineReducers({
      validateNid:validateNidReducer,
      deposit:depositReducer,
      accountValidation:accountValidationReducer,
+     openAccount:openAccountReducer,
     //client
     // getClientDetails:getClientDetailsReducer,
     // cashIn:chashinReducer,

@@ -14,7 +14,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Document from "../components/createaccount/Document";
 import Account from "../components/createaccount/Account";
 import Review from "../components/createaccount/Review";
-
+import { openAccountAction } from "../../../../redux/actions/openAccountAction";
 import { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Grid } from "@mui/material";
@@ -46,20 +46,62 @@ const RraForm = ({}) => {
   const dispatch = useDispatch();
 const history=useHistory();
 const validateNid=useSelector((state)=>state.validateNid);
+const openAccount=useSelector((state)=>state.openAccount);
 const [niderrorMessage,setNiderrorMessage]=useState("");
   const [formData, setFormData] = useState({
     nid: "",
     phoneNumber: "",
     password: "",
+    email:""
   });
 const [errorMessage,setErrorMessage]=useState("");
 const [open,setOpen]=React.useState(true);
 const [firstName,setFirstName]=useState("")
 const [lastName,setLastName]=useState("");
-const [placeOfIssue,setPlaceOfIsue]=useState("");
+const [placeOfIssue,setPlaceOfIssue]=useState("");
 const [gender,setGender]=useState("");
 const [dateOfBirth,setDateOfBirth]=useState("")
 const [photo,setPhoto]=useState("")
+const [password,setPassword]=useState("")
+const [username,setUsername]=useState("");
+const [brokering, setBrokering] = useState("");
+const [userGroup, setUserGroup] = useState("");
+const [agentName,setAgentName]=useState("");
+const [openAccountError,setOpenAccountError]=useState("");
+
+const [documentNumber,setDocumentNumber]=useState("")
+const [nationality,setNationality]=useState("RW");
+const [fatherNames,setFatherNames]=useState("");
+const [motherNames,setMotherNames]=useState("");
+//const [telephone,setTelephone]=useState("");
+const [father,setFather]=useState("");
+const [mother,setMother]=useState("");
+const [idNumber,setIdNumber]=useState("");
+// const [email,setEmail]=useState("");
+//const [dateOfBirth,setDateOfBirth]=useState("");
+const [accountType,setAccountType]=useState("");
+const [branchName,setBranchName]=useState("");
+const [civilStatus,setCivilStatus]=useState("");
+const [spouse,setSpouse]=useState("");
+const [dob,setDob]=useState("");
+const [placeOfBirth,setPlaceOfBirth]=useState("");
+const [countryOfBirth,setCountryOfBirth]=useState("");
+const [dateOfIssue,setDateOfIssue]=useState("");
+const [province,setProvince]=useState("");
+const [district,setDistrict]=useState("");
+const [sector,setSector]=useState("");
+const [cell,setCell]=useState("");
+const [village,setVillage]=useState("");
+
+const [names,setNames]=useState("")
+const [fullAccount,setFullAccount]=useState("");
+const [mobilePhone,setMobilePhone]=useState("");
+const [date,setDate]=useState("")
+
+const [emailError,setEmailError]=useState("")
+const [phoneNumberError,setPhoneNumberError]=useState("");
+// const [phoneNumber,setPhoneNumber]=useState("")
+
  const getStepContent = (step) => {
    switch (step) {
      case 0:
@@ -79,22 +121,127 @@ const [photo,setPhoto]=useState("")
        return (
          <Account
          formData={formData}
+         setFormData={ setFormData}
          placeOfIssue={placeOfIssue}
          firstName={firstName}
          lastName={lastName}
          photo={photo}
          dateOfBirth={dateOfBirth}
          gender={gender}
-        
+         setOpen={setOpen}
+         open={open}
+         openAccountError={openAccountError}
+         setOpenAccountError={setOpenAccountError}
+         phoneNumberError={phoneNumberError}
+         emailError={emailError}
          />
        );
      case 2:
        return <Review 
+       names={names}
+       mobilePhone={mobilePhone}
+       fullAccount={fullAccount}
+       date={date}
        />;
      default:
        throw new Error("Unknown step");
    }
  };
+ useEffect(()=>{
+  async function fetchData(){
+   if (!openAccount.loading) {
+     if (openAccount.details.length !== 0) {
+       if (openAccount.details.responseCode === 100) {
+        setNames(openAccount.details.data.names)
+        setFullAccount(openAccount.details.data.fullAccount)
+        setMobilePhone(openAccount.details.data.mobileNumber)
+        setDate(openAccount.details.responseDate)
+         handleNext();
+       } else {
+         return null;
+       }
+     }
+     if (openAccount.error) {
+       setOpenAccountError(openAccount.error);
+     }
+   }
+  
+  }
+  fetchData();
+   },[openAccount.details,openAccount.error])
+  
+ //agent infromation
+const decode= (token) => {
+  const JWT_SECRET="tokensecret";
+  const payload = jwt.verify(token, JWT_SECRET);
+   return payload;
+}
+useEffect(() => {
+  const token =localStorage.getItem('mobicashAuth');
+  if (token) {
+  const {username}=decode(token);
+  const {role}=decode(token);
+  const {group}=decode(token);
+  const {name}=decode(token);
+  const {password}=decode(token);
+  setUsername(username)
+  setBrokering(role)
+  setUserGroup(group)
+  setAgentName(name)
+  setPassword(password)
+}
+}, []);
+ //handle open account
+ const handleOpenAccount=async()=>{
+  const phoneNumber=formData.phoneNumber
+  const email=formData.email
+  const telephone=formData.phoneNumber
+  if(formData.phoneNumber===""){
+setPhoneNumberError("Phone number is required")
+  }
+  else if(!Number(formData.phoneNumber)){
+    setPhoneNumberError("Phone number must be a numeric")
+  }
+  else if(formData.email===""){
+setEmailError("email is required")
+  }
+  else{
+    setPhoneNumberError("")
+    setEmailError("")
+    await dispatch(openAccountAction({
+      documentNumber,
+      nationality,
+      fatherNames,
+      motherNames,
+      telephone,
+      firstName,
+      lastName,
+      father,
+      mother,
+      idNumber,
+      phoneNumber,
+      email,
+      dateOfBirth,
+      dob,
+      accountType,
+      branchName,
+      gender,
+      civilStatus,
+      spouse:!spouse?"Some Woman":spouse,
+      placeOfBirth,
+      countryOfBirth,
+      placeOfIssue,
+      dateOfIssue,
+      province,
+      district,
+      sector,
+      cell,
+      village,
+      photo
+    },username,password))
+  }
+
+ }
 //render Nid details
 useEffect(() => {
   async function fetchData() {
@@ -104,9 +251,32 @@ useEffect(() => {
          setFirstName(validateNid.details.data.foreName)
          setLastName(validateNid.details.data.surnames)
          setDateOfBirth(validateNid.details.data.dateOfBirth)
-         setPlaceOfIsue(validateNid.details.data.placeOfIssue)
+         setPlaceOfIssue(validateNid.details.data.placeOfIssue)
          setPhoto(validateNid.details.data.photo)
          setGender(validateNid.details.data.sex)
+         setDocumentNumber(validateNid.details.data.documentNumber);
+        // setNationality(validateNid.details.data.nationality)
+         setFatherNames(validateNid.details.data.fatherNames)
+         setMotherNames(validateNid.details.data.motherNames)
+        // setTelephone(formData.phoneNumber);
+         setFather(validateNid.details.data.fatherNames);
+         setMother(validateNid.details.data.motherNames);
+         setIdNumber(formData.nid);
+        // setEmail(formData.email);
+         setDob(validateNid.details.data.dateOfBirth);
+         setAccountType( "CURRENT")
+         setBranchName("KIGALI")
+         setCivilStatus(validateNid.details.data.civilStatus);
+         setSpouse(validateNid.details.data.spouse);
+         setPlaceOfBirth(validateNid.details.data.placeOfBirth);
+         setCountryOfBirth(validateNid.details.data.countryOfBirth);
+         setDateOfIssue(validateNid.details.data.dateOfIssue);
+         setProvince(validateNid.details.data.province);
+         setDistrict(validateNid.details.data.district);
+         setSector(validateNid.details.data.sector);
+         setCell(validateNid.details.data.cell);
+         setVillage(validateNid.details.data.village);
+        // setPhoneNumber(formData.phoneNumber);
           handleNext();
         } else {
           return null;
@@ -140,28 +310,38 @@ useEffect(() => {
   if (validateNid.error) {
     setOpen(true);
   }
+  if (openAccount.error) {
+    setOpen(true);
+  }
    if (activeStep === 0) {
    handleValidateNid();
   //handleNext()
    } else if (activeStep === 1) {
-    handleNext()
+   // handleNext()
+    handleOpenAccount()
    } else if (activeStep === 2) {
 
  handleNext()
    } else {
      return null;
    }
+   
 
   
  };
 
  const handleNewpayment = () => {
   formData.nid = "";
- 
   validateNid.error=['']
   setNiderrorMessage("");
   validateNid.details=['']
   validateNid.loading=false
+  formData.phoneNumber = "";
+  formData.email = "";
+  openAccount.error=['']
+  // setNiderrorMessage("");
+  openAccount.details=['']
+  openAccount.loading=false
   setActiveStep(0)
  };
 
@@ -170,8 +350,9 @@ useEffect(() => {
  };
 
  const handleBack = () => {
-
   formData.nid = "";
+  formData.phoneNumber = "";
+  formData.email = "";
   // formData.amount=""
   // formData.accountNumber=""
   // setAmountErr("");
@@ -182,10 +363,15 @@ useEffect(() => {
   setNiderrorMessage("");
   validateNid.details=['']
   validateNid.loading=false
+
+   setOpenAccountError("");
+  openAccount.error=['']
+  // setNiderrorMessage("");
+  openAccount.details=['']
+  openAccount.loading=false
    setActiveStep(0);
   history.push("/dashboard",{push:true})
    //setOpenRRA(false)
-  
  };
   return (
     <div>
@@ -211,7 +397,6 @@ useEffect(() => {
            direction="column"
            alignItems="center"
            justifyContent="center"
-           
            >
             <Typography variant="h6" color="gray" 
               sx={{ fontSize:{xs:14,md:16,lg:20} }}
@@ -276,7 +461,10 @@ useEffect(() => {
                         <Box sx={{ display: 'flex',justifyContent:"center" }}>
                         <CircularProgress  sx={{ color: 'orange'}} />
                          </Box>:`${t("common:submit")}`
-                        :`Open Account`
+                        :openAccount.loading?
+                        <Box sx={{ display: 'flex',justifyContent:"center" }}>
+                        <CircularProgress  sx={{ color: 'orange'}} />
+                         </Box>:`Open Account`
                         }
                     </Button>
                   </Box>

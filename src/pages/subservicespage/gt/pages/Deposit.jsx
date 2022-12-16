@@ -56,7 +56,7 @@ const [errorMessage, setErrorMessage] = useState("");
 const [destinationErr,setDestinationErr]=useState("");
 const [amountErr,setAmountErr]=useState("");
 const [depositerrorMessage,setDepositerrorMessage]=useState("");
-
+const [password,setPassword]=useState("");
 const [username,setUsername]=useState("");
 const [brokering, setBrokering] = useState("");
 const [userGroup, setUserGroup] = useState("");
@@ -65,7 +65,7 @@ const [transactionStatus,setTransactionStatus]=useState("");
 const [dateTime,setDateTime]=useState("")
 const [agentName,setAgentName]=useState("")
 const [clientCharges,setClientCharges]=useState("")
-const [password,setPassword]=useState("")
+
 const [accountName,setAccountName]=useState("");
 const [debit,setDebit]=useState("");
 const [credit,setCredit]=useState("");
@@ -172,9 +172,9 @@ useEffect(()=>{
    if (!deposit.loading) {
      if (deposit.details.length !== 0) {
        if (deposit.details.responseCode === 100) {
-        setAmountDeposited(deposit.details.data.amount)
-        setTransactionId(deposit.details.data.reference)
-        setDateTime(deposit.details.responseDate)
+        setAmountDeposited(deposit.details.data.amount);
+        setTransactionId(deposit.details.data.reference);
+        setDateTime(deposit.details.responseDate);
          handleNext();
        } else {
          return null;
@@ -288,7 +288,7 @@ useEffect(() => {
   accountValidation.loading=false
   deposit.loading=false
   setActiveStep(0);
-  history.push("/dashboard",{push:true})
+  history.push("/dashboard/gt-bank-service",{push:true})
    //setOpenRRA(false)
   
  };

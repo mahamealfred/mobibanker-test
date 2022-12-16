@@ -11,20 +11,47 @@ import { Box } from '@mui/material';
 
 const Account=({
   formData,
+  setFormData,
   placeOfIssue,
   firstName,
   lastName,
   photo,
   dateOfBirth,
-  gender
+  gender,
+  setOpen,
+  open,
+  openAccountError,
+  setOpenAccountError,
+  phoneNumberError,
+  emailError
  
 })=> {
   const { i18n,t } = useTranslation(["home","common","rra"]);
     const handleClose = () => {
-      
+      setOpenAccountError('')
+        setOpen(false);
     };
   return (
     <React.Fragment>
+        {   !openAccountError ? null : (
+                <Collapse in={open}>
+                    <Alert severity="error"
+                        action={
+                            <IconButton
+                        aria-label="close"
+                        color="inherit"
+                        size="small"onClick={handleClose}>
+                        <CloseIcon
+                        fontSize="inherit"/></IconButton>
+                        }
+                        sx={
+                            {mb: 0.2}
+                    }>
+                        {openAccountError}  
+                        </Alert>
+                </Collapse>
+            )
+        }
     <Box
       display="flex"
       justifyContent="center"
@@ -47,7 +74,7 @@ const Account=({
            {lastName +" "+firstName} 
               </Typography>
             </Grid>
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12} md={4}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
            NID
               </Typography>
@@ -55,24 +82,6 @@ const Account=({
           {formData.nid}
               </Typography>
             </Grid>
-           
-            <Grid item xs={12} md={4}>
-                 <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-                Gender
-              </Typography>
-              <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-              {gender}
-              </Typography>
-            </Grid> 
-            <Grid item xs={12} md={4}>
-                 <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-                Date of Birth
-              </Typography>
-              <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-           {dateOfBirth}
-              </Typography>
-            </Grid>
-            
             <Grid item xs={12} md={4}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
                 Place of Issue
@@ -88,10 +97,10 @@ const Account=({
             margin="normal"
             size="small" 
             label="Phone number"
-            // value={formData.phoneNumber}
-            // onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
-            // helperText={phoneNumberError? phoneNumberError : ""}
-            // error={phoneNumberError}
+            value={formData.phoneNumber}
+            onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
+           helperText={phoneNumberError? phoneNumberError : ""}
+           error={phoneNumberError}
             fullWidth
             autoComplete="cc-name"
             variant="outlined"
@@ -104,10 +113,10 @@ const Account=({
             margin="normal"
             size="small" 
             label="Email"
-            // value={formData.phoneNumber}
-            // onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
-            // helperText={phoneNumberError? phoneNumberError : ""}
-            // error={phoneNumberError}
+            value={formData.email}
+            onChange={(e)=>setFormData({...formData,email:e.target.value})}
+            helperText={emailError? emailError : ""}
+            error={emailError}
             fullWidth
             autoComplete="cc-name"
             variant="outlined"

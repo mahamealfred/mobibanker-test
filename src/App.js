@@ -5,7 +5,9 @@ import { BrowserRouter as Router} from "react-router-dom";
 import "./App.css";
 import AuthApi from "./context/api";
 import { Box } from "@mui/system";
-
+import  AuthContext from "./context";
+import { useContext } from "react";
+import { useEffect } from "react";
 
 // export default class App extends Component {
 //   render() {
@@ -20,16 +22,18 @@ import { Box } from "@mui/system";
 //   }
 // };
 function App(){
-  const [auth,setAuth]=React.useState(false)
-  return(
-    <AuthApi.Provider value={{auth,setAuth}}>
-    <Suspense fallback={null}>
+  const {auth,setAuth}=useContext(AuthContext);
+ 
+
   
+  return(
+   
+    <Suspense fallback={null}>
        <Router>
         <Routes/>
       </Router>
       </Suspense>
-    </AuthApi.Provider>
+   
     
   )
 }

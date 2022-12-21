@@ -26,7 +26,8 @@ import { ComponentToPrint } from './ComponentToPrint';
 import ReactToPrint from 'react-to-print';
 import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
-
+import { useContext } from "react";
+import AuthContext from "../../../context";
 const theme = createTheme();
 
 theme.typography.h3 = {
@@ -85,6 +86,8 @@ const RraForm = ({openRRA,setOpenRRA}) => {
  const [open, setOpen] = React.useState(true);
  const [docDetails, setDocDetails] = useState("");
  const history = useHistory();
+
+ const { auth }=useContext(AuthContext)
 
  const getStepContent = (step) => {
    switch (step) {
@@ -153,7 +156,7 @@ const RraForm = ({openRRA,setOpenRRA}) => {
    setBrokering(role)
    setUserGroup(group)
    setAgentName(name)
-   setPassword(password)
+   setPassword(auth.password)
    
  }
 

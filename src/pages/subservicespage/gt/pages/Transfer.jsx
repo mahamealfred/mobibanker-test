@@ -1,9 +1,7 @@
 import * as React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
-
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-
 import Paper from "@mui/material/Paper";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
@@ -38,7 +36,6 @@ theme.typography.h3 = {
 
 const Transfer = ({}) => {
   const { t } = useTranslation(["home","common","login","rra"]);
-
   const steps = ['Account Number','Account to Transfer', 'Amount', 'View Details'];
   const [activeStep, setActiveStep] = React.useState(0);
   const dispatch = useDispatch();
@@ -48,24 +45,16 @@ const history=useHistory();
     phoneNumber: "",
     password: "",
   });
-
-
-
-
  const getStepContent = (step) => {
    switch (step) {
      case 0:
        return (
          <Document
-         
          />
        );
-
      case 1:
        return (
          <ToAccount
-          
-
          />
        );
      case 2:
@@ -74,8 +63,6 @@ const history=useHistory();
        case 3:
         return (
           <Review 
-           
- 
           />
         );
      default:

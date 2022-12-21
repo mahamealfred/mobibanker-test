@@ -9,7 +9,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { useHistory } from 'react-router-dom';
 import { loginAction } from '../../redux/actions/loginAction';
 import { useDispatch,useSelector } from 'react-redux';
-import {useState,useEffect} from "react";
+import {useState,useEffect,useContext} from "react";
 import Alert from '@mui/material/Alert';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
@@ -17,6 +17,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useTranslation } from "react-i18next";
 import { useInterval } from "./customHooks";
+import AuthContext from '../../context';
 const TIMEOUT_SECONDS = 15;
 const SignIn = () => {
     const history=useHistory()
@@ -28,8 +29,28 @@ const SignIn = () => {
     const [open, setOpen] = React.useState(true);
     const [remainingSeconds, setRemainingSeconds] = useState(TIMEOUT_SECONDS);
     const [pending, setPending] = useState(false);
+    const [password,setPassword]=useState('')
     const [error, setError] = useState(null);
-
+    //authentication
+    const { setAuth,auth } = useContext(AuthContext);
+    useEffect(() => {
+      async function fetchData() {
+        if (!login.loading) {
+          if (login.users.length !== 0) {
+            if (login.users.responseCode === 100) {
+           setAuth({
+            username:login.users.data.username,
+            password:password,
+            brokering:login.users.data.brokering,
+            group:login.users.data.group
+          })
+            } 
+          }
+        }
+      }
+      fetchData();
+    }, [login.users]);
+  
     useInterval(
       () => {
         if (remainingSeconds === 0) {
@@ -42,6 +63,8 @@ const SignIn = () => {
       },
     login.loading ? 1000 : null // VERY IMPORTANT, must be 1000 or NULL
     );
+
+
       const handleSubmit = async(event) => {
           event.preventDefault();
           const data = new FormData(event.currentTarget);
@@ -59,6 +82,7 @@ const SignIn = () => {
           else{
             setUsernameError("")
             setPasswordError("")
+            setPassword(data.get('password'))
            login.loading=true
             setError(null);
             setRemainingSeconds(TIMEOUT_SECONDS);

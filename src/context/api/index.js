@@ -1,3 +1,5 @@
-import React from 'react'
-const AuthApi=React.createContext();
-export default AuthApi;
+import axios from 'axios';
+
+export default axios.create({
+    baseURL: 'http://localhost:3500'
+});

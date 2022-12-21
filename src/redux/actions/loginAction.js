@@ -6,7 +6,16 @@ import {
   } from "../types/loginType";
 
 import jwt from "jsonwebtoken";
+export let refreshTokens = [];
+const generateAccessToken = (user) => {
+  return jwt.sign({ id: user.id, names: user.names,role:user.role }, "mySecretKey", {
+    expiresIn: "10m",
+  });
+};
 
+const generateRefreshToken = (user) => {
+  return jwt.sign({ id: user.id, names: user.names }, "myRefreshSecretKey", {expiresIn: "15s"});
+};
 
 export const loginAction = (user,history) => async (dispatch) => {
  
@@ -15,10 +24,7 @@ export const loginAction = (user,history) => async (dispatch) => {
     const {username}=user
     const {password}=user 
     const basicAuth = Buffer.from(`${username}:${password}`).toString('base64');
-    //let basicAuth='Basic ' + Btoa(username + ':' + password);
-    //const Url='https://agentweb.mobicash.rw/api/agent/user/rest/v.4.14.01/auth';
    const Url='https://agentapi.mobicash.rw/api/agent/user/rest/v.4.14.01/auth';
-  // const Url=process.env.REACT_APP_BASE_URL+'/user/rest/v.4.14.01/auth' 
    const res = await axios.post(Url,{}, {
       withCredentials: true,
     Headers:{
@@ -39,14 +45,15 @@ export const loginAction = (user,history) => async (dispatch) => {
       const name=res.data.data.names
       const role=res.data.data.brokering
       const group=res.data.data.group
-      const claims={userId,name,role,username,group,password,basicAuth}
+      const claims={userId,name,role}
       const token= jwt.sign(claims,jwt_secret, { expiresIn: "7d"});
-      dispatch(loginSuccess(res.data));
+      const resData=res.data
+      dispatch(loginSuccess({resData,username:username}));
        history.push('/dashboard',{push:true})
       sessionStorage.setItem('mobicash-auth',token)
-      return localStorage.setItem('mobicashAuth',token);
+      return  sessionStorage.setItem('mobicash-auth',token);
     }
-    if(res.data.responseCode===103 || res.data.responseCode===102 || res.data.responseCode===105 || res.data.responseCode===106 || res.data.responseCode===107){
+    else{
       dispatch(loginFailure(res.data.codeDescription));
     }
   } catch (err) {

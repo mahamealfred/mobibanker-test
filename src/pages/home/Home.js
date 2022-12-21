@@ -42,6 +42,9 @@ import Fade from '@mui/material/Fade';
 import { useIdleTimer } from 'react-idle-timer';
 import i18next from "i18next";
 import Link from '@mui/material/Link';
+import { refreshTokens } from '../../redux/actions/loginAction';
+import AuthContext from '../../context';
+import { useContext } from 'react';
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
@@ -119,6 +122,27 @@ function Home({...props}) {
   const [open, setOpen] = React.useState(false);
   const [agentName,setAgentName]=React.useState("");
   const { children } = props;
+ const [authToken,setAuthToken]=React.useState(null)
+
+ const { auth,setAuth }=useContext(AuthContext)
+ useEffect(() => {
+  async function fetchData(){
+    if (window.performance) {
+      if (performance.navigation.type == 1) {
+       await localStorage.setItem('dataKey',"Mahame f");
+      } else {
+        localStorage.removeItem('dataKey');
+      }
+    }else{
+      const item= await localStorage.getItem('dataKey');
+      setAuth(item)
+      localStorage.removeItem('dataKey');
+    }
+  }
+  fetchData()
+}, []);
+ console.log("E dd",auth)
+  //refresh token
   var startTimer=null
   // set idle timer
   const [openModal,setOpenModal]=React.useState(false)
@@ -202,6 +226,7 @@ setOpenModal(false)
      return payload;
   }
   useEffect(() => {
+
     const token =localStorage.getItem('mobicashAuth');
     if (token) {
     const {name}=decode(token);
@@ -310,36 +335,14 @@ setOpenModal(false)
                 src="../../images/mobibk.png"
               />
             </Typography>
-            {/* <Box
-              component="img"
-              sx={{
-                height: 100,
-                width: 300,
-                marginRight: 10,
-                maxHeight: { xs: 60, md: 300},
-                maxWidth: { xs: 150, md: 300},
-                display: { xs: "none", sm: "none", md: "block" }
-              }}
-              alt="mobicash logo"
-              src="../../Assets/images/mobibk.png"
-            /> */}
+         
   <Box sx={{ display: { xs: 'flex', md: 'flex' }, padding:2}}>
          <Tooltip title={t("common:logout")} sx={{ mt: 1,display: { xs: 'none', md: 'none' } }}>
        <IconButton   onClick={handleLogout} size="large" aria-label="show 4 new mails"  sx={{color:"#F9842C"}} >
               <LogoutIcon  sx={{color:"#F9842C"}} />
             </IconButton>
          </Tooltip>
-         {/* <Tooltip title={t("common:messages")} sx={{ mt: 1 }}>
-         <IconButton
-              size="large"
-              aria-label="show 3 new notifications"
-              sx={{color:"#F9842C"}} 
-            >
-              <Badge badgeContent={3} color="warning">
-                <MailOutlineIcon title="Notifications" />
-              </Badge>
-            </IconButton>
-          </Tooltip> */}
+       
             
           </Box>
 
@@ -455,11 +458,7 @@ setOpenModal(false)
         {children}
           </Box>  
       </Box>
-      {/* <BottomNav /> */}
-      {/* <Slider/> */}
-      {/* <MobicashSolutions/> */}
-      {/* <Headerbanner/>
-      <Footer /> */}
+ 
        <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
         <Typography variant="h6" align="center" gutterBottom>
           MobiBanker

@@ -36,7 +36,7 @@ export const valiateNidDetailsDetailsAction = (details) => async (dispatch) => {
         dispatch(valiateNidDetailsFailure(errorMessage));
       
     } else {
-      dispatch(valiateNidDetailsFailure("Network Error"));
+      dispatch(valiateNidDetailsFailure("The service is currently not available"));
     }
   }
 };

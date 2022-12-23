@@ -27,6 +27,7 @@ import ReactToPrint from "react-to-print";
 import { ComponentToPrint } from "./ComponentToPrint";
 import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
+import AuthContext from "../../../context";
 
 const theme = createTheme();
 
@@ -61,7 +62,7 @@ const [nIdErrorMessage,setNIdErrorMessage]=useState("");
 const [errorMessage,setErrorMessage]=useState("")
 const [identification,setIdentification]=useState("")
 const [payerName,setPayerName]=useState("")
-
+const { auth }=React.useContext(AuthContext)
 const [agentCategory,setAgentCategory]=useState("")
 
 const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
@@ -129,16 +130,10 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
   useEffect(() => {
     const token =localStorage.getItem('mobicashAuth');
     if (token) {
-    const {group}=decode(token);
-    const {role}=decode(token);
-    const {username}=decode(token);
+
     const {name}=decode(token);
-    const {password}=decode(token)
-    setUsername(username)
-    setAgentCategory(group)
+
     setAgentName(name)
-    setPassword(password)
-    setBrokering(role)
 
   }
  
@@ -150,6 +145,9 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
           if (getLtssIndDetails.details.responseCode === 100) {
            setIdentification(getLtssIndDetails.details.data.identification)
            setPayerName(getLtssIndDetails.details.data.names)
+           setUsername(auth.username);
+           setBrokering(auth.brokering);
+           setAgentCategory(auth.usergroup)
             handleNext();
           } else {
             return null;
@@ -198,8 +196,6 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
   // else if(formData.nId.length!==16){
   //   setNIdErrorMessage(`${t("common:nidmust16digit")}`)
   // }
-  
-  
    else{
     setNIdErrorMessage("")
  
@@ -236,9 +232,9 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
     else if(formData.password=="" ){
       setPasswordError(`${t("common:agenytpinisrequire")}`)
     }
-    else if (formData.password !== password ) {
-      setPasswordError(`${t("common:invalidpin")}`);
-    } 
+    // else if (formData.password !== password ) {
+    //   setPasswordError(`${t("common:invalidpin")}`);
+    // } 
     else{
       setAmountPaidError("")
       setPhoneNumberError("")

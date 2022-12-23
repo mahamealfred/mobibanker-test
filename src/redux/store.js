@@ -5,18 +5,19 @@ import promise from "redux-promise-middleware";
 import allReducers from "./reducers";
 import { persistStore } from 'redux-persist';
 import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/es/storage/session';
+import storage from 'redux-persist/es/storage';
+
 const persistConfig = {
     key: 'root',
     storage,
 }
-const persistedReducer = persistReducer(persistConfig, allReducers)
+//const persistedReducer = persistReducer(persistConfig, allReducers)
 
 const middleware=applyMiddleware(thunk, promise);
 
-export const store=createStore(persistedReducer, {}, middleware);
-export const persistor = persistStore(store)
-//const store=createStore(allReducers, {}, composeWithDevTools(middleware));
+//export const store=createStore(persistedReducer, {}, composeWithDevTools(middleware));
+//export const persistor = persistStore(store)
+export const store=createStore(allReducers, {}, composeWithDevTools(middleware));
 //const store=createStore(allReducers, {}, middleware);
 
   

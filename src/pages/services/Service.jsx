@@ -97,7 +97,9 @@ export default function MediaCard() {
     const openGtClient=()=>{
       history.push("/dashboard/gt-bank-service",{push:true})
     }
-   
+   const handleMobishuli=()=>{
+    history.push("/dashboard/mobishuli-service",{push:true})
+   }
   
     return (
         <React.Fragment>
@@ -190,18 +192,7 @@ export default function MediaCard() {
           MobiCash
           </Typography>
           
-          {/* <IconButton
-          aria-label="close"
-          onClick={handleClose}
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <CloseIcon />
-        </IconButton> */}
+        
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -223,18 +214,7 @@ export default function MediaCard() {
           <Typography variant="h6" color="gray" >
           MobiCash
           </Typography>
-          {/* <IconButton
-          aria-label="close"
-          onClick={handleClose}
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <CloseIcon />
-        </IconButton> */}
+        
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -257,18 +237,7 @@ export default function MediaCard() {
           MobiCash
           </Typography>
         
-          {/* <IconButton
-          aria-label="close"
-          onClick={handleClose}
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <CloseIcon />
-        </IconButton> */}
+        
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -291,18 +260,6 @@ export default function MediaCard() {
           MobiCash
           </Typography>
        
-          {/* <IconButton
-          aria-label="close"
-          onClick={handleClose}
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <CloseIcon />
-        </IconButton> */}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -325,18 +282,6 @@ export default function MediaCard() {
           MobiCash
           </Typography>
         
-          {/* <IconButton
-          aria-label="close"
-          onClick={handleClose}
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <CloseIcon />
-        </IconButton> */}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -368,19 +313,6 @@ export default function MediaCard() {
           MobiCash
           </Typography>
          
-          {/* <IconButton
-          aria-label="close"
-          onClick={handleClose}
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-   
-        >
-          <CloseIcon />
-        </IconButton> */}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -405,19 +337,7 @@ export default function MediaCard() {
           <Typography variant="h6" color="gray" >
           MobiCash
           </Typography>
-        
-          {/* <IconButton
-          aria-label="close"
-          onClick={handleClose}
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <CloseIcon />
-        </IconButton> */}
+       
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -428,13 +348,7 @@ export default function MediaCard() {
       
       
       <Grid
-           // container
-           // spacing={0}
-           //bgColor="transparent"
-            // direction="row"
-            // justify="flex-end"
-            // alignItems="flex-end"
-           //  sx={{ maxWidth: "auto" }}
+     
         >
             <Typography component="h1" variant="body1"
          fontWeight={800}
@@ -596,42 +510,6 @@ export default function MediaCard() {
             </Card>  
             </Button>
         </Grid>
-           
-          
-           
-{/*            
-            <Button
-            onClick={handleClickOpenLOGS}
-            >
-            <Card
-                raised
-                sx={{
-                   // maxWidth: 100,
-                   width:{xs:60,sm:70,md:60,lg:80},
-                    height:{xs:60,sm:60,md:60,lg:60},
-                    borderRadius:5,
-                    margin: "0 auto 5px",
-                    padding: "0.9em",
-                }}
-            >
-                <CardMedia
-                    component="img"
-                    height="60"
-                    image="../../images/logs.png"
-                    alt="alt"
-                    title="i"
-                    sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
-                    height:{xs:40,sm:40,md:40,lg:40}}}
-                />
-           <Typography variant="h6" gutterBottom
-                sx={{ padding: "0em 0em 0 0em",color:"gray",
-                fontSize:14
-             }}
-           >
-          LOGS
-          </Typography>
-            </Card>  
-            </Button> */}
                <Divider variant="middle" />
                <Typography component="h1" variant="h5"
          fontWeight={800}
@@ -714,6 +592,38 @@ export default function MediaCard() {
           </Typography>
             </Card>  
             </Button>
+            <Button
+             onClick={handleMobishuli}
+            >
+            <Card
+                raised
+                sx={{
+                    //maxWidth: 100,
+                    width:{xs:60,sm:70,md:60,lg:60},
+                    height:{xs:60,sm:60,md:60,lg:60},
+                    borderRadius:5,
+                    margin: "0 auto 5px",
+                    padding: "0.9em",
+                }}
+            >
+                <CardMedia
+                    component="img"
+                    height="70"
+                    image="../../images/mobishuli.png"
+                    alt="alt"
+                    title="i"
+                    sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
+                    height:{xs:40,sm:40,md:40,lg:40}}}
+                />
+           <Typography variant="h6" gutterBottom
+                sx={{ padding: "0em 0em 0 0em",color:"gray",
+                fontSize:10
+             }}
+           >
+          MobiShuli
+          </Typography>
+            </Card>  
+            </Button>
 </Grid>
         
             <Divider variant="middle" />
@@ -751,7 +661,7 @@ export default function MediaCard() {
                 <CardMedia
                     component="img"
                     height="60"
-                    image="../../images/gtbank.png"
+                    image="../../images/gtbanklogo.png"
                     alt="alt"
                     title="i"
                     sx={{ padding: "0em 2em 0 0em", objectFit: "contain",

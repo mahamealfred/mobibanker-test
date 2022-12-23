@@ -45,6 +45,7 @@ import Link from '@mui/material/Link';
 import { refreshTokens } from '../../redux/actions/loginAction';
 import AuthContext from '../../context';
 import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
@@ -119,29 +120,39 @@ const mdTheme = createTheme();
 function Home({...props}) {
   const { i18n,t } = useTranslation(["home","common","login"]);
  const history=useHistory();
+ const login=useSelector((state)=>state.login)
   const [open, setOpen] = React.useState(false);
   const [agentName,setAgentName]=React.useState("");
   const { children } = props;
  const [authToken,setAuthToken]=React.useState(null)
+const [username,setUsername]=React.useState("")
+const [brokering,setBrokering]=React.useState("")
+const [userGroup,setUserGroup]=React.useState("");
 
  const { auth,setAuth }=useContext(AuthContext)
  useEffect(() => {
-  async function fetchData(){
-    if (window.performance) {
-      if (performance.navigation.type == 1) {
-       await localStorage.setItem('dataKey',"Mahame f");
-      } else {
-        localStorage.removeItem('dataKey');
+  async function fetchData() {
+    if (!login.loading) {
+      if (login.users.length !== 0) {
+        if (login.users.responseCode === 100) {
+          setAuth({username:login.users.data.username,
+          brokering:login.users.data.brokering,
+          usergroup:login.users.data.group
+        })
+         setUsername(login.users.data.username)
+         setBrokering(login.users.data.brokering)
+         setUserGroup(login.users.data.group)
+        } else {
+          return null;
+        }
+      
       }
-    }else{
-      const item= await localStorage.getItem('dataKey');
-      setAuth(item)
-      localStorage.removeItem('dataKey');
+    
     }
   }
-  fetchData()
-}, []);
- console.log("E dd",auth)
+  fetchData();
+ 
+}, [login.users]);
   //refresh token
   var startTimer=null
   // set idle timer

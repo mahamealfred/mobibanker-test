@@ -18,9 +18,10 @@ const Payment=({
 })=> {
   const { i18n,t } = useTranslation(["home","common","rra"]);
     const handleClose = () => {
-      setPaymentErrorMessage('')
+      // setPaymentErrorMessage('')
       setOpenPayment(false);
     };
+    console.log("Password error:",paymentErrorMessage)
   return (
     <React.Fragment>
       {!paymentErrorMessage ? null : (

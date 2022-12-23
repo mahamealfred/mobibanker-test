@@ -48,6 +48,7 @@ const RraForm = ({openRRA,setOpenRRA}) => {
   const dispatch = useDispatch();
   const getDocDetails = useSelector((state) => state.getDocDetails);
   const rraPayment = useSelector((state) => state.rraPayment);
+  const login = useSelector((state) => state.login);
   const [formData, setFormData] = useState({
     docId: "",
     phoneNumber: "",
@@ -58,7 +59,7 @@ const RraForm = ({openRRA,setOpenRRA}) => {
  const [docIdErr, setDocIdErr] = useState("");
  const [errorMessage, setErrorMessage] = useState("");
  //rra payments
- const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
+ const [paymentErrorMessage, setPaymentErrorMessage] = useState("");
  const [phoneNumberError, setPhoneNumberError] = useState("");
  const [passwordError, setPasswordError] = useState("");
  const [username, setUsername] = useState("");
@@ -85,10 +86,11 @@ const RraForm = ({openRRA,setOpenRRA}) => {
  //all
  const [open, setOpen] = React.useState(true);
  const [docDetails, setDocDetails] = useState("");
+ const [openPayment,setOpenPayment]=useState(true);
  const history = useHistory();
 
  const { auth }=useContext(AuthContext)
-
+console.log("alll state",auth)
  const getStepContent = (step) => {
    switch (step) {
      case 0:
@@ -113,10 +115,10 @@ const RraForm = ({openRRA,setOpenRRA}) => {
            taxPayerName={taxPayerName}
            rraRef={rraRef}
            amountToPay={amountToPay}
-           paymenterrorMessage={paymenterrorMessage}
-           setPaymenterrorMessage={setPaymenterrorMessage}
-           open={open}
-           setOpen={setOpen}
+           paymentErrorMessage={paymentErrorMessage}
+           setPaymentErrorMessage={setPaymentErrorMessage}
+           openPayment={open}
+           setOpenPayment={setOpen}
            tin={tin}
            taxTypeDesc={taxTypeDesc}
            errorMessage={errorMessage}
@@ -139,6 +141,10 @@ const RraForm = ({openRRA,setOpenRRA}) => {
        throw new Error("Unknown step");
    }
  };
+
+ //authentication data
+
+
  const decode= (token) => {
    const JWT_SECRET="tokensecret";
    const payload = jwt.verify(token, JWT_SECRET);
@@ -147,16 +153,12 @@ const RraForm = ({openRRA,setOpenRRA}) => {
  useEffect(() => {
    const token =localStorage.getItem('mobicashAuth');
    if (token) {
-   const {username}=decode(token);
+ 
    const {role}=decode(token);
    const {group}=decode(token);
    const {name}=decode(token);
-   const {password}=decode(token)
-   setUsername(username)
-   setBrokering(role)
-   setUserGroup(group)
    setAgentName(name)
-   setPassword(auth.password)
+ 
    
  }
 
@@ -177,11 +179,14 @@ const RraForm = ({openRRA,setOpenRRA}) => {
            setRraOrginNo(getDocDetails.details.data.RRA_ORIGIN_NO);
            setAmountToPay(getDocDetails.details.data.AMOUNT_TO_PAY);
            setDescId(getDocDetails.details.data.DEC_ID);
+           setUsername(auth.username)
+           setUserGroup(auth.usergroup)
+           setBrokering(auth.brokering)
            handleNext();
          } else {
            return null;
          }
-         //  console.log("doc ...doc",getDocDetails.details.responseCode)
+    
        }
        if (getDocDetails.error) {
          setErrorMessage(getDocDetails.error);
@@ -207,7 +212,7 @@ async function fetchData(){
      }
    }
    if (rraPayment.error) {
-     setPaymenterrorMessage(rraPayment.error);
+     setPaymentErrorMessage(rraPayment.error);
    }
  }
 
@@ -245,15 +250,17 @@ fetchData();
    }else if (formData.password === "") {
      setPasswordError(`${t("common:passwordisrequired")}`);
    }
-   else if (formData.password !== password ) {
-    setPasswordError(`${t("common:invalidpin")}`);
-  }
+  //  else if (formData.password !== password ) {
+  //   setPasswordError(`${t("common:invalidpin")}`);
+  // }
   else {
     setPhoneNumberError("")
     setPasswordError("")
+
     // setPaymenterrorMessage("")
      const payerPhoneNumber = formData.phoneNumber;
      const password = formData.password;
+     
      await dispatch(rraPayamentAction(
          {
            bankName,
@@ -281,6 +288,12 @@ fetchData();
  };
  //handle on button submit for each step
  const handelSubmit = () => {
+ 
+  if (rraPayment.error) {
+  
+    setOpenPayment(true);
+  }
+ 
    if (activeStep === 0) {
      handleDocmentDetails();
    } else if (activeStep === 1) {
@@ -292,12 +305,8 @@ fetchData();
      return null;
    }
    if (getDocDetails.error) {
-     setOpen(true);
-   }
-   if (rraPayment.error) {
-     setOpen(true);
-   }
-  
+    setOpen(true);
+  }
  };
 
  const handleNewpayment = () => {
@@ -323,7 +332,7 @@ fetchData();
    setPhoneNumberError("");
    setErrorMessage("");
    getDocDetails.error=['']
-   setPaymenterrorMessage("");
+   setPaymentErrorMessage("");
    getDocDetails.details=['']
    rraPayment.details=['']
    getDocDetails.loading=false

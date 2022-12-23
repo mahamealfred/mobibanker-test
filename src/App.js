@@ -23,18 +23,13 @@ import { useEffect } from "react";
 // };
 function App(){
   const {auth,setAuth}=useContext(AuthContext);
- 
 
-  
   return(
-   
     <Suspense fallback={null}>
        <Router>
         <Routes/>
       </Router>
       </Suspense>
-   
-    
   )
 }
 export default App

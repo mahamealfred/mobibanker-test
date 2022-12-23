@@ -33,24 +33,6 @@ const SignIn = () => {
     const [error, setError] = useState(null);
     //authentication
     const { setAuth,auth } = useContext(AuthContext);
-    useEffect(() => {
-      async function fetchData() {
-        if (!login.loading) {
-          if (login.users.length !== 0) {
-            if (login.users.responseCode === 100) {
-           setAuth({
-            username:login.users.data.username,
-            password:password,
-            brokering:login.users.data.brokering,
-            group:login.users.data.group
-          })
-            } 
-          }
-        }
-      }
-      fetchData();
-    }, [login.users]);
-  
     useInterval(
       () => {
         if (remainingSeconds === 0) {

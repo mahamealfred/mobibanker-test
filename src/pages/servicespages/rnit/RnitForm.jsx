@@ -26,6 +26,7 @@ import ReactToPrint from 'react-to-print';
 import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
+import AuthContext from "../../../context";
 const theme = createTheme();
 theme.typography.h3 = {
   fontSize: '1.2rem',
@@ -47,6 +48,8 @@ const RnitForm = ({openRNIT,setOpenRNIT}) => {
   const dispatch = useDispatch();
   const getRnitDetails= useSelector((state) => state.getRnitDetails);
   const rnitPayment = useSelector((state) => state.rnitPayment);
+  const { auth }=React.useContext(AuthContext)
+  console.log("my state:",auth)
   const [formData, setFormData] = useState({
     nId: "",
     bankAccount:"",
@@ -136,18 +139,11 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
      return payload;
   }
   useEffect(() => {
-    const token =localStorage.getItem('mobicashAuth');
+    const token =sessionStorage.getItem('mobicash-Auth');
     if (token) {
-    const {username}=decode(token);
     const {name}=decode(token)
-    const {role}=decode(token);
-    const {password}=decode(token);
-    const {group}=decode(token)
-    setUsername(username)
-    setBrokering(role)
     setAgentName(name)
-    setPassword(password)
-    setUserGroup(group)
+ 
   }
   }, []);
 
@@ -158,6 +154,9 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
           if (getRnitDetails.details.responseCode === 100) {
             setPayerName(getRnitDetails.details.data.fullName)
             setPayerNid(getRnitDetails.details.data.nid)
+            setUsername(auth.username);
+            setUserGroup(auth.usergroup);
+            setBrokering(auth.brokering);
             handleNext();
           } else {
             return null;
@@ -252,9 +251,9 @@ else if(formData.amountPaid > 2000000){
   else if(!formData.password){
     setPasswordError(`${t("common:agenytpinisrequire")}`)
   }
-  else if (formData.password !== password ) {
-    setPasswordError(`${t("common:invalidpin")}`);
-  } 
+  // else if (formData.password !== password ) {
+  //   setPasswordError(`${t("common:invalidpin")}`);
+  // } 
   
   else{
     setBankNameErrorMessage("")

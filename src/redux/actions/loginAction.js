@@ -6,7 +6,9 @@ import {
   } from "../types/loginType";
 
 import jwt from "jsonwebtoken";
+
 export let refreshTokens = [];
+
 const generateAccessToken = (user) => {
   return jwt.sign({ id: user.id, names: user.names,role:user.role }, "mySecretKey", {
     expiresIn: "10m",
@@ -48,6 +50,7 @@ export const loginAction = (user,history) => async (dispatch) => {
       const claims={userId,name,role}
       const token= jwt.sign(claims,jwt_secret, { expiresIn: "7d"});
       const resData=res.data
+      // dispatch(loginSuccess({resData,password:password}));
       dispatch(loginSuccess(res.data));
       history.push('/dashboard',{push:true})
       sessionStorage.setItem('mobicash-auth',token)

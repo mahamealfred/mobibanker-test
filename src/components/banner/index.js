@@ -23,6 +23,7 @@ import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import Footerr from "../footerr/"
 const TopNav =lazy(()=>import("../topNav/TopNav"));
+const Appbar =lazy(()=>import("../topNav/Appbar"));
 export default function Banner() {
   const { i18n, t } = useTranslation(["common"]);
 

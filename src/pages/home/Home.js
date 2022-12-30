@@ -21,7 +21,7 @@ import AppDrawer from '../../components/drawer';
 import {useEffect,useRef} from "react";
 import jwt from "jsonwebtoken";
 import Stack from '@mui/material/Stack';
-import { Button } from '@mui/material';
+import { Avatar, Button } from '@mui/material';
 import LanguageIcon from '@mui/icons-material/Language';
 import Badge from '@mui/material/Badge';
 import {
@@ -46,6 +46,7 @@ import { refreshTokens } from '../../redux/actions/loginAction';
 import AuthContext from '../../context';
 import { useContext } from 'react';
 import { useSelector } from 'react-redux';
+
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
@@ -58,6 +59,17 @@ function Copyright() {
     </Typography>
   );
 }
+const styles = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 'auto',
+  bgcolor: 'background.paper',
+  // border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 const style = {
   top: '50%',
@@ -129,7 +141,19 @@ const [username,setUsername]=React.useState("")
 const [brokering,setBrokering]=React.useState("")
 const [userGroup,setUserGroup]=React.useState("");
 
+const [openPageReflesh, setOpenPageReflesh] = React.useState(false);
+
+const handleClosePageReflesh = () => setOpenPageReflesh(false);
+
  const { auth,setAuth }=useContext(AuthContext)
+ 
+ useEffect(()=>{
+  if ( window.performance) {
+    if (login.users.length==0 && performance.navigation.type == 1) {
+      setOpenPageReflesh(true)
+    } 
+  }
+ },[])
  useEffect(() => {
   async function fetchData() {
     if (!login.loading) {
@@ -230,6 +254,11 @@ setOpenModal(false)
     sessionStorage.removeItem('mobicash-auth')
    return history.push('/display',{push:true})
   }
+  const handleLogoutPage=()=>{
+    localStorage.removeItem('mobicashAuth');
+    sessionStorage.removeItem('mobicash-auth')
+   return history.push('/',{push:true})
+  }
 
   const decode= (token) => {
     const JWT_SECRET="tokensecret";
@@ -249,6 +278,23 @@ setOpenModal(false)
 
   return (
     <ThemeProvider theme={mdTheme}>
+
+<Modal
+        open={openPageReflesh}
+        onClose={handleClosePageReflesh}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={styles}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+          You have lost connection
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          Login to proceed
+          </Typography>
+          <Button onClick={handleLogoutPage} variant="contained">Login</Button>
+        </Box>
+      </Modal>
       {/* <IdleTimer ref={idleTimerRef}/> */}
       <Modal
         aria-labelledby="transition-modal-title"
@@ -350,13 +396,11 @@ setOpenModal(false)
   <Box sx={{ display: { xs: 'flex', md: 'flex' }, padding:2}}>
          <Tooltip title={t("common:logout")} sx={{ mt: 1,display: { xs: 'none', md: 'none' } }}>
        <IconButton   onClick={handleLogout} size="large" aria-label="show 4 new mails"  sx={{color:"#F9842C"}} >
-              <LogoutIcon  sx={{color:"#F9842C"}} />
+              {/* <LogoutIcon  sx={{color:"#F9842C"}} /> */}
+              <Avatar    size="small" sx={{ bgcolor:"#F9842C", fontSize:"12px" }}>Logout</Avatar>
             </IconButton>
          </Tooltip>
-       
-            
           </Box>
-
             <Box sx={{ minWidth: 100, display: { xs: "none", sm: "none",md:"block" } }}>
                <Box sx={{
         ...fullWidthFlex,

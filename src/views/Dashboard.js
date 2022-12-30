@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 
 
-import Home from "../pages/home/Home";
-
+const  Home  = React.lazy(() => import('../pages/home/Home'));
 export default class Dashboard extends Component {
   render() {
     // const props=this.props.children

@@ -31,8 +31,8 @@ const TopNav = () => {
     const StyledToolbar=styled(Toolbar)({
         display:"flex",
         justifyContent:"space-between",
-        padding:5,
-        margin:10  
+        padding:2,
+        
     });
     const MobiLogoImg=styled(Box)(({theme})=>({
         marginLeft:35,
@@ -41,31 +41,18 @@ const TopNav = () => {
         marginRight:35,
 
     }))
-    const AppbarHeader = styled(Typography)(() => ({
-      padding: "4px",
-      flexGrow: 1,
-      fontSize: "4em",
-      fontFamily: '"Montez", "cursive"',
-      color: Colors.secondary,
-      "&:hover": {
-        animation: ` 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both`,
-      },
-    }));
+ 
   return (
     <AppBar position="sticky"   elevation={1} sx={{backgroundColor:'white',width:"100%"}} >
-      
         {/* <CssBaseline/> */}
         <StyledToolbar>
             <MobiLogoImg>
             <Box
         component="img"
         sx={{
-          // height: 80,
-          // width: 250,
           marginLeft:8,
-          // maxHeight: { xs: 60, md: 300 },
-          // maxWidth: { xs: 150, md: 300 },
-          maxHeight: { xs: 300, md: 300},
+          objectFit:"contain",
+          maxHeight: { xs: 300, md: 200},
           maxWidth: { xs: 300, md: 300},
           display:{xs:"none",sm:"block"}
         }}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState,useEffect } from 'react';
+import { useState,useEffect,useContext } from 'react';
 import {
   Box,
   Button,
@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import moment from "moment";
+import AuthContext from '../../context';
 import { useTranslation } from "react-i18next";
 dotenv.config();
 const states = [
@@ -62,6 +63,9 @@ const user = {
   const [agentName, setAgentName] = useState("");
   let today = new Date();
   let time = moment(today).format("l, hh:mm:ss");
+  const { auth,setAuth }=useContext(AuthContext)
+  console.log("authentication datae",auth)
+
   const decode = (token) => {
     const JWT_SECRET = "tokensecret";
     const payload = jwt.verify(token, JWT_SECRET);

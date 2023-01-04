@@ -348,7 +348,7 @@ useEffect(() => {
   formData.phoneNumber = "";
   formData.email = "";
   openAccount.error=['']
-  // setNiderrorMessage("");
+
   openAccount.details=['']
   openAccount.loading=false
   setActiveStep(0)

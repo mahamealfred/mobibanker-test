@@ -53,7 +53,7 @@ export const ltssPaymentAction = (details,username,password) => async (dispatch)
        let errorMessage = 'Something went wrong, Please try again later'
         dispatch(ltssPaymentFailure(errorMessage)); 
     } else {
-      dispatch(ltssPaymentFailure("Network Error"));
+      dispatch(ltssPaymentFailure("The service is currently not available"));
     }
   }
 };

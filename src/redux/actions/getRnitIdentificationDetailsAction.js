@@ -40,7 +40,7 @@ export const getRnitDetailsAction = (identityNumber) => async (dispatch) => {
         dispatch(getRnitDetailsFailure(errorMessage));
       
     } else {
-      dispatch(getRnitDetailsFailure("Network Error"));
+      dispatch(getRnitDetailsFailure("The service is currently not available"));
     }
   }
 };

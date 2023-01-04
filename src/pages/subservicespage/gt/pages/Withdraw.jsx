@@ -29,6 +29,7 @@ import { transactionsAction } from "../../../../redux/actions/transactionsAction
 import { useDispatch } from "react-redux";
 import PrintIcon from '@mui/icons-material/Print';
 import { useTranslation } from "react-i18next";
+import AuthContext from "../../../../context";
 // import  {ComponentToPrint}  from "./ComponentToPrint";
 // import './style.css'
 // export let amountPaid=[]
@@ -60,6 +61,7 @@ const data = [
 function Transactions() {
   const { t } = useTranslation(["home","common","login"]);
  // const todaydate = new Date().toISOString().slice(0, 10);
+ const { auth}=React.useContext(AuthContext)
   const transactionsDetails = useSelector((state) => state.transactions);
  const dispatch=useDispatch();
   const [agentTransactionsDetails, setAgentTransactionDetails] = useState([]);
@@ -145,6 +147,18 @@ function Transactions() {
 fecthData();
 
   }, []);
+  useEffect(() => {
+    async function fecthData(){
+    
+      if (auth) {
+        setPassword(auth.password)
+        setUsername(auth.username)
+      await dispatch(transactionsAction(username,password))
+    }
+    }
+  fecthData();
+  
+    }, []);
 
 
   useEffect(() => {

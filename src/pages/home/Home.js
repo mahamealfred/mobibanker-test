@@ -107,6 +107,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     '& .MuiDrawer-paper': {
       position: 'relative',
       whiteSpace: 'nowrap',
+      
       width: drawerWidth,
       transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
@@ -140,11 +141,8 @@ function Home({...props}) {
 const [username,setUsername]=React.useState("")
 const [brokering,setBrokering]=React.useState("")
 const [userGroup,setUserGroup]=React.useState("");
-
-const [openPageReflesh, setOpenPageReflesh] = React.useState(false);
-
+const [openPageReflesh, setOpenPageReflesh] = React.useState(false)
 const handleClosePageReflesh = () => setOpenPageReflesh(false);
-
  const { auth,setAuth }=useContext(AuthContext)
  
  useEffect(()=>{
@@ -158,14 +156,15 @@ const handleClosePageReflesh = () => setOpenPageReflesh(false);
   async function fetchData() {
     if (!login.loading) {
       if (login.users.length !== 0) {
-        if (login.users.responseCode === 100) {
-          setAuth({username:login.users.data.username,
-          brokering:login.users.data.brokering,
-          usergroup:login.users.data.group
+        if (login.users.resData.responseCode === 100) {
+          setAuth({username:login.users.resData.data.username,
+          brokering:login.users.resData.data.brokering,
+          usergroup:login.users.resData.data.group,
+          password:login.users.password
         })
-         setUsername(login.users.data.username)
-         setBrokering(login.users.data.brokering)
-         setUserGroup(login.users.data.group)
+         setUsername(login.users.resData.data.username)
+         setBrokering(login.users.resData.data.brokering)
+         setUserGroup(login.users.resData.data.group)
         } else {
           return null;
         }
@@ -177,6 +176,7 @@ const handleClosePageReflesh = () => setOpenPageReflesh(false);
   fetchData();
  
 }, [login.users]);
+
   //refresh token
   var startTimer=null
   // set idle timer
@@ -244,6 +244,7 @@ setOpenModal(false)
 }
 
   const toggleDrawer = () => {
+ 
     setOpen(!open);
   };
   const handleLanguageChange = (e) => {
@@ -281,7 +282,7 @@ setOpenModal(false)
 
 <Modal
         open={openPageReflesh}
-        onClose={handleClosePageReflesh}
+        // onClose={handleClosePageReflesh}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -339,7 +340,6 @@ setOpenModal(false)
               sx={{
                 width:"100%",
                 height:"40px",
-               
                 borderRadius: 50
               }}
             onClick={handleContinue}
@@ -377,23 +377,18 @@ setOpenModal(false)
               <Box
                 component="img"
                 sx={{
-                  // height: 80,
-                  // width: 250,
-                  height: 100,
-                  width: 300,
-                  marginLeft: 0,
-                  // maxHeight: { xs: 60, md: 300 },
-                  // maxWidth: { xs: 150, md: 220 },
-                  maxHeight: { xs: 60, md: 300},
-                  maxWidth: { xs: 150, md: 300},
-                  display: { xs: "none", sm: "none",md:"block"}
+                  marginLeft:8,
+                  objectFit:"contain",
+                  maxHeight: { xs: 300, md: 200},
+                  maxWidth: { xs: 300, md: 300},
+                  display:{xs:"none",sm:"block"}
                 }}
                 alt="mobicash logo"
                 src="../../images/mobibk.png"
               />
             </Typography>
          
-  <Box sx={{ display: { xs: 'flex', md: 'flex' }, padding:2}}>
+  <Box sx={{ display: { xs: 'flex', md: 'flex' }, padding:1}}>
          <Tooltip title={t("common:logout")} sx={{ mt: 1,display: { xs: 'none', md: 'none' } }}>
        <IconButton   onClick={handleLogout} size="large" aria-label="show 4 new mails"  sx={{color:"#F9842C"}} >
               {/* <LogoutIcon  sx={{color:"#F9842C"}} /> */}
@@ -437,8 +432,10 @@ setOpenModal(false)
 
           </Toolbar>
         </AppBar>
-        <Drawer 
+     
+ <Drawer 
           variant="permanent"
+
          ModalProps={{
            keepMounted: true,
          }}
@@ -453,9 +450,7 @@ setOpenModal(false)
               px: [1],
             }}
           >
-            {/* <Typography variant="h6" textAlign="center" noWrap component="div"  >
-            {t("common:mobibankermenu")}
-            </Typography> */}
+
             <IconButton onClick={toggleDrawer}>
 
               <ChevronLeftIcon />
@@ -472,6 +467,8 @@ setOpenModal(false)
           <AppDrawer />
         </Drawer>
         
+      
+       
         <Box
           component="main"
           sx={{

@@ -27,6 +27,7 @@ import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
 import CardMedia from "@mui/material/CardMedia";
 import { valiateNidDetailsDetailsAction } from "../../../../redux/actions/validateNidAction";
+import AuthContext from "../../../../context";
 const theme = createTheme();
 
 theme.typography.h3 = {
@@ -62,7 +63,7 @@ const [placeOfIssue,setPlaceOfIssue]=useState("");
 const [gender,setGender]=useState("");
 const [dateOfBirth,setDateOfBirth]=useState("")
 const [photo,setPhoto]=useState("")
-const [password,setPassword]=useState("")
+
 const [username,setUsername]=useState("");
 const [brokering, setBrokering] = useState("");
 const [userGroup, setUserGroup] = useState("");
@@ -100,7 +101,9 @@ const [date,setDate]=useState("")
 
 const [emailError,setEmailError]=useState("")
 const [phoneNumberError,setPhoneNumberError]=useState("");
-// const [phoneNumber,setPhoneNumber]=useState("")
+const [passwordError,setPasswordError]=useState("");
+
+const { auth}=React.useContext(AuthContext)
 
  const getStepContent = (step) => {
    switch (step) {
@@ -130,6 +133,7 @@ const [phoneNumberError,setPhoneNumberError]=useState("");
          gender={gender}
          setOpen={setOpen}
          open={open}
+         passwordError={ passwordError}
          openAccountError={openAccountError}
          setOpenAccountError={setOpenAccountError}
          phoneNumberError={phoneNumberError}
@@ -177,18 +181,18 @@ const decode= (token) => {
    return payload;
 }
 useEffect(() => {
-  const token =localStorage.getItem('mobicashAuth');
-  if (token) {
-  const {username}=decode(token);
-  const {role}=decode(token);
-  const {group}=decode(token);
-  const {name}=decode(token);
-  const {password}=decode(token);
-  setUsername(username)
-  setBrokering(role)
-  setUserGroup(group)
-  setAgentName(name)
-  setPassword(password)
+  // const token =localStorage.getItem('mobicashAuth');
+  if (auth) {
+  // const {username}=decode(token);
+  // const {role}=decode(token);
+  // const {group}=decode(token);
+  // const {name}=decode(token);
+  // const {password}=decode(token);
+  setUsername(auth.username)
+  setBrokering(auth.brokering)
+  setUserGroup(auth.usergroup)
+  //setAgentName(name)
+  // setPassword(password)
 }
 }, []);
  //handle open account
@@ -205,9 +209,14 @@ setPhoneNumberError("Phone number is required")
   else if(formData.email===""){
 setEmailError("email is required")
   }
+  else if(formData.password===""){
+    setPasswordError("Agent PIN is required")
+      }
   else{
     setPhoneNumberError("")
     setEmailError("")
+    setPasswordError("")
+    const password=formData.password
     await dispatch(openAccountAction({
       documentNumber,
       nationality,
@@ -314,8 +323,8 @@ useEffect(() => {
     setOpen(true);
   }
    if (activeStep === 0) {
-   handleValidateNid();
-  //handleNext()
+  // handleValidateNid();
+  handleNext()
    } else if (activeStep === 1) {
    // handleNext()
     handleOpenAccount()
@@ -406,11 +415,11 @@ useEffect(() => {
           <CardMedia
                     component="img"
                     height="60"
-                    image="../../images/gtbank.png"
+                    image="../../images/gtbanklogo.png"
                     alt="alt"
                     title="i"
                     sx={{  objectFit: "contain",
-                    height:{xs:40,sm:40,md:60,lg:60}}}
+                    height:{xs:40,sm:40,md:60,lg:80}}}
                 />
            </Grid>
            </ThemeProvider>

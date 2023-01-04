@@ -26,6 +26,7 @@ import { ComponentToPrint } from './ComponentToPrint';
 import ReactToPrint from 'react-to-print';
 import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
+import AuthContext from "../../../context";
 
 const theme = createTheme();
 
@@ -87,25 +88,19 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
   const [agentName,setAgentName]=useState("")
  const [password,setPassword]=useState("")
   const history = useHistory();
-
+  const { auth }=React.useContext(AuthContext)
   const decode= (token) => {
     const JWT_SECRET="tokensecret";
     const payload = jwt.verify(token, JWT_SECRET);
      return payload;
   }
   useEffect(() => {
-    const token =localStorage.getItem('mobicashAuth');
-    if (token) {
-    const {username}=decode(token);
-    const {role}=decode(token);
-    const {group}=decode(token);
-    const {name}=decode(token);
-    const {password}=decode(token)
-    setUsername(username)
-    setBrokering(role)
-    setUserGroup(group)
-    setAgentName(name)
-    setPassword(password)
+ 
+    if (auth) {
+    setUsername(auth.username)
+    setBrokering(auth.brokering)
+    setUserGroup(auth.usergroup)
+  
   }
  
   }, []);
@@ -198,6 +193,9 @@ useEffect(()=>{
           payerName={payerName}
           houseHoldCategory={houseHoldCategory}
           householdMemberNumber={householdMemberNumber}
+         paymentErrorMessage={paymentErrorMessage}
+         setPaymentErrorMessage={setPaymentErrorMessage}
+         
           members={members}
           totalPremium={totalPremium}
           amountPaidBefore={amountPaidBefore}
@@ -283,9 +281,9 @@ useEffect(()=>{
     else if(formData.password=="" ){
       setPasswordError(`${t("common:agenytpinisrequire")}`)
     }
-    else if (formData.password !== password ) {
-      setPasswordError(`${t("common:invalidpin")}`);
-    } 
+    // else if (formData.password !== password ) {
+    //   setPasswordError(`${t("common:invalidpin")}`);
+    // } 
     else{
       setAmountPaidError("")
       setPhoneNumberError("")
@@ -338,7 +336,6 @@ useEffect(()=>{
     getCbhiNidDetails.details=['']
     cbhiPayment.details=['']
     setActiveStep(0)
-   
   };
 
   const handleNext = () => {

@@ -38,7 +38,7 @@ export const accountValidationAction = (details) => async (dispatch) => {
         dispatch(accountValidationFailure(errorMessage));
       
     } else {
-      dispatch(accountValidationFailure("Network Error"));
+      dispatch(accountValidationFailure("The service is currently not available"));
     }
   }
 };

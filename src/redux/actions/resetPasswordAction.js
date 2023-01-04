@@ -40,7 +40,7 @@ export const resetPasswordAction = (user,history) => async (dispatch) => {
         dispatch(resetPasswordFailure(errorMessage));
       
     } else {
-      dispatch(resetPasswordFailure("Network Error"));
+      dispatch(resetPasswordFailure("The service is currently not available"));
     }
   }
 };

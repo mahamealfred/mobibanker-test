@@ -61,7 +61,7 @@ export const cbhiPayamentAction = (details,username,password,history) => async (
        let errorMessage = 'Something went wrong, Please try again later'
         dispatch(cbhiPaymentFailure(errorMessage)); 
     } else {
-      dispatch(cbhiPaymentFailure("Network Error"));
+      dispatch(cbhiPaymentFailure("The service is currently not available"));
     }
   }
 };

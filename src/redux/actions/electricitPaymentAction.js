@@ -49,7 +49,7 @@ export const electricityPayamentAction = (details,username,password) => async (d
        let errorMessage = 'Something went wrong,Please try again later'
         dispatch(electricityPaymentFailure(errorMessage)); 
     } else {
-      dispatch(electricityPaymentFailure("Network Error"));
+      dispatch(electricityPaymentFailure("The service is currently not available"));
     }
   }
 };

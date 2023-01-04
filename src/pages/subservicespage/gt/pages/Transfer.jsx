@@ -139,11 +139,11 @@ const history=useHistory();
           <CardMedia
                     component="img"
                     height="60"
-                    image="../../images/gtbank.png"
+                    image="../../images/gtbanklogo.png"
                     alt="alt"
                     title="i"
                     sx={{  objectFit: "contain",
-                    height:{xs:40,sm:40,md:60,lg:60}}}
+                    height:{xs:40,sm:40,md:60,lg:80}}}
                 />
            </Grid>
            </ThemeProvider>

@@ -37,6 +37,7 @@ const Account=({
       setDepositerrorMessage('')
       setOpen(false);
     };
+    
   return (
     <React.Fragment>
          {!depositerrorMessage ? null : (

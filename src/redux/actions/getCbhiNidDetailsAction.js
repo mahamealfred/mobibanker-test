@@ -44,7 +44,7 @@ export const getCbhiNidDetailsAction = (details,history) => async (dispatch) => 
         dispatch(getCbhiNidDetailsFailure(errorMessage));
       
     } else {
-      dispatch(getCbhiNidDetailsFailure("Network Error"));
+      dispatch(getCbhiNidDetailsFailure("The service is currently not available"));
     }
   }
 };

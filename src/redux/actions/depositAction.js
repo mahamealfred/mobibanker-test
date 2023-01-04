@@ -57,7 +57,7 @@ export const depositAction = (details,username,password) => async (dispatch) => 
        let errorMessage = 'Something went wrong, Please try again.'
         dispatch(depositFailure(errorMessage)); 
     } else {
-      dispatch(depositFailure("Network Error"));
+      dispatch(depositFailure("The service is currently not available"));
     }
   }
 };

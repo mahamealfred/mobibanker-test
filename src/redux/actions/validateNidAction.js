@@ -34,7 +34,6 @@ export const valiateNidDetailsDetailsAction = (details) => async (dispatch) => {
        errorMessage="Something went wrong,Please try again later."
        // errorMessage=await err.response.data.message
         dispatch(valiateNidDetailsFailure(errorMessage));
-      
     } else {
       dispatch(valiateNidDetailsFailure("The service is currently not available"));
     }

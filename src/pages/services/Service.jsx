@@ -661,11 +661,11 @@ export default function MediaCard() {
                 <CardMedia
                     component="img"
                     height="60"
-                    image="../../images/gtbank.png"
+                    image="../../images/gtbanklogo.png"
                     alt="alt"
                     title="i"
                     sx={{ padding: "0em 2em 0 0em", objectFit: "contain",
-                    height:{xs:40,sm:40,md:40,lg:40}}}
+                    height:{xs:40,sm:40,md:40,lg:50}}}
                 />
            <Typography variant="h6" gutterBottom
                 sx={{ padding: "0em 0em 0 0em",color:"gray",

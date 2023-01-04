@@ -18,6 +18,7 @@ const Account=({
   photo,
   dateOfBirth,
   gender,
+  passwordError,
   setOpen,
   open,
   openAccountError,
@@ -90,6 +91,22 @@ const Account=({
            {placeOfIssue}
               </Typography>
             </Grid>
+            <Grid item xs={12} md={8}>
+          <TextField
+            required
+            id="cardName"
+            margin="normal"
+            size="small" 
+            label="Email"
+            value={formData.email}
+            onChange={(e)=>setFormData({...formData,email:e.target.value})}
+            helperText={emailError? emailError : ""}
+            error={emailError}
+            fullWidth
+            autoComplete="cc-name"
+            variant="outlined"
+          />
+        </Grid>
         <Grid item xs={12} md={6}>
           <TextField
             required
@@ -106,22 +123,7 @@ const Account=({
             variant="outlined"
           />
         </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="cardName"
-            margin="normal"
-            size="small" 
-            label="Email"
-            value={formData.email}
-            onChange={(e)=>setFormData({...formData,email:e.target.value})}
-            helperText={emailError? emailError : ""}
-            error={emailError}
-            fullWidth
-            autoComplete="cc-name"
-            variant="outlined"
-          />
-        </Grid>
+      
         {/* <Grid item xs={12} md={6}>
           <TextField
             required
@@ -138,23 +140,23 @@ const Account=({
             variant="outlined"
           />
         </Grid> */}
-        {/* <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={6}>
           <TextField
             required
             id="cardNumber"
             margin="normal"
             size="small" 
             label={t("common:agentpin")}
-            // value={formData.password}
-            // onChange={(e)=>setFormData({...formData,password:e.target.value})}
-            // helperText={passwordError? passwordError : ""}
-            // error={passwordError}
+            value={formData.password}
+            onChange={(e)=>setFormData({...formData,password:e.target.value})}
+            helperText={passwordError? passwordError : ""}
+            error={passwordError}
             type="password"
             fullWidth
             autoComplete="cc-number"
             variant="outlined"
           />
-        </Grid> */}
+        </Grid>
        
       </Grid>
     </React.Fragment>

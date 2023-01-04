@@ -49,7 +49,7 @@ const RnitForm = ({openRNIT,setOpenRNIT}) => {
   const getRnitDetails= useSelector((state) => state.getRnitDetails);
   const rnitPayment = useSelector((state) => state.rnitPayment);
   const { auth }=React.useContext(AuthContext)
-  console.log("my state:",auth)
+
   const [formData, setFormData] = useState({
     nId: "",
     bankAccount:"",

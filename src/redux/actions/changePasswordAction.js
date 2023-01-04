@@ -45,7 +45,7 @@ export const changePasswordAction = (user,username) => async (dispatch) => {
         dispatch(changePasswordFailure(errorMessage));
       
     } else {
-      dispatch(changePasswordFailure("Network Error"));
+      dispatch(changePasswordFailure("The service is currently not available"));
     }
   }
 };

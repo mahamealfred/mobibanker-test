@@ -70,7 +70,7 @@ export const rraPayamentAction = (details,username,password,history) => async (d
        let errorMessage = 'Something went wrong, Please try again.'
         dispatch(rraPaymentFailure(errorMessage)); 
     } else {
-      dispatch(rraPaymentFailure("Network Error"));
+      dispatch(rraPaymentFailure("The service is currently not available"));
     }
   }
 };

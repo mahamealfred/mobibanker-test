@@ -61,7 +61,7 @@ export const rnitPaymentAction = (details,username,password,history) => async (d
        let errorMessage = 'Something went wrong, Please try again later.'
         dispatch(rnitPaymentFailure(errorMessage)); 
     } else {
-      dispatch(rnitPaymentFailure("Network Error"));
+      dispatch(rnitPaymentFailure("The service is currently not available"));
     }
   }
 };

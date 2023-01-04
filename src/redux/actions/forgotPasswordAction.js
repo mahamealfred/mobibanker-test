@@ -48,7 +48,7 @@ export const forgotPasswordAction = (user,history) => async (dispatch) => {
       const errorMessage = 'Something went wrong, Please try again later'
         dispatch(forgotPasswordFailure(errorMessage));
     } else {
-      dispatch(forgotPasswordFailure("Network Error"));
+      dispatch(forgotPasswordFailure("The service is currently not available"));
     }
   }
 };

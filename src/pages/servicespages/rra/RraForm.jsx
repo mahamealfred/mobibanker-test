@@ -90,7 +90,7 @@ const RraForm = ({openRRA,setOpenRRA}) => {
  const history = useHistory();
 
  const { auth }=useContext(AuthContext)
-console.log("alll state",auth)
+
  const getStepContent = (step) => {
    switch (step) {
      case 0:

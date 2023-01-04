@@ -33,7 +33,7 @@ export const transactionsAction = (username,password) => async (dispatch) => {
         dispatch(transactionsFailure(errorMessage));
       
     } else {
-      dispatch(transactionsFailure("Network Error"));
+      dispatch(transactionsFailure("The service is currently not available"));
     }
   }
 };

@@ -38,7 +38,7 @@ export const getElectricityDetailsAction = (details) => async (dispatch) => {
       const errorMessage = "Something went wrong, Please try again later.";
       dispatch(getElectricityDetailsFailure(errorMessage));
     } else {
-      dispatch(getElectricityDetailsFailure("Network  Error"));
+      dispatch(getElectricityDetailsFailure("The service is currently not available"));
     }
   }
 };

@@ -102,7 +102,7 @@ export const openAccountAction = (details,username,password) => async (dispatch)
        let errorMessage = 'Something went wrong, Please try again.'
         dispatch(openAccountFailure(errorMessage)); 
     } else {
-      dispatch(openAccountFailure("Network Error"));
+      dispatch(openAccountFailure("The service is currently not available"));
     }
   }
 };

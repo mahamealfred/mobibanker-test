@@ -24,18 +24,18 @@ const Payment=({
    totalPremium,
    amountPaidBefore,
   setPaymenterrorMessage,
-  open,
-  setOpen
+  openPayment,
+  setOpenPayment
 })=> {
   const { i18n,t } = useTranslation(["home","common","login","cbhi"]);
     const handleClose = () => {
       setPaymenterrorMessage('')
-      setOpen(false);
+      setOpenPayment(false);
     };
   return (
     <React.Fragment>
       {!paymenterrorMessage ? null : (
-        <Collapse in={open}>
+        <Collapse in={openPayment}>
           <Alert
             severity="error"
             action={

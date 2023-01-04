@@ -29,6 +29,7 @@ import {accountValidationAction } from "../../../../redux/actions/accountValidat
 import { valiateNidDetailsDetailsAction } from "../../../../redux/actions/validateNidAction";
 import { depositAction } from "../../../../redux/actions/depositAction";
 import { SettingsPhone } from "@mui/icons-material";
+import AuthContext from "../../../../context";
 const theme = createTheme();
 
 theme.typography.h3 = {
@@ -46,6 +47,7 @@ const Deposit = ({}) => {
 
   const steps = ['Account Number', 'Amount', 'View Details'];
   const [activeStep, setActiveStep] = React.useState(0);
+  const { auth}=React.useContext(AuthContext)
   const dispatch = useDispatch();
 const history=useHistory();
 const accountValidation=useSelector((state)=>state.accountValidation)
@@ -56,7 +58,7 @@ const [errorMessage, setErrorMessage] = useState("");
 const [destinationErr,setDestinationErr]=useState("");
 const [amountErr,setAmountErr]=useState("");
 const [depositerrorMessage,setDepositerrorMessage]=useState("");
-const [password,setPassword]=useState("");
+// const [password,setPassword]=useState("");
 const [username,setUsername]=useState("");
 const [brokering, setBrokering] = useState("");
 const [userGroup, setUserGroup] = useState("");
@@ -197,12 +199,18 @@ const handleDeposit=async()=>{
   else if(!Number(formData.amount)){
 setAmountErr("Amount must be a numeric")
   }
+  else if(formData.amount < 1000){
+    setAmountErr("The minimum amount to deposit is 1,000 rwf")
+    }
+    else if(formData.amount > 1500000){
+      setAmountErr("The maximum amount to deposit is Rwf1,500,000 rwf")
+      }
   else if(formData.password===""){
     setPasswordError("Agent PIN is required ")
       }
-      else if(formData.password!== password){
-        setPasswordError("Invalid PIN, Please provide valid PIN")
-          }
+      // else if(formData.password!== password){
+      //   setPasswordError("Invalid PIN, Please provide valid PIN")
+      //     }
 
 else{
   setAmountErr("")
@@ -210,6 +218,7 @@ else{
   setDepositerrorMessage("")
   setPasswordError("")
   const amount=formData.amount
+  const password=formData.password
   // const destination=formData.destination
 
 await dispatch(depositAction({amount,debit,credit,accountName,phone,brokering,userGroup},username,password))
@@ -222,25 +231,20 @@ const decode= (token) => {
    return payload;
 }
 useEffect(() => {
-  const token =localStorage.getItem('mobicashAuth');
-  if (token) {
-  const {username}=decode(token);
-  const {role}=decode(token);
-  const {group}=decode(token);
-  const {name}=decode(token);
-  const {password}=decode(token);
-  setUsername(username)
-  setBrokering(role)
-  setUserGroup(group)
-  setAgentName(name)
-  setPassword(password)
+
+  if (auth) {
+  setUsername(auth.username)
+  setBrokering(auth.brokering)
+  setUserGroup(auth.usergroup)
+  // setAgentName(name)
+  // setPassword(password)
 }
 }, []);
  //handle on button submit for each step
  const handelSubmit = () => {
    if (activeStep === 0) {
-   // handleNext()
-     handleValidateAccount();
+     //handleNext()
+    handleValidateAccount();
    } else if (activeStep === 1) {
    // handleNext()
    handleDeposit()
@@ -326,11 +330,11 @@ useEffect(() => {
           <CardMedia
                     component="img"
                     height="60"
-                    image="../../images/gtbank.png"
+                    image="../../images/gtbanklogo.png"
                     alt="alt"
                     title="i"
                     sx={{  objectFit: "contain",
-                    height:{xs:40,sm:40,md:60,lg:60}}}
+                    height:{xs:40,sm:40,md:60,lg:80}}}
                 />
            </Grid>
            </ThemeProvider>

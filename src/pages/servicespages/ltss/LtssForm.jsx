@@ -51,6 +51,7 @@ const LtssForm = ({openLTSS,setOpenLTSS}) => {
   const dispatch = useDispatch();
   const getLtssIndDetails = useSelector((state) => state.getLtssIndDetails);
   const ltssPayment = useSelector((state) => state.ltssPayment);
+  
   const [formData, setFormData] = useState({
     nId: "",
     phoneNumber: "",

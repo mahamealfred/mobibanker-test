@@ -36,7 +36,7 @@ export const getBalanceAction = (user) => async (dispatch) => {
       const errorMessage = "Something went wrong, Please try again later";
       dispatch(getBalanceFailure(errorMessage));
     } else {
-      dispatch(getBalanceFailure("Network Error"));
+      dispatch(getBalanceFailure("The service is currently not available"));
     }
   }
 };

@@ -21,7 +21,7 @@ export const getYearAction = (history) => async (dispatch) => {
       const errorMessage = "Something went worng, Please try again later"
       dispatch(getYearFailure(errorMessage));
     } else {
-      dispatch(getYearFailure("Network  Error"));
+      dispatch(getYearFailure("The service is currently not available"));
     }
   }
 };

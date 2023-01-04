@@ -37,7 +37,7 @@ export const getDocDetailsAction = (details,history) => async (dispatch) => {
       const errorMessage = "Something went wrong, Please try again later."
       dispatch(getDocDetailsFailure(errorMessage));
     } else {
-      dispatch(getDocDetailsFailure("Network  Error"));
+      dispatch(getDocDetailsFailure("The service is currently not available"));
     }
   }
 };

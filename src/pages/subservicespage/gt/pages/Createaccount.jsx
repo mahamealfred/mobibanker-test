@@ -323,8 +323,8 @@ useEffect(() => {
     setOpen(true);
   }
    if (activeStep === 0) {
-  // handleValidateNid();
-  handleNext()
+  handleValidateNid();
+ // handleNext()
    } else if (activeStep === 1) {
    // handleNext()
     handleOpenAccount()

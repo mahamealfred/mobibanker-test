@@ -94,16 +94,7 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
     const payload = jwt.verify(token, JWT_SECRET);
      return payload;
   }
-  useEffect(() => {
- 
-    if (auth) {
-    setUsername(auth.username)
-    setBrokering(auth.brokering)
-    setUserGroup(auth.usergroup)
-  
-  }
- 
-  }, []);
+
 useEffect(()=>{
   async function fetchData() {
     await dispatch(getYearAction());
@@ -129,6 +120,10 @@ useEffect(()=>{
             setHouseholdMemberNumber(getCbhiNidDetails.details.data.totalHouseHoldMembers)
             setTotalPremium(getCbhiNidDetails.details.data.totalAmount)
             setAmountPaidBefore(getCbhiNidDetails.details.data.totalPaidAmount)
+            setUsername(auth.username)
+            setBrokering(auth.brokering)
+            setUserGroup(auth.usergroup)
+          
             handleNext();
            } else {
              return null;

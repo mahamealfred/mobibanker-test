@@ -31,6 +31,7 @@ import PrintIcon from '@mui/icons-material/Print';
 import { useTranslation } from "react-i18next";
 import  {ComponentToPrint}  from "./ComponentToPrint";
 import './style.css'
+import AuthContext from "../../context";
 export let amountPaid=[]
 const data = [
   {
@@ -60,6 +61,7 @@ function Transactions() {
   const { t } = useTranslation(["home","common","login"]);
  // const todaydate = new Date().toISOString().slice(0, 10);
   const transactionsDetails = useSelector((state) => state.transactions);
+  const { auth}=React.useContext(AuthContext)
  const dispatch=useDispatch();
   const [agentTransactionsDetails, setAgentTransactionDetails] = useState([]);
   const [limit, setLimit] = useState(40);
@@ -131,20 +133,22 @@ function Transactions() {
     const token =localStorage.getItem('mobicashAuth');
     if (token) {
     const {name}=decode(token);
-    const {basicAuth}=decode(token)
-    const {username}=decode(token)
-    const {password}=decode(token)
-    await dispatch(transactionsAction(username,password))
     setAgentName(name)
-    setPassword(password)
-    setUsername(username)
-    setBasicAuth(basicAuth)
+   
   }
   }
 fecthData();
 
   }, []);
-
+  useEffect(() => {
+    async function fecthData(){
+   if(auth){
+  await dispatch(transactionsAction(auth))
+   }
+    }
+  fecthData();
+  
+    }, [auth]);
 
   useEffect(() => {
     async function fetchData() {

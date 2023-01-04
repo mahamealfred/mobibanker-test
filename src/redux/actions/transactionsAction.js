@@ -5,7 +5,9 @@ import {
     TRANSACTIONS_FAILURE,
   } from "../types/transactionsType";
   
-export const transactionsAction = (username,password) => async (dispatch) => {
+export const transactionsAction = (auth) => async (dispatch) => {
+  const {username}=auth
+  const {password}=auth
   try {
     dispatch(transactionsRequest());
    // let basicAuth='Basic ' + btoa(username + ':' + password);

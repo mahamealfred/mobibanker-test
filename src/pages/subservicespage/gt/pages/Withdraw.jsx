@@ -135,30 +135,28 @@ function Transactions() {
     if (token) {
     const {name}=decode(token);
     const {basicAuth}=decode(token)
-    const {username}=decode(token)
-    const {password}=decode(token)
+    // const {username}=decode(token)
+    // const {password}=decode(token)
     await dispatch(transactionsAction(username,password))
     setAgentName(name)
-    setPassword(password)
-    setUsername(username)
-    setBasicAuth(basicAuth)
+    // setPassword(password)
+    // setUsername(username)
+    //setBasicAuth(basicAuth)
   }
   }
 fecthData();
 
   }, []);
+
   useEffect(() => {
     async function fecthData(){
-    
-      if (auth) {
-        setPassword(auth.password)
-        setUsername(auth.username)
-      await dispatch(transactionsAction(username,password))
-    }
+   if(auth){
+  await dispatch(transactionsAction(auth))
+   }
     }
   fecthData();
   
-    }, []);
+    }, [auth]);
 
 
   useEffect(() => {
@@ -281,7 +279,7 @@ fecthData();
                     selected={selectedExamIds.indexOf(details.id) !== -1}
                   >
                     {
-                      details.responseDescription==="GT Bank Client Account Withdrawal(TX4)"?<>
+                      details.responseDescription==="GT Bank Withdrawal"?<>
                        <TableCell align="center">{details.id}</TableCell>
                     <TableCell component="th" scope="row">
                       {details.operationDate}
@@ -304,7 +302,7 @@ fecthData();
                     key={details.id}
                     selected={selectedExamIds.indexOf(details.id) !== -1}
                   >{
-                    details.responseDescription==="GT Bank Client Account Withdrawal(TX4)"?
+                    details.responseDescription==="GT Bank Withdrawal"?
                     <>
                     <TableCell align="center">{details.id}</TableCell>
                     <TableCell component="th" scope="row">

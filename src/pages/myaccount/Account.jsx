@@ -63,7 +63,7 @@ const user = {
   const [agentName, setAgentName] = useState("");
   let today = new Date();
   let time = moment(today).format("l, hh:mm:ss");
-  const { auth,setAuth }=useContext(AuthContext)
+  const { auth }=useContext(AuthContext)
   console.log("authentication datae",auth)
 
   const decode = (token) => {
@@ -77,16 +77,16 @@ const user = {
       setAgentName(name);
     }
   }, []);
-  useEffect(()=>{
-    async function fetchData() {
-      if (token) {
-        const { username } = decode(token);
-        const {password}= decode(token);
-        await dispatch(getBalanceAction({username,password}))
-      }
+ 
+  useEffect(() => {
+    async function fecthData(){
+   if(auth){
+    await dispatch(getBalanceAction(auth))
+   }
     }
-    fetchData();
-  },[])
+  fecthData();
+  
+    }, [auth]);
   useEffect(()=>{
     async function fetchData() {
      

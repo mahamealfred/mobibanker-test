@@ -23,18 +23,19 @@ const Payment=({
    members,
    totalPremium,
    amountPaidBefore,
-  setPaymenterrorMessage,
+   paymentErrorMessage,
+         setPaymentErrorMessage,
   openPayment,
   setOpenPayment
 })=> {
   const { i18n,t } = useTranslation(["home","common","login","cbhi"]);
     const handleClose = () => {
-      setPaymenterrorMessage('')
+      setPaymentErrorMessage('')
       setOpenPayment(false);
     };
   return (
     <React.Fragment>
-      {!paymenterrorMessage ? null : (
+      {!paymentErrorMessage ? null : (
         <Collapse in={openPayment}>
           <Alert
             severity="error"
@@ -51,7 +52,7 @@ const Payment=({
             }
             sx={{ mb: 0.2 }}
           >
-            {paymenterrorMessage}
+            {paymentErrorMessage}
           </Alert>
         </Collapse>
       )}

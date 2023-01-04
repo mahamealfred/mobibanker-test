@@ -330,11 +330,11 @@ useEffect(() => {
           <CardMedia
                     component="img"
                     height="60"
-                    image="../../images/gtbanklogo.png"
+                    image="../../images/gtbank.png"
                     alt="alt"
                     title="i"
                     sx={{  objectFit: "contain",
-                    height:{xs:40,sm:40,md:60,lg:80}}}
+                    height:{xs:40,sm:40,md:60,lg:60}}}
                 />
            </Grid>
            </ThemeProvider>

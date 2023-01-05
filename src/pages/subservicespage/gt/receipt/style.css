@@ -57,7 +57,7 @@
     background-color: var(--primary);
   }
   .center_header{
-    width: 650px;
+    width: 600px;
     text-align: "center";
     background-color:var(--primary);
   }
@@ -134,9 +134,9 @@
   .invoice_wrapper .body .main_table .table_header .row{
       color: var(--white);
       font-size: 18px;
-      border-bottom: 0px;	
+      border-bottom: 0px;
+   
   }
-  
   .invoice_wrapper .body .main_table .row{
       display: flex;
       border-bottom: 1px solid var(--secondary);

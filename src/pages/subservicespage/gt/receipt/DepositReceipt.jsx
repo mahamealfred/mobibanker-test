@@ -12,7 +12,8 @@ import { Paper } from '@mui/material';
 import QRCode from "react-qr-code";
 import "./style.css";
 
- const DepositReceipt = React.forwardRef((props, ref) => {
+
+export const DepositReceipt = React.forwardRef((props, ref) => {
            
     return (
       <div ref={ref}>
@@ -186,5 +187,3 @@ import "./style.css";
       </div>
     );
   });
-
-  export default DepositReceipt

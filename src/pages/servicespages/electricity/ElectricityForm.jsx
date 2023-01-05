@@ -24,11 +24,14 @@ import { Grid } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
 import jwt from "jsonwebtoken";
-import { ComponentToPrint } from './ComponentToPrint';
+// import { ComponentToPrint } from './ComponentToPrint';
 import ReactToPrint from 'react-to-print';
 import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
-
+import AuthContext from "../../../context";
+const  ComponentToPrint=React.lazy(()=>import("./ComponentToPrint").then(module=>{
+  return {default: module.ComponentToPrint}
+}))
 const theme = createTheme();
 
 theme.typography.h3 = {
@@ -90,13 +93,13 @@ const EleCtricityForm = ({openELECTRICITY,setOpenELECTRICITY}) => {
  const [meter,setMeter]=useState("");
  const [amountTopayError,setAmountTopayError]=useState("")
  const [taxIdentificationNumberError,setTaxIdentificationNumberError]=useState("");
- const [openPayment,setOpenPayment]=useState(false);
+ const [openPayment,setOpenPayment]=useState(true);
  const [tokenValue,setTokenValue]=useState("");
  const [amountPaid,setAmountPaid]=useState("")
  const [password,setPassword]=useState("")
 
  //all
-
+ const { auth }=React.useContext(AuthContext)
  const [open, setOpen] = React.useState(true);
  const [docDetails, setDocDetails] = useState("");
  const history = useHistory();
@@ -155,26 +158,23 @@ const EleCtricityForm = ({openELECTRICITY,setOpenELECTRICITY}) => {
  useEffect(() => {
    const token =localStorage.getItem('mobicashAuth');
    if (token) {
-   const {username}=decode(token);
-   const {role}=decode(token);
-   const {group}=decode(token);
    const {name}=decode(token);
-   const {password}=decode(token)
-   setUsername(username)
-   setBrokering(role)
-   setUserGroup(group)
    setAgentName(name)
-   setPassword(password)
+
    
  }
 
  }, []);
+
  useEffect(() => {
    async function fetchData() {
      if (!getElectricityDetails.loading) {
        if (getElectricityDetails.details.length !== 0) {
          if (getElectricityDetails.details.responseCode === 100) {
           setPayerName(getElectricityDetails.details.data.customerName)
+          setUsername(auth.username)
+          setBrokering(auth.brokering)
+          setUserGroup(auth.usergroup)
            handleNext();
          } else {
            return null;
@@ -248,9 +248,9 @@ fetchData();
   }else if (formData.password === "") {
      setPasswordError(`${t("common:passwordisrequired")}`);
    }
-   else if (formData.password !== password ) {
-    setPasswordError(`${t("common:invalidpin")}`);
-  } 
+  //  else if (formData.password !== password ) {
+  //   setPasswordError(`${t("common:invalidpin")}`);
+  // } 
    else {
     setAmountTopayError("")
     setPasswordError("")
@@ -336,8 +336,6 @@ fetchData();
    electricityPayment.loading=false
    setActiveStep(0);
    history.push("/dashboard",{push:true})
-   //setOpenELECTRICITY(false)
-  
  };
   return (
     <div>

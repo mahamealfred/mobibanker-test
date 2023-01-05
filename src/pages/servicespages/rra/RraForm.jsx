@@ -22,12 +22,16 @@ import { Grid } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
 import jwt from "jsonwebtoken";
-import { ComponentToPrint } from './ComponentToPrint';
+// import { ComponentToPrint } from './ComponentToPrint';
 import ReactToPrint from 'react-to-print';
 import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
 import { useContext } from "react";
 import AuthContext from "../../../context";
+
+const  ComponentToPrint=React.lazy(()=>import("./ComponentToPrint").then(module=>{
+  return {default: module.ComponentToPrint}
+}))
 const theme = createTheme();
 
 theme.typography.h3 = {

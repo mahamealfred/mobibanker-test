@@ -30,6 +30,10 @@ import { valiateNidDetailsDetailsAction } from "../../../../redux/actions/valida
 import { depositAction } from "../../../../redux/actions/depositAction";
 import { SettingsPhone } from "@mui/icons-material";
 import AuthContext from "../../../../context";
+import { lazy } from "react";
+const DepositReceipt=lazy(()=>import("../receipt/DepositReceipt").then(module=>{
+  return {default: module.DepositReceipt}
+}))
 const theme = createTheme();
 
 theme.typography.h3 = {
@@ -44,7 +48,7 @@ theme.typography.h3 = {
 
 const Deposit = ({}) => {
   const { t } = useTranslation(["home","common","login","rra"]);
-
+  const componentRef = useRef();
   const steps = ['Account Number', 'Amount', 'View Details'];
   const [activeStep, setActiveStep] = React.useState(0);
   const { auth}=React.useContext(AuthContext)
@@ -243,11 +247,11 @@ useEffect(() => {
  //handle on button submit for each step
  const handelSubmit = () => {
    if (activeStep === 0) {
-     //handleNext()
+    // handleNext()
     handleValidateAccount();
    } else if (activeStep === 1) {
-   // handleNext()
-   handleDeposit()
+    //handleNext()
+  handleDeposit()
    } else if (activeStep === 2) {
  handleNext()
    } else {
@@ -379,7 +383,18 @@ useEffect(() => {
                     >
                       {/* {activeStep === steps.length - 1 ? 'Mke payment' : 'Next'} */}
                       {activeStep === steps.length - 1
-                        ? 'Receipt'
+                        ? <>
+                        <ReactToPrint
+             trigger={() => <Button> {t("common:receipt")}</Button>}
+            content={() => componentRef.current}
+               />
+               <Box sx={{display:'none'}}>
+               <DepositReceipt
+               ref={componentRef} 
+               
+               />
+               </Box>
+                </>
                         : activeStep === 0
                         ? accountValidation.loading?
                         <Box sx={{ display: 'flex',justifyContent:"center" }}>

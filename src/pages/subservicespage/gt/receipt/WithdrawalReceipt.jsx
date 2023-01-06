@@ -13,7 +13,7 @@ import QRCode from "react-qr-code";
 import "./style.css";
 
 
-export const DepositReceipt = React.forwardRef((props, ref) => {
+export const WithdrawalReceipt = React.forwardRef((props, ref) => {
            
     return (
       <div ref={ref}>
@@ -39,7 +39,7 @@ export const DepositReceipt = React.forwardRef((props, ref) => {
                     <div className="center_header">
                     <div className="row">
 					<div className="col col_price"></div>
-						<div className="col">WITHDRAWAL RECEIPT</div>
+						<div className="col">OPEN ACCOUNT RECEIPT</div>
 					</div>
                     </div>
                     <div className="right_header">
@@ -86,26 +86,8 @@ export const DepositReceipt = React.forwardRef((props, ref) => {
 							<p>xx/xxxxx/x/xxxxx/x</p>
 						</div>
 					</div>
-					<div className="row">
-                    <div className="col col_no">
-						</div>
-						<div className="col col_des">
-							<p className="bold">Deposit Amount</p>
-						</div>
-						<div className="col col_total">
-							<p>RWF xx,xxxx,xxxxx.xx</p>
-						</div>
-					</div>
-                    <div className="row">
-                    <div className="col col_no">
-						</div>
-						<div className="col col_des">
-							<p className="bold">Paid by:</p>
-						</div>
-						<div className="col col_total">
-							<p>Firstname Lastname</p>
-						</div>
-					</div>
+					
+                   
                     <div className="row">
                     <div className="col col_no">
 						</div>

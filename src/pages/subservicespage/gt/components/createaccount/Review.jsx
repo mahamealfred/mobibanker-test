@@ -59,7 +59,7 @@ export default function Review({
                   <Typography gutterBottom>{t("common:date")}</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography gutterBottom>{moment(date).format("lll")}</Typography>
+                  <Typography gutterBottom>{moment(date).format("ll")}</Typography>
                 </Grid>
                
               </React.Fragment>

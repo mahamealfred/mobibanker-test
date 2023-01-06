@@ -69,12 +69,12 @@ export default function MediaCard() {
         </Typography>
           <CardMedia
                     component="img"
-                    height="60"
-                    image="../../images/gtbank.png"
+                    height="70"
+                    image="../../images/gtbanklogo.png"
                     alt="alt"
                     title="i"
                     sx={{ padding: "0em 10em 2em 0em", objectFit: "contain",
-                    height:{xs:40,sm:40,md:60,lg:60}}}
+                    height:{xs:40,sm:40,md:70,lg:70}}}
                 />
             <Grid >
             <Typography 

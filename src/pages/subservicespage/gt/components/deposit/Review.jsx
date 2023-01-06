@@ -46,7 +46,7 @@ export default function Review({
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary= {t("common:date")}/>
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-          {moment(dateTime).format("lll")}
+          {moment(dateTime).format("ll")}
           </Typography>
         </ListItem>
       </List>

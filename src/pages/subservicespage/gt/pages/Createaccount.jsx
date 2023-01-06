@@ -30,7 +30,7 @@ import { valiateNidDetailsDetailsAction } from "../../../../redux/actions/valida
 import AuthContext from "../../../../context";
 import { lazy } from "react";
 const theme = createTheme();
-const WithdrawalReceipt=lazy(()=>import("../receipt/DepositReceipt").then(module=>{
+const WithdrawalReceipt=lazy(()=>import("../receipt/WithdrawalReceipt").then(module=>{
   return {default: module.WithdrawalReceipt}
 }))
 
@@ -46,6 +46,7 @@ theme.typography.h3 = {
 
 const RraForm = ({}) => {
   const { t } = useTranslation(["home","common","login","rra"]);
+  const componentRef = useRef();
   const steps = ['NID', 'Enter Information', 'View Details'];
   const [activeStep, setActiveStep] = React.useState(0);
   const dispatch = useDispatch();
@@ -197,15 +198,16 @@ const decode= (token) => {
   const phoneNumber=formData.phoneNumber
   const email=formData.email
   const telephone=formData.phoneNumber
-  if(formData.phoneNumber===""){
+   if(formData.email===""){
+    setEmailError("email is required")
+      }
+  else if(formData.phoneNumber===""){
 setPhoneNumberError("Phone number is required")
   }
   else if(!Number(formData.phoneNumber)){
     setPhoneNumberError("Phone number must be a numeric")
   }
-  else if(formData.email===""){
-setEmailError("email is required")
-  }
+
   else if(formData.password===""){
     setPasswordError("Agent PIN is required")
       }
@@ -409,7 +411,7 @@ useEffect(() => {
           <CardMedia
                     component="img"
                     height="60"
-                    image="../../images/gtbank.png"
+                    image="../../images/gtbanklogo.png"
                     alt="alt"
                     title="i"
                     sx={{  objectFit: "contain",
@@ -458,7 +460,20 @@ useEffect(() => {
                     >
                       {/* {activeStep === steps.length - 1 ? 'Mke payment' : 'Next'} */}
                       {activeStep === steps.length - 1
-                        ? 'Receipt'
+                        ? <>
+                        <ReactToPrint
+             trigger={() => <Button> {t("common:receipt")}</Button>}
+            content={() => componentRef.current}
+          
+
+               />
+               <Box sx={{display:'none'}}>
+               <WithdrawalReceipt
+               ref={componentRef} 
+               
+               />
+               </Box>
+                </>
                         : activeStep === 0
                         ? validateNid.loading?
                         <Box sx={{ display: 'flex',justifyContent:"center" }}>

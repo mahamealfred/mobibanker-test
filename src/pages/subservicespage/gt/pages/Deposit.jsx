@@ -130,6 +130,14 @@ const [passwordError,setPasswordError]=useState("")
        throw new Error("Unknown step");
    }
  };
+
+ useEffect(() => {
+  const token =sessionStorage.getItem('mobicash-auth');
+  if (token) {
+  const {name}=decode(token);
+  setAgentName(name)
+}
+}, []);
  //render account details
  useEffect(() => {
   async function fetchData() {
@@ -382,11 +390,19 @@ const decode= (token) => {
                         <ReactToPrint
              trigger={() => <Button> {t("common:receipt")}</Button>}
             content={() => componentRef.current}
+          
+
                />
                <Box sx={{display:'none'}}>
                <DepositReceipt
                ref={componentRef} 
-               
+               formData={formData}
+               setFormData={setFormData}
+               accountName={accountName}
+               dateTime={dateTime}
+              amountDeposited={amountDeposited}
+               transactionId={transactionId}
+               agentName={agentName}
                />
                </Box>
                 </>

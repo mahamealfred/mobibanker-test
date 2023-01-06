@@ -39,7 +39,7 @@ export const DepositReceipt = React.forwardRef((props, ref) => {
                     <div className="center_header">
                     <div className="row">
 					<div className="col col_price"></div>
-						<div className="col">DEPOSIT RECEIPT</div>
+						<div className="col">WITHDRAWAL RECEIPT</div>
 					</div>
                     </div>
                     <div className="right_header">
@@ -53,7 +53,7 @@ export const DepositReceipt = React.forwardRef((props, ref) => {
 							<p className="bold">Date:</p>
 						</div>
 						<div className="col col_total">
-							<p>{moment(props.dateTime).format("L")}</p>
+							<p>dd/mm/yyyy</p>
 						</div>
 					</div>
 					<div className="row">
@@ -63,7 +63,7 @@ export const DepositReceipt = React.forwardRef((props, ref) => {
 							<p className="bold">Time:</p>
 						</div>
 						<div className="col col_total">
-							<p>{moment(props.dateTime).format("LTS")}</p>
+							<p>hh/mm/ss</p>
 						</div>
 					</div>
           <div className="row">
@@ -73,7 +73,7 @@ export const DepositReceipt = React.forwardRef((props, ref) => {
 							<p className="bold">Beneficiary Name</p>
 						</div>
 						<div className="col col_total">
-							<p>{props.accountName}</p>
+							<p>FirstName LastName</p>
 						</div>
 					</div>
           <div className="row">
@@ -83,7 +83,7 @@ export const DepositReceipt = React.forwardRef((props, ref) => {
 							<p className="bold">Beneficiary Account</p>
 						</div>
 						<div className="col col_total">
-							<p>xx/xx/xxxx</p>
+							<p>xx/xxxxx/x/xxxxx/x</p>
 						</div>
 					</div>
 					<div className="row">
@@ -93,7 +93,7 @@ export const DepositReceipt = React.forwardRef((props, ref) => {
 							<p className="bold">Deposit Amount</p>
 						</div>
 						<div className="col col_total">
-							<p>RWF {props.amountDeposited.toLocaleString()}</p>
+							<p>RWF xx,xxxx,xxxxx.xx</p>
 						</div>
 					</div>
                     <div className="row">
@@ -137,7 +137,7 @@ export const DepositReceipt = React.forwardRef((props, ref) => {
 						</div>
 						<div className="col col_total">
                             
-							<p>{props.transactionId}</p>
+							<p>xxxxxx.xx</p>
 						</div>
 					</div>
                     <div className="row">
@@ -156,7 +156,7 @@ export const DepositReceipt = React.forwardRef((props, ref) => {
 							
 						</div>
 						<div className="col col_total">
-							<p>{props.agentName}</p>
+							<p>Firstname Lastname</p>
 						</div>
 					</div>
                     <div className="row">

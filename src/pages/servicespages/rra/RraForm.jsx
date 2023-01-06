@@ -155,15 +155,11 @@ const RraForm = ({openRRA,setOpenRRA}) => {
     return payload;
  }
  useEffect(() => {
-   const token =localStorage.getItem('mobicashAuth');
+   const token =sessionStorage.getItem('mobicash-auth');
    if (token) {
- 
-   const {role}=decode(token);
-   const {group}=decode(token);
    const {name}=decode(token);
    setAgentName(name)
  
-   
  }
 
  }, []);

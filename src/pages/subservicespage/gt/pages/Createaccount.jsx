@@ -28,7 +28,11 @@ import { useTranslation } from "react-i18next";
 import CardMedia from "@mui/material/CardMedia";
 import { valiateNidDetailsDetailsAction } from "../../../../redux/actions/validateNidAction";
 import AuthContext from "../../../../context";
+import { lazy } from "react";
 const theme = createTheme();
+const WithdrawalReceipt=lazy(()=>import("../receipt/DepositReceipt").then(module=>{
+  return {default: module.WithdrawalReceipt}
+}))
 
 theme.typography.h3 = {
   fontSize: '1.2rem',
@@ -151,6 +155,13 @@ const { auth}=React.useContext(AuthContext)
        throw new Error("Unknown step");
    }
  };
+ useEffect(() => {
+  const token =sessionStorage.getItem('mobicash-auth');
+  if (token) {
+  const {name}=decode(token);
+  setAgentName(name)
+}
+}, []);
  useEffect(()=>{
   async function fetchData(){
    if (!openAccount.loading) {
@@ -180,18 +191,7 @@ const decode= (token) => {
   const payload = jwt.verify(token, JWT_SECRET);
    return payload;
 }
-useEffect(() => {
-   const token =localStorage.getItem('mobicashAuth');
-  if (token) {
-  // const {username}=decode(token);
-  // const {role}=decode(token);
-  // const {group}=decode(token);
-   const {name}=decode(token);
-  // const {password}=decode(token);
-  setAgentName(name)
-  // setPassword(password)
-}
-}, []);
+
  //handle open account
  const handleOpenAccount=async()=>{
   const phoneNumber=formData.phoneNumber
@@ -313,7 +313,6 @@ useEffect(() => {
     await dispatch(valiateNidDetailsDetailsAction({nid}))
   }
  }
-
  //handle on button submit for each step
  const handelSubmit = () => {
   if (validateNid.error) {
@@ -329,16 +328,11 @@ useEffect(() => {
    // handleNext()
     handleOpenAccount()
    } else if (activeStep === 2) {
-
  handleNext()
    } else {
      return null;
    }
-   
-
-  
  };
-
  const handleNewpayment = () => {
   formData.nid = "";
   validateNid.error=['']

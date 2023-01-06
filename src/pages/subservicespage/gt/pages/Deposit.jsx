@@ -140,6 +140,9 @@ const [passwordError,setPasswordError]=useState("")
           setAccountName(accountValidation.details.data.names)
           setPhone(accountValidation.details.data.mobileNumber)
           setCredit(formData.accountNumber)
+          setUsername(auth.username)
+          setBrokering(auth.brokering)
+          setUserGroup(auth.usergroup)
           handleNext();
         } else {
           return null;
@@ -181,6 +184,7 @@ useEffect(()=>{
         setAmountDeposited(deposit.details.data.amount);
         setTransactionId(deposit.details.data.reference);
         setDateTime(deposit.details.responseDate);
+     
          handleNext();
        } else {
          return null;
@@ -234,16 +238,7 @@ const decode= (token) => {
   const payload = jwt.verify(token, JWT_SECRET);
    return payload;
 }
-useEffect(() => {
 
-  if (auth) {
-  setUsername(auth.username)
-  setBrokering(auth.brokering)
-  setUserGroup(auth.usergroup)
-  // setAgentName(name)
-  // setPassword(password)
-}
-}, []);
  //handle on button submit for each step
  const handelSubmit = () => {
    if (activeStep === 0) {

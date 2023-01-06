@@ -181,17 +181,14 @@ const decode= (token) => {
    return payload;
 }
 useEffect(() => {
-  // const token =localStorage.getItem('mobicashAuth');
-  if (auth) {
+   const token =localStorage.getItem('mobicashAuth');
+  if (token) {
   // const {username}=decode(token);
   // const {role}=decode(token);
   // const {group}=decode(token);
-  // const {name}=decode(token);
+   const {name}=decode(token);
   // const {password}=decode(token);
-  setUsername(auth.username)
-  setBrokering(auth.brokering)
-  setUserGroup(auth.usergroup)
-  //setAgentName(name)
+  setAgentName(name)
   // setPassword(password)
 }
 }, []);
@@ -286,6 +283,9 @@ useEffect(() => {
          setCell(validateNid.details.data.cell);
          setVillage(validateNid.details.data.village);
         // setPhoneNumber(formData.phoneNumber);
+        setUsername(auth.username)
+        setBrokering(auth.brokering)
+        setUserGroup(auth.usergroup)
           handleNext();
         } else {
           return null;

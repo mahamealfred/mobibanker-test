@@ -30,8 +30,8 @@ import { valiateNidDetailsDetailsAction } from "../../../../redux/actions/valida
 import AuthContext from "../../../../context";
 import { lazy } from "react";
 const theme = createTheme();
-const WithdrawalReceipt=lazy(()=>import("../receipt/WithdrawalReceipt").then(module=>{
-  return {default: module.WithdrawalReceipt}
+const OpenAccountReceipt=lazy(()=>import("../receipt/OpenAccountReceipt").then(module=>{
+  return {default: module.OpenAccountReceipt}
 }))
 
 theme.typography.h3 = {
@@ -151,6 +151,7 @@ const { auth}=React.useContext(AuthContext)
        mobilePhone={mobilePhone}
        fullAccount={fullAccount}
        date={date}
+       agentName={agentName}
        />;
      default:
        throw new Error("Unknown step");
@@ -196,12 +197,9 @@ const decode= (token) => {
  //handle open account
  const handleOpenAccount=async()=>{
   const phoneNumber=formData.phoneNumber
-  const email=formData.email
   const telephone=formData.phoneNumber
-   if(formData.email===""){
-    setEmailError("email is required")
-      }
-  else if(formData.phoneNumber===""){
+
+   if(formData.phoneNumber===""){
 setPhoneNumberError("Phone number is required")
   }
   else if(!Number(formData.phoneNumber)){
@@ -216,6 +214,12 @@ setPhoneNumberError("Phone number is required")
     setEmailError("")
     setPasswordError("")
     const password=formData.password
+    let email=""
+    if(formData.email===""){
+     email="none";
+    }else{
+     email=formData.email
+    }
     await dispatch(openAccountAction({
       documentNumber,
       nationality,
@@ -325,7 +329,7 @@ useEffect(() => {
   }
    if (activeStep === 0) {
   handleValidateNid();
- // handleNext()
+// handleNext()
    } else if (activeStep === 1) {
    // handleNext()
     handleOpenAccount()
@@ -337,6 +341,7 @@ useEffect(() => {
  };
  const handleNewpayment = () => {
   formData.nid = "";
+  formData.password = "";
   validateNid.error=['']
   setNiderrorMessage("");
   validateNid.details=['']
@@ -344,7 +349,6 @@ useEffect(() => {
   formData.phoneNumber = "";
   formData.email = "";
   openAccount.error=['']
-
   openAccount.details=['']
   openAccount.loading=false
   setActiveStep(0)
@@ -358,17 +362,10 @@ useEffect(() => {
   formData.nid = "";
   formData.phoneNumber = "";
   formData.email = "";
-  // formData.amount=""
-  // formData.accountNumber=""
-  // setAmountErr("");
-  //setPasswordError("");
-  // setAccountNumberErr("");
-  setErrorMessage("");
   validateNid.error=['']
   setNiderrorMessage("");
   validateNid.details=['']
   validateNid.loading=false
-
    setOpenAccountError("");
   openAccount.error=['']
   // setNiderrorMessage("");
@@ -464,13 +461,15 @@ useEffect(() => {
                         <ReactToPrint
              trigger={() => <Button> {t("common:receipt")}</Button>}
             content={() => componentRef.current}
-          
-
                />
                <Box sx={{display:'none'}}>
-               <WithdrawalReceipt
+               <OpenAccountReceipt
                ref={componentRef} 
-               
+               names={names}
+               mobilePhone={mobilePhone}
+               fullAccount={fullAccount}
+               date={date}
+               agentName={agentName}
                />
                </Box>
                 </>

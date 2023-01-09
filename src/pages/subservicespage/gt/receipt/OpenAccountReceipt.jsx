@@ -13,7 +13,7 @@ import QRCode from "react-qr-code";
 import "./style.css";
 
 
-export const WithdrawalReceipt = React.forwardRef((props, ref) => {
+export const OpenAccountReceipt = React.forwardRef((props, ref) => {
            
     return (
       <div ref={ref}>
@@ -53,7 +53,7 @@ export const WithdrawalReceipt = React.forwardRef((props, ref) => {
 							<p className="bold">Date:</p>
 						</div>
 						<div className="col col_total">
-							<p>dd/mm/yyyy</p>
+							<p>{moment(props.date).format("L")}</p>
 						</div>
 					</div>
 					<div className="row">
@@ -63,7 +63,7 @@ export const WithdrawalReceipt = React.forwardRef((props, ref) => {
 							<p className="bold">Time:</p>
 						</div>
 						<div className="col col_total">
-							<p>hh/mm/ss</p>
+							<p>{moment(props.date).format("LTS")}</p>
 						</div>
 					</div>
           <div className="row">
@@ -73,7 +73,7 @@ export const WithdrawalReceipt = React.forwardRef((props, ref) => {
 							<p className="bold">Beneficiary Name</p>
 						</div>
 						<div className="col col_total">
-							<p>FirstName LastName</p>
+							<p>{props.names}</p>
 						</div>
 					</div>
           <div className="row">
@@ -83,11 +83,9 @@ export const WithdrawalReceipt = React.forwardRef((props, ref) => {
 							<p className="bold">Beneficiary Account</p>
 						</div>
 						<div className="col col_total">
-							<p>xx/xxxxx/x/xxxxx/x</p>
+							<p>{props.fullAccount}</p>
 						</div>
 					</div>
-					
-                   
                     <div className="row">
                     <div className="col col_no">
 						</div>
@@ -96,20 +94,10 @@ export const WithdrawalReceipt = React.forwardRef((props, ref) => {
 							
 						</div>
 						<div className="col col_total">
-							<p>078xxxxxx</p>
+							<p>{props.mobilePhone}</p>
 						</div>
 					</div>
-                    <div className="row">
-                    <div className="col col_no">
-						</div>
-						<div className="col col_des">
-							<p className="bold">Remark:</p>
-						
-						</div>
-						<div className="col col_total">
-							<p>xxxx,xxxxx.xx</p>
-						</div>
-					</div>
+                    
                     <div className="row">
                     <div className="col col_no">
 						</div>
@@ -138,7 +126,7 @@ export const WithdrawalReceipt = React.forwardRef((props, ref) => {
 							
 						</div>
 						<div className="col col_total">
-							<p>Firstname Lastname</p>
+							<p>{props.agentName}</p>
 						</div>
 					</div>
                     <div className="row">

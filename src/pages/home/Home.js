@@ -146,11 +146,14 @@ const handleClosePageReflesh = () => setOpenPageReflesh(false);
  const { auth,setAuth }=useContext(AuthContext)
  
  useEffect(()=>{
-  if ( window.performance) {
-    if (login.users.length==0 && performance.navigation.type == 1) {
-      setOpenPageReflesh(true)
-    } 
+  if(login.users.length === 0){
+    setOpenPageReflesh(true)
   }
+  // if ( window.performance) {
+  //   if (login.users.length==0 && performance.navigation.type == 1) {
+  //     setOpenPageReflesh(true)
+  //   } 
+  // }
  },[])
  useEffect(() => {
   async function fetchData() {
@@ -197,7 +200,7 @@ if(openModal===true){
   handelClock(0,1,0)
 }
 if (localStorage.getItem("i18nextLng")?.length > 2) {
-  i18next.changeLanguage("en");
+  i18next.changeLanguage("ki");
 }
   },)
 
@@ -282,16 +285,16 @@ setOpenModal(false)
 
 <Modal
         open={openPageReflesh}
-        //onClose={handleClosePageReflesh}
+       // onClose={handleClosePageReflesh}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={styles}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-          You have lost connection
+          Your session has timed out. 
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          Login to proceed
+          Please login again
           </Typography>
           <Button onClick={handleLogoutPage} variant="contained">Login</Button>
         </Box>
@@ -301,7 +304,7 @@ setOpenModal(false)
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         open={openModal}
-        // onClose={handleClose}
+       // onClose={handleClose}
         closeAfterTransition
        
         BackdropComponent={Backdrop}
@@ -351,7 +354,7 @@ setOpenModal(false)
      
       <Box sx={{ display: 'flex' ,height:"auto"}}>
         {/* <CssBaseline /> */}
-        <AppBar position="fixed" open={open} elevation={2} sx={{ backgroundColor: 'white', display: 'flex',borderRadius:2 }} >
+        <AppBar position="fixed" open={open} elevation={2} sx={{ backgroundColor: 'white', display: 'flex',borderRadius:1 }} >
           <Toolbar
             sx={{
               pr: '24px',
@@ -362,7 +365,7 @@ setOpenModal(false)
               aria-label="open drawer"
               onClick={toggleDrawer}
               sx={{
-                marginRight: '36px',
+                marginRight: '26px',
                 ...(open && { display: 'none' }),
               }}
             >
@@ -410,13 +413,13 @@ setOpenModal(false)
                 </Box>
                 <FormControl>
                 <NativeSelect
-                  defaultValue="en"
+                  defaultValue="ki"
                   value={localStorage.getItem("i18nextLng")}
                   onChange={handleLanguageChange}
                   >
-              {/* <option value="ki">Kinyarwanda</option> */}
+              <option value="ki">Kinyarwanda</option>
               <option value="en">English</option>
-              {/* <option value="fr">Français</option> */}
+              <option value="fr">Français</option>
                   </NativeSelect>
                 </FormControl>
               </Button>
@@ -429,13 +432,10 @@ setOpenModal(false)
             >
               <img src="../../images/img_144.png" alt="logo" height="40" width="40" margin="10px" />
             </Box>
-
           </Toolbar>
         </AppBar>
-     
  <Drawer 
           variant="permanent"
-
          ModalProps={{
            keepMounted: true,
          }}
@@ -446,8 +446,8 @@ setOpenModal(false)
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              height:{ xs: "50px", sm: "60px",md:"100px" },
-              px: [1],
+              height:{ xs: "50px", sm: "60px",md:"95px" },
+              px: [0],
             }}
           >
 

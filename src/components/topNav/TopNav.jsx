@@ -21,10 +21,9 @@ const TopNav = () => {
 
 	useEffect(() => {
 		if (localStorage.getItem("i18nextLng")?.length > 2) {
-			i18next.changeLanguage("en");
+			i18next.changeLanguage("ki");
 		}
 	}, []);
-
 	const handleLanguageChange = (e) => {
 		i18n.changeLanguage(e.target.value);
 	};
@@ -32,14 +31,12 @@ const TopNav = () => {
         display:"flex",
         justifyContent:"space-between",
         padding:2,
-        
     });
     const MobiLogoImg=styled(Box)(({theme})=>({
         marginLeft:35,
     }))
     const MobiBankerImg=styled(Box)(({theme})=>({
         marginRight:35,
-
     }))
  
   return (
@@ -63,7 +60,7 @@ const TopNav = () => {
               component="img"
               sx={{
                
-                maxHeight: { xs: 300, md: 300},
+                maxHeight: { xs: 200, md: 200},
                 maxWidth: { xs: 300, md: 300},
                 display: { xs: "block", sm: "none", md: "none" }
               }}
@@ -72,19 +69,6 @@ const TopNav = () => {
             />
         
             </MobiLogoImg>
-            {/* <Box
-        component="img"
-        sx={{
-          height: 100,
-          width: 300,
-          maxHeight: { xs: 60, md: 300},
-          maxWidth: { xs: 150, md: 300},
-          display:{xs:"none",sm:"none",md:"block"}
-        }}
-        alt="mobicash logo"
-        src="../../images/mobibk.png"
-      /> */}
-    
         < MobiBankerImg>
         <Box sx={{ minWidth: 100 }}>
      
@@ -103,14 +87,14 @@ const TopNav = () => {
                 </Box>
                 <FormControl>
                   <NativeSelect
-                  defaultValue="en"
+                  defaultValue="ki"
                   value={localStorage.getItem("i18nextLng")}
                   onChange={handleLanguageChange}
                   >
                     
-              {/* <option value="ki">Kinyarwanda</option> */}
+              <option value="ki">Kinyarwanda</option>
               <option value="en">English</option>
-              {/* <option value="fr">Français</option> */}
+              <option value="fr">Français</option>
                   </NativeSelect>
                 </FormControl>
               </Button>

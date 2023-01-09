@@ -91,7 +91,7 @@ const Account=({
            {placeOfIssue}
               </Typography>
             </Grid>
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12} md={6}>
           <TextField
             required
             id="cardName"
@@ -100,7 +100,7 @@ const Account=({
             label="Email"
             value={formData.email}
             onChange={(e)=>setFormData({...formData,email:e.target.value})}
-            helperText={emailError? emailError : ""}
+            helperText={emailError? emailError : "Optional"}
             error={emailError}
             fullWidth
             autoComplete="cc-name"
@@ -116,7 +116,7 @@ const Account=({
             label="Phone number"
             value={formData.phoneNumber}
             onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
-           helperText={phoneNumberError? phoneNumberError : ""}
+           helperText={phoneNumberError? phoneNumberError : "078..."}
            error={phoneNumberError}
             fullWidth
             autoComplete="cc-name"

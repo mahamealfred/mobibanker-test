@@ -203,9 +203,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
     else if(!Number(formData.nId)){
       setNIdErrorMessage(`${t("common:nidmustbenumeric")}`)
     }
-    // else if(formData.nId.length!==16){
-    //   setNIdErrorMessage(`${t("common:nidmust16digit")}`)
-    // }
+
      else{
       setNIdErrorMessage("")
       const identification=formData.nId
@@ -254,9 +252,7 @@ else if(formData.amountPaid > 2000000){
   else if(!formData.password){
     setPasswordError(`${t("common:agenytpinisrequire")}`)
   }
-  // else if (formData.password !== password ) {
-  //   setPasswordError(`${t("common:invalidpin")}`);
-  // } 
+
   
   else{
     setBankNameErrorMessage("")

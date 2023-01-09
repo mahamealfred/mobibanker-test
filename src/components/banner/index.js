@@ -29,7 +29,7 @@ export default function Banner() {
 
 	useEffect(() => {
 		if (localStorage.getItem("i18nextLng")?.length > 2) {
-			i18next.changeLanguage("en");
+			i18next.changeLanguage("ki");
 		}
 	}, []);
 
@@ -87,9 +87,9 @@ export default function Banner() {
                   value={localStorage.getItem("i18nextLng")}
                   onChange={handleLanguageChange}
                   >
-              {/* <option value="ki">Kinyarwanda</option> */}
+              <option value="ki">Kinyarwanda</option>
               <option value="en">English</option>
-              {/* <option value="fr">Français</option> */}
+              <option value="fr">Français</option>
                   </NativeSelect>
                 </FormControl>
             </Paper>

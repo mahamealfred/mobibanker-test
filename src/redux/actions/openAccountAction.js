@@ -39,7 +39,7 @@ export const openAccountAction = (details,username,password) => async (dispatch)
  const {cell}=details
   const {village}=details
   const {photo}=details
-  console.log("open account",details)
+
     //const {accountName}=details
     // const {brokering}=details
     // const {userGroup}=details
@@ -53,13 +53,13 @@ export const openAccountAction = (details,username,password) => async (dispatch)
         telephone: telephone,
         foreName: firstName,
         surnames: lastName,
-        father: father,
-        mother: mother,
+        // father: father,
+        // mother: mother,
         idNumber: idNumber,
         phoneNumber: phoneNumber,
         email: email,
         dateOfBirth: dateOfBirth,
-        dob: dob,
+        // dob: dob,
         accountType: "CURRENT",
         branchName: "KIGALI",
         sex: gender,

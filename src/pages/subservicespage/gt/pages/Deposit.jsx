@@ -297,6 +297,7 @@ const decode= (token) => {
  const handleNewpayment = () => {
   formData.accountNumber = "";
   formData.amount = "";
+  formData.password = "";
   accountValidation.details=['']
   accountValidation.error=['']
   deposit.details=['']

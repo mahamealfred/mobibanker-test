@@ -29,6 +29,9 @@ const Account=({
   depositerrorMessage,
   accountName,
   setDepositerrorMessage,
+  depositorNameError,
+  remarksError,
+  depositorPhoneError,
   open,
   setOpen
 })=> {
@@ -83,24 +86,7 @@ const Account=({
           {debit}
               </Typography>
             </Grid>
-            <Grid item xs={12} md={8}>
-                 <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-        Phone Number
-              </Typography>
-              <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-          {phone}
-              </Typography>
-            </Grid>
-            {/* <Grid item xs={12} md={8}>
-                 <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
-          Account Number
-              </Typography>
-              <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-         {formData.accountNumber}
-              </Typography>
-            </Grid> */}
-          
-       
+
         <Grid item xs={12} md={6}>
           <TextField
             required
@@ -114,32 +100,57 @@ const Account=({
             error={amountErr}
             fullWidth
             autoComplete="cc-name"
-            variant="outlined"
+            variant="filled"
           />
-            
-         
         </Grid>
-        {/* <Grid item xs={12} md={6}>
+           <Grid item xs={12} md={6}>
           <TextField
             required
             id="cardName"
             margin="normal"
             size="small" 
-            select
-            label="Destination"
-            value={formData.destination}
-            onChange={(e)=>setFormData({...formData,destination:e.target.value})}
-            helperText={destinationErr? destinationErr : ""}
-            error={destinationErr}
+            label="Depositor name"
+            value={formData.depositorName}
+            onChange={(e)=>setFormData({...formData,depositorName:e.target.value})}
+            helperText={depositorNameError? depositorNameError : ""}
+            error={depositorNameError}
             fullWidth
             autoComplete="cc-name"
-            variant="outlined"
-          >
-            {Destinations.map((option) => (
-                      <MenuItem key={option.id} value={option.id}>{option.name}</MenuItem>
-                    ))} 
-            </TextField>
-        </Grid> */}
+            variant="filled"
+          />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <TextField
+            required
+            id="cardName"
+            margin="normal"
+            size="small" 
+            label="Depositor phone"
+            value={formData.depositorPhone}
+            onChange={(e)=>setFormData({...formData,depositorPhone:e.target.value})}
+            helperText={depositorPhoneError? depositorPhoneError : ""}
+            error={depositorPhoneError}
+            fullWidth
+            autoComplete="cc-name"
+            variant="filled"
+          />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <TextField
+            required
+            id="cardName"
+            margin="normal"
+            size="small" 
+            label="Remarks"
+            value={formData.remarks}
+            onChange={(e)=>setFormData({...formData,remarks:e.target.value})}
+            helperText={remarksError? remarksError : ""}
+            error={remarksError}
+            fullWidth
+            autoComplete="cc-name"
+            variant="filled"
+          />
+        </Grid>
         <Grid item xs={12} md={6}>
           <TextField
             required
@@ -154,11 +165,9 @@ const Account=({
             type="password"
             fullWidth
             autoComplete="cc-number"
-            variant="outlined"
+            variant="filled"
           />
         </Grid>
-        
-       
       </Grid>
     </React.Fragment>
   );

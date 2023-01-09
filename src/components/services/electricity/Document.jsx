@@ -76,7 +76,8 @@ const Document = ({
                         error={meterNumberErr}
                         fullWidth
                         autoComplete="shipping address-line2"
-                        variant="outlined"/>
+                        variant="filled"
+                        />
                 </Grid>
             </Grid>
         </React.Fragment>

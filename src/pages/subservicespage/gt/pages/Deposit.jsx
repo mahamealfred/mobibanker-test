@@ -78,11 +78,18 @@ const [credit,setCredit]=useState("");
 const [phone,setPhone]=useState("");
 const [amountDeposited,setAmountDeposited]=useState("");
 const [passwordError,setPasswordError]=useState("")
+
+const [depositorNameError,setDepositorNameError]=useState("");
+const [depositorPhoneError,setDepositorPhoneError]=useState("");
+const [remarksError,setRemarksError]=useState("");
 //all
   const [formData, setFormData] = useState({
     accountNumber: "",
     amount: "",
     destination:"",
+    remarks:"",
+    depositorName:"",
+    depositorPhone:"",
     password: "",
   });
 
@@ -113,6 +120,9 @@ const [passwordError,setPasswordError]=useState("")
         //  destinationErr={destinationErr}
          depositerrorMessage={depositerrorMessage}
          setDepositerrorMessage={setDepositerrorMessage}
+         depositorNameError={depositorNameError}
+         remarksError={remarksError}
+         depositorPhoneError={depositorPhoneError}
          open={open}
          setOpen={setOpen}
          />
@@ -192,7 +202,6 @@ useEffect(()=>{
         setAmountDeposited(deposit.details.data.amount);
         setTransactionId(deposit.details.data.reference);
         setDateTime(deposit.details.responseDate);
-     
          handleNext();
        } else {
          return null;
@@ -213,31 +222,46 @@ const handleDeposit=async()=>{
     setAmountErr("Amount is required")
   }
   else if(!Number(formData.amount)){
-setAmountErr("Amount must be a numeric")
+   
+setAmountErr("Amount must be a numeric");
   }
   else if(formData.amount < 1000){
-    setAmountErr("The minimum amount to deposit is 1,000 rwf")
+    setAmountErr("The minimum amount to deposit is 1,000 rwf");
     }
     else if(formData.amount > 1500000){
-      setAmountErr("The maximum amount to deposit is Rwf1,500,000 rwf")
-      }
+      setAmountErr("The maximum amount to deposit is Rwf1,500,000 rwf");
+    }
+    else if(formData.depositorName===""){
+      setAmountErr("")
+     setDepositorNameError("Depositor name is required");
+    }
+    else if(formData.depositorPhone===""){
+      setDepositorNameError("");
+      setDepositorPhoneError("Depositor phone is required");
+    }
+    else if(formData.remarks===""){
+      setDepositorPhoneError("");
+      setRemarksError("Remarks is required");
+    }
   else if(formData.password===""){
-    setPasswordError("Agent PIN is required ")
+    setRemarksError("");
+    setPasswordError("Agent PIN is required ");
       }
-      // else if(formData.password!== password){
-      //   setPasswordError("Invalid PIN, Please provide valid PIN")
-      //     }
-
 else{
   setAmountErr("")
   setDestinationErr("")
   setDepositerrorMessage("")
   setPasswordError("")
+  setDepositorNameError("")
+  setDepositorPhoneError("")
+  setRemarksError("")
   const amount=formData.amount
   const password=formData.password
+  const DepositorName=formData.depositorName
+  const depositorphonenumber=formData.depositorPhone
+  const Remarks=formData.remarks
   // const destination=formData.destination
-
-await dispatch(depositAction({amount,debit,credit,accountName,phone,brokering,userGroup},username,password))
+await dispatch(depositAction({amount,DepositorName,Remarks,depositorphonenumber,credit,brokering,userGroup},username,password))
 }
 }
 //agent infromation
@@ -250,7 +274,7 @@ const decode= (token) => {
  //handle on button submit for each step
  const handelSubmit = () => {
    if (activeStep === 0) {
-    // handleNext()
+     //handleNext()
     handleValidateAccount();
    } else if (activeStep === 1) {
     //handleNext()

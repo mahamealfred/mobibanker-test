@@ -68,10 +68,8 @@ const Document = ({
                 <Typography variant="h6" color="text.primary"  align="center"
                   sx={{ fontSize:{xs:14,md:16,lg:18} }}
                 >
-         
                     </Typography>
             </ThemeProvider>
-          
             <Grid container
                 spacing={3}>
                 <Grid item
@@ -87,7 +85,8 @@ const Document = ({
                         error={nIdErrorMessage}
                         fullWidth
                         autoComplete="shipping address-line2"
-                        variant="outlined"/>
+                        variant="filled"
+                        />
                 </Grid>
             </Grid>
             <ThemeProvider theme={theme}>
@@ -112,7 +111,7 @@ const Document = ({
             error={paymentYearErrorMessage}
             fullWidth
             autoComplete="shipping address-line2"
-            variant="outlined"
+            variant="filled"
             
           >
            

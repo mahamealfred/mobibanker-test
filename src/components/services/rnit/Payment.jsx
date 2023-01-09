@@ -103,7 +103,7 @@ const Payment=({
             error={bankNameErrorMessage}
             fullWidth
             autoComplete="cc-name"
-            variant="outlined"
+            variant="filled"
           >
             {banks.map((option) => (
                       <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
@@ -122,7 +122,7 @@ const Payment=({
             error={bankAccountErrorMessage}
             fullWidth
             autoComplete="cc-name"
-            variant="outlined"
+            variant="filled"
           />
         </Grid>
             <Grid item xs={12} md={6}>
@@ -138,7 +138,7 @@ const Payment=({
             error={amountToPayErrorMessage}
             fullWidth
             autoComplete="cc-name"
-            variant="outlined"
+            variant="filled"
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -154,7 +154,7 @@ const Payment=({
             error={phoneNumberError}
             fullWidth
             autoComplete="cc-name"
-            variant="outlined"
+            variant="filled"
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -169,7 +169,7 @@ const Payment=({
             error={payerEmailErrorMessage}
             fullWidth
             autoComplete="cc-name"
-            variant="outlined"
+            variant="filled"
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -185,7 +185,7 @@ const Payment=({
             type="password"
             fullWidth
             autoComplete="cc-number"
-            variant="outlined"
+            variant="filled"
           />
         </Grid>
        

@@ -104,7 +104,7 @@ const Account=({
             error={emailError}
             fullWidth
             autoComplete="cc-name"
-            variant="outlined"
+            variant="filled"
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -120,7 +120,7 @@ const Account=({
            error={phoneNumberError}
             fullWidth
             autoComplete="cc-name"
-            variant="outlined"
+            variant="filled"
           />
         </Grid>
       
@@ -154,7 +154,7 @@ const Account=({
             type="password"
             fullWidth
             autoComplete="cc-number"
-            variant="outlined"
+            variant="filled"
           />
         </Grid>
        

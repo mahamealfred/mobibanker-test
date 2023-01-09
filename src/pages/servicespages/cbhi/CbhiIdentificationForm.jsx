@@ -227,9 +227,7 @@ useEffect(()=>{
     else if(!Number(formData.nId)){
       setNIdErrorMessage(`${t("cbhi:householdernidmustbeanumber")}`)
     }
-    // else if(formData.nId.length!==16){
-    //   setNIdErrorMessage(`${t("cbhi:householdernidmustbe16digit")}`)
-    // }
+ 
     else if(formData.paymentYear==""){
       setPaymentYearErrorMessage(`${t("cbhi:pleaseselectyear")}`)
     }

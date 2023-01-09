@@ -73,7 +73,8 @@ const Document = ({
                         error={accountNumberErr}
                         fullWidth
                         autoComplete="shipping address-line2"
-                        variant="outlined"/>
+                        variant="filled"
+                        />
                 </Grid>
             </Grid>
         </React.Fragment>

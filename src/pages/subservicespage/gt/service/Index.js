@@ -170,7 +170,7 @@ export default function MediaCard() {
           </Typography>
             </Card>  
             </Button>
-            <Button
+            {/* <Button
             onClick={handleClickMoneyTransfer}
             >
             <Card
@@ -207,7 +207,7 @@ export default function MediaCard() {
          MONEY Transfer
           </Typography>
             </Card>  
-            </Button>
+            </Button> */}
             <Button
              onClick={handleClickWithdraw }
             >

@@ -362,6 +362,7 @@ useEffect(() => {
   formData.nid = "";
   formData.phoneNumber = "";
   formData.email = "";
+  formData.password = "";
   validateNid.error=['']
   setNiderrorMessage("");
   validateNid.details=['']

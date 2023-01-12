@@ -10,7 +10,7 @@ import Grid from '@mui/material/Grid';
 import moment from 'moment';
 import { Paper } from '@mui/material';
 import QRCode from "react-qr-code";
-import "./style.css";
+import "./index.css";
 
 
 export const DepositReceipt = React.forwardRef((props, ref) => {
@@ -83,7 +83,7 @@ export const DepositReceipt = React.forwardRef((props, ref) => {
 							<p className="bold">Beneficiary Account</p>
 						</div>
 						<div className="col col_total">
-							<p>xx/xx/xxxx</p>
+							<p>{props.accountNumber}</p>
 						</div>
 					</div>
 					<div className="row">
@@ -103,7 +103,7 @@ export const DepositReceipt = React.forwardRef((props, ref) => {
 							<p className="bold">Paid by:</p>
 						</div>
 						<div className="col col_total">
-							<p>Firstname Lastname</p>
+							<p>{props.formData.depositorName}</p>
 						</div>
 					</div>
                     <div className="row">
@@ -114,7 +114,7 @@ export const DepositReceipt = React.forwardRef((props, ref) => {
 							
 						</div>
 						<div className="col col_total">
-							<p>078xxxxxx</p>
+							<p>{props.formData.depositorPhone}</p>
 						</div>
 					</div>
                     <div className="row">
@@ -125,7 +125,7 @@ export const DepositReceipt = React.forwardRef((props, ref) => {
 						
 						</div>
 						<div className="col col_total">
-							<p>xxxx,xxxxx.xx</p>
+							<p>{props.formData.remarks}</p>
 						</div>
 					</div>
                     <div className="row">

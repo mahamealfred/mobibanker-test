@@ -10,7 +10,7 @@ import Grid from '@mui/material/Grid';
 import moment from 'moment';
 import { Paper } from '@mui/material';
 import QRCode from "react-qr-code";
-import "./style.css";
+import "./index.css";
 
 
 export const OpenAccountReceipt = React.forwardRef((props, ref) => {

@@ -54,6 +54,9 @@ export default function MediaCard() {
       history.push("/dashboard/gt-bank-service/withdraw",{push:true})
       // setOpenRRA(true);
     };
+    const handleBack=()=>{
+      history.push("/dashboard",{push:true})
+    }
     return (
         <React.Fragment>
       <Grid 
@@ -172,16 +175,14 @@ export default function MediaCard() {
             </Button>
            
            </Grid>
-         
-      </Grid>
-      <Grid container>
+           <Grid container>
                <Grid item xs>
-                 <Link href="/dashboard" variant="body2">
-       Cancel
-                 </Link>
+               <Button variant="text" onClick={handleBack}>
+                 Go back to services
+                </Button>
                </Grid>
-               
              </Grid> 
+      </Grid>
       </Grid>
         </React.Fragment>
     );

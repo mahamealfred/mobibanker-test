@@ -78,7 +78,7 @@ const [credit,setCredit]=useState("");
 const [phone,setPhone]=useState("");
 const [amountDeposited,setAmountDeposited]=useState("");
 const [passwordError,setPasswordError]=useState("")
-
+const [accountNumber,setAccountNumber]=useState("")
 const [depositorNameError,setDepositorNameError]=useState("");
 const [depositorPhoneError,setDepositorPhoneError]=useState("");
 const [remarksError,setRemarksError]=useState("");
@@ -165,7 +165,6 @@ const [remarksError,setRemarksError]=useState("");
         } else {
           return null;
         }
-      
       }
       if (accountValidation.error) {
         setErrorMessage(accountValidation.error);
@@ -201,6 +200,7 @@ useEffect(()=>{
        if (deposit.details.responseCode === 100) {
         setAmountDeposited(deposit.details.data.amount);
         setTransactionId(deposit.details.data.reference);
+        setAccountNumber(deposit.details.data.credited)
         setDateTime(deposit.details.responseDate);
          handleNext();
        } else {
@@ -298,6 +298,9 @@ const decode= (token) => {
   formData.accountNumber = "";
   formData.amount = "";
   formData.password = "";
+  formData.depositorName = "";
+  formData.depositorPhone = "";
+  formData.remarks = "";
   accountValidation.details=['']
   accountValidation.error=['']
   deposit.details=['']
@@ -424,6 +427,7 @@ const decode= (token) => {
                formData={formData}
                setFormData={setFormData}
                accountName={accountName}
+               accountNumber={accountNumber}
                dateTime={dateTime}
               amountDeposited={amountDeposited}
                transactionId={transactionId}

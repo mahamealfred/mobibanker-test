@@ -73,7 +73,7 @@ export default function MediaCard() {
           <CardMedia
                     component="img"
                     height="70"
-                    image="../../images/gtbanklogo.png"
+                    image="../../images/gtbankImg.png"
                     alt="alt"
                     title="i"
                     sx={{ padding: "0em 10em 2em 0em", objectFit: "contain",

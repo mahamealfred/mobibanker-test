@@ -365,7 +365,7 @@ const decode= (token) => {
           <CardMedia
                     component="img"
                     height="60"
-                    image="../../images/gtbanklogo.png"
+                    image="../../images/gtbankImg.png"
                     alt="alt"
                     title="i"
                     sx={{  objectFit: "contain",

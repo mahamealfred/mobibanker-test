@@ -68,7 +68,7 @@ export default function MediaCard() {
          padding="0 0px 10px 0px"
          sx={{ fontSize: { xs: 20 } }}
          >
-        GT BANK SERVICES
+        GTBANK SERVICES
         </Typography>
           <CardMedia
                     component="img"

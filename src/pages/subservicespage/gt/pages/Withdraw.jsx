@@ -279,7 +279,7 @@ fecthData();
                     selected={selectedExamIds.indexOf(details.id) !== -1}
                   >
                     {
-                      details.responseDescription==="GT Bank Withdrawal"?<>
+                      details.type==="agents_account.gtbank_client_account_withdrawal"?<>
                        <TableCell align="center">{details.id}</TableCell>
                     <TableCell component="th" scope="row">
                       {details.operationDate}
@@ -302,7 +302,7 @@ fecthData();
                     key={details.id}
                     selected={selectedExamIds.indexOf(details.id) !== -1}
                   >{
-                    details.responseDescription==="GT Bank Withdrawal"?
+                    details.type==="agents_account.gtbank_client_account_withdrawal"?
                     <>
                     <TableCell align="center">{details.id}</TableCell>
                     <TableCell component="th" scope="row">

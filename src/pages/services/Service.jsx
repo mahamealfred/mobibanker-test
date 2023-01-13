@@ -672,7 +672,7 @@ export default function MediaCard() {
                 fontSize:10
              }}
            >
-           GT Bank
+           GTBank
           </Typography>
             </Card>  
             </Button>

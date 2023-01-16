@@ -42,6 +42,8 @@ import Account from '../myaccount/Account';
 import WalletIcon from '@mui/icons-material/Wallet';
 import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import { useTranslation } from "react-i18next";
+import { useContext } from 'react';
+import AuthContext from '../../context';
 
   
   const drawerWidth = 240;
@@ -94,11 +96,9 @@ import { useTranslation } from "react-i18next";
   }));
   
   const ListItems= ({ open, setOpen }) => {
-    // const {
+    const {auth}=useContext(AuthContext)
       const { i18n,t } = useTranslation(["home","common","login"]);
-    //   state: { currentUser },
-    //   dispatch,
-    // } = useValue();
+  
    const history =useHistory();
     const [selectedLink, setSelectedLink] = useState('');
     const [openChangepassword,setOpenChangepassword]=useState(false)
@@ -109,23 +109,7 @@ import { useTranslation } from "react-i18next";
       setOpenPrivousTransactions(false)
       setOpenMyAccount(false)
     }
-    // const list = useMemo(
-    //   () => [
-    //     {
-    //       title: 'My Account',
-    //       icon: <Dashboard />,
-    //       link: '/',
-    //       component: <Transactions {...{ setSelectedLink, link: '' }} />,
-    //     },
-    //     {
-    //       title: 'My Profile',
-    //       icon: <Person />,
-    //       link: 'users',
-    //       component: <Transactions {...{ setSelectedLink, link: 'users' }} />,
-    //     }
-    //   ],
-    //   []
-    // );
+   
   
     const decode= (token) => {
       const JWT_SECRET="tokensecret";
@@ -140,6 +124,10 @@ import { useTranslation } from "react-i18next";
     }
    
     }, []);
+    
+    const handleOpenPreviousTransaction=()=>{
+      return history.push('/dashboard/previous-transactions',{push:true})
+    }
     const handleFaq=()=>{
       return history.push('/dashboard/faq',{push:true})
     }
@@ -355,35 +343,7 @@ import { useTranslation } from "react-i18next";
             </ListItem>
             </Tooltip>
            
-            {/* <Tooltip title={t("common:myprofile")} >
-            <ListItem  disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              onClick={handleMyprofile}
-                // selected={selectedLink === item.link}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                    color:"#F9842C"
-                  }}
-                 
-                >
-                  <Person/>
-                </ListItemIcon>
-                <ListItemText
-                  primary= {t("common:myprofile")}
-                  sx={{ opacity: open ? 1 : 0 }}
-                />
-              </ListItemButton>
-            </ListItem>
-            </Tooltip> */}
+          
            
             <Tooltip title={t("common:preioustransaction")} >
             <ListItem  disablePadding sx={{ display: 'block' }}>
@@ -393,7 +353,7 @@ import { useTranslation } from "react-i18next";
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
-                onClick={()=>setOpenPrivousTransactions(true)}
+                onClick={handleOpenPreviousTransaction}
                 // selected={selectedLink === item.link}
               >
                 <ListItemIcon
@@ -504,35 +464,16 @@ import { useTranslation } from "react-i18next";
             </ListItem>
         </Tooltip>
         </List>
-        {/* <Box sx={{ mx: 'auto', mt: 3, mb: 1 }}>
-          <Tooltip title={"name" || ''}>
-            <Avatar
-              src=""
-              {...(open && { sx: { width: 100, height: 100 } })}
-            />
-          </Tooltip>
-        </Box> */}
-        {/* <Box sx={{ textAlign: 'center',display:{xs:"block",sm:"none",md:"none"} }}>
+        <Box sx={{ textAlign: 'center',display:"block"}}>
           {
-            open==true?
+            open==true && auth?
             <>
-            <Typography>Name</Typography>
-            <Typography variant="body2">Mobicoretester2</Typography>
-            <Typography variant="body2">mahame@gmail.com</Typography>
+             <Typography variant="body2" fontSize={16} fontWeight={600}>My Profile</Typography>
+            <Typography variant="body2">{auth.names}</Typography>
+            <Typography variant="body2">{auth.email}</Typography>
             </>:null
           }
-          
-          <Tooltip title="Logout"  >
-            <IconButton
-            sx={{
-              color:"#F9842C"
-            }}
-             onClick={handleLogout}>
-              <Logout />
-            </IconButton>
-          </Tooltip>
-        </Box> */}
-   
+        </Box>
       <Box component="main" sx={{ flexGrow: 1, p: 3}}>
         <DrawerHeader />
         <Switch>

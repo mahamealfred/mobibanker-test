@@ -287,9 +287,9 @@ fecthData();
                  details.type==="agents_account.gtbank_client_account_withdrawal"?<>
                  
                  <StyledTableCell component="th" scope="row"> {details.operationDate}</StyledTableCell>
-         <StyledTableCell align="right">{details.id}</StyledTableCell>
-         <StyledTableCell align="right">{(details.amount ).toLocaleString()}</StyledTableCell>
-         <StyledTableCell align="right">{details.responseDescription}</StyledTableCell>
+         <StyledTableCell align="center">{details.id}</StyledTableCell>
+         <StyledTableCell align="center">{(details.amount ).toLocaleString()}</StyledTableCell>
+         <StyledTableCell align="center">{details.responseDescription}</StyledTableCell>
        
          </>:null
        }

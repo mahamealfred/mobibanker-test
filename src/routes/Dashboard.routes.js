@@ -20,6 +20,7 @@ import Withdraw from "../pages/subservicespage/gt/pages/Withdraw";
 import MobishuliService from "../pages/mobishuliservice/";
 import SchoolFeesPayment from "../pages/mobishuliservice/pages/SchoolFeesPayment";
 import MobiShuliDeposit from "../pages/mobishuliservice/pages/Deposit";
+import Transactions from "../pages/transactions/Transactions";
 // const HomePage=lazy(()=>import("../pages/home/HomePage"));
 // const Account=lazy(()=>import("../pages/myaccount/Account"));
 // const MyProfile=lazy(()=>import("../pages/myaccount/AccountProfile"));
@@ -43,6 +44,7 @@ function App() {
                 <PrivateRoute exact path={`${path}/ltss-service`} component={LTSSService} />
                 <PrivateRoute exact path={`${path}/rnit-service`} component={RnitForm} />
                 <PrivateRoute exact path={`${path}/electricity-service`} component={EleCtricityForm} />
+                <PrivateRoute exact path={`${path}/previous-transactions`} component={Transactions} />
                 {/* GT bank */}
                 <PrivateRoute exact path={`${path}/gt-bank-service`} component={SubservicePage} />
                 <PrivateRoute exact path={`${path}/gt-bank-service/open-account`} component={Createaccount} />

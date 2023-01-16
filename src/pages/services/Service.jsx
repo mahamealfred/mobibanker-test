@@ -103,81 +103,6 @@ export default function MediaCard() {
   
     return (
         <React.Fragment>
-
-
-{/* MTN MODAL */}
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={openMTN}
-        onClose={handleCloseMTN}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={openMTN}>
-          <Box sx={style}>
-            <Typography id="transition-modal-title" 
-            variant="h6" component="h2"
-            >
-              Dear customer,
-            </Typography>
-            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-             The service you are looking for will be available soon.
-            </Typography>
-            <IconButton
-          aria-label="close"
-          onClick={handleCloseMTN}
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
-          </Box>
-        </Fade>
-      </Modal>
-      {/* AIRTEL */}
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={openAIRTEL}
-        onClose={handleCloseAIRTEL}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={openAIRTEL}>
-          <Box sx={style}>
-            <Typography id="transition-modal-title" variant="h6" component="h2">
-              Dear customer,
-            </Typography>
-            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-             The service you are looking for will be available soon.
-            </Typography>
-            <IconButton
-          aria-label="close"
-          onClick={handleCloseAIRTEL}
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
-          </Box>
-        </Fade>
-      </Modal>
-      {/* ELECTRICITY */}
       <Dialog
         open={openELECTRICITY}
         // onClose={handleClose}
@@ -345,8 +270,6 @@ export default function MediaCard() {
           </DialogContentText>
         </DialogContent>
       </Dialog>
-      
-      
       <Grid
      
         >
@@ -384,8 +307,8 @@ export default function MediaCard() {
                 raised
                 sx={{
                     // maxWidth: 100,
-                    width:{xs:60,sm:70,md:60,lg:60},
-                    height:{xs:60,sm:60,md:60,lg:60},
+                    width:{xs:35,sm:70,md:60,lg:60},
+                    height:{xs:50,sm:60,md:60,lg:60},
                     borderRadius:5,
                     margin: "0 auto 5px",
                     padding: "0.9em",
@@ -405,7 +328,7 @@ export default function MediaCard() {
            <Typography  gutterBottom
            
                 sx={{ padding: "0em 0em 0 0em",color:"gray",
-                fontSize:10
+                fontSize:{xs:8,md:10}
 
              }}
            >
@@ -420,8 +343,8 @@ export default function MediaCard() {
                 raised
                 sx={{
                    // maxWidth: 100,
-                   width:{xs:60,sm:70,md:60,lg:60},
-                    height:{xs:60,sm:60,md:60,lg:60},
+                   width:{xs:35,sm:70,md:60,lg:60},
+                    height:{xs:50,sm:60,md:60,lg:60},
                     borderRadius:5,
                     margin: "0 auto 5px",
                     padding: "0.9em",
@@ -438,7 +361,7 @@ export default function MediaCard() {
                 />
            <Typography variant="h6" gutterBottom
                 sx={{ padding: "0em 0em 0 0em",color:"gray",
-                fontSize:10
+                fontSize:{xs:8,md:10}
              }}
            >
             MUTUELL
@@ -452,8 +375,8 @@ export default function MediaCard() {
                 raised
                 sx={{
                    // maxWidth: 100,
-                   width:{xs:60,sm:70,md:60,lg:60},
-                    height:{xs:60,sm:60,md:60,lg:60},
+                   width:{xs:35,sm:70,md:60,lg:60},
+                   height:{xs:50,sm:60,md:60,lg:60},
                     borderRadius:5,
                     margin: "0 auto 5px",
                     padding: "0.9em",
@@ -470,7 +393,7 @@ export default function MediaCard() {
                 />
            <Typography variant="h6" gutterBottom
                 sx={{ padding: "0em 0em 0 0em",color:"gray",
-                fontSize:10
+                fontSize:{xs:8,md:10}
              }}
            >
           RNIT
@@ -484,8 +407,8 @@ export default function MediaCard() {
                 raised
                 sx={{
                    // maxWidth: 100,
-                   width:{xs:60,sm:70,md:60,lg:60},
-                   height:{xs:60,sm:60,md:60,lg:60},
+                   width:{xs:35,sm:70,md:60,lg:60},
+                    height:{xs:50,sm:60,md:60,lg:60},
                    borderRadius:5,
                     margin: "0 auto 5px",
                     padding: "0.9em",
@@ -502,7 +425,7 @@ export default function MediaCard() {
                 />
            <Typography variant="h6" gutterBottom
                 sx={{ padding: "0em 0em 0 0em",color:"gray",
-                fontSize:10
+                fontSize:{xs:8,md:10}
              }}
            >
             EJOHEZA
@@ -534,8 +457,8 @@ export default function MediaCard() {
                 raised
                 sx={{
                    // maxWidth: 100,
-                   width:{xs:60,sm:70,md:60,lg:60},
-                   height:{xs:60,sm:60,md:60,lg:60},
+                   width:{xs:35,sm:70,md:60,lg:60},
+                   height:{xs:50,sm:60,md:60,lg:60},
                    borderRadius:5,
                     margin: "0 auto 5px",
                     padding: "0.9em",
@@ -552,7 +475,7 @@ export default function MediaCard() {
                 />
            <Typography variant="h6" gutterBottom
                 sx={{ padding: "0em 0em 0 0em",color:"gray",
-                fontSize:10
+                fontSize:{xs:8,md:10}
              }}
            >
            ELECTRICITY
@@ -567,8 +490,8 @@ export default function MediaCard() {
                 raised
                 sx={{
                     //maxWidth: 100,
-                    width:{xs:60,sm:70,md:60,lg:60},
-                    height:{xs:60,sm:60,md:60,lg:60},
+                    width:{xs:35,sm:70,md:60,lg:60},
+                    height:{xs:50,sm:60,md:60,lg:60},
                     borderRadius:5,
                     margin: "0 auto 5px",
                     padding: "0.9em",
@@ -585,7 +508,7 @@ export default function MediaCard() {
                 />
            <Typography variant="h6" gutterBottom
                 sx={{ padding: "0em 0em 0 0em",color:"gray",
-                fontSize:10
+                fontSize:{xs:8,md:10}
              }}
            >
             TOpUp M Money 
@@ -599,8 +522,8 @@ export default function MediaCard() {
                 raised
                 sx={{
                     //maxWidth: 100,
-                    width:{xs:60,sm:70,md:60,lg:60},
-                    height:{xs:60,sm:60,md:60,lg:60},
+                    width:{xs:35,sm:70,md:60,lg:60},
+                    height:{xs:50,sm:60,md:60,lg:60},
                     borderRadius:5,
                     margin: "0 auto 5px",
                     padding: "0.9em",
@@ -617,7 +540,7 @@ export default function MediaCard() {
                 />
            <Typography variant="h6" gutterBottom
                 sx={{ padding: "0em 0em 0 0em",color:"gray",
-                fontSize:10
+                fontSize:{xs:8,md:10}
              }}
            >
           MobiShuli
@@ -651,8 +574,8 @@ export default function MediaCard() {
                 raised
                 sx={{
                    // maxWidth: 100,
-                   width:{xs:60,sm:70,md:60,lg:60},
-                   height:{xs:60,sm:60,md:60,lg:60},
+                   width:{xs:35,sm:70,md:60,lg:60},
+                   height:{xs:50,sm:60,md:60,lg:60},
                    borderRadius:5,
                     margin: "0 auto 5px",
                     padding: "0.9em",
@@ -669,7 +592,7 @@ export default function MediaCard() {
                 />
            <Typography variant="h6" gutterBottom
                 sx={{ padding: "0em 0em 0 0em",color:"gray",
-                fontSize:10
+                fontSize:{xs:8,md:10}
              }}
            >
            GTBank

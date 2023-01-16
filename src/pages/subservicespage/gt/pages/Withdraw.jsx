@@ -1,14 +1,17 @@
-import React, { useState, useEffect,useRef } from "react";
+import  React, { useState, useEffect,useRef }  from 'react';
+import { styled } from '@mui/material/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+// import
+
 // import "./cbhiList.css";
 import Box from "@mui/material/Box";
-import { Button, Grid, Tooltip } from "@mui/material";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
+import { Button, Container, Grid, Tooltip } from "@mui/material";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -34,31 +37,33 @@ import AuthContext from "../../../../context";
 // import './style.css'
 // export let amountPaid=[]
 
-const data = [
-  {
-    collectionDate: "12/12/2021",
-    amount: 12000,
-    service: "CBI",
-    bank_reference: 125353663763,
-    mobicash_reference: 1224255252,
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
   },
-  {
-    collectionDate: "04/06/2021",
-    amount: 2000,
-    service: "CBI",
-    bank_reference: 115353663763,
-    mobicash_reference: 13424255252,
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
   },
-  {
-    collectionDate: "03/06/2021",
-    amount: 30000,
-    service: "RRA",
-    bank_reference: 132353663763,
-    mobicash_reference: 15624255252,
-  },
-];
+}));
 
-function Transactions() {
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(odd)': {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  '&:last-child td, &:last-child th': {
+    border: 0,
+  },
+}));
+
+function createData(name, calories, fat, carbs, protein) {
+  return { name, calories, fat, carbs, protein };
+}
+
+
+
+export default function CustomizedTables() {
   const { t } = useTranslation(["home","common","login"]);
  // const todaydate = new Date().toISOString().slice(0, 10);
  const { auth}=React.useContext(AuthContext)
@@ -185,147 +190,135 @@ fecthData();
   });
 
   return (
-    <Box
-    component="main"
-    sx={{
-      flexGrow: 0,
-      py: 4,
-      width: "100vw"
-      
-    }}
-  >
-      <div className="home">
-        <div className="tableDisplay">
-        {
-          numberOfTransaction===0?<>
-            <DialogTitle>
-            <Typography variant="h6" textAlign="center" color="text.primary" >
-            Cash Withdrawal
-          </Typography>
-            </DialogTitle>
-          </>:
-          <DialogTitle>
-           <Typography variant="h6" textAlign="center" color="text.primary" 
-           >
-           {/* PREVIOUS {numberOfTransaction} TRANSACTONS */}
-           Cash Withdrawal
-          </Typography> 
-          </DialogTitle>
-         } 
-          <Box component="div" sx={{ display: "inline" }}>
-            <Box>
-              <div className="datecontent">
-                <Stack component="form" noValidate spacing={3}>
-                  <ButtonGroup variant="text" aria-label="text button group">
-                    {/* <Button onClick={generatePdf}>Generate PDF</Button> */}
-                    <Button>
-                      {data?.length && (
-                        <CSVLink
-                          headers={headers}
-                          data={data}
-                          filename="results.csv"
-                          target="_blank"
-                        >
-                          {/* Generate Csv */}
-                        </CSVLink>
-                      )}
-                    </Button>
-                  </ButtonGroup>
-                </Stack>
-                <Box sx={{ maxWidth: 300, position:"center", display:"flex"}}>
-              <TextField
-                fullWidth
-                size="small"
-                onChange={(e) => searchHandle(e)}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <SearchIcon fontSize="small" color="action">
-                        <SearchIcon />
-                      </SearchIcon>
-                    </InputAdornment>
-                  ),
-                }}
-                placeholder={t("common:search")}
-                variant="outlined"
-              />
-   
-        </Box>
-              </div>
-            </Box>
-          </Box>
+    <React.Fragment>
+      <Box
+         component="main"
+         sx={{
+           flexGrow: 1,
+           py: 2,
+           width: "100vw"
+           
           
-          <TableContainer component={Paper}>
-            <Table aria-label="caption table">
-              <caption className="textTitle">Cash Withdrawal</caption>
-              <TableHead>
-                <TableRow>
-                  <TableCell align="center"> {t("common:mobicashreference")}</TableCell>
-                  <TableCell> {t("common:date")}</TableCell>
-                  <TableCell align="center"> {t("common:amount")} (Rwf)</TableCell>
-                  <TableCell align="center"> {t("common:description")}</TableCell>
-                  {/* <TableCell align="center"> {t("common:action")}</TableCell> */}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-              {
-                search?(
-                  <>
-                  {results.slice(0, limit).map((details) => (
-                    
-                  <TableRow
-                    hover
-                    key={details.id}
-                    selected={selectedExamIds.indexOf(details.id) !== -1}
-                  >
-                    {
-                      details.type==="agents_account.gtbank_client_account_withdrawal"?<>
-                       <TableCell align="center">{details.id}</TableCell>
-                    <TableCell component="th" scope="row">
-                      {details.operationDate}
-                    </TableCell>
-                    <TableCell align="center"> {(details.amount ).toLocaleString()}</TableCell>
-                    
-                    <TableCell align="center">{details.responseDescription}</TableCell>
-                    
-                      </>:null
-                    }
-                   
-                  </TableRow>
-                ))}
-                  </>
-                ):(
-                  <>
-                  {agentTransactionsDetails.slice(0, limit).map((details) => (
-                  <TableRow
-                    hover
-                    key={details.id}
-                    selected={selectedExamIds.indexOf(details.id) !== -1}
-                  >{
-                    details.type==="agents_account.gtbank_client_account_withdrawal"?
-                    <>
-                    <TableCell align="center">{details.id}</TableCell>
-                    <TableCell component="th" scope="row">
-                      {details.operationDate}
-                    </TableCell>
-                    <TableCell align="center"> {(details.amount ).toLocaleString()}</TableCell>
-                    <TableCell align="center">{details.responseDescription}</TableCell>
-                   
-                    </>:null
-                  }
-                    
-                  </TableRow>
-                ))}
-                  </>
-                )}
-                
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </div>
-      </div>
+         }}
+      >
+      <Typography
+          
+          component="h1" variant="h6"
+          
+          color="gray"
+          textAlign="center"
+          padding="0 0px 10px 0px"
+          sx={{ fontSize: { xs: 20 },mb:1 }}
+       
+        >
+ {
+     numberOfTransaction===0?<>
+       <DialogTitle>
+       <Typography variant="h6" textAlign="center" color="text.primary" >
+       Cash Withdrawal
+     </Typography>
+       </DialogTitle>
+     </>:
+     <DialogTitle>
+      <Typography variant="h6" textAlign="center" color="text.primary" 
+      >
+      {/* PREVIOUS {numberOfTransaction} TRANSACTONS */}
+      Cash Withdrawal
+     </Typography> 
+     </DialogTitle>
+    } 
+        </Typography>
+      <Container maxWidth="lg">
+      
+   <Box sx={{ maxWidth: 300, position:"center", display:"flex"}}>
+         <TextField
+           fullWidth
+           size="small"
+           onChange={(e) => searchHandle(e)}
+           InputProps={{
+             startAdornment: (
+               <InputAdornment position="start">
+                 <SearchIcon fontSize="small" color="action">
+                   <SearchIcon />
+                 </SearchIcon>
+               </InputAdornment>
+             ),
+           }}
+           placeholder={t("common:search")}
+           variant="outlined"
+         />
+       </Box>
+    
+        </Container>
       </Box>
+
+      
+<Box 
+ sx={{
+   
+   display: "block",
+   justifyContent: "center",
+   alignContent: "center",
+   width: "100%",
+   height: "auto",
+
+}}
+>
+  
+     <TableContainer component={Paper}>
+ <Table sx={{ minWidth: 700 }} aria-label="customized table">
+   <TableHead>
+     <TableRow>
+       <StyledTableCell>{t("common:date")}</StyledTableCell>
+       <StyledTableCell align="center">{t("common:mobicashreference")}</StyledTableCell>
+       <StyledTableCell align="center"> {t("common:amount")} (Rwf)</StyledTableCell>
+       <StyledTableCell align="center">{t("common:description")}</StyledTableCell>
+       
+     
+     </TableRow>
+   </TableHead>
+   <TableBody>
+   {
+           search?(
+             <>
+             {results.slice(0, limit).map((details) => (
+       <StyledTableRow key={details.id}  selected={selectedExamIds.indexOf(details.id) !== -1}>
+         {
+                 details.type==="agents_account.gtbank_client_account_withdrawal"?<>
+                 
+                 <StyledTableCell component="th" scope="row"> {details.operationDate}</StyledTableCell>
+         <StyledTableCell align="right">{details.id}</StyledTableCell>
+         <StyledTableCell align="right">{(details.amount ).toLocaleString()}</StyledTableCell>
+         <StyledTableCell align="right">{details.responseDescription}</StyledTableCell>
+       
+         </>:null
+       }
+       </StyledTableRow>
+     ))}
+        </>
+           ):(
+             <>
+             {agentTransactionsDetails.slice(0, limit).map((details) => (
+               <StyledTableRow key={details.id}  selected={selectedExamIds.indexOf(details.id) !== -1}>
+               {
+                       details.type==="agents_account.gtbank_client_account_withdrawal"?
+                       <>
+                       <StyledTableCell component="th" scope="row"> {details.operationDate}</StyledTableCell>
+               <StyledTableCell align="center">{details.id}</StyledTableCell>
+               <StyledTableCell align="center">{(details.amount ).toLocaleString()}</StyledTableCell>
+               <StyledTableCell align="center">{details.responseDescription}</StyledTableCell>
+               </>:null
+             }
+             </StyledTableRow>
+            ))}
+            </>
+          )}
+   </TableBody>
+ </Table>
+</TableContainer>
+
+
+</Box>
+    </React.Fragment>
   );
 }
-
-export default Transactions;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Send } from '@mui/icons-material';
 import {
   Button,
@@ -21,9 +21,10 @@ import CloseIcon from '@mui/icons-material/Close';
  import { useHistory } from 'react-router-dom';
  import { useTranslation } from "react-i18next";
  import jwt from "jsonwebtoken";
+import AuthContext from '../../context';
 const Changepassword = () => {
   const { i18n,t } = useTranslation(["home","common","login"]);
-  
+  const {auth}=useContext(AuthContext)
     const history=useHistory()
 
   const [errorMessage,setErrMessage]=useState("");
@@ -58,7 +59,7 @@ setOpenSuccess(false)
           setErrMessage("Pin dont not macth")
           setOpen(true)
         }
-        if(oldpass !== oldPassword){
+        if(auth.password !== oldPassword){
           setErrMessage("Invalid Old Pin")
           setOpen(true)
         } 
@@ -95,7 +96,7 @@ if(errorMessage==''){
         const {username}=decode(token);
         const {password}=decode(token);
         setUsername(username)
-        setOldpass(password)
+        
       }
      
       },[]);

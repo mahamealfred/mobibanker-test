@@ -17,7 +17,10 @@ const middleware=applyMiddleware(thunk, promise);
 
 //export const store=createStore(persistedReducer, {}, composeWithDevTools(middleware));
 //export const persistor = persistStore(store)
-export const store=createStore(allReducers, {}, composeWithDevTools(middleware));
-//const store=createStore(allReducers, {}, middleware);
+
+
+//========================correct=========================
+//export const store=createStore(allReducers, {}, composeWithDevTools(middleware));
+export const store=createStore(allReducers, {}, middleware);
 
   

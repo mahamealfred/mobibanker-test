@@ -29,7 +29,7 @@ export const getDocDetailsAction = (details,history) => async (dispatch) => {
     if(res.data.responseCode===100){
      await dispatch(getDocDetailsSuccess(res.data));
     }
-    if(res.data.responseCode===105 || res.data.responseCode===107){
+    else{
       await dispatch(getDocDetailsFailure(res.data.codeDescription));
      }
   } catch (err) {

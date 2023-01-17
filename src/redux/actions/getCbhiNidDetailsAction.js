@@ -31,13 +31,16 @@ export const getCbhiNidDetailsAction = (details,history) => async (dispatch) => 
       if(res.data.responseCode===100){
         dispatch(getCbhiNidDetailsSuccess(res.data));
       }  
-      else if(res.data.responseCode===104 || res.data.responseCode===105){
+      else if(res.data.responseCode===105){
+        let errMsg=res.data.data.houseHoldNID[0]
+        dispatch(getCbhiNidDetailsFailure(errMsg));
+      }
+      else{
         let errMsg=res.data.codeDescription
         dispatch(getCbhiNidDetailsFailure(errMsg));
       }
   } catch (err) {
     if (err.response) {
-  
    let errorMessage = ''
        errorMessage="Something went wrong,Please try again later."
        // errorMessage=await err.response.data.message

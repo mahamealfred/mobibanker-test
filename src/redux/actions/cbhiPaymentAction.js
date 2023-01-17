@@ -52,7 +52,7 @@ export const cbhiPayamentAction = (details,username,password,history) => async (
       if(res.data.responseCode===100){
        await dispatch(cbhiPaymentSuccess(res.data));
       }
-      if(res.data.responseCode===101 || res.data.responseCode===102 || res.data.responseCode===103 || res.data.responseCode===105 || res.data.responseCode===106 ||res.data.responseCode===107){
+      else{
         await dispatch(cbhiPaymentFailure(res.data.codeDescription));
        }
       

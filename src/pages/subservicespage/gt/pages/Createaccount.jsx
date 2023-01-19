@@ -21,7 +21,6 @@ import { Grid } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
 import jwt from "jsonwebtoken";
-
 import ReactToPrint from 'react-to-print';
 import { useRef } from 'react';
 import { useTranslation } from "react-i18next";

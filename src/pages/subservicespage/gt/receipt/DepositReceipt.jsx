@@ -10,6 +10,7 @@ import Grid from '@mui/material/Grid';
 import moment from 'moment';
 import { Paper } from '@mui/material';
 import QRCode from "react-qr-code";
+import logo from "../../../../assets/images/gtlogo.png"
 import "./index.css";
 
 
@@ -26,7 +27,7 @@ export const DepositReceipt = React.forwardRef((props, ref) => {
 				</div>
 				<div className="invoice_sec">
                 <div className="logo_sec">
-					<img src="../../images/gtbanklogo.png" className='logo' alt="code logo"/>
+					<img src={logo} className='logo' alt="code logo"/>
 				</div>
 				</div>
 			</div>

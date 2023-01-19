@@ -50,6 +50,9 @@ export const depositAction = (details,username,password) => async (dispatch) => 
       if(res.data.responseCode===100){
        await dispatch(depositSuccess(res.data));
       }
+     else if(res.data.responseCode===105){
+        await dispatch(depositFailure(res.data.data));
+       }
       else{
         await dispatch(depositFailure(res.data.codeDescription));
        }

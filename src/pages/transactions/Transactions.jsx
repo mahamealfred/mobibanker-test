@@ -211,22 +211,17 @@ fecthData();
           sx={{ fontSize: { xs: 20 },mb:1 }}
        
         >
- {
-     numberOfTransaction===0?<>
-       <DialogTitle>
-       <Typography variant="h6" textAlign="center" color="text.primary" >
-      Privious Transactions
-     </Typography>
-       </DialogTitle>
-     </>:
+ 
+    
+
      <DialogTitle>
       <Typography variant="h6" textAlign="center" color="text.primary" 
       >
-      {/* PREVIOUS {numberOfTransaction} TRANSACTONS */}
-Previous Transactions
+
+    Previous Transactions
      </Typography> 
      </DialogTitle>
-    } 
+
         </Typography>
       <Container maxWidth="lg">
       

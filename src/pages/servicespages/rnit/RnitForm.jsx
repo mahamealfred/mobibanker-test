@@ -27,6 +27,7 @@ import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import AuthContext from "../../../context";
+import logo from "../../../assets/images/logo.png"
 const  ComponentToPrint=React.lazy(()=>import("./ComponentToPrint").then(module=>{
   return {default: module.ComponentToPrint}
 }))
@@ -429,6 +430,7 @@ else if(formData.amountPaid > 2000000){
                transactionStatus={transactionStatus}
                payerName={payerName}
                agentName={agentName}
+               logo={logo}
                />
                </Box>
                 </>

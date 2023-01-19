@@ -28,6 +28,7 @@ import ReactToPrint from "react-to-print";
 import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
 import AuthContext from "../../../context";
+import logo from "../../../assets/images/logo.png"
 const  ComponentToPrint=React.lazy(()=>import("./ComponentToPrint").then(module=>{
   return {default: module.ComponentToPrint}
 }))
@@ -403,6 +404,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
                payerName={payerName}
                agentName={agentName}
                amount={amount}
+               logo={logo}
                />
                </Box>
                 </>

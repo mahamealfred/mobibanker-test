@@ -34,6 +34,7 @@ import PrintIcon from '@mui/icons-material/Print';
 import { useTranslation } from "react-i18next";
 import AuthContext from "../../context";
 import  {ComponentToPrint}  from "./ComponentToPrint";
+import logo from "../../assets/images/logo.png"
 
 // export let amountPaid=[]
 
@@ -315,6 +316,7 @@ fecthData();
                date={date}
                description={description}
                agentName={agentName}
+               logo={logo}
                />
                 </Box>
                :null
@@ -365,6 +367,7 @@ fecthData();
                date={date}
                description={description}
                agentName={agentName}
+               logo={logo}
                />
                 </Box>
                :null

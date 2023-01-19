@@ -78,6 +78,7 @@ const Document = ({
                     name="address2" 
                     label={t("cbhi:householdernid")}
                     size="small"
+                    required
                     margin="normal"
                         value={formData.nId}
                         onChange={(e) => setFormData({...formData,nId: e.target.value}) }
@@ -101,6 +102,7 @@ const Document = ({
           <TextField
             id="nID"
             name="PaymentYear"
+            required
             label={t("common:year")}
             margin="normal"
             size="small"

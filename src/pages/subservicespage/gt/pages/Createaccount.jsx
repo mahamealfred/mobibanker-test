@@ -107,7 +107,7 @@ const [date,setDate]=useState("")
 const [emailError,setEmailError]=useState("")
 const [phoneNumberError,setPhoneNumberError]=useState("");
 const [passwordError,setPasswordError]=useState("");
-
+const [agentPhonenumber,setAgentPhonenumber]=useState("")
 const { auth}=React.useContext(AuthContext)
 
  const getStepContent = (step) => {
@@ -170,7 +170,7 @@ const { auth}=React.useContext(AuthContext)
      if (openAccount.details.length !== 0) {
        if (openAccount.details.responseCode === 100) {
         setNames(openAccount.details.data.names)
-        setFullAccount(openAccount.details.data.fullAccount)
+        setFullAccount(openAccount.details.data.fullAccount.replace(/[^a-zA-Z0-9 ]/g, ''))
         setMobilePhone(openAccount.details.data.mobileNumber)
         setDate(openAccount.details.responseDate)
          handleNext();
@@ -292,6 +292,7 @@ useEffect(() => {
         setUsername(auth.username)
         setBrokering(auth.brokering)
         setUserGroup(auth.usergroup)
+        setAgentPhonenumber(auth.phonenumber)
           handleNext();
         } else {
           return null;
@@ -329,7 +330,7 @@ useEffect(() => {
   }
    if (activeStep === 0) {
   handleValidateNid();
-// handleNext()
+ //handleNext()
    } else if (activeStep === 1) {
    // handleNext()
     handleOpenAccount()
@@ -471,6 +472,7 @@ useEffect(() => {
                fullAccount={fullAccount}
                date={date}
                agentName={agentName}
+               agentPhonenumber={agentPhonenumber}
                />
                </Box>
                 </>

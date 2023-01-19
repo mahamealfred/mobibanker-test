@@ -82,6 +82,7 @@ const [accountNumber,setAccountNumber]=useState("")
 const [depositorNameError,setDepositorNameError]=useState("");
 const [depositorPhoneError,setDepositorPhoneError]=useState("");
 const [remarksError,setRemarksError]=useState("");
+const [agentPhonenumber,setAgentPhonenumber]=useState('');
 //all
   const [formData, setFormData] = useState({
     accountNumber: "",
@@ -154,13 +155,14 @@ const [remarksError,setRemarksError]=useState("");
     if (!accountValidation.loading) {
       if (accountValidation.details.length !== 0) {
         if (accountValidation.details.responseCode === 100) {
-          setDebit(accountValidation.details.data.fullAccount)
+          setDebit(accountValidation.details.data.fullAccount.replace(/[^a-zA-Z0-9 ]/g, ''))
           setAccountName(accountValidation.details.data.names)
           setPhone(accountValidation.details.data.mobileNumber)
           setCredit(formData.accountNumber)
           setUsername(auth.username)
           setBrokering(auth.brokering)
           setUserGroup(auth.usergroup)
+          setAgentPhonenumber(auth.phonenumber)
           handleNext();
         } else {
           return null;
@@ -176,7 +178,7 @@ const [remarksError,setRemarksError]=useState("");
  //handle validate account 
 const handleValidateAccount=async()=>{
    if(formData.accountNumber===""){
-    setAccountNumberErr("Account is required")
+    setAccountNumberErr("Account number is required")
    }
    else if(!Number(formData.accountNumber)){
     setAccountNumberErr("Account must be a number")
@@ -200,7 +202,7 @@ useEffect(()=>{
        if (deposit.details.responseCode === 100) {
         setAmountDeposited(deposit.details.data.amount);
         setTransactionId(deposit.details.data.reference);
-        setAccountNumber(deposit.details.data.credited)
+        setAccountNumber(deposit.details.data.credited.replace(/[^a-zA-Z0-9 ]/g, ''))
         setDateTime(deposit.details.responseDate);
          handleNext();
        } else {
@@ -226,10 +228,10 @@ const handleDeposit=async()=>{
 setAmountErr("Amount must be a numeric");
   }
   else if(formData.amount < 1000){
-    setAmountErr("The minimum amount to deposit is 1,000 rwf");
+    setAmountErr("The minimum amount to deposit is 1,000 Rwf");
     }
     else if(formData.amount > 1500000){
-      setAmountErr("The maximum amount to deposit is Rwf1,500,000 rwf");
+      setAmountErr("The maximum amount to deposit is 1,500,000 Rwf");
     }
     else if(formData.depositorName===""){
       setAmountErr("")
@@ -432,6 +434,7 @@ const decode= (token) => {
               amountDeposited={amountDeposited}
                transactionId={transactionId}
                agentName={agentName}
+               agentPhonenumber={agentPhonenumber}
                />
                </Box>
                 </>

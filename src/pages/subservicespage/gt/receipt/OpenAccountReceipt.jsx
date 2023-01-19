@@ -137,7 +137,7 @@ export const OpenAccountReceipt = React.forwardRef((props, ref) => {
 							
 						</div>
 						<div className="col col_total">
-							<p>078xxxxxx</p>
+							<p>{props.agentPhonenumber}</p>
 						</div>
 					</div>
 				</div>

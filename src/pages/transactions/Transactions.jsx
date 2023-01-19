@@ -34,7 +34,7 @@ import PrintIcon from '@mui/icons-material/Print';
 import { useTranslation } from "react-i18next";
 import AuthContext from "../../context";
 import  {ComponentToPrint}  from "./ComponentToPrint";
-import './style.css'
+
 // export let amountPaid=[]
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -349,7 +349,7 @@ Previous Transactions
                     await setId(details.id);
                     await setAmount(details.amount)
                     await setDate(details.operationDate)
-                    await setDescription(details.description)
+                    await setDescription(details.responseDescription)
                   await handlePrint()
                   }
                   }

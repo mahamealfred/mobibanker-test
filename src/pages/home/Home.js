@@ -165,7 +165,8 @@ const handleClosePageReflesh = () => setOpenPageReflesh(false);
           usergroup:login.users.resData.data.group,
           password:login.users.password,
           email:login.users.resData.data.email,
-          names:login.users.resData.data.names
+          names:login.users.resData.data.names,
+          phonenumber:login.users.resData.data.phonenumber
         })
          setUsername(login.users.resData.data.username)
          setBrokering(login.users.resData.data.brokering)
@@ -287,7 +288,7 @@ setOpenModal(false)
 
 <Modal
         open={openPageReflesh}
-      // onClose={handleClosePageReflesh}
+         onClose={handleClosePageReflesh}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >

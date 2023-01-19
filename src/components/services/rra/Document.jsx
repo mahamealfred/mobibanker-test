@@ -69,6 +69,7 @@ const Document = ({
                 <Grid item
                     xs={12}>
                     <TextField id="address2" size="small"   margin="normal" name="address2" label={t("rra:referencenumber")}
+                        required
                         value={ formData.docId}
                         onChange={(e) => setFormData({...formData,docId: e.target.value})}
                         helperText={docIdErr ? docIdErr : ""}

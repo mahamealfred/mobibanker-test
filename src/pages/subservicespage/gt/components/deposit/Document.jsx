@@ -67,6 +67,7 @@ const Document = ({
                 <Grid item
                     xs={12}>
                     <TextField id="address2" size="small"   margin="normal" name="address2" label="Account Number"
+                        required
                         value={ formData.accountNumber}
                         onChange={(e) => setFormData({...formData,accountNumber: e.target.value})}
                         helperText={accountNumberErr ? accountNumberErr: ""}

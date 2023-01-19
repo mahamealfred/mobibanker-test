@@ -1,9 +1,9 @@
 import React from 'react';
 import QRCode from "react-qr-code";
 import "../../style.css";
+import logo from "../../assets/images/logo.png"
 import CssBaseline from '@mui/material/CssBaseline';
 export const ComponentToPrint = React.forwardRef((props, ref) => {
-    
     return (
       <div ref={ref}>
 		< CssBaseline/>
@@ -12,7 +12,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 		<div className="header">
 			<div className="logo_invoice_wrap">
 				<div className="logo_sec">
-					<img src="../../images/logo.png" className='logo' alt="code logo"/>
+					<img src={logo} className='logo' alt="code logo"/>
 					<div className="title_wrap">
 						{/* <p className="title bold">Coding Boss</p>
 						<p className="sub_title">Privite Limited</p> */}
@@ -100,8 +100,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 			        </p> */}
 			       	<p className="bold">
 			            <span>Grand Total</span>
-			            <span> {(props.amount * -1).toLocaleString()} Rwf</span>
-					
+			            <span> {props.amount<0?(props.amount).toLocaleString()*-1:(props.amount).toLocaleString()} Rwf</span>
 			        </p>
 				</div>
 			</div>

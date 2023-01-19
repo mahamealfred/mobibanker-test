@@ -69,6 +69,7 @@ const Document = ({
                 <Grid item
                     xs={12}>
                     <TextField id="address2"  size="small"  margin="normal" name="address2" label={t("common:nid")}
+                        required
                         value={formData.nId}
                         onChange={(e) =>setFormData({...formData,nId: e.target.value})}
                         helperText={nIdErrorMessage ? nIdErrorMessage : ""}

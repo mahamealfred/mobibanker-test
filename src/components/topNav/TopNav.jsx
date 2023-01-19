@@ -49,8 +49,8 @@ const TopNav = () => {
         sx={{
           marginLeft:8,
           objectFit:"contain",
-          maxHeight: { xs: 300, md: 200},
-          maxWidth: { xs: 300, md: 300},
+          maxHeight: { xs: 150, md: 150},
+          maxWidth: { xs: 200, md: 200},
           display:{xs:"none",sm:"block"}
         }}
         alt="mobicash logo"

@@ -227,12 +227,12 @@ const handleDeposit=async()=>{
    
 setAmountErr("Amount must be a numeric");
   }
-  else if(formData.amount < 1000){
-    setAmountErr("The minimum amount to deposit is 1,000 Rwf");
-    }
-    else if(formData.amount > 1500000){
-      setAmountErr("The maximum amount to deposit is 1,500,000 Rwf");
-    }
+  // else if(formData.amount < 1000){
+  //   setAmountErr("The minimum amount to deposit is 1,000 Rwf");
+  //   }
+  //   else if(formData.amount > 1500000){
+  //     setAmountErr("The maximum amount to deposit is 1,500,000 Rwf");
+  //   }
     else if(formData.depositorName===""){
       setAmountErr("")
      setDepositorNameError("Depositor name is required");

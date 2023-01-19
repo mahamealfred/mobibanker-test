@@ -288,7 +288,7 @@ setOpenModal(false)
 
 <Modal
         open={openPageReflesh}
-        // onClose={handleClosePageReflesh}
+        onClose={handleClosePageReflesh}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -385,8 +385,8 @@ setOpenModal(false)
                 sx={{
                   marginLeft:8,
                   objectFit:"contain",
-                  maxHeight: { xs: 300, md: 200},
-                  maxWidth: { xs: 300, md: 300},
+                  maxHeight: { xs: 100, md: 100},
+                  maxWidth: { xs: 200, md: 200},
                   display:{xs:"none",sm:"block"}
                 }}
                 alt="mobicash logo"

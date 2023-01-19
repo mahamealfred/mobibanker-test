@@ -364,7 +364,7 @@ export default function MediaCard() {
                 fontSize:{xs:8,md:10}
              }}
            >
-            MUTUELL
+            MUTUELLE
           </Typography>
             </Card>  
             </Button>

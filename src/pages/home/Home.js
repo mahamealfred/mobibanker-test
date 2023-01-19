@@ -294,7 +294,7 @@ setOpenModal(false)
       >
         <Box sx={styles}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-          Your session has timed out. 
+          Your session has timed out.
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
           Please login again

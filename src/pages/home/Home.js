@@ -449,7 +449,7 @@ setOpenModal(false)
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              height:{ xs: "50px", sm: "60px",md:"95px" },
+              height:{ xs: "50px", sm: "60px",md:"80px" },
               px: [0],
             }}
           >

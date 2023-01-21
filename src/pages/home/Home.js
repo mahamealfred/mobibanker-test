@@ -16,7 +16,6 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import Tooltip from "@mui/material/Tooltip";
 import NativeSelect from '@mui/material/NativeSelect';
 import FormControl from '@mui/material/FormControl';
-
 import AppDrawer from '../../components/drawer';
 import {useEffect,useRef} from "react";
 import jwt from "jsonwebtoken";
@@ -25,7 +24,6 @@ import { Avatar, Button } from '@mui/material';
 import LanguageIcon from '@mui/icons-material/Language';
 import Badge from '@mui/material/Badge';
 import {
-
   justifyCenter,
   fullWidthFlex,
 } from '../../components/styles/theme';
@@ -46,7 +44,7 @@ import { refreshTokens } from '../../redux/actions/loginAction';
 import AuthContext from '../../context';
 import { useContext } from 'react';
 import { useSelector } from 'react-redux';
-
+import FireNotification from '../../components/Notifications/FirebaseNotification';
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
@@ -285,7 +283,7 @@ setOpenModal(false)
 
   return (
     <ThemeProvider theme={mdTheme}>
-
+<FireNotification/>
 <Modal
         open={openPageReflesh}
        // onClose={handleClosePageReflesh}

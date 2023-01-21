@@ -13,6 +13,7 @@ export const changePasswordAction = (user,username) => async (dispatch) => {
     const {oldPassword}=user 
     const {password}=user
     const {confirmPassword}=user
+   
     //const encodedBase64Token = Buffer.from(`${username}:${password}`).toString('base64');
     //let basicAuth='Basic ' + btoa(username + ':' + password);
     const Url='https://agentapi.mobicash.rw/api/agent/user/rest/v.4.14.01/change-password';
@@ -35,7 +36,10 @@ export const changePasswordAction = (user,username) => async (dispatch) => {
       if(res.data.responseCode===100){
         dispatch(changePasswordSuccess(res.data));
       }
-      if(res.data.responseCode===103 || res.data.responseCode===104 || res.data.responseCode===103 || res.data.responseCode===105 || res.data.responseCode===107 ){
+      // if(res.data.responseCode===103 || res.data.responseCode===104 || res.data.responseCode===103 || res.data.responseCode===105 || res.data.responseCode===107 ){
+  
+      // }
+      else{
         dispatch(changePasswordFailure(res.data.codeDescription));
       }
       

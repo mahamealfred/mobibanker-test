@@ -32,9 +32,9 @@ const inde = () => {
             my:1
           }}
         >
-            <Box>
+            {/* <Box>
             <img priority src={logo} width={140} height={40} alt="Logo" />
-            </Box>
+            </Box> */}
         </Box>
 
         <Box

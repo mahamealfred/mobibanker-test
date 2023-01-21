@@ -53,7 +53,6 @@ export default function Banner() {
         <Grid
           container
           spacing={2}
-     
         >
           
           <Grid

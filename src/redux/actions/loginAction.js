@@ -6,7 +6,6 @@ import {
   } from "../types/loginType";
 
 import jwt from "jsonwebtoken";
-
 export let refreshTokens = [];
 
 const generateAccessToken = (user) => {

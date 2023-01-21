@@ -91,11 +91,10 @@ if(errorMessage==''){
          return payload;
       }
       useEffect(() => {
-        const token =localStorage.getItem('mobicashAuth');
-        if (token) {
-        const {username}=decode(token);
-        const {password}=decode(token);
-        setUsername(username)
+     
+        if (auth) {
+        const usernm=auth.username
+        setUsername(usernm)
         
       }
      
@@ -180,7 +179,8 @@ if(errorMessage==''){
                      }
                      sx={{ mb: 0.2 }}
                    >
-                    {changePassword.error==="FAILURE"?"The given pin was already used":changePassword.error}
+                       {changePassword.error}
+                    {/* {changePassword.error==="FAILURE"?"The given pin was already used":changePassword.error} */}
                    </Alert>
                  </Collapse>
                 }    

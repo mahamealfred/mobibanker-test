@@ -33,13 +33,21 @@ import { useDispatch } from "react-redux";
 import PrintIcon from '@mui/icons-material/Print';
 import { useTranslation } from "react-i18next";
 import AuthContext from "../../../../context";
+import ClearAllIcon from '@mui/icons-material/ClearAll';
+
+import { IconButton} from '@mui/material';
+
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import CloseIcon from '@mui/icons-material/Close';
+import Dialog from '@mui/material/Dialog';
 // import  {ComponentToPrint}  from "./ComponentToPrint";
 // import './style.css'
 // export let amountPaid=[]
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: '#F9842C',
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -184,6 +192,14 @@ fecthData();
   ];
 
  
+  const [openApprove,setOpenApprove]=useState(false)
+  const handleClose=()=>{
+    setOpenApprove(false);
+  }
+
+  const handleOpenApprove=()=>{
+    setOpenApprove(true)
+  }
   
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -191,20 +207,67 @@ fecthData();
 
   return (
     <React.Fragment>
+
+<Dialog
+        open={openApprove}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        
+      >
+        <DialogTitle id="alert-dialog-title">
+          <Typography variant="46" color="gray" >
+       Approve this transactions
+          </Typography>
+          <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+          <TextField
+      margin="normal"
+      variant="standard"
+      id="1i"
+      label="Enter PIN "
+      type="password"
+      fullWidth
+   
+      // inputProps={{ minLength: 6 }}
+      required
+     
+    />
+     <Button
+           type="submit"
+           fullWidth
+           variant="contained"
+           color="warning"
+           sx={{ mt: 3, mb: 2 }}
+          
+         > Approve</Button>
+          </DialogContentText>
+        </DialogContent>
+      </Dialog>
+
       <Box
          component="main"
          sx={{
            flexGrow: 1,
            py: 2,
            width: "100vw"
-           
-          
          }}
       >
       <Typography
-          
           component="h1" variant="h6"
-          
           color="gray"
           textAlign="center"
           padding="0 0px 10px 0px"
@@ -273,6 +336,7 @@ fecthData();
        <StyledTableCell align="center">{t("common:mobicashreference")}</StyledTableCell>
        <StyledTableCell align="center"> {t("common:amount")} (Rwf)</StyledTableCell>
        <StyledTableCell align="center">{t("common:description")}</StyledTableCell>
+       <StyledTableCell align="center">{t("common:action")}</StyledTableCell>
        
      
      </TableRow>
@@ -290,7 +354,16 @@ fecthData();
          <StyledTableCell align="center">{details.id}</StyledTableCell>
          <StyledTableCell align="center">{(details.amount ).toLocaleString()}</StyledTableCell>
          <StyledTableCell align="center">{details.responseDescription}</StyledTableCell>
-       
+         <StyledTableCell align="center">
+               <Tooltip title="Approve Transaction" sx={{ mt: 1 }}>
+                <Button
+              onClick={handleOpenApprove}
+                    sx={{ mr: 1,color:"gray"}}
+                >
+                <ClearAllIcon fontSize="small"   sx={{ color:"#F9842C" }} />
+                </Button>
+               </Tooltip>
+                </StyledTableCell>
          </>:null
        }
        </StyledTableRow>
@@ -307,6 +380,17 @@ fecthData();
                <StyledTableCell align="center">{details.id}</StyledTableCell>
                <StyledTableCell align="center">{(details.amount ).toLocaleString()}</StyledTableCell>
                <StyledTableCell align="center">{details.responseDescription}</StyledTableCell>
+               <StyledTableCell align="center">
+               <Tooltip title="Approve Transaction" sx={{ mt: 1 }}>
+                <Button
+                onClick={handleOpenApprove}
+                    sx={{ mr: 1,color:"gray"}}
+                >
+                <ClearAllIcon fontSize="small"   sx={{ color:"#F9842C" }} />
+                </Button>
+               </Tooltip>
+                </StyledTableCell>
+            
                </>:null
              }
              </StyledTableRow>

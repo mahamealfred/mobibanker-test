@@ -443,11 +443,12 @@ setOpenModal(false)
         open={open} >
           <Toolbar
             sx={{
-              backgroundColor: '#F9842C',
+              backgroundColor: '#FFFF',
               display: 'flex',
+              opacity:2,
               alignItems: 'center',
               justifyContent: 'center',
-              height:{ xs: "50px", sm: "60px",md:"80px" },
+              height:{ xs: "50px", sm: "65px",md:"80px" },
               px: [0],
             }}
           >
@@ -457,7 +458,7 @@ setOpenModal(false)
               <ChevronLeftIcon />
             </IconButton>
           </Toolbar>
-          <Divider />
+          {/* <Divider /> */}
           <List component="nav" >
             {/* {mainListItems} */}
             <ListItems open={open}/>

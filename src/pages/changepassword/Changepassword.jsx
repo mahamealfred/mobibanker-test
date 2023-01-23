@@ -29,6 +29,7 @@ const Changepassword = () => {
 
   const [errorMessage,setErrMessage]=useState("");
   const [open, setOpen] = React.useState(false);
+  const [openErrorMessage, setOpenErrorMessage] = React.useState(false);
   const [openError, setOpenError] = React.useState(false);
   const [successFullMessage,setSuccessFullMessage]=useState("")
   const [openSuccess,setOpenSuccess]=useState(false)
@@ -46,6 +47,7 @@ const Changepassword = () => {
 setOpen(false)
 setOpenError(false)
 setOpenSuccess(false)
+setOpenErrorMessage(false)
 
   }
       const handleSubmit = async(e) => {
@@ -53,22 +55,22 @@ setOpenSuccess(false)
         const oldPassword = oldPasswordRef.current.value;
         const password = passwordRef.current.value;
         const confirmPassword = confirmPasswordRef.current.value;
-
-
+        console.log("confirm psss ",password,confirmPassword)
         if (password !== confirmPassword){
-          setErrMessage("Pin dont not macth")
-          setOpen(true)
+          setErrMessage("The new PIN and confirmation PIN do not match")
+          setOpenErrorMessage(true)
         }
-        if(auth.password !== oldPassword){
+       if(auth.password !== oldPassword){
           setErrMessage("Invalid Old Pin")
           setOpen(true)
         } 
+  
         else{
           setErrMessage("")
           await dispatch(changePasswordAction({oldPassword,password,confirmPassword},username))
         }
         if(errorMessage){
-        setOpen(true)
+        setOpenErrorMessage(true)
         }
         if(changePassword.error){
           setOpenError(true)
@@ -186,7 +188,7 @@ if(errorMessage==''){
                 }    
                  {
                   !errorMessage? null:
-                   <Collapse in={open}>
+                   <Collapse in={openErrorMessage}>
                    <Alert
                    severity="error"
                      action={

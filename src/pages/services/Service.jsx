@@ -680,7 +680,7 @@ export default function MediaCard() {
             </Button>
              */}
        
-       <Divider variant="middle" />
+       {/* <Divider variant="middle" /> */}
         <Typography component="h1" variant="h5"
          fontWeight={800}
          color="text.primary"

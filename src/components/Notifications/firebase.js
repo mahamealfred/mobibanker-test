@@ -1,6 +1,9 @@
 import { initializeApp } from 'firebase/app';
 import { getMessaging, getToken, onMessage } from 'firebase/messaging';
 import axios from "axios"
+import { useContext } from 'react';
+import AuthContext from '../../context';
+
 // Replace this firebaseConfig object with the congurations for the project you created on your firebase console. 
 const firebaseConfig = {
 
@@ -19,26 +22,32 @@ initializeApp(firebaseConfig);
 const messaging = getMessaging();
 const sendToken=async(token)=>{
   const {currentToken}=token
-  console.log('current token for client: ', currentToken);
-  // axios.post('/user', {
-  //   firstName: 'Fred',
-  //   lastName: 'Flintstone'
-  // })
-  // .then(function (response) {
-  //   console.log(response);
-  // })
-  // .catch(function (error) {
-  //   console.log(error);
-  // });
+  const {agentId}=token
+  console.log("success token:",currentToken);
+  if(agentId){
+ await axios.post('https://agencyapi.mobicash.rw/api/banking/finance/rest/v.4.14.01/save-token', {
+    agent_id:agentId.replace(/[^a-zA-Z0-9 ]/g, ''),
+    device_token:currentToken
+  })
+  .then(function (response) {
+    console.log("success resp:",response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+  }
+  
+  
 }
 
 
-export const requestForToken = () => {
+export const RequestForToken = () => {
+  const {auth}=useContext(AuthContext)
   return getToken(messaging, { vapidKey: "BCRXAB_cAzgDe1yPgi5KMrU12j9jjOSwLeW_pVsshrW4kMc3KMczyhoV_RO6FiCphN1Y48RQzoahMnikBP7Uw_4"})
     .then((currentToken) => {
       if (currentToken) {
       
-        sendToken({currentToken})
+        sendToken({currentToken,agentId:auth.phonenumber})
         // Perform any other neccessary action with the token
       } else {
         // Show permission request UI

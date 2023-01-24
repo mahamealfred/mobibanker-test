@@ -217,7 +217,7 @@ fecthData();
       >
         <DialogTitle id="alert-dialog-title">
           <Typography variant="46" color="gray" >
-       Approve this transactions
+       Approve transactions
           </Typography>
           <IconButton
           aria-label="close"

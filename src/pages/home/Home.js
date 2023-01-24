@@ -164,7 +164,8 @@ const handleClosePageReflesh = () => setOpenPageReflesh(false);
           password:login.users.password,
           email:login.users.resData.data.email,
           names:login.users.resData.data.names,
-          phonenumber:login.users.resData.data.phonenumber
+          phonenumber:login.users.resData.data.phonenumber,
+          basicAuth:login.users.basicAuth 
         })
          setUsername(login.users.resData.data.username)
          setBrokering(login.users.resData.data.brokering)
@@ -286,7 +287,7 @@ setOpenModal(false)
 <FireNotification/>
 <Modal
         open={openPageReflesh}
-       // onClose={handleClosePageReflesh}
+        onClose={handleClosePageReflesh}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >

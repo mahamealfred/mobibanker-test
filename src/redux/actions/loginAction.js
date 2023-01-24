@@ -49,7 +49,7 @@ export const loginAction = (user,history) => async (dispatch) => {
       const claims={userId,name,role}
       const token= jwt.sign(claims,jwt_secret, { expiresIn: "7d"});
       const resData=res.data
-       dispatch(loginSuccess({resData,password:password}));
+       dispatch(loginSuccess({resData,password:password,basicAuth:basicAuth}));
      // dispatch(loginSuccess(res.data));
       history.push('/dashboard',{push:true})
       sessionStorage.setItem('mobicash-auth',token)

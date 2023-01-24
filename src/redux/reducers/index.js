@@ -8,6 +8,7 @@ import { combineReducers } from "redux";
    import depositReducer from "./depositReducer";
    import accountValidationReducer from "./accountValidationReducer";
    import openAccountReducer from "./openAccountReducer";
+   import authorizeTransactionReducer from "./authorizeTransactionReducer"
    //CBHI
 import getCbhiNidDetailsReducer from "./getCbhiNidDetailsReducer";
 import cbhiPayamentReducer from "./cbhiPaymentReducer";
@@ -68,6 +69,7 @@ const allReducers = combineReducers({
      deposit:depositReducer,
      accountValidation:accountValidationReducer,
      openAccount:openAccountReducer,
+     authorizeTransaction:authorizeTransactionReducer
     //client
     // getClientDetails:getClientDetailsReducer,
     // cashIn:chashinReducer,

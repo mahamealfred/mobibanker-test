@@ -29,6 +29,7 @@ import jwt from "jsonwebtoken";
 import Typography from "@mui/material/Typography";
 // import logo from "../../Assets/images/logo.png"
 import { transactionsAction } from "../../../../redux/actions/transactionsAction";
+import { authorizeTransactionsAction } from '../../../../redux/actions/authorizeTransactionAction';
 import { useDispatch } from "react-redux";
 import PrintIcon from '@mui/icons-material/Print';
 import { useTranslation } from "react-i18next";
@@ -36,7 +37,7 @@ import AuthContext from "../../../../context";
 import ClearAllIcon from '@mui/icons-material/ClearAll';
 
 import { IconButton} from '@mui/material';
-
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import CloseIcon from '@mui/icons-material/Close';
@@ -88,6 +89,8 @@ export default function CustomizedTables() {
  const [basicAuth,setBasicAuth]=useState('')
  const [username,setUsername]=useState('')
  const [password,setPassword]=useState('')
+
+ const [transactionId,setTransactionId]=useState("")
  
  const [id,setId]=useState("") 
  const [amount,setAmount]=useState('') 
@@ -150,7 +153,7 @@ export default function CustomizedTables() {
     const {basicAuth}=decode(token)
     // const {username}=decode(token)
     // const {password}=decode(token)
-    await dispatch(transactionsAction(username,password))
+    // await dispatch(transactionsAction(username,password))
     setAgentName(name)
     // setPassword(password)
     // setUsername(username)
@@ -194,13 +197,24 @@ fecthData();
  
   const [openApprove,setOpenApprove]=useState(false)
   const handleClose=()=>{
+    setTransactionId("")
     setOpenApprove(false);
   }
 
-  const handleOpenApprove=()=>{
+  const handleOpenApprove=(id)=>{
+   
+    setTransactionId(id)
     setOpenApprove(true)
   }
+
+  const handeAuthorization=async()=>{
+   if(transactionId){
   
+    await dispatch(authorizeTransactionsAction(transactionId,auth))
+   }
+
+  }
+
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
@@ -252,7 +266,7 @@ fecthData();
            variant="contained"
            color="warning"
            sx={{ mt: 3, mb: 2 }}
-          
+          onClick={handeAuthorization}
          > Approve</Button>
           </DialogContentText>
         </DialogContent>
@@ -336,6 +350,7 @@ fecthData();
        <StyledTableCell align="center">{t("common:mobicashreference")}</StyledTableCell>
        <StyledTableCell align="center"> {t("common:amount")} (Rwf)</StyledTableCell>
        <StyledTableCell align="center">{t("common:description")}</StyledTableCell>
+       <StyledTableCell align="center">Status</StyledTableCell>
        <StyledTableCell align="center">{t("common:action")}</StyledTableCell>
        
      
@@ -380,15 +395,29 @@ fecthData();
                <StyledTableCell align="center">{details.id}</StyledTableCell>
                <StyledTableCell align="center">{(details.amount ).toLocaleString()}</StyledTableCell>
                <StyledTableCell align="center">{details.responseDescription}</StyledTableCell>
+               <StyledTableCell align="center">{details.autorisationStatus}</StyledTableCell>
                <StyledTableCell align="center">
-               <Tooltip title="Approve Transaction" sx={{ mt: 1 }}>
-                <Button
-                onClick={handleOpenApprove}
-                    sx={{ mr: 1,color:"gray"}}
-                >
-                <ClearAllIcon fontSize="small"   sx={{ color:"#F9842C" }} />
-                </Button>
+                {
+                  details.autorisationStatus!=="pending"?
+                  <Tooltip title="Approve Transaction" sx={{ mt: 1 }}>
+                  <Button
+                  onClick={()=>{ 
+                    setTransactionId(details.id)
+                    handleOpenApprove(details.id)
+                  }}
+                      sx={{ mr: 1,color:"gray"}}
+                  >
+                  <ClearAllIcon fontSize="small"   sx={{ color:"#F9842C" }} />
+                  </Button>
+                 </Tooltip>
+                  :
+                  <Tooltip title="Authorized Transaction" sx={{ mt: 1 }}>
+                   
+                <TaskAltIcon fontSize="small"   sx={{ color:"#90EE90" }} />
                </Tooltip>
+                }
+             
+               
                 </StyledTableCell>
             
                </>:null

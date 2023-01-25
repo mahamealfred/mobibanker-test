@@ -12,7 +12,9 @@ import {
   Typography,
   Container,
   CardActions,
-  Avatar
+  Avatar,
+  CssBaseline,
+  CardMedia
 } from '@mui/material';
 import { getBalanceAction } from '../../redux/actions/getBalanceAction';
 import { useDispatch, useSelector } from "react-redux";
@@ -56,15 +58,10 @@ const user = {
 
   return (
     <React.Fragment>
-         <Box
-      component="main"
-      sx={{
-        flexGrow: 1,
-        py: 4,
-        width: "100vw"
-    
-      }}
+         <Box m="10px"
     >
+     
+      <CssBaseline/>
       <Container maxWidth="lg">
         <Grid
           container
@@ -78,6 +75,7 @@ const user = {
           >
         <Card {...props}>
     <CardContent>
+    
       <Box
         sx={{
           alignItems: 'center',

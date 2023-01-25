@@ -76,8 +76,8 @@ export default function MediaCard() {
                     image="../../images/gtbankImg.png"
                     alt="alt"
                     title="i"
-                    sx={{ padding: "0em 10em 2em 0em", objectFit: "contain",
-                    height:{xs:40,sm:40,md:70,lg:70}}}
+                    sx={{  objectFit: "contain",
+                    height:{xs:50,sm:70}}}
                 />
             <Grid >
             <Typography 
@@ -102,14 +102,14 @@ export default function MediaCard() {
             >
             <Card
                  raised
-                sx={{
-                    // maxWidth: 100,
-                    width:{xs:60,sm:70,md:60,lg:60},
-                    height:{xs:60,sm:60,md:60,lg:60},
-                    borderRadius:5,
-                    margin: "0 auto 5px",
-                    padding: "0.9em",
-                }}
+                 sx={{
+                  // maxWidth: 100,
+                  width:{xs:50,sm:70,md:60,lg:80},
+                  height:{xs:60,sm:60,md:60,lg:90},
+                  borderRadius:5,
+                  justifyContent:"center"
+                  
+              }}
             >
                 <CardMedia
                     component="img"
@@ -119,11 +119,10 @@ export default function MediaCard() {
                     alt="alt"
                     title="i"
                     sx={{ 
-                      padding: "0em 2em 0 0em", 
-                      objectFit: "contain",
-                     height:{xs:30,sm:30,md:30,lg:30},
-                     width:60
-                    }}
+                      padding: "0.8em 0em 0 0em", 
+                     objectFit: "contain",
+               
+                   }}
                      
                 />
            <Typography  gutterBottom
@@ -140,112 +139,74 @@ export default function MediaCard() {
             onClick={handleClickDeposit}
             >
             <Card
-                 raised
-                sx={{
+                  raised
+                  sx={{
                    // maxWidth: 100,
-                   width:{xs:60,sm:70,md:60,lg:60},
-                    height:{xs:60,sm:60,md:60,lg:60},
-                    borderRadius:5,
-                    margin: "0 auto 5px",
-                    padding: "0.9em",
-                }}
+                   width:{xs:50,sm:70,md:60,lg:80},
+                   height:{xs:60,sm:60,md:60,lg:90},
+                   borderRadius:5,
+                   justifyContent:"center"
+                   
+               }}
             >
                <CardMedia
-                    component="img"
-                    height="50"
-                    image="../../images/deposit.png"
-                    alt="alt"
-                    title="i"
-                    sx={{ 
-                      padding: "0em 2em 0 0em", 
-                      objectFit: "contain",
-                     height:{xs:30,sm:30,md:30,lg:30},
-                     width:60
-                    }}
+                     component="img"
+                     height="50"
                      
+                     image="../../images/deposit.png"
+                     alt="alt"
+                     title="i"
+                     sx={{ 
+                       padding: "0.8em 0em 0 0em", 
+                      objectFit: "contain",
+                
+                    }}
                 />
-           <Typography variant="h6" gutterBottom
+        <Typography  gutterBottom
                 sx={{ padding: "1em 0em 0 0em",color:"gray",
                 fontSize:10
+
              }}
            >
-            Deposit
+      Deposit
           </Typography>
             </Card>  
             </Button>
-            {/* <Button
-            onClick={handleClickMoneyTransfer}
-            >
-            <Card
-               raised
-                sx={{
-                   // maxWidth: 100,
-                   width:{xs:60,sm:70,md:60,lg:60},
-                    height:{xs:60,sm:60,md:60,lg:60},
-                    borderRadius:5,
-                    margin: "0 auto 5px",
-                    padding: "0.9em",
-                }}
-            >
-                 <CardMedia
-                    component="img"
-                    height="50"
-                    
-                    image="../../images/transfer.png"
-                    alt="alt"
-                    title="i"
-                    sx={{ 
-                      padding: "0em 2em 0 0em", 
-                      objectFit: "contain",
-                     height:{xs:30,sm:30,md:30,lg:30},
-                     width:60
-                    }}
-                     
-                />
-           <Typography variant="h6" gutterBottom
-                sx={{ padding: "1em 0em 0 0em",color:"gray",
-                fontSize:10
-             }}
-           >
-         MONEY Transfer
-          </Typography>
-            </Card>  
-            </Button> */}
+          
             <Button
              onClick={handleClickWithdraw }
             >
             <Card
-               raised
-                sx={{
-                   // maxWidth: 100,
-                   width:{xs:60,sm:70,md:60,lg:60},
-                   height:{xs:60,sm:60,md:60,lg:60},
-                   borderRadius:5,
-                    margin: "0 auto 5px",
-                    padding: "0.9em",
-                }}
+                 raised
+                 sx={{
+                  // maxWidth: 100,
+                  width:{xs:50,sm:70,md:60,lg:80},
+                  height:{xs:60,sm:60,md:60,lg:90},
+                  borderRadius:5,
+                  justifyContent:"center"
+                  
+              }}
             >
-               <CardMedia
-                    component="img"
-                    height="50"
-                    
-                    image="../../images/withdraw.png"
-                    alt="alt"
-                    title="i"
-                    sx={{ 
-                      padding: "0em 2em 0 0em", 
-                      objectFit: "contain",
-                     height:{xs:30,sm:30,md:30,lg:30},
-                     width:60
-                    }}
+<CardMedia
+                     component="img"
+                     height="50"
                      
+                     image="../../images/withdraw.png"
+                     alt="alt"
+                     title="i"
+                     sx={{ 
+                       padding: "0.8em 0em 0 0em", 
+                      objectFit: "contain",
+                
+                    }}
                 />
-           <Typography variant="h6" gutterBottom
+        <Typography  gutterBottom
                 sx={{ padding: "1em 0em 0 0em",color:"gray",
                 fontSize:10
+
              }}
            >
-            withdraw
+      Withdraw
           </Typography>
             </Card>  
             </Button>

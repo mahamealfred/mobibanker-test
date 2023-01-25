@@ -108,15 +108,7 @@ const user = {
 
   return (
     <React.Fragment>
-         <Box
-      component="main"
-      sx={{
-        flexGrow: 1,
-        py: 6,
-        width: "100vw"
-        
-       
-      }}
+       <Box m="10px"
     >
        <Typography
           

@@ -5,7 +5,7 @@ import LoginRoute from "./Login.routes";
 import Logout from '../pages/logout/Logout';
 import Forgotpassword from '../pages/forgotpassword/Forgotpassword';
 import Resetpassword from '../pages/resetpassword/Resetpassword';
-import FaqPage from '../pages/faqpage'
+import FaqPage from '../pages/faqpage';
 // import DepositReceipt from '../pages/subservicespage/gt/receipt/DepositReceipt';
 // const token =sessionStorage.getItem('mobicash-auth');
 // export default class index extends Component {

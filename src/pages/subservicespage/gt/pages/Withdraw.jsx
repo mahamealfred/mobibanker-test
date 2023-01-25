@@ -272,14 +272,9 @@ fecthData();
         </DialogContent>
       </Dialog>
 
-      <Box
-         component="main"
-         sx={{
-           flexGrow: 1,
-           py: 2,
-           width: "100vw"
-         }}
-      >
+      <Box m="10px"
+    >
+     
       <Typography
           component="h1" variant="h6"
           color="gray"
@@ -398,7 +393,7 @@ fecthData();
                <StyledTableCell align="center">{details.autorisationStatus}</StyledTableCell>
                <StyledTableCell align="center">
                 {
-                  details.autorisationStatus!=="pending"?
+                  details.autorisationStatus==="pending"?
                   <Tooltip title="Approve Transaction" sx={{ mt: 1 }}>
                   <Button
                   onClick={()=>{ 

@@ -347,14 +347,9 @@ fetchData();
     <div>
       <ThemeProvider theme={theme}>
         {/* <CssBaseline /> */}
-        <Box
-      component="main"
-      sx={{
-        flexGrow: 1,
-        py: 1,
-        width: "100vw"
-      }}
+        <Box m="10px"
     >
+     
  
     </Box>
        

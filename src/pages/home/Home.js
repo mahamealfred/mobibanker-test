@@ -147,11 +147,7 @@ const handleClosePageReflesh = () => setOpenPageReflesh(false);
   if(login.users.length === 0){
     setOpenPageReflesh(true)
   }
-  // if ( window.performance) {
-  //   if (login.users.length==0 && performance.navigation.type == 1) {
-  //     setOpenPageReflesh(true)
-  //   } 
-  // }
+
  },[])
  useEffect(() => {
   async function fetchData() {

@@ -342,14 +342,9 @@ fetchData();
     <div>
       <ThemeProvider theme={theme}>
         {/* <CssBaseline /> */}
-        <Box
-      component="main"
-      sx={{
-        flexGrow: 1,
-        py: 1,
-        width: "100vw"
-      }}
+        <Box m="10px"
     >
+     
     </Box>
         <Container component="main" maxWidth="sm" sx={{display:{xs:"block",sm:"block",md:"block",lg:"block"}, mb: 4 }}>
           <Paper

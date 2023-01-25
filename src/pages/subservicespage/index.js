@@ -17,15 +17,7 @@ import {
 const index = (props) => {
   return (
    <React.Fragment>
-      <Box
-      component="main"
-      sx={{
-        flexGrow: 1,
-        py: 2,
-        width: "100vw",
-        height:"100vh"
-    
-      }}
+           <Box m="10px"
     >
       <Container maxWidth="xl">
         <Grid

@@ -61,13 +61,7 @@ export default function MediaCard() {
         <React.Fragment>
       <Grid 
         >
-            <Typography component="h6" variant="body1"
-         fontWeight={800}
-         color="gray"
-         textAlign="center"
-         padding="0 0px 10px 0px"
-         sx={{ fontSize: { xs: 20 } }}
-         >
+              <Typography id="transition-modal-title" textAlign="center" variant="h6" component="h2">
         GTBANK SERVICES
         </Typography>
           <CardMedia

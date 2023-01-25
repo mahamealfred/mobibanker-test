@@ -89,13 +89,8 @@ const Widget = () => {
           <ListItemText
             primary={
               <React.Fragment>
-                <Typography
-                  component="span"
-                  variant="body3"
-                  color="gray"
-                  mt={2}
-                  fontWeight={800}
-                >
+           
+           <Typography id="transition-modal-title" textAlign="center" variant="h6" component="h2">
                       {t("common:knowledgebase")}
                 </Typography>
               </React.Fragment>
@@ -133,13 +128,8 @@ const Widget = () => {
           <ListItemText
             primary={
               <React.Fragment>
-                <Typography
-                  component="span"
-                  variant="body3"
-                  color="gray"
-                  mt={2}
-                  fontWeight={800}
-                >
+             
+            <Typography id="transition-modal-title" textAlign="center" variant="h6" component="h2">
                   {t("common:agentsupport")}
                 </Typography>
               </React.Fragment>

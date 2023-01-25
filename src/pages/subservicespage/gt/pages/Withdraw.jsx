@@ -286,14 +286,13 @@ fecthData();
  {
      numberOfTransaction===0?<>
        <DialogTitle>
-       <Typography variant="h6" textAlign="center" color="text.primary" >
+       <Typography id="transition-modal-title" textAlign="center" variant="h6" component="h2">
        Cash Withdrawal
      </Typography>
        </DialogTitle>
      </>:
      <DialogTitle>
-      <Typography variant="h6" textAlign="center" color="text.primary" 
-      >
+        <Typography id="transition-modal-title" textAlign="center" variant="h6" component="h2">
       {/* PREVIOUS {numberOfTransaction} TRANSACTONS */}
       Cash Withdrawal
      </Typography> 

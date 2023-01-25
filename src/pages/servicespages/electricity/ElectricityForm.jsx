@@ -359,9 +359,8 @@ fetchData();
            justifyContent="center"
            
            >
-            <Typography variant="h6" color="gray" 
-             sx={{ fontSize:{xs:14,md:16,lg:20} }}
-             >
+           
+           <Typography id="transition-modal-title" textAlign="center" variant="h6" component="h2">
          {t("electricity:electricitypaymentservice")}
           </Typography>
            <img

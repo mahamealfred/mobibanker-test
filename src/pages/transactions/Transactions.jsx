@@ -208,9 +208,7 @@ fecthData();
     
 
      <DialogTitle>
-      <Typography variant="h6" textAlign="center" color="text.primary" 
-      >
-
+     <Typography id="transition-modal-title" textAlign="center" variant="h6" component="h2">
     Previous Transactions
      </Typography> 
      </DialogTitle>

@@ -247,7 +247,6 @@ setOpenModal(false)
         open={openModal}
        // onClose={handleClose}
         closeAfterTransition
-       
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
@@ -255,7 +254,6 @@ setOpenModal(false)
       >
         <Fade in={openModal}>
           <Box sx={style}>
-          
             <Typography id="transition-modal-title" textAlign="center" variant="h6" component="h2">
          {t("common:youareabouttobesignedout")}
             </Typography>

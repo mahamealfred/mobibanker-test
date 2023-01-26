@@ -25,6 +25,7 @@ import Transactions from "../pages/transactions/Transactions";
 // const Account=lazy(()=>import("../pages/myaccount/Account"));
 // const MyProfile=lazy(()=>import("../pages/myaccount/AccountProfile"));
 // const FaqPage=lazy(()=>import("../pages/faqpage"));
+import ChangePassword from "../pages/changepassword/Changepassword";
 
 function App() {
   const {path}=useRouteMatch();
@@ -45,6 +46,7 @@ function App() {
                 <PrivateRoute exact path={`${path}/rnit-service`} component={RnitForm} />
                 <PrivateRoute exact path={`${path}/electricity-service`} component={EleCtricityForm} />
                 <PrivateRoute exact path={`${path}/previous-transactions`} component={Transactions} />
+                <PrivateRoute exact path={`${path}/change-pin`} component={ChangePassword} />
                 {/* GT bank */}
                 <PrivateRoute exact path={`${path}/gt-bank-service`} component={SubservicePage} />
                 <PrivateRoute exact path={`${path}/gt-bank-service/open-account`} component={Createaccount} />

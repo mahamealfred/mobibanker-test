@@ -5,8 +5,10 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText,
+  Grid,
   IconButton,
   TextField,
+  Typography,
 } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
 import Alert from '@mui/material/Alert';
@@ -155,7 +157,14 @@ if(errorMessage==''){
            
   return (
    <React.Fragment>
-     <form onSubmit={handleSubmit}>
+    <Grid container spacing={2}
+    justifyContent="center"
+    >
+  <Grid item xs={4}>
+  <form onSubmit={handleSubmit}>
+  <Typography gutterBottom textAlign="center" variant="h6">
+              Change PIN
+            </Typography>
         <DialogContent dividers>
           {
             successFullMessage?null:
@@ -270,6 +279,9 @@ if(errorMessage==''){
         }
         
       </form>
+  </Grid>
+  </Grid>
+    
    </React.Fragment>
   )
 }

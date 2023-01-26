@@ -28,7 +28,7 @@ const navConfig = [
   },
   {
     title: 'Change PIN',
-    path: '/login',
+    path: '/dashboard/change-pin',
     icon: icon('ic_lock'),
   },
 

@@ -160,7 +160,7 @@ if(errorMessage==''){
     <Grid container spacing={2}
     justifyContent="center"
     >
-  <Grid item xs={4}>
+  <Grid item xs={8}>
   <form onSubmit={handleSubmit}>
   <Typography gutterBottom textAlign="center" variant="h6">
               Change PIN

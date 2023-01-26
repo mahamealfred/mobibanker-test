@@ -11,24 +11,7 @@ import { useHistory} from 'react-router-dom';
 //import login from "../../assets/images/login.png";
 
 function Index() {
-//   const navigate=useNavigate()
-  // const [anchorElNav, setAnchorElNav] = React.useState(null);
-  // const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  // const handleOpenNavMenu = (event) => {
-  //   setAnchorElNav(event.currentTarget);
-  // };
-  // const handleOpenUserMenu = (event) => {
-  //   setAnchorElUser(event.currentTarget);
-  // };
-
-  // const handleCloseNavMenu = () => {
-  //   setAnchorElNav(null);
-  // };
-
-  // const handleCloseUserMenu = () => {
-  //   setAnchorElUser(null);
-  // };
   const handleLogin=()=>{
     // navigate("/authentication-signin")
   }
@@ -41,15 +24,7 @@ function Index() {
 <Box >
 <AppBar position="sticky"  sx={{backgroundColor:"white"}}  elevation={1}>
   <Toolbar>
-    {/* <IconButton
-      size="large"
-      edge="start"
-      color="inherit"
-      aria-label="menu"
-      sx={{ mr: 2 }}
-    >
-      <MenuIcon />
-    </IconButton> */}
+   
      <Box
             component="img"
             sx={{
@@ -61,9 +36,7 @@ function Index() {
             alt="Your logo."
             src="../../images/mobibk.png"
         />
-    {/* <Typography variant="h6" component="div" sx={{ flexGrow: 0 }}>
-      News
-    </Typography> */}
+
     <Box sx={{  flexGrow: 0,marginLeft:{xs:0,sm:20,md:70}}}>
     <Tooltip title="Login">
                <IconButton onClick={handleLogin} sx={{ p: 0 }}>

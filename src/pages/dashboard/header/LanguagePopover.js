@@ -29,16 +29,15 @@ const LANGS = [
 export default function LanguagePopover() {
   const { i18n,t } = useTranslation(["home","common","login"]);
   const [open, setOpen] = useState(null);
-
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
   };
-
   const handleClose = () => {
     setOpen(null);
   };
   const handleLanguageChange = (e) => {
-		i18n.changeLanguage(e.target.value);
+		i18n.changeLanguage(e);
+    setOpen(null);
 	};
 
   return (
@@ -79,12 +78,14 @@ export default function LanguagePopover() {
       >
         <Stack spacing={0.75}>
           {LANGS.map((option) => (
-            <MenuItem key={option.value} selected={option.value === LANGS[0].value} onClick={() => handleClose()}
+            <MenuItem key={option.value}  selected={option.value === LANGS[0].value}  
             value={localStorage.getItem("i18nextLng")}
-            // onChange={handleLanguageChange}
+            onClick={(e)=>{
+              handleLanguageChange(option.value)
+            }}
+            // onChange={(e)=>{handleLanguageChange(option.value)}}
             >
               <Box component="img" alt={option.label} src={option.icon} sx={{ width: 28, mr: 2 }} />
-
               {option.label}
             </MenuItem>
           ))}

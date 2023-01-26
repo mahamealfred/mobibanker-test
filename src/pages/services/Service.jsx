@@ -130,7 +130,7 @@ export default function MediaCard() {
                 raised
                 sx={{
                     // maxWidth: 100,
-                    width:{xs:50,sm:70,md:60,lg:80},
+                    width:{xs:50,sm:60,md:60,lg:80},
                     height:{xs:60,sm:60,md:60,lg:90},
                     borderRadius:5,
                     justifyContent:"center"
@@ -159,7 +159,7 @@ export default function MediaCard() {
                 raised
                 sx={{
                   // maxWidth: 100,
-                  width:{xs:50,sm:70,md:60,lg:80},
+                  width:{xs:50,sm:60,md:60,lg:80},
                   height:{xs:60,sm:60,md:60,lg:90},
                   borderRadius:5,
                   justifyContent:"center"
@@ -188,7 +188,7 @@ export default function MediaCard() {
                 raised
                 sx={{
                   // maxWidth: 100,
-                  width:{xs:50,sm:70,md:60,lg:80},
+                  width:{xs:50,sm:60,md:60,lg:80},
                   height:{xs:60,sm:60,md:60,lg:90},
                   borderRadius:5,
                   justifyContent:"center"
@@ -217,7 +217,7 @@ export default function MediaCard() {
                 raised
                 sx={{
                   // maxWidth: 100,
-                  width:{xs:50,sm:70,md:60,lg:80},
+                  width:{xs:50,sm:60,md:60,lg:80},
                   height:{xs:60,sm:60,md:60,lg:90},
                   borderRadius:5,
                   justifyContent:"center"
@@ -258,7 +258,7 @@ export default function MediaCard() {
                 raised
                 sx={{
                   // maxWidth: 100,
-                  width:{xs:50,sm:70,md:60,lg:80},
+                  width:{xs:50,sm:60,md:60,lg:80},
                   height:{xs:60,sm:60,md:60,lg:90},
                   borderRadius:5,
                   justifyContent:"center"
@@ -288,7 +288,7 @@ export default function MediaCard() {
                 raised
                 sx={{
                   // maxWidth: 100,
-                  width:{xs:50,sm:70,md:60,lg:80},
+                  width:{xs:50,sm:60,md:60,lg:80},
                   height:{xs:60,sm:60,md:60,lg:90},
                   borderRadius:5,
                   justifyContent:"center"
@@ -318,7 +318,7 @@ export default function MediaCard() {
                 raised
                 sx={{
                   // maxWidth: 100,
-                  width:{xs:50,sm:70,md:60,lg:80},
+                  width:{xs:50,sm:60,md:60,lg:80},
                   height:{xs:60,sm:60,md:60,lg:90},
                   borderRadius:5,
                   justifyContent:"center"
@@ -362,7 +362,7 @@ export default function MediaCard() {
                 raised
                 sx={{
                   // maxWidth: 100,
-                  width:{xs:50,sm:70,md:60,lg:80},
+                  width:{xs:50,sm:60,md:60,lg:80},
                   height:{xs:60,sm:60,md:60,lg:90},
                   borderRadius:5,
                   justifyContent:"center"

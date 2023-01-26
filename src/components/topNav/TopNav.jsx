@@ -10,6 +10,7 @@ import { Colors, DrawerWidth } from "../styles/theme";
 import { useTranslation } from "react-i18next";
 import CssBaseline from '@mui/material/CssBaseline';
 import i18next from "i18next";
+import LanguagePopover from '../../pages/dashboard/header/LanguagePopover';
 import {
   flexBetweenCenter,
   justifyCenter,
@@ -79,27 +80,7 @@ const TopNav = () => {
         display:{xs:"none",sm:"block"}
       }}
     >
-        <Stack>
-            <Paper elevation={0} sx={justifyCenter}>
-              <Button sx={{ minWidth: 100 }}>
-                <Box sx={{ ...justifyCenter, mr: 1 }}>
-                  <LanguageIcon size={20} sx={{color:"#F9842C"}} />
-                </Box>
-                <FormControl>
-                  <NativeSelect
-                  defaultValue="ki"
-                  value={localStorage.getItem("i18nextLng")}
-                  onChange={handleLanguageChange}
-                  >
-                    
-              <option value="ki">Kinyarwanda</option>
-              <option value="en">English</option>
-              <option value="fr">Français</option>
-                  </NativeSelect>
-                </FormControl>
-              </Button>
-            </Paper>
-          </Stack>
+       <LanguagePopover/>
       </Box>
     
         </Box>

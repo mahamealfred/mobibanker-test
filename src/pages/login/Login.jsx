@@ -20,7 +20,7 @@ import { useInterval } from "./customHooks";
 import AuthContext from '../../context';
 import Paper from "@mui/material/Paper"
 import {  styled } from '@mui/material/styles';
-
+import LanguagePopover from '../dashboard/header/LanguagePopover';
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   textAlign: 'center',
@@ -190,7 +190,11 @@ const SignIn = () => {
            control={<Checkbox value="remember" color="primary" />}
            label={t("login:rememberme")}
          /> */}
-        
+         <Box
+         sx={{display:{xs:"block",sm:"none"}}}
+         >
+      <LanguagePopover/>
+         </Box>
            {!login.loading? 
            <Button
            type="submit"

@@ -311,6 +311,7 @@ export default function MediaCard() {
             </Card>  
             </Button>
             <Button
+            disabled
              onClick={handleMobishuli}
             >
             <Card

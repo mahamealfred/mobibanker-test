@@ -61,13 +61,13 @@ const {auth}=useContext(AuthContext)
       <Box sx={{ mb: 5, mx: 2.5 }}>
         <Link underline="none">
           <StyledAccount>
-            <Avatar  alt="photoURL" />
+            {/* <Avatar  alt="photoURL" /> */}
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
             {auth.names}
               </Typography>
 
-              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+              <Typography variant="body2" textAlign="center" sx={{ color: 'text.secondary' }}>
               Agent
               </Typography>
             </Box>

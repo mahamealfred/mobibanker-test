@@ -11,7 +11,7 @@ import Paper from '@mui/material/Paper';
 
 // import "./cbhiList.css";
 import Box from "@mui/material/Box";
-import { Button, Container, Grid, Tooltip } from "@mui/material";
+import { Alert, Button, CircularProgress, Collapse, Container, Grid, Tooltip } from "@mui/material";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -77,6 +77,7 @@ export default function CustomizedTables() {
  // const todaydate = new Date().toISOString().slice(0, 10);
  const { auth}=React.useContext(AuthContext)
   const transactionsDetails = useSelector((state) => state.transactions);
+  const authorizeTransaction=useSelector((state) => state.authorizeTransaction);
  const dispatch=useDispatch();
   const [agentTransactionsDetails, setAgentTransactionDetails] = useState([]);
   const [limit, setLimit] = useState(40);
@@ -89,7 +90,10 @@ export default function CustomizedTables() {
  const [basicAuth,setBasicAuth]=useState('')
  const [username,setUsername]=useState('')
  const [password,setPassword]=useState('')
-
+ const [passwordError,setPasswordError]=useState('')
+ const [errorMessage,setErrorMessage]=useState('');
+ const [open,setOpen]=React.useState(true);
+ const [openErrorMessage,setOpenErrorMessage]=useState(false)
  const [transactionId,setTransactionId]=useState("")
  
  const [id,setId]=useState("") 
@@ -151,13 +155,7 @@ export default function CustomizedTables() {
     if (token) {
     const {name}=decode(token);
     const {basicAuth}=decode(token)
-    // const {username}=decode(token)
-    // const {password}=decode(token)
-    // await dispatch(transactionsAction(username,password))
     setAgentName(name)
-    // setPassword(password)
-    // setUsername(username)
-    //setBasicAuth(basicAuth)
   }
   }
 fecthData();
@@ -201,30 +199,56 @@ fecthData();
     setOpenApprove(false);
   }
 
-  const handleOpenApprove=(id)=>{
+  const handleCloseErrorMessage=()=>{
    
+    setOpenErrorMessage(false);
+  }
+
+  const handleOpenApprove=(id)=>{
+   authorizeTransaction.details=['']
+   authorizeTransaction.error=['']
     setTransactionId(id)
     setOpenApprove(true)
   }
 
   const handeAuthorization=async()=>{
-   if(transactionId){
-  
-    await dispatch(authorizeTransactionsAction(transactionId,auth))
+    if(password===""){
+      setPasswordError("PIN is required")
+    }
+   else if(transactionId){
+    setPasswordError("")
+    await dispatch(authorizeTransactionsAction(transactionId,auth,password))
    }
 
   }
 
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-  });
+  useEffect(()=>{
+    async function fetchData(){
+     if (!authorizeTransaction.loading) {
+       if (authorizeTransaction.details.length !== 0) {
+         if (authorizeTransaction.details.responseCode === 100) {
+           setOpenApprove(false)
+         } else {
+           return null;
+         }
+       }
+       if (authorizeTransaction.error) {
+         setErrorMessage(authorizeTransaction.error);
+         setOpenErrorMessage(true)
+       }
+     }
+    
+    }
+    fetchData();
+     },[authorizeTransaction.details,authorizeTransaction.error])
+
 
   return (
     <React.Fragment>
 
 <Dialog
         open={openApprove}
-        onClose={handleClose}
+       // onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         
@@ -246,6 +270,26 @@ fecthData();
           <CloseIcon />
         </IconButton>
         </DialogTitle>
+        
+{   !errorMessage ? null : (
+                <Collapse in={openErrorMessage}>
+                    <Alert severity="error"
+                        action={
+                            <IconButton
+                        aria-label="close"
+                        color="inherit"
+                        size="small"onClick={handleCloseErrorMessage}>
+                        <CloseIcon
+                        fontSize="inherit"/></IconButton>
+                        }
+                        sx={
+                            {mb: 0.2}
+                    }>
+                        {errorMessage}  
+                        </Alert>
+                </Collapse>
+            )
+        }
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
           <TextField
@@ -255,26 +299,31 @@ fecthData();
       label="Enter PIN "
       type="password"
       fullWidth
-   
-      // inputProps={{ minLength: 6 }}
       required
-     
+      value={password}
+      onChange={(e)=>setPassword(e.target.value)}
+      helperText={passwordError? passwordError : ""}
+      error={passwordError}
+      // inputProps={{ minLength: 6 }}
     />
-     <Button
+{!authorizeTransaction.loading? 
+           <Button
            type="submit"
            fullWidth
            variant="contained"
            color="warning"
            sx={{ mt: 3, mb: 2 }}
-          onClick={handeAuthorization}
-         > Approve</Button>
+          onClick={handeAuthorization} 
+         > Approve</Button>: 
+         <Box sx={{ display: 'flex',justifyContent:"center" }}>
+         <CircularProgress  sx={{ color: 'orange' }} />
+          </Box>
+         }
           </DialogContentText>
         </DialogContent>
       </Dialog>
-
       <Box m="10px"
     >
-     
       <Typography
           component="h1" variant="h6"
           color="gray"
@@ -363,15 +412,27 @@ fecthData();
          <StyledTableCell align="center">{details.id}</StyledTableCell>
          <StyledTableCell align="center">{(details.amount ).toLocaleString()}</StyledTableCell>
          <StyledTableCell align="center">{details.responseDescription}</StyledTableCell>
-         <StyledTableCell align="center">
-               <Tooltip title="Approve Transaction" sx={{ mt: 1 }}>
-                <Button
-              onClick={handleOpenApprove}
-                    sx={{ mr: 1,color:"gray"}}
-                >
-                <ClearAllIcon fontSize="small"   sx={{ color:"#F9842C" }} />
-                </Button>
+         <StyledTableCell align="center">{details.autorisationStatus}</StyledTableCell>
+               <StyledTableCell align="center">
+                {
+                  details.autorisationStatus==="pending"?
+                  <Tooltip title="Approve Transaction" sx={{ mt: 1 }}>
+                  <Button
+                  onClick={()=>{ 
+                    setTransactionId(details.id)
+                    handleOpenApprove(details.id)
+                  }}
+                      sx={{ mr: 1,color:"gray"}}
+                  >
+                  <ClearAllIcon fontSize="small"   sx={{ color:"#F9842C" }} />
+                  </Button>
+                 </Tooltip>
+                  :
+                  <Tooltip title="Authorized Transaction" sx={{ mt: 1 }}>
+                   
+                <TaskAltIcon fontSize="small"   sx={{ color:"#90EE90" }} />
                </Tooltip>
+                }
                 </StyledTableCell>
          </>:null
        }

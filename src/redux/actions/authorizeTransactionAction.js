@@ -5,31 +5,27 @@ import {
     AUTHORIZE_TRANSACTIONS_FAILURE,
   } from "../types/authorizeTransactionType";
   
-export const authorizeTransactionsAction = (transactionId,auth) => async (dispatch) => {
+export const authorizeTransactionsAction = (transactionId,auth,password) => async (dispatch) => {
   const {username}=auth
-  const {password}=auth
+  // const {password}=auth
  // const {password}=auth
- console.log("all tr",transactionId,auth)
+
   try {
     dispatch(authorizeTransactionsRequest());
-   // let basicAuth='Basic ' + btoa(username + ':' + password);
+    let basicAuth='Basic ' + btoa(username + ':' + password);
+    const Url='https://agencyapi.mobicash.rw/api/banking/finance/rest/v.4.14.01/gt-bank-withdrawal-autorisation';
+  
+  var config = {
+    method: 'get',
+    url: `https://agencyapi.mobicash.rw/api/banking/finance/rest/v.4.14.01/gt-bank-withdrawal-autorisation?transactionId=${transactionId}`,
+    headers: { 
+      'Authorization': `${basicAuth}`
+    }
+  };
+  
+  const res = await axios(config)
 
-    const Url=`https://agencyapi.mobicash.rw/api/banking/finance/rest/v.4.14.01/gt-bank-withdrawal-autorisation`;
-   const res = await axios.get(Url,{
-    params:{ transactionId:transactionId }
-   },{
-    withCredentials: true,
-    headers:{
-    "Accept":"application/json",
-    "Content-Type": "application/json",
-     'Authorization':"Basic " + auth.basicAuth,
-    },
-  auth: {
-    username,
-    password
-  }
-   });
-
+    console.log("response:",res.data)
       if(res.data.responseCode===100){
         dispatch(authorizeTransactionsSuccess(res.data.data));
       }   

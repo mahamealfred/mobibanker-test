@@ -14,8 +14,8 @@ const LANGS = [
   },
   {
     value: 'ki',
-    label: 'German',
-    icon: '/assets/icons/ic_flag_de.svg',
+    label: 'Rwanda',
+    icon: '/assets/icons/ic_flag_ki.png',
   },
   {
     value: 'fr',

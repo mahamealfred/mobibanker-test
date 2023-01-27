@@ -28,6 +28,7 @@ const MENU_OPTIONS = [
 
 export default function AccountPopover() {
   const [open, setOpen] = useState(null);
+
   const history=useHistory()
 const {auth}=useContext(AuthContext)
   const handleOpen = (event) => {
@@ -42,7 +43,12 @@ const {auth}=useContext(AuthContext)
     sessionStorage.removeItem('mobicash-auth')
    return history.push('/display',{push:true})
   }
-
+  function stringAvatar(name) {
+    return {
+    
+      children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+    };
+  }
   return (
     <>
       <IconButton
@@ -62,8 +68,13 @@ const {auth}=useContext(AuthContext)
           }),
         }}
       >
-        {/* <Avatar src={account.photoURL} alt="photoURL" /> */}
+     {/* <Avatar {...stringAvatar()} /> */}
+        {/* <Avatar sx={{ bgcolor: "orange" }}>
+          <img src={auth.image} xs={{objectFit:"contain",width:20,height:20}} alt="photoURL" />
+        </Avatar> */}
         <Avatar  alt="photoURL" />
+
+
       </IconButton>
 
       <Popover

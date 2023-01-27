@@ -1,61 +1,26 @@
 import React from 'react';
-import { useState,useEffect } from 'react';
 import {
   Box,
   Button,
   Card,
   CardContent,
-  CardHeader,
   Divider,
   Grid,
-  TextField,
-  Typography,
   Container,
   CardActions,
-  Avatar,
   CssBaseline,
-  CardMedia
 } from '@mui/material';
-import { getBalanceAction } from '../../redux/actions/getBalanceAction';
-import { useDispatch, useSelector } from "react-redux";
-import jwt from "jsonwebtoken";
+
 import dotenv from "dotenv";
-import moment from "moment";
 import Service from '../services/Service';
 import { useTranslation } from "react-i18next";
 import Widget from '../../components/widget/Widget';
-import { justifyCenter } from '../../components/styles/theme';
 dotenv.config();
-const states = [
-  {
-    value: 'Rubavu',
-    label: 'Rubavu'
-  },
-  {
-    value: 'Gasabo',
-    label: 'Gasabo'
-  },
-  {
-    value: 'Musanze',
-    label: 'Musanze'
-  }
-];
-const user = {
-    avatar: '../../images/balance1.png',
-    avatar2: '../../images/commission.png',
-    city: 'Rubavu',
-    country: 'Rwanda',
-    jobTitle: 'Independ',
-    name: 'Bizimana Jean Claude 2',
-    timezone: 'GTM7'
-  };
+
 
  const HomePage = (props) => {
   const { t } = useTranslation(["home","common","login"]);
   
-  
- 
-
   return (
     <React.Fragment>
          <Box m="10px"

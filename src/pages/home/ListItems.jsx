@@ -22,13 +22,13 @@ import {
     Typography,
   } from '@mui/material';
   import MuiDrawer from '@mui/material/Drawer';
-  import { useMemo, useState,useEffect } from 'react';
-  import { Route, Switch } from 'react-router-dom';
-  import LogoutIcon from '@mui/icons-material/Logout';
+  import {  useState,useEffect } from 'react';
+  import {  Switch } from 'react-router-dom';
+ 
 import LanguageIcon from '@mui/icons-material/Language';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
-import { Person } from '@mui/icons-material';
+
 import Transactions from '../transactions/Transactions';
 import { useHistory } from 'react-router-dom';
 import jwt from "jsonwebtoken";

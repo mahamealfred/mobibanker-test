@@ -1,24 +1,17 @@
 import React ,{useEffect,lazy} from "react"
-import { useTheme } from "@mui/system";
-import Footer from "../footer/Footer";
+
 import Login from "../../pages/login/Login"
 import Widget from "../widget/Widget";
 import {Box} from "@mui/material";
-import Stack from '@mui/material/Stack';
-import {
-  justifyCenter,
- 
-} from '../styles/theme';
+
+
 import {
   CardContent,
   Grid,
   Container,
 
 } from '@mui/material';
-import LanguageIcon from '@mui/icons-material/Language';
-import NativeSelect from '@mui/material/NativeSelect';
-import FormControl from '@mui/material/FormControl';
-import Paper from '@mui/material/Paper';
+
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import Footerr from "../footerr/"

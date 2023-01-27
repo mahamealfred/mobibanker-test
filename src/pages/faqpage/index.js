@@ -7,25 +7,20 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
-// import { tokens } from "../../theme";
+
 
 
 
 const FAQ = () => {
   const theme = useTheme();
-//   const colors = tokens(theme.palette.mode);
+
   return (
     <Box m="10px"
     >
       <Grid
-  // container
-  // spacing={0}
-  // direction="column"
-  // alignItems="center"
-  // justifyContent="center"
-  // style={{ minHeight: '100vh' }}
+
 >
-{/* defaultExpanded */}
+
 <Header title="" subtitle="FAQ" />
      <Accordion  >
     <AccordionSummary  expandIcon={<ExpandMoreIcon />}>

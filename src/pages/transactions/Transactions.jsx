@@ -15,15 +15,9 @@ import { Button, Container, Grid, Tooltip } from "@mui/material";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
-
 import "jspdf-autotable";
-import { CSVLink } from "react-csv";
 import { useSelector } from "react-redux";
-
-import { ButtonGroup, Stack } from "@mui/material";
-
 import SearchIcon from '@mui/icons-material/Search';
-
 import ReactToPrint, { useReactToPrint } from "react-to-print";
 import jwt from "jsonwebtoken";
 import Typography from "@mui/material/Typography";
@@ -57,10 +51,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
-
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
 
 
 
@@ -130,30 +120,7 @@ export default function Transactions() {
       console.log(error);
     }
   };
-  const decode= (token) => {
-    const JWT_SECRET="tokensecret";
-    const payload =jwt.verify(token, JWT_SECRET);
-     return payload;
-  }
-  useEffect(() => {
-  async function fecthData(){
-    const token =localStorage.getItem('mobicashAuth');
-    if (token) {
-    const {name}=decode(token);
-    const {basicAuth}=decode(token)
-    // const {username}=decode(token)
-    // const {password}=decode(token)
-    await dispatch(transactionsAction(username,password))
-    setAgentName(name)
-    // setPassword(password)
-    // setUsername(username)
-    //setBasicAuth(basicAuth)
-  }
-  }
-fecthData();
-
-  }, []);
-
+ 
   useEffect(() => {
     async function fecthData(){
    if(auth){

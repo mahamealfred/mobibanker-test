@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { useState,lazy } from 'react';
+
 // @mui
 import { styled } from '@mui/material/styles';
 //
-import Header from './header';
-import Nav from './nav';
+// import Header from './header';
+// import Nav from './nav';
 
 // ----------------------------------------------------------------------
 
 import {useEffect,useRef} from "react";
 import jwt from "jsonwebtoken";
-import Stack from '@mui/material/Stack';
-import { Avatar, Box, Button, Modal, Typography } from '@mui/material';
-import LanguageIcon from '@mui/icons-material/Language';
+
+import {  Box, Button, Modal, Typography } from '@mui/material';
+
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
-import FireNotification from '../../components/Notifications/FirebaseNotification';
+//import FireNotification from '../../components/Notifications/FirebaseNotification';
 import { useContext } from 'react';
 import AuthContext from '../../context';
 import { useSelector } from 'react-redux';
@@ -23,7 +23,11 @@ import Backdrop from '@mui/material/Backdrop';
 import Fade from '@mui/material/Fade';
 import { useIdleTimer } from 'react-idle-timer';
 import i18next from "i18next";
-import Link from '@mui/material/Link';
+
+
+const FireNotification=lazy(()=>import("../../components/Notifications/FirebaseNotification"));
+const Nav=lazy(()=>import("./nav"));
+const Header=lazy(()=>import("./header"));
 const APP_BAR_MOBILE = 64;
 const APP_BAR_DESKTOP = 92;
 const styles = {
@@ -104,6 +108,7 @@ useEffect(()=>{
           email:login.users.resData.data.email,
           names:login.users.resData.data.names,
           phonenumber:login.users.resData.data.phonenumber,
+          image:login.users.resData.data.image,
           basicAuth:login.users.basicAuth 
         })
          setUsername(login.users.resData.data.username)
@@ -187,13 +192,7 @@ handleStopTime()
 setOpenModal(false)
 }
 
-  const toggleDrawer = () => {
- 
-    setOpen(!open);
-  };
-  const handleLanguageChange = (e) => {
-		i18n.changeLanguage(e.target.value);
-	};
+  
   const handleLogout=()=>{
     localStorage.removeItem('mobicashAuth');
     sessionStorage.removeItem('mobicash-auth')

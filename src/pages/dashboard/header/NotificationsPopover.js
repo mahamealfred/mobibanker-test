@@ -25,7 +25,12 @@ import { fToNow } from '../../../utils/formatTime';
 // components
 import Iconify from '../../../components/iconify';
 import Scrollbar from '../../../components/scrollbar';
-
+import { useSelector } from 'react-redux';
+import { transactionsAction } from '../../../redux/actions/transactionsAction';
+import { useEffect } from 'react';
+import { useContext } from 'react';
+import AuthContext from '../../../context';
+import { useDispatch } from "react-redux";
 // ----------------------------------------------------------------------
 
 const NOTIFICATIONS = [
@@ -78,9 +83,11 @@ const NOTIFICATIONS = [
 
 export default function NotificationsPopover() {
   const [notifications, setNotifications] = useState(NOTIFICATIONS);
-
-  const totalUnRead = notifications.filter((item) => item.isUnRead === true).length;
-
+  const transactionsDetails = useSelector((state) => state.transactions);
+  const {auth}=useContext(AuthContext)
+  const dispatch=useDispatch()
+  // const totalUnRead = notifications.filter((item) => item.isUnRead === true).length;
+  const totalUnRead = transactionsDetails.details?.filter((item) => item.autorisationStatus === "pending").length;
   const [open, setOpen] = useState(null);
 
   const handleOpen = (event) => {
@@ -99,6 +106,16 @@ export default function NotificationsPopover() {
       }))
     );
   };
+
+  useEffect(() => {
+    async function fecthData(){
+   if(auth){
+  await dispatch(transactionsAction(auth))
+   }
+    }
+  fecthData();
+  
+    }, [auth]);
 
   return (
     <>
@@ -126,7 +143,7 @@ export default function NotificationsPopover() {
           <Box sx={{ flexGrow: 1 }}>
             <Typography variant="subtitle1">Notifications</Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              You have {totalUnRead} unread messages
+              You have {totalUnRead} Pending Transactions
             </Typography>
           </Box>
 
@@ -140,34 +157,39 @@ export default function NotificationsPopover() {
         </Box>
 
         <Divider sx={{ borderStyle: 'dashed' }} />
+       {
+        totalUnRead > 0? 
         <Scrollbar sx={{ height: { xs: 340, sm: 'auto' } }}>
-          {/* <List
-            disablePadding
-            subheader={
-              <ListSubheader disableSticky sx={{ py: 1, px: 2.5, typography: 'overline' }}>
-                New
-              </ListSubheader>
-            }
-          >
-            {notifications.slice(0, 2).map((notification) => (
-              <NotificationItem key={notification.id} notification={notification} />
-            ))}
-          </List> */}
+        {/* <List
+          disablePadding
+          subheader={
+            <ListSubheader disableSticky sx={{ py: 1, px: 2.5, typography: 'overline' }}>
+              New
+            </ListSubheader>
+          }
+        >
+          {notifications.slice(0, 2).map((notification) => (
+            <NotificationItem key={notification.id} notification={notification} />
+          ))}
+        </List> */}
 
-          {/* <List
-            disablePadding
-            subheader={
-              <ListSubheader disableSticky sx={{ py: 1, px: 2.5, typography: 'overline' }}>
-                Before that
-              </ListSubheader>
-            }
-          >
-            {notifications.slice(2, 5).map((notification) => (
+        <List
+          disablePadding
+          subheader={
+            <ListSubheader disableSticky sx={{ py: 1, px: 2.5, typography: 'overline' }}>
+            Pending Transactions
+            </ListSubheader>
+          }
+        >
+          {  transactionsDetails.details?.slice(2, 5).map((notification) => (
               <NotificationItem key={notification.id} notification={notification} />
-            ))}
-          </List> */}
-        </Scrollbar>
+          ))}
+        </List>
+      </Scrollbar>
 
+        :null
+       }
+       
         <Divider sx={{ borderStyle: 'dashed' }} />
 
         <Box sx={{ p: 1 }}>
@@ -195,25 +217,33 @@ NotificationItem.propTypes = {
 };
 
 function NotificationItem({ notification }) {
-  const { avatar, title } = renderContent(notification);
+  // const { responseDescription,id } = renderContent(notification);
 
   return (
-    <ListItemButton
+   
+      <ListItemButton
       sx={{
         py: 1.5,
         px: 2.5,
         mt: '1px',
-        ...(notification.isUnRead && {
+        ...(notification.autorisationStatus && {
           bgcolor: 'action.selected',
         }),
       }}
     >
-      <ListItemAvatar>
-        <Avatar sx={{ bgcolor: 'background.neutral' }}>{avatar}</Avatar>
+      
+        <ListItemAvatar>
+        <Avatar sx={{ bgcolor: 'background.neutral' }}>
+          {
+          notification.autorisationStatus==="pending"?notification.id:null
+          }
+          
+          </Avatar>
       </ListItemAvatar>
       <ListItemText
-        primary={title}
+        primary={ notification.autorisationStatus==="pending"?notification.responseDescription:null}
         secondary={
+          notification.autorisationStatus==="pending"?
           <Typography
             variant="caption"
             sx={{
@@ -224,18 +254,25 @@ function NotificationItem({ notification }) {
             }}
           >
             <Iconify icon="eva:clock-outline" sx={{ mr: 0.5, width: 16, height: 16 }} />
-            {fToNow(notification.createdAt)}
+            {
+               notification.autorisationStatus==="pending"?fToNow(notification.operationDate ):null
+            }
+             {/* {fToNow(notification.operationDate )} */}
+           
           </Typography>
+          :null
+          
         }
       />
     </ListItemButton>
+ 
   );
 }
 
 // ----------------------------------------------------------------------
 
 function renderContent(notification) {
-  const title = (
+  const title= (
     <Typography variant="subtitle2">
       {notification.title}
       <Typography component="span" variant="body2" sx={{ color: 'text.secondary' }}>

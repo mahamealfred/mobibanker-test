@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { Send } from '@mui/icons-material';
 import {
   Button,
   DialogActions,
@@ -14,9 +13,6 @@ import { useEffect, useRef, useState } from 'react';
 import Alert from '@mui/material/Alert';
 import Collapse from '@mui/material/Collapse';
 import CloseIcon from '@mui/icons-material/Close';
-// import { login, register } from '../../actions/user';
-// import { useValue } from '../../context/ContextProvider';
-// import GoogleOneTapLogin from './GoogleOneTapLogin';
  import PasswordField from './PasswordField';
  import { changePasswordAction } from '../../redux/actions/changePasswordAction';
  import { useDispatch,useSelector } from 'react-redux';

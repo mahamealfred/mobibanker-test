@@ -21,13 +21,7 @@ import AuthContext from '../../context';
 import Paper from "@mui/material/Paper"
 import {  styled } from '@mui/material/styles';
 import LanguagePopover from '../dashboard/header/LanguagePopover';
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-  height: 60,
-  lineHeight: '60px',
-}));
+
 const TIMEOUT_SECONDS = 15;
 const SignIn = () => {
     const history=useHistory()
@@ -43,18 +37,18 @@ const SignIn = () => {
     const [error, setError] = useState(null);
     //authentication
     const { setAuth,auth } = useContext(AuthContext);
-    useInterval(
-      () => {
-        if (remainingSeconds === 0) {
-          setError("Request has timed out");
-          login.loading=false
-        } else {
-          setError(null);
-          setRemainingSeconds(remainingSeconds - 1);
-        }
-      },
-    login.loading ? 1000 : null // VERY IMPORTANT, must be 1000 or NULL
-    );
+    // useInterval(
+    //   () => {
+    //     if (remainingSeconds === 0) {
+    //       setError("Request has timed out");
+    //       login.loading=false
+    //     } else {
+    //       setError(null);
+    //       setRemainingSeconds(remainingSeconds - 1);
+    //     }
+    //   },
+    // login.loading ? 1000 : null // VERY IMPORTANT, must be 1000 or NULL
+    // );
 
 
       const handleSubmit = async(event) => {
@@ -110,12 +104,8 @@ const SignIn = () => {
          alignItems: 'center',
        }}
      >
-       
-       <Typography component="h1" variant="h5"
-      
-       >
+       <Typography component="h1" variant="h5" >
         {t("login:signin")} 
-       
        </Typography>
        {
              !login.error? null:
@@ -139,7 +129,7 @@ const SignIn = () => {
               </Alert>
             </Collapse>
            }    
-             {
+             {/* {
              !error? null:
               <Collapse in={open}>
               <Alert
@@ -159,7 +149,7 @@ const SignIn = () => {
                {error}
               </Alert>
             </Collapse>
-           }    
+           }     */}
            
        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
          <TextField

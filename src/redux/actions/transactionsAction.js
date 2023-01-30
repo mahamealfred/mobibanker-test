@@ -11,7 +11,7 @@ export const transactionsAction = (auth) => async (dispatch) => {
   try {
     dispatch(transactionsRequest());
    // let basicAuth='Basic ' + btoa(username + ':' + password);
-  console.log("authorization",auth.basicAuth)
+
     const Url='https://agentapi.mobicash.rw/api/agent/utilities/user/rest/v.4.14.01/all-transacion-by-id';
    const res = await axios.post(Url,{},{
     withCredentials: true,

@@ -23,21 +23,19 @@ const messaging = getMessaging();
 const sendToken=async(token)=>{
   const {currentToken}=token
   const {agentId}=token
-  console.log("success token:",currentToken);
+
   if(agentId){
  await axios.post('https://agencyapi.mobicash.rw/api/banking/finance/rest/v.4.14.01/save-token', {
     agent_id:agentId.replace(/[^a-zA-Z0-9 ]/g, ''),
     device_token:currentToken
   })
   .then(function (response) {
-    console.log("success resp:",response);
+return response
   })
   .catch(function (error) {
-    console.log(error);
+   return error
   });
   }
-  
-  
 }
 
 
@@ -62,7 +60,8 @@ export const RequestForToken = () => {
 export const onMessageListener = () =>
   new Promise((resolve) => {
     onMessage(messaging, (payload) => {
-      console.log("payload", payload)
+   
+      
       resolve(payload);
     });
   });

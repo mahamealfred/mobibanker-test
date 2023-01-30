@@ -217,9 +217,6 @@ setOpenModal(false)
   }
  
   }, []);
-
-
-
   return (
     <StyledRoot>
       <FireNotification/>

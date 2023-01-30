@@ -20,7 +20,7 @@ const middleware=applyMiddleware(thunk, promise);
 
 
 //========================correct=========================
-export const store=createStore(allReducers, {}, composeWithDevTools(middleware));
-//export const store=createStore(allReducers, {}, middleware);
+//export const store=createStore(allReducers, {}, composeWithDevTools(middleware));
+export const store=createStore(allReducers, {}, middleware);
 
   

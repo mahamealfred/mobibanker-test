@@ -6,8 +6,10 @@ import {
   } from "../types/loginType";
 
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv"
 export let refreshTokens = [];
 
+dotenv.config()
 const generateAccessToken = (user) => {
   return jwt.sign({ id: user.id, names: user.names,role:user.role }, "mySecretKey", {
     expiresIn: "10m",
@@ -25,7 +27,7 @@ export const loginAction = (user,history) => async (dispatch) => {
     const {username}=user
     const {password}=user 
     const basicAuth = Buffer.from(`${username}:${password}`).toString('base64');
-   const Url='https://agentapi.mobicash.rw/api/agent/user/rest/v.4.14.01/auth';
+   const Url=process.env.REACT_APP_BASE_URL+'/user/rest/v.4.14.01/auth';
    const res = await axios.post(Url,{}, {
       withCredentials: true,
     Headers:{

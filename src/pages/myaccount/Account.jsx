@@ -64,7 +64,7 @@ const user = {
   let today = new Date();
   let time = moment(today).format("l, hh:mm:ss");
   const { auth }=useContext(AuthContext)
-  console.log("authentication datae",auth)
+  
 
   const decode = (token) => {
     const JWT_SECRET = "tokensecret";

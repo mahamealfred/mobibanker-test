@@ -41,7 +41,6 @@ export const loginAction = (user,history) => async (dispatch) => {
     password
   }
    });
-
     const jwt_secret="tokensecret"
     if(res.data.responseCode===100){
       history.push('/dashboard',{push:true})
@@ -54,7 +53,6 @@ export const loginAction = (user,history) => async (dispatch) => {
       const resData=res.data
        dispatch(loginSuccess({resData,password:password,basicAuth:basicAuth}));
      // dispatch(loginSuccess(res.data));
-   
       sessionStorage.setItem('mobicash-auth',token)
       return  sessionStorage.setItem('mobicash-auth',token);
     }

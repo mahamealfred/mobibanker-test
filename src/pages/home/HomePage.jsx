@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Box,
   Button,
@@ -15,12 +15,65 @@ import dotenv from "dotenv";
 import Service from '../services/Service';
 import { useTranslation } from "react-i18next";
 import Widget from '../../components/widget/Widget';
+import { useSelector } from 'react-redux';
 dotenv.config();
 
 
  const HomePage = (props) => {
   const { t } = useTranslation(["home","common","login"]);
-  
+  const getCbhiNidDetails=useSelector((state)=>state.getCbhiNidDetails)
+const cbhiPayment = useSelector((state) => state.cbhiPayment);
+const getElectricityDetails = useSelector((state) => state.getElectricityDetails);
+const electricityPayment = useSelector((state) => state.electricityPayment);
+
+const getLtssIndDetails = useSelector((state) => state.getLtssIndDetails);
+const ltssPayment = useSelector((state) => state.ltssPayment);
+
+const getRnitDetails= useSelector((state) => state.getRnitDetails);
+const rnitPayment = useSelector((state) => state.rnitPayment);
+
+const getDocDetails = useSelector((state) => state.getDocDetails);
+const rraPayment = useSelector((state) => state.rraPayment);
+
+const validateNid=useSelector((state)=>state.validateNid);
+const openAccount=useSelector((state)=>state.openAccount);
+
+const accountValidation=useSelector((state)=>state.accountValidation)
+const deposit=useSelector((state)=>state.deposit)
+
+useEffect(()=>{
+async function fecthData(){
+  getCbhiNidDetails.details=['']
+  cbhiPayment.details=['']
+  getElectricityDetails.details=['']
+  electricityPayment.details=['']
+  getLtssIndDetails.details=['']
+  ltssPayment.details=['']
+  getRnitDetails.details=['']
+  rnitPayment.details=['']
+
+  getDocDetails.details=['']
+  rraPayment.details=['']
+  validateNid.details=['']
+  openAccount.details=['']
+
+  accountValidation.details=['']
+  deposit.details=['']
+}
+fecthData()
+ },[getCbhiNidDetails.details,
+  cbhiPayment.details,
+  getElectricityDetails.details,
+  electricityPayment.details,
+  getLtssIndDetails.details,
+  ltssPayment.details,
+  getRnitDetails.details,
+  rnitPayment.details,
+  getDocDetails.details,
+  rraPayment.details,
+  accountValidation.details,
+  deposit.details
+])
   return (
     <React.Fragment>
          <Box m="10px"

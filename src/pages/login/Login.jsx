@@ -50,7 +50,6 @@ const SignIn = () => {
     // login.loading ? 1000 : null // VERY IMPORTANT, must be 1000 or NULL
     // );
 
-
       const handleSubmit = async(event) => {
           event.preventDefault();
           const data = new FormData(event.currentTarget);

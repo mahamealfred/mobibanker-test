@@ -50,8 +50,7 @@ const EleCtricityForm = ({openELECTRICITY,setOpenELECTRICITY}) => {
   const steps = [`${t("electricity:meternumber")}`, `${t("common:makepayment")}`, `${t("common:viewdetails")}`];
   const [activeStep, setActiveStep] = React.useState(0);
   const dispatch = useDispatch();
-  const getDocDetails = useSelector((state) => state.getDocDetails);
-  const rraPayment = useSelector((state) => state.rraPayment);
+
   const getElectricityDetails = useSelector((state) => state.getElectricityDetails);
   const electricityPayment = useSelector((state) => state.electricityPayment);
   const [formData, setFormData] = useState({

@@ -39,6 +39,7 @@ export const openAccountAction = (details,username,password) => async (dispatch)
  const {cell}=details
   const {village}=details
   const {photo}=details
+  const {initialamount}=details
 
     //const {accountName}=details
     // const {brokering}=details
@@ -47,6 +48,7 @@ export const openAccountAction = (details,username,password) => async (dispatch)
     const Url='https://agencyapi.mobicash.rw/api/agent/user/rest/v.4.14.01/gt-bank-account-opening';
     const res = await axios.post(Url,{
         documentNumber: documentNumber,
+        initialeAmount:initialamount,
         nationality: nationality,
         fatherNames: fatherNames,
         motherNames: motherNames,
@@ -89,7 +91,9 @@ export const openAccountAction = (details,username,password) => async (dispatch)
   username,
   password
 }
+
    });
+   console.log("open account adata:",res)
       if(res.data.responseCode===100){
        await dispatch(openAccountSuccess(res.data));
       }

@@ -225,6 +225,7 @@ export default function Transactions() {
        <StyledTableCell>{t("common:date")}</StyledTableCell>
        <StyledTableCell align="center">{t("common:mobicashreference")}</StyledTableCell>
        <StyledTableCell align="center"> {t("common:amount")} (Rwf)</StyledTableCell>
+       <StyledTableCell align="center">Status</StyledTableCell>
        <StyledTableCell align="center">{t("common:description")}</StyledTableCell>
        <StyledTableCell align="center">{t("common:action")}</StyledTableCell>
      </TableRow>
@@ -235,11 +236,10 @@ export default function Transactions() {
              <>
              {results.slice(0, limit).map((details) => (
        <StyledTableRow key={details.id}  selected={selectedExamIds.indexOf(details.id) !== -1}>
-      
-                 
                  <StyledTableCell component="th" scope="row"> {details.operationDate}</StyledTableCell>
          <StyledTableCell align="center">{details.id}</StyledTableCell>
          <StyledTableCell align="center">{details.amount<0?(details.amount).toLocaleString()*-1:(details.amount).toLocaleString()}</StyledTableCell>
+         <StyledTableCell align="center">{details.autorisationStatus}</StyledTableCell>
          <StyledTableCell align="cenater">{details.responseDescription}</StyledTableCell>
          <StyledTableCell align="cenater">
 
@@ -291,6 +291,7 @@ export default function Transactions() {
                        <StyledTableCell component="th" scope="row"> {details.operationDate}</StyledTableCell>
                <StyledTableCell align="center">{details.id}</StyledTableCell>
                <StyledTableCell align="center">{details.amount<0?(details.amount).toLocaleString()*-1:(details.amount).toLocaleString()}</StyledTableCell>
+               <StyledTableCell align="center">{details.autorisationStatus}</StyledTableCell>
                <StyledTableCell align="center">{details.responseDescription}</StyledTableCell>
                <StyledTableCell align="cenater">
 

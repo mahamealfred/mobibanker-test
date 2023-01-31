@@ -49,6 +49,7 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
   const { i18n,t } = useTranslation(["home","common","login","cbhi"]);
   const getYear = useSelector((state) => state.getYear);
   const getCbhiNidDetails=useSelector((state)=>state.getCbhiNidDetails)
+  const cbhiPayment = useSelector((state) => state.cbhiPayment);
   const componentRef = useRef();
   const dispatch = useDispatch();
   const steps = [`${t("common:nid")}`, `${t("common:makepayment")}`, `${t("common:viewdetails")}`];
@@ -69,7 +70,7 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
   const [open, setOpen] = React.useState(true);
   const [openPayment,setOpenPayment]= React.useState(true);
              //cbhi payment
-  const cbhiPayment = useSelector((state) => state.cbhiPayment);
+
   const [members,setMembers]=useState('');
   const [username,setUsername]=useState('')
   const [houseHoldNID,setHouseHoldNID]=useState('')

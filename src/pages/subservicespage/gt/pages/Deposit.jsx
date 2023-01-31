@@ -1,9 +1,6 @@
 import * as React from "react";
-
-
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-
 import Paper from "@mui/material/Paper";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
@@ -24,7 +21,6 @@ import ReactToPrint from 'react-to-print';
 import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
 import CardMedia from "@mui/material/CardMedia";
-
 import {accountValidationAction } from "../../../../redux/actions/accountValidationAction";
 import { valiateNidDetailsDetailsAction } from "../../../../redux/actions/validateNidAction";
 import { depositAction } from "../../../../redux/actions/depositAction";

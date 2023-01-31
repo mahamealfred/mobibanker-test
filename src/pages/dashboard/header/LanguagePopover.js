@@ -53,7 +53,9 @@ export default function LanguagePopover() {
           }),
         }}
       >
-        <img src={LANGS[0].icon} alt={LANGS[0].label} />
+      
+        <img  src={LANGS[0].icon} alt={LANGS[0].label} />
+      
       </IconButton>
 
       <Popover
@@ -85,7 +87,10 @@ export default function LanguagePopover() {
             }}
             // onChange={(e)=>{handleLanguageChange(option.value)}}
             >
-              <Box component="img" alt={option.label} src={option.icon} sx={{ width: 28, mr: 2 }} />
+          
+                <Box component="img" alt={option.label} src={option.icon} sx={{ width: 28, mr: 2 }} />
+            
+            
               {option.label}
             </MenuItem>
           ))}

@@ -57,7 +57,8 @@ const [niderrorMessage,setNiderrorMessage]=useState("");
     nid: "",
     phoneNumber: "",
     password: "",
-    email:""
+    email:"",
+    initialAmount:""
   });
 const [errorMessage,setErrorMessage]=useState("");
 const [open,setOpen]=React.useState(true);
@@ -106,6 +107,7 @@ const [date,setDate]=useState("")
 const [emailError,setEmailError]=useState("")
 const [phoneNumberError,setPhoneNumberError]=useState("");
 const [passwordError,setPasswordError]=useState("");
+const [initialAmountError,setInitialAmountError]=useState("");
 const [agentPhonenumber,setAgentPhonenumber]=useState("")
 const { auth}=React.useContext(AuthContext)
 
@@ -142,6 +144,7 @@ const { auth}=React.useContext(AuthContext)
          setOpenAccountError={setOpenAccountError}
          phoneNumberError={phoneNumberError}
          emailError={emailError}
+         initialAmountError={initialAmountError}
          />
        );
      case 2:
@@ -197,8 +200,11 @@ const decode= (token) => {
  const handleOpenAccount=async()=>{
   const phoneNumber=formData.phoneNumber
   const telephone=formData.phoneNumber
-
-   if(formData.phoneNumber===""){
+  const initialamount=formData.initialAmount
+if(formData.initialAmount===""){
+setInitialAmountError("Initial Amount is required")
+}
+   else if(formData.phoneNumber===""){
 setPhoneNumberError("Phone number is required")
   }
   else if(!Number(formData.phoneNumber)){
@@ -212,6 +218,7 @@ setPhoneNumberError("Phone number is required")
     setPhoneNumberError("")
     setEmailError("")
     setPasswordError("")
+    setInitialAmountError("")
     const password=formData.password
     let email=""
     if(formData.email===""){
@@ -221,6 +228,7 @@ setPhoneNumberError("Phone number is required")
     }
     await dispatch(openAccountAction({
       documentNumber,
+      initialamount,
       nationality,
       fatherNames,
       motherNames,
@@ -342,6 +350,7 @@ useEffect(() => {
  const handleNewpayment = () => {
   formData.nid = "";
   formData.password = "";
+  formData.initialAmount="";
   validateNid.error=['']
   setNiderrorMessage("");
   validateNid.details=['']
@@ -363,6 +372,7 @@ useEffect(() => {
   formData.phoneNumber = "";
   formData.email = "";
   formData.password = "";
+  formData.initialAmount="";
   validateNid.error=['']
   setNiderrorMessage("");
   validateNid.details=['']

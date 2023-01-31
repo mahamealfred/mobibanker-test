@@ -24,7 +24,8 @@ const Account=({
   openAccountError,
   setOpenAccountError,
   phoneNumberError,
-  emailError
+  emailError,
+  initialAmountError,
  
 })=> {
   const { i18n,t } = useTranslation(["home","common","rra"]);
@@ -99,10 +100,10 @@ const Account=({
             margin="normal"
             size="small" 
             label="Initial Amount"
-            value={formData.email}
-            onChange={(e)=>setFormData({...formData,email:e.target.value})}
-            helperText={emailError? emailError : ""}
-            error={emailError}
+            value={formData.initialAmount}
+            onChange={(e)=>setFormData({...formData,initialAmount:e.target.value})}
+            helperText={initialAmountError? initialAmountError : ""}
+            error={initialAmountError}
             fullWidth
             autoComplete="cc-name"
             variant="filled"

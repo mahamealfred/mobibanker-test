@@ -91,16 +91,17 @@ const Account=({
            {placeOfIssue}
               </Typography>
             </Grid>
+
             <Grid item xs={12} md={6}>
           <TextField
     
             id="cardName"
             margin="normal"
             size="small" 
-            label="Email"
+            label="Initial Amount"
             value={formData.email}
             onChange={(e)=>setFormData({...formData,email:e.target.value})}
-            helperText={emailError? emailError : "Optional"}
+            helperText={emailError? emailError : ""}
             error={emailError}
             fullWidth
             autoComplete="cc-name"
@@ -116,13 +117,29 @@ const Account=({
             label="Phone number"
             value={formData.phoneNumber}
             onChange={(e)=>setFormData({...formData,phoneNumber:e.target.value})}
-           helperText={phoneNumberError? phoneNumberError : "078..."}
+           helperText={phoneNumberError? phoneNumberError : ""}
            error={phoneNumberError}
             fullWidth
             autoComplete="cc-name"
             variant="filled"
           />
         </Grid>
+            <Grid item xs={12} md={6}>
+          <TextField
+            id="cardName"
+            margin="normal"
+            size="small" 
+            label="Email"
+            value={formData.email}
+            onChange={(e)=>setFormData({...formData,email:e.target.value})}
+            helperText={emailError? emailError : "Optional"}
+            error={emailError}
+            fullWidth
+            autoComplete="cc-name"
+            variant="filled"
+          />
+        </Grid>
+       
       
         {/* <Grid item xs={12} md={6}>
           <TextField

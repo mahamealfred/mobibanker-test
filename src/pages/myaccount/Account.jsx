@@ -64,7 +64,6 @@ const user = {
   let today = new Date();
   let time = moment(today).format("l, hh:mm:ss");
   const { auth }=useContext(AuthContext)
-  
 
   const decode = (token) => {
     const JWT_SECRET = "tokensecret";
@@ -89,7 +88,6 @@ const user = {
     }, [auth]);
   useEffect(()=>{
     async function fetchData() {
-     
       if (!balance.loading) {
         if (balance.details){
           setBalanceDetails(balance.details.data)
@@ -99,37 +97,30 @@ const user = {
     fetchData();
   },[!balance.details])
   const handleChange = (event) => {
-
     setValues({
       ...values,
       [event.target.name]: event.target.value
     });
   };
-
   return (
     <React.Fragment>
        <Box m="10px"
     >
-       <Typography
-          
+       <Typography 
           component="h1" variant="h6"
-          
           color="gray"
           textAlign="center"
           padding="0 0px 30px 0px"
           sx={{ fontSize: { xs: 20 },mb:2 }}
-       
         >
        {t("common:accountbalance")}
         </Typography>
       <Container maxWidth="lg">
-       
         <Grid
           container
           spacing={2}
           style={{display:'flex',justifyContent:'center',alignItems:'center'}}
         >
-          
           <Grid
             item
             lg={4}
@@ -137,7 +128,6 @@ const user = {
             xs={12}
           >
         {/* account */}
-   
         <Card {...props}>
     <CardContent>
       <Box

@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Grid} from '@mui/material';
+import { CardActionArea, CardContent, Grid} from '@mui/material';
 
 import { useTranslation } from "react-i18next";
 
@@ -74,8 +74,8 @@ export default function MediaCard() {
                  raised
                  sx={{
                   // maxWidth: 100,
-                  width:{xs:50,sm:70,md:60,lg:80},
-                  height:{xs:60,sm:60,md:60,lg:90},
+                  width:{xs:100,sm:100},
+                  height:{xs:80,sm:80},
                   borderRadius:5,
                   justifyContent:"center"
                   
@@ -97,7 +97,8 @@ export default function MediaCard() {
                 />
            <Typography  gutterBottom
                 sx={{ padding: "1em 0em 0 0em",color:"gray",
-                fontSize:10
+                fontSize:10,
+                fontWeight:800
 
              }}
            >
@@ -112,8 +113,8 @@ export default function MediaCard() {
                   raised
                   sx={{
                    // maxWidth: 100,
-                   width:{xs:50,sm:70,md:60,lg:80},
-                   height:{xs:60,sm:60,md:60,lg:90},
+                   width:{xs:100,sm:100},
+                  height:{xs:80,sm:80},
                    borderRadius:5,
                    justifyContent:"center"
                    
@@ -134,7 +135,8 @@ export default function MediaCard() {
                 />
         <Typography  gutterBottom
                 sx={{ padding: "1em 0em 0 0em",color:"gray",
-                fontSize:10
+                fontSize:10,
+                fontWeight:800
 
              }}
            >
@@ -150,8 +152,8 @@ export default function MediaCard() {
                  raised
                  sx={{
                   // maxWidth: 100,
-                  width:{xs:50,sm:70,md:60,lg:80},
-                  height:{xs:60,sm:60,md:60,lg:90},
+                  width:{xs:100,sm:100},
+                  height:{xs:80,sm:80},
                   borderRadius:5,
                   justifyContent:"center"
                   
@@ -170,17 +172,26 @@ export default function MediaCard() {
                 
                     }}
                 />
-        <Typography  gutterBottom
+          <Typography  gutterBottom
                 sx={{ padding: "1em 0em 0 0em",color:"gray",
-                fontSize:10
+                fontSize:10,
+                fontWeight:800
 
              }}
            >
       Withdraw
           </Typography>
             </Card>  
+          
             </Button>
+
+
+
+
+           
+          
            </Grid>
+         
            {/* <Typography 
             component="h1" variant="body1"
          fontWeight={800}

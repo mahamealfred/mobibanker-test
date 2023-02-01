@@ -176,7 +176,7 @@ export default function Transactions() {
 
      <DialogTitle>
      <Typography id="transition-modal-title" textAlign="center" variant="h6" component="h2">
-    Previous Transactions
+     {t("common:preioustransaction")}
      </Typography> 
      </DialogTitle>
 
@@ -225,7 +225,7 @@ export default function Transactions() {
        <StyledTableCell>{t("common:date")}</StyledTableCell>
        <StyledTableCell align="center">{t("common:mobicashreference")}</StyledTableCell>
        <StyledTableCell align="center"> {t("common:amount")} (Rwf)</StyledTableCell>
-       <StyledTableCell align="center">Status</StyledTableCell>
+       <StyledTableCell align="center"> {t("common:status")}</StyledTableCell>
        <StyledTableCell align="center">{t("common:description")}</StyledTableCell>
        <StyledTableCell align="center">{t("common:action")}</StyledTableCell>
      </TableRow>

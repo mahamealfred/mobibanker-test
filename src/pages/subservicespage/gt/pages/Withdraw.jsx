@@ -336,14 +336,15 @@ fecthData();
      numberOfTransaction===0?<>
        <DialogTitle>
        <Typography id="transition-modal-title" textAlign="center" variant="h6" component="h2">
-       Cash Withdrawal
+       {t("common:cashwithdrawal")}
      </Typography>
        </DialogTitle>
      </>:
      <DialogTitle>
         <Typography id="transition-modal-title" textAlign="center" variant="h6" component="h2">
       {/* PREVIOUS {numberOfTransaction} TRANSACTONS */}
-      Cash Withdrawal
+      
+      {t("common:cashwithdrawal")}
      </Typography> 
      </DialogTitle>
     } 
@@ -393,10 +394,8 @@ fecthData();
        <StyledTableCell align="center">{t("common:mobicashreference")}</StyledTableCell>
        <StyledTableCell align="center"> {t("common:amount")} (Rwf)</StyledTableCell>
        <StyledTableCell align="center">{t("common:description")}</StyledTableCell>
-       <StyledTableCell align="center">Status</StyledTableCell>
+       <StyledTableCell align="center">{t("common:status")}</StyledTableCell>
        <StyledTableCell align="center">{t("common:action")}</StyledTableCell>
-       
-     
      </TableRow>
    </TableHead>
    <TableBody>

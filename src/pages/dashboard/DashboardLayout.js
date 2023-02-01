@@ -41,18 +41,7 @@ const styles = {
   boxShadow: 24,
   p: 4,
 };
-const style = {
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '40%',
-  position: 'absolute',
-  bgcolor: 'background.paper',
-  justifyContent:"center",
-  // border: '2px solid #000',
-  //boxShadow: 24,
-  p: 4,
-};
+
 const StyledRoot = styled('div')({
   display: 'flex',
   minHeight: '100%',
@@ -223,7 +212,7 @@ setOpenModal(false)
       <FireNotification/>
 <Modal
         open={openPageReflesh}
-      // onClose={handleClosePageReflesh}
+        //onClose={handleClosePageReflesh}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >

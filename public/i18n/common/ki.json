@@ -89,7 +89,7 @@
     "paymentdetails":"Ibisobanuro byo Kwishura",
     "transactiondetails":"Ibisobanuro by' igikorwa",
     "clientcharges":"Amafaranga atangwa numu kiriya",
-    "status":"Imiterere",
+    "status":"IMITERERE",
     "phoneisrequired":"Terefone irakenewe",
     "passwordisrequired":"PIN irakenewe",
     "phonemustbeanumeric":"Terefone igomba kuba mubare",
@@ -116,6 +116,7 @@
     "agent":"Ejenti",
     "close":"Funga",
     "pleaseloginagain":"Nyamuneka ongera winjire",
-    "yoursessionhastimedout":"Icyiciro cyawe cyarangiye."
+    "yoursessionhastimedout":"Icyiciro cyawe cyarangiye.",
+    "cashwithdrawal":"Kubikuza amafaranga"
     
  }

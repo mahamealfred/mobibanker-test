@@ -89,7 +89,7 @@
     "paymentdetails":"Détails de paiement",
     "transactiondetails":"DÉTAILS DE LA TRANSACTION",
     "clientcharges":"Frais clients",
-    "status":"Statut",
+    "status":"STATUT",
     "phoneisrequired":"Le téléphone est requis",
     "passwordisrequired":"Le code PIN est requis",
     "phonemustbeanumeric":"Le téléphone doit être un chiffre",
@@ -116,6 +116,7 @@
     "agent":"Agent",
     "close":"Fermer",
     "pleaseloginagain":"Veuillez vous reconnecter",
-    "yoursessionhastimedout":"Votre session a expiré."
+    "yoursessionhastimedout":"Votre session a expiré.",
+    "cashwithdrawal":"Retrait d'espèces"
     
  }

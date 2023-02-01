@@ -159,7 +159,7 @@ if(errorMessage==''){
   <Grid item xs={8}>
   <form onSubmit={handleSubmit}>
   <Typography gutterBottom textAlign="center" variant="h6">
-              Change PIN
+  {t("common:changepassword")}
             </Typography>
         <DialogContent dividers>
           {

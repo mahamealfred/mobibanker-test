@@ -89,7 +89,7 @@
     "paymentdetails":"Payment Details",
     "transactiondetails":"TRANSACTION DETAILS",
     "clientcharges":"Client charges",
-    "status":"Status",
+    "status":"STATUS",
     "phoneisrequired":"Phone is required",
     "passwordisrequired":"PIN is required",
     "phonemustbeanumeric":"Phone must be a numeric",
@@ -117,7 +117,9 @@
     "agent":"Agent",
     "close":"Close",
     "pleaseloginagain":"Please login again",
-    "yoursessionhastimedout":"Your session has timed out."
+    "yoursessionhastimedout":"Your session has timed out.",
+    "cashwithdrawal":"Cash Withdrawal"
+    
    
 
     

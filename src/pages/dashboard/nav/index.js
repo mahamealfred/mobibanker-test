@@ -13,9 +13,14 @@ import Logo from '../../../components/logo';
  import Scrollbar from '../../../components/scrollbar';
 import NavSection from '../../../components/nav-section';
 //
-import navConfig from './config';
-import AuthContext from '../../../context';
 
+//import navConfig from './config';
+import AuthContext from '../../../context';
+import SvgColor from '../../../components/svg-color';
+import { useTranslation } from "react-i18next";
+// ----------------------------------------------------------------------
+
+const icon = (name) => <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />;
 // ----------------------------------------------------------------------
 
 const NAV_WIDTH = 280;
@@ -36,9 +41,43 @@ Nav.propTypes = {
 };
 
 export default function Nav({ openNav, onCloseNav }) {
+  const { t } = useTranslation(["home","common","login"]);
   const { pathname } = useLocation();
 const {auth}=useContext(AuthContext)
   const isDesktop = useResponsive('up', 'lg');
+
+  const navConfig = [
+    {
+      title: `${t("common:services")}`,
+      path: '/dashboard',
+      icon: icon('ic_analytics'),
+    },
+    {
+      title: `${t("common:myaccount")}`,
+      path: '/dashboard/my-account',
+      icon: icon('ic_user'),
+    },
+    {
+      title: `${t("common:preioustransaction")}`,
+      path: '/dashboard/previous-transactions',
+      icon: icon('ic_disabled'),
+    },
+    {
+      title: 'FAQ',
+      path: '/dashboard/faq',
+      icon: icon('ic_blog'),
+    },
+    {
+      title: `${t("common:changepassword")} `,
+      path: '/dashboard/change-pin',
+      icon: icon('ic_lock'),
+    },
+  
+  ];
+
+
+
+
 
   useEffect(() => {
     if (openNav) {
@@ -68,14 +107,14 @@ const {auth}=useContext(AuthContext)
               </Typography>
 
               <Typography variant="body2" textAlign="center" sx={{ color: 'text.secondary' }}>
-              Agent
+              {t("common:agent")} 
               </Typography>
             </Box>
           </StyledAccount>
         </Link>
       </Box>
 
-      <NavSection data={navConfig} />
+      <NavSection data={navConfig } />
 
       <Box sx={{ flexGrow: 1 }} />
 

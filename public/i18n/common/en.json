@@ -111,7 +111,11 @@
     "signedmeout":"log Off",
     "continue":"Stay Logged In",
     "otherservices":"Other services",
-    "invalidIdentificationnumber":"Invalid Identification number"
+    "invalidIdentificationnumber":"Invalid Identification number",
+    "notifications":"Notifications",
+    "youhavependingtransactions":"You have  Pending Transactions",
+    "agent":"Agent",
+    "close":"Close"
    
 
     

@@ -110,6 +110,10 @@
     "signedmeout":"Sohoka",
     "continue":"Guma Kwinjira",
     "otherservices":"Izindi serivisi",
-    "invalidIdentificationnumber":"Inomero y'irangamuntu itemewe"
+    "invalidIdentificationnumber":"Inomero y'irangamuntu itemewe",
+    "notifications":"Kumenyesha",
+    "youhavependingtransactions":"Ufite Ibikorwa Bitegereje",
+    "agent":"Ejenti",
+    "close":"Funga"
     
  }

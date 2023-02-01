@@ -4,10 +4,21 @@ import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
 import AuthContext from '../../../context';
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
 // mocks_
 // import account from '../../../_mock/account';
 
 // ----------------------------------------------------------------------
+
+
+// ----------------------------------------------------------------------
+
+export default function AccountPopover() {
+  const [open, setOpen] = useState(null);
+  const { t } = useTranslation(["home","common","login"]);
+  const history=useHistory()
+const {auth}=useContext(AuthContext)
+
 
 const MENU_OPTIONS = [
   // {
@@ -19,18 +30,12 @@ const MENU_OPTIONS = [
   //   icon: 'eva:person-fill',
   // },
   {
-    label: 'Settings',
+    label: `${t("common:settings")}`,
     icon: 'eva:settings-2-fill',
   },
 ];
 
-// ----------------------------------------------------------------------
 
-export default function AccountPopover() {
-  const [open, setOpen] = useState(null);
-
-  const history=useHistory()
-const {auth}=useContext(AuthContext)
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
   };
@@ -118,7 +123,7 @@ const {auth}=useContext(AuthContext)
         <Divider sx={{ borderStyle: 'dashed' }} />
 
         <MenuItem onClick={handleLogout} sx={{ m: 1 }}>
-          Logout
+        {t("common:logout")}
         </MenuItem>
       </Popover>
     </>

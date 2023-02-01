@@ -31,6 +31,7 @@ import { useEffect } from 'react';
 import { useContext } from 'react';
 import AuthContext from '../../../context';
 import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 // ----------------------------------------------------------------------
 
 const NOTIFICATIONS = [
@@ -83,6 +84,7 @@ const NOTIFICATIONS = [
 
 export default function NotificationsPopover() {
   const [notifications, setNotifications] = useState(NOTIFICATIONS);
+  const { t } = useTranslation(["home","common","login"]);
   const transactionsDetails = useSelector((state) => state.transactions);
   const {auth}=useContext(AuthContext)
   const dispatch=useDispatch()
@@ -136,14 +138,16 @@ export default function NotificationsPopover() {
             mt: 1.5,
             ml: 0.75,
             width: 360,
+            height:"auto"
           },
         }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', py: 2, px: 2.5 }}>
           <Box sx={{ flexGrow: 1 }}>
-            <Typography variant="subtitle1">Notifications</Typography>
+            <Typography variant="subtitle1">{t("common:notifications")}</Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              You have {totalUnRead} Pending Transactions
+            
+              {t("common:youhavependingtransactions")} {totalUnRead}
             </Typography>
           </Box>
 
@@ -177,12 +181,13 @@ export default function NotificationsPopover() {
           disablePadding
           subheader={
             <ListSubheader disableSticky sx={{ py: 1, px: 2.5, typography: 'overline' }}>
-            Pending Transactions
+          {t("common:transactions")}
             </ListSubheader>
           }
         >
-          {  transactionsDetails.details?.slice(2, 5).map((notification) => (
-              <NotificationItem key={notification.id} notification={notification} />
+          {  transactionsDetails.details?.slice(0, 40).map((notification) => (
+            notification.autorisationStatus==="pending"?
+              <NotificationItem key={notification.id} notification={notification} />:null
           ))}
         </List>
       </Scrollbar>
@@ -193,8 +198,8 @@ export default function NotificationsPopover() {
         <Divider sx={{ borderStyle: 'dashed' }} />
 
         <Box sx={{ p: 1 }}>
-          <Button fullWidth disableRipple>
-            View All
+          <Button onClick={handleClose} fullWidth disableRipple>
+          {t("common:close")}
           </Button>
         </Box>
       </Popover>
@@ -233,17 +238,26 @@ function NotificationItem({ notification }) {
     >
       
         <ListItemAvatar>
-        <Avatar sx={{ bgcolor: 'background.neutral' }}>
-          {
+        <Typography
+            variant="caption"
+            sx={{
+              mt: 0.5,
+              display: 'flex',
+              alignItems: 'center',
+              color: 'text.disabled',
+            }}
+          >
+  {
           notification.autorisationStatus==="pending"?notification.id:null
           }
-          
-          </Avatar>
+                
+          </Typography>
+     
       </ListItemAvatar>
       <ListItemText
-        primary={ notification.autorisationStatus==="pending"?notification.responseDescription:null}
+        primary={ notification.responseDescription}
         secondary={
-          notification.autorisationStatus==="pending"?
+          
           <Typography
             variant="caption"
             sx={{
@@ -255,12 +269,12 @@ function NotificationItem({ notification }) {
           >
             <Iconify icon="eva:clock-outline" sx={{ mr: 0.5, width: 16, height: 16 }} />
             {
-               notification.autorisationStatus==="pending"?fToNow(notification.operationDate ):null
+              fToNow(notification.operationDate )
             }
              {/* {fToNow(notification.operationDate )} */}
            
           </Typography>
-          :null
+      
           
         }
       />

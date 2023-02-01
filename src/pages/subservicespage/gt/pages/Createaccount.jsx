@@ -201,6 +201,7 @@ const decode= (token) => {
   const phoneNumber=formData.phoneNumber
   const telephone=formData.phoneNumber
   const initialamount=formData.initialAmount
+  const password=formData.password
 if(formData.initialAmount===""){
 setInitialAmountError("Initial Amount is required")
 }
@@ -219,7 +220,7 @@ setPhoneNumberError("Phone number is required")
     setEmailError("")
     setPasswordError("")
     setInitialAmountError("")
-    const password=formData.password
+    
     let email=""
     if(formData.email===""){
      email="none";

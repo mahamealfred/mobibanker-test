@@ -42,7 +42,9 @@ export default function LanguagePopover() {
 
   return (
     <>
-      <IconButton
+
+
+  <IconButton
         onClick={handleOpen}
         sx={{
           padding: 0,
@@ -53,11 +55,12 @@ export default function LanguagePopover() {
           }),
         }}
       >
-      
-        <img  src={LANGS[0].icon} alt={LANGS[0].label} />
+        {LANGS.map((option) => (
+          localStorage.getItem("i18nextLng")===option.value?
+          <img  src={option.icon} alt={option.label} />:null
+        ))}
       
       </IconButton>
-
       <Popover
         open={Boolean(open)}
         anchorEl={open}
@@ -83,6 +86,7 @@ export default function LanguagePopover() {
             <MenuItem key={option.value} defaultValue={LANGS[1].value}  selected={option.value === LANGS[0].value}  
             value={localStorage.getItem("i18nextLng")}
             onClick={(e)=>{
+              
               handleLanguageChange(option.value)
             }}
             // onChange={(e)=>{handleLanguageChange(option.value)}}

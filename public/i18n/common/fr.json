@@ -110,6 +110,10 @@
     "signedmeout":"Se déconnecter",
     "continue":"Rester connecté",
     "otherservices":"Autres services",
-    "invalidIdentificationnumber":"Numéro d'identification invalide"
+    "invalidIdentificationnumber":"Numéro d'identification invalide",
+    "notifications":"Notifications",
+    "youhavependingtransactions":"Vous avez des transactions en attente",
+    "agent":"Agent",
+    "close":"Fermer"
     
  }

@@ -239,7 +239,7 @@ setOpenModal(false)
           <Button 
               sx={{
                 width:"100%",
-                height:"20px",
+                height:"30px",
                 borderRadius: 0.5
               }}
           onClick={handleLogoutPage} variant="contained">

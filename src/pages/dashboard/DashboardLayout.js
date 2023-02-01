@@ -223,7 +223,7 @@ setOpenModal(false)
       <FireNotification/>
 <Modal
         open={openPageReflesh}
-        onClose={handleClosePageReflesh}
+       // onClose={handleClosePageReflesh}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >

@@ -115,7 +115,9 @@
     "notifications":"Notifications",
     "youhavependingtransactions":"You have  Pending Transactions",
     "agent":"Agent",
-    "close":"Close"
+    "close":"Close",
+    "pleaseloginagain":"Please login again",
+    "yoursessionhastimedout":"Your session has timed out."
    
 
     

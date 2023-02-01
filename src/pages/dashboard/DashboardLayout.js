@@ -223,18 +223,27 @@ setOpenModal(false)
       <FireNotification/>
 <Modal
         open={openPageReflesh}
-       // onClose={handleClosePageReflesh}
+      // onClose={handleClosePageReflesh}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={styles}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-          Your session has timed out.
+      
+         
+          {t("common:yoursessionhastimedout")}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          Please login again
+          {t("common:pleaseloginagain")}
           </Typography>
-          <Button onClick={handleLogoutPage} variant="contained">Login</Button>
+          <Button 
+              sx={{
+                width:"100%",
+                height:"20px",
+                borderRadius: 0.5
+              }}
+          onClick={handleLogoutPage} variant="contained">
+            {t("login:login")}</Button>
         </Box>
       </Modal>
       {/* <IdleTimer ref={idleTimerRef}/> */}
@@ -250,7 +259,7 @@ setOpenModal(false)
         }}
       >
         <Fade in={openModal}>
-          <Box sx={style}>
+          <Box sx={styles}>
             <Typography id="transition-modal-title" textAlign="center" variant="h6" component="h2">
          {t("common:youareabouttobesignedout")}
             </Typography>

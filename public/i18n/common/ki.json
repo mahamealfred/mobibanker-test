@@ -114,6 +114,8 @@
     "notifications":"Kumenyesha",
     "youhavependingtransactions":"Ufite Ibikorwa Bitegereje",
     "agent":"Ejenti",
-    "close":"Funga"
+    "close":"Funga",
+    "pleaseloginagain":"Nyamuneka ongera winjire",
+    "yoursessionhastimedout":"Icyiciro cyawe cyarangiye."
     
  }

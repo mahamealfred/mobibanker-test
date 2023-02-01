@@ -114,6 +114,8 @@
     "notifications":"Notifications",
     "youhavependingtransactions":"Vous avez des transactions en attente",
     "agent":"Agent",
-    "close":"Fermer"
+    "close":"Fermer",
+    "pleaseloginagain":"Veuillez vous reconnecter",
+    "yoursessionhastimedout":"Votre session a expiré."
     
  }

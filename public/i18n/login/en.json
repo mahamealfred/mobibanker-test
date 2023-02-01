@@ -5,6 +5,7 @@
     "usernameisrequired":"Username is required",
     "passwordisrequired":"PIN is required",
     "invalidusernameandpassword":"Invalid credentials,Please provide a valid Username and Password",
-    "blockedmessage":"You have been temporally blocked,due to the failed to logged"
+    "blockedmessage":"You have been temporally blocked,due to the failed to logged",
+    "login":"Login"
     
 }

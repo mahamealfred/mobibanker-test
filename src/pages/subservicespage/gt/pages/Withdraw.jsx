@@ -226,8 +226,9 @@ fecthData();
     async function fetchData(){
      if (!authorizeTransaction.loading) {
        if (authorizeTransaction.details.length !== 0) {
-         if (authorizeTransaction.details.responseCode === 100) {
-           setOpenApprove(false)
+         if (authorizeTransaction.details.responseCode === 204) {
+          setOpenApprove(false)
+          await dispatch(transactionsAction(auth))
          } else {
            return null;
          }
@@ -251,7 +252,6 @@ fecthData();
        // onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
-        
       >
         <DialogTitle id="alert-dialog-title">
           <Typography variant="46" color="gray" >

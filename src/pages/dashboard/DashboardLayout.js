@@ -205,7 +205,6 @@ setOpenModal(false)
     const {name}=decode(token);
     setAgentName(name)
   }
- 
   }, []);
   return (
     <StyledRoot>

@@ -26,8 +26,8 @@ export const authorizeTransactionsAction = (transactionId,auth,password) => asyn
   const res = await axios(config)
 
 
-      if(res.data.responseCode===100){
-        dispatch(authorizeTransactionsSuccess(res.data.data));
+      if(res.data.responseCode===204){
+        dispatch(authorizeTransactionsSuccess(res.data));
       }   
       else{
         dispatch(authorizeTransactionsFailure(res.data.codeDescription));

@@ -24,6 +24,7 @@ import Transactions from "../pages/transactions/Transactions";
 import ChangePassword from "../pages/changepassword/Changepassword";
 const Dashboard=lazy(()=>import("../views/Dashboard"));
  const HomePage=lazy(()=>import("../pages/home/HomePage"));
+ const TopUpMobileMoney=lazy(()=>import("../pages/servicespages/topupmobilemoney"));
 // const Account=lazy(()=>import("../pages/myaccount/Account"));
 // const MyProfile=lazy(()=>import("../pages/myaccount/AccountProfile"));
 // const FaqPage=lazy(()=>import("../pages/faqpage"));
@@ -49,6 +50,7 @@ function App() {
                 <PrivateRoute exact path={`${path}/electricity-service`} component={EleCtricityForm} />
                 <PrivateRoute exact path={`${path}/previous-transactions`} component={Transactions} />
                 <PrivateRoute exact path={`${path}/change-pin`} component={ChangePassword} />
+                <PrivateRoute exact path={`${path}/topup-mobile-money`} component={TopUpMobileMoney} />
                 {/* GT bank */}
                 <PrivateRoute exact path={`${path}/gt-bank-service`} component={SubservicePage} />
                 <PrivateRoute exact path={`${path}/gt-bank-service/open-account`} component={Createaccount} />

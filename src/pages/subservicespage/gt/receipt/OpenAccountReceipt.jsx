@@ -11,8 +11,7 @@ import moment from 'moment';
 import { Paper } from '@mui/material';
 import QRCode from "react-qr-code";
 import logo from "../../../../assets/images/gtlogo.png"
-import "./index.css";
-
+import "../../../../style.css";
 
 export const OpenAccountReceipt = React.forwardRef((props, ref) => {
            

@@ -67,6 +67,7 @@ export default function Transactions() {
   const [search, setSearch] = useState(false);
   const [numberOfTransaction,setNumberOfTransaction]=useState(0)
   const [agentName,setAgentName]=useState('')
+  const [agentPhoneNumber,setAgentPhonenumber]=useState("")
   const componentRef = useRef(null);
  const [basicAuth,setBasicAuth]=useState('')
  const [username,setUsername]=useState('')
@@ -138,6 +139,8 @@ export default function Transactions() {
         if (transactionsDetails.details) {
           setAgentTransactionDetails(transactionsDetails.details);
           setNumberOfTransaction(transactionsDetails.details.length)
+          setAgentPhonenumber(auth.phonenumber)
+          setAgentName(auth.names)
         }
       }
     }
@@ -273,6 +276,7 @@ export default function Transactions() {
                date={date}
                description={description}
                agentName={agentName}
+               agentPhoneNumber={agentPhoneNumber}
                logo={logo}
                />
                 </Box>
@@ -325,6 +329,7 @@ export default function Transactions() {
                date={date}
                description={description}
                agentName={agentName}
+               agentPhoneNumber={agentPhoneNumber}
                logo={logo}
                />
                 </Box>

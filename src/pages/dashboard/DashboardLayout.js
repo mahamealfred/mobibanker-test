@@ -212,14 +212,12 @@ setOpenModal(false)
       <FireNotification/>
 <Modal
         open={openPageReflesh}
-        //onClose={handleClosePageReflesh}
+      //  onClose={handleClosePageReflesh}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={styles}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-      
-         
           {t("common:yoursessionhastimedout")}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>

@@ -110,7 +110,7 @@ const [passwordError,setPasswordError]=useState("");
 const [initialAmountError,setInitialAmountError]=useState("");
 const [agentPhonenumber,setAgentPhonenumber]=useState("")
 const { auth}=React.useContext(AuthContext)
-
+//const basicAuthData = Buffer.from(`${username}:${password}`).toString('base64');
  const getStepContent = (step) => {
    switch (step) {
      case 0:
@@ -215,11 +215,15 @@ setPhoneNumberError("Phone number is required")
   else if(formData.password===""){
     setPasswordError("Agent PIN is required")
       }
+      else if(formData.password!==auth.password){
+        setOpenAccountError("Invalid authentication")
+      }
   else{
     setPhoneNumberError("")
     setEmailError("")
     setPasswordError("")
     setInitialAmountError("")
+    setOpenAccountError("")
     
     let email=""
     if(formData.email===""){

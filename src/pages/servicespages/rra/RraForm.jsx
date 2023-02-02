@@ -85,7 +85,8 @@ const RraForm = ({openRRA,setOpenRRA}) => {
  const [transactionId,setTransactionId]=useState("");
  const [transactionStatus,setTransactionStatus]=useState("");
  const [dateTime,setDateTime]=useState("")
- const [agentName,setAgentName]=useState("")
+ const [agentName,setAgentName]=useState('')
+ const [agentPhoneNumber,setAgentPhonenumber]=useState("")
  const [clientCharges,setClientCharges]=useState("")
  const [password,setPassword]=useState("")
  //all
@@ -150,20 +151,8 @@ const RraForm = ({openRRA,setOpenRRA}) => {
  //authentication data
 
 
- const decode= (token) => {
-   const JWT_SECRET="tokensecret";
-   const payload = jwt.verify(token, JWT_SECRET);
-    return payload;
- }
- useEffect(() => {
-   const token =sessionStorage.getItem('mobicash-auth');
-   if (token) {
-   const {name}=decode(token);
-   setAgentName(name)
- 
- }
 
- }, []);
+
  useEffect(() => {
    async function fetchData() {
      if (!getDocDetails.loading) {
@@ -183,6 +172,8 @@ const RraForm = ({openRRA,setOpenRRA}) => {
            setUsername(auth.username)
            setUserGroup(auth.usergroup)
            setBrokering(auth.brokering)
+           setAgentName(auth.names)
+           setAgentPhonenumber(auth.phonenumber)
            handleNext();
          } else {
            return null;
@@ -436,6 +427,7 @@ fetchData();
                taxPayerName={taxPayerName}
                amountToPay={amountToPay}
                agentName={agentName}
+               agentPhoneNumber={agentPhoneNumber}
                rraRef={rraRef}
                tin={tin}
                taxTypeDesc={taxTypeDesc}

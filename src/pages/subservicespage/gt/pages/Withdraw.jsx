@@ -270,7 +270,6 @@ fecthData();
           <CloseIcon />
         </IconButton>
         </DialogTitle>
-        
 {   !errorMessage ? null : (
                 <Collapse in={openErrorMessage}>
                     <Alert severity="error"
@@ -330,7 +329,6 @@ fecthData();
           textAlign="center"
           padding="0 0px 10px 0px"
           sx={{ fontSize: { xs: 20 },mb:1 }}
-       
         >
  {
      numberOfTransaction===0?<>
@@ -371,9 +369,7 @@ fecthData();
        </Box>
     
         </Container>
-      </Box>
-
-      
+      </Box> 
 <Box 
  sx={{
    
@@ -405,8 +401,7 @@ fecthData();
              {results.slice(0, limit).map((details) => (
        <StyledTableRow key={details.id}  selected={selectedExamIds.indexOf(details.id) !== -1}>
          {
-                 details.type==="agents_account.gtbank_client_account_withdrawal"?<>
-                 
+                 details.type==="gtbank_agent_float_account.gtbank_client_account_withdrawal"?<>  
                  <StyledTableCell component="th" scope="row"> {details.operationDate}</StyledTableCell>
          <StyledTableCell align="center">{details.id}</StyledTableCell>
          <StyledTableCell align="center">{(details.amount ).toLocaleString()}</StyledTableCell>
@@ -443,7 +438,7 @@ fecthData();
              {agentTransactionsDetails.slice(0, limit).map((details) => (
                <StyledTableRow key={details.id}  selected={selectedExamIds.indexOf(details.id) !== -1}>
                {
-                       details.type==="agents_account.gtbank_client_account_withdrawal"?
+                       details.type==="gtbank_agent_float_account.gtbank_client_account_withdrawal"?
                        <>
                        <StyledTableCell component="th" scope="row"> {details.operationDate}</StyledTableCell>
                <StyledTableCell align="center">{details.id}</StyledTableCell>

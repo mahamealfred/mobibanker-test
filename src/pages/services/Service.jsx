@@ -11,7 +11,7 @@ import { Grid, CardHeader, Divider, CssBaseline } from '@mui/material';
 import { useTranslation } from "react-i18next";
 
 import { useHistory } from 'react-router-dom';
-
+import { useRouteMatch } from 'react-router-dom';
 
 export default function MediaCard() {
   
@@ -31,7 +31,7 @@ export default function MediaCard() {
     const handleCloseMTN = () => setOpenMTN(false);
     const handleOpenAIRTEL = () => setOpenAIRTEL(true);
     const handleCloseAIRTEL = () => setOpenAIRTEL(false);
-  
+  const router=useRouteMatch()
     
     const handleOpenLTSS= () => setOpenLTSS(true);
     
@@ -74,7 +74,9 @@ export default function MediaCard() {
    const handleMobishuli=()=>{
     history.push("/dashboard/mobishuli-service",{push:true})
    }
-  
+   const handleTopUp=()=>{
+    history.push("/dashboard/topup-mobile-money",{push:true})
+   }
     return (
         <React.Fragment>
           <CssBaseline/>
@@ -255,8 +257,9 @@ export default function MediaCard() {
             </Card>  
             </Button>
             <Button
-             onClick={()=>setOpenTopUp(true)}
-             disabled
+              onClick={handleTopUp}
+     
+            //  disabled
             >
             <Card
                 raised

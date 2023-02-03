@@ -15,7 +15,7 @@ const banks=[
   },
   {
       value:"GTBank",
-      label:"GT Bank"
+      label:"GTBank"
   },
   {
       value:"Equity",

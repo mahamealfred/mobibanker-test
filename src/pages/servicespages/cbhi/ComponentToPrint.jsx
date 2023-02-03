@@ -159,16 +159,42 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 							<p>RSSB/MUTUELLE</p>
 						</div>
 					</div>
+					<div className="row">
+						<div className="col col_no">
+							
+						</div>
+						<div className="col col_des">
+							<p className="bold">Agent Name</p>
+							{/* <p>Lorem ips</p> */}
+						</div>
+				
+						<div className="col col_total">
+							<p>{props.agentName}</p>
+						</div>
+					</div>
+					<div className="row">
+						<div className="col col_no">
+							
+						</div>
+						<div className="col col_des">
+							<p className="bold">Agent Phone</p>
+							{/* <p>Lorem ips</p> */}
+						</div>
+				
+						<div className="col col_total">
+							<p>{props.agentPhoneNumber}</p>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div className="paymethod_grandtotal_wrap">
-				<div className="paymethod_sec">
+				{/* <div className="paymethod_sec">
 					<p className="bold">AGENT NAME</p>
 					<p>{props.agentName}</p>
-				</div>
+				</div> */}
 				<div className="grandtotal_sec">
 			        <p className="bold">
-			            <span>AMOUNT </span>
+			          
 			            {/* <span>$7500</span> */}
 			        </p>
 			      

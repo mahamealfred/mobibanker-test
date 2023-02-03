@@ -6,7 +6,8 @@
     "invalidemail":"Invalid email",
     "payeremail":"Payer email",
     "selectbank":"Select Bank",
-    "bankaccount":"Bank account"
+    "bankaccount":"Bank account",
+    "accountnumber":"Account Number"
 
 
 }

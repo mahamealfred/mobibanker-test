@@ -88,7 +88,7 @@ const EleCtricityForm = ({openELECTRICITY,setOpenELECTRICITY}) => {
  const [transactionStatus,setTransactionStatus]=useState("");
  const [dateTime,setDateTime]=useState("")
  const [agentName,setAgentName]=useState("")
-
+ const [agentPhoneNumber,setAgentPhoneNumber]=useState("")
  const [payerName,setPayerName]=useState("");
  const [meter,setMeter]=useState("");
  const [amountTopayError,setAmountTopayError]=useState("")
@@ -150,21 +150,6 @@ const EleCtricityForm = ({openELECTRICITY,setOpenELECTRICITY}) => {
        throw new Error("Unknown step");
    }
  };
- const decode= (token) => {
-   const JWT_SECRET="tokensecret";
-   const payload = jwt.verify(token, JWT_SECRET);
-    return payload;
- }
- useEffect(() => {
-   const token =localStorage.getItem('mobicashAuth');
-   if (token) {
-   const {name}=decode(token);
-   setAgentName(name)
-
-   
- }
-
- }, []);
 
  useEffect(() => {
    async function fetchData() {
@@ -175,6 +160,8 @@ const EleCtricityForm = ({openELECTRICITY,setOpenELECTRICITY}) => {
           setUsername(auth.username)
           setBrokering(auth.brokering)
           setUserGroup(auth.usergroup)
+          setAgentName(auth.names)
+          setAgentPhoneNumber(auth.phonenumber)
            handleNext();
          } else {
            return null;
@@ -430,6 +417,7 @@ fetchData();
                 payerName={payerName}
                 amountPaid={amountPaid}
                 agentName={agentName}
+                agentPhoneNumber={agentPhoneNumber}
                 tokenValue={tokenValue}
                 meter={meter}
                 logo={logo}

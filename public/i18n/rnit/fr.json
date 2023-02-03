@@ -6,7 +6,8 @@
     "invalidemail":"Email invalide",
     "payeremail":"Courriel du payeur",
     "selectbank":"Sélectionnez la banque",
-    "bankaccount":"compte bancaire"
+    "bankaccount":"compte bancaire",
+    "accountnumber":"Numéro de compte"
   
 
 }

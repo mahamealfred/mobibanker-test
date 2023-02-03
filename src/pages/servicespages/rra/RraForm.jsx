@@ -86,7 +86,7 @@ const RraForm = ({openRRA,setOpenRRA}) => {
  const [transactionStatus,setTransactionStatus]=useState("");
  const [dateTime,setDateTime]=useState("")
  const [agentName,setAgentName]=useState('')
- const [agentPhoneNumber,setAgentPhonenumber]=useState("")
+ const [agentPhoneNumber,setAgentPhoneNumber]=useState("")
  const [clientCharges,setClientCharges]=useState("")
  const [password,setPassword]=useState("")
  //all
@@ -173,7 +173,7 @@ const RraForm = ({openRRA,setOpenRRA}) => {
            setUserGroup(auth.usergroup)
            setBrokering(auth.brokering)
            setAgentName(auth.names)
-           setAgentPhonenumber(auth.phonenumber)
+           setAgentPhoneNumber(auth.phonenumber)
            handleNext();
          } else {
            return null;

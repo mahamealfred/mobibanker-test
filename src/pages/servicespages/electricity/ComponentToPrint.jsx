@@ -74,12 +74,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 							<p className="bold">Payer Name</p>
 							{/* <p>Lorem ipsum dolor sit.</p> */}
 						</div>
-						{/* <div className="col col_price">
-							<p>$350</p>
-						</div>
-						<div className="col col_qty">
-							<p>2</p>
-						</div> */}
+					
 						<div className="col col_total">
 							<p>{props.payerName} </p>
 						</div>
@@ -92,12 +87,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 							<p className="bold">Meter Number</p>
 							{/* <p>Lorem ipsum dolor sit.</p> */}
 						</div>
-						{/* <div className="col col_price">
-							<p>$350</p>
-						</div>
-						<div className="col col_qty">
-							<p>2</p>
-						</div> */}
+						
 						<div className="col col_total">
 							<p>{props.meter}</p>
 						</div>
@@ -110,12 +100,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 							<p className="bold">Mobicash reference</p>
 							{/* <p>Lorem ipsum dolor sit.</p> */}
 						</div>
-						{/* <div className="col col_price">
-							<p>$120</p>
-						</div>
-						<div className="col col_qty">
-							<p>1</p>
-						</div> */}
+					
 						<div className="col col_total">
 							<p>{props.transactionId}</p>
 						</div>
@@ -128,12 +113,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 							<p className="bold">Token</p>
 							{/* <p>Lorem ipsum dolor sit.</p> */}
 						</div>
-						{/* <div className="col col_price">
-							<p>$350</p>
-						</div>
-						<div className="col col_qty">
-							<p>2</p>
-						</div> */}
+						
 						<div className="col col_total">
 							<p>{props.tokenValue}</p>
 						</div>
@@ -146,23 +126,44 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 							<p className="bold">Description</p>
 							{/* <p>Lorem ips</p> */}
 						</div>
-						{/* <div className="col col_price">
-							<p>$150</p>
-						</div>
-						<div className="col col_qty">
-							<p>1</p>
-						</div> */}
+					
 						<div className="col col_total">
 							<p>Electricity</p>
+						</div>
+					</div>
+					<div className="row">
+						<div className="col col_no">
+							
+						</div>
+						<div className="col col_des">
+							<p className="bold">Agent Name</p>
+							{/* <p>Lorem ips</p> */}
+						</div>
+					
+						<div className="col col_total">
+							<p>{props.agentName}</p>
+						</div>
+					</div>
+					<div className="row">
+						<div className="col col_no">
+							
+						</div>
+						<div className="col col_des">
+							<p className="bold">Agent Phone</p>
+							{/* <p>Lorem ips</p> */}
+						</div>
+					
+						<div className="col col_total">
+							<p>{props.agentPhoneNumber}</p>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div className="paymethod_grandtotal_wrap">
-				<div className="paymethod_sec">
+				{/* <div className="paymethod_sec">
 					<p className="bold">AGENT NAME</p>
 					<p>{props.agentName}</p>
-				</div>
+				</div> */}
 				<div className="grandtotal_sec">
 			        <p className="bold">
 			            <span>AMOUNT </span>

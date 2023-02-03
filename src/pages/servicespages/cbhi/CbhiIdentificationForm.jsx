@@ -90,6 +90,7 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
   const [transactionStatus,setTransactionStatus]=useState("");
   const [dateTime,setDateTime]=useState("");
   const [agentName,setAgentName]=useState("")
+  const [agentPhoneNumber,setAgentPhoneNumber]=useState("");
  const [password,setPassword]=useState("")
   const history = useHistory();
   const { auth }=React.useContext(AuthContext)
@@ -127,6 +128,8 @@ useEffect(()=>{
             setUsername(auth.username)
             setBrokering(auth.brokering)
             setUserGroup(auth.usergroup)
+            setAgentName(auth.names)
+            setAgentPhoneNumber(auth.phonenumber)
           
             handleNext();
            } else {
@@ -448,6 +451,7 @@ useEffect(()=>{
                householdMemberNumber={householdMemberNumber}
                dateTime={dateTime}
                agentName={agentName}
+               agentPhoneNumber={agentPhoneNumber}
                logo={logo}
                />
                </Box>

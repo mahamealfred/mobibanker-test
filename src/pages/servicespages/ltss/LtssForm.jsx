@@ -80,6 +80,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
  const [transactionStatus,setTransactionStatus]=useState("");
  const [dateTime,setDateTime]=useState("")
  const [agentName,setAgentName]=useState("")
+ const [agentPhoneNumber,setAgentPhoneNumber]=useState("")
  const [brokering,setBrokering]=useState("")
  const [amount,setAmount]=useState("");
  const history = useHistory();
@@ -126,22 +127,8 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
         throw new Error("Unknown step");
     }
   };
-  const decode= (token) => {
-    const JWT_SECRET="tokensecret";
-    const payload = jwt.verify(token, JWT_SECRET);
-     return payload;
-  }
-  useEffect(() => {
-    const token =localStorage.getItem('mobicashAuth');
-    if (token) {
 
-    const {name}=decode(token);
 
-    setAgentName(name)
-
-  }
- 
-  }, []);
   useEffect(() => {
     async function fetchData() {
       if (!getLtssIndDetails.loading) {
@@ -152,6 +139,8 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
            setUsername(auth.username);
            setBrokering(auth.brokering);
            setAgentCategory(auth.usergroup)
+           setAgentName(auth.names)
+           setAgentPhoneNumber(auth.phonenumber)
             handleNext();
           } else {
             return null;
@@ -397,6 +386,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
                transactionStatus={transactionStatus}
                payerName={payerName}
                agentName={agentName}
+               agentPhoneNumber={agentPhoneNumber}
                amount={amount}
                logo={logo}
                />

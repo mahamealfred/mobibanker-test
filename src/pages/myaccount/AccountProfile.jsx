@@ -66,12 +66,7 @@ const user = {
       }}
     >
       <Container maxWidth="lg">
-        {/* <Typography
-          sx={{ mb: 3 }}
-          variant="h4"
-        >
-          Profile
-        </Typography> */}
+      
         <Grid
           container
           spacing={3}

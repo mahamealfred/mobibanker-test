@@ -109,6 +109,7 @@ export default function CustomizedTables() {
  const [placeOfIssue,setPlaceOfIssue]=useState("");
  const [documentNumber,setDocumentNumber]=useState("")
  const [nidErrorMessage,setnidrErrorMessage]=useState("")
+ const [image,setImage]=useState("")
   const trimString = (s) => {
     var l = 0,
       r = s.length - 1;
@@ -284,6 +285,7 @@ useEffect(() => {
          setLastName(validateNid.details.data.surnames)
          setPlaceOfIssue(validateNid.details.data.placeOfIssue)
          setDocumentNumber(validateNid.details.data.documentNumber);
+         setImage(validateNid.details.data.photo)
          setOpenNidDialog(false)
          setOpenApprove(true)
         } else {
@@ -426,6 +428,14 @@ NID VERIFICATION
                 </Collapse>
             )
         }
+         <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+     
+    >
+        <img style={{width:120,height:100,objectFit:"contain"}} src={`data:image/png;base64,${image}`}/>
+        </Box>
           <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
            {lastName +" "+firstName} 
               </Typography>

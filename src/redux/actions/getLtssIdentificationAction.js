@@ -6,12 +6,13 @@ import {
     GET_LTSSID_DETAILS_FAILURE,
   } from "../types/getLtssIdentificationDetailsType";
   
-
+  import dotenv from "dotenv"
+  dotenv.config()
 export const getLtssIdDetailsAction = (details,history) => async (dispatch) => {
   try {
     dispatch(getLtssIdDetailsRequest());
     const identificationId=details.identificationId
-    const Url ='https://agentapi.mobicash.rw/api/agent/goverment-services/ltss/rest/v.4.14.01/identification-validation'
+    const Url =process.env.REACT_APP_BASE_URL+'/api/agent/goverment-services/ltss/rest/v.4.14.01/identification-validation'
 
    const res = await axios.get(Url,{
     params:{

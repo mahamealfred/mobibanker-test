@@ -6,13 +6,14 @@ import {
     GET_DOC_DETAILS_FAILURE,
   } from "../types/getDocDetailsType";
   
-
+  import dotenv from "dotenv"
+  dotenv.config()
 export const getDocDetailsAction = (details,history) => async (dispatch) => {
   try {
     dispatch(getDocDetailsRequest());
     const docId=details.docId
    // const Url ='https://agentweb.mobicash.rw/api/agent/goverment-services/rra/rest/v.4.14.01/doc-id-validation'
-    const Url='https://agentapi.mobicash.rw/api/agent/goverment-services/rra/rest/v.4.14.01/doc-id-validation';
+    const Url=process.env.REACT_APP_BASE_URL+'/api/agent/goverment-services/rra/rest/v.4.14.01/doc-id-validation';
 // const res = await axios.post(Url,{
 // details
 // });

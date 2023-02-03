@@ -24,12 +24,7 @@ export default function Review({
           <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
             <ListItemText primary="Account Name" secondary={accountName} />
           </ListItem>
-          {/* <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
-            <ListItemText primary="Account Number" secondary="122334444" />
-          </ListItem> */}
-          {/* <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
-            <ListItemText primary="Depositor" secondary="Uwere Ange" />
-          </ListItem> */}
+        
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary= "Amount deposited" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>

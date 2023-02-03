@@ -14,7 +14,7 @@ export const getBalanceAction = (user) => async (dispatch) => {
    // console.log("oooo",username,password,user)
   //const encodedBase64Token = Buffer.from(`${username}:${password}`).toString('base64');
   //let basicAuth='Basic ' + btoa(username + ':' + password);
-    const Url='https://agentapi.mobicash.rw/api/agent/utilities/user/rest/v.4.14.01/account-balance';
+    const Url=process.env.REACT_APP_BASE_URL+'/api/agent/utilities/user/rest/v.4.14.01/account-balance';
    const res = await axios.get(Url,{
      withCredentials: true,
     headers:{

@@ -4,7 +4,8 @@ import {
     ELECTRICITY_PAYMENT_SUCCESS,
     ELECTRICITY_PAYMENT_FAILURE,
   } from "../types/electricityPaymentType";
-  
+  import dotenv from "dotenv"
+  dotenv.config()
 export const electricityPayamentAction = (details,username,password) => async (dispatch) => {
   try {
     dispatch(electricityPaymentRequest());
@@ -17,7 +18,7 @@ export const electricityPayamentAction = (details,username,password) => async (d
    const {userGroup}=details
     //const encodedBase64Token = Buffer.from(`${username}:${password}`).toString('base64');
     let basicAuth='Basic ' + btoa(username + ':' + password);
-    const Url='https://agentapi.mobicash.rw/api/agent/vas/electricity/rest/v.4.14.01/payment';
+    const Url=process.env.REACT_APP_BASE_URL+'/api/agent/vas/electricity/rest/v.4.14.01/payment';
     const res = await axios.post(Url,{
             amount:amount,
             payerName:payerName,

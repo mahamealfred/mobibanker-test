@@ -5,19 +5,21 @@ import {
   TOPUPMOBILEMONEY_FAILURE,
 } from "../types/topUpMobileMoneyType";
 
-
+import dotenv from "dotenv"
+dotenv.config()
 export const topUpMobileMoneyAction = (details) => async (dispatch) => {
   try {
     dispatch(topUpMobileMoneyRequest());
     const {amount}=details
     const {phone}=details
+    const Url='http://apiagent.mobicash.rw/api/access-momo/rest/v.4.14.01/deposit'
     var data = JSON.stringify({
       "amount": amount,
       "phone": phone
     });
     var config = {
       method: 'post',
-      url: 'http://apiagent.mobicash.rw/api/access-momo/rest/v.4.14.01/deposit',
+      url:Url,
       headers: { 
         'Content-Type': 'application/json'
       },

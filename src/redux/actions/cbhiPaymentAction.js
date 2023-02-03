@@ -4,7 +4,8 @@ import {
     CBHI_PAYMENT_SUCCESS,
     CBHI_PAYMENT_FAILURE,
   } from "../types/cbhiPaymentType";
-  
+  import dotenv from "dotenv"
+  dotenv.config()
 export const cbhiPayamentAction = (details,username,password,history) => async (dispatch) => {
   try {
     dispatch(cbhiPaymentRequest());
@@ -22,7 +23,7 @@ export const cbhiPayamentAction = (details,username,password,history) => async (
    // let errorMessage =''
     //const encodedBase64Token = Buffer.from(`${username}:${password}`).toString('base64');
     let basicAuth='Basic ' + btoa(username + ':' + password);
-    const Url='https://agentapi.mobicash.rw/api/agent/goverment-services/cbhi/rest/v.4.14.01/payment';
+    const Url=process.env.REACT_APP_BASE_URL+'/api/agent/goverment-services/cbhi/rest/v.4.14.01/payment';
     const res = await axios.post(Url,{
     houseHoldNID:houseHoldNID,
     paymentYear:paymentYear,

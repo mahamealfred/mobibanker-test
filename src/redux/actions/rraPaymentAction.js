@@ -5,7 +5,8 @@ import {
     RRA_PAYMENT_FAILURE,
   } from "../types/rraPaymentType";
   
-
+  import dotenv from "dotenv"
+  dotenv.config()
 
 export const rraPayamentAction = (details,username,password,history) => async (dispatch) => {
   try {
@@ -28,7 +29,7 @@ export const rraPayamentAction = (details,username,password,history) => async (d
     //const encodedBase64Token = Buffer.from(`${username}:${password}`).toString('base64');
     let basicAuth='Basic ' + btoa(username + ':' + password);
    // const Url='https://agentweb.mobicash.rw/api/agent/goverment-services/rra/rest/v.4.14.01/payment';
-    const Url='https://agentapi.mobicash.rw/api/agent/goverment-services/rra/rest/v.4.14.01/payment';
+    const Url=process.env.REACT_APP_BASE_URL+'/api/agent/goverment-services/rra/rest/v.4.14.01/payment';
     const res = await axios.post(Url,{
         bankName:bankName,
         rraRef:rraRef,

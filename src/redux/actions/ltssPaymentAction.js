@@ -6,7 +6,8 @@ import {
   } from "../types/ltssPaymentType";
   
 
-
+  import dotenv from "dotenv"
+  dotenv.config()
 export const ltssPaymentAction = (details,username,password) => async (dispatch) => {
   try {
     dispatch(ltssPaymentRequest());
@@ -18,7 +19,7 @@ export const ltssPaymentAction = (details,username,password) => async (dispatch)
     const {brokering}=details
     //const encodedBase64Token = Buffer.from(`${username}:${password}`).toString('base64');
     let basicAuth='Basic ' + btoa(username + ':' + password);
-    const Url='https://agentapi.mobicash.rw/api/agent/goverment-services/ltss/rest/v.4.14.01/payment';
+    const Url=process.env.REACT_APP_BASE_URL+'/api/agent/goverment-services/ltss/rest/v.4.14.01/payment';
     const res = await axios.post(Url,{
       
             identification:identification, 

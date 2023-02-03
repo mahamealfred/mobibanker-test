@@ -196,7 +196,6 @@ const decode= (token) => {
   const payload = jwt.verify(token, JWT_SECRET);
    return payload;
 }
-
  //handle open account
  const handleOpenAccount=async()=>{
   const phoneNumber=formData.phoneNumber
@@ -225,9 +224,8 @@ setPhoneNumberError("Phone number is required")
     setPasswordError("")
     setInitialAmountError("")
     setOpenAccountError("")
-    
     let email=""
-    if(formData.email===""){
+    if(formData.email === ""){
      email="none";
     }else{
      email=formData.email
@@ -265,7 +263,6 @@ setPhoneNumberError("Phone number is required")
       photo
     },username,password))
   }
-
  }
 //render Nid details
 useEffect(() => {
@@ -398,7 +395,6 @@ useEffect(() => {
         {/* <CssBaseline /> */}
         <Box m="10px"
     >
-     
     </Box>
         <Container component="main" maxWidth="sm" sx={{display:{xs:"block",sm:"block",md:"block",lg:"block"}, mb: 4 }}>
           <Paper

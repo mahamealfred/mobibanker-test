@@ -13,11 +13,10 @@ export const authorizeTransactionsAction = (transactionId,auth,password) => asyn
   try {
     dispatch(authorizeTransactionsRequest());
     let basicAuth='Basic ' + btoa(username + ':' + password);
-    const Url='https://agencyapi.mobicash.rw/api/banking/finance/rest/v.4.14.01/gt-bank-withdrawal-autorisation';
-  
+   
   var config = {
     method: 'get',
-    url: `https://agencyapi.mobicash.rw/api/banking/finance/rest/v.4.14.01/gt-bank-withdrawal-autorisation?transactionId=${transactionId}`,
+    url: `https://agencybank.mobicash.rw/api/banking/finance/rest/v.4.14.01/gt-bank-withdrawal-autorisation?transactionId=${transactionId}`,
     headers: { 
       'Authorization': `${basicAuth}`
     }

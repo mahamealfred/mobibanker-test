@@ -5,7 +5,8 @@ import {
     OPEN_ACCOUNT_FAILURE,
   } from "../types/openAccountType";
   
-
+  import dotenv from "dotenv"
+  dotenv.config()
 
 export const openAccountAction = (details,username,password) => async (dispatch) => {
   try {
@@ -45,7 +46,7 @@ export const openAccountAction = (details,username,password) => async (dispatch)
     // const {brokering}=details
     // const {userGroup}=details
     //let basicAuth='Basic ' + btoa(username + ':' + password);
-    const Url='https://agencyapi.mobicash.rw/api/agent/user/rest/v.4.14.01/gt-bank-account-opening';
+    const Url='https://agencybank.mobicash.rw/api/agent/user/rest/v.4.14.01/gt-bank-account-opening';
     const res = await axios.post(Url,{
         documentNumber: documentNumber,
         initialeAmount:initialamount,

@@ -53,7 +53,7 @@ setOpenErrorMessage(false)
         const oldPassword = oldPasswordRef.current.value;
         const password = passwordRef.current.value;
         const confirmPassword = confirmPasswordRef.current.value;
-        console.log("confirm psss ",password,confirmPassword)
+     
         if (password !== confirmPassword){
           setErrMessage("The new PIN and confirmation PIN do not match")
           setOpenErrorMessage(true)

@@ -6,14 +6,15 @@ import {
     GET_ELECTRICITYDETAILS_FAILURE,
   } from "../types/electricityType";
   
-
+  import dotenv from "dotenv"
+  dotenv.config()
 export const getElectricityDetailsAction = (details) => async (dispatch) => {
   try {
     dispatch(getElectricityDetailsRequest());
     const meter=details.meterNumber
   
    // const Url ='https://agentweb.mobicash.rw/api/agent/goverment-services/rra/rest/v.4.14.01/doc-id-validation'
-    const Url='https://agentapi.mobicash.rw/api/agent/vas/electricity/rest/v.4.14.01/meter-number-validation';
+    const Url=process.env.REACT_APP_BASE_URL+'/api/agent/vas/electricity/rest/v.4.14.01/meter-number-validation';
 // const res = await axios.post(Url,{
 // details
 // });

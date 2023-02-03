@@ -6,7 +6,7 @@ import {
   } from "../types/loginType";
 
 import jwt from "jsonwebtoken";
-import dotenv from "dotenv"
+import dotenv from "dotenv";
 export let refreshTokens = [];
 
 dotenv.config()
@@ -27,7 +27,7 @@ export const loginAction = (user,history) => async (dispatch) => {
     const {username}=user
     const {password}=user 
     const basicAuth = Buffer.from(`${username}:${password}`).toString('base64');
-   const Url=process.env.REACT_APP_BASE_URL+'/user/rest/v.4.14.01/auth';
+   const Url=process.env.REACT_APP_BASE_URL+'/api/agent/user/rest/v.4.14.01/auth';
    const res = await axios.post(Url,{}, {
       withCredentials: true,
     Headers:{
@@ -42,7 +42,7 @@ export const loginAction = (user,history) => async (dispatch) => {
   }
    });
     const jwt_secret="tokensecret"
-    if(res.data.responseCode===100 && res.data.data.group==="retail_agents"){
+    if(res.data.responseCode===100 && res.data.data.group==="retail_agents" && res.data.data.agencyBankingStatus===true ){
       history.push('/dashboard',{push:true})
       const userId=res.data.data.id
       const name=res.data.data.names

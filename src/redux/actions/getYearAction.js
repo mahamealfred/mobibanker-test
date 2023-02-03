@@ -5,11 +5,12 @@ import {
     GET_YEAR_SUCCESS,
     GET_YEAR_FAILURE,
   } from "../types/getYearType";
-  
+  import dotenv from "dotenv"
+  dotenv.config()
 export const getYearAction = (history) => async (dispatch) => {
   try {
     dispatch(getYearRequest());
-    const Url ='https://agentapi.mobicash.rw/api/agent/utilities/cbhi/rest/v.4.14.01/year-of-collection'
+    const Url =process.env.REACT_APP_BASE_URL+'/api/agent/utilities/cbhi/rest/v.4.14.01/year-of-collection'
    const res = await axios.get(Url);
  if(res.data.responseCode===100){
   dispatch(getYearSuccess(res.data.data));

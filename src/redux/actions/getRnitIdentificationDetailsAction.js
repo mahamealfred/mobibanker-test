@@ -5,7 +5,8 @@ import {
     GET_RNIT_DETAILS_FAILURE,
   } from "../types/getRnitIdentificationDetailsType";
  
-
+  import dotenv from "dotenv"
+  dotenv.config()
 
 export const getRnitDetailsAction = (identityNumber) => async (dispatch) => {
   try {
@@ -13,7 +14,7 @@ export const getRnitDetailsAction = (identityNumber) => async (dispatch) => {
   
     //const encodedBase64Token = Buffer.from(`${username}:${password}`).toString('base64');
    // let basicAuth='Basic ' + btoa(username + ':' + password);
-    const Url='https://agentapi.mobicash.rw/api/agent/goverment-services/rnit/rest/v.4.14.01/identification-validation';
+    const Url=process.env.REACT_APP_BASE_URL+'/api/agent/goverment-services/rnit/rest/v.4.14.01/identification-validation';
    const res = await axios.get(Url,{
    params:{identification:identityNumber}
    }, {

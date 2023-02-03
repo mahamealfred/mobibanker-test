@@ -4,7 +4,8 @@ import {
     TRANSACTIONS_SUCCESS,
     TRANSACTIONS_FAILURE,
   } from "../types/transactionsType";
-  
+  import dotenv from "dotenv"
+  dotenv.config()
 export const transactionsAction = (auth) => async (dispatch) => {
   const {username}=auth
  // const {password}=auth
@@ -12,7 +13,7 @@ export const transactionsAction = (auth) => async (dispatch) => {
     dispatch(transactionsRequest());
    // let basicAuth='Basic ' + btoa(username + ':' + password);
 
-    const Url='https://agentapi.mobicash.rw/api/agent/utilities/user/rest/v.4.14.01/all-transacion-by-id';
+    const Url=process.env.REACT_APP_BASE_URL+'/api/agent/utilities/user/rest/v.4.14.01/all-transacion-by-id';
    const res = await axios.post(Url,{},{
     withCredentials: true,
     headers:{

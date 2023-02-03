@@ -15,7 +15,7 @@ export const resetPasswordAction = (user,history) => async (dispatch) => {
     const {code}=user
     const {password}=user
     const {cpassword}=user
-    const Url='https://agentapi.mobicash.rw/api/agent/user/rest/v.4.14.01/forgetten-password-change';
+    const Url=process.env.REACT_APP_BASE_URL+'/api/agent/user/rest/v.4.14.01/forgetten-password-change';
    const res = await axios.post(Url,{
     user:username,
     code:code,

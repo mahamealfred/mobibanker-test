@@ -5,7 +5,8 @@ import {
     DEPOSIT_FAILURE,
   } from "../types/depositType";
   
-
+  import dotenv from "dotenv"
+  dotenv.config()
 
 export const depositAction = (details,username,password) => async (dispatch) => {
   try {
@@ -22,7 +23,7 @@ export const depositAction = (details,username,password) => async (dispatch) => 
     // const {brokering}=details
     // const {userGroup}=details
   //  let basicAuth='Basic ' + btoa(username + ':' + password);
-    const Url='https://agencyapi.mobicash.rw/api/banking/finance/rest/v.4.14.01/gt-bank-deposit';
+    const Url='https://agencybank.mobicash.rw/api/banking/finance/rest/v.4.14.01/gt-bank-deposit';
     const res = await axios.post(Url,{
       
         credit: credit,

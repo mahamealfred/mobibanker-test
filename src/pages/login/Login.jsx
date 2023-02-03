@@ -73,7 +73,7 @@ const SignIn = () => {
             setError(null);
             setRemainingSeconds(TIMEOUT_SECONDS);
             await dispatch(loginAction({username: data.get('username'),password: data.get('password')},history));
-            // console.log("authenticstion",Auth.auth)
+           
           }
          
           if(login.error){

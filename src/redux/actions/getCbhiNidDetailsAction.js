@@ -4,7 +4,8 @@ import {
     GET_CBHI_NID_DETAILS_SUCCESS,
     GET_CBHI_NID_DETAILS_FAILURE,
   } from "../types/getCbhiNidDetailsType";
-  
+import dotenv from "dotenv";
+dotenv.config()
 export const getCbhiNidDetailsAction = (details,history) => async (dispatch) => {
   try {
     dispatch(getCbhiNidDetailsRequest());
@@ -14,7 +15,7 @@ export const getCbhiNidDetailsAction = (details,history) => async (dispatch) => 
     //const encodedBase64Token = Buffer.from(`${username}:${password}`).toString('base64');
    // let basicAuth='Basic ' + btoa(username + ':' + password);
   //const Url='https://agentweb.mobicash.rw/api/agent/goverment-services/cbhi/rest/v.4.14.01/nid-validation';
- const Url='https://agentapi.mobicash.rw/api/agent/goverment-services/cbhi/rest/v.4.14.01/nid-validation';
+ const Url=process.env.REACT_APP_BASE_URL+'/api/agent/goverment-services/cbhi/rest/v.4.14.01/nid-validation';
    const res = await axios.get(Url,{
     params:{
       houseHoldNID:nid,

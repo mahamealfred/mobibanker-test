@@ -157,7 +157,7 @@ const user = {
           color="textSecondary"
           variant="body2"
         >
-     {balance.details.data[2].details.availableBalance.toLocaleString()} RWF
+     {balance.details.data[1].details.availableBalance.toLocaleString()} RWF
         </Typography>
            ):"No data"
           }

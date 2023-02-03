@@ -16,7 +16,7 @@ export const changePasswordAction = (user,username) => async (dispatch) => {
    
     //const encodedBase64Token = Buffer.from(`${username}:${password}`).toString('base64');
     //let basicAuth='Basic ' + btoa(username + ':' + password);
-    const Url='https://agentapi.mobicash.rw/api/agent/user/rest/v.4.14.01/change-password';
+    const Url=process.env.REACT_APP_BASE_URL+'/api/agent/user/rest/v.4.14.01/change-password';
    const res = await axios.post(Url,{
     oldPassword:oldPassword.toString(),
     newPassword:password.toString(),

@@ -4,14 +4,14 @@ import {
     ACCOUNT_VALIDATION_SUCCESS,
     ACCOUNT_VALIDATION_FAILURE,
   } from "../types/accountValidationType";
-  
-  
+  import dotenv from "dotenv"
+  dotenv.config()
 export const accountValidationAction = (details) => async (dispatch) => {
   try {
     dispatch(accountValidationRequest());
     const  {accountNumber}=details
  
- const Url='https://agencyapi.mobicash.rw/api/agent/utilities/user/rest/v.4.14.01/gt-bank-account-validation';
+ const Url='https://agencybank.mobicash.rw/api/agent/utilities/user/rest/v.4.14.01/gt-bank-account-validation';
    const res = await axios.get(Url,{
     params:{
         account:accountNumber

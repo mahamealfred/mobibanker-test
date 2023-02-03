@@ -118,7 +118,7 @@ export default function Transactions() {
       }
       setResults(results);
     } catch (error) {
-      console.log(error);
+   return error
     }
   };
  

@@ -31,8 +31,7 @@ export const topUpMobileMoneyAction = (details) => async (dispatch) => {
 //   status = p.retcode
 // }
 //    })
-console.log("i response:",res.data[0].retcode
-)
+
 
     if (res.data[0].retcode=== 500) {
       await dispatch(topUpMobileMoneyFailure(res.data[0].remarks));

@@ -98,7 +98,7 @@ export const OpenAccountReceipt = React.forwardRef((props, ref) => {
 						</div>
 					</div>
                     
-                    <div className="row">
+                    {/* <div className="row">
                     <div className="col col_no">
 						</div>
 						<div className="col col_des">
@@ -109,7 +109,7 @@ export const OpenAccountReceipt = React.forwardRef((props, ref) => {
                             
 							<p>xxxxxx.xx</p>
 						</div>
-					</div>
+					</div> */}
                     <div className="row">
                     <div className="col col_no">
 						</div>

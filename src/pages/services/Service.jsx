@@ -12,10 +12,12 @@ import { useTranslation } from "react-i18next";
 
 import { useHistory } from 'react-router-dom';
 import { useRouteMatch } from 'react-router-dom';
+import AuthContext from '../../context';
 
 export default function MediaCard() {
   
   const { t } = useTranslation(["home","common","login"]);
+  const {auth}=React.useContext(AuthContext)
     const history=useHistory();
     const [openRSSB, setOpenRSSB] = React.useState(false);
     const [openRRA, setOpenRRA] = React.useState(false);
@@ -318,8 +320,10 @@ export default function MediaCard() {
             </Card>  
             </Button>
 </Grid>
-        
-            <Divider variant="middle" />
+        {
+          auth?.agencyBanking===true?
+          <>
+              <Divider variant="middle" />
             <Divider variant="middle" />
             <Typography variant="body2" textAlign="center" sx={{ color: 'text.secondary' }}>
              
@@ -361,7 +365,10 @@ export default function MediaCard() {
          
             </Card>  
             </Button>
-</Grid>
+      </Grid>
+          </>:null
+        }
+        
         <Typography component="h1" variant="h5"
          fontWeight={800}
          color="text.primary"

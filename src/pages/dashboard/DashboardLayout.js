@@ -99,7 +99,8 @@ useEffect(()=>{
           names:login.users.resData.data.names,
           phonenumber:login.users.resData.data.phonenumber,
           image:login.users.resData.data.image,
-          basicAuth:login.users.basicAuth 
+          basicAuth:login.users.basicAuth,
+          agencyBanking:login.users.resData.data.agencyBankingStatus
         })
          setUsername(login.users.resData.data.username)
          setBrokering(login.users.resData.data.brokering)

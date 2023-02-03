@@ -50,7 +50,7 @@ await dispatch(topUpMobileMoneyAction({phone,amount}))
      if (!topUpMobileMoney.loading) {
        if (topUpMobileMoney.details.length !== 0) {
          if (topUpMobileMoney.details[0].retcode === 102) {
-         setSuccessMessage("Youh have Successful TopUp You Money")
+         setSuccessMessage(topUpMobileMoney.details[0].remarks)
          setOpen(true)
          } else {
            return null;

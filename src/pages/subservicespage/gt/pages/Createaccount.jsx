@@ -110,6 +110,7 @@ const [passwordError,setPasswordError]=useState("");
 const [initialAmountError,setInitialAmountError]=useState("");
 const [agentPhonenumber,setAgentPhonenumber]=useState("")
 const { auth}=React.useContext(AuthContext)
+
 //const basicAuthData = Buffer.from(`${username}:${password}`).toString('base64');
  const getStepContent = (step) => {
    switch (step) {

@@ -15,7 +15,7 @@ import { Alert, Button, CircularProgress, Collapse, Container, Grid, Tooltip } f
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
-
+import { valiateNidDetailsDetailsAction } from "../../../../redux/actions/validateNidAction";
 import "jspdf-autotable";
 import { CSVLink } from "react-csv";
 import { useSelector } from "react-redux";
@@ -78,6 +78,7 @@ export default function CustomizedTables() {
  const { auth}=React.useContext(AuthContext)
   const transactionsDetails = useSelector((state) => state.transactions);
   const authorizeTransaction=useSelector((state) => state.authorizeTransaction);
+  const validateNid=useSelector((state)=>state.validateNid);
  const dispatch=useDispatch();
   const [agentTransactionsDetails, setAgentTransactionDetails] = useState([]);
   const [limit, setLimit] = useState(40);
@@ -92,15 +93,22 @@ export default function CustomizedTables() {
  const [password,setPassword]=useState('')
  const [passwordError,setPasswordError]=useState('')
  const [errorMessage,setErrorMessage]=useState('');
+ const [niderrorMessage,setNidErrorMessage]=useState('');
  const [open,setOpen]=React.useState(true);
+ const [openNidDialog,setOpenNidDialog]=React.useState(false);
  const [openErrorMessage,setOpenErrorMessage]=useState(false)
+ const [opennidErrorMessage,setOpennidErrorMessage]=useState(true)
  const [transactionId,setTransactionId]=useState("")
- 
- const [id,setId]=useState("") 
+ const [nidError,setNidError]=useState("")
+ const [nid,setNid]=useState("") 
  const [amount,setAmount]=useState('') 
  const [date,setDate]=useState('')
  const [description,setDescription]=useState('')
-
+ const [firstName,setFirstName]=useState("")
+ const [lastName,setLastName]=useState("");
+ const [placeOfIssue,setPlaceOfIssue]=useState("");
+ const [documentNumber,setDocumentNumber]=useState("")
+ const [nidErrorMessage,setnidrErrorMessage]=useState("")
   const trimString = (s) => {
     var l = 0,
       r = s.length - 1;
@@ -197,18 +205,29 @@ fecthData();
   const handleClose=()=>{
     setTransactionId("")
     setOpenApprove(false);
+    setOpenNidDialog(false)
+  }
+  const handleCloseNid=()=>{
+   setNidError("")
+   setNid("")
+    setOpenNidDialog(false)
   }
 
   const handleCloseErrorMessage=()=>{
    
     setOpenErrorMessage(false);
   }
+  const handleClosenidErrorMessage=()=>{
+   
+    setOpennidErrorMessage(false);
+  }
 
   const handleOpenApprove=(id)=>{
    authorizeTransaction.details=['']
    authorizeTransaction.error=['']
     setTransactionId(id)
-    setOpenApprove(true)
+    setOpenNidDialog(true)
+    // setOpenApprove(true)
   }
 
   const handeAuthorization=async()=>{
@@ -243,9 +262,126 @@ fecthData();
     fetchData();
      },[authorizeTransaction.details,authorizeTransaction.error])
 
+     const handleValidateNid=async()=>{
+      
+      if(nid === ""){
+        setNidError("NID is required")
+      }
+      else{
+        setNidError("")
+        await dispatch(valiateNidDetailsDetailsAction({nid}))
+      }
+     }
+
+     
+//render Nid details
+useEffect(() => {
+  async function fetchData() {
+    if (!validateNid.loading) {
+      if (validateNid.details.length !== 0) {
+        if (validateNid.details.responseCode === 100) {
+         setFirstName(validateNid.details.data.foreName)
+         setLastName(validateNid.details.data.surnames)
+         setPlaceOfIssue(validateNid.details.data.placeOfIssue)
+         setDocumentNumber(validateNid.details.data.documentNumber);
+         setOpenNidDialog(false)
+         setOpenApprove(true)
+        } else {
+          return null;
+        }
+      }
+      if (validateNid.error) {
+        setNidErrorMessage(validateNid.error);
+      }
+    }
+  }
+  fetchData();
+}, [validateNid.details,validateNid.error]);
+
 
   return (
     <React.Fragment>
+
+
+<Dialog
+        open={openNidDialog}
+       // onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          <Typography variant="46" color="gray" >
+NID VERIFICATION
+          </Typography>
+
+          <IconButton
+          aria-label="close"
+          onClick={handleCloseNid}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        </DialogTitle>
+       
+{   !nidErrorMessage ? null : (
+                <Collapse in={opennidErrorMessage}>
+                    <Alert severity="error"
+                        action={
+                            <IconButton
+                        aria-label="close"
+                        color="inherit"
+                        size="small"onClick={handleClosenidErrorMessage}>
+                        <CloseIcon
+                        fontSize="inherit"/></IconButton>
+                        }
+                        sx={
+                            {mb: 0.2}
+                    }>
+                        {nidErrorMessage}  
+                        </Alert>
+                </Collapse>
+            )
+        }
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+          <TextField
+      margin="normal"
+      variant="standard"
+      id="1i"
+      label="Enter NID"
+      type="text"
+      fullWidth
+      required
+      value={nid}
+      onChange={(e)=>setNid(e.target.value)}
+      helperText={nidError? nidError : ""}
+      error={nidError}
+      // inputProps={{ minLength: 6 }}
+    />
+{!validateNid.loading? 
+           <Button
+           type="submit"
+           fullWidth
+           variant="contained"
+           color="warning"
+           sx={{ mt: 3, mb: 2 }}
+          onClick={handleValidateNid} 
+         > Submit</Button>: 
+         <Box sx={{ display: 'flex',justifyContent:"center" }}>
+         <CircularProgress  sx={{ color: 'orange' }} />
+          </Box>
+         }
+          </DialogContentText>
+        </DialogContent>
+      </Dialog>
+
+
+
 
 <Dialog
         open={openApprove}
@@ -270,6 +406,7 @@ fecthData();
           <CloseIcon />
         </IconButton>
         </DialogTitle>
+
 {   !errorMessage ? null : (
                 <Collapse in={openErrorMessage}>
                     <Alert severity="error"
@@ -289,6 +426,12 @@ fecthData();
                 </Collapse>
             )
         }
+          <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
+           {lastName +" "+firstName} 
+              </Typography>
+              <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
+           {documentNumber} 
+              </Typography>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
           <TextField

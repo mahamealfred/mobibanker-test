@@ -117,7 +117,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 				</div> */}
 				<div className="grandtotal_sec">
 			        <p className="bold">
-			            <span>AMOUNT </span>
+			            {/* <span>AMOUNT </span> */}
 			        </p>
 			     
 			        {/* <p>

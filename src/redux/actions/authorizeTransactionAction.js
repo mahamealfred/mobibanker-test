@@ -27,9 +27,12 @@ export const authorizeTransactionsAction = (transactionId,auth,password) => asyn
 
       if(res.data.responseCode===204){
         dispatch(authorizeTransactionsSuccess(res.data));
-      }   
-      else{
+      }  
+      else if(res.data.responseCode!==204){
         dispatch(authorizeTransactionsFailure(res.data.codeDescription));
+      }
+      else{
+        dispatch(authorizeTransactionsFailure("Failed, Please try again later."));
       }
   } catch (err) {
     if (err.response) {

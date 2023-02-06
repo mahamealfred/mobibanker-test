@@ -34,13 +34,16 @@ export const topUpMobileMoneyAction = (details) => async (dispatch) => {
 // }
 //    })
 
-
-    if (res.data[0].retcode=== 500) {
-      await dispatch(topUpMobileMoneyFailure(res.data[0].remarks));
-    }
-    else{
-      await dispatch(topUpMobileMoneySuccess(res.data));
-       }
+if (res.data[0].retcode=== 102) {
+  await dispatch(topUpMobileMoneySuccess(res.data));
+  
+}
+else if(res.data[0].retcode=== 422 || res.data[0].retcode=== 500){
+  await dispatch(topUpMobileMoneyFailure(res.data[0].remarks));
+}
+else{
+ await dispatch(topUpMobileMoneyFailure("Failed, Please try again later."));
+}
 
   } catch (err) {
     if (err.response) {

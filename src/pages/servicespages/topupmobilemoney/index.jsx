@@ -6,7 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import CloseIcon from '@mui/icons-material/Close';
 import Dialog from '@mui/material/Dialog';
-import { topUpMobileMoneyAction } from '../../../redux/actions/topUpMobileMoneyReducer';
+import { topUpMobileMoneyAction } from '../../../redux/actions/topUpMobileMoneyAction';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
@@ -27,6 +27,7 @@ const [open,setOpen]=useState(false)
 
 const [successMessage,setSuccessMessage]=useState("")
 const handleClose=()=>{
+  setSuccessMessage("")
 setOpen(false)
 }
 const handleCloseErrorMessage=()=>{
@@ -53,6 +54,8 @@ await dispatch(topUpMobileMoneyAction({phone,amount}))
          if (topUpMobileMoney.details[0].retcode === 102) {
          setSuccessMessage(topUpMobileMoney.details[0].remarks)
          setOpen(true)
+         setPhone("")
+         setAmount("")
          } else {
            return null;
          }
@@ -121,7 +124,9 @@ await dispatch(topUpMobileMoneyAction({phone,amount}))
                 </Collapse>
             )
         }
-        <DialogContent>
+        {
+          successMessage?null:
+          <DialogContent>
           <DialogContentText id="alert-dialog-description">
           <TextField
       margin="normal"
@@ -166,6 +171,8 @@ await dispatch(topUpMobileMoneyAction({phone,amount}))
           } 
           </DialogContentText>
         </DialogContent>
+        }
+        
 
        </Grid>
       </Grid>

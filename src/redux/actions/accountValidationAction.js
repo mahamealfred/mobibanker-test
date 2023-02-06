@@ -25,10 +25,14 @@ export const accountValidationAction = (details) => async (dispatch) => {
    });
       if(res.data.responseCode===100){
         dispatch(accountValidationSuccess(res.data));
-      }  
-      else{
+      } 
+      else if(res.data.responseCode!==100) {
         let errMsg=res.data.data.reason
         dispatch(accountValidationFailure(errMsg));
+      }
+      else{
+       
+        dispatch(accountValidationFailure("Failed, Please try again later."));
       }
   } catch (err) {
     if (err.response) {

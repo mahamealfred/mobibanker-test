@@ -25,9 +25,12 @@ export const valiateNidDetailsDetailsAction = (details) => async (dispatch) => {
       if(res.data.responseCode===100){
         dispatch(valiateNidDetailsSuccess(res.data));
       }  
+      else if(res.data.responseCode !==100){
+        dispatch(valiateNidDetailsFailure(res.data.codeDescription));
+      }
       else{
       //  let errMsg=res.data.data.reason
-        dispatch(valiateNidDetailsFailure(res.data.codeDescription));
+        dispatch(valiateNidDetailsFailure("Failed, Please try again later."));
       }
   } catch (err) {
     if (err.response) {

@@ -41,6 +41,8 @@ const openAccount=useSelector((state)=>state.openAccount);
 const accountValidation=useSelector((state)=>state.accountValidation)
 const deposit=useSelector((state)=>state.deposit)
 
+const topUpMobileMoney=useSelector((state)=>state.topUpMobileMoney)
+
 useEffect(()=>{
 async function fecthData(){
   getCbhiNidDetails.details=['']
@@ -59,6 +61,7 @@ async function fecthData(){
 
   accountValidation.details=['']
   deposit.details=['']
+  topUpMobileMoney.details=['']
 }
 fecthData()
  },[getCbhiNidDetails.details,
@@ -72,7 +75,8 @@ fecthData()
   getDocDetails.details,
   rraPayment.details,
   accountValidation.details,
-  deposit.details
+  deposit.details,
+  topUpMobileMoney.details
 ])
   return (
     <React.Fragment>

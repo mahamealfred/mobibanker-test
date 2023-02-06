@@ -57,7 +57,7 @@ export const loginAction = (user,history) => async (dispatch) => {
       sessionStorage.setItem('mobicash-auth',token)
       return  sessionStorage.setItem('mobicash-auth',token);
     }
-    else if(res.data.responseCode===100 && res.data.data.group!=="retail_agents"){
+    else if((res.data.responseCode===100 && res.data.data.group!=="retail_agents") || (res.data.responseCode===100 && res.data.data.group==="retail_agents" && res.data.data.agencyBankingStatus===false)){
       dispatch(loginFailure(" Authorized Agent are only allowed, Please contact MobiCash."));
     }
     else{

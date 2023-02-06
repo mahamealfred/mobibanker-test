@@ -11,8 +11,9 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useTranslation } from "react-i18next";
 const Index = () => {
-
+  const { t } = useTranslation(["home","common","login","rra"]);
   const dispatch=useDispatch();
   const topUpMobileMoney=useSelector((state)=>state.topUpMobileMoney)
  const [phone,setPhone]=useState("")
@@ -33,10 +34,10 @@ const handleCloseErrorMessage=()=>{
 }
   const handleSubmit=async()=>{
    if(phone === ""){
-    setPhoneError("Phone mumber is required")
+    setPhoneError(`${t("common:phoneisrequired")}`)
     }
     else if(amount === ""){
-      setAmountError("Amount is required")
+      setAmountError(`${t("common:amounttopayisrequired")}`)
     }else{
 setPhoneError("")
 setAmountError("")
@@ -79,7 +80,7 @@ await dispatch(topUpMobileMoneyAction({phone,amount}))
     >
     
   <Typography id="transition-modal-title" textAlign="center" variant="h6" component="h2">
-  Top Up Mobile Money
+  {t("common:topupmobliemoney")}
           </Typography>
        
 {   !errorMessage ? null : (
@@ -158,7 +159,7 @@ await dispatch(topUpMobileMoneyAction({phone,amount}))
            color="warning"
            sx={{ mt: 3, mb: 2 }}
            onClick={handleSubmit} 
-         > Submit</Button>: 
+         > {t("common:submit")}</Button>: 
           <Box sx={{ display: 'flex',justifyContent:"center" }}>
          <CircularProgress  sx={{ color: 'orange' }} />
           </Box> 

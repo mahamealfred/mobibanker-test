@@ -96,7 +96,7 @@
     "invalidpin":"Invalid PIN, Please provid a valid PIN",
     "nid":"NID",
     "year":"Year",
-    "amounttopayisrequired":"Amount to pay is required",
+    "amounttopayisrequired":"Amount is required",
     "agenytpinisrequired":"Agent PIN is required",
     "amounttopaymustbeanumber":"Amount to pay must be a number",
     "amounttopaycannotexcide2,000,000Rwf":"Amount to pay can not excide 2,000,000 Rwf",
@@ -118,7 +118,8 @@
     "close":"Close",
     "pleaseloginagain":"Please login again",
     "yoursessionhastimedout":"Your session has timed out.",
-    "cashwithdrawal":"Cash Withdrawal"
+    "cashwithdrawal":"Cash Withdrawal",
+    "topupmobliemoney":"Top Up Mobile Money"
     
    
 

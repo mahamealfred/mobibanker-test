@@ -128,7 +128,7 @@ const {auth}=useContext(AuthContext)
 
           <Box sx={{ textAlign: 'center' }}>
             <Typography gutterBottom variant="h6">
-              MobiBanker
+           MobiCash
             </Typography>
 
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>

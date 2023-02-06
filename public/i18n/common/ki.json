@@ -96,7 +96,7 @@
     "invalidpin":"PIN itemewe, Nyamuneka tanga PIN yemewe",
     "nid":"Indangamuntu",
     "year":"Umwaka",
-    "amounttopayisrequired":"Amafaranga yo kwishyura arasabwa",
+    "amounttopayisrequired":"Amafaranga  arasabwa",
     "agenytpinisrequired":"Ijambo banga ry'umu ejenti rirakenewe",
     "amounttopaymustbeanumber":"Amafaranga yo kwishyura agomba kuba umubare",
     "phonenumbermustbe10digit":"Numero ya terefone igomba kuba imibare 10",
@@ -117,6 +117,7 @@
     "close":"Funga",
     "pleaseloginagain":"Nyamuneka ongera winjire",
     "yoursessionhastimedout":"Icyiciro cyawe cyarangiye.",
-    "cashwithdrawal":"Kubikuza amafaranga"
+    "cashwithdrawal":"Kubikuza amafaranga",
+    "topupmobliemoney":"Bitsa Amafaranga Ukorejeje Telefone"
     
  }

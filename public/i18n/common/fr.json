@@ -96,7 +96,7 @@
     "invalidpin":"Code PIN invalide, veuillez fournir un code PIN valide",
     "nid":"Identité nationaled",
     "year":"An",
-    "amounttopayisrequired":"Le montant à payer est requi",
+    "amounttopayisrequired":"Le montant  est requi",
     "agenytpinisrequired":"Le code PIN de l'agent est requis",
     "amounttopaymustbeanumber":"Le montant à payer doit être un nombre",
     "phonenumbermustbe10digit":"Le numéro de téléphone doit être composé de 10 chiffres",
@@ -117,6 +117,7 @@
     "close":"Fermer",
     "pleaseloginagain":"Veuillez vous reconnecter",
     "yoursessionhastimedout":"Votre session a expiré.",
-    "cashwithdrawal":"Retrait d'espèces"
+    "cashwithdrawal":"Retrait d'espèces",
+    "topupmobliemoney":"Recharger Mobile Money"
     
  }

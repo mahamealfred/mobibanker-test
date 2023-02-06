@@ -68,7 +68,7 @@ const SignIn = () => {
             setUsernameError("")
             setPasswordError("")
             setPassword(data.get('password'))
-            login.error=""
+           // login.error=""
            login.loading=true
             setError(null);
             setRemainingSeconds(TIMEOUT_SECONDS);

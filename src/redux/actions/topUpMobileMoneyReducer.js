@@ -12,7 +12,7 @@ export const topUpMobileMoneyAction = (details) => async (dispatch) => {
     dispatch(topUpMobileMoneyRequest());
     const {amount}=details
     const {phone}=details
-    const Url='http://apiagent.mobicash.rw/api/access-momo/rest/v.4.14.01/deposit'
+    const Url=process.env.REACT_APP_BASE_URL+'/api/access-momo/rest/v.4.14.01/deposit'
     var data = JSON.stringify({
       "amount": amount,
       "phone": phone

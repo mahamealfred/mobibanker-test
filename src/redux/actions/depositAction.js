@@ -23,7 +23,7 @@ export const depositAction = (details,username,password) => async (dispatch) => 
     // const {brokering}=details
     // const {userGroup}=details
   //  let basicAuth='Basic ' + btoa(username + ':' + password);
-    const Url='https://agencybank.mobicash.rw/api/banking/finance/rest/v.4.14.01/gt-bank-deposit';
+    const Url=process.env.REACT_APP_BASE+'/api/banking/finance/rest/v.4.14.01/gt-bank-deposit';
     const res = await axios.post(Url,{
       
         credit: credit,
@@ -51,13 +51,12 @@ export const depositAction = (details,username,password) => async (dispatch) => 
       if(res.data.responseCode===100){
        await dispatch(depositSuccess(res.data));
       }
-    //  else if(res.data.responseCode===105){
-    //     await dispatch(depositFailure(res.data.data));
-    //    }
+      else if(res.data.responseCode!==100){
+        await dispatch(depositFailure(res.data.data)); 
+      }
       else{
-        await dispatch(depositFailure(res.data.codeDescription));
+        await dispatch(depositFailure("Failed, Please try again later."));
        }
-   
   } catch (err) {
     if (err.response) {
        let errorMessage = 'Something went wrong, Please try again.'

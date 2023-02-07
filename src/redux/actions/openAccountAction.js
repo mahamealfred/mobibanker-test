@@ -46,7 +46,7 @@ export const openAccountAction = (details,username,password) => async (dispatch)
     // const {brokering}=details
     // const {userGroup}=details
     //let basicAuth='Basic ' + btoa(username + ':' + password);
-    const Url='https://agencybank.mobicash.rw/api/agent/user/rest/v.4.14.01/gt-bank-account-opening';
+    const Url=process.env.REACT_APP_BASE+'/api/agent/user/rest/v.4.14.01/gt-bank-account-opening';
     const res = await axios.post(Url,{
         documentNumber: documentNumber,
         initialeAmount:initialamount,
@@ -94,12 +94,15 @@ export const openAccountAction = (details,username,password) => async (dispatch)
 }
 
    });
-console.log("response from:",res)
+
       if(res.data.responseCode===100){
        await dispatch(openAccountSuccess(res.data));
       }
+      else if(res.data.responseCode!==100){
+        await dispatch(openAccountFailure(res.data.data)); 
+      }
       else{
-        await dispatch(openAccountFailure(res.data.codeDescription));
+        await dispatch(openAccountFailure("Failed, Please try again later."));
        }
    
   } catch (err) {

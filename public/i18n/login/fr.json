@@ -2,7 +2,7 @@
     "signin":"S'identifier",
     "rememberme":"Souviens-toi de moi!",
     "forgotpassword":"Mot de passe oublié",
-    "usernameisrequired":"Nom d'utilisateur est nécessaire",
+    "usernameisrequired":"Numero d'utilisateur est nécessaire",
     "passwordisrequired":"Mot de passe requis",
     "invalidusernameandpassword":"Informations d'identification non valides, veuillez fournir un nom d'utilisateur et un mot de passe valides",
     "blockedmessage":"Vous avez été temporairement bloqué, en raison de l'échec de la connexion",

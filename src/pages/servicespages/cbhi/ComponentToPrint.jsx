@@ -111,7 +111,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 						
 						</div>
 						<div className="col col_des">
-							<p className="bold">Number of memebrs</p>
+							<p className="bold">Number of members</p>
 							{/* <p>Lorem ipsum dolor sit.</p> */}
 						</div>
 			

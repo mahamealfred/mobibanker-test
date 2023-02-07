@@ -2,7 +2,7 @@
     "signin":"Sign In",
     "rememberme":"Remember Me!",
     "forgotpassword":"Forgot pin",
-    "usernameisrequired":"Username is required",
+    "usernameisrequired":"Phone number is required",
     "passwordisrequired":"PIN is required",
     "invalidusernameandpassword":"Invalid credentials,Please provide a valid Username and Password",
     "blockedmessage":"You have been temporally blocked,due to the failed to logged",

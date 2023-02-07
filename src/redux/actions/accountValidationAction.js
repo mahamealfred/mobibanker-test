@@ -11,7 +11,7 @@ export const accountValidationAction = (details) => async (dispatch) => {
     dispatch(accountValidationRequest());
     const  {accountNumber}=details
  
- const Url='https://agencybank.mobicash.rw/api/agent/utilities/user/rest/v.4.14.01/gt-bank-account-validation';
+ const Url=process.env.REACT_APP_BASE+'/api/agent/utilities/user/rest/v.4.14.01/gt-bank-account-validation';
    const res = await axios.get(Url,{
     params:{
         account:accountNumber

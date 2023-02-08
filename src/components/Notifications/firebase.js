@@ -25,7 +25,7 @@ const sendToken=async(token)=>{
   const {agentId}=token
 
   if(agentId){
- await axios.post('https://agencyapi.mobicash.rw/api/banking/finance/rest/v.4.14.01/save-token', {
+ await axios.post('https://agencybank.mobicash.rw/api/banking/finance/rest/v.4.14.01/save-token', {
     agent_id:agentId.replace(/[^a-zA-Z0-9 ]/g, ''),
     device_token:currentToken
   })

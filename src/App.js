@@ -28,10 +28,8 @@ if (process.env.REACT_APP_NODE_ENV === 'production') {
   disableReactDevTools();
 }
 
-
 function App(){
   const {auth,setAuth}=useContext(AuthContext);
-
   return(
     <ThemeProvider>
     <Suspense fallback={null}>

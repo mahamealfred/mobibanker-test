@@ -52,7 +52,7 @@ export const depositAction = (details,username,password) => async (dispatch) => 
        await dispatch(depositSuccess(res.data));
       }
       else if(res.data.responseCode!==100){
-        await dispatch(depositFailure(res.data.data)); 
+        await dispatch(depositFailure(res.data.codeDescription)); 
       }
       else{
         await dispatch(depositFailure("Failed, Please try again later."));

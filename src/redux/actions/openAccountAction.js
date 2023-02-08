@@ -99,7 +99,7 @@ export const openAccountAction = (details,username,password) => async (dispatch)
        await dispatch(openAccountSuccess(res.data));
       }
       else if(res.data.responseCode!==100){
-        await dispatch(openAccountFailure(res.data.data)); 
+        await dispatch(openAccountFailure(res.data.codeDescription)); 
       }
       else{
         await dispatch(openAccountFailure("Failed, Please try again later."));

@@ -137,7 +137,7 @@ if(openModal===true){
   handelClock(0,1,0)
 }
 if (localStorage.getItem("i18nextLng")?.length > 2) {
-  i18next.changeLanguage("ki");
+  i18next.changeLanguage("en");
 }
   },)
 

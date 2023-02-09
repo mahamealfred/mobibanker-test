@@ -47,7 +47,7 @@ export const depositAction = (details,username,password) => async (dispatch) => 
   password
 }
    });
-   console.log("response from deposit:",res)
+
       if(res.data.responseCode===100){
        await dispatch(depositSuccess(res.data));
       }

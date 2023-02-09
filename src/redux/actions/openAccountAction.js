@@ -94,8 +94,7 @@ export const openAccountAction = (details,username,password) => async (dispatch)
 }
 
    });
-   console.log("Details from :",details,username)
-console.log("response :",res)
+
       if(res.data.responseCode===100){
        await dispatch(openAccountSuccess(res.data));
       }

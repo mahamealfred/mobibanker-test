@@ -22,7 +22,7 @@ export default function Banner() {
 
 	useEffect(() => {
 		if (localStorage.getItem("i18nextLng")?.length > 2) {
-			i18next.changeLanguage("ki");
+			i18next.changeLanguage("en");
 		}
 	}, []);
 

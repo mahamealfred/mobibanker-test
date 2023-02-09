@@ -91,7 +91,7 @@ useEffect(()=>{
     if (!login.loading) {
       if (login.users.length !== 0) {
         if (login.users.resData.responseCode === 100) {
-          setAuth({username:login.users.resData.data.username,
+          setAuth({username:login.users.resData.data.phonenumber,
           brokering:login.users.resData.data.brokering,
           usergroup:login.users.resData.data.group,
           password:login.users.password,

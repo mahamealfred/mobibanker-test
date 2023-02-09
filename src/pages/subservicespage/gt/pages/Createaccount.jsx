@@ -276,7 +276,7 @@ useEffect(() => {
          setPlaceOfIssue(validateNid.details.data.placeOfIssue)
          setPhoto(validateNid.details.data.photo)
          setGender(validateNid.details.data.sex)
-         setDocumentNumber(validateNid.details.data.documentNumber);
+         setDocumentNumber(validateNid.details.data.documentNumber.replace(/ /g,''));
         // setNationality(validateNid.details.data.nationality)
          setFatherNames(validateNid.details.data.fatherNames)
          setMotherNames(validateNid.details.data.motherNames)

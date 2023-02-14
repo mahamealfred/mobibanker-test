@@ -7,32 +7,32 @@ import AuthApi from "./context/api";
 import { Box } from "@mui/system";
 import  AuthContext from "./context";
 import { useContext } from "react";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import ThemeProvider from "./theme";
-// export default class App extends Component {
-//   render() {
-//     return (
-//       <Suspense fallback={null}>
-//        <Router>
-//         <Routes/>
-//       </Router>
-//       </Suspense>
-     
-//     )
-//   }
-// };
+
 
 import { disableReactDevTools } from '@fvilers/disable-react-devtools';
+import PuffLoader from "react-spinners/PuffLoader";
 
 if (process.env.REACT_APP_NODE_ENV === 'production') {
   disableReactDevTools();
 }
 
 function App(){
-  const {auth,setAuth}=useContext(AuthContext);
+
+
   return(
     <ThemeProvider>
-    <Suspense fallback={null}>
+    <Suspense fallback={
+      <Box
+display='flex'
+justifyContent='center'
+alignContent="center"
+justifyItems="center"
+m="auto"
+>
+<PuffLoader color="orange" size={80}  />
+</Box>}>
        <Router>
         <Routes/>
       </Router>

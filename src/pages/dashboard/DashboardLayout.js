@@ -25,6 +25,7 @@ import { useIdleTimer } from 'react-idle-timer';
 import i18next from "i18next";
 
 
+
 const FireNotification=lazy(()=>import("../../components/Notifications/FirebaseNotification"));
 const Nav=lazy(()=>import("./nav"));
 const Header=lazy(()=>import("./header"));
@@ -66,6 +67,7 @@ const Main = styled('div')(({ theme }) => ({
 export default function DashboardLayout({...props}) {
 
   const [open, setOpen] = useState(false);
+  const [isLoading,setIsLoading]=useState(true)
   const { i18n,t } = useTranslation(["home","common","login"]);
   const history=useHistory();
   const login=useSelector((state)=>state.login)
@@ -78,7 +80,16 @@ const handleClosePageReflesh = () => setOpenPageReflesh(false);
  const { auth,setAuth }=useContext(AuthContext)
 const {children}=props
 //nutral
+useEffect(()=>{
+  // if (!login.loading){
+  //   setIsLoading(true)
+  // }else{
+  //   setIsLoading(false)
+  // }
+//   setIsLoading(true)
 
+
+ },[])
 
 useEffect(()=>{
   if(login.users.length === 0){
@@ -101,12 +112,15 @@ useEffect(()=>{
           image:login.users.resData.data.image,
           basicAuth:login.users.basicAuth,
           agencyBanking:login.users.resData.data.agencyBankingStatus
+        
         })
          setUsername(login.users.resData.data.username)
          setBrokering(login.users.resData.data.brokering)
          setUserGroup(login.users.resData.data.group)
+        
         } else {
-          return null;
+         
+          return  null
         }
       
       }
@@ -208,7 +222,9 @@ setOpenModal(false)
   }
   }, []);
   return (
-    <StyledRoot>
+   
+ 
+<StyledRoot>
       <FireNotification/>
 <Modal
         open={openPageReflesh}

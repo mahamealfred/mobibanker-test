@@ -25,9 +25,13 @@ export const valiateNidDetailsDetailsAction = (details) => async (dispatch) => {
       if(res.data.responseCode===100){
         dispatch(valiateNidDetailsSuccess(res.data));
       }  
+      else if(res.data.responseCode===105 && res.data.codeDescription===""){
+        dispatch(valiateNidDetailsFailure("The service is currently not available,Please try agin later."));
+      }
       else if(res.data.responseCode !==100){
         dispatch(valiateNidDetailsFailure(res.data.codeDescription));
       }
+    
       else{
       //  let errMsg=res.data.data.reason
         dispatch(valiateNidDetailsFailure("Failed, Please try again later."));

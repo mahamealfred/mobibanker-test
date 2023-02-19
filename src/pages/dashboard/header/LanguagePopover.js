@@ -83,7 +83,7 @@ export default function LanguagePopover() {
       >
         <Stack spacing={0.75}>
           {LANGS.map((option) => (
-            <MenuItem key={option.value} defaultValue={LANGS[1].value}  selected={option.value === LANGS[0].value}  
+            <MenuItem key={option.value} defaultValue={LANGS[0].value}  selected={option.value === LANGS[0].value}  
             value={localStorage.getItem("i18nextLng")}
             onClick={(e)=>{
               

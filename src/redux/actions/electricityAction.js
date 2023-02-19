@@ -13,11 +13,8 @@ export const getElectricityDetailsAction = (details) => async (dispatch) => {
     dispatch(getElectricityDetailsRequest());
     const meter=details.meterNumber
   
-   // const Url ='https://agentweb.mobicash.rw/api/agent/goverment-services/rra/rest/v.4.14.01/doc-id-validation'
     const Url=process.env.REACT_APP_BASE_URL+'/api/agent/vas/electricity/rest/v.4.14.01/meter-number-validation';
-// const res = await axios.post(Url,{
-// details
-// });
+
    const res = await axios.get(Url,{
    params:{ meterNumber:meter},
    }, {

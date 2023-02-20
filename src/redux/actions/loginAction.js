@@ -42,7 +42,8 @@ export const loginAction = (user,history) => async (dispatch) => {
   }
    });
     const jwt_secret="tokensecret"
-    if(res.data.responseCode===100 && res.data.data.group==="retail_agents" && res.data.data.agencyBankingStatus===true ){
+   // res.data.responseCode===100 && res.data.data.group==="retail_agents" && res.data.data.agencyBankingStatus===true 
+    if(res.data.responseCode===100 && res.data.data.group==="retail_agents"){
       history.push('/dashboard',{push:true})
       const userId=res.data.data.id
       const name=res.data.data.names
@@ -57,7 +58,7 @@ export const loginAction = (user,history) => async (dispatch) => {
       sessionStorage.setItem('mobicash-auth',token)
       return  sessionStorage.setItem('mobicash-auth',token);
     }
-    else if((res.data.responseCode===100 && res.data.data.group!=="retail_agents") || (res.data.responseCode===100 && res.data.data.group==="retail_agents" && res.data.data.agencyBankingStatus===false)){
+    else if(res.data.responseCode===100 && res.data.data.group!=="retail_agents"){
       dispatch(loginFailure(" Authorized Agent are only allowed, Please contact MobiCash."));
     }
     else{

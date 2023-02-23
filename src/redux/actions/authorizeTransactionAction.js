@@ -4,7 +4,8 @@ import {
     AUTHORIZE_TRANSACTIONS_SUCCESS,
     AUTHORIZE_TRANSACTIONS_FAILURE,
   } from "../types/authorizeTransactionType";
-  
+  import dotenv from "dotenv"
+  dotenv.config()
 export const authorizeTransactionsAction = (transactionId,auth,password) => async (dispatch) => {
   const {username}=auth
   // const {password}=auth
@@ -16,7 +17,7 @@ export const authorizeTransactionsAction = (transactionId,auth,password) => asyn
    
   var config = {
     method: 'get',
-    url: `https://agencybank.mobicash.rw/api/banking/finance/rest/v.4.14.01/gt-bank-withdrawal-autorisation?transactionId=${transactionId}`,
+    url: process.env.REACT_APP_BASE+`/api/banking/finance/rest/v.4.14.01/gt-bank-withdrawal-autorisation?transactionId=${transactionId}`,
     headers: { 
       'Authorization': `${basicAuth}`
     }

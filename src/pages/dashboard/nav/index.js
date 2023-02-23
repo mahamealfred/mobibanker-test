@@ -19,10 +19,8 @@ import AuthContext from '../../../context';
 import SvgColor from '../../../components/svg-color';
 import { useTranslation } from "react-i18next";
 // ----------------------------------------------------------------------
-
 const icon = (name) => <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />;
 // ----------------------------------------------------------------------
-
 const NAV_WIDTH = 280;
 
 const StyledAccount = styled('div')(({ theme }) => ({

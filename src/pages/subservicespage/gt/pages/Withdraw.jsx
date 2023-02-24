@@ -93,7 +93,7 @@ export default function CustomizedTables() {
  const [password,setPassword]=useState('')
  const [passwordError,setPasswordError]=useState('')
  const [errorMessage,setErrorMessage]=useState('');
- const [niderrorMessage,setNidErrorMessage]=useState('');
+ const [nidErrorMessage,setNidErrorMessage]=useState('');
  const [open,setOpen]=React.useState(true);
  const [openNidDialog,setOpenNidDialog]=React.useState(false);
  const [openErrorMessage,setOpenErrorMessage]=useState(false)
@@ -108,7 +108,6 @@ export default function CustomizedTables() {
  const [lastName,setLastName]=useState("");
  const [placeOfIssue,setPlaceOfIssue]=useState("");
  const [documentNumber,setDocumentNumber]=useState("")
- const [nidErrorMessage,setnidrErrorMessage]=useState("")
  const [image,setImage]=useState("")
   const trimString = (s) => {
     var l = 0,
@@ -294,13 +293,12 @@ useEffect(() => {
       }
       if (validateNid.error) {
         setNidErrorMessage(validateNid.error);
+        setOpennidErrorMessage(true)
       }
     }
   }
   fetchData();
 }, [validateNid.details,validateNid.error]);
-
-
   return (
     <React.Fragment>
 

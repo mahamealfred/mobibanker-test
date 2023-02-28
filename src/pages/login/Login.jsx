@@ -125,7 +125,7 @@ useEffect(()=>{
   function fecthData(){
 if(!changePassword.loading){
 if(changePassword.details.responseCode===100){
-  login.error=['']
+
   setOpen(false)
   setOpenResetDialog(false)
   setSuccessFullMessage("Resetting your PIN was successful.")
@@ -317,7 +317,7 @@ if(changePassword.details.responseCode===100){
             </Collapse>
            } 
        {
-             !login.error? null:
+             !login.error || login.error==="reset" ? null:
               <Collapse in={open}>
               <Alert
               severity="error"
@@ -334,7 +334,7 @@ if(changePassword.details.responseCode===100){
                 sx={{ mb: 0.2 }}
               >
                {/* {login.error==="Password is temporarily blocked"?`${t("login:blockedmessage")}`:`${t("login:invalidusernameandpassword")}`} */}
-               {login.error==="reset"?null:login.error}
+               {login.error}
               </Alert>
             </Collapse>
            } 

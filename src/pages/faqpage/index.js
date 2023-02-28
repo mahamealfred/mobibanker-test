@@ -217,7 +217,7 @@ Some categories comprise fraud types that impact agents are:<br></br>
   <Accordion  >
     <AccordionSummary  expandIcon={<ExpandMoreIcon />}>
       <Typography color="gray" variant="body1" >
-      +	What should I do when I pay RRA/MUSA and those payments didn’t reach the RRA/RSSB system?
+      +	What should I do when I pay RRA/Mutuelle and those payments didn’t reach the RRA/RSSB system?
       </Typography>
     </AccordionSummary>
     <AccordionDetails>

@@ -14,6 +14,7 @@ import ThemeProvider from "./theme";
 import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 import PuffLoader from "react-spinners/PuffLoader";
 
+
 if (process.env.REACT_APP_NODE_ENV === 'production') {
   disableReactDevTools();
 }
@@ -25,13 +26,9 @@ function App(){
     <ThemeProvider>
     <Suspense fallback={
       <Box
-display='flex'
-justifyContent='center'
-alignContent="center"
-justifyItems="center"
-m="auto"
+sx={{display:"flex",justifyContent:"center",alignItems:"center",height:"100vh"}}
 >
-<PuffLoader color="orange" size={80}  />
+<PuffLoader color="orange" size={100}  />
 </Box>}>
        <Router>
         <Routes/>

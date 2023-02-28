@@ -310,7 +310,7 @@ useEffect(() => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          <Typography variant="46" color="gray" >
+          <Typography variant="46" color="gray" textAlign="center" >
 NID VERIFICATION
           </Typography>
 
@@ -390,7 +390,7 @@ NID VERIFICATION
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          <Typography variant="46" color="gray" >
+          <Typography variant="46" color="gray" textAlign="center">
        Approve transactions
           </Typography>
           <IconButton

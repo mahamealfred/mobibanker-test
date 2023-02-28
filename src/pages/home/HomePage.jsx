@@ -42,9 +42,10 @@ const accountValidation=useSelector((state)=>state.accountValidation)
 const deposit=useSelector((state)=>state.deposit)
 
 const topUpMobileMoney=useSelector((state)=>state.topUpMobileMoney)
-
+const changePassword=useSelector((state)=>state.changePassword)
 useEffect(()=>{
 async function fecthData(){
+  changePassword.details=['']
   getCbhiNidDetails.details=['']
   cbhiPayment.details=['']
   getElectricityDetails.details=['']

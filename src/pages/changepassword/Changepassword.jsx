@@ -85,11 +85,7 @@ if(errorMessage==''){
    }
    fecthData()
       },[!changePassword.error])
-      const decode= (token) => {
-        const JWT_SECRET="tokensecret";
-        const payload = jwt.verify(token, JWT_SECRET);
-         return payload;
-      }
+     
       useEffect(() => {
      
         if (auth) {
@@ -103,7 +99,7 @@ if(errorMessage==''){
         function fecthData(){
      if(!changePassword.loading){
       if(changePassword.details.responseCode===100){
-        setSuccessFullMessage("You have successfuly change your password")
+        setSuccessFullMessage("You have successfuly change your PIN")
         setOpenSuccess(true)
         handelClock(0,0,4)
       }

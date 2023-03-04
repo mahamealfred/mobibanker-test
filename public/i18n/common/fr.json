@@ -118,6 +118,10 @@
     "pleaseloginagain":"Veuillez vous reconnecter",
     "yoursessionhastimedout":"Votre session a expiré.",
     "cashwithdrawal":"Retrait d'espèces",
-    "topupmobliemoney":"Recharger Mobile Money"
+    "topupmobliemoney":"Recharger Mobile Money",
+    "thepaymentmustnotbemorethanthewholepremium":"Le paiement ne doit pas dépasser la totalité de la prime.",
+    "doyoureallywanttomakeapaymentof":"Voulez-vous vraiment effectuer un paiement de ",
+    "agree":"Accepter",
+    "disagree":"Être en désaccord"
     
  }

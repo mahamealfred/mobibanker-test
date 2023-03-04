@@ -19,7 +19,7 @@ import { getYearAction } from "../../../redux/actions/getYearAction";
 import { getCbhiNidDetailsAction } from "../../../redux/actions/getCbhiNidDetailsAction";
 import { cbhiPayamentAction } from "../../../redux/actions/cbhiPaymentAction";
 import { useDispatch,useSelector } from "react-redux";
-import { Grid } from "@mui/material";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
 // import { ComponentToPrint } from './ComponentToPrint';
@@ -92,14 +92,9 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
   const [agentName,setAgentName]=useState("")
   const [agentPhoneNumber,setAgentPhoneNumber]=useState("");
  const [password,setPassword]=useState("")
+ const [openDialog,setOpenDialog]=useState(false)
   const history = useHistory();
   const { auth }=React.useContext(AuthContext)
-  const decode= (token) => {
-    const JWT_SECRET="tokensecret";
-    const payload = jwt.verify(token, JWT_SECRET);
-     return payload;
-  }
-
 useEffect(()=>{
   async function fetchData() {
     await dispatch(getYearAction());
@@ -111,7 +106,6 @@ useEffect(()=>{
    
       if (!getYear.loading) {
          if (getYear.years.length>0) {
-        
           setYears(getYear.years);
         }
       }
@@ -130,7 +124,6 @@ useEffect(()=>{
             setUserGroup(auth.usergroup)
             setAgentName(auth.names)
             setAgentPhoneNumber(auth.phonenumber)
-          
             handleNext();
            } else {
              return null;
@@ -281,33 +274,56 @@ useEffect(()=>{
     else if(formData.password=="" ){
       setPasswordError(`${t("common:agenytpinisrequire")}`)
     }
-    // else if (formData.password !== password ) {
-    //   setPasswordError(`${t("common:invalidpin")}`);
-    // } 
+    else if (formData.amountPaid > totalPremium ) {
+      setPaymentErrorMessage(`${t("common:thepaymentmustnotbemorethanthewholepremium")}`)
+    } 
     else{
       setAmountPaidError("")
       setPhoneNumberError("")
       setPasswordError("")
-      const amountPaid=formData.amountPaid
-      const paymentYear=formData.paymentYear
-      const password=formData.password
-      const payerPhoneNumber=formData.phoneNumber
-      await dispatch(cbhiPayamentAction({
-        houseHoldNID,
-        paymentYear,
-        amountPaid,
-        payerName,
-        houseHoldCategory,
-        householdMemberNumber,
-        totalPremium,
-        payerPhoneNumber,
-        brokering,
-        userGroup
-      },username,password,history))
+      setOpenDialog(true)
+      // const amountPaid=formData.amountPaid
+      // const paymentYear=formData.paymentYear
+      // const password=formData.password
+      // const payerPhoneNumber=formData.phoneNumber
+      // await dispatch(cbhiPayamentAction({
+      //   houseHoldNID,
+      //   paymentYear,
+      //   amountPaid,
+      //   payerName,
+      //   houseHoldCategory,
+      //   householdMemberNumber,
+      //   totalPremium,
+      //   payerPhoneNumber,
+      //   brokering,
+      //   userGroup
+      // },username,password,history))
     
     }
   }
-  
+  //handle cbhi payment
+  const handlePayment =async()=>{
+    setOpenDialog(false)
+    const amountPaid=formData.amountPaid
+    const paymentYear=formData.paymentYear
+    const password=formData.password
+    const payerPhoneNumber=formData.phoneNumber
+    await dispatch(cbhiPayamentAction({
+      houseHoldNID,
+      paymentYear,
+      amountPaid,
+      payerName,
+      houseHoldCategory,
+      householdMemberNumber,
+      totalPremium,
+      payerPhoneNumber,
+      brokering,
+      userGroup
+    },username,password,history))
+  }
+  const handleClose=()=>{
+    setOpenDialog(false)
+  }
   //handle on button submit for each step
   const handelSubmit = () => {
     if (activeStep === 0) {
@@ -362,6 +378,30 @@ useEffect(()=>{
     <div>
       <ThemeProvider theme={theme}>
         {/* <CssBaseline /> */}
+        <Dialog
+        //fullScreen={fullScreen}
+        open={openDialog}
+       // onClose={handleClose}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <DialogTitle id="responsive-dialog-title">
+        
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText textAlign="center" >
+          {t("common:doyoureallywanttomakeapaymentof")}  {Number(formData.amountPaid).toLocaleString()} Rwf ?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose}>
+          {t("common:disagree")} 
+          </Button>
+          <Button onClick={handlePayment} autoFocus>
+          {t("common:agree")} 
+          </Button>
+        </DialogActions>
+      </Dialog>
+
         <Box m="10px"
     >
     

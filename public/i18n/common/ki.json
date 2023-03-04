@@ -118,6 +118,10 @@
     "pleaseloginagain":"Nyamuneka ongera winjire",
     "yoursessionhastimedout":"Icyiciro cyawe cyarangiye.",
     "cashwithdrawal":"Kubikuza amafaranga",
-    "topupmobliemoney":"Bitsa Amafaranga Ukorejeje Telefone"
+    "topupmobliemoney":"Bitsa Amafaranga Ukorejeje Telefone",
+    "thepaymentmustnotbemorethanthewholepremium":"Ubwishyu ntibugomba kurenza amafaranga yose.",
+    "doyoureallywanttomakeapaymentof":"Urashaka rwose kwishyura amafaranga ",
+    "agree":"Yego",
+    "disagree":"Oya"
     
  }

@@ -41,7 +41,7 @@ const TopNav = () => {
     }))
  
   return (
-    <AppBar position="sticky"   elevation={1} sx={{backgroundColor:'white',width:"100%"}} >
+    <AppBar position="sticky"   elevation={2} sx={{backgroundColor:'white',width:"100%"}} >
         {/* <CssBaseline/> */}
         <StyledToolbar>
             <MobiLogoImg>
@@ -61,7 +61,7 @@ const TopNav = () => {
               component="img"
               sx={{
                
-                maxHeight: { xs: 200, md: 200},
+                maxHeight: { xs: 100, md: 100},
                 maxWidth: { xs: 300, md: 300},
                 display: { xs: "block", sm: "none", md: "none" }
               }}

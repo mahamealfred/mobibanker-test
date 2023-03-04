@@ -119,7 +119,11 @@
     "pleaseloginagain":"Please login again",
     "yoursessionhastimedout":"Your session has timed out.",
     "cashwithdrawal":"Cash Withdrawal",
-    "topupmobliemoney":"Top Up Mobile Money"
+    "topupmobliemoney":"Top Up Mobile Money",
+    "thepaymentmustnotbemorethanthewholepremium":"The payment must not be more than the whole premium.",
+    "doyoureallywanttomakeapaymentof":" Do you really want to make a payment of ",
+    "agree":"Agree",
+    "disagree":"Disagree"
     
    
 

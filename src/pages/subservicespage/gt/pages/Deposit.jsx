@@ -13,7 +13,7 @@ import Account from "../components/deposit/Account";
 import Review from "../components/deposit/Review";
 import { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Grid } from "@mui/material";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
 import jwt from "jsonwebtoken";
@@ -79,6 +79,7 @@ const [depositorNameError,setDepositorNameError]=useState("");
 const [depositorPhoneError,setDepositorPhoneError]=useState("");
 const [remarksError,setRemarksError]=useState("");
 const [agentPhonenumber,setAgentPhonenumber]=useState('');
+const [openDialog,setOpenDialog]=useState(false)
 //all
   const [formData, setFormData] = useState({
     accountNumber: "",
@@ -253,6 +254,12 @@ else{
   setDepositorNameError("")
   setDepositorPhoneError("")
   setRemarksError("")
+ setOpenDialog(true)
+}
+}
+//handle payment
+const handlePayment=async()=>{
+  setOpenDialog(false)
   const amount=formData.amount
   const password=formData.password
   const DepositorName=formData.depositorName
@@ -261,6 +268,10 @@ else{
   // const destination=formData.destination
 await dispatch(depositAction({amount,DepositorName,Remarks,depositorphonenumber,credit,brokering,userGroup},username,password))
 }
+
+//handle close
+const handleClose=()=>{
+  setOpenDialog(false)
 }
 //agent infromation
 const decode= (token) => {
@@ -333,9 +344,34 @@ const decode= (token) => {
     <div>
       <ThemeProvider theme={theme}>
         {/* <CssBaseline /> */}
-        <Box m="10px"
-    >
-     
+        <Dialog
+        //fullScreen={fullScreen}
+        open={openDialog}
+       // onClose={handleClose}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <Grid container direction="row" alignItems="center">
+        <DialogTitle id="responsive-dialog-title" sx={{color:"orange"}}>
+       {t("common:warning")}
+        </DialogTitle>
+         </Grid>
+         <Divider color="warning"/>
+       
+        <DialogContent>
+          <DialogContentText textAlign="center" >
+          {t("common:doyoureallywanttomakeadepositof")}  {Number(formData.amount).toLocaleString()} Rwf ?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose}>
+          {t("common:disagree")} 
+          </Button>
+          <Button onClick={handlePayment} autoFocus>
+          {t("common:agree")} 
+          </Button>
+        </DialogActions>
+      </Dialog>
+        <Box m="10px">
     </Box>
         <Container component="main" maxWidth="sm" sx={{display:{xs:"block",sm:"block",md:"block",lg:"block"}, mb: 4 }}>
           <Paper

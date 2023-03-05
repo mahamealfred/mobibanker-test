@@ -38,7 +38,7 @@
     "welcometomobibanker":"Urakaze neza kuri Mobibanker",
     "agencyservices":"SERIVISI",
     "changepassword":"Hindura ijambo Ryibanga",
-    "preioustransaction":"Ibicuruzwa Byabanje",
+    "preioustransaction":"Ibikorwa Byabanje",
     "settings":"Igenamiterere",
     "changelanguage":"Hindura Ururimi",
     "logout":"Gusohoka",
@@ -120,8 +120,10 @@
     "cashwithdrawal":"Kubikuza amafaranga",
     "topupmobliemoney":"Bitsa Amafaranga Ukorejeje Telefone",
     "thepaymentmustnotbemorethanthewholepremium":"Ubwishyu ntibugomba kurenza amafaranga yose.",
-    "doyoureallywanttomakeapaymentof":"Urashaka rwose kwishyura amafaranga ",
+    "doyoureallywanttomakeapaymentof":"Urashaka kwishyura amafaranga ",
     "agree":"Yego",
-    "disagree":"Oya"
+    "disagree":"Oya",
+    "doyoureallywanttomakeadepositof":" Urashaka kubitsa amafaranga  ",
+    "warning":"Kuburira!"
     
  }

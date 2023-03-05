@@ -164,11 +164,15 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 			        <p className="bold">
 			            <span>AMOUNT </span>
 			         
-						<span>{props.amountToPay.toLocaleString()} Rwf</span>
+						<span>
+						{Number(props.amountToPay).toLocaleString()} Rwf
+						</span>
 			        </p>
 			        <p>
 			            <span>Client Charges</span>
-			            <span>{props.clientCharges.toLocaleString()} Rwf</span>
+			            <span>
+						{Number(props.clientCharges).toLocaleString()} Rwf
+							</span>
 						
 			        </p>
 			        {/* <p>

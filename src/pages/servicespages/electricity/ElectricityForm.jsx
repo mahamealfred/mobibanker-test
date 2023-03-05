@@ -20,7 +20,7 @@ import { getElectricityDetailsAction } from "../../../redux/actions/electricityA
 import { electricityPayamentAction } from "../../../redux/actions/electricitPaymentAction";
 import { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Grid } from "@mui/material";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
 import jwt from "jsonwebtoken";
@@ -102,6 +102,7 @@ const EleCtricityForm = ({openELECTRICITY,setOpenELECTRICITY}) => {
  const { auth }=React.useContext(AuthContext)
  const [open, setOpen] = React.useState(true);
  const [docDetails, setDocDetails] = useState("");
+ const [openDialog,setOpenDialog]=useState(false)
  const history = useHistory();
 
  const getStepContent = (step) => {
@@ -216,7 +217,7 @@ fetchData();
  };
 
  //handle electricity Payament
- const handlePayment = async () => {
+ const handleElectricityPayment = async () => {
     if(formData.amountToPay==""){
         setAmountTopayError(`${t("common:amounttopay")}`)
     }
@@ -243,40 +244,47 @@ fetchData();
     setPasswordError("")
     setPhoneNumberError("")
     setTaxIdentificationNumberError("")
-     const payerPhoneNumber = formData.phoneNumber;
-     const meterNumber=formData.meterNumber;
-     const password = formData.password;
-     const amount=formData.amountToPay
-     let taxIdentificationNumber=0
-     if(formData.taxIdentificationNumber===""){
-      taxIdentificationNumber="0000"
-     }else{
-      taxIdentificationNumber=formData.taxIdentificationNumber
-     }
-     await dispatch(electricityPayamentAction(
-         { 
-            amount,
-          payerName,
-           taxIdentificationNumber,
-           payerPhoneNumber,
-           meterNumber,
-           userGroup,
-           brokering,
-         },
-         username,
-         password
-        
-       )
-     );
-     
+    setOpenDialog(true)
    }
  };
+   //handle  payment
+   const handlePayment =async()=>{
+    setOpenDialog(false)
+    const payerPhoneNumber = formData.phoneNumber;
+    const meterNumber=formData.meterNumber;
+    const password = formData.password;
+    const amount=formData.amountToPay
+    let taxIdentificationNumber=0
+    if(formData.taxIdentificationNumber===""){
+     taxIdentificationNumber="0000"
+    }else{
+     taxIdentificationNumber=formData.taxIdentificationNumber
+    }
+    await dispatch(electricityPayamentAction(
+        { 
+           amount,
+         payerName,
+          taxIdentificationNumber,
+          payerPhoneNumber,
+          meterNumber,
+          userGroup,
+          brokering,
+        },
+        username,
+        password
+       
+      )
+    );
+   }
+   const handleClose=()=>{
+    setOpenDialog(false)
+   }
  //handle on button submit for each step
  const handelSubmit = () => {
    if (activeStep === 0) {
      handleMeterDetails();
    } else if (activeStep === 1) {
-  handlePayment();
+    handleElectricityPayment();
     // handleNext();
    } else if (activeStep === 2) {
 
@@ -328,9 +336,34 @@ fetchData();
     <div>
       <ThemeProvider theme={theme}>
         {/* <CssBaseline /> */}
-        <Box m="10px"
-    >
-     
+        <Dialog
+        //fullScreen={fullScreen}
+        open={openDialog}
+       // onClose={handleClose}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <Grid container direction="row" alignItems="center">
+        <DialogTitle id="responsive-dialog-title" sx={{color:"orange"}}>
+        {t("common:warning")}
+        </DialogTitle>
+         </Grid>
+         <Divider color="warning"/>
+       
+        <DialogContent>
+          <DialogContentText textAlign="center" >
+          {t("common:doyoureallywanttomakeapaymentof")}  {Number(formData.amountPaid).toLocaleString()} Rwf ?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose}>
+          {t("common:disagree")} 
+          </Button>
+          <Button onClick={handlePayment} autoFocus>
+          {t("common:agree")} 
+          </Button>
+        </DialogActions>
+      </Dialog>
+        <Box m="10px" >
     </Box>
         <Container component="main" maxWidth="sm" sx={{display:{xs:"block",sm:"block",md:"block",lg:"block"}, mb: 4 }}>
           <Paper

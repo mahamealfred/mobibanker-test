@@ -18,7 +18,7 @@ import { useState,useEffect } from "react";
 import { getRnitDetailsAction } from "../../../redux/actions/getRnitIdentificationDetailsAction";
 import { rnitPaymentAction } from "../../../redux/actions/rnitPaymentAction";
 import { useDispatch,useSelector } from "react-redux";
-import { Grid } from "@mui/material";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid } from "@mui/material";
 import CircularProgress from '@mui/material/CircularProgress';
 import jwt from "jsonwebtoken";
 // import { ComponentToPrint } from './ComponentToPrint';
@@ -89,6 +89,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
  const [agentPhoneNumber,setAgentPhoneNumber]=useState("")
  const [password,setPassword]=useState("")
  const [userGroup,setUserGroup]=useState("")
+ const [openDialog,setOpenDialog]=useState(false)
  const history = useHistory();
   const getStepContent = (step) => {
     switch (step) {
@@ -254,6 +255,13 @@ else if(formData.amountPaid > 2000000){
     setPhoneNumberError("")
     setPasswordError("")
     setAmountToPayErrorMessage("")
+    setOpenDialog(true)
+   
+  }
+  }
+   //handle cbhi payment
+   const handlePayment =async()=>{
+    setOpenDialog(false)
     const password=formData.password
     const bankName=formData.bankName
     const bankAccount=formData.bankAccount
@@ -271,9 +279,12 @@ else if(formData.amountPaid > 2000000){
       brokering,
       userGroup
     },username,password));
-  }
-  }
-  
+   }
+
+   //handleClose
+   const handleClose=()=>{
+    setOpenDialog(false)
+   }
   //handle on button submit for each step
   const handelSubmit = () => {
     if (activeStep === 0) {
@@ -328,6 +339,36 @@ else if(formData.amountPaid > 2000000){
     <div>
       <ThemeProvider theme={theme}>
         {/* <CssBaseline /> */}
+
+        <Dialog
+        //fullScreen={fullScreen}
+        open={openDialog}
+       // onClose={handleClose}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <Grid container direction="row" alignItems="center">
+        <DialogTitle id="responsive-dialog-title" sx={{color:"orange"}}>
+        {t("common:warning")}
+        </DialogTitle>
+         </Grid>
+         <Divider color="warning"/>
+       
+        <DialogContent>
+          <DialogContentText textAlign="center" >
+          {t("common:doyoureallywanttomakeapaymentof")}  {Number(formData.amountPaid).toLocaleString()} Rwf ?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose}>
+          {t("common:disagree")} 
+          </Button>
+          <Button onClick={handlePayment} autoFocus>
+          {t("common:agree")} 
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+
         <Box m="10px"
     >
      

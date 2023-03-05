@@ -19,7 +19,7 @@ import { getYearAction } from "../../../redux/actions/getYearAction";
 import { getCbhiNidDetailsAction } from "../../../redux/actions/getCbhiNidDetailsAction";
 import { cbhiPayamentAction } from "../../../redux/actions/cbhiPaymentAction";
 import { useDispatch,useSelector } from "react-redux";
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid } from "@mui/material";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
 // import { ComponentToPrint } from './ComponentToPrint';
@@ -28,6 +28,7 @@ import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
 import AuthContext from "../../../context";
 import logo from "../../../assets/images/logo.png"
+import WarningIcon from '@mui/icons-material/Warning';
 const  ComponentToPrint=React.lazy(()=>import("./ComponentToPrint").then(module=>{
   return {default: module.ComponentToPrint}
 }))
@@ -384,9 +385,13 @@ useEffect(()=>{
        // onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
       >
-        <DialogTitle id="responsive-dialog-title">
-        
+        <Grid container direction="row" alignItems="center">
+        <DialogTitle id="responsive-dialog-title" sx={{color:"orange"}}>
+        {t("common:warning")}
         </DialogTitle>
+         </Grid>
+         <Divider color="warning"/>
+       
         <DialogContent>
           <DialogContentText textAlign="center" >
           {t("common:doyoureallywanttomakeapaymentof")}  {Number(formData.amountPaid).toLocaleString()} Rwf ?
@@ -401,10 +406,7 @@ useEffect(()=>{
           </Button>
         </DialogActions>
       </Dialog>
-
-        <Box m="10px"
-    >
-    
+        <Box m="10px">
     </Box>
         <Container component="main" maxWidth="sm" sx={{display:{xs:"block",sm:"block",md:"block",lg:"block"}, mb: 4 }}>
           <Paper
@@ -417,7 +419,6 @@ useEffect(()=>{
            direction="column"
            alignItems="center"
            justifyContent="center"
-           
            >
             
             <Typography id="transition-modal-title" textAlign="center" variant="h6" component="h2">

@@ -79,7 +79,8 @@ const Payment=({
                  {t("cbhi:totalpremium")}
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-                {totalPremium.toLocaleString()} Rwf
+                
+                {Number(totalPremium).toLocaleString()} Rwf
        
               </Typography>
             </Grid>

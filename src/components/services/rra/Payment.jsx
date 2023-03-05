@@ -82,8 +82,8 @@ const Payment=({
                  {t("common:amounttopay")}
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-              {amountToPay.toLocaleString()}  Rwf
-   
+          
+              {Number(amountToPay).toLocaleString()} Rwf
               </Typography>
             </Grid>
   

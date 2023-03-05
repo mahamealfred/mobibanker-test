@@ -18,7 +18,7 @@ import Review from "../../../components/services/ltss/Review";
 import { getLtssIdDetailsAction } from "../../../redux/actions/getLtssIdentificationAction";
 import { ltssPaymentAction } from "../../../redux/actions/ltssPaymentAction";
 import { useState,useEffect} from "react";
-import { Grid } from "@mui/material";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
@@ -83,6 +83,7 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
  const [agentPhoneNumber,setAgentPhoneNumber]=useState("")
  const [brokering,setBrokering]=useState("")
  const [amount,setAmount]=useState("");
+ const [openDialog,setOpenDialog]=useState(false)
  const history = useHistory();
   const getStepContent = (step) => {
     switch (step) {
@@ -232,20 +233,29 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
       setAmountPaidError("")
       setPhoneNumberError("")
       setPasswordError("")
-      const amountPaid=formData.amountPaid
-      const password=formData.password
-      const payerPhoneNumber=formData.phoneNumber
-      await dispatch(ltssPaymentAction({
-        identification,
-        amountPaid,
-        payerPhoneNumber,
-        payerName,
-        agentCategory,
-        brokering
-      },username,password))
+      setOpenDialog(true)
     
     }
   } 
+   //handle cbhi payment
+   const handlePayment =async()=>{
+    setOpenDialog(false)
+    const amountPaid=formData.amountPaid
+    const password=formData.password
+    const payerPhoneNumber=formData.phoneNumber
+    await dispatch(ltssPaymentAction({
+      identification,
+      amountPaid,
+      payerPhoneNumber,
+      payerName,
+      agentCategory,
+      brokering
+    },username,password))
+   }
+   //handle close
+   const handleClose=()=>{
+    setOpenDialog(false)
+   }
   //handle on button submit for each step
   const handelSubmit = () => {
     if (activeStep === 0) {
@@ -298,10 +308,34 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
     <div>
       <ThemeProvider theme={theme}>
         {/* <CssBaseline /> */}
-        <Box m="10px"
-    >
-     
- 
+        <Dialog
+        //fullScreen={fullScreen}
+        open={openDialog}
+       // onClose={handleClose}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <Grid container direction="row" alignItems="center">
+        <DialogTitle id="responsive-dialog-title" sx={{color:"orange"}}>
+        {t("common:warning")}
+        </DialogTitle>
+         </Grid>
+         <Divider color="warning"/>
+       
+        <DialogContent>
+          <DialogContentText textAlign="center" >
+          {t("common:doyoureallywanttomakeapaymentof")}  {Number(formData.amountPaid).toLocaleString()} Rwf ?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose}>
+          {t("common:disagree")} 
+          </Button>
+          <Button onClick={handlePayment} autoFocus>
+          {t("common:agree")} 
+          </Button>
+        </DialogActions>
+      </Dialog>
+        <Box m="10px">
     </Box>
         <Container component="main" maxWidth="sm" sx={{display:{xs:"block",sm:"block",md:"block",lg:"block"}, mb: 4 }}>
           <Paper

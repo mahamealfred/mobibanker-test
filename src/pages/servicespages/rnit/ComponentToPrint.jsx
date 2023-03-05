@@ -117,28 +117,26 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 					</div>
 					<div className="row">
 						<div className="col col_no">
-							
 						</div>
 						<div className="col col_des">
 							<p className="bold">Agent Name</p>
-							{/* <p>Lorem ipsum dolor sit.</p> */}
+					
 						</div>
+					
 						<div className="col col_total">
-							<p>{props.AgentName}</p>
-                          
+							<p>{props.agentName}</p>
 						</div>
 					</div>
 					<div className="row">
 						<div className="col col_no">
-							
 						</div>
 						<div className="col col_des">
 							<p className="bold">Agent Phone</p>
-							{/* <p>Lorem ipsum dolor sit.</p> */}
+					
 						</div>
+					
 						<div className="col col_total">
-							<p>{props.AgentPhoneNumber}</p>
-                          
+							<p>{props.agentPhoneNumber}</p>
 						</div>
 					</div>
 				</div>
@@ -151,7 +149,9 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 				<div className="grandtotal_sec">
 			        <p className="bold">
 			            <span>AMOUNT </span>
-			            <span>{props.formData.amountPaid.toLocaleString()} Rwf</span>
+			            <span>
+						{Number(props.formData.amountPaid).toLocaleString()} Rwf
+							</span>
 			        </p>
 					<p>
 			            {/* <span>Client Charges</span>
@@ -165,7 +165,9 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 			       	<p className="bold">
 			            <span>Grand Total</span>
 			            {/* <span>{props.formData.amountPaid.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}  Rwf</span> */}
-						<span>{props.formData.amountPaid.toLocaleString()}  Rwf</span>
+						<span>
+						{Number(props.formData.amountPaid).toLocaleString()} Rwf
+							</span>
 			        </p>
 				</div>
 			</div>

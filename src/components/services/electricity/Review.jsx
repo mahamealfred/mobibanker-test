@@ -41,7 +41,8 @@ export default function Review({
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary={t("common:amountpaid")}  />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-          {amountPaid.toLocaleString()} Rwf
+       
+          {Number(amountPaid).toLocaleString()} Rwf
           </Typography>
         </ListItem>
         <ListItem sx={{ py: 1, px: 0 }}>

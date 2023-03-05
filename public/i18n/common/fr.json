@@ -122,6 +122,8 @@
     "thepaymentmustnotbemorethanthewholepremium":"Le paiement ne doit pas dépasser la totalité de la prime.",
     "doyoureallywanttomakeapaymentof":"Voulez-vous vraiment effectuer un paiement de ",
     "agree":"Accepter",
-    "disagree":"Être en désaccord"
+    "disagree":"Être en désaccord",
+    "doyoureallywanttomakeadepositof":"Voulez-vous vraiment faire un dépôt de",
+    "warning":"Avertissement!"
     
  }

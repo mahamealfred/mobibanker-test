@@ -123,7 +123,9 @@
     "thepaymentmustnotbemorethanthewholepremium":"The payment must not be more than the whole premium.",
     "doyoureallywanttomakeapaymentof":" Do you really want to make a payment of ",
     "agree":"Agree",
-    "disagree":"Disagree"
+    "disagree":"Disagree",
+    "doyoureallywanttomakeadepositof":" Do you really want to make a deposit of ",
+    "warning":"Warning!"
     
    
 

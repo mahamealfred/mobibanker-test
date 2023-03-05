@@ -31,12 +31,12 @@ export default function Review({
           {Number(formData.amountPaid).toLocaleString()} Rwf
           </Typography>
         </ListItem>
-        <ListItem sx={{ py: 1, px: 0 }}>
+        {/* <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary= {t("common:clientcharges")} />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
        
           </Typography>
-        </ListItem>
+        </ListItem> */}
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary= {t("common:mobicashreference")}  />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>

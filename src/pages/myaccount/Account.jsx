@@ -153,23 +153,26 @@ const user = {
         </Typography>
         {balance.loading ? (null ) : balance.details.data ? (
        <>
+         Float
         <Typography
           color="textSecondary"
           variant="body2"
         >
-    Float {balance.details.data[1].details.balance.toLocaleString()} RWF
+   {balance.details.data[1].details.balance.toLocaleString()} RWF
         </Typography>
+        Reserved Float
         <Typography
           color="textSecondary"
           variant="body2"
         >
-  Reserved Float {balance.details.data[1].details.reservedAmount.toLocaleString()} RWF
+  {balance.details.data[1].details.reservedAmount.toLocaleString()} RWF
         </Typography>
+        Available Float
         <Typography
           color="textSecondary"
           variant="body2"
         >
-     Available Float {balance.details.data[1].details.availableBalance.toLocaleString()} RWF
+     {balance.details.data[1].details.availableBalance.toLocaleString()} RWF
         </Typography>
        </>
            ):"No data"

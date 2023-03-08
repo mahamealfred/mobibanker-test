@@ -10,8 +10,6 @@ const firebaseConfig = {
   storageBucket: "mobibanker.appspot.com",
   messagingSenderId: "685062397259",
   appId: "1:685062397259:web:81a370d9b61480e105dcce"
-
-
 };
 
 firebase.initializeApp(firebaseConfig);

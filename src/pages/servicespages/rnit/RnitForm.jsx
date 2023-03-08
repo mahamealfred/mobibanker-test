@@ -44,7 +44,7 @@ theme.typography.h3 = {
 
 
 
-const RnitForm = ({openRNIT,setOpenRNIT}) => {
+const RnitForm = (props) => {
   const { t } = useTranslation(["home","common","login","rnit"]);
   const componentRef = useRef();
   const steps = [`${t("common:nid")}`,  `${t("common:makepayment")}`, `${t("common:viewdetails")}`];
@@ -90,6 +90,12 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
  const [password,setPassword]=useState("")
  const [userGroup,setUserGroup]=useState("")
  const [openDialog,setOpenDialog]=useState(false)
+ const [executing, setExecuting] = useState(false);
+ const {
+   disabled,
+   onClick,
+   ...otherProps
+} = props;
  const history = useHistory();
   const getStepContent = (step) => {
     switch (step) {
@@ -261,6 +267,7 @@ else if(formData.amountPaid > 2000000){
   }
    //handle cbhi payment
    const handlePayment =async()=>{
+    setExecuting(true)
     setOpenDialog(false)
     const password=formData.password
     const bankName=formData.bankName
@@ -268,17 +275,22 @@ else if(formData.amountPaid > 2000000){
     const payerPhoneNumber=formData.phoneNumber
     const payerEmail=formData.payerEmail
     const amountToPay=formData.amountPaid
-    await dispatch(rnitPaymentAction({
-      bankName,
-      bankAccount,
-      payerNid,
-      amountToPay,
-      payerName,
-      payerPhoneNumber,
-      payerEmail,
-      brokering,
-      userGroup
-    },username,password));
+    try{
+      await dispatch(rnitPaymentAction({
+        bankName,
+        bankAccount,
+        payerNid,
+        amountToPay,
+        payerName,
+        payerPhoneNumber,
+        payerEmail,
+        brokering,
+        userGroup
+      },username,password));
+    }finally{
+      setExecuting(false)
+    }
+   
    }
 
    //handleClose
@@ -339,7 +351,6 @@ else if(formData.amountPaid > 2000000){
     <div>
       <ThemeProvider theme={theme}>
         {/* <CssBaseline /> */}
-
         <Dialog
         //fullScreen={fullScreen}
         open={openDialog}
@@ -352,7 +363,6 @@ else if(formData.amountPaid > 2000000){
         </DialogTitle>
          </Grid>
          <Divider color="warning"/>
-       
         <DialogContent>
           <DialogContentText textAlign="center" >
           {t("common:doyoureallywanttomakeapaymentof")}  {Number(formData.amountPaid).toLocaleString()} Rwf ?
@@ -362,7 +372,10 @@ else if(formData.amountPaid > 2000000){
           <Button autoFocus onClick={handleClose}>
           {t("common:disagree")} 
           </Button>
-          <Button onClick={handlePayment} autoFocus>
+          <Button
+            disabled={executing || disabled}
+            {...otherProps}
+          onClick={handlePayment} autoFocus>
           {t("common:agree")} 
           </Button>
         </DialogActions>

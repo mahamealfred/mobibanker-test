@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useTranslation } from "react-i18next";
-const Index = () => {
+const Index = (props) => {
   const { t } = useTranslation(["home","common","login","rra"]);
   const dispatch=useDispatch();
   const topUpMobileMoney=useSelector((state)=>state.topUpMobileMoney)
@@ -23,6 +23,12 @@ const Index = () => {
  const [errorMessage,setErrorMessage]=useState("")
 const [openErrorMessage,setOpenErrorMessage]=useState(false)
 const [open,setOpen]=useState(false)
+const [executing, setExecuting] = useState(false);
+const {
+  disabled,
+  onClick,
+  ...otherProps
+} = props;
 
 
 const [successMessage,setSuccessMessage]=useState("")
@@ -42,7 +48,13 @@ const handleCloseErrorMessage=()=>{
     }else{
 setPhoneError("")
 setAmountError("")
-await dispatch(topUpMobileMoneyAction({phone,amount}))
+setExecuting(true)
+try{
+  await dispatch(topUpMobileMoneyAction({phone,amount}))
+}finally{
+  setExecuting(false)
+}
+
     }
    }
 
@@ -163,6 +175,8 @@ await dispatch(topUpMobileMoneyAction({phone,amount}))
            variant="contained"
            color="warning"
            sx={{ mt: 3, mb: 2 }}
+           disabled={executing || disabled}
+           {...otherProps}
            onClick={handleSubmit} 
          > {t("common:submit")}</Button>: 
           <Box sx={{ display: 'flex',justifyContent:"center" }}>

@@ -104,8 +104,7 @@ const user = {
   };
   return (
     <React.Fragment>
-       <Box m="10px"
-    >
+       <Box m="10px">
        <Typography 
           component="h1" variant="h6"
           color="gray"
@@ -150,15 +149,29 @@ const user = {
           gutterBottom
           variant="h5"
         >
-      {t("common:balance")}
+        Balance
         </Typography>
         {balance.loading ? (null ) : balance.details.data ? (
+       <>
         <Typography
           color="textSecondary"
           variant="body2"
         >
-     {balance.details.data[1].details.availableBalance.toLocaleString()} RWF
+    Float {balance.details.data[1].details.balance.toLocaleString()} RWF
         </Typography>
+        <Typography
+          color="textSecondary"
+          variant="body2"
+        >
+  Reserved Float {balance.details.data[1].details.reservedAmount.toLocaleString()} RWF
+        </Typography>
+        <Typography
+          color="textSecondary"
+          variant="body2"
+        >
+     Available Float {balance.details.data[1].details.availableBalance.toLocaleString()} RWF
+        </Typography>
+       </>
            ):"No data"
           }
         <Typography
@@ -209,17 +222,79 @@ const user = {
           gutterBottom
           variant="h5"
         >
-      {t("common:commission")}
+     Instant Commission
         </Typography>
         {balance.loading ? (null ) : balance.details.data ? (
         <Typography
           color="textSecondary"
           variant="body2"
         >
-       {balance.details.data[3].details.availableBalance.toLocaleString()}  RWF
+     {balance.details.data[3].details.availableBalance.toLocaleString()}  RWF
         </Typography>
+        
         ):"No data"
       }
+        <Typography
+          color="textSecondary"
+          variant="body2"
+        >
+          {time}
+        </Typography>
+      </Box>
+    </CardContent>
+    <Divider />
+    <CardActions>
+      <Button
+      disabled
+        color="primary"
+        fullWidth
+        variant="text"
+      >
+    Self Payment
+      </Button>
+    </CardActions>
+  </Card>
+            </Grid>
+          <Grid
+            item
+            lg={4}
+            md={6}
+            xs={12}
+          >
+        {/* account */}
+        <Card {...props}>
+    <CardContent>
+      <Box
+        sx={{
+          alignItems: 'center',
+          display: 'flex',
+          flexDirection: 'column'
+        }}
+      >
+        <Avatar
+           src={user.avatar2}
+          sx={{
+            height: 64,
+            mb: 2,
+            width: 64
+          }}
+        />
+        <Typography
+          color="textPrimary"
+          gutterBottom
+          variant="h5"
+        >
+    Delayed Commission
+        </Typography>
+        {balance.loading ? (null ) : balance.details.data ? (
+        <Typography
+          color="textSecondary"
+          variant="body2"
+        >
+     {balance.details.data[0].details.availableBalance.toLocaleString()} RWF
+        </Typography>
+           ):"No data"
+          }
         <Typography
           color="textSecondary"
           variant="body2"
@@ -239,8 +314,10 @@ const user = {
       </Button>
     </CardActions>
   </Card>
-            </Grid>
+          </Grid>
+        
         </Grid>
+
       </Container>
     </Box>
     

@@ -29,6 +29,7 @@ import { useTranslation } from "react-i18next";
 import AuthContext from "../../../context";
 import logo from "../../../assets/images/logo.png"
 import WarningIcon from '@mui/icons-material/Warning';
+
 const  ComponentToPrint=React.lazy(()=>import("./ComponentToPrint").then(module=>{
   return {default: module.ComponentToPrint}
 }))
@@ -46,7 +47,7 @@ theme.typography.h3 = {
 
 
 
-const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
+const CbhiIdentificationForm = (props) => {
   const { i18n,t } = useTranslation(["home","common","login","cbhi"]);
   const getYear = useSelector((state) => state.getYear);
   const getCbhiNidDetails=useSelector((state)=>state.getCbhiNidDetails)
@@ -63,7 +64,6 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
   });
   
   const [activeStep, setActiveStep] = React.useState(0);
-
   const [years, setYears] = React.useState([]);
   const [nIdErrorMessage,setNIdErrorMessage]=useState("");
   const [paymentYearErrorMessage,setPaymentYearErrorMessage]=useState("")
@@ -71,7 +71,6 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
   const [open, setOpen] = React.useState(true);
   const [openPayment,setOpenPayment]= React.useState(true);
              //cbhi payment
-
   const [members,setMembers]=useState('');
   const [username,setUsername]=useState('')
   const [houseHoldNID,setHouseHoldNID]=useState('')
@@ -94,6 +93,7 @@ const CbhiIdentificationForm = ({openRSSB,setOpenRSSB}) => {
   const [agentPhoneNumber,setAgentPhoneNumber]=useState("");
  const [password,setPassword]=useState("")
  const [openDialog,setOpenDialog]=useState(false)
+ let btnRef = useRef();
   const history = useHistory();
   const { auth }=React.useContext(AuthContext)
 useEffect(()=>{
@@ -278,49 +278,48 @@ useEffect(()=>{
     else if (formData.amountPaid > totalPremium ) {
       setPaymentErrorMessage(`${t("common:thepaymentmustnotbemorethanthewholepremium")}`)
     } 
+    else if (amountPaidBefore == totalPremium ) {
+      setPaymentErrorMessage(`${t("common:youhavealreadypaidthetotalpremiumfortheyear")} ${formData.paymentYear}`)
+    } 
     else{
       setAmountPaidError("")
       setPhoneNumberError("")
       setPasswordError("")
       setOpenDialog(true)
-      // const amountPaid=formData.amountPaid
-      // const paymentYear=formData.paymentYear
-      // const password=formData.password
-      // const payerPhoneNumber=formData.phoneNumber
-      // await dispatch(cbhiPayamentAction({
-      //   houseHoldNID,
-      //   paymentYear,
-      //   amountPaid,
-      //   payerName,
-      //   houseHoldCategory,
-      //   householdMemberNumber,
-      //   totalPremium,
-      //   payerPhoneNumber,
-      //   brokering,
-      //   userGroup
-      // },username,password,history))
-    
+     
     }
   }
+  const [executing, setExecuting] = useState(false);
+  const {
+    disabled,
+    onClick,
+    ...otherProps
+} = props;
   //handle cbhi payment
   const handlePayment =async()=>{
-    setOpenDialog(false)
+  setExecuting(true)
+     setOpenDialog(false)
     const amountPaid=formData.amountPaid
     const paymentYear=formData.paymentYear
     const password=formData.password
     const payerPhoneNumber=formData.phoneNumber
-    await dispatch(cbhiPayamentAction({
-      houseHoldNID,
-      paymentYear,
-      amountPaid,
-      payerName,
-      houseHoldCategory,
-      householdMemberNumber,
-      totalPremium,
-      payerPhoneNumber,
-      brokering,
-      userGroup
-    },username,password,history))
+    try{
+      await dispatch(cbhiPayamentAction({
+        houseHoldNID,
+        paymentYear,
+        amountPaid,
+        payerName,
+        houseHoldCategory,
+        householdMemberNumber,
+        totalPremium,
+        payerPhoneNumber,
+        brokering,
+        userGroup
+      },username,password,history))
+    }finally{
+      setExecuting(false);
+    }
+   
   }
   const handleClose=()=>{
     setOpenDialog(false)
@@ -401,7 +400,10 @@ useEffect(()=>{
           <Button autoFocus onClick={handleClose}>
           {t("common:disagree")} 
           </Button>
-          <Button onClick={handlePayment} autoFocus>
+          <Button
+           disabled={executing || disabled}
+           {...otherProps}
+          onClick={handlePayment} autoFocus>
           {t("common:agree")} 
           </Button>
         </DialogActions>

@@ -17,7 +17,7 @@ import Review from "../components/createaccount/Review";
 import { openAccountAction } from "../../../../redux/actions/openAccountAction";
 import { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Grid } from "@mui/material";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
 import jwt from "jsonwebtoken";
@@ -28,6 +28,7 @@ import CardMedia from "@mui/material/CardMedia";
 import { valiateNidDetailsDetailsAction } from "../../../../redux/actions/validateNidAction";
 import AuthContext from "../../../../context";
 import { lazy } from "react";
+import { async } from "@firebase/util";
 const theme = createTheme();
 const OpenAccountReceipt=lazy(()=>import("../receipt/OpenAccountReceipt").then(module=>{
   return {default: module.OpenAccountReceipt}
@@ -43,7 +44,7 @@ theme.typography.h3 = {
   },
 };
 
-const RraForm = ({}) => {
+const RraForm = (props) => {
   const { t } = useTranslation(["home","common","login","rra"]);
   const componentRef = useRef();
   const steps = ['NID', 'Enter Information', 'View Details'];
@@ -110,7 +111,13 @@ const [passwordError,setPasswordError]=useState("");
 const [initialAmountError,setInitialAmountError]=useState("");
 const [agentPhonenumber,setAgentPhonenumber]=useState("")
 const { auth}=React.useContext(AuthContext)
-
+const [openDialog,setOpenDialog]=useState(false)
+const [executing, setExecuting] = useState(false);
+const {
+  disabled,
+  onClick,
+  ...otherProps
+} = props;
 //const basicAuthData = Buffer.from(`${username}:${password}`).toString('base64');
  const getStepContent = (step) => {
    switch (step) {
@@ -198,10 +205,7 @@ const decode= (token) => {
 }
  //handle open account
  const handleOpenAccount=async()=>{
-  const phoneNumber=formData.phoneNumber
-  const telephone=formData.phoneNumber
-  const initialamount=formData.initialAmount
-  const password=formData.password
+  
 if(formData.initialAmount===""){
 setInitialAmountError("Initial Amount is required")
 }
@@ -224,45 +228,64 @@ setPhoneNumberError("Phone number is required")
     setPasswordError("")
     setInitialAmountError("")
     setOpenAccountError("")
-    let email=""
+    setOpenDialog(true)
+  
+  }
+ }
+ //handle close
+ const handleClose=()=>{
+  setOpenDialog(false)
+ }
+ //hande open account
+ const handleNewAccount=async()=>{
+  setExecuting(true)
+  setOpenDialog(false)
+  const phoneNumber=formData.phoneNumber
+  const telephone=formData.phoneNumber
+  const initialamount=formData.initialAmount
+  const password=formData.password
+  let email=""
     if(formData.email === ""){
      email="none";
     }else{
      email=formData.email
     }
-    await dispatch(openAccountAction({
-      documentNumber,
-      initialamount,
-      nationality,
-      fatherNames,
-      motherNames,
-      telephone,
-      firstName,
-      lastName,
-      father,
-      mother,
-      idNumber,
-      phoneNumber,
-      email,
-      dateOfBirth,
-      dob,
-      accountType,
-      branchName,
-      gender,
-      civilStatus,
-      spouse:!spouse?"Some Woman":spouse,
-      placeOfBirth,
-      countryOfBirth,
-      placeOfIssue,
-      dateOfIssue,
-      province,
-      district,
-      sector,
-      cell,
-      village,
-      photo
-    },username,password))
-  }
+    try{
+      await dispatch(openAccountAction({
+        documentNumber,
+        initialamount,
+        nationality,
+        fatherNames,
+        motherNames,
+        telephone,
+        firstName,
+        lastName,
+        father,
+        mother,
+        idNumber,
+        phoneNumber,
+        email,
+        dateOfBirth,
+        dob,
+        accountType,
+        branchName,
+        gender,
+        civilStatus,
+        spouse:!spouse?"Some Woman":spouse,
+        placeOfBirth,
+        countryOfBirth,
+        placeOfIssue,
+        dateOfIssue,
+        province,
+        district,
+        sector,
+        cell,
+        village,
+        photo
+      },username,password))
+    }finally{
+      setExecuting(false)
+    }
  }
 //render Nid details
 useEffect(() => {
@@ -393,6 +416,38 @@ useEffect(() => {
     <div>
       <ThemeProvider theme={theme}>
         {/* <CssBaseline /> */}
+        <Dialog
+        //fullScreen={fullScreen}
+        open={openDialog}
+       // onClose={handleClose}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <Grid container direction="row" alignItems="center">
+        <DialogTitle id="responsive-dialog-title" sx={{color:"orange"}}>
+       {t("common:warning")}
+        </DialogTitle>
+         </Grid>
+         <Divider color="warning"/>
+       
+        <DialogContent>
+          <DialogContentText textAlign="center" >
+          {t("common:doyoureallywanttoopenanaccountwiththeinitialamountof")}  {Number(formData.initialAmount).toLocaleString()} Rwf ?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose}>
+          {t("common:disagree")} 
+          </Button>
+          <Button
+           disabled={executing || disabled}
+           {...otherProps}
+          onClick={handleNewAccount} autoFocus>
+          {t("common:agree")} 
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+
         <Box m="10px"
     >
     </Box>

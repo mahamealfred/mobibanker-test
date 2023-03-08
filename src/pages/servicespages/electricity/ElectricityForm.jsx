@@ -45,7 +45,7 @@ theme.typography.h3 = {
   },
 };
 
-const EleCtricityForm = ({openELECTRICITY,setOpenELECTRICITY}) => {
+const EleCtricityForm = (props) => {
   const { i18n,t } = useTranslation(["home","common","login","rra"]);
   const steps = [`${t("electricity:meternumber")}`, `${t("common:makepayment")}`, `${t("common:viewdetails")}`];
   const [activeStep, setActiveStep] = React.useState(0);
@@ -102,7 +102,14 @@ const EleCtricityForm = ({openELECTRICITY,setOpenELECTRICITY}) => {
  const { auth }=React.useContext(AuthContext)
  const [open, setOpen] = React.useState(true);
  const [docDetails, setDocDetails] = useState("");
- const [openDialog,setOpenDialog]=useState(false)
+ const [openDialog,setOpenDialog]=useState(false);
+
+ const [executing, setExecuting] = useState(false);
+ const {
+   disabled,
+   onClick,
+   ...otherProps
+} = props;
  const history = useHistory();
 
  const getStepContent = (step) => {
@@ -247,8 +254,10 @@ fetchData();
     setOpenDialog(true)
    }
  };
+
    //handle  payment
    const handlePayment =async()=>{
+    setExecuting(true)
     setOpenDialog(false)
     const payerPhoneNumber = formData.phoneNumber;
     const meterNumber=formData.meterNumber;
@@ -260,7 +269,8 @@ fetchData();
     }else{
      taxIdentificationNumber=formData.taxIdentificationNumber
     }
-    await dispatch(electricityPayamentAction(
+    try{
+      await dispatch(electricityPayamentAction(
         { 
            amount,
          payerName,
@@ -275,6 +285,10 @@ fetchData();
        
       )
     );
+    }finally{
+      setExecuting(false) 
+    }
+    
    }
    const handleClose=()=>{
     setOpenDialog(false)
@@ -358,7 +372,10 @@ fetchData();
           <Button autoFocus onClick={handleClose}>
           {t("common:disagree")} 
           </Button>
-          <Button onClick={handlePayment} autoFocus>
+          <Button
+            disabled={executing || disabled}
+            {...otherProps}
+          onClick={handlePayment} autoFocus>
           {t("common:agree")} 
           </Button>
         </DialogActions>

@@ -46,7 +46,7 @@ theme.typography.h3 = {
 
 
 
-const LtssForm = ({openLTSS,setOpenLTSS}) => {
+const LtssForm = (props) => {
   const { t } = useTranslation(["home","common","login","ltss"]);
   const componentRef = useRef();
   const steps = [`${t("common:nid")}`,  `${t("common:makepayment")}`, `${t("common:viewdetails")}`];
@@ -84,6 +84,12 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
  const [brokering,setBrokering]=useState("")
  const [amount,setAmount]=useState("");
  const [openDialog,setOpenDialog]=useState(false)
+ const [executing, setExecuting] = useState(false);
+ const {
+   disabled,
+   onClick,
+   ...otherProps
+} = props;
  const history = useHistory();
   const getStepContent = (step) => {
     switch (step) {
@@ -239,18 +245,23 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
   } 
    //handle cbhi payment
    const handlePayment =async()=>{
+    setExecuting(true)
     setOpenDialog(false)
     const amountPaid=formData.amountPaid
     const password=formData.password
     const payerPhoneNumber=formData.phoneNumber
-    await dispatch(ltssPaymentAction({
-      identification,
-      amountPaid,
-      payerPhoneNumber,
-      payerName,
-      agentCategory,
-      brokering
-    },username,password))
+    try{
+      await dispatch(ltssPaymentAction({
+        identification,
+        amountPaid,
+        payerPhoneNumber,
+        payerName,
+        agentCategory,
+        brokering
+      },username,password))
+    }finally{
+      setExecuting(false)
+    }
    }
    //handle close
    const handleClose=()=>{
@@ -330,7 +341,10 @@ const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
           <Button autoFocus onClick={handleClose}>
           {t("common:disagree")} 
           </Button>
-          <Button onClick={handlePayment} autoFocus>
+          <Button
+            disabled={executing || disabled}
+            {...otherProps}
+          onClick={handlePayment} autoFocus>
           {t("common:agree")} 
           </Button>
         </DialogActions>

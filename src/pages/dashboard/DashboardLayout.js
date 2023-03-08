@@ -225,7 +225,7 @@ setOpenModal(false)
    
  
 <StyledRoot>
-      <FireNotification/>
+      {/* <FireNotification/> */}
 <Modal
         open={openPageReflesh}
        // onClose={handleClosePageReflesh}

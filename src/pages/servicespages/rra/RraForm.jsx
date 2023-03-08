@@ -45,7 +45,7 @@ theme.typography.h3 = {
   },
 };
 
-const RraForm = ({openRRA,setOpenRRA}) => {
+const RraForm = (props) => {
   const { t } = useTranslation(["home","common","login","rra"]);
 
   const steps = [`${t("rra:referencenumber")}`, `${t("common:makepayment")}`, `${t("common:viewdetails")}`];
@@ -93,6 +93,12 @@ const RraForm = ({openRRA,setOpenRRA}) => {
  const [open, setOpen] = React.useState(true);
  const [docDetails, setDocDetails] = useState("");
  const [openPayment,setOpenPayment]=useState(true);
+ const [executing, setExecuting] = useState(false);
+ const {
+   disabled,
+   onClick,
+   ...otherProps
+} = props;
  const history = useHistory();
 
  const { auth }=useContext(AuthContext)
@@ -242,9 +248,7 @@ fetchData();
    }else if (formData.password === "") {
      setPasswordError(`${t("common:passwordisrequired")}`);
    }
-  //  else if (formData.password !== password ) {
-  //   setPasswordError(`${t("common:invalidpin")}`);
-  // }
+
   else {
     setPhoneNumberError("")
     setPasswordError("")
@@ -252,46 +256,46 @@ fetchData();
     // setPaymenterrorMessage("")
      const payerPhoneNumber = formData.phoneNumber;
      const password = formData.password;
-     
-     await dispatch(rraPayamentAction(
-         {
-           bankName,
-           rraRef,
-           tin,
-           taxPayerName,
-           taxTypeDesc,
-           taxCenterNo,
-           taxTypeNo,
-           assessNo,
-           rraOrginNo,
-           amountToPay,
-           descId,
-           payerPhoneNumber,
-           userGroup,
-           brokering,
-         },
-         username,
-         password,
-         history
-       )
-     );
-     
+     setExecuting(true)
+     try{
+      await dispatch(rraPayamentAction(
+        {
+          bankName,
+          rraRef,
+          tin,
+          taxPayerName,
+          taxTypeDesc,
+          taxCenterNo,
+          taxTypeNo,
+          assessNo,
+          rraOrginNo,
+          amountToPay,
+          descId,
+          payerPhoneNumber,
+          userGroup,
+          brokering,
+        },
+        username,
+        password,
+        history
+      )
+    );
+     }finally{
+setExecuting(false)
+     }
+    
    }
  };
  //handle on button submit for each step
  const handelSubmit = () => {
- 
   if (rraPayment.error) {
-  
     setOpenPayment(true);
   }
- 
    if (activeStep === 0) {
      handleDocmentDetails();
    } else if (activeStep === 1) {
     handlePayment();
    } else if (activeStep === 2) {
-
  handleNext()
    } else {
      return null;
@@ -405,7 +409,8 @@ fetchData();
                     ):null}
 
                     <Button
-                    
+                     disabled={executing || disabled}
+                     {...otherProps}
                       onClick={handelSubmit}
                       // sx={{ mt: 3, ml: 1 }}
                       sx={{ my: 1, mx: 1.5 }}

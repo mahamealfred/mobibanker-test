@@ -42,7 +42,7 @@ theme.typography.h3 = {
   },
 };
 
-const Deposit = ({}) => {
+const Deposit = (props) => {
   const { t } = useTranslation(["home","common","login","rra"]);
   const componentRef = useRef();
   const steps = ['Account Number', 'Amount', 'View Details'];
@@ -80,6 +80,12 @@ const [depositorPhoneError,setDepositorPhoneError]=useState("");
 const [remarksError,setRemarksError]=useState("");
 const [agentPhonenumber,setAgentPhonenumber]=useState('');
 const [openDialog,setOpenDialog]=useState(false)
+const [executing, setExecuting] = useState(false);
+const {
+  disabled,
+  onClick,
+  ...otherProps
+} = props;
 //all
   const [formData, setFormData] = useState({
     accountNumber: "",
@@ -224,12 +230,7 @@ const handleDeposit=async()=>{
    
 setAmountErr("Amount must be a numeric");
   }
-  // else if(formData.amount < 1000){
-  //   setAmountErr("The minimum amount to deposit is 1,000 Rwf");
-  //   }
-  //   else if(formData.amount > 1500000){
-  //     setAmountErr("The maximum amount to deposit is 1,500,000 Rwf");
-  //   }
+
     else if(formData.depositorName===""){
       setAmountErr("")
      setDepositorNameError("Depositor name is required");
@@ -259,6 +260,7 @@ else{
 }
 //handle payment
 const handlePayment=async()=>{
+  setExecuting(true)
   setOpenDialog(false)
   const amount=formData.amount
   const password=formData.password
@@ -266,7 +268,12 @@ const handlePayment=async()=>{
   const depositorphonenumber=formData.depositorPhone
   const Remarks=formData.remarks
   // const destination=formData.destination
-await dispatch(depositAction({amount,DepositorName,Remarks,depositorphonenumber,credit,brokering,userGroup},username,password))
+  try{
+    await dispatch(depositAction({amount,DepositorName,Remarks,depositorphonenumber,credit,brokering,userGroup},username,password))
+  }finally{
+    setExecuting(false)
+  }
+
 }
 
 //handle close
@@ -366,7 +373,10 @@ const decode= (token) => {
           <Button autoFocus onClick={handleClose}>
           {t("common:disagree")} 
           </Button>
-          <Button onClick={handlePayment} autoFocus>
+          <Button
+           disabled={executing || disabled}
+           {...otherProps}
+          onClick={handlePayment} autoFocus>
           {t("common:agree")} 
           </Button>
         </DialogActions>

@@ -82,9 +82,7 @@ export default function MediaCard() {
     return (
         <React.Fragment>
           <CssBaseline/>
-      <Grid
-     
-        >
+      <Grid>
              <Typography gutterBottom variant="h6"  textAlign="center">
              {t("common:agencyservices")}
             </Typography>

@@ -3,6 +3,7 @@ import { combineReducers } from "redux";
    import loginReducer from "./loginReducer";
    import forgotPasswordReducer from "./forgotPasswordReducer";
    import resetPasswordReducer from "./resetPasswordReducer";
+   import authorizeCommissionRducer from "./authorizeCommissionReducer";
    //GT BANK
    import validateNidReducer from "./validateNidReducer";
    import depositReducer from "./depositReducer";
@@ -43,10 +44,12 @@ const allReducers = combineReducers({
      forgotPassword:forgotPasswordReducer,
      resetPassword:resetPasswordReducer,
 
+
     //all 
      balance:balanceReducer,
      transactions:transactionsReducer,
      getYear:getYearReducer,
+     authorizeCommission:authorizeCommissionRducer,
      //electricity
      getElectricityDetails:electricityReducer,
      electricityPayment:electricityPaymentReducer,

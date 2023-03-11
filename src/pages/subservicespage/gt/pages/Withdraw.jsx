@@ -379,10 +379,6 @@ NID VERIFICATION
           </DialogContentText>
         </DialogContent>
       </Dialog>
-
-
-
-
 <Dialog
         open={openApprove}
        // onClose={handleClose}
@@ -472,8 +468,7 @@ NID VERIFICATION
           </DialogContentText>
         </DialogContent>
       </Dialog>
-      <Box m="10px"
-    >
+      <Box m="10px">
       <Typography
           component="h1" variant="h6"
           color="gray"

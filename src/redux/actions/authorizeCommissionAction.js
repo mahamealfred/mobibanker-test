@@ -8,7 +8,6 @@ import {
   dotenv.config()
 export const authorizeCommissionAction = (amount,auth,password) => async (dispatch) => {
   const {username}=auth
-  console.log(amount,username,password)
   try {
     dispatch(authorizeCommissionRequest());
     let basicAuth='Basic ' + btoa(username + ':' + password);

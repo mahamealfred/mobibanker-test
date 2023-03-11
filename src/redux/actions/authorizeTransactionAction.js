@@ -37,7 +37,7 @@ export const authorizeTransactionsAction = (transactionId,auth,password) => asyn
       }
   } catch (err) {
     if (err.response) {
-      const errorMessage = 'Transaction Faild '
+      const errorMessage = 'Transaction Failed '
         dispatch(authorizeTransactionsFailure(errorMessage));
       
     } else {

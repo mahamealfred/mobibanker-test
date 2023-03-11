@@ -8,12 +8,13 @@ import {
   dotenv.config()
 export const authorizeCommissionAction = (amount,auth,password) => async (dispatch) => {
   const {username}=auth
+  console.log(amount,username,password)
   try {
     dispatch(authorizeCommissionRequest());
     let basicAuth='Basic ' + btoa(username + ':' + password);
     const Url=process.env.REACT_APP_BASE_URL+'/api/agent/utilities/user/rest/v.4.14.01/commission-selfserve';
     const res = await axios.post(Url,{
-amount:amount
+amount:"100"
    },{
     withCredentials: true,
     headers:{
@@ -35,7 +36,7 @@ amount:amount
       }
   } catch (err) {
     if (err.response) {
-      const errorMessage = 'Transaction Faild'
+      const errorMessage = 'Transaction Failed'
         dispatch(authorizeCommissionFailure(errorMessage));
       
     } else {

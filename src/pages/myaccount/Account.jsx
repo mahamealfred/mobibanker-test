@@ -64,6 +64,9 @@ const user = {
   const [errorMessage,setErrorMessage]=useState("");
   const [password,setPassword]=useState("");
   const [passwordError,setPasswordError]=useState("")
+  const [successMessage,setSuccessMessage]=useState("")
+  const [openSuccessMessage,setOpenSuccessMessage]=useState(false)
+  const [amount,setAmount]=useState("")
   let today = new Date();
   let time = moment(today).format("l, hh:mm:ss");
   const { auth }=useContext(AuthContext)
@@ -74,9 +77,42 @@ const user = {
   const handleCloseErrorMessage=()=>{
     setOpenErrorMessage(false)
   }
+
+  const handleCloseSuccessMessage=()=>{
+    setOpenSuccessMessage(false)
+  }
   const handleAuthorization=async()=>{
+    if(password===""){
+      setPasswordError("PIN is required")
+    }
+   else if(amount){
+    setPasswordError("")
+    await dispatch(authorizeCommissionAction(amount,auth,password))
+   }
 
   }
+  useEffect(()=>{
+    async function fetchData(){
+     if (!authorizeCommission.loading) {
+       if (authorizeCommission.details.length !== 0) {
+         if (authorizeCommission.details.responseCode === 100) {
+          // setOpenApprove(false)
+          setSuccessMessage(authorizeCommission.details.codeDescription)
+          setOpenSuccessMessage(true)
+          await dispatch(getBalanceAction(auth))
+         } else {
+           return null;
+         }
+       }
+       if (authorizeCommission.error) {
+         setErrorMessage(authorizeCommission.error);
+         setOpenErrorMessage(true)
+       }
+     }
+    
+    }
+    fetchData();
+     },[authorizeCommission.details,authorizeCommission.error])
   
   const decode = (token) => {
     const JWT_SECRET = "tokensecret";
@@ -89,7 +125,7 @@ const user = {
       setAgentName(name);
     }
   }, []);
- 
+
   useEffect(() => {
     async function fecthData(){
    if(auth){
@@ -99,22 +135,34 @@ const user = {
   fecthData();
   
     }, [auth]);
-  useEffect(()=>{
-    async function fetchData() {
-      if (!balance.loading) {
-        if (balance.details){
-          setBalanceDetails(balance.details.data)
-        }
-      }
-    }
-    fetchData();
-  },[!balance.details])
-  const handleChange = (event) => {
-    setValues({
-      ...values,
-      [event.target.name]: event.target.value
-    });
-  };
+  // useEffect(()=>{
+ 
+  //   async function fetchData() {
+  //     if (!balance.loading) {
+  //       if (balance.details){
+  //         setBalanceDetails(balance.details.data)
+        
+  //       }
+  //     }
+  //   }
+  //   fetchData();
+  // },[!balance.details])
+
+  // useEffect(()=>{
+ 
+  //   async function fetchData() {
+  //     if(balance.loading){
+  //       return null
+  //     }
+  //     else {
+  //     console.lod(balance.details.data)
+  //   }
+  // }
+  //   fetchData();
+
+  // },[balance.details])
+
+
   return (
     <React.Fragment>
       <Dialog
@@ -160,10 +208,30 @@ const user = {
                 </Collapse>
             )
         }
+        {   !successMessage ? null : (
+                <Collapse in={openSuccessMessage}>
+                    <Alert severity="success"
+                        action={
+                            <IconButton
+                        aria-label="close"
+                        color="inherit"
+                        size="small"onClick={handleCloseSuccessMessage}>
+                        <CloseIcon
+                        fontSize="inherit"/></IconButton>
+                        }
+                        sx={
+                            {mb: 0.2}
+                    }>
+                        {successMessage}  
+                        </Alert>
+                </Collapse>
+            )
+        }
         
-       
-              <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-      1000 Rwf
+       {
+        successMessage?null:<>
+         <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
+              {Number(amount).toLocaleString()} Rwf 
               </Typography>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -194,8 +262,12 @@ const user = {
          <CircularProgress  sx={{ color: 'orange' }} />
           </Box>
        } 
-          </DialogContentText>
+         </DialogContentText>
         </DialogContent>
+        </>
+       }
+             
+        
       </Dialog>
        <Box m="10px">
        <Typography 
@@ -242,30 +314,32 @@ const user = {
           gutterBottom
           variant="h5"
         >
-        Balance
+        Float
         </Typography>
         {balance.loading ? (null ) : balance.details.data ? (
        <>
-         Float
+        
         <Typography
           color="textSecondary"
           variant="body2"
         >
-   {balance.details.data[1].details.balance.toLocaleString()} RWF
+   Float {Number(balance.details.data[1].details.balance).toLocaleString()} Rwf 
         </Typography>
-        Reserved Float
+        
         <Typography
           color="textSecondary"
           variant="body2"
         >
-  {balance.details.data[1].details.reservedAmount.toLocaleString()} RWF
+  Reserved Float {Number(balance.details.data[1].details.reservedAmount).toLocaleString()} Rwf 
+  
         </Typography>
-        Available Float
+     
         <Typography
           color="textSecondary"
           variant="body2"
         >
-     {balance.details.data[1].details.availableBalance.toLocaleString()} RWF
+    
+    Available Float {Number(balance.details.data[1].details.availableBalance).toLocaleString()} Rwf 
         </Typography>
        </>
            ):"No data"
@@ -325,7 +399,8 @@ const user = {
           color="textSecondary"
           variant="body2"
         >
-     {balance.details.data[3].details.availableBalance.toLocaleString()}  RWF
+        
+     {Number(balance.details.data[3].details.availableBalance).toLocaleString()}  Rwf 
         </Typography>
         
         ):"No data"
@@ -340,13 +415,17 @@ const user = {
     </CardContent>
     <Divider />
     <CardActions>
+      
       <Button
-    onClick={()=>setOpenApprove(true)}
+    onClick={()=>{
+      setOpenApprove(true)
+      setAmount(balance.details.data[3].details.availableBalance)
+    }}
       color="primary"
       fullWidth
       variant="text"
       >
-    Self-Serve
+    Click to Self-Serve
       </Button>
     </CardActions>
   </Card>
@@ -387,7 +466,7 @@ const user = {
           color="textSecondary"
           variant="body2"
         >
-     {balance.details.data[0].details.availableBalance.toLocaleString()} RWF
+     {Number(balance.details.data[0].details.availableBalance).toLocaleString()} Rwf 
         </Typography>
            ):"No data"
           }

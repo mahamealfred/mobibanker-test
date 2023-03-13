@@ -162,30 +162,21 @@ export default function Transactions() {
 
   return (
     <React.Fragment>
-      <Box m="10px"
-    >
+      <Box m="10px">
       <Typography
-          
           component="h1" variant="h6"
-          
           color="gray"
           textAlign="center"
           padding="0 0px 10px 0px"
           sx={{ fontSize: { xs: 20 },mb:1 }}
-       
         >
- 
-    
-
      <DialogTitle>
      <Typography id="transition-modal-title" textAlign="center" variant="h6" component="h2">
      {t("common:preioustransaction")}
      </Typography> 
      </DialogTitle>
-
         </Typography>
       <Container maxWidth="lg">
-      
    <Box sx={{ maxWidth: 300, position:"center", display:"flex"}}>
          <TextField
            fullWidth
@@ -204,14 +195,10 @@ export default function Transactions() {
            variant="outlined"
          />
        </Box>
-    
         </Container>
-      </Box>
-
-      
+      </Box>     
 <Box 
  sx={{
-   
    display: "block",
    justifyContent: "center",
    alignContent: "center",
@@ -220,7 +207,6 @@ export default function Transactions() {
 
 }}
 >
-  
      <TableContainer component={Paper}>
  <Table sx={{ minWidth: 700 }} aria-label="customized table">
    <TableHead>
@@ -245,7 +231,6 @@ export default function Transactions() {
          <StyledTableCell align="center">{details.autorisationStatus}</StyledTableCell>
          <StyledTableCell align="cenater">{details.responseDescription}</StyledTableCell>
          <StyledTableCell align="cenater">
-
          <ReactToPrint
                 trigger={()=>{
                   return  <Tooltip title={t("common:receipt")} sx={{ mt: 1 }}><Button
@@ -291,7 +276,6 @@ export default function Transactions() {
              <>
              {agentTransactionsDetails.slice(0, limit).map((details) => (
                <StyledTableRow key={details.id}  selected={selectedExamIds.indexOf(details.id) !== -1}>
-           
                        <StyledTableCell component="th" scope="row"> {details.operationDate}</StyledTableCell>
                <StyledTableCell align="center">{details.id}</StyledTableCell>
                <StyledTableCell align="center">{details.amount<0?(details.amount).toLocaleString()*-1:(details.amount).toLocaleString()}</StyledTableCell>
@@ -342,8 +326,6 @@ export default function Transactions() {
    </TableBody>
  </Table>
 </TableContainer>
-
-
 </Box>
     </React.Fragment>
   );

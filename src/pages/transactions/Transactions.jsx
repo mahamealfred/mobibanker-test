@@ -298,7 +298,6 @@ export default function Transactions() {
                <StyledTableCell align="center">{details.autorisationStatus}</StyledTableCell>
                <StyledTableCell align="center">{details.responseDescription}</StyledTableCell>
                <StyledTableCell align="cenater">
-
                <ReactToPrint
                 trigger={()=>{
                   return  <Tooltip title={t("common:receipt")} sx={{ mt: 1 }}><Button

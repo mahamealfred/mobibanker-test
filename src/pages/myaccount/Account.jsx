@@ -72,13 +72,22 @@ const user = {
   const { auth }=useContext(AuthContext)
 
   const handleClose=()=>{
+    setSuccessMessage("")
+    setPassword("")
+    authorizeCommission.details=['']
+    authorizeCommission.error=''
     setOpenApprove(false)
   }
   const handleCloseErrorMessage=()=>{
+    authorizeCommission.error=''
+    setErrorMessage("")
     setOpenErrorMessage(false)
   }
 
   const handleCloseSuccessMessage=()=>{
+   
+    authorizeCommission.details=['']
+    successMessage("")
     setOpenSuccessMessage(false)
   }
   const handleAuthorization=async()=>{
@@ -89,7 +98,6 @@ const user = {
     setPasswordError("")
     await dispatch(authorizeCommissionAction(amount,auth,password))
    }
-
   }
   useEffect(()=>{
     async function fetchData(){
@@ -135,60 +143,41 @@ const user = {
   fecthData();
   
     }, [auth]);
-  // useEffect(()=>{
- 
-  //   async function fetchData() {
-  //     if (!balance.loading) {
-  //       if (balance.details){
-  //         setBalanceDetails(balance.details.data)
-        
-  //       }
-  //     }
-  //   }
-  //   fetchData();
-  // },[!balance.details])
 
-  // useEffect(()=>{
- 
-  //   async function fetchData() {
-  //     if(balance.loading){
-  //       return null
-  //     }
-  //     else {
-  //     console.lod(balance.details.data)
-  //   }
-  // }
-  //   fetchData();
-
-  // },[balance.details])
 
 
   return (
     <React.Fragment>
       <Dialog
         open={openApprove}
-       // onClose={handleClose}
+        onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title"    sx={{padding:4,textAlign:"center"}}>
+        {
+          successMessage?null:
+          <DialogTitle id="alert-dialog-title"    sx={{padding:4,textAlign:"center"}}>
           <Typography variant="30" color="gray" textAlign="center">
       Do you realy want to self serve the commission of ?
           </Typography>
        
         </DialogTitle>
-           <IconButton
-          aria-label="close"
-          onClick={handleClose}
-          sx={{
-            position: 'absolute',
-            right: 0,
-            top: 0,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
+        }
+    
+      <IconButton
+      aria-label="close"
+      onClick={handleClose}
+      sx={{
+        position: 'absolute',
+        right: 0,
+        top: 0,
+        color: (theme) => theme.palette.grey[500],
+      }}
+    >
+      <CloseIcon />
+    </IconButton>
+ 
+          
 {   !errorMessage ? null : (
                 <Collapse in={openErrorMessage}>
                     <Alert severity="error"
@@ -211,14 +200,14 @@ const user = {
         {   !successMessage ? null : (
                 <Collapse in={openSuccessMessage}>
                     <Alert severity="success"
-                        action={
-                            <IconButton
-                        aria-label="close"
-                        color="inherit"
-                        size="small"onClick={handleCloseSuccessMessage}>
-                        <CloseIcon
-                        fontSize="inherit"/></IconButton>
-                        }
+                        // action={
+                        //     <IconButton
+                        // aria-label="close"
+                        // color="inherit"
+                        // size="small"onClick={handleCloseSuccessMessage}>
+                        // <CloseIcon
+                        // fontSize="inherit"/></IconButton>
+                        // }
                         sx={
                             {mb: 0.2}
                     }>

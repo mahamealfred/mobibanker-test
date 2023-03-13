@@ -13,7 +13,7 @@ export const authorizeCommissionAction = (amount,auth,password) => async (dispat
     let basicAuth='Basic ' + btoa(username + ':' + password);
     const Url=process.env.REACT_APP_BASE_URL+'/api/agent/utilities/user/rest/v.4.14.01/commission-selfserve';
     const res = await axios.post(Url,{
-amount:"100"
+amount:amount
    },{
     withCredentials: true,
     headers:{

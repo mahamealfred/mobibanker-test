@@ -7,7 +7,7 @@ import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { useTranslation } from "react-i18next";
-import { Box } from '@mui/material';
+import { Box, MenuItem } from '@mui/material';
 
 const Account=({
   formData,
@@ -26,7 +26,9 @@ const Account=({
   phoneNumberError,
   emailError,
   initialAmountError,
- 
+  branches,
+  setBranches,
+  branchErrorMessage
 })=> {
   const { i18n,t } = useTranslation(["home","common","rra"]);
     const handleClose = () => {
@@ -92,7 +94,30 @@ const Account=({
            {placeOfIssue}
               </Typography>
             </Grid>
-
+           
+        <Grid item xs={12} md={6}>
+          <TextField
+            id="nID"
+            name="PaymentYear"
+            required
+            label="Select branch"
+            margin="normal"
+            size="small"
+            select
+            value={formData.branches}
+            onChange={(e) =>setFormData({ ...formData, branches: e.target.value })}
+            helperText={branchErrorMessage ? branchErrorMessage : ""}
+            error={branchErrorMessage}
+            fullWidth
+            autoComplete="shipping address-line2"
+            variant="filled"
+          >
+             {branches.map((option) => (
+                      <MenuItem key={option.branchCode} value={option.branchCode}>{option.branchName}</MenuItem>
+                    ))} 
+            </TextField>
+        </Grid>
+        
             <Grid item xs={12} md={6}>
           <TextField
     

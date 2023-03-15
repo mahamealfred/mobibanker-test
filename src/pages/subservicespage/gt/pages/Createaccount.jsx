@@ -29,6 +29,7 @@ import { valiateNidDetailsDetailsAction } from "../../../../redux/actions/valida
 import AuthContext from "../../../../context";
 import { lazy } from "react";
 import { async } from "@firebase/util";
+import { getBranchesAction } from "../../../../redux/actions/getBranchesAction";
 const theme = createTheme();
 const OpenAccountReceipt=lazy(()=>import("../receipt/OpenAccountReceipt").then(module=>{
   return {default: module.OpenAccountReceipt}
@@ -53,13 +54,15 @@ const RraForm = (props) => {
 const history=useHistory();
 const validateNid=useSelector((state)=>state.validateNid);
 const openAccount=useSelector((state)=>state.openAccount);
+const getBranches=useSelector((state)=>state.getBranches);
 const [niderrorMessage,setNiderrorMessage]=useState("");
   const [formData, setFormData] = useState({
     nid: "",
     phoneNumber: "",
     password: "",
     email:"",
-    initialAmount:""
+    initialAmount:"",
+    branches:""
   });
 const [errorMessage,setErrorMessage]=useState("");
 const [open,setOpen]=React.useState(true);
@@ -113,6 +116,8 @@ const [agentPhonenumber,setAgentPhonenumber]=useState("")
 const { auth}=React.useContext(AuthContext)
 const [openDialog,setOpenDialog]=useState(false)
 const [executing, setExecuting] = useState(false);
+const [branches,setBranches]=useState([])
+const [branchErrorMessage,setBranchErrorMessage]=useState("");
 const {
   disabled,
   onClick,
@@ -142,6 +147,9 @@ const {
          placeOfIssue={placeOfIssue}
          firstName={firstName}
          lastName={lastName}
+         branches={branches}
+         branchErrorMessage={branchErrorMessage}
+         setBranches={setBranches}
          photo={photo}
          dateOfBirth={dateOfBirth}
          gender={gender}
@@ -167,6 +175,24 @@ const {
        throw new Error("Unknown step");
    }
  };
+
+ useEffect(()=>{
+  async function fetchData() {
+    await dispatch(getBranchesAction());
+  }
+  fetchData()
+},[])
+useEffect(() => {
+  async function fetchData() {
+    if (!getBranches.loading) {
+       if (getBranches.details.length>0) {
+        setBranches(getBranches.details);
+      }
+    }}
+    fetchData() ;
+  },[getBranches.details]);
+
+
  useEffect(() => {
   const token =sessionStorage.getItem('mobicash-auth');
   if (token) {
@@ -205,8 +231,10 @@ const decode= (token) => {
 }
  //handle open account
  const handleOpenAccount=async()=>{
-  
-if(formData.initialAmount===""){
+   if(formData.branches==""){
+    setBranchErrorMessage("Please select branch")
+  }
+else if(formData.initialAmount===""){
 setInitialAmountError("Initial Amount is required")
 }
    else if(formData.phoneNumber===""){
@@ -228,6 +256,7 @@ setPhoneNumberError("Phone number is required")
     setPasswordError("")
     setInitialAmountError("")
     setOpenAccountError("")
+    setBranchErrorMessage("")
     setOpenDialog(true)
   
   }
@@ -244,6 +273,7 @@ setPhoneNumberError("Phone number is required")
   const telephone=formData.phoneNumber
   const initialamount=formData.initialAmount
   const password=formData.password
+  const branchCode=formData.branches
   let email=""
     if(formData.email === ""){
      email="none";
@@ -253,6 +283,7 @@ setPhoneNumberError("Phone number is required")
     try{
       await dispatch(openAccountAction({
         documentNumber,
+        branchCode,
         initialamount,
         nationality,
         fatherNames,

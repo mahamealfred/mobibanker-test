@@ -41,14 +41,17 @@ export const openAccountAction = (details,username,password) => async (dispatch)
   const {village}=details
   const {photo}=details
   const {initialamount}=details
+  const {branchCode}=details
 
     //const {accountName}=details
     // const {brokering}=details
     // const {userGroup}=details
     //let basicAuth='Basic ' + btoa(username + ':' + password);
     const Url=process.env.REACT_APP_BASE+'/api/agent/user/rest/v.4.14.01/gt-bank-account-opening';
+
     const res = await axios.post(Url,{
         documentNumber: documentNumber,
+        branchCode:branchCode.toString(),
         initialeAmount:initialamount,
         nationality: nationality,
         fatherNames: fatherNames,
@@ -99,6 +102,7 @@ export const openAccountAction = (details,username,password) => async (dispatch)
        await dispatch(openAccountSuccess(res.data));
       }
       else if(res.data.responseCode!==100){
+     
         await dispatch(openAccountFailure(res.data.codeDescription)); 
       }
       else{

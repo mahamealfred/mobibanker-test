@@ -7,7 +7,7 @@ import {
   } from "../types/getYearType";
   import dotenv from "dotenv"
   dotenv.config()
-export const getYearAction = (history) => async (dispatch) => {
+export const getYearAction = () => async (dispatch) => {
   try {
     dispatch(getYearRequest());
     const Url =process.env.REACT_APP_BASE_URL+'/api/agent/utilities/cbhi/rest/v.4.14.01/year-of-collection'

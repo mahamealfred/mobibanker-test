@@ -14,7 +14,7 @@ import QRCode from "react-qr-code";
 import "../../../style.css"
 
 export const ComponentToPrint = React.forwardRef((props, ref) => {
-           
+         const totalAmount=parseInt(props.clientCharges) + parseInt(props.amountToPay)
     return (
       <div ref={ref}>
 		< CssBaseline/>
@@ -181,7 +181,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 			        </p> */}
 			       	<p className="bold">
 			            <span>Grand Total</span>
-			            <span>{props.amountToPay.toLocaleString()} Rwf</span>
+			            <span>{totalAmount.toLocaleString()} Rwf</span>
 						
 			        </p>
 				</div>

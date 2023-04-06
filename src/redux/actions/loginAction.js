@@ -43,13 +43,12 @@ export const loginAction = (user,history) => async (dispatch) => {
    });
     const jwt_secret="tokensecret"
    // res.data.responseCode===100 && res.data.data.group==="retail_agents" && res.data.data.agencyBankingStatus===true 
-    if(res.data.responseCode===100 && res.data.data.group==="retail_agents"){
+    if((res.data.responseCode===100 && res.data.data.group==="retail_agents") || (res.data.responseCode===100 && res.data.data.group==="sacco_mfi") ){
       history.push('/dashboard',{push:true})
       const userId=res.data.data.id
       const name=res.data.data.names
       const role=res.data.data.brokering
       const group=res.data.data.group
-     
       const claims={userId,name,role}
       const token= jwt.sign(claims,jwt_secret, { expiresIn: "7d"});
       const resData=res.data
@@ -58,7 +57,7 @@ export const loginAction = (user,history) => async (dispatch) => {
       sessionStorage.setItem('mobicash-auth',token)
       return  sessionStorage.setItem('mobicash-auth',token);
     }
-    else if(res.data.responseCode===100 && res.data.data.group!=="retail_agents"){
+    else if((res.data.responseCode===100 && res.data.data.group!=="retail_agents") || (res.data.responseCode===100 && res.data.data.group!=="sacco_mfi")){
       dispatch(loginFailure(" Authorized Agent are only allowed, Please contact MobiCash."));
     }
     else{

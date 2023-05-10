@@ -184,68 +184,8 @@ export default function MediaCard() {
             </Card>  
           
             </Button>
-
-
-
-
-           
-          
            </Grid>
          
-           {/* <Typography 
-            component="h1" variant="body1"
-         fontWeight={800}
-         color="gray"
-         textAlign="center"
-         sx={{ fontSize: { xs: 16 } }}
-         >
-      {t("common:governmentservices")}
-        </Typography> 
-        <Grid
-         container
-         spacing={0}
-         alignItems="center"
-         justifyContent="center"
-        >
- <Button
-            // onClick={handleClickOpenLTSS}
-            >
-            <Card
-               // raised
-                sx={{
-                   // maxWidth: 100,
-                   width:{xs:60,sm:70,md:60,lg:60},
-                   height:{xs:60,sm:60,md:60,lg:60},
-                   borderRadius:5,
-                    margin: "0 auto 5px",
-                    padding: "0.9em",
-                }}
-            >
-               <CardMedia
-                    component="img"
-                    height="50"
-                    
-                    image="../../images/rssb.png"
-                    alt="alt"
-                    title="i"
-                    sx={{ 
-                      padding: "0em 2em 0 0em", 
-                      objectFit: "contain",
-                     height:{xs:40,sm:40,md:40,lg:40},
-                     width:60
-                    }}
-                     
-                />
-           <Typography variant="h6" gutterBottom
-                sx={{ padding: "1em 0em 0 0em",color:"gray",
-                fontSize:10
-             }}
-           >
-            RSSB
-          </Typography>
-            </Card>  
-            </Button>     
-          </Grid> */}
                 <Grid container>
                <Grid item xs>
                <Button variant="text" onClick={handleBack}>

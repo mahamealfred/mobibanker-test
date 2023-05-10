@@ -16,10 +16,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useTranslation } from "react-i18next";
-import { useInterval } from "./customHooks";
 import AuthContext from '../../context';
-import Paper from "@mui/material/Paper"
-import {  styled } from '@mui/material/styles';
 import LanguagePopover from '../dashboard/header/LanguagePopover';
 import { Dialog, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { changePasswordAction } from '../../redux/actions/changePasswordAction';
@@ -54,8 +51,6 @@ const SignIn = () => {
     const [openError,setOpenError]=useState(false)
     const [openSuccess,setOpenSuccess]=useState(false)
     const [ successFullMessage,setSuccessFullMessage]=useState("")
-    //const []
-    //authentication
     const handleClosresetErrorMessage=()=>{
 
     }
@@ -192,30 +187,11 @@ if(changePassword.details.responseCode===100){
                      sx={{ mb: 0.2 }}
                    >
                        {changePassword.error}
-                    {/* {changePassword.error==="FAILURE"?"The given pin was already used":changePassword.error} */}
+                    
                    </Alert>
                  </Collapse>
                 }    
-{/*  
-{   !resetErrorMessage ? null : (
-                <Collapse in={operesetErrorMessage}>
-                    <Alert severity="error"
-                        action={
-                            <IconButton
-                        aria-label="close"
-                        color="inherit"
-                        size="small"onClick={handleClosresetErrorMessage}>
-                        <CloseIcon
-                        fontSize="inherit"/></IconButton>
-                        }
-                        sx={
-                            {mb: 0.2}
-                    }>
-                        {resetErrorMessage}  
-                        </Alert>
-                </Collapse>
-            )
-        } */}
+
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
       

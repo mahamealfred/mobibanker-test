@@ -15,38 +15,11 @@ const Account=({
 })=> {
   const { i18n,t } = useTranslation(["home","common","rra"]);
     const handleClose = () => {
-      // setOpenAccountError('')
-      //   setOpen(false);
+    
     };
   return (
     <React.Fragment>
-        {/* {   !openAccountError ? null : (
-                <Collapse in={open}>
-                    <Alert severity="error"
-                        action={
-                            <IconButton
-                        aria-label="close"
-                        color="inherit"
-                        size="small"onClick={handleClose}>
-                        <CloseIcon
-                        fontSize="inherit"/></IconButton>
-                        }
-                        sx={
-                            {mb: 0.2}
-                    }>
-                        {openAccountError}  
-                        </Alert>
-                </Collapse>
-            )
-        } */}
-    {/* <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-     
-    >
-        <img style={{width:120,height:100,objectFit:"contain"}} src={`data:image/png;base64,${photo}`}/>
-        </Box> */}
+      
       <Grid container spacing={3}
         alignItems="center"
         justifyContent="center"

@@ -365,7 +365,7 @@ fetchData();
        
         <DialogContent>
           <DialogContentText textAlign="center" >
-          {t("common:doyoureallywanttomakeapaymentof")}  {Number(formData.amountPaid).toLocaleString()} Rwf ?
+          {t("common:doyoureallywanttomakeapaymentof")}  {Number(formData.amountToPay).toLocaleString()} Rwf ?
           </DialogContentText>
         </DialogContent>
         <DialogActions>

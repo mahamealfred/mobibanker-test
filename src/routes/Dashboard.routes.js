@@ -25,10 +25,6 @@ import ChangePassword from "../pages/changepassword/Changepassword";
 const Dashboard=lazy(()=>import("../views/Dashboard"));
  const HomePage=lazy(()=>import("../pages/home/HomePage"));
  const TopUpMobileMoney=lazy(()=>import("../pages/servicespages/topupmobilemoney"));
-// const Account=lazy(()=>import("../pages/myaccount/Account"));
-// const MyProfile=lazy(()=>import("../pages/myaccount/AccountProfile"));
-// const FaqPage=lazy(()=>import("../pages/faqpage"));
-
 
 function App() {
   const {path}=useRouteMatch();
@@ -38,7 +34,6 @@ function App() {
           <Route
             component={({ match }) => (
               <>
-                {/* <PrivateRoute exact path={path} component={Home} /> */}
                 <PrivateRoute exact path={path} component={HomePage} />
                 <PrivateRoute exact path={`${path}/my-account`} component={Account} />
                 <PrivateRoute exact path={`${path}/my-profile`} component={MyProfile} />

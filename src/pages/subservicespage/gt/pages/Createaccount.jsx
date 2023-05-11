@@ -231,10 +231,10 @@ const decode= (token) => {
 }
  //handle open account
  const handleOpenAccount=async()=>{
-   if(formData.branches==""){
-    setBranchErrorMessage("Please select branch")
-  }
-else if(formData.initialAmount===""){
+  //  if(formData.branches==""){
+  //   setBranchErrorMessage("Please select branch")
+  // }
+ if(formData.initialAmount===""){
 setInitialAmountError("Initial Amount is required")
 }
    else if(formData.phoneNumber===""){
@@ -283,7 +283,7 @@ setPhoneNumberError("Phone number is required")
     try{
       await dispatch(openAccountAction({
         documentNumber,
-        branchCode,
+        // branchCode,
         initialamount,
         nationality,
         fatherNames,

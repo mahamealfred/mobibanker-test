@@ -41,7 +41,7 @@ export const openAccountAction = (details,username,password) => async (dispatch)
   const {village}=details
   const {photo}=details
   const {initialamount}=details
-  const {branchCode}=details
+ // const {branchCode}=details
 
     //const {accountName}=details
     // const {brokering}=details
@@ -51,7 +51,7 @@ export const openAccountAction = (details,username,password) => async (dispatch)
 
     const res = await axios.post(Url,{
         documentNumber: documentNumber,
-        branchCode:branchCode.toString(),
+       // branchCode:branchCode.toString(),
         initialeAmount:initialamount,
         nationality: nationality,
         fatherNames: fatherNames,

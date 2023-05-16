@@ -79,17 +79,7 @@ const [openPageReflesh, setOpenPageReflesh] = useState(false)
 const handleClosePageReflesh = () => setOpenPageReflesh(false);
  const { auth,setAuth }=useContext(AuthContext)
 const {children}=props
-//nutral
-useEffect(()=>{
-  // if (!login.loading){
-  //   setIsLoading(true)
-  // }else{
-  //   setIsLoading(false)
-  // }
-//   setIsLoading(true)
 
-
- },[])
 
 useEffect(()=>{
   if(login.users.length === 0){
@@ -97,12 +87,15 @@ useEffect(()=>{
   }
 
  },[])
+
  useEffect(() => {
   async function fetchData() {
     if (!login.loading) {
       if (login.users.length !== 0) {
         if (login.users.resData.responseCode === 100) {
-          setAuth({username:login.users.resData.data.phonenumber,
+          setAuth({
+          username:auth.user,
+        //username:login.users.resData.data.phonenumber,
           brokering:login.users.resData.data.brokering,
           usergroup:login.users.resData.data.group,
           password:login.users.password,
@@ -114,7 +107,7 @@ useEffect(()=>{
           agencyBanking:login.users.resData.data.agencyBankingStatus
         
         })
-         setUsername(login.users.resData.data.username)
+         setUsername(auth.user)
          setBrokering(login.users.resData.data.brokering)
          setUserGroup(login.users.resData.data.group)
         

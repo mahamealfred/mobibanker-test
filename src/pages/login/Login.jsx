@@ -55,7 +55,6 @@ const SignIn = () => {
 
     }
     const { setAuth,auth } = useContext(AuthContext);
-   
 
       const handleSubmit = async(event) => {
           event.preventDefault();
@@ -75,6 +74,7 @@ const SignIn = () => {
             setUsernameError("")
             setPasswordError("")
             setPassword(data.get('password'))
+            setAuth({user:data.get('username')})
            // login.error=""
            login.loading=true
             setError(null);

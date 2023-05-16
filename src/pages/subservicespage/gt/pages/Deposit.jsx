@@ -162,7 +162,7 @@ const {
           setAccountName(accountValidation.details.data.names)
           setPhone(accountValidation.details.data.mobileNumber)
           setCredit(formData.accountNumber)
-          setUsername(auth.username)
+          setUsername(auth.phonenumber)
           setBrokering(auth.brokering)
           setUserGroup(auth.usergroup)
           setAgentPhonenumber(auth.phonenumber)

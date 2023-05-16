@@ -175,22 +175,23 @@ const {
        throw new Error("Unknown step");
    }
  };
+ //get branches
 
- useEffect(()=>{
-  async function fetchData() {
-    await dispatch(getBranchesAction());
-  }
-  fetchData()
-},[])
-useEffect(() => {
-  async function fetchData() {
-    if (!getBranches.loading) {
-       if (getBranches.details.length>0) {
-        setBranches(getBranches.details);
-      }
-    }}
-    fetchData() ;
-  },[getBranches.details]);
+//  useEffect(()=>{
+//   async function fetchData() {
+//     await dispatch(getBranchesAction());
+//   }
+//   fetchData()
+// },[])
+// useEffect(() => {
+//   async function fetchData() {
+//     if (!getBranches.loading) {
+//        if (getBranches.details.length>0) {
+//         setBranches(getBranches.details);
+//       }
+//     }}
+//     fetchData() ;
+//   },[getBranches.details]);
 
 
  useEffect(() => {
@@ -353,7 +354,7 @@ useEffect(() => {
          setCell(validateNid.details.data.cell);
          setVillage(validateNid.details.data.village);
         // setPhoneNumber(formData.phoneNumber);
-        setUsername(auth.username)
+        setUsername(auth.phonenumber)
         setBrokering(auth.brokering)
         setUserGroup(auth.usergroup)
         setAgentPhonenumber(auth.phonenumber)

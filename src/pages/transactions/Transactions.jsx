@@ -28,7 +28,8 @@ import PrintIcon from '@mui/icons-material/Print';
 import { useTranslation } from "react-i18next";
 import AuthContext from "../../context";
 import  {ComponentToPrint}  from "./ComponentToPrint";
-import logo from "../../assets/images/logo.png"
+import logo from "../../assets/images/logo.png";
+//import logo from "../../assets/images/logo.png"
 
 // export let amountPaid=[]
 

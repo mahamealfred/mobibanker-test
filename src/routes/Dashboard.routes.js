@@ -22,6 +22,7 @@ import SchoolFeesPayment from "../pages/mobishuliservice/pages/SchoolFeesPayment
 import MobiShuliDeposit from "../pages/mobishuliservice/pages/Deposit";
 import Transactions from "../pages/transactions/Transactions";
 import ChangePassword from "../pages/changepassword/Changepassword";
+import PreviousDepositTransaction from "../pages/transactions/PreviousDepositTransaction";
 const Dashboard=lazy(()=>import("../views/Dashboard"));
  const HomePage=lazy(()=>import("../pages/home/HomePage"));
  const TopUpMobileMoney=lazy(()=>import("../pages/servicespages/topupmobilemoney"));
@@ -52,6 +53,7 @@ function App() {
                 <PrivateRoute exact path={`${path}/gt-bank-service/deposit`} component={Deposit} />
                 <PrivateRoute exact path={`${path}/gt-bank-service/transfer`} component={MoneyTransfer} />
                 <PrivateRoute exact path={`${path}/gt-bank-service/withdraw`} component={Withdraw} />
+                <PrivateRoute exact path={`${path}/previous-deposit-transactions`} component={PreviousDepositTransaction}/>
                 {/* MOBISHULI */}
                 <PrivateRoute exact path={`${path}/mobishuli-service`} component={MobishuliService} />
                 <PrivateRoute exact path={`${path}/mobishuli-service/payment`} component={SchoolFeesPayment} />

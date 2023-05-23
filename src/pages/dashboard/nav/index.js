@@ -61,6 +61,11 @@ const {auth}=useContext(AuthContext)
       icon: icon('ic_disabled'),
     },
     {
+      title: `${t("common:previousdeposittransactions")}`,
+      path: '/dashboard/previous-deposit-transactions',
+      icon: icon('ic_disabled'),
+    },
+    {
       title: 'FAQ',
       path: '/dashboard/faq',
       icon: icon('ic_blog'),

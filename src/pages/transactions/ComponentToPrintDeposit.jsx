@@ -68,7 +68,7 @@ export const ComponentToPrintDeposit = React.forwardRef((props, ref) => {
 						</div>
 					</div>
                   
-          <div className="row">
+          {/* <div className="row">
 						<div className="col col_no">
 						</div>
 						<div className="col col_des">
@@ -77,7 +77,7 @@ export const ComponentToPrintDeposit = React.forwardRef((props, ref) => {
 						<div className="col col_total">
 							<p>{props.clientName}</p>
 						</div>
-					</div>
+					</div> */}
           <div className="row">
 						<div className="col col_no">
 						</div>

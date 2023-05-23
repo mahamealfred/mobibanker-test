@@ -216,12 +216,71 @@ export default function Transactions() {
        <StyledTableCell>Date</StyledTableCell>
        <StyledTableCell align="center">Bank reference</StyledTableCell>
        <StyledTableCell align="center">Client Account</StyledTableCell>
-       <StyledTableCell align="center">Client Name</StyledTableCell>
+       {/* <StyledTableCell align="center">Client Name</StyledTableCell> */}
        <StyledTableCell align="center"> Amount (Rwf)</StyledTableCell>
        <StyledTableCell align="center">Action</StyledTableCell>
      </TableRow>
    </TableHead>
    <TableBody>
+   {
+           search?(
+             <>
+             {results.slice(0, limit).map((details) => (
+       <StyledTableRow  key={details.id}  selected={selectedExamIds.indexOf(details.id) !== -1} >
+       <StyledTableCell component="th" scope="row">{details.date}</StyledTableCell>
+        <StyledTableCell align="center">{details.bank_reference}</StyledTableCell>
+        <StyledTableCell align="center">{details.client_account}</StyledTableCell>
+        {/* <StyledTableCell align="center">{details.client_name}</StyledTableCell> */}
+        <StyledTableCell align="center">{details.deposit_amount<0?(details.deposit_amount).toLocaleString()*-1:(details.deposit_amount).toLocaleString()}</StyledTableCell>
+        <StyledTableCell align="center">
+        <ReactToPrint
+         trigger={()=>{
+           return  <Tooltip title={t("common:receipt")} sx={{ mt: 1 }}><Button
+           startIcon={(<PrintIcon fontSize="small"   sx={{ color:"#F9842C" }}/>)}
+           sx={{ mr: 1,color:"gray"}}
+           onClick={async()=>{ 
+             await setId(details.id);
+             await  setAmount(details.deposit_amount)
+             await  setClientName(details.client_name)
+             await setClientAccount(details.client_account)
+             await  setBankReference(details.bank_reference)
+             await setDescription(details.deposit_bank_response)
+            await setMobicashReference(details.mobicore_reference)
+             await  setDate(details.date)
+           await handlePrint()
+           }
+           }
+           >
+        </Button>
+        </Tooltip>
+         }}
+       //  content={()=> componentRef.current}
+         />
+       
+      {
+       id==details.id?
+       <Box style={{ display: "none" }}>
+      <ComponentToPrintDeposit
+         ref={componentRef}
+        id={id}
+        amount={amount}
+        date={date}
+        description={description}
+        clientName={clientName}
+        clientAccount={clientAccount}
+        bankRefrence={bankRefrence}
+        agentName={agentName}
+        agentPhoneNumber={agentPhoneNumber}
+        logo={logo}
+        />
+         </Box>
+        :null
+      }  
+        </StyledTableCell>
+      </StyledTableRow>
+     ))}
+        </>
+           ):(
   
              <>
              {transactionsDetails.slice(0, limit).map((details) => (
@@ -229,7 +288,7 @@ export default function Transactions() {
               <StyledTableCell component="th" scope="row">{details.date}</StyledTableCell>
                <StyledTableCell align="center">{details.bank_reference}</StyledTableCell>
                <StyledTableCell align="center">{details.client_account}</StyledTableCell>
-               <StyledTableCell align="center">{details.client_name}</StyledTableCell>
+               {/* <StyledTableCell align="center">{details.client_name}</StyledTableCell> */}
                <StyledTableCell align="center">{details.deposit_amount<0?(details.deposit_amount).toLocaleString()*-1:(details.deposit_amount).toLocaleString()}</StyledTableCell>
                <StyledTableCell align="center">
                <ReactToPrint
@@ -277,9 +336,9 @@ export default function Transactions() {
              }  
                </StyledTableCell>
              </StyledTableRow>
-            ))}
-            </>
-      
+              ))}
+              </>
+            )}
    </TableBody>
  </Table>
 </TableContainer>

@@ -10,9 +10,7 @@ export const getPreviousdepositTransactionsAction = (details) => async (dispatch
   try {
     dispatch(getPreviousdepositTransactionsRequest());
     const  {phonenumber}=details
-    const agentId=phonenumber.replace(/[^a-zA-Z0-9 ]/g, '')
-    
- 
+    const agentId=phonenumber.replace(/[^a-zA-Z0-9 ]/g, '');
  const Url=process.env.REACT_APP_BASE+'/api/banking/finance/rest/v.4.14.01/deposity-receipt';
    const res = await axios.get(Url,{
     params:{

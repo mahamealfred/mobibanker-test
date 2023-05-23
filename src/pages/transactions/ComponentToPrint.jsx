@@ -3,6 +3,7 @@ import QRCode from "react-qr-code";
 import "../../style.css";
 //import logo from "../../assets/images/logo.png";
 import logo from "../../assets/images/logo.png";
+import mobilogo from "../../assets/images/mobilogo.png";
 import CssBaseline from '@mui/material/CssBaseline';
 export const ComponentToPrint = React.forwardRef((props, ref) => {
     return (
@@ -13,7 +14,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 		<div className="header">
 			<div className="logo_invoice_wrap">
 				<div className="logo_sec">
-					<img src={logo} className='logo' alt="code logo"/>
+					<img src={mobilogo} className='logo' alt="code logo"/>
 					<div className="title_wrap">
 						{/* <p className="title bold">Coding Boss</p>
 						<p className="sub_title">Privite Limited</p> */}

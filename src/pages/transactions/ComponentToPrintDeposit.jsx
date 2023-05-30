@@ -68,7 +68,7 @@ export const ComponentToPrintDeposit = React.forwardRef((props, ref) => {
 						</div>
 					</div>
                   
-          {/* <div className="row">
+					<div className="row">
 						<div className="col col_no">
 						</div>
 						<div className="col col_des">
@@ -77,7 +77,7 @@ export const ComponentToPrintDeposit = React.forwardRef((props, ref) => {
 						<div className="col col_total">
 							<p>{props.clientName}</p>
 						</div>
-					</div> */}
+					</div>
           <div className="row">
 						<div className="col col_no">
 						</div>
@@ -98,11 +98,41 @@ export const ComponentToPrintDeposit = React.forwardRef((props, ref) => {
 							<p>RWF {props.amount.toLocaleString()}</p>
 						</div>
 					</div>
+                       <div className="row">
+						<div className="col col_no">
+						</div>
+						<div className="col col_des">
+							<p className="bold">Paid by:</p>
+						</div>
+						<div className="col col_total">
+							<p>{props.depositorName?props.depositorName:"XXX"}</p>
+						</div>
+					</div>
+                       <div className="row">
+						<div className="col col_no">
+						</div>
+						<div className="col col_des">
+							<p className="bold">Depositor Phone No:</p>
+						</div>
+						<div className="col col_total">
+							<p>{props.depositorPhone?props.depositorPhone:"XXX"}</p>
+						</div>
+					</div>
+					<div className="row">
+						<div className="col col_no">
+						</div>
+						<div className="col col_des">
+							<p className="bold">Remarks:</p>
+						</div>
+						<div className="col col_total">
+							<p>{props.remarks}</p>
+						</div>
+					</div>
                     <div className="row">
                     <div className="col col_no">
 						</div>
 						<div className="col col_des">
-							<p className="bold">Bank Reference No:</p>
+							<p className="bold">Reference ID:</p>
 							
 						</div>
 						<div className="col col_total">

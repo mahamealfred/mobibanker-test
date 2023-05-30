@@ -31,7 +31,8 @@ export const depositAction = (details,username,password) => async (dispatch) => 
         DepositorName:DepositorName,
         Remarks:Remarks,
         depositorphonenumber:depositorphonenumber,
-        destination: "INT"
+        destination: "INT",
+        ownersname:accountName
       //  userGroup:userGroup,
       //  brokering:brokering
         

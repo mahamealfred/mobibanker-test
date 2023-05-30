@@ -27,7 +27,7 @@ import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import AuthContext from "../../../context";
-import logo from "../../../assets/images/logo.png"
+import logo from "../../../assets/images/mobilogo.png"
 const  ComponentToPrint=React.lazy(()=>import("./ComponentToPrint").then(module=>{
   return {default: module.ComponentToPrint}
 }))

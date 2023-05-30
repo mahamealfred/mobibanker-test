@@ -109,7 +109,7 @@ export const DepositReceipt = React.forwardRef((props, ref) => {
                     <div className="col col_no">
 						</div>
 						<div className="col col_des">
-							<p className="bold">Phone No:</p>
+							<p className="bold">Depositor Phone No:</p>
 							
 						</div>
 						<div className="col col_total">
@@ -120,7 +120,7 @@ export const DepositReceipt = React.forwardRef((props, ref) => {
                     <div className="col col_no">
 						</div>
 						<div className="col col_des">
-							<p className="bold">Remark:</p>
+							<p className="bold">Remarks:</p>
 						
 						</div>
 						<div className="col col_total">

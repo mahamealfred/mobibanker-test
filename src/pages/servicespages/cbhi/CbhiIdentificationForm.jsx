@@ -27,7 +27,7 @@ import ReactToPrint from 'react-to-print';
 import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
 import AuthContext from "../../../context";
-import logo from "../../../assets/images/logo.png"
+import logo from "../../../assets/images/mobilogo.png"
 import WarningIcon from '@mui/icons-material/Warning';
 
 const  ComponentToPrint=React.lazy(()=>import("./ComponentToPrint").then(module=>{
@@ -277,6 +277,10 @@ useEffect(()=>{
     }
     else if (formData.amountPaid > totalPremium ) {
       setPaymentErrorMessage(`${t("common:thepaymentmustnotbemorethanthewholepremium")}`)
+    } 
+    else if (formData.amountPaid > (totalPremium - amountPaidBefore) ) {
+      
+      setPaymentErrorMessage(`${t("common:youhavealreadypaidtheamountof")} ${amountPaidBefore}`)
     } 
     else if (amountPaidBefore == totalPremium ) {
       setPaymentErrorMessage(`${t("common:youhavealreadypaidthetotalpremiumfortheyear")} ${formData.paymentYear}`)

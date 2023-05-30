@@ -80,6 +80,9 @@ export default function Transactions() {
  const [clientAccount,setClientAccount]=useState("")
  const [bankRefrence,setBankReference]=useState('')
  const [mobicashReference,setMobicashReference]=useState('')
+ const [depositorName,setDepositorName]=useState("");
+ const [depositorPhone,setDepositorPhone]=useState("");
+ const [remarks,setRemarks]=useState("");
 
   const trimString = (s) => {
     var l = 0,
@@ -242,10 +245,13 @@ export default function Transactions() {
              await setId(details.id);
              await  setAmount(details.deposit_amount)
              await  setClientName(details.client_name)
+             await setRemarks(details.remarks)
              await setClientAccount(details.client_account)
              await  setBankReference(details.bank_reference)
              await setDescription(details.deposit_bank_response)
             await setMobicashReference(details.mobicore_reference)
+            await setDepositorName(details.depositor_name)
+            await setDepositorPhone(details.depositor_phone)
              await  setDate(details.date)
            await handlePrint()
            }
@@ -267,9 +273,12 @@ export default function Transactions() {
         date={date}
         description={description}
         clientName={clientName}
+        remarks={remarks}
         clientAccount={clientAccount}
         bankRefrence={bankRefrence}
         agentName={agentName}
+        depositorName={depositorName}
+        depositorPhone={depositorPhone}
         agentPhoneNumber={agentPhoneNumber}
         logo={logo}
         />
@@ -300,10 +309,13 @@ export default function Transactions() {
                     await setId(details.id);
                     await  setAmount(details.deposit_amount)
                     await  setClientName(details.client_name)
+                    await setRemarks(details.remarks)
                     await setClientAccount(details.client_account)
                     await  setBankReference(details.bank_reference)
                     await setDescription(details.deposit_bank_response)
                    await setMobicashReference(details.mobicore_reference)
+                   await setDepositorName(details.depositor_name)
+                   await setDepositorPhone(details.depositor_phone)
                     await  setDate(details.date)
                   await handlePrint()
                   }
@@ -325,9 +337,12 @@ export default function Transactions() {
                date={date}
                description={description}
                clientName={clientName}
+               remarks={remarks}
                clientAccount={clientAccount}
                bankRefrence={bankRefrence}
                agentName={agentName}
+               depositorName={depositorName}
+               depositorPhone={depositorPhone}
                agentPhoneNumber={agentPhoneNumber}
                logo={logo}
                />

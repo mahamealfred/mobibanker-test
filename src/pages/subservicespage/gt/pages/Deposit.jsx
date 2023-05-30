@@ -269,7 +269,7 @@ const handlePayment=async()=>{
   const Remarks=formData.remarks
   // const destination=formData.destination
   try{
-    await dispatch(depositAction({amount,DepositorName,Remarks,depositorphonenumber,credit,brokering,userGroup},username,password))
+    await dispatch(depositAction({amount,DepositorName,Remarks,depositorphonenumber,credit,brokering,userGroup,accountName},username,password))
   }finally{
     setExecuting(false)
   }

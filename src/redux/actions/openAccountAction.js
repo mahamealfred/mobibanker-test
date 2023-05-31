@@ -51,7 +51,7 @@ export const openAccountAction = (details,username,password) => async (dispatch)
 
     const res = await axios.post(Url,{
         documentNumber: documentNumber,
-        branchCode:branchCode.toString(),
+      //  branchCode:branchCode.toString(),
         initialeAmount:initialamount,
         nationality: nationality,
         fatherNames: fatherNames,

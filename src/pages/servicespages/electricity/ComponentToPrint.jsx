@@ -169,11 +169,18 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 			            <span>AMOUNT </span>
 			            {/* <span>$7500</span> */}
 			        </p>
-			      
+			        {/* <p>
+			            <span>Tax Vat 18%</span>
+			            <span>$200</span>
+			        </p>
+			        <p>
+			            <span>Discount 10%</span>
+			            <span>-$700</span>
+			        </p> */}
 			       	<p className="bold">
 			            <span>Grand Total</span>
 			            <span>
-						{props.amountPaid}
+						{Number(props.amountPaid).toLocaleString()} Rwf
 							</span>
 					
 			        </p>

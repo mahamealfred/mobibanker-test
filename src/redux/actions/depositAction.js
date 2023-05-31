@@ -12,8 +12,6 @@ export const depositAction = (details,username,password) => async (dispatch) => 
   try {
     dispatch(depositRequest());
     const {amount}=details
-    // const {destination}=details
-    // const  {debit}=details
     const {credit}=details
     const {phone}=details
     const {accountName}=details

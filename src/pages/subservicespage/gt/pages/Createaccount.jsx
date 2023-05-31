@@ -177,21 +177,21 @@ const {
  };
  //get branches
 
-//  useEffect(()=>{
-//   async function fetchData() {
-//     await dispatch(getBranchesAction());
-//   }
-//   fetchData()
-// },[])
-// useEffect(() => {
-//   async function fetchData() {
-//     if (!getBranches.loading) {
-//        if (getBranches.details.length>0) {
-//         setBranches(getBranches.details);
-//       }
-//     }}
-//     fetchData() ;
-//   },[getBranches.details]);
+ useEffect(()=>{
+  async function fetchData() {
+    await dispatch(getBranchesAction());
+  }
+  fetchData()
+},[])
+useEffect(() => {
+  async function fetchData() {
+    if (!getBranches.loading) {
+       if (getBranches.details.length>0) {
+        setBranches(getBranches.details);
+      }
+    }}
+    fetchData() ;
+  },[getBranches.details]);
 
 
  useEffect(() => {
@@ -284,7 +284,7 @@ setPhoneNumberError("Phone number is required")
     try{
       await dispatch(openAccountAction({
         documentNumber,
-       //  branchCode,
+        branchCode,
         initialamount,
         nationality,
         fatherNames,

@@ -79,6 +79,12 @@ export default function MediaCard() {
    const handleTopUp=()=>{
     history.push("/dashboard/topup-mobile-money",{push:true})
    }
+
+const openRiaService=()=>{
+  history.push("/dashboard/ria-service",{push:true})
+}
+
+
     return (
         <React.Fragment>
           <CssBaseline/>
@@ -356,6 +362,35 @@ export default function MediaCard() {
                     title="i"
                     sx={{ 
                       padding: "0.8em 0em 0 0em", 
+                     objectFit: "contain",
+                     height:{xs:50,sm:70}  
+                   }}
+                />
+         
+            </Card>  
+            </Button>
+            <Button
+         onClick={openRiaService}
+            >
+            <Card
+                raised
+                sx={{
+                  // maxWidth: 100,
+                  width:{xs:50,sm:60,md:60,lg:80},
+                  height:{xs:60,sm:60,md:60,lg:90},
+                  borderRadius:5,
+                  justifyContent:"center"
+                  
+              }}
+            >
+                <CardMedia
+                    component="img"
+                   height="70"
+                    image="../../images/ria.jpg"
+                    alt="alt"
+                    title="i"
+                    sx={{ 
+                      padding: "0.8em 0em 0 0em",
                      objectFit: "contain",
                      height:{xs:50,sm:70}  
                    }}

@@ -23,6 +23,7 @@ import MobiShuliDeposit from "../pages/mobishuliservice/pages/Deposit";
 import Transactions from "../pages/transactions/Transactions";
 import ChangePassword from "../pages/changepassword/Changepassword";
 import PreviousDepositTransaction from "../pages/transactions/PreviousDepositTransaction";
+import RiaService from "../pages/servicespages/ria/RiaForm";
 const Dashboard=lazy(()=>import("../views/Dashboard"));
  const HomePage=lazy(()=>import("../pages/home/HomePage"));
  const TopUpMobileMoney=lazy(()=>import("../pages/servicespages/topupmobilemoney"));
@@ -58,6 +59,8 @@ function App() {
                 <PrivateRoute exact path={`${path}/mobishuli-service`} component={MobishuliService} />
                 <PrivateRoute exact path={`${path}/mobishuli-service/payment`} component={SchoolFeesPayment} />
                 <PrivateRoute exact path={`${path}/mobishuli-service/deposit`} component={MobiShuliDeposit} />
+                {/* Ria service */}
+                <PrivateRoute exact path={`${path}/ria-service`} component={RiaService}/>
               </>
             )}
           />

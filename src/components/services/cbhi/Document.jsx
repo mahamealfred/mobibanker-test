@@ -55,7 +55,7 @@ const Document = ({
                         fontSize="inherit"/></IconButton>
                         }
                         sx={
-                            {mb: 0.2}
+                        {mb: 0.2}
                     }>
                         {/* {errorMessage==="Provided NID is not registered to the head of the household"?`${t("cbhi:providedNIDisnotregisteredtotheheadofthehousehold")}`:errorMessage} */}
                         {errorMessage}

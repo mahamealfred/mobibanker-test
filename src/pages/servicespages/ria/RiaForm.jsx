@@ -14,13 +14,14 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Document from "../../../components/services/ria/Document";
 import Payment from "../../../components/services/ria/Payment";
 import Review from "../../../components/services/ria/Review";
+import CheckBeneficiaryAccount from "../../../components/services/ria/CheckBeneficiaryAccount";
 import { getDocDetailsAction } from "../../../redux/actions/getDocDetailsAction";
 import { rraPayamentAction } from "../../../redux/actions/rraPaymentAction";
 import { getElectricityDetailsAction } from "../../../redux/actions/electricityAction";
 import { electricityPayamentAction } from "../../../redux/actions/electricitPaymentAction";
 import { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid } from "@mui/material";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid, List, ListItem, ListItemText } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
 import jwt from "jsonwebtoken";
@@ -30,10 +31,21 @@ import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
 import AuthContext from "../../../context";
 import logo from "../../../assets/images/mobilogo.png"
+
+import ordersList from "../../../dummyData/ordersList";
 const  ComponentToPrint=React.lazy(()=>import("./RiaComponentToPrint").then(module=>{
   return {default: module.ComponentToPrint}
 }))
 const theme = createTheme();
+
+
+const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
+const payments = [
+  { name: 'Card type', detail: 'Visa' },
+  { name: 'Card holder', detail: 'Mr John Smith' },
+  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
+  { name: 'Expiry date', detail: '04/2024' },
+];
 
 theme.typography.h3 = {
   fontSize: '1.2rem',
@@ -59,6 +71,8 @@ const RiaForm = (props) => {
     phoneNumber: "",
     taxIdentificationNumber:"",
     password: "",
+    orderNumber:"",
+    orderPin:""
   });
   const componentRef = useRef();
 
@@ -97,6 +111,22 @@ const RiaForm = (props) => {
  const [tokenValue,setTokenValue]=useState("");
  const [amountPaid,setAmountPaid]=useState("")
  const [password,setPassword]=useState("")
+ //ria
+ const [orderNumberErr,setOrderNumberErr]=useState("")
+ const [orderPinErr,setOrderPinErr]=useState("")
+ const [openOrderDetailsDialog,setOpenOrderDetailsDialog]=useState(false);
+
+ const [orderNumber,setOrdeNumber]=useState("")
+ const [orderPin,setOrderPin]=useState("")
+ const [beneFirstName,setBeneFirstName]=useState("")
+ const [beneMiddleName,setBeneMiddleName]=useState("")
+ const [beneLastName,setBeneLastName]=useState("")
+ const [beneNationality,setBeneNationality]=useState("")
+ const [beneCountry,setBeneCountry]=useState("")
+ const [beneCity,setBeneCity]=useState("")
+ const [beneState,setBeneState]=useState("")
+ const [beneZipCode,setBeneZipCode]=useState("")
+ const [beneEmailAddress,setBeneEmailAddress]=useState("")
 
  //all
  const { auth }=React.useContext(AuthContext)
@@ -118,14 +148,32 @@ const RiaForm = (props) => {
          <Document
            formData={formData}
            setFormData={setFormData}
-           meterNumberErr={meterNumberErr}
+           orderNumberErr={orderNumberErr}
+           orderPinErr={orderPinErr}
            errorMessage={errorMessage}
            setErrorMessage={setErrorMessage}
            open={open}
            setOpen={setOpen}
          />
        );
-     case 1:
+       case 1:
+        return (
+          <CheckBeneficiaryAccount
+            formData={formData}
+            setFormData={setFormData}
+            phoneNumberError={phoneNumberError}
+            passwordError={passwordError}
+            payerName={payerName}
+            paymenterrorMessage={paymenterrorMessage}
+            setPaymenterrorMessage={setPaymenterrorMessage}
+            taxIdentificationNumberError={taxIdentificationNumberError}
+            amountTopayError={amountTopayError}
+            meterNumberErr={meterNumberErr}
+            openPayment={openPayment}
+            setOpenPayment={setOpenPayment}
+          />
+        );
+     case 2:
        return (
          <Payment
            formData={formData}
@@ -142,7 +190,7 @@ const RiaForm = (props) => {
            setOpenPayment={setOpenPayment}
          />
        );
-     case 2:
+     case 3:
        return <Review 
        dateTime={dateTime}
        formData={formData}
@@ -208,6 +256,43 @@ async function fetchData(){
 }
 fetchData();
  },[electricityPayment.details,electricityPayment.error])
+
+
+
+ const handleOrderDetails=async()=>{
+  if (formData.orderNumber === "") {
+    setOrderNumberErr("Order number is required")
+  } else if (!Number(formData.orderNumber)) {
+    setOrderNumberErr("Order number must be numeric")
+  } 
+  else if (!Number(formData.orderPin)) {
+    setOrderPinErr("Order  PIN is required")
+  } 
+  
+  else {
+   setOrderNumberErr("")
+   setOrderPinErr("")
+   ordersList.map((n)=>{
+    if((n.orderNumber==formData.orderNumber) && (n.orderPin==formData.orderPin) ){
+      setOrdeNumber(n.orderNumber)
+      setBeneFirstName(n.beneFirstName)
+      setBeneLastName(n.beneLastName)
+      setBeneMiddleName(n.beneMiddleName)
+      setBeneNationality(n.beneNationality)
+      setBeneEmailAddress(n.beneAddress)
+      setBeneCity(n.beneCity)
+      setBeneCountry(n.beneCountry)
+      setBeneZipCode(n.beneZipCode)
+     setOpenOrderDetailsDialog(true)
+     }else{
+       setErrorMessage("Invalid Order PIN or Number")
+     }
+   } )
+  
+  }
+ }
+
+
 
  //handle request for rra document id
  const handleMeterDetails = async () => {
@@ -291,16 +376,19 @@ fetchData();
    }
    const handleClose=()=>{
     setOpenDialog(false)
+    setOpenOrderDetailsDialog(false)
+    setErrorMessage("")
+    setOpen(false)
    }
  //handle on button submit for each step
  const handelSubmit = () => {
    if (activeStep === 0) {
-     handleMeterDetails();
+  handleOrderDetails()
+    // handleNext()
    } else if (activeStep === 1) {
-    handleElectricityPayment();
-    // handleNext();
+    //handleElectricityPayment();
+     handleNext();
    } else if (activeStep === 2) {
-
  handleNext()
    } else {
      return null;
@@ -311,6 +399,8 @@ fetchData();
    if (electricityPayment.error) {
      setOpen(true);
    }
+   
+  
   
  };
 
@@ -326,12 +416,15 @@ fetchData();
  };
 
  const handleNext = () => {
+  setOpenOrderDetailsDialog(false)
    setActiveStep(activeStep + 1);
  };
 
  const handleBack = () => {
-   formData.password = "";
-   formData.meterNumber=""
+   formData.orderNumber = "";
+   formData.orderPin=""
+   setOrderPinErr("")
+   setOrderNumberErr("")
    setMeterNumberErr("");
    setPasswordError("");
    setPhoneNumberError("");
@@ -349,6 +442,102 @@ fetchData();
     <div>
       <ThemeProvider theme={theme}>
         {/* <CssBaseline /> */}
+
+
+        <Dialog
+        //fullScreen={fullScreen}
+        fullWidth
+        maxWidth="md"
+        open={openOrderDetailsDialog}
+       // onClose={handleClose}
+       
+        aria-labelledby="responsive-dialog-title"
+      >
+        <Grid container direction="row" alignItems="center">
+        <DialogTitle id="responsive-dialog-title" >
+       Order Details
+        </DialogTitle>
+         </Grid>
+         <Divider color="warning"/>
+       
+        <DialogContent>
+          <DialogContentText textAlign="center" >
+          <Typography variant="h6" gutterBottom>
+          Beneficiary Information
+      </Typography>
+      {/* <Grid direction="column" xs={12} sm={6}>
+        <Grid item xs={12} sm={6}> */}
+        <List disablePadding>
+     
+          <ListItem  sx={{ py: 1, px: {xs:0,sm:20} }}>
+            <ListItemText primary="First Name" />
+            <Typography variant="body2">{beneFirstName}</Typography>
+          </ListItem>
+          <ListItem  sx={{ py: 1, px: {xs:0,sm:20} }}>
+            <ListItemText primary=" Middle Name" />
+            <Typography variant="body2">{beneMiddleName}</Typography>
+          </ListItem>
+          <ListItem  sx={{ py: 1, px: {xs:0,sm:20} }}>
+            <ListItemText primary=" Last Name" />
+            <Typography variant="body2">{beneLastName}</Typography>
+          </ListItem>
+          <ListItem  sx={{ py: 1, px: {xs:0,sm:20} }}>
+            <ListItemText primary=" Email Address" />
+            <Typography variant="body2">{beneEmailAddress}</Typography>
+          </ListItem>
+        {/* <ListItem sx={{ py: 1, px: {xs:0,sm:20} }}>
+          <ListItemText primary="Total" />
+          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+            $34.06
+          </Typography>
+        </ListItem> */}
+      </List>
+{/* </Grid>
+      </Grid>
+      */}
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6}>
+          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+           Address
+          </Typography>
+          <Typography gutterBottom>John Smith</Typography>
+          <Typography gutterBottom>{addresses.join(', ')}</Typography>
+        </Grid>
+        <Grid item container direction="column" xs={12} sm={6}>
+          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+            Order details
+          </Typography>
+          <Grid container>
+            {payments.map((payment) => (
+              <React.Fragment key={payment.name}>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{payment.name}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{payment.detail}</Typography>
+                </Grid>
+              </React.Fragment>
+            ))}
+          </Grid>
+        </Grid>
+      </Grid>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose}>
+         Cancel
+          </Button>
+          <Button
+            disabled={executing || disabled}
+            {...otherProps}
+          onClick={handleNext} autoFocus>
+        Next
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+
+
         <Dialog
         //fullScreen={fullScreen}
         open={openDialog}
@@ -472,14 +661,17 @@ fetchData();
                </Box>
                 </>
                         : activeStep === 0
-                        ? getElectricityDetails.loading?
-                        <Box sx={{ display: 'flex',justifyContent:"center" }}>
-                        <CircularProgress  sx={{ color: 'orange'}} />
-                         </Box>:`${t("common:submit")}`
-                        : electricityPayment.loading?
-                        <Box sx={{ display: 'flex',justifyContent:"center" }}>
-                        <CircularProgress  sx={{ color: 'orange'}} />
-                         </Box>:`${t("common:makepayment")}`}
+                        ?
+                        //  getElectricityDetails.loading?
+                        // <Box sx={{ display: 'flex',justifyContent:"center" }}>
+                        // <CircularProgress  sx={{ color: 'orange'}} />
+                        //  </Box>:
+                        "Submit"
+                        : 
+                        // <Box sx={{ display: 'flex',justifyContent:"center" }}>
+                        // <CircularProgress  sx={{ color: 'orange'}} />
+                        //  </Box>:
+                        "Make Payment"}
                     </Button>
                   </Box>
                 </React.Fragment>

@@ -21,11 +21,10 @@ theme.typography.h3 = {
         fontSize: '1rem'
     }
 };
-const Document = ({
+const CheckBeneficiaryAccount = ({
     formData,
     setFormData,
-    orderNumberErr,
-    orderPinErr,
+    meterNumberErr,
     errorMessage,
     setErrorMessage,
     open,
@@ -70,12 +69,12 @@ const Document = ({
                 spacing={3}>
                 <Grid item
                     xs={12}>
-                    <TextField id="address2"  size="small"  margin="normal" name="address2" label="Enter order number"
+                    <TextField id="address2"  size="small"  margin="normal" name="address2" label="Select Identity Type"
                         required
-                        value={ formData.orderNumber}
-                        onChange={(e) => setFormData({...formData,orderNumber: e.target.value})}
-                        helperText={orderNumberErr ? orderNumberErr : ""}
-                        error={orderNumberErr}
+                        value={ formData.meterNumber}
+                        onChange={(e) => setFormData({...formData,meterNumber: e.target.value})}
+                        helperText={meterNumberErr ? meterNumberErr : ""}
+                        error={meterNumberErr}
                         fullWidth
                         autoComplete="shipping address-line2"
                         variant="filled"
@@ -83,12 +82,25 @@ const Document = ({
                 </Grid>
                 <Grid item
                     xs={12}>
-                    <TextField id="address2"  size="small"  margin="normal" name="address2" label="Enter order PIN"
+                    <TextField id="address2"  size="small"  margin="normal" name="address2" label="Enter Identity Number"
                         required
-                        value={ formData.orderPin}
-                        onChange={(e) => setFormData({...formData,orderPin: e.target.value})}
-                        helperText={orderPinErr ? orderPinErr: ""}
-                        error={orderPinErr}
+                        value={ formData.meterNumber}
+                        onChange={(e) => setFormData({...formData,meterNumber: e.target.value})}
+                        helperText={meterNumberErr ? meterNumberErr : ""}
+                        error={meterNumberErr}
+                        fullWidth
+                        autoComplete="shipping address-line2"
+                        variant="filled"
+                        />
+                </Grid>
+                <Grid item
+                    xs={12}>
+                    <TextField id="address2"  size="small"  margin="normal" name="address2" label="Enter Your Current Email"
+                        required
+                        value={ formData.meterNumber}
+                        onChange={(e) => setFormData({...formData,meterNumber: e.target.value})}
+                        helperText={meterNumberErr ? meterNumberErr : ""}
+                        error={meterNumberErr}
                         fullWidth
                         autoComplete="shipping address-line2"
                         variant="filled"
@@ -99,4 +111,4 @@ const Document = ({
     );
 };
 
-export default Document;
+export default CheckBeneficiaryAccount;

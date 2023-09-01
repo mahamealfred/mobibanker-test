@@ -3,7 +3,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-
 import Paper from "@mui/material/Paper";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
@@ -31,7 +30,7 @@ import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
 import AuthContext from "../../../context";
 import logo from "../../../assets/images/mobilogo.png"
-
+import ClientsData from "../../../dummyData/ClientsData";
 import ordersList from "../../../dummyData/ordersList";
 const  ComponentToPrint=React.lazy(()=>import("./RiaComponentToPrint").then(module=>{
   return {default: module.ComponentToPrint}
@@ -66,13 +65,13 @@ const RiaForm = (props) => {
   const getElectricityDetails = useSelector((state) => state.getElectricityDetails);
   const electricityPayment = useSelector((state) => state.electricityPayment);
   const [formData, setFormData] = useState({
-    meterNumber: "",
-    amountToPay:"",
-    phoneNumber: "",
-    taxIdentificationNumber:"",
-    password: "",
+    
     orderNumber:"",
-    orderPin:""
+    orderPin:"",
+    identityType:"",
+    identityNumber:"",
+    currentEmail:"",
+
   });
   const componentRef = useRef();
 
@@ -83,30 +82,11 @@ const RiaForm = (props) => {
  const [paymenterrorMessage, setPaymenterrorMessage] = useState("");
  const [phoneNumberError, setPhoneNumberError] = useState("");
  const [passwordError, setPasswordError] = useState("");
- const [username, setUsername] = useState("");
- const [bankName, setBankName] = useState("");
+
  const [rraRef, setRraRef] = useState("");
  const [tin, setTin] = useState("");
- const [taxPayerName, setTaxPayerName] = useState("");
- const [taxTypeDesc, setTaxTypeDesc] = useState("");
- const [taxCenterNo, setTaxCenterNo] = useState("");
- const [taxTypeNo, setTaxTypeNo] = useState("");
- const [assessNo, setAssessNo] = useState("");
- const [rraOrginNo, setRraOrginNo] = useState("");
- const [amountToPay, setAmountToPay] = useState("");
- const [descId, setDescId] = useState("");
- const [payerPhone, setPayerPhone] = useState("");
- const [brokering, setBrokering] = useState("");
- const [userGroup, setUserGroup] = useState("");
- const [transactionId,setTransactionId]=useState("");
- const [transactionStatus,setTransactionStatus]=useState("");
- const [dateTime,setDateTime]=useState("")
- const [agentName,setAgentName]=useState("")
- const [agentPhoneNumber,setAgentPhoneNumber]=useState("")
- const [payerName,setPayerName]=useState("");
- const [meter,setMeter]=useState("");
- const [amountTopayError,setAmountTopayError]=useState("")
- const [taxIdentificationNumberError,setTaxIdentificationNumberError]=useState("");
+
+
  const [openPayment,setOpenPayment]=useState(true);
  const [tokenValue,setTokenValue]=useState("");
  const [amountPaid,setAmountPaid]=useState("")
@@ -127,6 +107,12 @@ const RiaForm = (props) => {
  const [beneState,setBeneState]=useState("")
  const [beneZipCode,setBeneZipCode]=useState("")
  const [beneEmailAddress,setBeneEmailAddress]=useState("")
+ const [beneAddress,setBeneAddress]=useState("")
+const  [openClentRegistrationFormDetailsDialog,setOpenClentRegistrationFormDetailsDialog]=useState(false)
+
+ const [identityTypeErr,setIdentityTypeErr]=useState("")
+ const [identityNumberErr,setIdentityNumberErr]=useState("")
+ const [currentEmailErr,setCurrentEmailErr]=useState("")
 
  //all
  const { auth }=React.useContext(AuthContext)
@@ -161,101 +147,27 @@ const RiaForm = (props) => {
           <CheckBeneficiaryAccount
             formData={formData}
             setFormData={setFormData}
-            phoneNumberError={phoneNumberError}
-            passwordError={passwordError}
-            payerName={payerName}
+            identityNumberErr={identityNumberErr}
+            identityTypeErr={identityTypeErr}
+            currentEmailErr={currentEmailErr}
             paymenterrorMessage={paymenterrorMessage}
             setPaymenterrorMessage={setPaymenterrorMessage}
-            taxIdentificationNumberError={taxIdentificationNumberError}
-            amountTopayError={amountTopayError}
-            meterNumberErr={meterNumberErr}
             openPayment={openPayment}
             setOpenPayment={setOpenPayment}
           />
         );
      case 2:
-       return (
-         <Payment
-           formData={formData}
-           setFormData={setFormData}
-           phoneNumberError={phoneNumberError}
-           passwordError={passwordError}
-           payerName={payerName}
-           paymenterrorMessage={paymenterrorMessage}
-           setPaymenterrorMessage={setPaymenterrorMessage}
-           taxIdentificationNumberError={taxIdentificationNumberError}
-           amountTopayError={amountTopayError}
-           meterNumberErr={meterNumberErr}
-           openPayment={openPayment}
-           setOpenPayment={setOpenPayment}
-         />
-       );
-     case 3:
        return <Review 
-       dateTime={dateTime}
-       formData={formData}
-       transactionId={transactionId}
-       transactionStatus={transactionStatus}
-       payerName={payerName}
-       amountPaid={amountPaid}
-       agentName={agentName}
-       tokenValue={tokenValue}
+      
        />;
      default:
        throw new Error("Unknown step");
    }
  };
 
- useEffect(() => {
-   async function fetchData() {
-     if (!getElectricityDetails.loading) {
-       if (getElectricityDetails.details.length !== 0) {
-         if (getElectricityDetails.details.responseCode === 100) {
-          setPayerName(getElectricityDetails.details.data.customerName)
-          setUsername(auth.username)
-          setBrokering(auth.brokering)
-          setUserGroup(auth.usergroup)
-          setAgentName(auth.names)
-          setAgentPhoneNumber(auth.phonenumber)
-           handleNext();
-         } else {
-           return null;
-         }
-      
-       }
-       if (getElectricityDetails.error) {
-         setErrorMessage(getElectricityDetails.error);
-       }
-     }
-   }
-   fetchData();
-  
- }, [getElectricityDetails.details]);
 
- useEffect(()=>{
-async function fetchData(){
- if (!electricityPayment.loading) {
-   if (electricityPayment.details.length !== 0) {
-     if (electricityPayment.details.responseCode === 100) {
-      setTransactionId(electricityPayment.details.data.mobicashTransctionNo)
-      setDateTime(electricityPayment.details.data.date)
-      setTransactionStatus(electricityPayment.details.communicationStatus)
-      setTokenValue(electricityPayment.details.data.token)
-      setMeter(electricityPayment.details.data.meterNo)
-      setAmountPaid(electricityPayment.details.data.amountPaid)
-       handleNext();
-     } else {
-       return null;
-     }
-   }
-   if (electricityPayment.error) {
-     setPaymenterrorMessage(electricityPayment.error);
-   }
- }
 
-}
-fetchData();
- },[electricityPayment.details,electricityPayment.error])
+ 
 
 
 
@@ -279,10 +191,11 @@ fetchData();
       setBeneLastName(n.beneLastName)
       setBeneMiddleName(n.beneMiddleName)
       setBeneNationality(n.beneNationality)
-      setBeneEmailAddress(n.beneAddress)
+      setBeneEmailAddress(n.beneEmailAddress)
       setBeneCity(n.beneCity)
       setBeneCountry(n.beneCountry)
       setBeneZipCode(n.beneZipCode)
+      setBeneAddress(n.beneAddress)
      setOpenOrderDetailsDialog(true)
      }else{
        setErrorMessage("Invalid Order PIN or Number")
@@ -292,91 +205,36 @@ fetchData();
   }
  }
 
+ //verify account
+ const handleCheckBeneficiaryAccount=()=>{
+  if(formData.identityType==""){
+setIdentityTypeErr("Please select Identity Type")
+  }
+  else if(formData.identityNumber==""){
+    setIdentityNumberErr("Identity Number is required")
+  }else if (formData.currentEmail=="") {
+    setCurrentEmailErr("Email Address is required")
+  } else{
+    setIdentityTypeErr("")
+    setIdentityNumberErr("")
+    setCurrentEmailErr("")
+    ClientsData.map((n)=>{
+      if((n.clientEmailAddress==formData.currentEmail)){
+        handleNext()
+     
+       }else{
+        setOpenClentRegistrationFormDetailsDialog(true)
+       }
+     } )
+  }
+ }
 
 
- //handle request for rra document id
- const handleMeterDetails = async () => {
-   if (formData.meterNumber === "") {
-     setMeterNumberErr(`${t("electricity:meternumberisrequired")}`);
-   } else if (!Number(formData.meterNumber)) {
-     setMeterNumberErr(`${t("electricity:meternumbermustbeanumeric")}`);
-   } else {
-    setMeterNumberErr("");
-     const meterNumber = formData.meterNumber;
-     await dispatch(getElectricityDetailsAction({ meterNumber}));
-   }
- };
 
- //handle electricity Payament
- const handleElectricityPayment = async () => {
-    if(formData.amountToPay==""){
-        setAmountTopayError(`${t("common:amounttopay")}`)
-    }
-    else if(!Number(formData.amountToPay)){
-        setAmountTopayError(`${t("common:amounttopayisrequired")}`)
-    }
-    else if(formData.amountToPay < 100 || formData.amountToPay>10000000){
-        setAmountTopayError(`${t("electricity:theminimumamountis100andthemaximunis1,000,000")}`)  
-    }
-   else if (formData.phoneNumber === "") {
-     setPhoneNumberError(`${t("common:phoneisrequired")}`);
-   } else if (!Number(formData.phoneNumber)) {
-     setPhoneNumberError(`${t("common:phonemustbeanumeric")}`);
-   } else if (formData.phoneNumber.length!==10) {
-    setPhoneNumberError(`${t("common:phonenumbermustbe10digit")}`);
-  }else if (formData.password === "") {
-     setPasswordError(`${t("common:passwordisrequired")}`);
-   }
-  //  else if (formData.password !== password ) {
-  //   setPasswordError(`${t("common:invalidpin")}`);
-  // } 
-   else {
-    setAmountTopayError("")
-    setPasswordError("")
-    setPhoneNumberError("")
-    setTaxIdentificationNumberError("")
-    setOpenDialog(true)
-   }
- };
-
-   //handle  payment
-   const handlePayment =async()=>{
-    setExecuting(true)
-    setOpenDialog(false)
-    const payerPhoneNumber = formData.phoneNumber;
-    const meterNumber=formData.meterNumber;
-    const password = formData.password;
-    const amount=formData.amountToPay
-    let taxIdentificationNumber=0
-    if(formData.taxIdentificationNumber===""){
-     taxIdentificationNumber="0000"
-    }else{
-     taxIdentificationNumber=formData.taxIdentificationNumber
-    }
-    try{
-      await dispatch(electricityPayamentAction(
-        { 
-           amount,
-         payerName,
-          taxIdentificationNumber,
-          payerPhoneNumber,
-          meterNumber,
-          userGroup,
-          brokering,
-        },
-        username,
-        password
-       
-      )
-    );
-    }finally{
-      setExecuting(false) 
-    }
-    
-   }
    const handleClose=()=>{
     setOpenDialog(false)
     setOpenOrderDetailsDialog(false)
+    setOpenClentRegistrationFormDetailsDialog(false)
     setErrorMessage("")
     setOpen(false)
    }
@@ -387,31 +245,23 @@ fetchData();
     // handleNext()
    } else if (activeStep === 1) {
     //handleElectricityPayment();
-     handleNext();
+    handleCheckBeneficiaryAccount()
+    // handleNext();
    } else if (activeStep === 2) {
  handleNext()
    } else {
      return null;
    }
-   if (getElectricityDetails.error) {
-     setOpen(true);
-   }
-   if (electricityPayment.error) {
-     setOpen(true);
-   }
+  
    
   
   
  };
 
  const handleNewpayment = () => {
-  formData.meterNumber = "";
-  formData.password = "";
-  formData.phoneNumber = "";
-  getElectricityDetails.details=['']
-  getElectricityDetails.error=['']
-  electricityPayment.details=['']
-  electricityPayment.error=['']
+  formData.orderNumber = "";
+  formData.orderPin = "";
+  setErrorMessage("")
   setActiveStep(0)
  };
 
@@ -425,16 +275,8 @@ fetchData();
    formData.orderPin=""
    setOrderPinErr("")
    setOrderNumberErr("")
-   setMeterNumberErr("");
-   setPasswordError("");
-   setPhoneNumberError("");
    setErrorMessage("");
-   getElectricityDetails.error=['']
    setPaymenterrorMessage("");
-   getElectricityDetails.details=['']
-   electricityPayment.details=['']
-   getElectricityDetails.loading=false
-   electricityPayment.loading=false
    setActiveStep(0);
    history.push("/dashboard",{push:true})
  };
@@ -442,15 +284,79 @@ fetchData();
     <div>
       <ThemeProvider theme={theme}>
         {/* <CssBaseline /> */}
+{/* client registration form */}
+<Dialog
+        //fullScreen={fullScreen}
+        fullWidth
+        maxWidth="md"
+        open={openClentRegistrationFormDetailsDialog}
+       // onClose={handleClose}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <Grid container direction="row" alignItems="center">
+        <DialogTitle id="responsive-dialog-title" >
+       Client Registration Form
+        </DialogTitle>
+         </Grid>
+         <Divider color="warning"/>
+        <DialogContent>
+          <DialogContentText textAlign="center" >
+          <Typography variant="h6" gutterBottom>
+          Enter Client Information
+      </Typography>
+     
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6}>
+          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+           Address Iformation
+          </Typography>
+          {/* <Typography gutterBottom>{beneCountry}</Typography>
+          <Typography gutterBottom>{beneCity+" "+beneState+" "+beneAddress}</Typography> */}
+        </Grid>
+        <Grid item container direction="column" xs={12} sm={6}>
+          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+          Contact Information
+          </Typography>
+          <Grid container>
+     
+              <React.Fragment >
+                <Grid item xs={6}>
+                  {/* <Typography gutterBottom>Order Number</Typography> */}
+                </Grid>
+                <Grid item xs={6}>
+                  {/* <Typography gutterBottom>{orderNumber}</Typography> */}
+                </Grid>
+              </React.Fragment>
+        
+          </Grid>
+        </Grid>
+      </Grid>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose}>
+         Cancel
+          </Button>
+          <Button
+            disabled={executing || disabled}
+            {...otherProps}
+          // onClick={handleNext} 
+          autoFocus>
+        Submit
+          </Button>
+        </DialogActions>
+      </Dialog>
 
 
+
+
+        {/* order iformation */}
         <Dialog
         //fullScreen={fullScreen}
         fullWidth
         maxWidth="md"
         open={openOrderDetailsDialog}
        // onClose={handleClose}
-       
         aria-labelledby="responsive-dialog-title"
       >
         <Grid container direction="row" alignItems="center">
@@ -459,7 +365,6 @@ fetchData();
         </DialogTitle>
          </Grid>
          <Divider color="warning"/>
-       
         <DialogContent>
           <DialogContentText textAlign="center" >
           <Typography variant="h6" gutterBottom>
@@ -500,24 +405,24 @@ fetchData();
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
            Address
           </Typography>
-          <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(', ')}</Typography>
+          <Typography gutterBottom>{beneCountry}</Typography>
+          <Typography gutterBottom>{beneCity+" "+beneState+" "+beneAddress}</Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-            Order details
+            Order summary
           </Typography>
           <Grid container>
-            {payments.map((payment) => (
-              <React.Fragment key={payment.name}>
+     
+              <React.Fragment >
                 <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.name}</Typography>
+                  <Typography gutterBottom>Order Number</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.detail}</Typography>
+                  <Typography gutterBottom>{orderNumber}</Typography>
                 </Grid>
               </React.Fragment>
-            ))}
+        
           </Grid>
         </Grid>
       </Grid>
@@ -563,7 +468,7 @@ fetchData();
           <Button
             disabled={executing || disabled}
             {...otherProps}
-          onClick={handlePayment} autoFocus>
+           autoFocus>
           {t("common:agree")} 
           </Button>
         </DialogActions>
@@ -607,11 +512,11 @@ fetchData();
                   {t("common:thankyouforusingmobicash")}
                   </Typography>
                   <Typography textAlign="center" variant="subtitle1">
-                  {t("common:youhavesuccessfullypaid")} {t("electricity:electricity")}
+                  Please, Go to the previous transaction to approve the withdrawal amount.
                   </Typography>
                 
                   <Button onClick={handleNewpayment} sx={{ mt: 3, ml: 1 }}>
-                  {t("common:newpayment")}
+                  Go Back To Home
                   </Button>
                   
                 </React.Fragment>
@@ -637,29 +542,7 @@ fetchData();
                       
                       {/* {activeStep === steps.length - 1 ? 'Mke payment' : 'Next'} */}
                       {activeStep === steps.length - 1
-                        ? <>
-                      
-                        <ReactToPrint
-             trigger={() => <Button>{t("common:receipt")}</Button>}
-            content={() => componentRef.current}
-               />
-               <Box sx={{display:'none'}}>
-               <ComponentToPrint 
-                ref={componentRef} 
-                dateTime={dateTime}
-                
-                transactionId={transactionId}
-                transactionStatus={transactionStatus}
-                payerName={payerName}
-                amountPaid={amountPaid}
-                agentName={agentName}
-                agentPhoneNumber={agentPhoneNumber}
-                tokenValue={tokenValue}
-                meter={meter}
-                logo={logo}
-               />
-               </Box>
-                </>
+                        ? "Next"
                         : activeStep === 0
                         ?
                         //  getElectricityDetails.loading?
@@ -671,7 +554,7 @@ fetchData();
                         // <Box sx={{ display: 'flex',justifyContent:"center" }}>
                         // <CircularProgress  sx={{ color: 'orange'}} />
                         //  </Box>:
-                        "Make Payment"}
+                        "Verifiey Account"}
                     </Button>
                   </Box>
                 </React.Fragment>

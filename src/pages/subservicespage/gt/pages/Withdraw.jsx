@@ -34,14 +34,16 @@ import { useDispatch } from "react-redux";
 import PrintIcon from '@mui/icons-material/Print';
 import { useTranslation } from "react-i18next";
 import AuthContext from "../../../../context";
-import ClearAllIcon from '@mui/icons-material/ClearAll';
 
-import { IconButton} from '@mui/material';
+
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
+import ClearAllIcon from '@mui/icons-material/ClearAll';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import CloseIcon from '@mui/icons-material/Close';
 import Dialog from '@mui/material/Dialog';
+
+import { IconButton} from '@mui/material';
 // import  {ComponentToPrint}  from "./ComponentToPrint";
 // import './style.css'
 // export let amountPaid=[]
@@ -387,7 +389,7 @@ NID VERIFICATION
       >
         <DialogTitle id="alert-dialog-title">
           <Typography variant="46" color="gray" textAlign="center">
-       Approve transactions
+       Approve transaction
           </Typography>
           <IconButton
           aria-label="close"

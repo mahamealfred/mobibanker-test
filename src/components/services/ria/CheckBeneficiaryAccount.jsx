@@ -11,6 +11,7 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
+import { MenuItem } from "@mui/material";
 const theme = createTheme();
 theme.typography.h3 = {
     fontSize: '0.9rem',
@@ -21,73 +22,90 @@ theme.typography.h3 = {
         fontSize: '1rem'
     }
 };
+const identifications=[
+    {
+        name:"NID",
+        value:"NID"
+    },
+    {
+        name:"Passport",
+        value:"Passport"
+    }
+]
 const CheckBeneficiaryAccount = ({
     formData,
     setFormData,
-    meterNumberErr,
-    errorMessage,
-    setErrorMessage,
-    open,
-    setOpen
+    identityNumberErr,
+            identityTypeErr,
+            currentEmailErr,
+            paymenterrorMessage,
+            setPaymenterrorMessage,
+            openPayment,
+            setOpenPayment,
 }) => {
     const { t } = useTranslation(["home","common","electricity"]);
     const handleClose = () => {
-        setErrorMessage('')
-        setOpen(false);
-    };
+        setPaymenterrorMessage('')
+        setOpenPayment(false);
+      };
   
     return (
-        <React.Fragment> {
-            !errorMessage ? null : (
-                <Collapse in={open}>
-                    <Alert severity="error"
-                        action={
-                            <IconButton
-                        aria-label="close"
-                        color="inherit"
-                        size="small"onClick={handleClose}>
-                        <CloseIcon
-                        fontSize="inherit"/></IconButton>
-                        }
-                        sx={
-                            {mb: 0.2}
-                    }>
-                        {/* {errorMessage==="System unit not active. (6013) - 8/2214"?`${t("electricity:invalidmeternumber")}`:errorMessage}  */}
-                        {errorMessage} 
-                        </Alert>
-                </Collapse>
-            )
-        }
+        <React.Fragment>  {!paymenterrorMessage ? null : (
+            <Collapse in={openPayment}>
+              <Alert
+                severity="error"
+                action={
+                  <IconButton
+                    aria-label="close"
+                    color="inherit"
+                    size="small"
+                    onClick={handleClose}
+                  >
+                    <CloseIcon fontSize="inherit" />
+                  </IconButton>
+                }
+                sx={{ mb: 0.2 }}
+              >
+                {paymenterrorMessage}
+              </Alert>
+            </Collapse>
+          )}
             <ThemeProvider theme={theme}>
-                {/* <Typography variant="h6" color="text.primary"  align="center"
-            sx={{ fontSize:{xs:14,md:16,lg:18} }}
-                >
-               
-                    </Typography> */}
             </ThemeProvider>
             <Grid container
                 spacing={3}>
                 <Grid item
                     xs={12}>
-                    <TextField id="address2"  size="small"  margin="normal" name="address2" label="Select Identity Type"
-                        required
-                        value={ formData.meterNumber}
-                        onChange={(e) => setFormData({...formData,meterNumber: e.target.value})}
-                        helperText={meterNumberErr ? meterNumberErr : ""}
-                        error={meterNumberErr}
-                        fullWidth
-                        autoComplete="shipping address-line2"
-                        variant="filled"
-                        />
+                         <TextField
+            id="nID"
+            name="PaymentYear"
+            required
+            label="Select Identity Type"
+            margin="normal"
+            size="small"
+            select
+            value={ formData.identityType}
+            onChange={(e) => setFormData({...formData,identityType: e.target.value})}
+            helperText={identityTypeErr ? identityTypeErr : ""}
+            error={identityTypeErr}
+            fullWidth
+            autoComplete="shipping address-line2"
+            variant="filled"
+          >
+             {identifications.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>{option.name}</MenuItem>
+                    ))} 
+            </TextField>
+                 
                 </Grid>
                 <Grid item
                     xs={12}>
                     <TextField id="address2"  size="small"  margin="normal" name="address2" label="Enter Identity Number"
                         required
-                        value={ formData.meterNumber}
-                        onChange={(e) => setFormData({...formData,meterNumber: e.target.value})}
-                        helperText={meterNumberErr ? meterNumberErr : ""}
-                        error={meterNumberErr}
+                        value={ formData.identityNumber}
+                        onChange={(e) => setFormData({...formData,identityNumber: e.target.value})}
+                        helperText={   identityNumberErr?   identityNumberErr: ""}
+                        error={identityNumberErr}
                         fullWidth
                         autoComplete="shipping address-line2"
                         variant="filled"
@@ -97,10 +115,10 @@ const CheckBeneficiaryAccount = ({
                     xs={12}>
                     <TextField id="address2"  size="small"  margin="normal" name="address2" label="Enter Your Current Email"
                         required
-                        value={ formData.meterNumber}
-                        onChange={(e) => setFormData({...formData,meterNumber: e.target.value})}
-                        helperText={meterNumberErr ? meterNumberErr : ""}
-                        error={meterNumberErr}
+                        value={ formData.currentEmail}
+                        onChange={(e) => setFormData({...formData, currentEmail: e.target.value})}
+                        helperText={ currentEmailErr ? currentEmailErr : ""}
+                        error={currentEmailErr}
                         fullWidth
                         autoComplete="shipping address-line2"
                         variant="filled"

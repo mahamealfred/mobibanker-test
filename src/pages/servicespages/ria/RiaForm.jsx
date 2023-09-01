@@ -1,5 +1,7 @@
 import * as React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
+import * as Yup from "yup";
+import { useFormik, Form, FormikProvider } from "formik";
 
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
@@ -20,32 +22,56 @@ import { getElectricityDetailsAction } from "../../../redux/actions/electricityA
 import { electricityPayamentAction } from "../../../redux/actions/electricitPaymentAction";
 import { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid, List, ListItem, ListItemText } from "@mui/material";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid, List, ListItem, ListItemText, Stack, TextField } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
+import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import { styled } from '@mui/material/styles';
+import { LoadingButton } from "@mui/lab";
 import jwt from "jsonwebtoken";
 // import { ComponentToPrint } from './ComponentToPrint';
 import ReactToPrint from 'react-to-print';
 import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
+// import { motion } from "framer-motion";
 import AuthContext from "../../../context";
 import logo from "../../../assets/images/mobilogo.png"
 import ClientsData from "../../../dummyData/ClientsData";
 import ordersList from "../../../dummyData/ordersList";
+
 const  ComponentToPrint=React.lazy(()=>import("./RiaComponentToPrint").then(module=>{
   return {default: module.ComponentToPrint}
 }))
 const theme = createTheme();
+let easing = [0.6, -0.05, 0.01, 0.99];
+const animate = {
+  opacity: 1,
+  y: 0,
+  transition: {
+    duration: 0.6,
+    ease: easing,
+    delay: 0.16,
+  },
+};
+const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />)(
+  ({ theme, checked }) => ({
+    '.MuiFormControlLabel-label': checked && {
+      color: theme.palette.primary.main,
+    },
+  }),
+);
+function MyFormControlLabel(props) {
+  const radioGroup = useRadioGroup();
 
+  let checked = false;
 
-const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
-const payments = [
-  { name: 'Card type', detail: 'Visa' },
-  { name: 'Card holder', detail: 'Mr John Smith' },
-  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-  { name: 'Expiry date', detail: '04/2024' },
-];
+  if (radioGroup) {
+    checked = radioGroup.value === props.value;
+  }
 
+  return <StyledFormControlLabel checked={checked} {...props} />;
+}
 theme.typography.h3 = {
   fontSize: '1.2rem',
   '@media (min-width:600px)': {
@@ -62,16 +88,50 @@ const RiaForm = (props) => {
   const [activeStep, setActiveStep] = React.useState(0);
   const dispatch = useDispatch();
 
+
+  const SignupSchema = Yup.object().shape({
+    username: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("User Name required"),
+    password: Yup.string()
+      .min(2, "Too Short!")
+      .max(50, "Too Long!")
+      .required("Password required"),
+    // email: Yup.string()
+    //   .email("Email must be a valid email address")
+    //   .required("Email is required"),
+
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      username:"",
+      password: "",
+      // email: "",
+     
+    },
+    validationSchema: SignupSchema,
+    onSubmit: async(values) => {
+      const username=values.username
+      const password=values.password
+    //  await dispatch(loginAction({username,password},navigate))
+    // if (login.error) {
+    //   setOpenErrorMessage(true)
+    // }
+    },
+  });
+
+  const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
+
   const getElectricityDetails = useSelector((state) => state.getElectricityDetails);
   const electricityPayment = useSelector((state) => state.electricityPayment);
   const [formData, setFormData] = useState({
-    
     orderNumber:"",
     orderPin:"",
     identityType:"",
     identityNumber:"",
     currentEmail:"",
-
   });
   const componentRef = useRef();
 
@@ -304,7 +364,103 @@ setIdentityTypeErr("Please select Identity Type")
           <Typography variant="h6" gutterBottom>
           Enter Client Information
       </Typography>
-     
+      <FormikProvider value={formik}>
+      <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
+      {/* { !errorMessage ? null : (
+                <Collapse in={openErrorMessage}>
+                    <Alert severity="error"
+                        action={
+                            <IconButton
+                        aria-label="close"
+                        color="inherit"
+                        size="small"onClick={handleClose}>
+                        <CloseIcon
+                        fontSize="inherit"/>
+                        </IconButton>
+                        }
+                        sx={
+                            {mb: 0.2}
+                    }>
+                      
+                        {errorMessage} 
+                        
+                        </Alert>
+                </Collapse>
+            )
+        } */}
+         
+        <Stack spacing={4}>
+       
+          <Stack
+            component="div"
+            initial={{ opacity: 0, y: 60 }}
+            animate={animate}
+            direction={{ xs: "column", sm: "row" }}
+            spacing={2}
+          >
+            <TextField
+               fullWidth
+               size="small"
+               autoComplete="username"
+               name="username"
+               value={formik.values.username}
+               onChange={formik.handleChange}
+               type="text"
+               label="User Name"
+               {...getFieldProps("username")}
+               error={Boolean(touched.username && errors.username)}
+               helperText={touched.username && errors.username}
+            />
+          </Stack>
+          <Stack
+            component="div"
+            initial={{ opacity: 0, y: 60 }}
+            animate={animate}
+            direction={{ xs: "column", sm: "row" }}
+            spacing={2}
+          >
+            <TextField
+               fullWidth
+               size="small"
+               autoComplete="password"
+               name="password"
+               value={formik.values.password}
+               onChange={formik.handleChange}
+               type="password"
+               label="Password"
+               {...getFieldProps("password")}
+               error={Boolean(touched.password && errors.password)}
+               helperText={touched.password && errors.password}
+            />
+          </Stack>
+        
+          <Stack
+            component="div"
+            initial={{ opacity: 0, y: 60 }}
+            animate={animate}
+            direction={{ xs: "column", sm: "row" }}
+            spacing={2}
+          >
+          </Stack>
+          <Box
+            component="div"
+            initial={{ opacity: 0, y: 20 }}
+            animate={animate}
+          >
+            <LoadingButton
+              fullWidth
+              size="large"
+              style={{ borderRadius: 8,backgroundColor:"#000057" }}
+              type="submit"
+              variant="contained"
+              loading={isSubmitting}
+            >
+     Submit
+            </LoadingButton>
+          </Box>
+        </Stack>
+      </Form>
+    </FormikProvider>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>

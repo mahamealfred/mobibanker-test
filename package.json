@@ -24,6 +24,8 @@
     "dotenv": "^16.0.2",
     "env-cmd": "^10.1.0",
     "firebase": "^9.16.0",
+    "formik": "^2.4.3",
+    "framer-motion": "^10.16.2",
     "i18next": "^21.9.2",
     "i18next-browser-languagedetector": "^6.1.5",
     "i18next-http-backend": "^1.4.4",
@@ -56,7 +58,8 @@
     "redux-promise-middleware": "^6.1.2",
     "redux-thunk": "^2.4.1",
     "simplebar-react": "^2.4.3",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^1.2.0"
   },
   "scripts": {
     "start": " env-cmd -f .env react-scripts start",

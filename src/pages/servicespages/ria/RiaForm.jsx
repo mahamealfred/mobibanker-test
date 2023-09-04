@@ -22,7 +22,7 @@ import { getElectricityDetailsAction } from "../../../redux/actions/electricityA
 import { electricityPayamentAction } from "../../../redux/actions/electricitPaymentAction";
 import { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid, List, ListItem, ListItemText, Stack, TextField } from "@mui/material";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid, List, ListItem, ListItemText, MenuItem, Stack, TextField } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
 import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
@@ -39,10 +39,22 @@ import AuthContext from "../../../context";
 import logo from "../../../assets/images/mobilogo.png"
 import ClientsData from "../../../dummyData/ClientsData";
 import ordersList from "../../../dummyData/ordersList";
+import { Label } from "@mui/icons-material";
 
 const  ComponentToPrint=React.lazy(()=>import("./RiaComponentToPrint").then(module=>{
   return {default: module.ComponentToPrint}
 }))
+
+const identityTypes=[
+  {
+    name:"NID",
+    value:"NID"
+  },
+  {
+    name:"Passport",
+    value:"Password"
+  }
+]
 const theme = createTheme();
 let easing = [0.6, -0.05, 0.01, 0.99];
 const animate = {
@@ -90,24 +102,74 @@ const RiaForm = (props) => {
 
 
   const SignupSchema = Yup.object().shape({
-    username: Yup.string()
+    identityType: Yup.string()
     .min(2, "Too Short!")
     .max(50, "Too Long!")
-    .required("User Name required"),
-    password: Yup.string()
+    .required("Identity Type required"),
+    identityNumber: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Identity Number required"),
+    email: Yup.string()
+    .email("Email must be a valid email address")
+    .required("Email is required"),
+    firstName: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("First Name required"),
+    middleName: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!"),
+    lastName: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Last Name required"),
+    nationality: Yup.string()
       .min(2, "Too Short!")
       .max(50, "Too Long!")
-      .required("Password required"),
-    // email: Yup.string()
-    //   .email("Email must be a valid email address")
-    //   .required("Email is required"),
+      .required("Nationality required"),
+    country: Yup.string()
+      .min(2, "Too Short!")
+      .max(50, "Too Long!")
+      .required("Country required"),
+    city: Yup.string()
+      .min(2, "Too Short!")
+      .max(50, "Too Long!")
+      .required("City required"),
+    address: Yup.string()
+      .min(2, "Too Short!")
+      .max(50, "Too Long!")
+      .required("Address required"),
+    zipcode: Yup.string()
+      .min(2, "Too Short!")
+      .max(50, "Too Long!")
+      .required("Zip Code  required"),
+    documentId: Yup.string()
+      .min(2, "Too Short!")
+      .max(50, "Too Long!")
+      .required("Please Upload your ID or Passport"),
+    photo: Yup.string()
+      .min(2, "Too Short!")
+      .max(50, "Too Long!")
+      .required("Photo  required"),
 
   });
 
   const formik = useFormik({
     initialValues: {
-      username:"",
-      password: "",
+      identityType:"",
+      identityNumber: "",
+      email: "",
+      firstName: "",
+      middleName: "",
+      lastName: "",
+      nationality: "",
+      country: "",
+      city: "",
+      address: "",
+      zipcode: "",
+      documentId: "",
+      photo: "",
       // email: "",
      
     },
@@ -361,93 +423,343 @@ setIdentityTypeErr("Please select Identity Type")
          <Divider color="warning"/>
         <DialogContent>
           <DialogContentText textAlign="center" >
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="h5" gutterBottom>
           Enter Client Information
       </Typography>
-      <FormikProvider value={formik}>
+
+      
+          <FormikProvider value={formik}>
       <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
-      {/* { !errorMessage ? null : (
-                <Collapse in={openErrorMessage}>
-                    <Alert severity="error"
-                        action={
-                            <IconButton
-                        aria-label="close"
-                        color="inherit"
-                        size="small"onClick={handleClose}>
-                        <CloseIcon
-                        fontSize="inherit"/>
-                        </IconButton>
-                        }
-                        sx={
-                            {mb: 0.2}
-                    }>
-                      
-                        {errorMessage} 
-                        
-                        </Alert>
-                </Collapse>
-            )
-        } */}
-         
+   
+     <Grid container spacing={2}>
+        <Grid item xs={12} sm={6}>
         <Stack spacing={4}>
-       
-          <Stack
-            component="div"
-            initial={{ opacity: 0, y: 60 }}
-            animate={animate}
-            direction={{ xs: "column", sm: "row" }}
-            spacing={2}
-          >
-            <TextField
-               fullWidth
-               size="small"
-               autoComplete="username"
-               name="username"
-               value={formik.values.username}
-               onChange={formik.handleChange}
-               type="text"
-               label="User Name"
-               {...getFieldProps("username")}
-               error={Boolean(touched.username && errors.username)}
-               helperText={touched.username && errors.username}
-            />
-          </Stack>
-          <Stack
-            component="div"
-            initial={{ opacity: 0, y: 60 }}
-            animate={animate}
-            direction={{ xs: "column", sm: "row" }}
-            spacing={2}
-          >
-            <TextField
-               fullWidth
-               size="small"
-               autoComplete="password"
-               name="password"
-               value={formik.values.password}
-               onChange={formik.handleChange}
-               type="password"
-               label="Password"
-               {...getFieldProps("password")}
-               error={Boolean(touched.password && errors.password)}
-               helperText={touched.password && errors.password}
-            />
-          </Stack>
+        <Stack
+         component="div"
+         initial={{ opacity: 0, y: 60 }}
+         animate={animate}
+         direction={{ xs: "column", sm: "row" }}
+         spacing={2}
+       >
+         <TextField
+            fullWidth
+            size="small"
+            select
+            autoComplete="identityType"
+            name="identityType"
+            value={formik.values.identityType}
+            onChange={formik.handleChange}
+            type="text"
+            label="Select Identity Type"
+            {...getFieldProps("username")}
+            error={Boolean(touched.identityType && errors.identityType)}
+            helperText={touched.identityType && errors.identityType}
+         >
+               {identityTypes.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>{option.name}</MenuItem>
+                    ))} 
+         </TextField>
+       </Stack>
+       <Stack
+         component="div"
+         initial={{ opacity: 0, y: 60 }}
+         animate={animate}
+         direction={{ xs: "column", sm: "row" }}
+         spacing={2}
+       >
+         <TextField
+            fullWidth
+            size="small"
+            autoComplete="identityNumber"
+            name="identityNumber"
+            value={formik.values.identityNumber}
+            onChange={formik.handleChange}
+            type="text"
+            label="Enter Identity Number"
+            {...getFieldProps("identityNumber")}
+            error={Boolean(touched.identityNumber && errors.identityNumber)}
+            helperText={touched.identityNumber && errors.identityNumber}
+         />
+       </Stack>
+       <Stack
+         component="div"
+         initial={{ opacity: 0, y: 60 }}
+         animate={animate}
+         direction={{ xs: "column", sm: "row" }}
+         spacing={2}
+       >
+         <TextField
+            fullWidth
+            size="small"
+            autoComplete="email"
+            name="email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            type="email"
+            label="Email"
+            {...getFieldProps("email")}
+            error={Boolean(touched.email && errors.email)}
+            helperText={touched.email && errors.email}
+         />
+       </Stack>
+       <Stack
+         component="div"
+         initial={{ opacity: 0, y: 60 }}
+         animate={animate}
+         direction={{ xs: "column", sm: "row" }}
+         spacing={2}
+       >
+         <TextField
+            fullWidth
+            size="small"
+            autoComplete="firstName"
+            name="firstName"
+            value={formik.values.firstName}
+            onChange={formik.handleChange}
+            type="text"
+            label="First Name"
+            {...getFieldProps("firstName")}
+            error={Boolean(touched.firstName && errors.firstName)}
+            helperText={touched.firstName && errors.firstName}
+         />
+       </Stack>
+       <Stack
+         component="div"
+         initial={{ opacity: 0, y: 60 }}
+         animate={animate}
+         direction={{ xs: "column", sm: "row" }}
+         spacing={2}
+       >
+         <TextField
+            fullWidth
+            size="small"
+            autoComplete="middleName"
+            name="middleName"
+            value={formik.values.middleName}
+            onChange={formik.handleChange}
+            type="text"
+            label="Middle Name"
+            {...getFieldProps("middleName")}
+            error={Boolean(touched.middleName && errors.middleName)}
+            helperText={touched.middleName && errors.middleName}
+         />
+       </Stack>
+       <Stack
+         component="div"
+         initial={{ opacity: 0, y: 60 }}
+         animate={animate}
+         direction={{ xs: "column", sm: "row" }}
+         spacing={2}
+       >
+         <TextField
+            fullWidth
+            size="small"
+            autoComplete="lastName"
+            name="lastName"
+            value={formik.values.last}
+            onChange={formik.handleChange}
+            type="text"
+            label="Last Name"
+            {...getFieldProps("lastName")}
+            error={Boolean(touched.lastName && errors.lastName)}
+            helperText={touched.lastName && errors.lastName}
+         />
+       </Stack>
+       <Stack
+         component="div"
+         initial={{ opacity: 0, y: 60 }}
+         animate={animate}
+         direction={{ xs: "column", sm: "row" }}
+         spacing={2}
+       >
+       </Stack>
+     </Stack>
+
+          {/* <Typography gutterBottom>{beneCountry}</Typography>
+          <Typography gutterBottom>{beneCity+" "+beneState+" "+beneAddress}</Typography> */}
+        </Grid>
+        <Grid item container direction="column" xs={12} sm={6}>
+        <Stack spacing={4}>
+        <Stack
+         component="div"
+         initial={{ opacity: 0, y: 60 }}
+         animate={animate}
+         direction={{ xs: "column", sm: "row" }}
+         spacing={2}
+       >
+         <TextField
+            fullWidth
+            size="small"
+            autoComplete="nationality"
+            name="nationality"
+            value={formik.values.nationality}
+            onChange={formik.handleChange}
+            type="text"
+            label="Nationality"
+            {...getFieldProps("nationality")}
+            error={Boolean(touched.nationality && errors.nationality)}
+            helperText={touched.nationality && errors.nationality}
+         />
+       </Stack>
+       <Stack
+         component="div"
+         initial={{ opacity: 0, y: 60 }}
+         animate={animate}
+         direction={{ xs: "column", sm: "row" }}
+         spacing={2}
+       >
+         <TextField
+            fullWidth
+            size="small"
+            autoComplete="country"
+            name="country"
+            value={formik.values.country}
+            onChange={formik.handleChange}
+            type="text"
+            label="Country"
+            {...getFieldProps("country")}
+            error={Boolean(touched.country && errors.country)}
+            helperText={touched.country && errors.country}
+         />
+       </Stack>
+       <Stack
+         component="div"
+         initial={{ opacity: 0, y: 60 }}
+         animate={animate}
+         direction={{ xs: "column", sm: "row" }}
+         spacing={2}
+       >
+         <TextField
+            fullWidth
+            size="small"
+            autoComplete="city"
+            name="city"
+            value={formik.values.city}
+            onChange={formik.handleChange}
+            type="text"
+            label="City"
+            {...getFieldProps("city")}
+            error={Boolean(touched.city && errors.city)}
+            helperText={touched.city && errors.city}
+         />
+       </Stack>
+        <Stack
+         component="div"
+         initial={{ opacity: 0, y: 60 }}
+         animate={animate}
+         direction={{ xs: "column", sm: "row" }}
+         spacing={2}
+       >
+         <TextField
+            fullWidth
+            size="small"
+            autoComplete="address"
+            name="address"
+            value={formik.values.address}
+            onChange={formik.handleChange}
+            type="text"
+            label="Address"
+            {...getFieldProps("address")}
+            error={Boolean(touched.address&& errors.address)}
+            helperText={touched.address && errors.address}
+         />
+       </Stack>
+       <Stack
+         component="div"
+         initial={{ opacity: 0, y: 60 }}
+         animate={animate}
+         direction={{ xs: "column", sm: "row" }}
+         spacing={2}
+       >
+         <TextField
+            fullWidth
+            size="small"
+            autoComplete="zipcode"
+            name="zipcode"
+            value={formik.values.zipcode}
+            onChange={formik.handleChange}
+            type="text"
+            label="zipcode"
+            {...getFieldProps("zipcode")}
+            error={Boolean(touched.zipcode && errors.zipcode)}
+            helperText={touched.zipcode && errors.zipcode}
+         />
+       </Stack>
+       <Stack
+         component="div"
+         initial={{ opacity: 0, y: 60 }}
+         animate={animate}
+         direction={{ xs: "column", sm: "row" }}
+         spacing={2}
+       >
+         <TextField
+            fullWidth
+            size="small"
+            autoComplete="documentId"
+            name="documentId"
+            value={formik.values.documentId}
+            onChange={formik.handleChange}
+            type="file"
+           
+            {...getFieldProps("documentId")}
+            error={Boolean(touched.documentId && errors.documentId)}
+            helperText={touched.documentId && errors.documentId}
+         />
+           
+       </Stack>
+       <Typography>Please Uploade your Identity ID in pdf Format</Typography>
+       <Stack
+         component="div"
+         initial={{ opacity: 0, y: 60 }}
+         animate={animate}
+         direction={{ xs: "column", sm: "row" }}
+         spacing={2}
+       >
+      
+         <TextField
+            fullWidth
+            size="small"
+            autoComplete="photo"
+            name="username"
+            value={formik.values.photo}
+            onChange={formik.handleChange}
+            type="file"
+            {...getFieldProps("photo")}
+            error={Boolean(touched.photo && errors.photo)}
+            helperText={touched.photo && errors.photo}
+         />
         
-          <Stack
-            component="div"
-            initial={{ opacity: 0, y: 60 }}
-            animate={animate}
-            direction={{ xs: "column", sm: "row" }}
-            spacing={2}
-          >
-          </Stack>
-          <Box
-            component="div"
-            initial={{ opacity: 0, y: 20 }}
-            animate={animate}
-          >
-            <LoadingButton
+       </Stack>
+       <Typography>Please Uploade your PHOTO eg:png,jepg</Typography>
+     
+       <Stack
+         component="div"
+         initial={{ opacity: 0, y: 60 }}
+         animate={animate}
+         direction={{ xs: "column", sm: "row" }}
+         spacing={2}
+       >
+       </Stack>
+     </Stack>
+        </Grid>
+       
+      </Grid>
+      <Box
+       component="div"
+       initial={{ opacity: 0, y: 20 }}
+       animate={animate}
+      //  maxWidth="sm"
+            sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'column',
+                width:"sm"
+                
+            }}
+            
+        >
+       <LoadingButton
               fullWidth
               size="large"
               style={{ borderRadius: 8,backgroundColor:"#000057" }}
@@ -455,51 +767,30 @@ setIdentityTypeErr("Please select Identity Type")
               variant="contained"
               loading={isSubmitting}
             >
-     Submit
+ Register Beneficiary
             </LoadingButton>
-          </Box>
-        </Stack>
+        </Box>
+     
       </Form>
     </FormikProvider>
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-           Address Iformation
-          </Typography>
+          
           {/* <Typography gutterBottom>{beneCountry}</Typography>
           <Typography gutterBottom>{beneCity+" "+beneState+" "+beneAddress}</Typography> */}
-        </Grid>
-        <Grid item container direction="column" xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-          Contact Information
-          </Typography>
-          <Grid container>
      
-              <React.Fragment >
-                <Grid item xs={6}>
-                  {/* <Typography gutterBottom>Order Number</Typography> */}
-                </Grid>
-                <Grid item xs={6}>
-                  {/* <Typography gutterBottom>{orderNumber}</Typography> */}
-                </Grid>
-              </React.Fragment>
-        
-          </Grid>
-        </Grid>
-      </Grid>
+     
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose}>
          Cancel
           </Button>
-          <Button
+          {/* <Button
             disabled={executing || disabled}
             {...otherProps}
           // onClick={handleNext} 
           autoFocus>
         Submit
-          </Button>
+          </Button> */}
         </DialogActions>
       </Dialog>
 

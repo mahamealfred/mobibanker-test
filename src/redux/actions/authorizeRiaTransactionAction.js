@@ -26,10 +26,10 @@ export const authorizeRiaTransactionsAction = (transactionId,auth,password) => a
   const res = await axios(config)
 
 
-      if(res.data.responseCode===100){
+      if(res.data.responseCode===204){
         dispatch(authorizeRiaTransactionsSuccess(res.data));
       }  
-      else if(res.data.responseCode!==100){
+      else if(res.data.responseCode!==204){
         dispatch(authorizeRiaTransactionsFailure(res.data.codeDescription));
       }
       else{

@@ -209,6 +209,28 @@ export default function Transactions() {
     content: () => componentRef.current,
   });
 
+
+  //Ria withdrwa transactions
+  useEffect(()=>{
+    async function fetchData(){
+     if (!authorizeRiaTransaction.loading) {
+       if (authorizeRiaTransaction.details.length !== 0) {
+         if (authorizeRiaTransaction.details.responseCode === 204) {
+          setOpenApprove(false)
+          await dispatch(transactionsAction(auth))
+         } else {
+           return null;
+         }
+       }
+       if (authorizeRiaTransaction.error) {
+         setErrorMessage(authorizeRiaTransaction.error);
+         setOpenErrorMessage(true)
+       }
+     }
+    
+    }
+    fetchData();
+     },[authorizeRiaTransaction.details,authorizeRiaTransaction.error])
   return (
     <React.Fragment>
 

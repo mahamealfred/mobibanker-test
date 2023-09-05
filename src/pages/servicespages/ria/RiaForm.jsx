@@ -40,6 +40,9 @@ import logo from "../../../assets/images/mobilogo.png"
 import ClientsData from "../../../dummyData/ClientsData";
 import ordersList from "../../../dummyData/ordersList";
 import { Label } from "@mui/icons-material";
+import { getRiaOrderDetailsAction } from "../../../redux/actions/getRiaOrderDetailsAction";
+import { valiateNidDetailsDetailsAction } from "../../../redux/actions/validateNidAction";
+import { clientValidationAction } from "../../../redux/actions/clientValidationAction";
 
 const  ComponentToPrint=React.lazy(()=>import("./RiaComponentToPrint").then(module=>{
   return {default: module.ComponentToPrint}
@@ -188,12 +191,16 @@ const RiaForm = (props) => {
 
   const getElectricityDetails = useSelector((state) => state.getElectricityDetails);
   const electricityPayment = useSelector((state) => state.electricityPayment);
+
+
+  const getRiaOrderDetails=useSelector((state)=>state.getRiaOrderDetails)
   const [formData, setFormData] = useState({
     orderNumber:"",
     orderPin:"",
     identityType:"",
     identityNumber:"",
     currentEmail:"",
+    benePhoneNumber:""
   });
   const componentRef = useRef();
 
@@ -231,10 +238,50 @@ const RiaForm = (props) => {
  const [beneEmailAddress,setBeneEmailAddress]=useState("")
  const [beneAddress,setBeneAddress]=useState("")
 const  [openClentRegistrationFormDetailsDialog,setOpenClentRegistrationFormDetailsDialog]=useState(false)
+const [orderDate,setOrderDate]=useState("")
+const [orderStatus,setOrderStatus]=useState("")
+const [beneAmount,setBeneAmount]=useState("")
+const [beneCurrency,setBeneCurrency]=useState("")
 
  const [identityTypeErr,setIdentityTypeErr]=useState("")
  const [identityNumberErr,setIdentityNumberErr]=useState("")
- const [currentEmailErr,setCurrentEmailErr]=useState("")
+ const [benePhoneNumberErr,setBenePhoneNumberErr]=useState("")
+
+ const validateNid=useSelector((state)=>state.validateNid);
+ const clientValidation=useSelector((state)=>state.clientValidation);
+const [niderrorMessage,setNiderrorMessage]=useState("");
+
+const [documentNumber,setDocumentNumber]=useState("")
+const [nationality,setNationality]=useState("RW");
+const [fatherNames,setFatherNames]=useState("");
+const [motherNames,setMotherNames]=useState("");
+//const [telephone,setTelephone]=useState("");
+const [father,setFather]=useState("");
+const [mother,setMother]=useState("");
+const [idNumber,setIdNumber]=useState("");
+// const [email,setEmail]=useState("");
+//const [dateOfBirth,setDateOfBirth]=useState("");
+const [accountType,setAccountType]=useState("");
+const [branchName,setBranchName]=useState("");
+const [civilStatus,setCivilStatus]=useState("");
+const [spouse,setSpouse]=useState("");
+const [dob,setDob]=useState("");
+const [placeOfBirth,setPlaceOfBirth]=useState("");
+const [countryOfBirth,setCountryOfBirth]=useState("");
+const [dateOfIssue,setDateOfIssue]=useState("");
+const [province,setProvince]=useState("");
+const [district,setDistrict]=useState("");
+const [sector,setSector]=useState("");
+const [cell,setCell]=useState("");
+const [village,setVillage]=useState("");
+const [firstName,setFirstName]=useState("")
+const [lastName,setLastName]=useState("");
+const [placeOfIssue,setPlaceOfIssue]=useState("");
+const [gender,setGender]=useState("");
+const [dateOfBirth,setDateOfBirth]=useState("")
+const [photo,setPhoto]=useState("")
+const [names,setNames]=useState("")
+
 
  //all
  const { auth }=React.useContext(AuthContext)
@@ -248,7 +295,6 @@ const  [openClentRegistrationFormDetailsDialog,setOpenClentRegistrationFormDetai
    ...otherProps
 } = props;
  const history = useHistory();
-
  const getStepContent = (step) => {
    switch (step) {
      case 0:
@@ -271,7 +317,7 @@ const  [openClentRegistrationFormDetailsDialog,setOpenClentRegistrationFormDetai
             setFormData={setFormData}
             identityNumberErr={identityNumberErr}
             identityTypeErr={identityTypeErr}
-            currentEmailErr={currentEmailErr}
+            benePhoneNumberErr={benePhoneNumberErr}
             paymenterrorMessage={paymenterrorMessage}
             setPaymenterrorMessage={setPaymenterrorMessage}
             openPayment={openPayment}
@@ -292,7 +338,7 @@ const  [openClentRegistrationFormDetailsDialog,setOpenClentRegistrationFormDetai
  
 
 
-
+// handle order details
  const handleOrderDetails=async()=>{
   if (formData.orderNumber === "") {
     setOrderNumberErr("Order number is required")
@@ -302,56 +348,148 @@ const  [openClentRegistrationFormDetailsDialog,setOpenClentRegistrationFormDetai
   else if (!Number(formData.orderPin)) {
     setOrderPinErr("Order  PIN is required")
   } 
-  
   else {
    setOrderNumberErr("")
    setOrderPinErr("")
-   ordersList.map((n)=>{
-    if((n.orderNumber==formData.orderNumber) && (n.orderPin==formData.orderPin) ){
-      setOrdeNumber(n.orderNumber)
-      setBeneFirstName(n.beneFirstName)
-      setBeneLastName(n.beneLastName)
-      setBeneMiddleName(n.beneMiddleName)
-      setBeneNationality(n.beneNationality)
-      setBeneEmailAddress(n.beneEmailAddress)
-      setBeneCity(n.beneCity)
-      setBeneCountry(n.beneCountry)
-      setBeneZipCode(n.beneZipCode)
-      setBeneAddress(n.beneAddress)
-     setOpenOrderDetailsDialog(true)
-     }else{
-       setErrorMessage("Invalid Order PIN or Number")
-     }
-   } )
+   const orderNum=formData.orderNumber
+   const orderPin=formData.orderPin
+await dispatch(getRiaOrderDetailsAction({orderNum,orderPin}))
   
   }
  }
 
  //verify account
- const handleCheckBeneficiaryAccount=()=>{
-  if(formData.identityType==""){
-setIdentityTypeErr("Please select Identity Type")
-  }
-  else if(formData.identityNumber==""){
-    setIdentityNumberErr("Identity Number is required")
-  }else if (formData.currentEmail=="") {
-    setCurrentEmailErr("Email Address is required")
-  } else{
-    setIdentityTypeErr("")
-    setIdentityNumberErr("")
-    setCurrentEmailErr("")
-    ClientsData.map((n)=>{
-      if((n.clientEmailAddress==formData.currentEmail)){
-        handleNext()
-     
-       }else{
-        setOpenClentRegistrationFormDetailsDialog(true)
-       }
-     } )
+ const handleCheckBeneficiaryAccount=async()=>{
+//   if(formData.identityType==""){
+// setIdentityTypeErr("Please select Identity Type")
+//   }
+//   else if(formData.identityNumber==""){
+//     setIdentityNumberErr("Identity Number is required")
+//   }
+if (formData.benePhoneNumber=="") {
+    setBenePhoneNumberErr("Phone Number is required")
+  } 
+  else{
+    setBenePhoneNumberErr("")
+    const benePhone=formData.benePhoneNumber
+    await dispatch(clientValidationAction({benePhone},auth))
+ 
   }
  }
 
+//fetch order details
+useEffect(() => {
+  async function fetchData() {
+     if(!getRiaOrderDetails.loading){
+      if(getRiaOrderDetails.details.length!==0){
+        if (getRiaOrderDetails.details.responseCode === 100) {
 
+          setOrdeNumber(getRiaOrderDetails.details.data.Transaction.OrderNo)
+          setOrderDate(getRiaOrderDetails.details.data.Transaction.OrderDate)
+          setOrderStatus(getRiaOrderDetails.details.data.Transaction.OrderStatus)
+          setBeneFirstName(getRiaOrderDetails.details.data.Beneficiary.PersonalInformation.BeneFirstName)
+          setBeneLastName(getRiaOrderDetails.details.data.Beneficiary.PersonalInformation.BeneLastName)
+          setBeneMiddleName(getRiaOrderDetails.details.data.Beneficiary.PersonalInformation.BeneMiddleName)
+          setBeneNationality(getRiaOrderDetails.details.data.Beneficiary.PersonalInformation.BeneNationality)
+          setBeneEmailAddress(getRiaOrderDetails.details.data.Beneficiary.ContactDetails.BeneEmailAddress)
+          setBeneCity(getRiaOrderDetails.details.data.Beneficiary.Residence.BeneCity)
+          setBeneCountry(getRiaOrderDetails.details.data.Beneficiary.Residence.BeneCountry)
+          setBeneZipCode(getRiaOrderDetails.details.data.Beneficiary.Residence.BeneZipCode)
+          setBeneAddress(getRiaOrderDetails.details.data.Beneficiary.Residence.BeneAddress)
+          setBeneAmount(getRiaOrderDetails.details.data.Quotation.BeneAmount)
+          setBeneCurrency(getRiaOrderDetails.details.data.Quotation.BeneCurrency)
+          setBeneState(getRiaOrderDetails.details.data.Beneficiary.Residence.BeneState)
+         setOpenOrderDetailsDialog(true)
+         } else {
+           return null;
+         }
+      }
+      if(getRiaOrderDetails.error)  {
+        setErrorMessage(getRiaOrderDetails.error);
+      }
+     }
+}
+  fetchData();
+}, [getRiaOrderDetails.details,getRiaOrderDetails.error]); 
+//chech client validation
+useEffect(() => {
+  async function fetchData() {
+    if (!clientValidation.loading) {
+      if (clientValidation.details.length !== 0) {
+        if (clientValidation.details.responseCode === 100) {
+        
+          handleNext();
+        } 
+       
+        else {
+       
+          return null;
+        }
+      }
+      if (clientValidation.error) {
+        setOpenClentRegistrationFormDetailsDialog(true)
+        setErrorMessage(clientValidation.error);
+      }
+    }
+  }
+  fetchData();
+}, [clientValidation.details]);
+//fectch identity id details
+//render Nid details
+useEffect(() => {
+  async function fetchData() {
+    if (!validateNid.loading) {
+      if (validateNid.details.length !== 0) {
+        if (validateNid.details.responseCode === 100) {
+         setFirstName(validateNid.details.data.foreName)
+         setLastName(validateNid.details.data.surnames)
+         setDateOfBirth(validateNid.details.data.dateOfBirth)
+         setPlaceOfIssue(validateNid.details.data.placeOfIssue)
+         setPhoto(validateNid.details.data.photo)
+         setGender(validateNid.details.data.sex)
+         setDocumentNumber(validateNid.details.data.applicationNumber);
+        // setNationality(validateNid.details.data.nationality)
+         setFatherNames(validateNid.details.data.fatherNames)
+         setMotherNames(validateNid.details.data.motherNames)
+        // setTelephone(formData.phoneNumber);
+         setFather(validateNid.details.data.fatherNames);
+         setMother(validateNid.details.data.motherNames);
+         setIdNumber(formData.nid);
+        // setEmail(formData.email);
+         setDob(validateNid.details.data.dateOfBirth);
+         setAccountType( "CURRENT")
+         setBranchName("KIGALI")
+         setCivilStatus(validateNid.details.data.civilStatus);
+         setSpouse(validateNid.details.data.spouse);
+         setPlaceOfBirth(validateNid.details.data.placeOfBirth);
+         setCountryOfBirth(validateNid.details.data.countryOfBirth);
+         setDateOfIssue(validateNid.details.data.dateOfIssue);
+         setProvince(validateNid.details.data.province);
+         setDistrict(validateNid.details.data.district);
+         setSector(validateNid.details.data.sector);
+         setCell(validateNid.details.data.cell);
+         setVillage(validateNid.details.data.village);
+        // setPhoneNumber(formData.phoneNumber);
+        // setUsername(auth.phonenumber)
+        // setBrokering(auth.brokering)
+        // setUserGroup(auth.usergroup)
+        // setAgentPhonenumber(auth.phonenumber)
+          handleNext();
+        } 
+       
+        else {
+       
+          return null;
+        }
+      }
+      if (validateNid.error) {
+       
+        setErrorMessage(validateNid.error);
+      }
+    }
+  }
+  fetchData();
+}, [validateNid.details]);
 
    const handleClose=()=>{
     setOpenDialog(false)
@@ -383,6 +521,7 @@ setIdentityTypeErr("Please select Identity Type")
  const handleNewpayment = () => {
   formData.orderNumber = "";
   formData.orderPin = "";
+  formData.benePhoneNumber=""
   setErrorMessage("")
   setActiveStep(0)
  };
@@ -395,6 +534,7 @@ setIdentityTypeErr("Please select Identity Type")
  const handleBack = () => {
    formData.orderNumber = "";
    formData.orderPin=""
+   formData.benePhoneNumber=""
    setOrderPinErr("")
    setOrderNumberErr("")
    setErrorMessage("");
@@ -426,11 +566,8 @@ setIdentityTypeErr("Please select Identity Type")
           <Typography variant="h5" gutterBottom>
           Enter Client Information
       </Typography>
-
-      
           <FormikProvider value={formik}>
       <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
-   
      <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
         <Stack spacing={4}>
@@ -685,7 +822,7 @@ setIdentityTypeErr("Please select Identity Type")
             helperText={touched.zipcode && errors.zipcode}
          />
        </Stack>
-       <Stack
+       {/* <Stack
          component="div"
          initial={{ opacity: 0, y: 60 }}
          animate={animate}
@@ -731,7 +868,7 @@ setIdentityTypeErr("Please select Identity Type")
         
        </Stack>
        <Typography>Please Uploade your PHOTO eg:png,jepg</Typography>
-     
+      */}
        <Stack
          component="div"
          initial={{ opacity: 0, y: 60 }}
@@ -776,8 +913,6 @@ setIdentityTypeErr("Please select Identity Type")
           
           {/* <Typography gutterBottom>{beneCountry}</Typography>
           <Typography gutterBottom>{beneCity+" "+beneState+" "+beneAddress}</Typography> */}
-     
-     
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -850,10 +985,10 @@ setIdentityTypeErr("Please select Identity Type")
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-           Address
+          Beneficiary Address
           </Typography>
           <Typography gutterBottom>{beneCountry}</Typography>
-          <Typography gutterBottom>{beneCity+" "+beneState+" "+beneAddress}</Typography>
+          <Typography gutterBottom>{beneCity+", "+beneState+", "+beneAddress}</Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
@@ -867,6 +1002,30 @@ setIdentityTypeErr("Please select Identity Type")
                 </Grid>
                 <Grid item xs={6}>
                   <Typography gutterBottom>{orderNumber}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>Date</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{orderDate}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>Currency</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{beneCurrency}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>Beneficiary Amount</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{beneAmount}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>Order Status</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{orderStatus}</Typography>
                 </Grid>
               </React.Fragment>
         

@@ -43,6 +43,9 @@ const deposit=useSelector((state)=>state.deposit)
 
 const topUpMobileMoney=useSelector((state)=>state.topUpMobileMoney)
 const changePassword=useSelector((state)=>state.changePassword)
+
+const getRiaOrderDetails=useSelector((state)=>state.getRiaOrderDetails)
+const clientValidation=useSelector((state)=>state.clientValidation);
 useEffect(()=>{
 async function fecthData(){
   changePassword.details=['']
@@ -63,6 +66,9 @@ async function fecthData(){
   accountValidation.details=['']
   deposit.details=['']
   topUpMobileMoney.details=['']
+  getRiaOrderDetails.details=['']
+  clientValidation.details=['']
+
 }
 fecthData()
  },[getCbhiNidDetails.details,
@@ -77,7 +83,10 @@ fecthData()
   rraPayment.details,
   accountValidation.details,
   deposit.details,
-  topUpMobileMoney.details
+  topUpMobileMoney.details,
+  getRiaOrderDetails.details,
+  clientValidation.details
+
 ])
   return (
     <React.Fragment>

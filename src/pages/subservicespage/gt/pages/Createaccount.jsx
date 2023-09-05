@@ -52,9 +52,10 @@ const RraForm = (props) => {
   const [activeStep, setActiveStep] = React.useState(0);
   const dispatch = useDispatch();
 const history=useHistory();
-const validateNid=useSelector((state)=>state.validateNid);
+
 const openAccount=useSelector((state)=>state.openAccount);
 const getBranches=useSelector((state)=>state.getBranches);
+const validateNid=useSelector((state)=>state.validateNid);
 const [niderrorMessage,setNiderrorMessage]=useState("");
   const [formData, setFormData] = useState({
     nid: "",

@@ -24,7 +24,7 @@ theme.typography.h3 = {
 };
 const identifications=[
     {
-        name:"NID",
+        name:"National ID",
         value:"NID"
     },
     {
@@ -37,13 +37,14 @@ const CheckBeneficiaryAccount = ({
     setFormData,
     identityNumberErr,
             identityTypeErr,
-            currentEmailErr,
+            benePhoneNumberErr,
             paymenterrorMessage,
             setPaymenterrorMessage,
             openPayment,
             setOpenPayment,
 }) => {
     const { t } = useTranslation(["home","common","electricity"]);
+    const [checkID,setCheckId]=useState("")
     const handleClose = () => {
         setPaymenterrorMessage('')
         setOpenPayment(false);
@@ -74,7 +75,7 @@ const CheckBeneficiaryAccount = ({
             </ThemeProvider>
             <Grid container
                 spacing={3}>
-                <Grid item
+                {/* <Grid item
                     xs={12}>
                          <TextField
             id="nID"
@@ -93,14 +94,19 @@ const CheckBeneficiaryAccount = ({
             variant="filled"
           >
              {identifications.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>{option.name}</MenuItem>
-                    ))} 
+         <MenuItem key={option.value} value={option.value}>{option.name}</MenuItem>
+          
+             )
+                     
+             )} 
             </TextField>
                  
                 </Grid>
-                <Grid item
+                {
+                 formData.identityType=="NID"?
+                  <Grid item
                     xs={12}>
-                    <TextField id="address2"  size="small"  margin="normal" name="address2" label="Enter Identity Number"
+                    <TextField id="address2"  size="small"  margin="normal" name="address2" label="National Identity Number"
                         required
                         value={ formData.identityNumber}
                         onChange={(e) => setFormData({...formData,identityNumber: e.target.value})}
@@ -111,14 +117,17 @@ const CheckBeneficiaryAccount = ({
                         variant="filled"
                         />
                 </Grid>
+                  :null
+                }
+                 */}
                 <Grid item
                     xs={12}>
-                    <TextField id="address2"  size="small"  margin="normal" name="address2" label="Enter Your Current Email"
+                    <TextField id="address2"  size="small"  margin="normal" name="address2" label="Enter Client Phone Number"
                         required
-                        value={ formData.currentEmail}
-                        onChange={(e) => setFormData({...formData, currentEmail: e.target.value})}
-                        helperText={ currentEmailErr ? currentEmailErr : ""}
-                        error={currentEmailErr}
+                        value={ formData.benePhoneNumber}
+                        onChange={(e) => setFormData({...formData, benePhoneNumber: e.target.value})}
+                        helperText={ benePhoneNumberErr ? benePhoneNumberErr : ""}
+                        error={benePhoneNumberErr}
                         fullWidth
                         autoComplete="shipping address-line2"
                         variant="filled"

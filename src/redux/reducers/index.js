@@ -40,6 +40,8 @@ import getRnitDetailsReducer from "./getRnitIdentificationDetailsReducer";
 
  //Ria
  import authorizeRiaTransactionReducer from "./authorizeRiaTransactionReducer";
+ import getRiaOrderDetailsReducer from "./getRiaOrderDetailsReducer";
+ import clientValidationReducer from "./clientValidationReducer";
 // import chashinReducer from "./cashInReducer";
 // import getClientNidDetailsReducer from "./getClientNidDetailsReducer";
 //import clientEnrollmentReducer from "./clientEnrollmentReducer";
@@ -86,6 +88,8 @@ const allReducers = combineReducers({
      topUpMobileMoney:topUpMobileMoneyReducer,
      //RIA
      authorizeRiaTransaction:authorizeRiaTransactionReducer,
+     getRiaOrderDetails:getRiaOrderDetailsReducer,
+     clientValidation:clientValidationReducer,
     
     //client
     // getClientDetails:getClientDetailsReducer,

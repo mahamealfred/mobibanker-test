@@ -55,7 +55,7 @@ const  ComponentToPrint=React.lazy(()=>import("./RiaComponentToPrint").then(modu
 const identityTypes=[
   {
     name:"National ID",
-    value:"NID"
+    value:"national_id"
   },
   {
     name:"Passport",
@@ -624,11 +624,10 @@ useEffect(() => {
                       <MenuItem key={option.value} value={option.value}>{option.name}</MenuItem>
                     ))} 
                   </TextField>
-
                       </Grid>
                
                   {
-                    identityType=="NID"?
+                    identityType=="national_id"?
                    
                 <>
                  <Grid item
@@ -649,7 +648,7 @@ useEffect(() => {
                  
                     </Grid>
                 {
-                  validateNid.details.length>2?
+                  validateNid.details.data?
                  null
                   : <Button variant="text" onClick={handleSubmitNid} color="primary" type="submit">Submit</Button>
                 }
@@ -668,7 +667,7 @@ useEffect(() => {
         <Stack spacing={4}>
       
        {
-        validateNid.details.length>2?
+         validateNid.details.data?
         <>
            <Stack
          component="div"
@@ -705,8 +704,12 @@ useEffect(() => {
             name="firstName"
             value={formik.values.firstName}
             onChange={formik.handleChange}
+            disabled
+            // value={firstName}
+            // onChange={e => setFirstName(e.target.value)}
             type="text"
-            label="First Name"
+            defaultValue={firstName}
+            // label="First Name"
             {...getFieldProps("firstName")}
             error={Boolean(touched.firstName && errors.firstName)}
             helperText={touched.firstName && errors.firstName}
@@ -765,7 +768,7 @@ useEffect(() => {
           <Typography gutterBottom>{beneCity+" "+beneState+" "+beneAddress}</Typography> */}
         </Grid>
         {
-        validateNid.details.length>2?
+        validateNid.details.data?
         <Grid item container direction="column" xs={12} sm={6}>
         <Stack spacing={4}>
         <Stack
@@ -890,7 +893,7 @@ useEffect(() => {
              
       </Grid>
       {
-         validateNid.details.length>2?
+         validateNid.details.data?
         <Box
        component="div"
        initial={{ opacity: 0, y: 20 }}

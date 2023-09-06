@@ -122,7 +122,7 @@ const CheckBeneficiaryAccount = ({
                  */}
                 <Grid item
                     xs={12}>
-                    <TextField id="address2"  size="small"  margin="normal" name="address2" label="Enter Client Phone Number"
+                    <TextField id="address2"  size="small"  margin="normal" name="address2" label="Client Identity Number"
                         required
                         value={ formData.benePhoneNumber}
                         onChange={(e) => setFormData({...formData, benePhoneNumber: e.target.value})}

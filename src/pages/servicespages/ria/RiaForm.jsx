@@ -29,6 +29,10 @@ import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { styled } from '@mui/material/styles';
 import { LoadingButton } from "@mui/lab";
+import Alert from "@mui/material/Alert";
+import Collapse from "@mui/material/Collapse";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 import jwt from "jsonwebtoken";
 // import { ComponentToPrint } from './ComponentToPrint';
 import ReactToPrint from 'react-to-print';
@@ -50,12 +54,12 @@ const  ComponentToPrint=React.lazy(()=>import("./RiaComponentToPrint").then(modu
 
 const identityTypes=[
   {
-    name:"NID",
+    name:"National ID",
     value:"NID"
   },
   {
     name:"Passport",
-    value:"Password"
+    value:"Passport"
   }
 ]
 const theme = createTheme();
@@ -250,7 +254,7 @@ const [beneCurrency,setBeneCurrency]=useState("")
  const validateNid=useSelector((state)=>state.validateNid);
  const clientValidation=useSelector((state)=>state.clientValidation);
 const [niderrorMessage,setNiderrorMessage]=useState("");
-
+const [email, setEmail] = useState('')
 const [documentNumber,setDocumentNumber]=useState("")
 const [nationality,setNationality]=useState("RW");
 const [fatherNames,setFatherNames]=useState("");
@@ -282,6 +286,10 @@ const [dateOfBirth,setDateOfBirth]=useState("")
 const [photo,setPhoto]=useState("")
 const [names,setNames]=useState("")
 
+const [identityType,setIdentityType]=useState("")
+const [identityNumber,setIdentityNumber]=useState("")
+const [nidErrorMessage,setNidErrorMessage ]=useState("")
+
 
  //all
  const { auth }=React.useContext(AuthContext)
@@ -289,6 +297,7 @@ const [names,setNames]=useState("")
  const [docDetails, setDocDetails] = useState("");
  const [openDialog,setOpenDialog]=useState(false);
  const [executing, setExecuting] = useState(false);
+
  const {
    disabled,
    onClick,
@@ -334,7 +343,9 @@ const [names,setNames]=useState("")
  };
 
 
-
+const handleCloseNidErrMessage=()=>{
+  setNidErrorMessage("")
+}
  
 
 
@@ -360,12 +371,7 @@ await dispatch(getRiaOrderDetailsAction({orderNum,orderPin}))
 
  //verify account
  const handleCheckBeneficiaryAccount=async()=>{
-//   if(formData.identityType==""){
-// setIdentityTypeErr("Please select Identity Type")
-//   }
-//   else if(formData.identityNumber==""){
-//     setIdentityNumberErr("Identity Number is required")
-//   }
+
 if (formData.benePhoneNumber=="") {
     setBenePhoneNumberErr("Phone Number is required")
   } 
@@ -434,6 +440,17 @@ useEffect(() => {
   }
   fetchData();
 }, [clientValidation.details]);
+//validate NID 
+const handleSubmitNid=async()=>{
+ if(identityNumber==""){
+    setIdentityNumberErr("Identity Number is required")
+  }
+  else{
+    setIdentityNumberErr("")
+    let nid=identityNumber
+await dispatch(valiateNidDetailsDetailsAction({nid}))
+  }
+}
 //fectch identity id details
 //render Nid details
 useEffect(() => {
@@ -474,7 +491,7 @@ useEffect(() => {
         // setBrokering(auth.brokering)
         // setUserGroup(auth.usergroup)
         // setAgentPhonenumber(auth.phonenumber)
-          handleNext();
+         // handleNext();
         } 
        
         else {
@@ -484,7 +501,7 @@ useEffect(() => {
       }
       if (validateNid.error) {
        
-        setErrorMessage(validateNid.error);
+        setNidErrorMessage (validateNid.error);
       }
     }
   }
@@ -496,6 +513,7 @@ useEffect(() => {
     setOpenOrderDetailsDialog(false)
     setOpenClentRegistrationFormDetailsDialog(false)
     setErrorMessage("")
+    setNidErrorMessage("")
     setOpen(false)
    }
  //handle on button submit for each step
@@ -556,69 +574,103 @@ useEffect(() => {
         aria-labelledby="responsive-dialog-title"
       >
         <Grid container direction="row" alignItems="center">
-        <DialogTitle id="responsive-dialog-title" >
-       Client Registration Form
+          
+        <DialogTitle id="responsive-dialog-title"  sx={{ textAlign:"center" }}>
+        Client Registration Form
         </DialogTitle>
          </Grid>
          <Divider color="warning"/>
         <DialogContent>
           <DialogContentText textAlign="center" >
-          <Typography variant="h5" gutterBottom>
-          Enter Client Information
-      </Typography>
+{
+          !nidErrorMessage ? null : (
+                <Collapse in={open}>
+                    <Alert severity="error"
+                        action={
+                            <IconButton
+                        aria-label="close"
+                        color="inherit"
+                        size="small"onClick={handleCloseNidErrMessage}>
+                        <CloseIcon
+                        fontSize="inherit"/></IconButton>
+                        }
+                        sx={
+                            {mb: 0.2}
+                    }>
+                        {/* {errorMessage==="System unit not active. (6013) - 8/2214"?`${t("electricity:invalidmeternumber")}`:errorMessage}  */}
+                        {nidErrorMessage} 
+                        </Alert>
+                </Collapse>
+            )
+        }
+          <React.Fragment>
+        
+            <Grid item
+                    xs={12}>
+                <TextField
+                   size="small"
+                   type="text"
+                   variant='outlined'
+                   select
+                   color='secondary'
+                   label="Select Identity Type"
+                   fullWidth
+                   onChange={e => setIdentityType(e.target.value)}
+                   value={identityType}
+                   required
+                   sx={{mb: 4, maxWidth: "500px" }}
+                >
+                         {identityTypes.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>{option.name}</MenuItem>
+                    ))} 
+                  </TextField>
+
+                      </Grid>
+               
+                  {
+                    identityType=="NID"?
+                   
+                <>
+                 <Grid item
+                    xs={12}>
+             <TextField
+                 size="small"
+                    type="text"
+                    variant='outlined'
+                    color='secondary'
+                    label="Identity Number"
+                    fullWidth
+                    onChange={e => setIdentityNumber(e.target.value)}
+                    value={identityNumber}
+                    required
+                    sx={{mb: 4, maxWidth: "500px" }}
+                   
+                />
+                 
+                    </Grid>
+                {
+                  validateNid.details.length>2?
+                 null
+                  : <Button variant="text" onClick={handleSubmitNid} color="primary" type="submit">Submit</Button>
+                }
+                </>
+                    :null
+                  }
+              
+              
+                
+          
+        </React.Fragment>
           <FormikProvider value={formik}>
       <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
      <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
         <Stack spacing={4}>
-        <Stack
-         component="div"
-         initial={{ opacity: 0, y: 60 }}
-         animate={animate}
-         direction={{ xs: "column", sm: "row" }}
-         spacing={2}
-       >
-         <TextField
-            fullWidth
-            size="small"
-            select
-            autoComplete="identityType"
-            name="identityType"
-            value={formik.values.identityType}
-            onChange={formik.handleChange}
-            type="text"
-            label="Select Identity Type"
-            {...getFieldProps("username")}
-            error={Boolean(touched.identityType && errors.identityType)}
-            helperText={touched.identityType && errors.identityType}
-         >
-               {identityTypes.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>{option.name}</MenuItem>
-                    ))} 
-         </TextField>
-       </Stack>
-       <Stack
-         component="div"
-         initial={{ opacity: 0, y: 60 }}
-         animate={animate}
-         direction={{ xs: "column", sm: "row" }}
-         spacing={2}
-       >
-         <TextField
-            fullWidth
-            size="small"
-            autoComplete="identityNumber"
-            name="identityNumber"
-            value={formik.values.identityNumber}
-            onChange={formik.handleChange}
-            type="text"
-            label="Enter Identity Number"
-            {...getFieldProps("identityNumber")}
-            error={Boolean(touched.identityNumber && errors.identityNumber)}
-            helperText={touched.identityNumber && errors.identityNumber}
-         />
-       </Stack>
-       <Stack
+      
+       {
+        validateNid.details.length>2?
+        <>
+           <Stack
          component="div"
          initial={{ opacity: 0, y: 60 }}
          animate={animate}
@@ -702,19 +754,18 @@ useEffect(() => {
             helperText={touched.lastName && errors.lastName}
          />
        </Stack>
-       <Stack
-         component="div"
-         initial={{ opacity: 0, y: 60 }}
-         animate={animate}
-         direction={{ xs: "column", sm: "row" }}
-         spacing={2}
-       >
-       </Stack>
+       
+        </>
+        :null
+       }
+      
      </Stack>
 
           {/* <Typography gutterBottom>{beneCountry}</Typography>
           <Typography gutterBottom>{beneCity+" "+beneState+" "+beneAddress}</Typography> */}
         </Grid>
+        {
+        validateNid.details.length>2?
         <Grid item container direction="column" xs={12} sm={6}>
         <Stack spacing={4}>
         <Stack
@@ -822,53 +873,7 @@ useEffect(() => {
             helperText={touched.zipcode && errors.zipcode}
          />
        </Stack>
-       {/* <Stack
-         component="div"
-         initial={{ opacity: 0, y: 60 }}
-         animate={animate}
-         direction={{ xs: "column", sm: "row" }}
-         spacing={2}
-       >
-         <TextField
-            fullWidth
-            size="small"
-            autoComplete="documentId"
-            name="documentId"
-            value={formik.values.documentId}
-            onChange={formik.handleChange}
-            type="file"
-           
-            {...getFieldProps("documentId")}
-            error={Boolean(touched.documentId && errors.documentId)}
-            helperText={touched.documentId && errors.documentId}
-         />
-           
-       </Stack>
-       <Typography>Please Uploade your Identity ID in pdf Format</Typography>
-       <Stack
-         component="div"
-         initial={{ opacity: 0, y: 60 }}
-         animate={animate}
-         direction={{ xs: "column", sm: "row" }}
-         spacing={2}
-       >
-      
-         <TextField
-            fullWidth
-            size="small"
-            autoComplete="photo"
-            name="username"
-            value={formik.values.photo}
-            onChange={formik.handleChange}
-            type="file"
-            {...getFieldProps("photo")}
-            error={Boolean(touched.photo && errors.photo)}
-            helperText={touched.photo && errors.photo}
-         />
-        
-       </Stack>
-       <Typography>Please Uploade your PHOTO eg:png,jepg</Typography>
-      */}
+       
        <Stack
          component="div"
          initial={{ opacity: 0, y: 60 }}
@@ -879,9 +884,14 @@ useEffect(() => {
        </Stack>
      </Stack>
         </Grid>
-       
+ 
+        :null
+        }
+             
       </Grid>
-      <Box
+      {
+         validateNid.details.length>2?
+        <Box
        component="div"
        initial={{ opacity: 0, y: 20 }}
        animate={animate}
@@ -907,6 +917,8 @@ useEffect(() => {
  Register Beneficiary
             </LoadingButton>
         </Box>
+        :null}
+      
      
       </Form>
     </FormikProvider>

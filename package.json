@@ -62,7 +62,7 @@
     "yup": "^1.2.0"
   },
   "scripts": {
-    "start": "env-cmd -f .env react-scripts start",
+    "start": "PART=1001 env-cmd -f .env react-scripts start",
     "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "winBuild": "set \"GENERATE_SOURCEMAP=false\" && react-scripts build",
     "test": "react-scripts test",

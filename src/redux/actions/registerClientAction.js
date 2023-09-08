@@ -11,79 +11,37 @@ import {
 export const registerClientAction = (details,username,password) => async (dispatch) => {
   try {
     dispatch(registerClientRequest());
-   const {documentNumber}=details
-  const {nationality}=details
-  const {fatherNames}=details
- const  {motherNames}=details
- const  {telephone}=details
+ const {clientUsername}=details
+ const {nationality}=details
+ const {identityType}=details
  const {firstName}=details
  const {lastName}=details
- const {father}=details
- const {mother}=details
  const {idNumber}=details
  const {phoneNumber}=details
  const {email}=details
  const {dateOfBirth}=details
- const {dob}=details
- const {accountType}=details
- const {branchName}=details
  const {civilStatus}=details
  const {gender}=details
- const {spouse}=details
- const {placeOfBirth}=details
- const {countryOfBirth}=details
- const {placeOfIssue}=details
- const {dateOfIssue}=details
  const {province}=details
  const {district}=details
  const {sector}=details
  const {cell}=details
-  const {village}=details
-  const {photo}=details
-  const {initialamount}=details
-  const {branchCode}=details
-
+  
+console.log("Dtate:",details,username,password)
     //const {accountName}=details
     // const {brokering}=details
     // const {userGroup}=details
     //let basicAuth='Basic ' + btoa(username + ':' + password);
-    const Url=process.env.REACT_APP_URL+'/api/ria/service/rest/v.4.14.01/individual-clients-enrollment';
+    const Url=process.env.REACT_APP_URL+'/api/ria/service/rest/v.4.14.01/individual-clients-enrollmenty';
 
     const res = await axios.post(Url,{
-        documentNumber: documentNumber,
-        branchCode:branchCode.toString(),
-        initialeAmount:initialamount,
-        nationality: nationality,
-        fatherNames: fatherNames,
-        motherNames: motherNames,
-        telephone: telephone,
-        foreName: firstName,
-        surnames: lastName,
-        idNumber: idNumber,
-        phoneNumber: phoneNumber,
-        email: email,
-        dateOfBirth: dateOfBirth,
-        accountType: "CURRENT",
-        branchName: "KIGALI",
-        sex: gender,
-        civilStatus: civilStatus,
-        spouse: spouse,
-        placeOfBirth: placeOfBirth,
-        countryOfBirth: countryOfBirth,
-        placeOfIssue: placeOfIssue,
-        dateOfIssue: dateOfIssue,
-        province: province,
-        district: district,
-        sector: sector,
-        cell: cell,
-        village: village,
-        photo: photo,
+       
         
             names: firstName+" "+lastName,
-            username:"riatester05",
+            username:clientUsername,
             email:email,
             nationality:nationality,
-            identity_type:"national_id",
+            identity_type:identityType,
             identity_number:idNumber,
             maritial_status:civilStatus,
             gender:gender,

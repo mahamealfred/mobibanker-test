@@ -106,7 +106,7 @@ const RiaForm = (props) => {
   const steps = ["Check Order", "Check Beneficiary Account", "Details"];
   const [activeStep, setActiveStep] = React.useState(0);
   const dispatch = useDispatch();
-
+  const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
   const SignupSchema = Yup.object().shape({
     identityType: Yup.string()
@@ -121,7 +121,7 @@ const RiaForm = (props) => {
     .email("Email must be a valid email address")
     .required("Email is required"),
     phoneNumber:Yup.string()
-      .required("required")
+      .required("Phone Number required")
       .matches(phoneRegExp, 'Phone number is not valid')
       .min(10, "too short")
       .max(13, "too long"),
@@ -140,28 +140,48 @@ const RiaForm = (props) => {
       email: "",
       phoneNumber: "",
       clientUsername:""
-      
-      // email: "",
-     
+    
     },
     validationSchema: SignupSchema,
     onSubmit: async(values) => {
-      const username=values.username
-      const password=values.password
-    //  await dispatch(loginAction({username,password},navigate))
+      const clientUsername=values.clientUsername
+      const email=values.email
+      const phoneNumber=values.phoneNumber
+      const identityType=values.identityType
+
+      await dispatch(clientValidationAction({
+        clientUsername,
+        email,
+        phoneNumber,
+        identityType,
+        nationality,
+        firstName,
+        lastName,
+        idNumber,
+        dateOfBirth,
+        dob,
+        gender,
+        civilStatus,
+        province,
+        district,
+        sector,
+        cell,
+
+      },username,password))
     // if (login.error) {
     //   setOpenErrorMessage(true)
     // }
     },
   });
 
-  const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
+
 
   const getElectricityDetails = useSelector((state) => state.getElectricityDetails);
   const electricityPayment = useSelector((state) => state.electricityPayment);
 
 
   const getRiaOrderDetails=useSelector((state)=>state.getRiaOrderDetails)
+  const registerClient=useSelector((state)=>state.registerClient)
   const [formData, setFormData] = useState({
     orderNumber:"",
     orderPin:"",
@@ -261,6 +281,8 @@ const [nidErrorMessage,setNidErrorMessage ]=useState("")
  const [docDetails, setDocDetails] = useState("");
  const [openDialog,setOpenDialog]=useState(false);
  const [executing, setExecuting] = useState(false);
+ const [username,setUsername]=useState("")
+ 
 
  const {
    disabled,
@@ -451,7 +473,8 @@ useEffect(() => {
          setCell(validateNid.details.data.cell);
          setVillage(validateNid.details.data.village);
         // setPhoneNumber(formData.phoneNumber);
-        // setUsername(auth.phonenumber)
+        setPassword(auth.password)
+         setUsername(auth.phonenumber)
         // setBrokering(auth.brokering)
         // setUserGroup(auth.usergroup)
         // setAgentPhonenumber(auth.phonenumber)
@@ -696,8 +719,36 @@ useEffect(() => {
          />
        </Stack>
    
-     
+       <Stack
+         component="div"
+         initial={{ opacity: 0, y: 60 }}
+         animate={animate}
+         direction={{ xs: "column", sm: "row" }}
+         spacing={2}
+       >
+         <TextField
+            fullWidth
+            size="small"
+            autoComplete="clientUsername"
+            name="clientUsername"
+            value={formik.values.clientUsername}
+            onChange={formik.handleChange}
+            type="text"
+            label="Client Username"
+            {...getFieldProps("clientUsername")}
+            error={Boolean(touched.clientUsername && errors.clientUsername)}
+            helperText={touched.clientUsername && errors.clientUsername}
+         />
+       </Stack>
+       <Stack
+         component="div"
+         initial={{ opacity: 0, y: 60 }}
+         animate={animate}
+         direction={{ xs: "column", sm: "row" }}
+         spacing={2}
+       >
        
+       </Stack>
         </>
         :null
        }
@@ -744,7 +795,9 @@ useEffect(() => {
          direction={{ xs: "column", sm: "row" }}
          spacing={2}
        >
+      
        </Stack>
+   
      </Stack>
         </Grid>
  
@@ -764,7 +817,8 @@ useEffect(() => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 flexDirection: 'column',
-                width:"sm"
+                width:"sm",
+        
                 
             }}
             

@@ -42,6 +42,7 @@ import getRnitDetailsReducer from "./getRnitIdentificationDetailsReducer";
  import authorizeRiaTransactionReducer from "./authorizeRiaTransactionReducer";
  import getRiaOrderDetailsReducer from "./getRiaOrderDetailsReducer";
  import clientValidationReducer from "./clientValidationReducer";
+ import registerClientReducer from "./registerClientReducer";
 // import chashinReducer from "./cashInReducer";
 // import getClientNidDetailsReducer from "./getClientNidDetailsReducer";
 //import clientEnrollmentReducer from "./clientEnrollmentReducer";
@@ -90,6 +91,7 @@ const allReducers = combineReducers({
      authorizeRiaTransaction:authorizeRiaTransactionReducer,
      getRiaOrderDetails:getRiaOrderDetailsReducer,
      clientValidation:clientValidationReducer,
+     registerClient:registerClientReducer,
     
     //client
     // getClientDetails:getClientDetailsReducer,

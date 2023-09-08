@@ -107,7 +107,7 @@ const RiaForm = (props) => {
   const [activeStep, setActiveStep] = React.useState(0);
   const dispatch = useDispatch();
 
-
+  const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
   const SignupSchema = Yup.object().shape({
     identityType: Yup.string()
     .min(2, "Too Short!")
@@ -120,45 +120,16 @@ const RiaForm = (props) => {
     email: Yup.string()
     .email("Email must be a valid email address")
     .required("Email is required"),
-    firstName: Yup.string()
+    phoneNumber:Yup.string()
+      .required("required")
+      .matches(phoneRegExp, 'Phone number is not valid')
+      .min(10, "too short")
+      .max(13, "too long"),
+    clientUsername: Yup.string()
     .min(2, "Too Short!")
     .max(50, "Too Long!")
-    .required("First Name required"),
-    middleName: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!"),
-    lastName: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Last Name required"),
-    nationality: Yup.string()
-      .min(2, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Nationality required"),
-    country: Yup.string()
-      .min(2, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Country required"),
-    city: Yup.string()
-      .min(2, "Too Short!")
-      .max(50, "Too Long!")
-      .required("City required"),
-    address: Yup.string()
-      .min(2, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Address required"),
-    zipcode: Yup.string()
-      .min(2, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Zip Code  required"),
-    documentId: Yup.string()
-      .min(2, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Please Upload your ID or Passport"),
-    photo: Yup.string()
-      .min(2, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Photo  required"),
+    .required("Client Username required"),
+ 
 
   });
 
@@ -167,16 +138,9 @@ const RiaForm = (props) => {
       identityType:"",
       identityNumber: "",
       email: "",
-      firstName: "",
-      middleName: "",
-      lastName: "",
-      nationality: "",
-      country: "",
-      city: "",
-      address: "",
-      zipcode: "",
-      documentId: "",
-      photo: "",
+      phoneNumber: "",
+      clientUsername:""
+      
       // email: "",
      
     },
@@ -650,7 +614,11 @@ useEffect(() => {
                 {
                   validateNid.details.data?
                  null
-                  : <Button variant="text" onClick={handleSubmitNid} color="primary" type="submit">Submit</Button>
+                  :  validateNid.loading?
+                  <Box sx={{ display: 'flex',justifyContent:"center" }}>
+                  <CircularProgress  sx={{ color: 'orange'}} />
+                   </Box>:
+<Button variant="text" onClick={handleSubmitNid} color="primary" type="submit">Submit</Button>
                 }
                 </>
                     :null
@@ -662,6 +630,41 @@ useEffect(() => {
         </React.Fragment>
           <FormikProvider value={formik}>
       <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
+        {
+          validateNid.details.data?
+          <>
+          {/* <Typography variant="h6" gutterBottom>
+          Client Information
+      </Typography> */}
+      {/* <Grid direction="column" xs={12} sm={6}>
+        <Grid item xs={12} sm={6}> */}
+        <List disablePadding>
+     
+          <ListItem  sx={{ py: 1, px: {xs:0,sm:20} }}>
+            <ListItemText primary="First Name" />
+            <Typography variant="body2">{firstName}</Typography>
+          </ListItem>
+          <ListItem  sx={{ py: 1, px: {xs:0,sm:20} }}>
+            <ListItemText primary=" Last Name" />
+            <Typography variant="body2">{lastName}</Typography>
+          </ListItem>
+          <ListItem  sx={{ py: 1, px: {xs:0,sm:20} }}>
+            <ListItemText primary="Place of Issue" />
+            <Typography variant="body2">{placeOfIssue}</Typography>
+          </ListItem>
+          <ListItem  sx={{ py: 1, px: {xs:0,sm:20} }}>
+            <ListItemText primary="Marital Status" />
+            <Typography variant="body2">{civilStatus}</Typography>
+          </ListItem>
+        {/* <ListItem sx={{ py: 1, px: {xs:0,sm:20} }}>
+          <ListItemText primary="Total" />
+          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+            $34.06
+          </Typography>
+        </ListItem> */}
+      </List>
+          </>:null
+        }
      <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
         <Stack spacing={4}>
@@ -669,6 +672,8 @@ useEffect(() => {
        {
          validateNid.details.data?
         <>
+
+
            <Stack
          component="div"
          initial={{ opacity: 0, y: 60 }}
@@ -690,73 +695,8 @@ useEffect(() => {
             helperText={touched.email && errors.email}
          />
        </Stack>
-       <Stack
-         component="div"
-         initial={{ opacity: 0, y: 60 }}
-         animate={animate}
-         direction={{ xs: "column", sm: "row" }}
-         spacing={2}
-       >
-         <TextField
-            fullWidth
-            size="small"
-            autoComplete="firstName"
-            name="firstName"
-            value={formik.values.firstName}
-            onChange={formik.handleChange}
-            disabled
-            // value={firstName}
-            // onChange={e => setFirstName(e.target.value)}
-            type="text"
-            defaultValue={firstName}
-            // label="First Name"
-            {...getFieldProps("firstName")}
-            error={Boolean(touched.firstName && errors.firstName)}
-            helperText={touched.firstName && errors.firstName}
-         />
-       </Stack>
-       <Stack
-         component="div"
-         initial={{ opacity: 0, y: 60 }}
-         animate={animate}
-         direction={{ xs: "column", sm: "row" }}
-         spacing={2}
-       >
-         <TextField
-            fullWidth
-            size="small"
-            autoComplete="middleName"
-            name="middleName"
-            value={formik.values.middleName}
-            onChange={formik.handleChange}
-            type="text"
-            label="Middle Name"
-            {...getFieldProps("middleName")}
-            error={Boolean(touched.middleName && errors.middleName)}
-            helperText={touched.middleName && errors.middleName}
-         />
-       </Stack>
-       <Stack
-         component="div"
-         initial={{ opacity: 0, y: 60 }}
-         animate={animate}
-         direction={{ xs: "column", sm: "row" }}
-         spacing={2}
-       >
-         <TextField
-            fullWidth
-            size="small"
-            autoComplete="lastName"
-            name="lastName"
-            value={formik.values.last}
-            onChange={formik.handleChange}
-            type="text"
-            label="Last Name"
-            {...getFieldProps("lastName")}
-            error={Boolean(touched.lastName && errors.lastName)}
-            helperText={touched.lastName && errors.lastName}
-         />
-       </Stack>
+   
+     
        
         </>
         :null
@@ -771,27 +711,10 @@ useEffect(() => {
         validateNid.details.data?
         <Grid item container direction="column" xs={12} sm={6}>
         <Stack spacing={4}>
-        <Stack
-         component="div"
-         initial={{ opacity: 0, y: 60 }}
-         animate={animate}
-         direction={{ xs: "column", sm: "row" }}
-         spacing={2}
-       >
-         <TextField
-            fullWidth
-            size="small"
-            autoComplete="nationality"
-            name="nationality"
-            value={formik.values.nationality}
-            onChange={formik.handleChange}
-            type="text"
-            label="Nationality"
-            {...getFieldProps("nationality")}
-            error={Boolean(touched.nationality && errors.nationality)}
-            helperText={touched.nationality && errors.nationality}
-         />
-       </Stack>
+      
+      
+  
+      
        <Stack
          component="div"
          initial={{ opacity: 0, y: 60 }}
@@ -802,78 +725,15 @@ useEffect(() => {
          <TextField
             fullWidth
             size="small"
-            autoComplete="country"
-            name="country"
-            value={formik.values.country}
+            autoComplete="phoneNumber"
+            name="phoneNumber"
+            value={formik.values.phoneNumber}
             onChange={formik.handleChange}
             type="text"
-            label="Country"
-            {...getFieldProps("country")}
-            error={Boolean(touched.country && errors.country)}
-            helperText={touched.country && errors.country}
-         />
-       </Stack>
-       <Stack
-         component="div"
-         initial={{ opacity: 0, y: 60 }}
-         animate={animate}
-         direction={{ xs: "column", sm: "row" }}
-         spacing={2}
-       >
-         <TextField
-            fullWidth
-            size="small"
-            autoComplete="city"
-            name="city"
-            value={formik.values.city}
-            onChange={formik.handleChange}
-            type="text"
-            label="City"
-            {...getFieldProps("city")}
-            error={Boolean(touched.city && errors.city)}
-            helperText={touched.city && errors.city}
-         />
-       </Stack>
-        <Stack
-         component="div"
-         initial={{ opacity: 0, y: 60 }}
-         animate={animate}
-         direction={{ xs: "column", sm: "row" }}
-         spacing={2}
-       >
-         <TextField
-            fullWidth
-            size="small"
-            autoComplete="address"
-            name="address"
-            value={formik.values.address}
-            onChange={formik.handleChange}
-            type="text"
-            label="Address"
-            {...getFieldProps("address")}
-            error={Boolean(touched.address&& errors.address)}
-            helperText={touched.address && errors.address}
-         />
-       </Stack>
-       <Stack
-         component="div"
-         initial={{ opacity: 0, y: 60 }}
-         animate={animate}
-         direction={{ xs: "column", sm: "row" }}
-         spacing={2}
-       >
-         <TextField
-            fullWidth
-            size="small"
-            autoComplete="zipcode"
-            name="zipcode"
-            value={formik.values.zipcode}
-            onChange={formik.handleChange}
-            type="text"
-            label="zipcode"
-            {...getFieldProps("zipcode")}
-            error={Boolean(touched.zipcode && errors.zipcode)}
-            helperText={touched.zipcode && errors.zipcode}
+            label="Phone Number"
+            {...getFieldProps("phoneNumber")}
+            error={Boolean(touched.phoneNumber && errors.phoneNumber)}
+            helperText={touched.phoneNumber && errors.phoneNumber}
          />
        </Stack>
        
@@ -1166,15 +1026,16 @@ useEffect(() => {
                         ? "Next"
                         : activeStep === 0
                         ?
-                        //  getElectricityDetails.loading?
-                        // <Box sx={{ display: 'flex',justifyContent:"center" }}>
-                        // <CircularProgress  sx={{ color: 'orange'}} />
-                        //  </Box>:
+                        getRiaOrderDetails.loading?
+                        <Box sx={{ display: 'flex',justifyContent:"center" }}>
+                        <CircularProgress  sx={{ color: 'orange'}} />
+                         </Box>:
                         "Submit"
-                        : 
-                        // <Box sx={{ display: 'flex',justifyContent:"center" }}>
-                        // <CircularProgress  sx={{ color: 'orange'}} />
-                        //  </Box>:
+                        : clientValidation.loading?
+                        <Box sx={{ display: 'flex',justifyContent:"center" }}>
+                        <CircularProgress  sx={{ color: 'orange'}} />
+                         </Box>:
+
                         "Verifiey Account"}
                     </Button>
                   </Box>

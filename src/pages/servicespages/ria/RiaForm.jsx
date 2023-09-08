@@ -106,7 +106,7 @@ const RiaForm = (props) => {
   const steps = ["Check Order", "Check Beneficiary Account", "Details"];
   const [activeStep, setActiveStep] = React.useState(0);
   const dispatch = useDispatch();
-  const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
+
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
   const SignupSchema = Yup.object().shape({
     identityType: Yup.string()
@@ -148,33 +148,34 @@ const RiaForm = (props) => {
       const email=values.email
       const phoneNumber=values.phoneNumber
       const identityType=values.identityType
+      
+     console.log("values:",values)
+      // await dispatch(clientValidationAction({
+      //   clientUsername,
+      //   email,
+      //   phoneNumber,
+      //   identityType,
+      //   nationality,
+      //   firstName,
+      //   lastName,
+      //   idNumber,
+      //   dateOfBirth,
+      //   dob,
+      //   gender,
+      //   civilStatus,
+      //   province,
+      //   district,
+      //   sector,
+      //   cell,
 
-      await dispatch(clientValidationAction({
-        clientUsername,
-        email,
-        phoneNumber,
-        identityType,
-        nationality,
-        firstName,
-        lastName,
-        idNumber,
-        dateOfBirth,
-        dob,
-        gender,
-        civilStatus,
-        province,
-        district,
-        sector,
-        cell,
-
-      },username,password))
+      // },username,password))
     // if (login.error) {
     //   setOpenErrorMessage(true)
     // }
     },
   });
 
-
+  const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
 
   const getElectricityDetails = useSelector((state) => state.getElectricityDetails);
   const electricityPayment = useSelector((state) => state.electricityPayment);

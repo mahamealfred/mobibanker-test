@@ -1,7 +1,7 @@
 import * as React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import * as Yup from "yup";
-import { useFormik, Form, FormikProvider } from "formik";
+import { useFormik, Form, FormikProvider, Field, ErrorMessage, Formik } from "formik";
 
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
@@ -22,7 +22,7 @@ import { getElectricityDetailsAction } from "../../../redux/actions/electricityA
 import { electricityPayamentAction } from "../../../redux/actions/electricitPaymentAction";
 import { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid, List, ListItem, ListItemText, MenuItem, Stack, TextField } from "@mui/material";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid, List, ListItem, ListItemText, MenuItem, Snackbar, Stack, TextField } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
 import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
@@ -47,6 +47,9 @@ import { Label } from "@mui/icons-material";
 import { getRiaOrderDetailsAction } from "../../../redux/actions/getRiaOrderDetailsAction";
 import { valiateNidDetailsDetailsAction } from "../../../redux/actions/validateNidAction";
 import { clientValidationAction } from "../../../redux/actions/clientValidationAction";
+import { motion } from "framer-motion/dist/framer-motion";
+import { set } from "date-fns";
+import { registerClientAction } from "../../../redux/actions/registerClientAction";
 
 const  ComponentToPrint=React.lazy(()=>import("./RiaComponentToPrint").then(module=>{
   return {default: module.ComponentToPrint}
@@ -109,14 +112,14 @@ const RiaForm = (props) => {
 
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
   const SignupSchema = Yup.object().shape({
-    identityType: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Identity Type required"),
-    identityNumber: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Identity Number required"),
+    // identityType: Yup.string()
+    // .min(2, "Too Short!")
+    // .max(50, "Too Long!")
+    // .required("Identity Type required"),
+    // identityNumber: Yup.string()
+    // .min(2, "Too Short!")
+    // .max(50, "Too Long!")
+    // .required("Identity Number required"),
     email: Yup.string()
     .email("Email must be a valid email address")
     .required("Email is required"),
@@ -128,28 +131,24 @@ const RiaForm = (props) => {
     clientUsername: Yup.string()
     .min(2, "Too Short!")
     .max(50, "Too Long!")
-    .required("Client Username required"),
- 
-
+    .required("Client Username required")
   });
 
   const formik = useFormik({
     initialValues: {
-      identityType:"",
-      identityNumber: "",
       email: "",
       phoneNumber: "",
       clientUsername:""
     
     },
     validationSchema: SignupSchema,
+   
     onSubmit: async(values) => {
       const clientUsername=values.clientUsername
       const email=values.email
       const phoneNumber=values.phoneNumber
       const identityType=values.identityType
-      
-     console.log("values:",values)
+      console.log("values:",values)
       // await dispatch(clientValidationAction({
       //   clientUsername,
       //   email,
@@ -175,12 +174,19 @@ const RiaForm = (props) => {
     },
   });
 
-  const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
+
+  //formik 
+  const initialValues = {
+  email: "",
+  password: ""
+};
+
+
+  const { errors, touched, handleSubmit, isSubmitting, getFieldProps, isValid, dirty } = formik;
+
 
   const getElectricityDetails = useSelector((state) => state.getElectricityDetails);
   const electricityPayment = useSelector((state) => state.electricityPayment);
-
-
   const getRiaOrderDetails=useSelector((state)=>state.getRiaOrderDetails)
   const registerClient=useSelector((state)=>state.registerClient)
   const [formData, setFormData] = useState({
@@ -192,7 +198,7 @@ const RiaForm = (props) => {
     benePhoneNumber:""
   });
   const componentRef = useRef();
-
+const [openSnackbar,setOpenSnackbar]=useState(false)
  //rra get details
  const [meterNumberErr, setMeterNumberErr] = useState("");
  const [errorMessage, setErrorMessage] = useState("");
@@ -332,9 +338,64 @@ const [nidErrorMessage,setNidErrorMessage ]=useState("")
 
 const handleCloseNidErrMessage=()=>{
   setNidErrorMessage("")
+  setRegisterClientErrorMessage("")
+  setOpenErrorMessage(false)
 }
  
+const [clientUsername,setClientUsername]=useState("")
+const [phoneNumber,setPhoneNumber]=useState("");
+const [openErrorMessage,setOpenErrorMessage]=useState(false)
+const [registerClientErrorMessage,setRegisterClientErrorMessage]=useState("")
+//handle submit 
+const handleSubmitForm=async()=>{
+  
+   await dispatch(registerClientAction({
+        clientUsername,
+        email,
+        phoneNumber,
+        identityType,
+        nationality,
+        firstName,
+        lastName,
+        idNumber,
+        dateOfBirth,
+        dob,
+        gender,
+        civilStatus,
+        province,
+        district,
+        sector,
+        cell,
 
+      },username,password))
+    if (registerClient.error) {
+      setRegisterClientErrorMessage(registerClient.error)
+      setOpenErrorMessage(true)
+    }
+}
+
+// fect client registaration 
+useEffect(() => {
+  async function fetchData() {
+     if(!registerClient.loading){
+      if(registerClient.details.length!==0){
+        if (registerClient.details.responseCode === 100) {
+          
+          setOpenClentRegistrationFormDetailsDialog(false)
+          setOpenSnackbar(true)
+    
+        // setOpenOrderDetailsDialog(true)
+         } else {
+           return null;
+         }
+      }
+      if(registerClient.error)  {
+        setRegisterClientErrorMessage(registerClient.error);
+      }
+     }
+}
+  fetchData();
+}, [registerClient.details,registerClient.error]); 
 
 // handle order details
  const handleOrderDetails=async()=>{
@@ -458,7 +519,7 @@ useEffect(() => {
         // setTelephone(formData.phoneNumber);
          setFather(validateNid.details.data.fatherNames);
          setMother(validateNid.details.data.motherNames);
-         setIdNumber(formData.nid);
+         setIdNumber(identityNumber);
         // setEmail(formData.email);
          setDob(validateNid.details.data.dateOfBirth);
          setAccountType( "CURRENT")
@@ -497,6 +558,7 @@ useEffect(() => {
 }, [validateNid.details]);
 
    const handleClose=()=>{
+    setOpenSnackbar(false)
     setOpenDialog(false)
     setOpenOrderDetailsDialog(false)
     setOpenClentRegistrationFormDetailsDialog(false)
@@ -548,11 +610,18 @@ useEffect(() => {
    setActiveStep(0);
    history.push("/dashboard",{push:true})
  };
+
   return (
     <div>
       <ThemeProvider theme={theme}>
         {/* <CssBaseline /> */}
 {/* client registration form */}
+<Snackbar open={openSnackbar} autoHideDuration={9000} onClose={handleClose}>
+  <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+  You successfully finished the registration process.
+We have sent an email with a confirmation link to your email address
+  </Alert>
+</Snackbar>
 <Dialog
         //fullScreen={fullScreen}
         fullWidth
@@ -652,8 +721,8 @@ useEffect(() => {
                 
           
         </React.Fragment>
-          <FormikProvider value={formik}>
-      <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
+          {/* <FormikProvider value={formik}>
+      <Form autoComplete="off" noValidate onSubmit={handleSubmit}> */}
         {
           validateNid.details.data?
           <>
@@ -663,7 +732,27 @@ useEffect(() => {
       {/* <Grid direction="column" xs={12} sm={6}>
         <Grid item xs={12} sm={6}> */}
         <List disablePadding>
-     
+        {
+          !registerClientErrorMessage ? null : (
+                <Collapse in={openErrorMessage}>
+                    <Alert severity="error"
+                        action={
+                            <IconButton
+                        aria-label="close"
+                        color="inherit"
+                        size="small"onClick={handleCloseNidErrMessage}>
+                        <CloseIcon
+                        fontSize="inherit"/></IconButton>
+                        }
+                        sx={
+                            {mb: 0.2}
+                    }>
+                        {/* {errorMessage==="System unit not active. (6013) - 8/2214"?`${t("electricity:invalidmeternumber")}`:errorMessage}  */}
+                        {registerClientErrorMessage} 
+                        </Alert>
+                </Collapse>
+            )
+        }
           <ListItem  sx={{ py: 1, px: {xs:0,sm:20} }}>
             <ListItemText primary="First Name" />
             <Typography variant="body2">{firstName}</Typography>
@@ -696,10 +785,8 @@ useEffect(() => {
        {
          validateNid.details.data?
         <>
-
-
            <Stack
-         component="div"
+       component={motion.div}
          initial={{ opacity: 0, y: 60 }}
          animate={animate}
          direction={{ xs: "column", sm: "row" }}
@@ -710,18 +797,20 @@ useEffect(() => {
             size="small"
             autoComplete="email"
             name="email"
-            value={formik.values.email}
-            onChange={formik.handleChange}
+            // value={formik.values.email}
+            // onChange={formik.handleChange}
+            value={email}
+            onChange={(e)=>setEmail(e.target.value)}
             type="email"
             label="Email"
-            {...getFieldProps("email")}
-            error={Boolean(touched.email && errors.email)}
-            helperText={touched.email && errors.email}
+            // {...getFieldProps("email")}
+            // error={Boolean(touched.email && errors.email)}
+            // helperText={touched.email && errors.email}
          />
        </Stack>
    
        <Stack
-         component="div"
+        component={motion.div}
          initial={{ opacity: 0, y: 60 }}
          animate={animate}
          direction={{ xs: "column", sm: "row" }}
@@ -732,17 +821,19 @@ useEffect(() => {
             size="small"
             autoComplete="clientUsername"
             name="clientUsername"
-            value={formik.values.clientUsername}
-            onChange={formik.handleChange}
+            // value={formik.values.clientUsername}
+            // onChange={formik.handleChange}
+            value={clientUsername}
+            onChange={(e)=>setClientUsername(e.target.value)}
             type="text"
             label="Client Username"
-            {...getFieldProps("clientUsername")}
-            error={Boolean(touched.clientUsername && errors.clientUsername)}
-            helperText={touched.clientUsername && errors.clientUsername}
+            // {...getFieldProps("clientUsername")}
+            // error={Boolean(touched.clientUsername && errors.clientUsername)}
+            // helperText={touched.clientUsername && errors.clientUsername}
          />
        </Stack>
        <Stack
-         component="div"
+        component={motion.div}
          initial={{ opacity: 0, y: 60 }}
          animate={animate}
          direction={{ xs: "column", sm: "row" }}
@@ -763,12 +854,8 @@ useEffect(() => {
         validateNid.details.data?
         <Grid item container direction="column" xs={12} sm={6}>
         <Stack spacing={4}>
-      
-      
-  
-      
        <Stack
-         component="div"
+       component={motion.div}
          initial={{ opacity: 0, y: 60 }}
          animate={animate}
          direction={{ xs: "column", sm: "row" }}
@@ -779,67 +866,84 @@ useEffect(() => {
             size="small"
             autoComplete="phoneNumber"
             name="phoneNumber"
-            value={formik.values.phoneNumber}
-            onChange={formik.handleChange}
+            // value={formik.values.phoneNumber}
+            // onChange={formik.handleChange}
+            value={phoneNumber}
+            onChange={(e)=>setPhoneNumber(e.target.value)}
             type="text"
             label="Phone Number"
-            {...getFieldProps("phoneNumber")}
-            error={Boolean(touched.phoneNumber && errors.phoneNumber)}
-            helperText={touched.phoneNumber && errors.phoneNumber}
+            // {...getFieldProps("phoneNumber")}
+            // error={Boolean(touched.phoneNumber && errors.phoneNumber)}
+            // helperText={touched.phoneNumber && errors.phoneNumber}
          />
        </Stack>
-       
        <Stack
-         component="div"
+         component={motion.div}
          initial={{ opacity: 0, y: 60 }}
          animate={animate}
          direction={{ xs: "column", sm: "row" }}
          spacing={2}
        >
-      
        </Stack>
-   
      </Stack>
         </Grid>
- 
         :null
-        }
-             
+        }    
       </Grid>
       {
-         validateNid.details.data?
-        <Box
-       component="div"
-       initial={{ opacity: 0, y: 20 }}
-       animate={animate}
-      //  maxWidth="sm"
-            sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexDirection: 'column',
-                width:"sm",
-        
+          validateNid.details.data?
+          <Box
+          component="div"
+          initial={{ opacity: 0, y: 20 }}
+          animate={animate}
+         //  maxWidth="sm"
+               sx={{
+                   display: 'flex',
+                   justifyContent: 'center',
+                   alignItems: 'center',
+                   flexDirection: 'column',
+                   width:"sm",
+               }}
+               
+           >
+             
+          {/* <LoadingButton
+                 fullWidth
+                 component={motion.div}
+                 size="large"
+                 style={{ borderRadius: 8,backgroundColor:"#000057" }}
+                 type="submit"
+                 variant="contained"
+                 loading={isSubmitting}
+                 // onClick={handleSubmitForm}
+               >
+            Register Beneficiary
+               </LoadingButton>  */}
+               {
+                registerClient.loading? <Box sx={{ display: 'flex',justifyContent:"center" }}>
+                <CircularProgress  sx={{ color: 'orange'}} />
+                 </Box>:
+                 <Button
+                 fullWidth
+                 component={motion.div}
+                 size="large"
+                 style={{ borderRadius: 8,backgroundColor:"#000057" }}
+                 type="submit"
+                 variant="contained"
+          
+                 onClick={handleSubmitForm}
+               >
+            Register Client
+               </Button> 
+               }
                 
-            }}
-            
-        >
-       <LoadingButton
-              fullWidth
-              size="large"
-              style={{ borderRadius: 8,backgroundColor:"#000057" }}
-              type="submit"
-              variant="contained"
-              loading={isSubmitting}
-            >
- Register Beneficiary
-            </LoadingButton>
-        </Box>
-        :null}
+               </Box>
+          :null
+          }
       
-     
-      </Form>
-    </FormikProvider>
+      {/* </Form>
+    </FormikProvider> */}
+ 
           
           {/* <Typography gutterBottom>{beneCountry}</Typography>
           <Typography gutterBottom>{beneCity+" "+beneState+" "+beneAddress}</Typography> */}
@@ -858,9 +962,6 @@ useEffect(() => {
           </Button> */}
         </DialogActions>
       </Dialog>
-
-
-
 
         {/* order iformation */}
         <Dialog
@@ -1050,11 +1151,9 @@ useEffect(() => {
                   <Typography textAlign="center" variant="subtitle1">
                   Please, Go to the previous transaction to approve the withdrawal amount.
                   </Typography>
-                
                   <Button onClick={handleNewpayment} sx={{ mt: 3, ml: 1 }}>
                   Go Back To Home
                   </Button>
-                  
                 </React.Fragment>
               ) : (
                 <React.Fragment>
@@ -1068,14 +1167,12 @@ useEffect(() => {
                 {t("common:cancel")}
                       </Button>
                     ):null}
-
                     <Button
-                     
                       onClick={handelSubmit}
                       // sx={{ mt: 3, ml: 1 }}
                       sx={{ my: 1, mx: 1.5 }}
                     >
-                      
+                    
                       {/* {activeStep === steps.length - 1 ? 'Mke payment' : 'Next'} */}
                       {activeStep === steps.length - 1
                         ? "Next"

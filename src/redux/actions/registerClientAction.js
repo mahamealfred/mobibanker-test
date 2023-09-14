@@ -9,7 +9,7 @@ import {
   dotenv.config()
 
 export const registerClientAction = (details,username,password) => async (dispatch) => {
-  console.log(details,username,password)
+
   try {
     dispatch(registerClientRequest());
  const {clientUsername}=details
@@ -83,7 +83,7 @@ export const registerClientAction = (details,username,password) => async (dispat
 }
 
    });
-   console.log("response data:",res.data)
+
       if(res.data.responseCode===100){
        await dispatch(registerClientSuccess(res.data));
       }
@@ -97,7 +97,7 @@ export const registerClientAction = (details,username,password) => async (dispat
    
   } catch (err) {
     if (err.response) {
-      
+
        let errorMessage = err.response.data.message
         dispatch(registerClientFailure(errorMessage)); 
     } else {

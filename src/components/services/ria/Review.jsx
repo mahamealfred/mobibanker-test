@@ -6,25 +6,58 @@ import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 import moment from 'moment';
 import {useTranslation} from "react-i18next"
+import Alert from "@mui/material/Alert";
+import Collapse from "@mui/material/Collapse";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 export default function Review({
- 
+  clientEmail,
+  clientPhoneNumber,
+  clientName,
+  depositErrorMessage,
+  setDepositErrorMessage,
+      openPayment,
+      setOpenPayment,
 }) {
-  const { t } = useTranslation(["home","common","electricity"]);
+  const handleClose = () => {
+   setDepositErrorMessage("")
+    setOpenPayment(false);
+  };
   return (
     <React.Fragment>
        <Typography variant="h6" textAlign="center" gutterBottom>
-          CLIENT PROFILE6
+          CLIENT PROFILE
       </Typography>
+      {!depositErrorMessage ? null : (
+        <Collapse in={openPayment}>
+          <Alert
+            severity="error"
+            action={
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={handleClose}
+              >
+                <CloseIcon fontSize="inherit" />
+              </IconButton>
+            }
+            sx={{ mb: 0.2 }}
+          >
+            {depositErrorMessage}
+          </Alert>
+        </Collapse>
+      )}
       <List disablePadding>
           <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
-            <ListItemText primary="Full Name"  secondary="Mahame Alfred" />
+            <ListItemText primary="Full Name"  secondary={clientName} />
           </ListItem>
           <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
-            <ListItemText primary="Phone Number" secondary="1223"/>
+            <ListItemText primary="Phone Number"secondary={clientPhoneNumber} />
           </ListItem>
         
             <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
-            <ListItemText primary="Email Address"  secondary="bernice@gmail.com" />
+            <ListItemText primary="Email Address"  secondary={clientEmail} />
           </ListItem>
 
       </List>

@@ -50,6 +50,7 @@ import { clientValidationAction } from "../../../redux/actions/clientValidationA
 import { motion } from "framer-motion/dist/framer-motion";
 import { set } from "date-fns";
 import { registerClientAction } from "../../../redux/actions/registerClientAction";
+import { riaDepositAction } from "../../../redux/actions/riaDepositAction";
 
 const  ComponentToPrint=React.lazy(()=>import("./RiaComponentToPrint").then(module=>{
   return {default: module.ComponentToPrint}
@@ -109,7 +110,6 @@ const RiaForm = (props) => {
   const steps = ["Check Order", "Check Beneficiary Account", "Details"];
   const [activeStep, setActiveStep] = React.useState(0);
   const dispatch = useDispatch();
-
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
   const SignupSchema = Yup.object().shape({
     // identityType: Yup.string()
@@ -189,6 +189,7 @@ const RiaForm = (props) => {
   const electricityPayment = useSelector((state) => state.electricityPayment);
   const getRiaOrderDetails=useSelector((state)=>state.getRiaOrderDetails)
   const registerClient=useSelector((state)=>state.registerClient)
+  const riaDeposit=useSelector((state)=>state.riaDeposit)
   const [formData, setFormData] = useState({
     orderNumber:"",
     orderPin:"",
@@ -288,7 +289,11 @@ const [nidErrorMessage,setNidErrorMessage ]=useState("")
  const [docDetails, setDocDetails] = useState("");
  const [openDialog,setOpenDialog]=useState(false);
  const [executing, setExecuting] = useState(false);
- const [username,setUsername]=useState("")
+ const [username,setUsername]=useState("");
+
+ const [clientName,setClientName]=useState("")
+ const [clientPhoneNumber,setClientPhoneNumber]=useState("");
+ const [clientEmail,setClientEmail]=useState("")
  
 
  const {
@@ -328,7 +333,13 @@ const [nidErrorMessage,setNidErrorMessage ]=useState("")
         );
      case 2:
        return <Review 
-      
+      clientEmail={clientEmail}
+      clientPhoneNumber={clientPhoneNumber}
+      clientName={clientName}
+      depositErrorMessage={depositErrorMessage}
+      setDepositErrorMessage={setDepositErrorMessage}
+      openPayment={openPayment}
+      setOpenPayment={setOpenPayment}
        />;
      default:
        throw new Error("Unknown step");
@@ -346,6 +357,42 @@ const [clientUsername,setClientUsername]=useState("")
 const [phoneNumber,setPhoneNumber]=useState("");
 const [openErrorMessage,setOpenErrorMessage]=useState(false)
 const [registerClientErrorMessage,setRegisterClientErrorMessage]=useState("")
+const [depositErrorMessage, setDepositErrorMessage]=useState("")
+const [orderPIN,setOrderPIN]=useState("")
+
+//handle ria deposit
+const handleRiaDeposit=async()=>{
+  const orderNo=orderNumber
+  const PIN=orderPIN
+  const clientaccount=clientPhoneNumber
+  await dispatch(riaDepositAction({clientaccount,PIN,orderNo},username,password))
+  if (riaDeposit.error) {
+    setDepositErrorMessage(riaDeposit.error)
+  
+    setOpenPayment(true)
+  }
+}
+useEffect(() => {
+  async function fetchData() {
+     if(!riaDeposit.loading){
+      if(riaDeposit.details.length!==0){
+        if (riaDeposit.details.responseCode === 100) {
+          
+        handleNext()
+        // setOpenOrderDetailsDialog(true)
+         } else {
+           return null;
+         }
+      }
+      if(riaDeposit.error)  {
+        setDepositErrorMessage(riaDeposit.error);
+      }
+     }
+}
+  fetchData();
+}, [riaDeposit.details,riaDeposit.error]); 
+
+
 //handle submit 
 const handleSubmitForm=async()=>{
   
@@ -441,6 +488,7 @@ useEffect(() => {
           setOrdeNumber(getRiaOrderDetails.details.data.Transaction.OrderNo)
           setOrderDate(getRiaOrderDetails.details.data.Transaction.OrderDate)
           setOrderStatus(getRiaOrderDetails.details.data.Transaction.OrderStatus)
+          setOrderPIN(getRiaOrderDetails.details.data.Transaction.PIN)
           setBeneFirstName(getRiaOrderDetails.details.data.Beneficiary.PersonalInformation.BeneFirstName)
           setBeneLastName(getRiaOrderDetails.details.data.Beneficiary.PersonalInformation.BeneLastName)
           setBeneMiddleName(getRiaOrderDetails.details.data.Beneficiary.PersonalInformation.BeneMiddleName)
@@ -471,7 +519,9 @@ useEffect(() => {
     if (!clientValidation.loading) {
       if (clientValidation.details.length !== 0) {
         if (clientValidation.details.responseCode === 100) {
-        
+          setClientEmail(clientValidation.details.data.email)
+          setClientName(clientValidation.details.data.names)
+          setClientPhoneNumber(clientValidation.details.data.phoneNumber)
           handleNext();
         } 
        
@@ -576,7 +626,7 @@ useEffect(() => {
     handleCheckBeneficiaryAccount()
     // handleNext();
    } else if (activeStep === 2) {
- handleNext()
+handleRiaDeposit()
    } else {
      return null;
    }
@@ -1175,7 +1225,10 @@ We have sent an email with a confirmation link to your email address
                     
                       {/* {activeStep === steps.length - 1 ? 'Mke payment' : 'Next'} */}
                       {activeStep === steps.length - 1
-                        ? "Next"
+                        ? riaDeposit.loading?
+                        <Box sx={{ display: 'flex',justifyContent:"center" }}>
+                        <CircularProgress  sx={{ color: 'orange'}} />
+                         </Box>:"Next"
                         : activeStep === 0
                         ?
                         getRiaOrderDetails.loading?

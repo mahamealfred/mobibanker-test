@@ -33,7 +33,7 @@ export const registerClientAction = (details,username,password) => async (dispat
     // const {brokering}=details
     // const {userGroup}=details
     //let basicAuth='Basic ' + btoa(username + ':' + password);
-    const Url='https://agentapi.mobicash.rw/api/ria/service/rest/v.4.14.01/individual-clients-enrollment';
+    const Url='https://agentapi.mobicash.rw/api/ria/service/rest/v.4.14.01/individual-clients-enrollment-by-agent';
 
     const res = await axios.post(Url,{
       

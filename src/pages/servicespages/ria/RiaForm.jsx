@@ -448,9 +448,7 @@ useEffect(() => {
  const handleOrderDetails=async()=>{
   if (formData.orderNumber === "") {
     setOrderNumberErr("Order number is required")
-  } else if (!Number(formData.orderNumber)) {
-    setOrderNumberErr("Order number must be numeric")
-  } 
+  }
   else if (!Number(formData.orderPin)) {
     setOrderPinErr("Order  PIN is required")
   } 

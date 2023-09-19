@@ -40,6 +40,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { IconButton} from '@mui/material';
 import { authorizeRiaTransactionsAction } from '../../redux/actions/authorizeRiaTransactionAction';
 //import logo from "../../assets/images/logo.png"
+import { valiateNidDetailsDetailsAction} from '../../redux/actions/validateNidAction';
 
 // export let amountPaid=[]
 
@@ -62,15 +63,13 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
-
-
-
 export default function Transactions() {
   const { t } = useTranslation(["home","common","login"]);
  // const todaydate = new Date().toISOString().slice(0, 10);
  const { auth}=React.useContext(AuthContext)
   const transactionsDetails = useSelector((state) => state.transactions);
   const authorizeRiaTransaction = useSelector((state) => state.authorizeRiaTransaction);
+  const validateNid=useSelector((state)=>state.validateNid);
  const dispatch=useDispatch();
   const [agentTransactionsDetails, setAgentTransactionDetails] = useState([]);
   const [limit, setLimit] = useState(40);
@@ -91,8 +90,17 @@ export default function Transactions() {
  const [date,setDate]=useState('')
  const [description,setDescription]=useState('')
  const [openNidDialog,setOpenNidDialog]=React.useState(false);
+ const [documentNumber,setDocumentNumber]=useState("")
+ const [nidErrorMessage,setNidErrorMessage]=useState('');
  const [openErrorMessage,setOpenErrorMessage]=useState(false)
+ const [opennidErrorMessage,setOpennidErrorMessage]=useState(true)
  const [transactionId,setTransactionId]=useState("")
+ const [nidError,setNidError]=useState("")
+ const [firstName,setFirstName]=useState("")
+ const [lastName,setLastName]=useState("");
+ const [nid,setNid]=useState("") 
+ const [image,setImage]=useState("")
+ const [placeOfIssue,setPlaceOfIssue]=useState("");
   const trimString = (s) => {
     var l = 0,
       r = s.length - 1;
@@ -145,21 +153,23 @@ export default function Transactions() {
     authorizeRiaTransaction.details=['']
     authorizeRiaTransaction.error=['']
      setTransactionId(id)
-     setOpenApprove(true);
+     setOpenNidDialog(true)
+    // setOpenApprove(true);
      // setOpenApprove(true)
    }
  
   const handleClose=()=>{
+    validateNid.details=['']
+    validateNid.error=['']
+    setTransactionId("")
     setTransactionId("")
     setOpenApprove(false);
+    setOpenNidDialog(false)
 
   }
 
   
-  const handleCloseErrorMessage=()=>{
-   
-    setOpenErrorMessage(false);
-  }
+ 
   const handeAuthorization=async()=>{
     if(password===""){
       setPasswordError("PIN is required")
@@ -210,6 +220,24 @@ export default function Transactions() {
   });
 
 
+
+  const handleCloseNid=()=>{
+   setNidError("")
+   setNid("")
+    setOpenNidDialog(false)
+  }
+
+  const handleCloseErrorMessage=()=>{
+   
+    setOpenErrorMessage(false);
+  }
+  const handleClosenidErrorMessage=()=>{
+   
+    setOpennidErrorMessage(false);
+  }
+
+
+
   //Ria withdrwa transactions
   useEffect(()=>{
     async function fetchData(){
@@ -231,9 +259,132 @@ export default function Transactions() {
     }
     fetchData();
      },[authorizeRiaTransaction.details,authorizeRiaTransaction.error])
+
+     //NID verification 
+     const handleValidateNid=async()=>{
+      
+      if(nid === ""){
+        setNidError("NID is required")
+      }
+      else{
+        setNidError("")
+        await dispatch(valiateNidDetailsDetailsAction({nid}))
+      }
+     }
+
+     
+//render Nid details
+useEffect(() => {
+  async function fetchData() {
+    if (!validateNid.loading) {
+      if (validateNid.details.length !== 0) {
+        if (validateNid.details.responseCode === 100) {
+         setFirstName(validateNid.details.data.foreName)
+         setLastName(validateNid.details.data.surnames)
+         setPlaceOfIssue(validateNid.details.data.placeOfIssue)
+         setDocumentNumber(validateNid.details.data.documentNumber);
+         setImage(validateNid.details.data.photo)
+         setOpenNidDialog(false)
+         setOpenApprove(true)
+        } else {
+          return null;
+        }
+      }
+      if (validateNid.error) {
+        setNidErrorMessage(validateNid.error);
+        setOpennidErrorMessage(true)
+      }
+    }
+  }
+  fetchData();
+}, [validateNid.details,validateNid.error]);
   return (
     <React.Fragment>
-
+//NID VERIFICATION 
+<Dialog
+        open={openNidDialog}
+       // onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        PaperProps={{
+          sx: {
+            width: "50%",
+            maxHeight: 300
+          }
+        }}
+   
+      >
+        <DialogTitle id="alert-dialog-title">
+        
+          <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        </DialogTitle>
+       
+        <Typography variant="h6" sx={{ fontWeight: 'bold' }} color="gray" textAlign="center">
+          Verify National ID
+          </Typography>
+       
+{   !nidErrorMessage ? null : (
+                <Collapse in={opennidErrorMessage}>
+                    <Alert severity="error"
+                        action={
+                            <IconButton
+                        aria-label="close"
+                        color="inherit"
+                        size="small"onClick={handleClosenidErrorMessage}>
+                        <CloseIcon
+                        fontSize="inherit"/></IconButton>
+                        }
+                        sx={
+                            {mb: 0.2}
+                    }>
+                        {nidErrorMessage}  
+                        </Alert>
+                </Collapse>
+            )
+        }
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+          <TextField
+      margin="normal"
+      variant="standard"
+      id="1i"
+      label="Enter National ID"
+      type="text"
+      fullWidth
+      required
+      value={nid}
+      onChange={(e)=>setNid(e.target.value)}
+      helperText={nidError? nidError : ""}
+      error={nidError}
+      // inputProps={{ minLength: 6 }}
+    />
+{!validateNid.loading? 
+           <Button
+           type="submit"
+           fullWidth
+           variant="contained"
+           color="warning"
+           sx={{ mt: 3, mb: 2 }}
+          onClick={handleValidateNid} 
+         > Submit</Button>: 
+         <Box sx={{ display: 'flex',justifyContent:"center" }}>
+         <CircularProgress  sx={{ color: 'orange' }} />
+          </Box>
+         }
+          </DialogContentText>
+        </DialogContent>
+      </Dialog>
 
 <Dialog
         open={openApprove}
@@ -288,20 +439,63 @@ export default function Transactions() {
     >
         {/* <img style={{width:120,height:100,objectFit:"contain"}} src={`data:image/png;base64,${image}`}/> */}
         </Box>
-              <Typography variant="h6" textAlign="center" gutterBottom>
+        {/* <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+     
+    > */}
+    
+        {/* <img style={{width:120,height:100,objectFit:"contain"}} src={`data:image/png;base64,${image}`}/>
+        </Box>
+          <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
+           {lastName +" "+firstName} 
+              </Typography>
+              <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
+           {documentNumber} 
+              </Typography> */}
+                 <Typography variant="h6" textAlign="center" gutterBottom>
+          Customer Profile
+      </Typography>
+      <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+     
+    >
+ <img style={{width:140,height:120,objectFit:"contain"}} src={`data:image/png;base64,${image}`}/>
+    </Box>
+      <List disablePadding>
+        <ListItem  sx={{ py: 1, px: {xs:0,sm:20} }}>
+       
+            <ListItemText primary="First Name" />
+            <Typography variant="body2">{firstName}</Typography>
+          </ListItem>
+          <ListItem  sx={{ py: 1, px: {xs:0,sm:20} }}>
+            <ListItemText primary="Last Name" />
+            <Typography variant="body2">{lastName}</Typography>
+          </ListItem>
+          <ListItem  sx={{ py: 1, px: {xs:0,sm:20} }}>
+            <ListItemText primary="National ID" />
+            <Typography variant="body2">{documentNumber}</Typography>
+          </ListItem>
+     
+      </List>
+      <Typography variant="h5" textAlign="center" gutterBottom>
         Transaction Details
       </Typography>
       {/* <Grid direction="column" xs={12} sm={6}>
         <Grid item xs={12} sm={6}> */}
+      
         <List disablePadding>
-     
+        
           <ListItem  sx={{ py: 1, px: {xs:0,sm:20} }}>
             <ListItemText primary="Mobicash Reference" />
             <Typography variant="body2">{transactionId}</Typography>
           </ListItem>
           <ListItem  sx={{ py: 1, px: {xs:0,sm:20} }}>
             <ListItemText primary="Amount" />
-            <Typography variant="body2">{amount<0?(amount).toLocaleString()*-1:(amount).toLocaleString()}</Typography>
+            <Typography variant="body2">{amount<0?(amount).toLocaleString()*-1:(amount).toLocaleString()} Rwf</Typography>
           </ListItem>
       </List>
         <DialogContent>
@@ -500,9 +694,12 @@ export default function Transactions() {
                   <Tooltip title="Approve Transaction" sx={{ mt: 1 }}>
                   <Button
                   onClick={()=>{ 
-                    setTransactionId(details.id)
-                    handleOpenApprove(details.id)
-                    setAmount(details.amount)
+                    // setTransactionId(details.id)
+                    // handleOpenApprove(details.id)
+                     setAmount(details.amount)
+                      setTransactionId(details.id)
+                      handleOpenApprove(details.id)
+                 
                   
                   }}
                       sx={{ mr: 1,color:"gray"}}

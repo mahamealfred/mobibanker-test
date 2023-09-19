@@ -92,25 +92,27 @@ export default function CustomizedTables() {
   const componentRef = useRef(null);
  const [basicAuth,setBasicAuth]=useState('')
  const [username,setUsername]=useState('')
+ const [open,setOpen]=React.useState(true);
  const [password,setPassword]=useState('')
  const [passwordError,setPasswordError]=useState('')
  const [errorMessage,setErrorMessage]=useState('');
  const [nidErrorMessage,setNidErrorMessage]=useState('');
- const [open,setOpen]=React.useState(true);
  const [openNidDialog,setOpenNidDialog]=React.useState(false);
  const [openErrorMessage,setOpenErrorMessage]=useState(false)
  const [opennidErrorMessage,setOpennidErrorMessage]=useState(true)
  const [transactionId,setTransactionId]=useState("")
  const [nidError,setNidError]=useState("")
+ const [firstName,setFirstName]=useState("")
+ const [lastName,setLastName]=useState("");
  const [nid,setNid]=useState("") 
+ const [image,setImage]=useState("")
  const [amount,setAmount]=useState('') 
  const [date,setDate]=useState('')
  const [description,setDescription]=useState('')
- const [firstName,setFirstName]=useState("")
- const [lastName,setLastName]=useState("");
+
  const [placeOfIssue,setPlaceOfIssue]=useState("");
  const [documentNumber,setDocumentNumber]=useState("")
- const [image,setImage]=useState("")
+
   const trimString = (s) => {
     var l = 0,
       r = s.length - 1;

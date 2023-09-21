@@ -393,9 +393,15 @@ useEffect(() => {
         aria-describedby="alert-dialog-description"
         fullWidth
         maxWidth="sm"
+        // PaperProps={{
+        //   sx: {
+        //     width: "50%",
+        //     maxHeight: 500
+        //   }
+        // }}
       >
         <DialogTitle id="alert-dialog-title">
-          <Typography variant="6" color="gray" textAlign="center">
+          <Typography variant="h6" color="gray" textAlign="center">
       RIA Withdraw Transaction
           </Typography>
           <IconButton
@@ -437,51 +443,34 @@ useEffect(() => {
       alignItems="center"
      
     >
-        {/* <img style={{width:120,height:100,objectFit:"contain"}} src={`data:image/png;base64,${image}`}/> */}
-        </Box>
-        {/* <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-     
-    > */}
-    
-        {/* <img style={{width:120,height:100,objectFit:"contain"}} src={`data:image/png;base64,${image}`}/>
-        </Box>
-          <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-           {lastName +" "+firstName} 
-              </Typography>
-              <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
-           {documentNumber} 
-              </Typography> */}
-                 <Typography variant="h6" textAlign="center" gutterBottom>
+        </Box> 
+    <Typography variant="h6" textAlign="center" gutterBottom>
           Customer Profile
       </Typography>
       <Box
       display="flex"
       justifyContent="center"
       alignItems="center"
-     
     >
  <img style={{width:140,height:120,objectFit:"contain"}} src={`data:image/png;base64,${image}`}/>
     </Box>
       <List disablePadding>
-        <ListItem  sx={{ py: 1, px: {xs:0,sm:20} }}>
+        <ListItem  sx={{ py:  0.2, px: {xs:0,sm:20} }}>
        
             <ListItemText primary="First Name" />
             <Typography variant="body2">{firstName}</Typography>
           </ListItem>
-          <ListItem  sx={{ py: 1, px: {xs:0,sm:20} }}>
+          <ListItem  sx={{ py:  0.2, px: {xs:0,sm:20} }}>
             <ListItemText primary="Last Name" />
             <Typography variant="body2">{lastName}</Typography>
           </ListItem>
-          <ListItem  sx={{ py: 1, px: {xs:0,sm:20} }}>
+          <ListItem  sx={{ py:  0.2, px: {xs:0,sm:20} }}>
             <ListItemText primary="National ID" />
             <Typography variant="body2">{documentNumber}</Typography>
           </ListItem>
      
       </List>
-      <Typography variant="h5" textAlign="center" gutterBottom>
+      <Typography variant="h6" textAlign="center" gutterBottom>
         Transaction Details
       </Typography>
       {/* <Grid direction="column" xs={12} sm={6}>
@@ -489,11 +478,11 @@ useEffect(() => {
       
         <List disablePadding>
         
-          <ListItem  sx={{ py: 1, px: {xs:0,sm:20} }}>
+          <ListItem  sx={{ py: 0.2, px: {xs:0,sm:20} }}>
             <ListItemText primary="Mobicash Reference" />
             <Typography variant="body2">{transactionId}</Typography>
           </ListItem>
-          <ListItem  sx={{ py: 1, px: {xs:0,sm:20} }}>
+          <ListItem  sx={{ py: 0.2, px: {xs:0,sm:20} }}>
             <ListItemText primary="Amount" />
             <Typography variant="body2">{amount<0?(amount).toLocaleString()*-1:(amount).toLocaleString()} Rwf</Typography>
           </ListItem>

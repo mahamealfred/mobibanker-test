@@ -22,7 +22,7 @@ import { getElectricityDetailsAction } from "../../../redux/actions/electricityA
 import { electricityPayamentAction } from "../../../redux/actions/electricitPaymentAction";
 import { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid, List, ListItem, ListItemText, MenuItem, Snackbar, Stack, TextField } from "@mui/material";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid,  List, ListItem, ListItemText, MenuItem, Snackbar, Stack, TextField } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
 import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
@@ -51,6 +51,7 @@ import { motion } from "framer-motion/dist/framer-motion";
 import { set } from "date-fns";
 import { registerClientAction } from "../../../redux/actions/registerClientAction";
 import { riaDepositAction } from "../../../redux/actions/riaDepositAction";
+import {Link} from "react-router-dom";
 
 const  ComponentToPrint=React.lazy(()=>import("./RiaComponentToPrint").then(module=>{
   return {default: module.ComponentToPrint}
@@ -1197,7 +1198,7 @@ We have sent an email with a confirmation link to your email address
                   {t("common:thankyouforusingmobicash")}
                   </Typography>
                   <Typography textAlign="center" variant="subtitle1">
-                  Please, Go to the previous transaction to approve the withdrawal amount.
+                  To initiate a transactrion, Please visit the MobiSwift App at scan.rw
                   </Typography>
                   <Button onClick={handleNewpayment} sx={{ mt: 3, ml: 1 }}>
                   Go Back To Home

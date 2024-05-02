@@ -19,6 +19,7 @@ export const cbhiPayamentAction = (details,username,password,history) => async (
     const {payerPhoneNumber}=details
     const {brokering}=details
     const {userGroup}=details
+    const {agentPhoneNumber}=details
  
    // let errorMessage =''
     //const encodedBase64Token = Buffer.from(`${username}:${password}`).toString('base64');
@@ -28,13 +29,14 @@ export const cbhiPayamentAction = (details,username,password,history) => async (
     houseHoldNID:houseHoldNID,
     paymentYear:paymentYear,
     amountPaid:amountPaid,
-    payerName:payerName,
-    houseHoldCategory:houseHoldCategory,
+    payerName:payerName,    
     householdMemberNumber:householdMemberNumber,
     totalPremium:totalPremium,     
-    payerPhoneNumber:payerPhoneNumber,   
+    payerPhoneNumber:payerPhoneNumber,    
     brokering:brokering,
-    userGroup:userGroup
+    userGroup:userGroup,
+    businessCat:false,
+    agentphone:agentPhoneNumber
       
   
    },{

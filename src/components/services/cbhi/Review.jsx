@@ -29,9 +29,9 @@ export default function Review({
           <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
             <ListItemText primary={t("cbhi:householdernid")} secondary={formData.nId} />
           </ListItem>
-          <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
+          {/* <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
             <ListItemText primary={t("cbhi:householdcategory")} secondary= {houseHoldCategory} />
-          </ListItem>
+          </ListItem> */}
           <ListItem  sx={{ py: 1, px: 0 ,textAlign:"center"}} >
             <ListItemText primary={t("cbhi:numberofmembers")} secondary={householdMemberNumber}/>
           </ListItem>

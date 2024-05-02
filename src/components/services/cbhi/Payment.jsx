@@ -84,14 +84,14 @@ const Payment=({
        
               </Typography>
             </Grid>
-            <Grid item xs={12} md={6}>
+            {/* <Grid item xs={12} md={6}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
                  {t("cbhi:householdcategory")}
               </Typography>
               <Typography variant="body2" textAlign="center" sx={{ fontSize: "16px", fontWeight: "bold" }} color="text.secondary">
                 {houseHoldCategory}
               </Typography>
-            </Grid>
+            </Grid> */}
             <Grid item xs={12} md={4}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
                  {t("cbhi:numberofmembers")}
@@ -108,7 +108,7 @@ const Payment=({
                 {amountPaidBefore.toLocaleString()} Rwf
               </Typography>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={4}>
                  <Typography variant="body2" textAlign="center" mt={1} sx={{ fontSize: "14px", fontWeight: "bold" }} gutterBottom>
                  {t("common:year")}
               </Typography>

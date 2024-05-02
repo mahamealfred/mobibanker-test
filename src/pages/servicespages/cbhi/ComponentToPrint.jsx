@@ -93,19 +93,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 							<p>{props.formData.nId}</p>
 						</div>
 					</div>
-          <div className="row">
-						<div className="col col_no">
-							
-						</div>
-						<div className="col col_des">
-							<p className="bold">Householder category</p>
-							{/* <p>Lorem ipsum dolor sit.</p> */}
-						</div>
-			
-						<div className="col col_total">
-							<p>{props.houseHoldCategory}</p>
-						</div>
-					</div>
+       
           <div className="row">
 						<div className="col col_no">
 						
